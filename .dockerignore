@@ -1,0 +1,22 @@
+# Ignore .git and .gitignore
+.git
+.gitignore
+
+# Ignore Dockerfile and docker-compose files (if not needed inside the container)
+Dockerfile
+docker-compose.yml
+
+# Ignore README
+README.md
+
+# Ignore Laravel specific files and directories
+vendor/
+node_modules/
+.env
+.env.example
+storage/framework/
+storage/logs/
+public/storage
+public/hot
+public/css
+public/js

@@ -1,0 +1,47 @@
+version: '3'
+services:
+  app:
+    build: ./docker/php
+    # --- Enable the following if using Laravel Vite ---
+    ports:
+      - 5173:5173
+    volumes:
+      - ./src:/project
+  nginx:
+    image: nginx 
+    ports:
+      - 8000:80 
+    volumes:
+      - ./src:/project
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    working_dir: /project
+    depends_on:
+      - app
+  db:
+    # --- Enable the following if using M1 Mac ---
+    platform: linux/x86_64 
+    image: mysql:5.7 
+    environment: 
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laraveldb
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: secret
+      TZ: 'Asia/Tokyo' 
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:  
+      - ./docker/db/data:/var/lib/mysql
+      - ./docker/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/db/sql:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+
+  # --- Enable the following if using Test Database ---
+  testdb:
+    image: mysql:5.7 
+    environment: 
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: secret
+      TZ: 'Asia/Tokyo' 
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
