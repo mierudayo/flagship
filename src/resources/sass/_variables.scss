@@ -1,0 +1,24 @@
+:root {
+
+  /* Colors
+  -------------------------*/
+  /* ----- Basic ----- */
+  --white: #fff;
+  /* Black */
+  --light-black: #333;
+  --black: #222;
+  /* Navy */
+  --navy: #212a3e;
+  --transparent-navy: rgba(101, 108, 133, 0.8);
+
+  /* ----- Theme ----- */
+  --color-sidebar: var(--navy);
+
+  /* Height
+  -------------------------*/
+  --height-side-header: 64px;
+
+  /* Width
+  -------------------------*/
+  --width-sidebar: 200px;
+}
