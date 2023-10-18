@@ -1,0 +1,49 @@
+.guest-layout {
+  background-color: #ecf0f1; // --light-gray
+  min-height: 100vh;
+}
+
+/* Login
+-------------------------*/
+.login-container {
+  padding: 80px 16px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.login-title-block {
+  text-align: center;
+  padding-bottom: 24px;
+}
+
+.login-form-block {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.login-input-row {
+
+  &+.login-input-row {
+    margin-top: 16px;
+  }
+}
+
+.invalid-feedback {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.btn-login {
+  background-color: var(--light-black);
+  border-radius: 8px;
+  color: var(--white);
+  padding: 4px 8px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+}

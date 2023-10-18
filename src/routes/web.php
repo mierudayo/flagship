@@ -13,7 +13,11 @@ use Inertia\Inertia;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return Inertia::render('Home');
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return Inertia::render('Home');
+    });
 });
+
+
+require __DIR__ . '/auth.php';

@@ -1,3 +1,5 @@
+import { Link } from '@inertiajs/react';
+
 export default function AppLayout({ children }) {
   return (
     <div className="page-wrapper">
@@ -16,6 +18,13 @@ export default function AppLayout({ children }) {
         </nav>
       </aside>
       <main className="main-container">
+
+        {/* TODO: ログアウトボタン配置変更 */}
+        {/* TODO: Ziggyでrouteメソッド使う */}
+        <Link method="post" href="logout" as="button">
+          Log Out
+        </Link>
+
         {children}
       </main>
     </div>
