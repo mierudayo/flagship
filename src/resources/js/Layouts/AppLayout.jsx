@@ -20,8 +20,7 @@ export default function AppLayout({ children }) {
       <main className="main-container">
 
         {/* TODO: ログアウトボタン配置変更 */}
-        {/* TODO: Ziggyでrouteメソッド使う */}
-        <Link method="post" href="logout" as="button">
+        <Link method="post" href={route('logout')} as="button">
           Log Out
         </Link>
 

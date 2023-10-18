@@ -18,8 +18,7 @@ export default function Login({ status }) {
   const submit = (e) => {
     e.preventDefault();
 
-    // TODO: Ziggyでrouteメソッド使う
-    post('login');
+    post(route('login'));
   };
 
   return (
