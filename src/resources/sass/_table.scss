@@ -1,0 +1,126 @@
+:root{
+  /* Color
+  -------------------------*/
+  --color-table-bg: #fff;
+  --color-table-hover: #eee;
+  --color-table-border: #ddd;
+  --color-table-header: #ccc;
+
+  /* z-index
+  -------------------------*/
+  --z-index-table-cell: 100;
+  --z-index-table-header: 200;
+}
+
+/* -----------------------
+Table styles
+----------------------- */
+.table-wrapper {
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  &.is-scrollable {
+    overflow-x: scroll;
+    overflow-y: scroll;
+    position: relative;
+    max-height: calc(100vh - 80px);
+  }
+}
+
+.table {
+  background-color: var(--color-table-bg);
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.table-header {
+  background-color: var(--color-table-header);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-index-table-header);
+}
+
+.th-cell,
+.td-cell {
+  border-right: 1px solid var(--color-table-border);
+  border-bottom: 1px solid var(--color-table-border);
+  padding: 8px 16px;
+  overflow-wrap: break-word;
+}
+
+.th-cell {
+  font-weight: bold;
+}
+
+/* -----------------------
+Round the corners of the table
+----------------------- */
+.table {
+  border-radius: 4px;
+
+  &-header {
+    .table-row {
+      .th-cell {
+        &:first-child {
+          border-top-left-radius: 4px;
+        }
+
+        &:last-child {
+          border-top-right-radius: 4px;
+        }
+      }
+    }
+  }
+
+  &-body {
+    .table-row {
+      &:last-child {
+        .td-cell {
+          &:first-child {
+            border-bottom-left-radius: 4px;
+          }
+
+          &:last-child {
+            border-bottom-right-radius: 4px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* -----------------------
+Fixed cell
+----------------------- */
+.th-cell,
+.td-cell {
+  &.col-fixed {
+    background-color: var(--white);
+    left: 0;
+    position: sticky;
+    z-index: var(--z-index-table-cell);
+  }
+}
+
+.th-cell {
+  &.col-fixed {
+    background-color: var(--color-table-header);
+  }
+}
+
+/* -----------------------
+Hoverable row, cell
+----------------------- */
+.table-row {
+  &.is-hoverable {
+    &:hover {
+
+      .th-cell,
+      .td-cell {
+        background-color: var(--color-table-hover);
+      }
+    }
+  }
+}
