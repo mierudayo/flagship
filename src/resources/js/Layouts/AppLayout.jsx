@@ -1,6 +1,8 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 export default function AppLayout({ children }) {
+  const { auth } = usePage().props
+
   return (
     <div className="page-wrapper">
       <aside className="sidebar">
@@ -19,6 +21,7 @@ export default function AppLayout({ children }) {
             {[...Array(30)].map((_, i) => <li key={i}><a href="#" className="side-nav-link">Sample Menu{i + 1}</a></li>)}
           </ul>
           <footer className="side-footer">
+            {auth.user.email}
           </footer>
         </nav>
       </aside>
