@@ -56,6 +56,16 @@
   }
 }
 
+.side-footer {
+  border-top: 1px solid var(--transparent-navy);
+  height: 40px;
+  background-color: var(--color-sidebar);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
 .main-container {
   height: 100vh;
   margin-left: var(--width-sidebar);

@@ -18,6 +18,8 @@ export default function AppLayout({ children }) {
             </li>
             {[...Array(30)].map((_, i) => <li key={i}><a href="#" className="side-nav-link">Sample Menu{i + 1}</a></li>)}
           </ul>
+          <footer className="side-footer">
+          </footer>
         </nav>
       </aside>
       <main className="main-container">
