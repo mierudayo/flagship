@@ -1,0 +1,79 @@
+
+:root {
+  --red: #ff0000;
+  --sky-blue: #86b4ff;
+  --gray:#ccc;
+}
+
+.form-action-bar {
+  text-align: right;
+}
+
+.input-group {
+  &+.input-group {
+    margin-top: 8px;
+  }
+}
+
+/* Input
+-------------------------*/
+.input-field,
+.form-select {
+  background-color: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+  color: var(--black);
+  display: block;
+  font-size: 1rem;
+  font-family: inherit;
+  letter-spacing: 1px;
+  max-height: 36px;
+  padding: 8px;
+  width: 100%;
+
+  &:focus {
+    border-color: var(--sky-blue);
+    box-shadow: 0 0 0 2px rgba(134, 180, 255, 0.5);
+    outline: none;
+  }
+
+  &.is-invalid {
+    border: 1px solid var(--red);;
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(220, 53, 69, .25);
+    }
+  }
+}
+
+.input-field[type="checkbox"],
+.input-field[type="radio"] {
+  display: inline-block;
+  width: auto;
+}
+
+/* Validation
+-------------------------*/
+.invalid-feedback {
+  color: var(--red);
+  font-size: 0.875rem;
+}
+
+/* Label
+-------------------------*/
+.form-label {
+  align-items: center;
+  color: var(--black);
+  display: flex;
+  font-size: 0.9rem;
+  font-weight: bold;
+
+  .required-mark {
+    color: var(--red);
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-left: 8px;
+    padding: 0 4px;
+  }
+}
+

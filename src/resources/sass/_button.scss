@@ -1,0 +1,36 @@
+/* Button
+-------------------------*/
+.btn {
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  padding: 4px 16px;
+  white-space: nowrap;
+
+  &[disabled] {
+    opacity: 0.5;
+  }
+}
+
+.btn {
+  transition: background-color 0.2s ease;
+
+  &.btn-primary {
+    background-color: #0079FF;
+    color: var(--white);
+    &:focus,
+    &:hover {
+      background-color: #006ce7;
+    }
+  }
+
+  &.btn-secondary {
+    background-color: #eee;
+    border: 1px solid #ddd;
+    color: #27374D;
+    &:focus,
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+}
