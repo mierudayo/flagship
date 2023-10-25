@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import AppLayout from '@/Layouts/AppLayout';
-import { useForm } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 
 export default function Create() {
-  const { data, setData, post, processing, errors, reset } = useForm({
+  const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     employee_code: '',
     name: '',
     email: '',
@@ -24,13 +24,24 @@ export default function Create() {
     post(route('users.store'));
   };
 
+  function handleBeforeLeave() {
+    if (isDirty) {
+      return confirm('入力内容が破棄されますがよろしいですか？');
+    }
+    return true;
+  };
+
   return (
     <AppLayout>
       <h1>ユーザー登録</h1>
       <div className="form-action-bar">
-        <button className="btn btn-secondary">
+        <Link
+          onBefore={handleBeforeLeave}
+          href={route('users.index')}
+          className="btn btn-secondary"
+        >
           キャンセル
-        </button>
+        </Link>
         <button
           type="submit"
           form="userCreateForm"
