@@ -20,19 +20,19 @@ class UserControllerTest extends TestCase
         parent::setUp();
 
         $this->user = User::factory()->create();
-
-        $this->actingAs($this->user);
     }
 
-    public function test_can_view_users()
+    public function test_認証済みユーザーはユーザー一覧を閲覧できる(): void
     {
+        $this->actingAs($this->user);
+
         User::factory()->count(5)->create();
         $totalUsersIncludingAuth = User::count();
 
         $response = $this->get(route('users.index'));
         $response->assertStatus(200);
 
-        $response->assertInertia(function (Assert $page) use($totalUsersIncludingAuth) {
+        $response->assertInertia(function (Assert $page) use ($totalUsersIncludingAuth) {
             $page->component('User/Index');
             $page->has('users', $totalUsersIncludingAuth, function (Assert $page) {
                 $page->hasAll([
@@ -48,8 +48,16 @@ class UserControllerTest extends TestCase
         });
     }
 
-    public function test_can_view_user_create_form()
+    public function test_未認証ユーザーはユーザー一覧を閲覧できない(): void
     {
+        $response = $this->get(route('users.index'));
+        $response->assertRedirect(route('login'));
+    }
+
+    public function test_認証済みユーザーはユーザー作成フォームを閲覧できる(): void
+    {
+        $this->actingAs($this->user);
+
         $response = $this->get(route('users.create'));
         $response->assertStatus(200);
         $response->assertInertia(function (Assert $page) {
@@ -57,16 +65,22 @@ class UserControllerTest extends TestCase
         });
     }
 
-    public function test_can_store_a_new_user()
+    public function test_未認証ユーザーはユーザー作成フォームを閲覧できない(): void
     {
+        $response = $this->get(route('users.create'));
+        $response->assertRedirect(route('login'));
+    }
+
+    public function test_認証済みユーザーは新しいユーザーを保存できる(): void
+    {
+        $this->actingAs($this->user);
+
         $userData = User::factory()->make()->toArray();
         $plainPassword = 'plain-text-password';
         $userData['password'] = $plainPassword;
         $userData['password_confirmation'] = $plainPassword;
 
         $response = $this->post(route('users.store'), $userData);
-
-        $userData['password_confirmation'] = 'plain-text-password';
 
         unset($userData['password']);
         unset($userData['password_confirmation']);
@@ -80,4 +94,14 @@ class UserControllerTest extends TestCase
         $response->assertRedirect(route('users.index'));
     }
 
+    public function test_未認証ユーザーはユーザーの新規作成ができない(): void
+    {
+        $userData = User::factory()->make()->toArray();
+
+        $response = $this->post(route('users.store'), $userData);
+
+        $response->assertRedirect(route('login'));
+
+        $this->assertDatabaseMissing('users', $userData);
+    }
 }
