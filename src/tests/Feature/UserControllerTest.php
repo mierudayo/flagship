@@ -48,6 +48,15 @@ class UserControllerTest extends TestCase
         });
     }
 
+    public function test_can_view_user_create_form()
+    {
+        $response = $this->get(route('users.create'));
+        $response->assertStatus(200);
+        $response->assertInertia(function (Assert $page) {
+            $page->component('User/Create');
+        });
+    }
+
     public function test_can_store_a_new_user()
     {
         $userData = User::factory()->make()->toArray();
@@ -61,7 +70,7 @@ class UserControllerTest extends TestCase
 
         unset($userData['password']);
         unset($userData['password_confirmation']);
-        unset($userData['resignation_date']); 
+        unset($userData['resignation_date']);
 
         $this->assertDatabaseHas('users', $userData);
 
