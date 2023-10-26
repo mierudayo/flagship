@@ -38,6 +38,21 @@ class User extends Authenticatable
     ];
 
     /**
+     * モデル配列、JSON形式に含めるプロパティを定義
+     *
+     * @var array
+     */
+    protected $visible = [
+        'id',
+        'name',
+        'email',
+        'mobile_number',
+        'employee_code',
+        'employment_date',
+        'resignation_date'
+    ];
+
+    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
