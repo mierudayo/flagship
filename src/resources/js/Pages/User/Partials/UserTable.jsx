@@ -17,7 +17,9 @@ export default function UserTable({ users }) {
           {users.map(user => (
             <tr key={user.id} className="table-row is-hoverable">
               <td className="td-cell col-fixed">
-                {user.id}
+                <a href={route('users.edit', user)}>
+                  {user.id}
+                </a>
               </td>
               <td className="td-cell">{user.employee_code}</td>
               <td className="td-cell">{user.name}</td>

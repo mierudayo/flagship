@@ -104,4 +104,49 @@ class UserControllerTest extends TestCase
 
         $this->assertDatabaseMissing('users', $userData);
     }
+
+    public function test_認証済みユーザーはユーザー編集フォームを閲覧できる(): void
+    {
+        $existingUser = User::factory()->create();
+
+        $this->actingAs($this->user);
+
+        $response = $this->get(route('users.edit', $existingUser));
+
+        $response->assertStatus(200);
+
+        $response->assertInertia(function (Assert $page) {
+            $page->component('User/Edit');
+        });
+    }
+
+    public function test_未認証ユーザーはユーザー編集フォームを閲覧できない(): void
+    {
+        $existingUser = User::factory()->create();
+        $response = $this->get(route('users.edit', $existingUser));
+        $response->assertRedirect(route('login'));
+    }
+
+    public function test_認証済みユーザーはユーザーの更新ができる(): void
+    {
+        $targetUser = User::factory()->create();
+
+        $this->actingAs($this->user);
+
+        $updatedData = User::factory()->make()->toArray();
+
+        $response = $this->patch(route('users.update', $targetUser), $updatedData);
+
+        $response->assertRedirect(route('users.index'));
+
+        $this->assertDatabaseHas('users', [
+            'id'                => $targetUser->id,
+            'employee_code'     => $updatedData['employee_code'],
+            'name'              => $updatedData['name'],
+            'email'             => $updatedData['email'],
+            'mobile_number'     => $updatedData['mobile_number'],
+            'employment_date'   => $updatedData['employment_date'],
+            'resignation_date'  => $updatedData['resignation_date'],
+        ]);
+    }
 }

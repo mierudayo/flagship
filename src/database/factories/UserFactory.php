@@ -17,6 +17,9 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $employment_date = $this->faker->dateTimeBetween('-3 years', 'now');
+        $resignation_date = $this->faker->optional($weight = 0.5)->dateTimeBetween($employment_date, 'now');
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
@@ -25,8 +28,8 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'employee_code' => fake()->unique()->bothify('E####'),
             'mobile_number' => fake()->unique()->phoneNumber(),
-            'employment_date'  => fake()->optional()->date('Y-m-d', '-1 year'),
-            'resignation_date' => fake()->optional()->date('Y-m-d', 'now'),
+            'employment_date'  => $employment_date->format('Y-m-d'),
+            'resignation_date' => $resignation_date ? $resignation_date->format('Y-m-d') : null,
         ];
     }
 
