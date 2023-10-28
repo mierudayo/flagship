@@ -36,7 +36,7 @@ export default function AppLayout({ children }) {
           </header>
           <ul className="side-nav-list">
             <li>
-              <a href="#" className="side-nav-link">HOME</a>
+              <a href={route('home')} className="side-nav-link">HOME</a>
             </li>
             <li>
               <a href={route('users.index')} className="side-nav-link">社員一覧</a>

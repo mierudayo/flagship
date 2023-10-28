@@ -17,7 +17,7 @@ use Inertia\Inertia;
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return Inertia::render('Home');
-    });
+    })->name('home');
 
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::get('users/create', [UserController::class, 'create'])->name('users.create');
