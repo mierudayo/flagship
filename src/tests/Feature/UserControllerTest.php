@@ -48,6 +48,27 @@ class UserControllerTest extends TestCase
         });
     }
 
+    public function test_検索キーワードに一致するユーザーのみが表示される(): void
+    {
+        $this->actingAs($this->user);
+
+        User::factory()->create(['name' => '特定の名前']);
+        User::factory()->create(['name' => 'あいまい検索に一致する特定の名前']);
+        User::factory()->count(10)->create();
+
+        $response = $this->get(route('users.index', ['keyword' => '特定の名前']));
+
+        $expectedCount = 2;
+
+        $response->assertStatus(200);
+
+        $response->assertInertia(function (Assert $page) use($expectedCount) {
+            $page->component('User/Index');
+            $page->has('users', $expectedCount);
+            $page->where('usersCount', $expectedCount);
+        });
+    }
+
     public function test_未認証ユーザーはユーザー一覧を閲覧できない(): void
     {
         $response = $this->get(route('users.index'));

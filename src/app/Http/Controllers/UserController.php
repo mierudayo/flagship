@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserSearchRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
@@ -12,11 +13,15 @@ use Inertia\Response;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(UserSearchRequest $request)
     {
-        $users = User::all();
+        $keyword    = $request->input('keyword', '');
+        $users      = User::where('name', 'LIKE', "%$keyword%")->get();
+        $usersCount = $users->count();
+
         return Inertia::render('User/Index', [
-            'users' => $users,
+            'users'      => $users,
+            'usersCount' => $usersCount,
         ]);
     }
 
