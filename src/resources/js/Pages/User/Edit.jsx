@@ -27,6 +27,7 @@ export default function Edit({ user }) {
     <AppLayout>
       <h1>ユーザー 編集</h1>
       <div className="form-action-bar">
+        {processing && <span>Now Loading...</span>}
         <Link
           onBefore={handleBeforeLeave}
           href={route('users.index')}

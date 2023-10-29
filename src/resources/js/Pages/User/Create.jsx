@@ -35,6 +35,7 @@ export default function Create() {
     <AppLayout>
       <h1>ユーザー登録</h1>
       <div className="form-action-bar">
+        {processing && <span>Now Loading...</span>}
         <Link
           onBefore={handleBeforeLeave}
           href={route('users.index')}
