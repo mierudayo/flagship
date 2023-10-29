@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import AppLayout from '@/Layouts/AppLayout';
 import UserTable from "./Partials/UserTable";
 import { useForm } from "@inertiajs/react";
