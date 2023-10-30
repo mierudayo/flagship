@@ -34,16 +34,37 @@ class UserControllerTest extends TestCase
 
         $response->assertInertia(function (Assert $page) use ($totalUsersIncludingAuth) {
             $page->component('User/Index');
-            $page->has('users', $totalUsersIncludingAuth, function (Assert $page) {
-                $page->hasAll([
-                    'id',
-                    'name',
-                    'email',
-                    'mobile_number',
-                    'employee_code',
-                    'employment_date',
-                    'resignation_date'
+
+            $page->has('usersPaginator', function (Assert $paginator) use ($totalUsersIncludingAuth) {
+
+                // ページネーションの基本プロパティを確認
+                $paginator->hasAll([
+                    'current_page',
+                    'first_page_url',
+                    'from',
+                    'last_page',
+                    'last_page_url',
+                    'links',
+                    'next_page_url',
+                    'path',
+                    'per_page',
+                    'prev_page_url',
+                    'to',
+                    'total'
                 ]);
+
+                // usersPaginator.data のチェック
+                $paginator->has('data', $totalUsersIncludingAuth, function (Assert $user) {
+                    $user->hasAll([
+                        'id',
+                        'name',
+                        'email',
+                        'mobile_number',
+                        'employee_code',
+                        'employment_date',
+                        'resignation_date'
+                    ]);
+                });
             });
         });
     }
@@ -64,8 +85,8 @@ class UserControllerTest extends TestCase
 
         $response->assertInertia(function (Assert $page) use($expectedCount) {
             $page->component('User/Index');
-            $page->has('users', $expectedCount);
-            $page->where('usersCount', $expectedCount);
+            $page->has('usersPaginator');
+            $page->where('usersPaginator.total', $expectedCount);
         });
     }
 
