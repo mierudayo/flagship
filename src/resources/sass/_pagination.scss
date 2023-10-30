@@ -1,0 +1,33 @@
+.pagination {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-link {
+  background-color: #eee;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 4px 8px;
+  transition: background-color 0.2s ease;
+
+  &+.pagination-link {
+    margin-left: 4px;
+  }
+
+  &[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    background-color: #ddd;
+  }
+}
+
+.current-page {
+  font-size: 0.9rem;
+  margin: 0 4px;
+}

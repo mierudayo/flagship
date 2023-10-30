@@ -13,15 +13,13 @@ use Inertia\Response;
 
 class UserController extends Controller
 {
-    public function index(UserSearchRequest $request)
+    public function index(UserSearchRequest $request): Response
     {
         $keyword    = $request->input('keyword', '');
-        $users      = User::where('name', 'LIKE', "%$keyword%")->get();
-        $usersCount = $users->count();
+        $usersPaginator = User::where('name', 'LIKE', "%$keyword%")->paginate(20)->withQueryString();
 
         return Inertia::render('User/Index', [
-            'users'      => $users,
-            'usersCount' => $usersCount,
+            'usersPaginator' => $usersPaginator,
         ]);
     }
 

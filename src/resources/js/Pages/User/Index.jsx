@@ -1,8 +1,9 @@
 import AppLayout from '@/Layouts/AppLayout';
 import UserTable from "./Partials/UserTable";
 import { useForm } from "@inertiajs/react";
+import Pagination from "@/Components/Pagination";
 
-export default function Index({ users, usersCount }) {
+export default function Index({ usersPaginator }) {
   const { data, setData, get, errors } = useForm({
     keyword: '',
   });
@@ -39,10 +40,11 @@ export default function Index({ users, usersCount }) {
           </form>
         </div>
         <div className="record-count">
-          {usersCount}件
+          {usersPaginator.total}件
         </div>
+        <Pagination paginator={usersPaginator} />
       </div>
-      <UserTable users={users} />
+      <UserTable users={usersPaginator.data} />
     </AppLayout>
   );
 }
