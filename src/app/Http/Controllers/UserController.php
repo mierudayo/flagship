@@ -16,7 +16,9 @@ class UserController extends Controller
     public function index(UserSearchRequest $request): Response
     {
         $keyword    = $request->input('keyword', '');
-        $usersPaginator = User::where('name', 'LIKE', "%$keyword%")->paginate(20)->withQueryString();
+
+        $usersQuery      = User::query()->searchByKeyword($keyword);
+        $usersPaginator  = $usersQuery->paginate(20)->withQueryString();
 
         return Inertia::render('User/Index', [
             'usersPaginator' => $usersPaginator,
