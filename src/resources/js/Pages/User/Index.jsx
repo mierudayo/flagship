@@ -23,25 +23,25 @@ export default function Index({ usersPaginator }) {
       <div className="content-navbar">
         <a
           href={route('users.create')}
-          className="btn btn-primary"
+          className="btn btn-primary u-mr-3"
         >
           新規登録
         </a>
-        <div className="search-box">
-          <form onSubmit={submit}>
+        <form onSubmit={submit}>
+          <div className="u-flex u-mr-3">
             <input
               type="search"
               name="keyword"
               value={data.keyword}
               onChange={(e) => setData('keyword', e.target.value)}
-              onBlur={submit}
               className={`input-field ${errors.keyword ? 'is-invalid' : ''}`}
               placeholder="検索ワード"
             />
-            <div className="invalid-feedback">{errors.keyword}</div>
-          </form>
-        </div>
-        <div className="record-count">
+            <button className="btn btn-secondary">検索</button>
+          </div>
+          {errors.keyword && <div className="invalid-feedback">{errors.keyword}</div>}
+        </form>
+        <div className="record-count u-mr-3">
           {usersPaginator.total}件
         </div>
         <Pagination paginator={usersPaginator} />
