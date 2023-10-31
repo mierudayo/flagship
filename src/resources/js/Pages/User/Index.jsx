@@ -4,8 +4,10 @@ import { useForm } from "@inertiajs/react";
 import Pagination from "@/Components/Pagination";
 
 export default function Index({ usersPaginator }) {
+  const params = route().params;
+
   const { data, setData, get, errors } = useForm({
-    keyword: '',
+    keyword: params.keyword || "",
   });
 
   function submit(e) {
