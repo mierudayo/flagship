@@ -39,7 +39,7 @@ export default function AppLayout({ children }) {
               <a href={route('home')} className="side-nav-link">HOME</a>
             </li>
             <li>
-              <a href={route('users.index')} className="side-nav-link">社員一覧</a>
+              <a href={route('users.index')} className="side-nav-link">ユーザー</a>
             </li>
             {[...Array(30)].map((_, i) => <li key={i}><a href="#" className="side-nav-link">Sample Menu{i + 1}</a></li>)}
           </ul>

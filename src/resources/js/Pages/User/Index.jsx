@@ -19,7 +19,7 @@ export default function Index({ usersPaginator }) {
 
   return (
     <AppLayout>
-      <h1 className="content-title">User List</h1>
+      <h1 className="content-title">ユーザー 一覧</h1>
       <div className="content-navbar">
         <a
           href={route('users.create')}

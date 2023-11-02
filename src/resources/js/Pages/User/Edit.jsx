@@ -25,13 +25,12 @@ export default function Edit({ user }) {
 
   return (
     <AppLayout>
-      <h1>ユーザー 編集</h1>
-      <div className="form-action-bar">
-        {processing && <span>Now Loading...</span>}
+      <h1 className="content-title">ユーザー 編集</h1>
+      <div className="content-navbar">
         <Link
           onBefore={handleBeforeLeave}
           href={route('users.index')}
-          className="btn btn-secondary"
+          className="btn btn-secondary u-mr-3"
         >
           キャンセル
         </Link>
@@ -43,6 +42,7 @@ export default function Edit({ user }) {
         >
           更新
         </button>
+        {processing && <span>Now Loading...</span>}
       </div>
       <form id="userCreateForm" onSubmit={submit}>
         <div className="form-inner">

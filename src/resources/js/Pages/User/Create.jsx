@@ -33,13 +33,12 @@ export default function Create() {
 
   return (
     <AppLayout>
-      <h1>ユーザー登録</h1>
-      <div className="form-action-bar">
-        {processing && <span>Now Loading...</span>}
+      <h1 className="content-title">ユーザー 登録</h1>
+      <div className="content-navbar">
         <Link
           onBefore={handleBeforeLeave}
           href={route('users.index')}
-          className="btn btn-secondary"
+          className="btn btn-secondary u-mr-3"
         >
           キャンセル
         </Link>
@@ -51,6 +50,7 @@ export default function Create() {
         >
           登録
         </button>
+        {processing && <span>Now Loading...</span>}
       </div>
       <form id="userCreateForm" onSubmit={submit}>
         <div className="form-inner">
