@@ -1,0 +1,32 @@
+erDiagram
+
+  %% Table relationships
+  permissions ||--|{ users : ""
+
+  %% Table definitions
+
+  %% 権限
+  permissions {
+    bigint id PK "ID"
+    int level "権限レベル"
+    string name "権限名"
+    string display_name "表示名"
+    timestamp created_at
+    timestamp updated_at
+  }
+
+  %% ユーザー
+  users {
+    bigint id PK "ID"
+    bigint permission_id FK "権限ID"
+    string name "ユーザー名"
+    string email UK "E-mail"
+    timestamp email_verified_at
+    string password "パスワード"
+    string employee_code UK "社員番号"
+    string mobile_number "携帯番号"
+    date employment_date "入社日"
+    date resignation_date "退職日"
+    timestamp created_at
+    timestamp updated_at
+  }
