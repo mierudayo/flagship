@@ -25,7 +25,7 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'permission_id'     => 'required|exists:permissions,id',
-            'employee_code'     => 'required|string|max:5',
+            'employee_code'     => ['required', 'string', 'max:5', Rule::unique(User::class)->ignore($this->route('user'))],
             'name'              => 'required|string|max:255',
             'email'             => ['email', 'max:255', Rule::unique(User::class)->ignore($this->route('user'))],
             'mobile_number'     => 'nullable|string|min:10|max:15',

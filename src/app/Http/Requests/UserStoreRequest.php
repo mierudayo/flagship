@@ -25,7 +25,7 @@ class UserStoreRequest extends FormRequest
     {
         return [
             'permission_id'     => 'required|exists:permissions,id',
-            'employee_code'     => 'required|string|max:5',
+            'employee_code'     => 'required|string|max:5|unique:'.User::class,
             'name'              => 'required|string|max:255',
             'email'             => 'required|string|email|max:255|unique:'.User::class,
             'password'          => ['required', 'confirmed', Rules\Password::defaults()],
