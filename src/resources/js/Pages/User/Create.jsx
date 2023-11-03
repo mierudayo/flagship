@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm } from "@inertiajs/react";
 
-export default function Create() {
+export default function Create({ permissionSelectOptions }) {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
+    permission_id: '',
     employee_code: '',
     name: '',
     email: '',
@@ -70,6 +71,29 @@ export default function Create() {
             />
             <div className="invalid-feedback">{errors.employee_code}</div>
           </div>
+
+          <div className="input-group">
+            <label htmlFor="permission_id" className="form-label">
+              権限
+              <span className="required-mark">必須</span>
+            </label>
+            <select
+              name="permission_id"
+              id="permission_id"
+              value={data.permission_id}
+              onChange={e => setData('permission_id', e.target.value)}
+              className={`input-field ${errors.permission_id ? 'is-invalid' : ''}`}
+            >
+              <option value="">-- 権限を選択 --</option>
+              {permissionSelectOptions.map((permission) => (
+                <option key={permission.id} value={permission.id}>
+                  {permission.display_name}
+                </option>
+              ))}
+            </select>
+            <div className="invalid-feedback">{errors.permission_id}</div>
+          </div>
+
 
           <div className="input-group">
             <label htmlFor="name" className="form-label">

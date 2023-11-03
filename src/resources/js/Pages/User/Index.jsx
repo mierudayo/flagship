@@ -3,7 +3,7 @@ import UserTable from "./Partials/UserTable";
 import { useForm } from "@inertiajs/react";
 import Pagination from "@/Components/Pagination";
 
-export default function Index({ usersPaginator }) {
+export default function Index({ usersPaginator, canAdmin }) {
   const params = route().params;
 
   const { data, setData, get, errors } = useForm({
@@ -21,12 +21,14 @@ export default function Index({ usersPaginator }) {
     <AppLayout>
       <h1 className="content-title">ユーザー 一覧</h1>
       <div className="content-navbar">
-        <a
-          href={route('users.create')}
-          className="btn btn-primary u-mr-3"
-        >
-          新規登録
-        </a>
+        {canAdmin && (
+          <a
+            href={route('users.create')}
+            className="btn btn-primary u-mr-3"
+          >
+            新規登録
+          </a>
+        )}
         <form onSubmit={submit}>
           <div className="u-flex u-mr-3">
             <input
@@ -46,7 +48,7 @@ export default function Index({ usersPaginator }) {
         </div>
         <Pagination paginator={usersPaginator} />
       </div>
-      <UserTable users={usersPaginator.data} />
+      <UserTable users={usersPaginator.data} canAdmin={canAdmin} />
     </AppLayout>
   );
 }

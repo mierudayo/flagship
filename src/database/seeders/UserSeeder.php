@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Permission;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -12,11 +14,31 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
+        if (User::count() > 0) {
+            $this->command->info('Skipping UserSeeder since records already exist.');
+            return;
+        }
 
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $password = Hash::make('testpass');
+        User::factory()->create([
+            'name'          => 'System Admin User',
+            'email'         => 'system-admin@example.com',
+            'password'      => $password,
+            'permission_id' => Permission::where('name', 'system-admin')->first()->id,
         ]);
+        User::factory()->create([
+            'name'          => 'Admin User',
+            'email'         => 'admin@example.com',
+            'password'      => $password,
+            'permission_id' => Permission::where('name', 'admin')->first()->id,
+        ]);
+        User::factory()->create([
+            'name'          => 'Staff User',
+            'email'         => 'staff@example.com',
+            'password'      => $password,
+            'permission_id' => Permission::where('name', 'staff')->first()->id,
+        ]);
+
+        User::factory(30)->create();
     }
 }

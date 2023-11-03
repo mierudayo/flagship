@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Permission;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -21,6 +22,7 @@ class UserFactory extends Factory
         $resignation_date = $this->faker->optional($weight = 0.5)->dateTimeBetween($employment_date, 'now');
 
         return [
+            'permission_id' => Permission::inRandomOrder()->first()->id,
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),

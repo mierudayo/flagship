@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -20,6 +21,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'permission_id',
         'name',
         'email',
         'password',
@@ -46,12 +48,14 @@ class User extends Authenticatable
      */
     protected $visible = [
         'id',
+        'permission_id',
         'name',
         'email',
         'mobile_number',
         'employee_code',
         'employment_date',
-        'resignation_date'
+        'resignation_date',
+        'permission',
     ];
 
     /**
@@ -63,6 +67,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Relationships
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function permission(): BelongsTo
+    {
+        return $this->belongsTo(Permission::class);
+    }
 
     /*
     |--------------------------------------------------------------------------

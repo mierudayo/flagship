@@ -24,6 +24,7 @@ class UserStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'permission_id'     => 'required|exists:permissions,id',
             'employee_code'     => 'required|string|max:5',
             'name'              => 'required|string|max:255',
             'email'             => 'required|string|email|max:255|unique:'.User::class,

@@ -20,10 +20,10 @@ Route::middleware('auth')->group(function () {
     })->name('home');
 
     Route::get('users', [UserController::class, 'index'])->name('users.index');
-    Route::get('users/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('users/store', [UserController::class, 'store'])->name('users.store');
-    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::patch('users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::get('users/create', [UserController::class, 'create'])->name('users.create')->can('admin');
+    Route::post('users/store', [UserController::class, 'store'])->name('users.store')->can('admin');
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->can('admin');
+    Route::patch('users/{user}', [UserController::class, 'update'])->name('users.update')->can('admin');
 });
 
 
