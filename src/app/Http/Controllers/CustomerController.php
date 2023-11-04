@@ -38,7 +38,7 @@ class CustomerController extends Controller
 
     public function store(CustomerStoreRequest $request): RedirectResponse
     {
-        Customer::create([
+        $customer = Customer::create([
             'name'              => $request->input('name'),
             'name_kana'         => $request->input('name_kana'),
             'shortcut'          => $request->input('shortcut'),
@@ -51,7 +51,8 @@ class CustomerController extends Controller
             'created_by_id'     => auth()->user()->id,
         ]);
 
-        return to_route('customers.index');
+        return to_route('customers.index')
+                ->with('message', "取引先ID:{$customer->id} 登録成功しました。");
     }
 
     public function edit(Customer $customer): Response
@@ -77,14 +78,16 @@ class CustomerController extends Controller
             'updated_by_id'     => auth()->user()->id,
         ]);
 
-        return to_route('customers.index');
+        return to_route('customers.index')
+                ->with('message', "取引先ID:{$customer->id} 更新しました。");
     }
 
     public function destroy(Customer $customer): RedirectResponse
     {
         if ($customer->contacts()->exists()) {
-            return redirect()->route('customers.edit', $customer);
-            // TODO: フラッシュメッセージ追加
+            return redirect()
+                ->route('customers.edit', $customer)
+                ->with('message', 'この取引先は連絡先データを持つため削除できません。');
         }
 
         $customer->delete();

@@ -1,7 +1,9 @@
 import AppLayout from '@/Layouts/AppLayout';
-import { Link, useForm } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 
 export default function Edit({ customer, userSelectOptions }) {
+  const { flash } = usePage().props;
+
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
     name: customer.name,
     name_kana: customer.name_kana || "",
@@ -58,6 +60,11 @@ export default function Edit({ customer, userSelectOptions }) {
           削除
         </Link>
       </div>
+
+      {flash.message && (
+        <div class="alert alert-danger">{flash.message}</div>
+      )}
+
       <form id="customerEditForm" onSubmit={submit}>
         <div className="form-inner">
 

@@ -1,0 +1,22 @@
+.alert {
+  /* colors */
+  --color-danger-bg: #f8d7da;
+  --color-danger: #721c24;
+  --color-success-bg: #08b94e1a;
+  --color-success: #08b94e;
+
+  /* styles */
+  border-radius: 4px;
+  margin-bottom: 8px;
+  padding: 8px;
+
+  &.alert-success {
+    background-color: var(--color-success-bg);
+    color: var(--color-success);
+  }
+
+  &.alert-danger {
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger);
+  }
+}

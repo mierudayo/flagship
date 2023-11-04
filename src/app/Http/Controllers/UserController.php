@@ -37,7 +37,7 @@ class UserController extends Controller
 
     public function store(UserStoreRequest $request): RedirectResponse
     {
-        User::create([
+        $user = User::create([
             'permission_id'     => $request->input('permission_id'),
             'employee_code'     => $request->input('employee_code'),
             'name'              => $request->input('name'),
@@ -47,7 +47,8 @@ class UserController extends Controller
             'employment_date'   => $request->input('employment_date'),
         ]);
 
-        return to_route('users.index');
+        return to_route('users.index')
+                ->with('message', "ユーザーID:{$user->id} 登録成功しました。");
     }
 
     public function edit(User $user): Response
@@ -70,6 +71,7 @@ class UserController extends Controller
             'resignation_date'  => $request->input('resignation_date'),
         ]);
 
-        return to_route('users.index');
+        return to_route('users.index')
+                ->with('message', "ユーザーID:{$user->id} 更新しました。");
     }
 }

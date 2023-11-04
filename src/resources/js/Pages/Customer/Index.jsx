@@ -1,10 +1,11 @@
 import AppLayout from '@/Layouts/AppLayout';
 import CustomerTable from "./Partials/CustomerTable";
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 import Pagination from "@/Components/Pagination";
 
 export default function Index({ customersPaginator, canAdmin }) {
   const params = route().params;
+  const { flash } = usePage().props;
 
   const { data, setData, get, errors } = useForm({
     keyword: params.keyword || "",
@@ -48,6 +49,9 @@ export default function Index({ customersPaginator, canAdmin }) {
         </div>
         <Pagination paginator={customersPaginator} />
       </div>
+      {flash.message && (
+        <div class="alert alert-success">{flash.message}</div>
+      )}
       <CustomerTable customers={customersPaginator.data} canAdmin={canAdmin} />
     </AppLayout>
   );

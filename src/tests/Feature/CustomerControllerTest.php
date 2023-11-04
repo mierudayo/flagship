@@ -195,7 +195,7 @@ class CustomerControllerTest extends TestCase
         $response = $this->delete(route('customers.destroy', $customer));
 
         $response->assertRedirect(route('customers.edit', $customer));
-        // TODO: フラッシュメッセージassert追加
+        $response->assertSessionHas('message', 'この取引先は連絡先データを持つため削除できません。');
 
         $this->assertDatabaseHas('customers', ['id' => $customer->id]);
     }
