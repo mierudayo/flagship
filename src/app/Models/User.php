@@ -23,6 +23,7 @@ class User extends Authenticatable
     protected $fillable = [
         'permission_id',
         'name',
+        'name_kana',
         'email',
         'password',
         'employee_code',
@@ -50,6 +51,7 @@ class User extends Authenticatable
         'id',
         'permission_id',
         'name',
+        'name_kana',
         'email',
         'mobile_number',
         'employee_code',

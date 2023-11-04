@@ -6,6 +6,7 @@ export default function Edit({ user, permissionSelectOptions }) {
     permission_id: user.permission_id,
     employee_code: user.employee_code,
     name: user.name,
+    name_kana: user.name_kana || "",
     email: user.email,
     mobile_number: user.mobile_number || "",
     employment_date: user.employment_date || "",
@@ -79,6 +80,22 @@ export default function Edit({ user, permissionSelectOptions }) {
             />
             <div className="invalid-feedback">{errors.name}</div>
           </div>
+
+          <div className="input-group">
+            <label htmlFor="name_kana" className="form-label">
+              読み仮名
+            </label>
+            <input
+              type="text"
+              id="name_kana"
+              name="name_kana"
+              value={data.name_kana}
+              className={`input-field ${errors.name_kana ? 'is-invalid' : ''}`}
+              onChange={e => setData('name_kana', e.target.value)}
+            />
+            <div className="invalid-feedback">{errors.name_kana}</div>
+          </div>
+
 
           <div className="input-group">
             <label htmlFor="permission_id" className="form-label">
