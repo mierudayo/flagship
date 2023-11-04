@@ -17,7 +17,7 @@ export default function CustomerTable({ customers, canAdmin }) {
             <tr key={customer.id} className="table-row is-hoverable">
               <td className="td-cell col-fixed">
               {canAdmin
-                  ? <a href={route('customers.edit', customer)}>{customer.id}</a>
+                  ? <a href={route('customers.edit', customer)} className="link">{customer.id}</a>
                   : <span>{customer.id}</span>
                 }
               </td>

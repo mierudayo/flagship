@@ -19,7 +19,7 @@ export default function UserTable({ users, canAdmin }) {
             <tr key={user.id} className="table-row is-hoverable">
               <td className="td-cell col-fixed">
                 {canAdmin
-                  ? <a href={route('users.edit', user)}>{user.id}</a>
+                  ? <a href={route('users.edit', user)} className="link">{user.id}</a>
                   : <span>{user.id}</span>
                 }
               </td>
