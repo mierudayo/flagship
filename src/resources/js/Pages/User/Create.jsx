@@ -37,21 +37,21 @@ export default function Create({ permissionSelectOptions }) {
     <AppLayout>
       <h1 className="content-title">ユーザー 登録</h1>
       <div className="content-navbar">
-        <Link
-          onBefore={handleBeforeLeave}
-          href={route('users.index')}
-          className="btn btn-secondary u-mr-3"
-        >
-          キャンセル
-        </Link>
         <button
           type="submit"
           form="userCreateForm"
-          className="btn btn-primary"
+          className="btn btn-primary u-mr-3"
           disabled={processing}
         >
-          登録
+          登録する
         </button>
+        <Link
+          onBefore={handleBeforeLeave}
+          href={route('users.index')}
+          className="btn btn-secondary"
+        >
+          キャンセル
+        </Link>
         {processing && <span>Now Loading...</span>}
       </div>
       <form id="userCreateForm" onSubmit={submit}>

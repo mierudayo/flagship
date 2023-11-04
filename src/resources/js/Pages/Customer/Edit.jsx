@@ -34,21 +34,21 @@ export default function Edit({ customer, userSelectOptions }) {
     <AppLayout>
       <h1 className="content-title">取引先 編集</h1>
       <div className="content-navbar">
-        <Link
-          onBefore={handleBeforeLeave}
-          href={route('customers.index')}
-          className="btn btn-secondary u-mr-3"
-        >
-          キャンセル
-        </Link>
         <button
           type="submit"
           form="customerEditForm"
-          className="btn btn-primary"
+          className="btn btn-primary u-mr-3"
           disabled={processing}
         >
-          更新
+          更新する
         </button>
+        <Link
+          onBefore={handleBeforeLeave}
+          href={route('customers.index')}
+          className="btn btn-secondary"
+        >
+          キャンセル
+        </Link>
         {processing && <span>Now Loading...</span>}
         <Link
           onBefore={() => confirm('本当に削除しますか？')}
@@ -70,7 +70,7 @@ export default function Edit({ customer, userSelectOptions }) {
 
           <div className="input-group">
             <label htmlFor="name" className="form-label">
-              名前
+              取引先名
               <span className="required-mark">必須</span>
             </label>
             <input
@@ -86,7 +86,7 @@ export default function Edit({ customer, userSelectOptions }) {
 
           <div className="input-group">
             <label htmlFor="name_kana" className="form-label">
-              ヨミガナ
+              読み仮名
             </label>
             <input
               type="text"
