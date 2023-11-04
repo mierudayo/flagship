@@ -87,11 +87,12 @@ class UserControllerTest extends TestCase
 
         User::factory()->create(['name' => '特定の名前']);
         User::factory()->create(['name' => 'あいまい検索に一致する特定の名前']);
+        User::factory()->create(['name_kana' => 'あいまい検索に一致する特定の名前読み仮名']);
         User::factory()->count(10)->create();
 
         $response = $this->get(route('users.index', ['keyword' => '特定の名前']));
 
-        $expectedCount = 2;
+        $expectedCount = 3;
 
         $response->assertStatus(200);
 

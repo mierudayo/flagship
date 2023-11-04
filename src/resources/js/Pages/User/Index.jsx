@@ -38,7 +38,7 @@ export default function Index({ usersPaginator, canAdmin }) {
               value={data.keyword}
               onChange={(e) => setData('keyword', e.target.value)}
               className={`input-field ${errors.keyword ? 'is-invalid' : ''}`}
-              placeholder="検索ワード"
+              placeholder="名前,ヨミガナで検索"
             />
             <button className="btn btn-secondary">検索</button>
           </div>
