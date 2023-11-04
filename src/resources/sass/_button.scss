@@ -34,4 +34,14 @@
       background-color: #ddd;
     }
   }
+
+  &.btn-danger {
+    background-color: #eee;
+    border: 1px solid #ddd;
+    color: red;
+    &:focus,
+    &:hover {
+      background-color: #ddd;
+    }
+  }
 }
