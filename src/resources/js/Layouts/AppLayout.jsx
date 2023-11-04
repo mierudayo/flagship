@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import { usePage } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import Dropdown from "./Partials/Dropdown";
 
 export default function AppLayout({ children }) {
   const { auth } = usePage().props
+  const { url, component } = usePage();
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const triggerRef = useRef(null);
@@ -36,15 +37,29 @@ export default function AppLayout({ children }) {
           </header>
           <ul className="side-nav-list">
             <li>
-              <a href={route('home')} className="side-nav-link">HOME</a>
+              <Link
+                href={route('home')}
+                className={`side-nav-link ${url === '/' ? 'is-active' : ''}`}
+              >
+                HOME
+              </Link>
             </li>
             <li>
-              <a href={route('users.index')} className="side-nav-link">ユーザー</a>
+              <Link
+                href={route('users.index')}
+                className={`side-nav-link ${component.startsWith('User') ? 'is-active' : ''}`}
+              >
+                ユーザー
+              </Link>
             </li>
             <li>
-              <a href={route('customers.index')} className="side-nav-link">取引先</a>
+              <Link
+                href={route('customers.index')}
+                className={`side-nav-link ${component.startsWith('Customer') ? 'is-active' : ''}`}
+              >
+                取引先
+              </Link>
             </li>
-            {[...Array(30)].map((_, i) => <li key={i}><a href="#" className="side-nav-link">Sample Menu{i + 1}</a></li>)}
           </ul>
           <footer className="side-footer">
             <div className="sidebar-dropdown-control">
