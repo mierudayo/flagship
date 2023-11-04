@@ -17,7 +17,6 @@ export default function Login({ status }) {
 
   const submit = (e) => {
     e.preventDefault();
-
     post(route('login'));
   };
 
@@ -26,52 +25,56 @@ export default function Login({ status }) {
       <div className="login-container">
         <form onSubmit={submit}>
 
-          <div className="login-title-block">
-            <h1>Login</h1>
-          </div>
+          <h1 className="login-title">Login</h1>
 
-          {status && <div>{status}</div>}
+          {status &&
+            <div className="alert alert-danger">{status}</div>
+          }
 
           <div className="login-form-block">
             {/* Email */}
             <div className="login-input-row">
-              <label htmlFor="userEmailInput">
-                <span>E-mail</span>
+              <label className="form-label" htmlFor="userEmailInput">
+                E-mail
               </label>
               <input
+                className={`input-field ${errors.email ? 'is-invalid' : ''}`}
                 id="userEmailInput"
-                type="email"
                 name="email"
-                value={data.email}
                 onChange={e => setData('email', e.target.value)}
+                type="email"
+                value={data.email}
               />
               <div className='invalid-feedback'>{errors.email}</div>
             </div>
+
             {/* Password */}
             <div className="login-input-row">
-              <label htmlFor="userPasswordInput">
-                <span>Password</span>
+              <label className="form-label" htmlFor="userPasswordInput">
+                Password
               </label>
               <input
+                className={`input-field ${errors.password ? 'is-invalid' : ''}`}
                 id="userPasswordInput"
-                type="password"
                 name="password"
-                value={data.password}
                 onChange={e => setData('password', e.target.value)}
+                type="password"
+                value={data.password}
               />
               <div className='invalid-feedback'>{errors.password}</div>
             </div>
+
             {/* Remember Me */}
             <div className="login-input-row">
               <label htmlFor="userRememberMeInput">
                 <span>ログイン情報を記憶</span>
               </label>
               <input
-                id="userRememberMeInput"
-                type="checkbox"
-                name="remember"
                 checked={data.remember}
-                onChange={e => setData('remember', e.target.value)}
+                id="userRememberMeInput"
+                name="remember"
+                onChange={e => setData('remember', e.target.checked)}
+                type="checkbox"
               />
             </div>
 

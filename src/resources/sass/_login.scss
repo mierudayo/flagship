@@ -7,13 +7,15 @@
 -------------------------*/
 .login-container {
   padding: 80px 16px;
-  max-width: 480px;
   margin: 0 auto;
+  max-width: 480px;
 }
 
-.login-title-block {
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom:16px;
   text-align: center;
-  padding-bottom: 24px;
 }
 
 .login-form-block {
@@ -29,20 +31,18 @@
   }
 }
 
-.invalid-feedback {
-  color: red;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-}
-
 .btn-login {
   background-color: var(--light-black);
   border-radius: 8px;
   color: var(--white);
   padding: 4px 8px;
+  width: 100%;
+
   &:hover {
     cursor: pointer;
+    opacity: 0.9;
   }
+
   &:disabled {
     opacity: 0.5;
   }
