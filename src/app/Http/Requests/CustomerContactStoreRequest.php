@@ -31,6 +31,7 @@ class CustomerContactStoreRequest extends FormRequest
             'role'           => ['nullable', 'string', 'max:255'],
             'is_active'      => ['required', 'boolean'],
             'note'           => ['nullable', 'string', 'max:2000'],
+            'in_charge_user_id'=> ['nullable', 'integer', 'exists:users,id'],
         ];
 
     }

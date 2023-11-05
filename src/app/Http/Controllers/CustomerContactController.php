@@ -22,6 +22,7 @@ class CustomerContactController extends Controller
             'role'          => $request->input('role'),
             'is_active'     => $request->input('is_active'),
             'note'          => $request->input('note'),
+            'in_charge_user_id' => $request->input('in_charge_user_id'),
             'created_by_id' => auth()->user()->id,
         ]);
 

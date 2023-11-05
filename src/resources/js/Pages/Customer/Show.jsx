@@ -4,7 +4,7 @@ import { Link, usePage } from "@inertiajs/react";
 import Modal from "../../Components/Modal";
 import ContactForm from "./Partials/ContactForm";
 
-export default function Show({ customer }) {
+export default function Show({ customer, userSelectOptions }) {
   const { flash } = usePage().props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {
@@ -43,7 +43,7 @@ export default function Show({ customer }) {
 
       {isModalOpen &&
         <Modal closeModal={() => setIsModalOpen(false)} title="連絡先登録">
-          <ContactForm customer={customer} closeModal={() => setIsModalOpen(false)} />
+          <ContactForm customer={customer} userSelectOptions={userSelectOptions} closeModal={() => setIsModalOpen(false)} />
         </Modal>}
 
       <div className="content-section">

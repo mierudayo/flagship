@@ -56,7 +56,7 @@ function RadioComponent({ labelName, inputName, options, isRequired, data, error
 
 
 
-export default function ContactForm({ customer, closeModal }) {
+export default function ContactForm({ customer, closeModal, userSelectOptions}) {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     name: '',
     name_kana: '',
@@ -106,6 +106,32 @@ export default function ContactForm({ customer, closeModal }) {
                 setData={setData}
               />
               <TableInputRow labelName="備考" inputName="note" data={data} errors={errors} setData={setData} />
+
+              <tr className="table-row">
+                <th className="th-cell u-w-200">
+                  <label htmlFor="in_charge_user_id" className="form-label">
+                    担当ユーザー
+                  </label>
+                </th>
+                <td className="td-cell u-flex">
+                  <select
+                    name="in_charge_user_id"
+                    id="in_charge_user_id"
+                    value={data.in_charge_user_id}
+                    onChange={e => setData('in_charge_user_id', e.target.value)}
+                    className={`input-field ${errors.in_charge_user_id ? 'is-invalid' : ''}`}
+                  >
+                    <option value="">-- 担当ユーザーを選択 --</option>
+                    {userSelectOptions.map((user) => (
+                      <option key={user.id} value={user.id}>
+                        {user.id}: {user.name}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
+                </td>
+              </tr>
+
             </tbody>
           </table>
         </div>

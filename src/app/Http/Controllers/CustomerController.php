@@ -63,6 +63,7 @@ class CustomerController extends Controller
                 'created_at' => $customer->created_at->format('Y-m-d H:i'),
                 'updated_at' => $customer->updated_at->format('Y-m-d H:i'),
             ]),
+            'userSelectOptions' => User::all(),
         ]);
     }
 

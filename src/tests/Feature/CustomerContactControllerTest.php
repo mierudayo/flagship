@@ -34,7 +34,6 @@ class CustomerContactControllerTest extends TestCase
         $this->actingAs($this->user);
 
         $customer = Customer::factory()->create();
-        User::factory()->make();
 
         $contactsData = CustomerContact::factory()->make([
             'customer_id'   => $customer->id,
