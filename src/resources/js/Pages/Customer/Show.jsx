@@ -131,7 +131,7 @@ export default function Show({ customer }) {
                 <tr key={contact.id} className="table-row is-hoverable">
                   <td className="td-cell col-fixed">{contact.id}</td>
                   <td className="td-cell">{contact.role}</td>
-                  <td className="td-cell">{contact.contact_name}</td>
+                  <td className="td-cell">{contact.name}</td>
                   <td className="td-cell">{contact.name_kana}</td>
                   <td className="td-cell">{contact.tel_number}</td>
                   <td className="td-cell">{contact.mobile_number}</td>

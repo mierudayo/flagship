@@ -13,7 +13,7 @@ class CustomerContactController extends Controller
     {
         $contact = CustomerContact::create([
             'customer_id'   => $customer->id,
-            'contact_name'  => $request->input('contact_name'),
+            'name'          => $request->input('name'),
             'name_kana'     => $request->input('name_kana'),
             'tel_number'    => $request->input('tel_number'),
             'mobile_number' => $request->input('mobile_number'),

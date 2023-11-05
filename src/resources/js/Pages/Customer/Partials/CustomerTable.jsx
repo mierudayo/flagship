@@ -28,7 +28,7 @@ export default function CustomerTable({ customers, canAdmin }) {
               </td>
               <td className="td-cell">
                 {customer.contacts.map(contact => (
-                  <p key={contact.id}>{contact.contact_name}</p>
+                  <p key={contact.id}>{contact.name}</p>
                 ))}
               </td>
               <td className="td-cell">{customer.tel_number}</td>

@@ -12,7 +12,7 @@ class CustomerContact extends Model
 
     protected $fillable = [
         'customer_id',
-        'contact_name',
+        'name',
         'name_kana',
         'tel_number',
         'mobile_number',

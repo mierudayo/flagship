@@ -58,7 +58,7 @@ function RadioComponent({ labelName, inputName, options, isRequired, data, error
 
 export default function ContactForm({ customer, closeModal }) {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
-    contact_name: '',
+    name: '',
     name_kana: '',
     tel_number: '',
     mobile_number: '',
@@ -86,7 +86,7 @@ export default function ContactForm({ customer, closeModal }) {
         <div className="table-wrapper is-scrollable">
           <table className="table">
             <tbody className="tbody">
-              <TableInputRow labelName="担当者名" inputName="contact_name" data={data} errors={errors} setData={setData} isRequired={true} />
+              <TableInputRow labelName="担当者名" inputName="name" data={data} errors={errors} setData={setData} isRequired={true} />
               <TableInputRow labelName="よみがな" inputName="name_kana" data={data} errors={errors} setData={setData} />
               <TableInputRow labelName="TEL" inputName="tel_number" data={data} errors={errors} setData={setData} />
               <TableInputRow labelName="携帯番号" inputName="mobile_number" data={data} errors={errors} setData={setData} />
