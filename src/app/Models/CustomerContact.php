@@ -10,6 +10,24 @@ class CustomerContact extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'customer_id',
+        'contact_name',
+        'name_kana',
+        'tel_number',
+        'fax_number',
+        'mobile_number',
+        'email',
+        'position',
+        'role',
+        'is_active',
+        'note',
+        'in_charge_user_id',
+        'created_by_id',
+        'updated_by_id',
+    ];
+
+
     /*
     |--------------------------------------------------------------------------
     | Relationships

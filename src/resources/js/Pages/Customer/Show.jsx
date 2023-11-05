@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import AppLayout from '@/Layouts/AppLayout';
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
+import Modal from "../../Components/Modal";
+import ContactForm from "./Partials/ContactForm";
 
 export default function Show({ customer }) {
+  const { flash } = usePage().props;
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     name,
     name_kana,
@@ -29,14 +34,29 @@ export default function Show({ customer }) {
         >
           編集する
         </Link>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="btn btn-secondary">
+          +連絡先を追加
+        </button>
       </div>
+
+      {isModalOpen &&
+        <Modal closeModal={() => setIsModalOpen(false)} title="連絡先登録">
+          <ContactForm customer={customer} closeModal={() => setIsModalOpen(false)} />
+        </Modal>}
+
       <div className="content-section">
 
         <div className="u-flex">
-         <div className="u-mr-4">基本情報</div>
-         <span className="u-mr-3">登録: {created_at} {created_by.name}</span>
-         {updated_by && (<span>更新: {updated_at} {updated_by.name}</span>)}
+          <div className="u-mr-4">基本情報</div>
+          <span className="u-mr-3">登録: {created_at} {created_by.name}</span>
+          {updated_by && (<span>更新: {updated_at} {updated_by.name}</span>)}
         </div>
+
+        {flash.message && (
+          <div class="alert alert-success">{flash.message}</div>
+        )}
 
         <div className="table-wrapper">
           <table className="table">

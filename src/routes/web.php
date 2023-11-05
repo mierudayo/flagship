@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::get('customers/{customer}/edit', [CustomerController::class, 'edit'])->name('customers.edit')->can('admin');
     Route::patch('customers/{customer}', [CustomerController::class, 'update'])->name('customers.update')->can('admin');
     Route::delete('customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy')->can('admin');
+
+    // CustomerContact
+    Route::post('customers/{customer}/contacts', [CustomerContactController::class, 'store'])->name('customers.contacts.store');
 });
 
 
