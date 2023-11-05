@@ -63,6 +63,9 @@ class Customer extends Model
             return $query;
         }
 
-        return $query->where('name', 'LIKE', "%$keyword%");
+        return $query->where(function ($query) use ($keyword) {
+            $query->where('name', 'LIKE', "%$keyword%")
+                  ->orWhere('name_kana', 'LIKE', "%$keyword%");
+        });
     }
 }
