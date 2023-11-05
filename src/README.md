@@ -42,9 +42,10 @@ Relationship:
 | メソッド名 | 概要          | 権限制御       |
 |------------|---------------|----------------|
 | `index`    | 一覧表示      | なし           |
-| `create`   | 登録画面表示  | `admin`以上    |
+| `create`   | 登録表示      | `admin`以上    |
 | `store`    | 保存          | `admin`以上    |
-| `edit`     | 編集画面表示  | `admin`以上    |
+| `show`     | 詳細表示      | なし           |
+| `edit`     | 編集表示      | `admin`以上    |
 | `update`   | 更新          | `admin`以上    |
 | `destroy`  | 削除          | `admin`以上    |
 

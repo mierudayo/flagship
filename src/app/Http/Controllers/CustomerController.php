@@ -55,6 +55,18 @@ class CustomerController extends Controller
                 ->with('message', "取引先ID:{$customer->id} 登録成功しました。");
     }
 
+    public function show(Customer $customer): Response
+    {
+        $customer->load(['contacts.inChargeUser', 'inChargeUser', 'createdBy', 'updatedBy']);
+
+        return Inertia::render('Customer/Show', [
+            'customer' => array_merge($customer->toArray(), [
+                'created_at' => $customer->created_at->format('Y-m-d H:i'),
+                'updated_at' => $customer->updated_at->format('Y-m-d H:i'),
+            ]),
+        ]);
+    }
+
     public function edit(Customer $customer): Response
     {
         return Inertia::render('Customer/Edit', [

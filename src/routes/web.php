@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
     Route::get('customers/create', [CustomerController::class, 'create'])->name('customers.create')->can('admin');
     Route::post('customers/store', [CustomerController::class, 'store'])->name('customers.store')->can('admin');
+    Route::get('customers/{customer}', [CustomerController::class, 'show'])->name('customers.show');
     Route::get('customers/{customer}/edit', [CustomerController::class, 'edit'])->name('customers.edit')->can('admin');
     Route::patch('customers/{customer}', [CustomerController::class, 'update'])->name('customers.update')->can('admin');
     Route::delete('customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy')->can('admin');

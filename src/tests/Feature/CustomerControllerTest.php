@@ -144,6 +144,25 @@ class CustomerControllerTest extends TestCase
 
     /*
     |--------------------------------------------------------------------------
+    | Show
+    |--------------------------------------------------------------------------
+    */
+    public function test_認証済みユーザーは取引先の閲覧ができる(): void
+    {
+        $this->actingAs($this->staffUser);
+
+        $customer = Customer::factory()->create();
+
+        $response = $this->get(route('customers.show', $customer->id));
+        $response->assertStatus(200);
+
+        $response->assertInertia(function (Assert $page) {
+            $page->component('Customer/Show');
+        });
+    }
+
+    /*
+    |--------------------------------------------------------------------------
     | Edit
     |--------------------------------------------------------------------------
     */

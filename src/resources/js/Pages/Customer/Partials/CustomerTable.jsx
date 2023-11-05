@@ -6,7 +6,7 @@ export default function CustomerTable({ customers, canAdmin }) {
           <tr className="table-row">
             <th className="th-cell col-fixed">ID</th>
             <th className="th-cell">取引先名</th>
-            <th className="th-cell">担当者一覧</th>
+            <th className="th-cell">連絡先一覧</th>
             <th className="th-cell">TEL</th>
             <th className="th-cell">住所</th>
             <th className="th-cell">担当ユーザー</th>
@@ -21,7 +21,11 @@ export default function CustomerTable({ customers, canAdmin }) {
                   : <span>{customer.id}</span>
                 }
               </td>
-              <td className="td-cell">{customer.name}</td>
+              <td className="td-cell">
+                <a href={route('customers.show', customer)} className="link">
+                  {customer.name}
+                </a>
+              </td>
               <td className="td-cell">
                 {customer.contacts.map(contact => (
                   <p key={contact.id}>{contact.contact_name}</p>
