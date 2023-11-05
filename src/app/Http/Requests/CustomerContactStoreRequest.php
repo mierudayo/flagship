@@ -25,7 +25,6 @@ class CustomerContactStoreRequest extends FormRequest
             'contact_name'   => ['required', 'string'],
             'name_kana'      => ['nullable', 'string', 'max:255'],
             'tel_number'     => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
-            'fax_number'     => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
             'mobile_number'  => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
             'email'          => ['nullable', 'string', 'max:255', 'email'],
             'position'       => ['nullable', 'string', 'max:255'],

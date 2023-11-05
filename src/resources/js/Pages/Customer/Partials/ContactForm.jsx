@@ -61,7 +61,6 @@ export default function ContactForm({ customer, closeModal }) {
     contact_name: '',
     name_kana: '',
     tel_number: '',
-    fax_number: '',
     mobile_number: '',
     email: '',
     position: '',
@@ -90,7 +89,6 @@ export default function ContactForm({ customer, closeModal }) {
               <TableInputRow labelName="担当者名" inputName="contact_name" data={data} errors={errors} setData={setData} isRequired={true} />
               <TableInputRow labelName="よみがな" inputName="name_kana" data={data} errors={errors} setData={setData} />
               <TableInputRow labelName="TEL" inputName="tel_number" data={data} errors={errors} setData={setData} />
-              <TableInputRow labelName="FAX" inputName="fax_number" data={data} errors={errors} setData={setData} />
               <TableInputRow labelName="携帯番号" inputName="mobile_number" data={data} errors={errors} setData={setData} />
               <TableInputRow labelName="E-mail" inputName="email" data={data} errors={errors} setData={setData} />
               <TableInputRow labelName="役職" inputName="position" data={data} errors={errors} setData={setData} />

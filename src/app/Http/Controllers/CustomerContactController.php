@@ -16,7 +16,6 @@ class CustomerContactController extends Controller
             'contact_name'  => $request->input('contact_name'),
             'name_kana'     => $request->input('name_kana'),
             'tel_number'    => $request->input('tel_number'),
-            'fax_number'    => $request->input('fax_number'),
             'mobile_number' => $request->input('mobile_number'),
             'email'         => $request->input('email'),
             'position'      => $request->input('position'),

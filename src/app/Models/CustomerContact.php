@@ -15,7 +15,6 @@ class CustomerContact extends Model
         'contact_name',
         'name_kana',
         'tel_number',
-        'fax_number',
         'mobile_number',
         'email',
         'position',
