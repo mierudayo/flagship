@@ -25,7 +25,6 @@ class CustomerController extends Controller
 
         return Inertia::render('Customer/Index', [
             'customersPaginator' => $customersPaginator,
-            'canAdmin'           => Gate::allows('admin'),
         ]);
     }
 

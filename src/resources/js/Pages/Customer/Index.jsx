@@ -22,14 +22,12 @@ export default function Index({ customersPaginator, canAdmin }) {
     <AppLayout>
       <h1 className="content-title">取引先 一覧</h1>
       <div className="content-navbar">
-        {canAdmin && (
-          <a
-            href={route('customers.create')}
-            className="btn btn-primary u-mr-3"
-          >
-            新規登録
-          </a>
-        )}
+        <a
+          href={route('customers.create')}
+          className="btn btn-primary u-mr-3"
+        >
+          新規登録
+        </a>
         <form onSubmit={submit}>
           <div className="u-flex u-mr-3">
             <input
@@ -52,7 +50,7 @@ export default function Index({ customersPaginator, canAdmin }) {
       {flash.message && (
         <div class="alert alert-success">{flash.message}</div>
       )}
-      <CustomerTable customers={customersPaginator.data} canAdmin={canAdmin} />
+      <CustomerTable customers={customersPaginator.data} />
     </AppLayout>
   );
 }
