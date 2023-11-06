@@ -7,7 +7,7 @@ export default function Show({ contact }) {
   const {
     name,
     name_kana,
-    tel_number,
+    tel,
     mobile_number,
     email,
     position,
@@ -67,7 +67,7 @@ export default function Show({ contact }) {
 
               <tr className="table-row">
                 <th className="th-cell">TEL</th>
-                <td className="td-cell">{tel_number}</td>
+                <td className="td-cell">{tel}</td>
               </tr>
 
               <tr className="table-row">

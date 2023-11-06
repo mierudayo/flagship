@@ -25,7 +25,7 @@ class CustomerContactUpdateRequest extends FormRequest
             'customer_id'       => ['required', 'integer', 'exists:customers,id'],
             'name'              => ['required', 'string'],
             'name_kana'         => ['nullable', 'string', 'max:255'],
-            'tel_number'        => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
+            'tel'               => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
             'mobile_number'     => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
             'email'             => ['nullable', 'string', 'max:255', 'email'],
             'position'          => ['nullable', 'string', 'max:255'],

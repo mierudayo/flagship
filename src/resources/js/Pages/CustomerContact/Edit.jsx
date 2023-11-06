@@ -61,7 +61,7 @@ export default function Edit({ contact, userSelectOptions, customerSelectOptions
     customer_id: contact.customer_id,
     name: contact.name,
     name_kana: contact.name_kana || "",
-    tel_number: contact.tel_number || "",
+    tel: contact.tel || "",
     mobile_number: contact.mobile_number || "",
     email: contact.email || "",
     position: contact.position || "",
@@ -149,7 +149,7 @@ export default function Edit({ contact, userSelectOptions, customerSelectOptions
               </tr>
               <TableInputRow labelName="担当者名" inputName="name" data={data} errors={errors} setData={setData} isRequired={true} />
               <TableInputRow labelName="よみがな" inputName="name_kana" data={data} errors={errors} setData={setData} />
-              <TableInputRow labelName="TEL" inputName="tel_number" data={data} errors={errors} setData={setData} />
+              <TableInputRow labelName="TEL" inputName="tel" data={data} errors={errors} setData={setData} />
               <TableInputRow labelName="携帯番号" inputName="mobile_number" data={data} errors={errors} setData={setData} />
               <TableInputRow labelName="E-mail" inputName="email" data={data} errors={errors} setData={setData} />
               <TableInputRow labelName="役職" inputName="position" data={data} errors={errors} setData={setData} />

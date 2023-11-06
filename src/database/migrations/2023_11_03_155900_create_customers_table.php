@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('shortcut')->nullable()->comment('ショートカット名');
             $table->string('postal_code')->nullable()->comment('郵便番号');
             $table->string('address')->nullable()->comment('住所');
-            $table->string('tel_number')->nullable()->comment('TEL');
-            $table->string('fax_number')->nullable()->comment('FAX');
+            $table->string('tel')->nullable()->comment('TEL');
+            $table->string('fax')->nullable()->comment('FAX');
             $table->text('note')->nullable()->comment('備考');
             $table->unsignedBigInteger('in_charge_user_id')->nullable()->comment('担当ユーザーID');
             $table->unsignedBigInteger('created_by_id')->comment('作成ユーザーID');

@@ -56,7 +56,7 @@ class CustomerContactController extends Controller
             'customer_id'   => $request->input('customer_id'),
             'name'          => $request->input('name'),
             'name_kana'     => $request->input('name_kana'),
-            'tel_number'    => $request->input('tel_number'),
+            'tel'           => $request->input('tel'),
             'mobile_number' => $request->input('mobile_number'),
             'email'         => $request->input('email'),
             'position'      => $request->input('position'),
@@ -85,7 +85,7 @@ class CustomerContactController extends Controller
             'customer_id'   => $request->input('customer_id'),
             'name'          => $request->input('name'),
             'name_kana'     => $request->input('name_kana'),
-            'tel_number'    => $request->input('tel_number'),
+            'tel'           => $request->input('tel'),
             'mobile_number' => $request->input('mobile_number'),
             'email'         => $request->input('email'),
             'position'      => $request->input('position'),
@@ -105,7 +105,7 @@ class CustomerContactController extends Controller
             'customer_id'   => $customer->id,
             'name'          => $request->input('name'),
             'name_kana'     => $request->input('name_kana'),
-            'tel_number'    => $request->input('tel_number'),
+            'tel'           => $request->input('tel'),
             'mobile_number' => $request->input('mobile_number'),
             'email'         => $request->input('email'),
             'position'      => $request->input('position'),
@@ -123,7 +123,6 @@ class CustomerContactController extends Controller
     public function destroy(CustomerContact $contact): RedirectResponse
     {
         // TODO: リレーション先追加後に存在チェック追加
-        
         $contact->delete();
         return to_route('contacts.index');
     }

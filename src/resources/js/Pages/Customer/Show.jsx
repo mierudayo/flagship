@@ -13,8 +13,8 @@ export default function Show({ customer, userSelectOptions }) {
     shortcut,
     postal_code,
     address,
-    tel_number,
-    fax_number,
+    tel,
+    fax,
     note,
     created_at,
     updated_at,
@@ -84,12 +84,12 @@ export default function Show({ customer, userSelectOptions }) {
 
               <tr className="table-row">
                 <th className="th-cell">TEL</th>
-                <td className="td-cell">{tel_number}</td>
+                <td className="td-cell">{tel}</td>
               </tr>
 
               <tr className="table-row">
                 <th className="th-cell">FAX</th>
-                <td className="td-cell">{fax_number}</td>
+                <td className="td-cell">{fax}</td>
               </tr>
 
               <tr className="table-row">
@@ -133,7 +133,7 @@ export default function Show({ customer, userSelectOptions }) {
                   <td className="td-cell">{contact.role}</td>
                   <td className="td-cell">{contact.name}</td>
                   <td className="td-cell">{contact.name_kana}</td>
-                  <td className="td-cell">{contact.tel_number}</td>
+                  <td className="td-cell">{contact.tel}</td>
                   <td className="td-cell">{contact.mobile_number}</td>
                   <td className="td-cell">{contact.email}</td>
                   <td className="td-cell">{contact.position}</td>

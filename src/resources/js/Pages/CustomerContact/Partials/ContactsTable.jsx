@@ -29,7 +29,7 @@ export default function CustomerTable({ contacts }) {
                 </a>
               </td>
               <td className="td-cell">{contact.customer.name}</td>
-              <td className="td-cell">{contact.tel_number}</td>
+              <td className="td-cell">{contact.tel}</td>
               <td className="td-cell">{contact.mobile_number}</td>
               <td className="td-cell">{contact.email}</td>
               <td className="td-cell">{contact.in_charge_user?.name}</td>

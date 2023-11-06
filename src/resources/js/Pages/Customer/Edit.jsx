@@ -10,8 +10,8 @@ export default function Edit({ customer, userSelectOptions }) {
     shortcut: customer.shortcut || "",
     postal_code: customer.postal_code || "",
     address: customer.address || "",
-    tel_number: customer.tel_number || "",
-    fax_number: customer.fax_number || "",
+    tel: customer.tel || "",
+    fax: customer.fax || "",
     note: customer.note || "",
     in_charge_user_id: customer.in_charge_user_id || "",
   });
@@ -145,33 +145,33 @@ export default function Edit({ customer, userSelectOptions }) {
           </div>
 
           <div className="input-group">
-            <label htmlFor="tel_number" className="form-label">
+            <label htmlFor="tel" className="form-label">
               TEL
             </label>
             <input
               type="text"
-              id="tel_number"
-              name="tel_number"
-              value={data.tel_number}
-              className={`input-field ${errors.tel_number ? 'is-invalid' : ''}`}
-              onChange={e => setData('tel_number', e.target.value)}
+              id="tel"
+              name="tel"
+              value={data.tel}
+              className={`input-field ${errors.tel ? 'is-invalid' : ''}`}
+              onChange={e => setData('tel', e.target.value)}
             />
-            <div className="invalid-feedback">{errors.tel_number}</div>
+            <div className="invalid-feedback">{errors.tel}</div>
           </div>
 
           <div className="input-group">
-            <label htmlFor="fax_number" className="form-label">
+            <label htmlFor="fax" className="form-label">
               FAX
             </label>
             <input
               type="text"
-              id="fax_number"
-              name="fax_number"
-              value={data.fax_number}
-              className={`input-field ${errors.fax_number ? 'is-invalid' : ''}`}
-              onChange={e => setData('fax_number', e.target.value)}
+              id="fax"
+              name="fax"
+              value={data.fax}
+              className={`input-field ${errors.fax ? 'is-invalid' : ''}`}
+              onChange={e => setData('fax', e.target.value)}
             />
-            <div className="invalid-feedback">{errors.fax_number}</div>
+            <div className="invalid-feedback">{errors.fax}</div>
           </div>
 
           <div className="input-group">

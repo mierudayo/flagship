@@ -27,8 +27,8 @@ class CustomerStoreRequest extends FormRequest
             'shortcut'         => ['nullable', 'string', 'max:255'],
             'postal_code'      => ['nullable', 'string', 'max:10'],
             'address'          => ['nullable', 'string', 'max:255'],
-            'tel_number'       => ['nullable', 'string', 'max:15'],
-            'fax_number'       => ['nullable', 'string', 'max:15'],
+            'tel'              => ['nullable', 'string', 'max:15'],
+            'fax'              => ['nullable', 'string', 'max:15'],
             'note'             => ['nullable', 'string'],
             'in_charge_user_id'=> ['nullable', 'integer', 'exists:users,id'],
         ];

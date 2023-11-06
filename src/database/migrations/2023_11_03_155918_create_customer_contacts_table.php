@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id')->comment('取引先ID');
             $table->string('name')->comment('顧客担当者名');
             $table->string('name_kana')->nullable()->comment('読み仮名');
-            $table->string('tel_number')->nullable()->comment('TEL');
+            $table->string('tel')->nullable()->comment('TEL');
             $table->string('mobile_number')->nullable()->comment('携帯');
             $table->string('email')->nullable()->comment('E-mail');
             $table->string('position')->nullable()->comment('役職');
