@@ -23,14 +23,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::get('users/create', [UserController::class, 'create'])->name('users.create')->can('admin');
-    Route::post('users/store', [UserController::class, 'store'])->name('users.store')->can('admin');
+    Route::post('users', [UserController::class, 'store'])->name('users.store')->can('admin');
     Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->can('admin');
     Route::patch('users/{user}', [UserController::class, 'update'])->name('users.update')->can('admin');
 
     // Customer
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
     Route::get('customers/create', [CustomerController::class, 'create'])->name('customers.create');
-    Route::post('customers/store', [CustomerController::class, 'store'])->name('customers.store');
+    Route::post('customers', [CustomerController::class, 'store'])->name('customers.store');
     Route::get('customers/{customer}', [CustomerController::class, 'show'])->name('customers.show');
     Route::get('customers/{customer}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
     Route::patch('customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
