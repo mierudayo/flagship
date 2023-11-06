@@ -37,7 +37,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 
     // CustomerContact
-    Route::post('customers/{customer}/contacts', [CustomerContactController::class, 'store'])->name('customers.contacts.store');
+    Route::get('contacts', [CustomerContactController::class, 'index'])->name('contacts.index');
+    Route::get('contacts/create', [CustomerContactController::class, 'create'])->name('contacts.create');
+    Route::post('contacts', [CustomerContactController::class, 'store'])->name('contacts.store');
+    Route::get('contacts/{contact}', [CustomerContactController::class, 'show'])->name('contacts.show');
+    Route::get('contacts/{contact}/edit', [CustomerContactController::class, 'edit'])->name('contacts.edit');
+    Route::patch('contacts/{contact}', [CustomerContactController::class, 'update'])->name('contacts.update');
+    Route::delete('contacts/{contact}', [CustomerContactController::class, 'destroy'])->name('contacts.destroy');
+    Route::post('customers/{customer}/contacts', [CustomerContactController::class, 'addContactToCustomer'])->name('customers.contacts.add');
 });
 
 

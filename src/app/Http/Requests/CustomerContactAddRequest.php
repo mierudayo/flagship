@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CustomerContactStoreRequest extends FormRequest
+class CustomerContactAddRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,6 @@ class CustomerContactStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'customer_id' => ['required', 'integer', 'exists:customers,id'],
             'name'   => ['required', 'string'],
             'name_kana'      => ['nullable', 'string', 'max:255'],
             'tel_number'     => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
@@ -34,6 +33,5 @@ class CustomerContactStoreRequest extends FormRequest
             'note'           => ['nullable', 'string', 'max:2000'],
             'in_charge_user_id'=> ['nullable', 'integer', 'exists:users,id'],
         ];
-
     }
 }

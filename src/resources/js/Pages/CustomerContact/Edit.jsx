@@ -1,4 +1,5 @@
-import { useForm } from "@inertiajs/react";
+import AppLayout from '@/Layouts/AppLayout';
+import { Link, useForm } from "@inertiajs/react";
 
 function TableInputRow({ labelName, inputName, data, errors, setData, isRequired = false }) {
   return (
@@ -42,7 +43,7 @@ function RadioComponent({ labelName, inputName, options, isRequired, data, error
               name={inputName}
               value={option.value}
               checked={data[inputName] === option.value}
-              onChange={e => setData(inputName, e.target.value  === "true")}
+              onChange={e => setData(inputName, e.target.value === "true")}
               className={errors[inputName] ? 'is-invalid' : ''}
             />
             <label htmlFor={`${inputName}-${option.value}`}>{option.label}</label>
@@ -55,37 +56,97 @@ function RadioComponent({ labelName, inputName, options, isRequired, data, error
 }
 
 
-
-export default function ContactForm({ customer, closeModal, userSelectOptions}) {
-  const { data, setData, post, processing, errors, reset, isDirty } = useForm({
-    name: '',
-    name_kana: '',
-    tel_number: '',
-    mobile_number: '',
-    email: '',
-    position: '',
-    role: '',
+export default function Edit({ contact, userSelectOptions, customerSelectOptions }) {
+  const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
+    customer_id: contact.customer_id,
+    name: contact.name,
+    name_kana: contact.name_kana || "",
+    tel_number: contact.tel_number || "",
+    mobile_number: contact.mobile_number || "",
+    email: contact.email || "",
+    position: contact.position || "",
+    role: contact.role || "",
     is_active: true,
-    note: '',
-    in_charge_user_id: '',
+    note: contact.note || "",
+    in_charge_user_id: contact.in_charge_user_id || "",
   });
 
   function submit(e) {
     e.preventDefault();
-    post(route('customers.contacts.add', customer), {
+    patch(route('contacts.update', contact), {
       onSuccess: () => {
         reset();
-        closeModal();
       }
     });
   };
 
+  function handleBeforeLeave() {
+    if (isDirty) {
+      return confirm('入力内容が破棄されますがよろしいですか？');
+    }
+    return true;
+  };
+
   return (
-    <>
-      <form id="customerContactCreateForm" onSubmit={submit}>
+    <AppLayout>
+      <h1 className="content-title">連絡先 登録</h1>
+      <div className="content-navbar">
+        <button
+          type="submit"
+          form="customerContactUpdateForm"
+          className="btn btn-primary u-mr-3"
+          disabled={processing}
+        >
+          更新する
+        </button>
+        <Link
+          onBefore={handleBeforeLeave}
+          href={route('contacts.index')}
+          className="btn btn-secondary"
+        >
+          キャンセル
+        </Link>
+        {processing && <span>Now Loading...</span>}
+        <Link
+          onBefore={() => confirm('本当に削除しますか？')}
+          href={route('contacts.destroy', contact)}
+          method="delete"
+          className="btn btn-danger u-ml-auto"
+          as="button"
+        >
+          削除
+        </Link>
+      </div>
+      <form id="customerContactUpdateForm" onSubmit={submit}>
         <div className="table-wrapper is-scrollable">
           <table className="table">
             <tbody className="tbody">
+            <tr className="table-row">
+                <th className="th-cell u-w-200">
+
+                  <label htmlFor="customer_id" className="form-label">
+                    所属取引先
+                    <span className="required-mark">必須</span>
+                  </label>
+                </th>
+                <td className="td-cell u-flex">
+                  <select
+                    name="customer_id"
+                    id="customer_id"
+                    value={data.customer_id}
+                    onChange={e => setData('customer_id', e.target.value)}
+                    className={`input-field ${errors.customer_id ? 'is-invalid' : ''}`}
+                  >
+                    <option value="">-- 所属する取引先を選択 --</option>
+                    {customerSelectOptions.map((customer) => (
+                      <option key={customer.id} value={customer.id}>
+                        {customer.id}: {customer.name}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.customer_id && (<div className="invalid-feedback">{errors.customer_id}</div>)}
+                </td>
+              </tr>
               <TableInputRow labelName="担当者名" inputName="name" data={data} errors={errors} setData={setData} isRequired={true} />
               <TableInputRow labelName="よみがな" inputName="name_kana" data={data} errors={errors} setData={setData} />
               <TableInputRow labelName="TEL" inputName="tel_number" data={data} errors={errors} setData={setData} />
@@ -100,7 +161,6 @@ export default function ContactForm({ customer, closeModal, userSelectOptions}) 
                   { label: '使用中', value: true },
                   { label: '使用不可', value: false },
                 ]}
-                isRequired={true}
                 data={data}
                 errors={errors}
                 setData={setData}
@@ -136,15 +196,6 @@ export default function ContactForm({ customer, closeModal, userSelectOptions}) 
           </table>
         </div>
       </form>
-      <button
-        type="submit"
-        form="customerContactCreateForm"
-        className="btn btn-primary u-mt-3"
-        disabled={processing}
-      >
-        登録する
-      </button>
-    </>
+    </AppLayout>
   );
 }
-

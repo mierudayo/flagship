@@ -55,9 +55,17 @@ export default function AppLayout({ children }) {
             <li>
               <Link
                 href={route('customers.index')}
-                className={`side-nav-link ${component.startsWith('Customer') ? 'is-active' : ''}`}
+                className={`side-nav-link ${url.startsWith('/customers') ? 'is-active' : ''}`}
               >
                 取引先
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={route('contacts.index')}
+                className={`side-nav-link ${url.startsWith('/contacts') ? 'is-active' : ''}`}
+              >
+                連絡先
               </Link>
             </li>
           </ul>
