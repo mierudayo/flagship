@@ -20,7 +20,7 @@ class CustomerContactFactory extends Factory
     {
         return [
             'customer_id'   => Customer::inRandomOrder()->first()->id,
-            'name'  => $this->faker->name,
+            'name'          => $this->faker->name,
             'name_kana'     => $this->faker->optional()->word,
             'tel'           => $this->faker->optional()->phoneNumber,
             'mobile_number' => $this->faker->optional()->phoneNumber,

@@ -18,21 +18,21 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $employment_date = $this->faker->dateTimeBetween('-3 years', 'now');
+        $employment_date  = $this->faker->dateTimeBetween('-3 years', 'now');
         $resignation_date = $this->faker->optional($weight = 0.5)->dateTimeBetween($employment_date, 'now');
 
         return [
-            'permission_id' => Permission::inRandomOrder()->first()->id,
-            'name' => fake()->name(),
-            'name_kana' => fake()->word(),
-            'email' => fake()->unique()->safeEmail(),
+            'permission_id'     => Permission::inRandomOrder()->first()->id,
+            'name'              => fake()->name(),
+            'name_kana'         => fake()->word(),
+            'email'             => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
-            'employee_code' => fake()->unique()->bothify('E####'),
-            'mobile_number' => fake()->unique()->phoneNumber(),
-            'employment_date'  => $employment_date->format('Y-m-d'),
-            'resignation_date' => $resignation_date ? $resignation_date->format('Y-m-d') : null,
+            'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token'    => Str::random(10),
+            'employee_code'     => fake()->unique()->bothify('E####'),
+            'mobile_number'     => fake()->unique()->phoneNumber(),
+            'employment_date'   => $employment_date->format('Y-m-d'),
+            'resignation_date'  => $resignation_date ? $resignation_date->format('Y-m-d') : null,
         ];
     }
 

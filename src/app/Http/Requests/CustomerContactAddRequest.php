@@ -22,16 +22,16 @@ class CustomerContactAddRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'   => ['required', 'string'],
-            'name_kana'      => ['nullable', 'string', 'max:255'],
-            'tel'            => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
-            'mobile_number'  => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
-            'email'          => ['nullable', 'string', 'max:255', 'email'],
-            'position'       => ['nullable', 'string', 'max:255'],
-            'role'           => ['nullable', 'string', 'max:255'],
-            'is_active'      => ['required', 'boolean'],
-            'note'           => ['nullable', 'string', 'max:2000'],
-            'in_charge_user_id'=> ['nullable', 'integer', 'exists:users,id'],
+            'name'              => ['required', 'string'],
+            'name_kana'         => ['nullable', 'string', 'max:255'],
+            'tel'               => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
+            'mobile_number'     => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
+            'email'             => ['nullable', 'string', 'max:255', 'email'],
+            'position'          => ['nullable', 'string', 'max:255'],
+            'role'              => ['nullable', 'string', 'max:255'],
+            'is_active'         => ['required', 'boolean'],
+            'note'              => ['nullable', 'string', 'max:2000'],
+            'in_charge_user_id' => ['nullable', 'integer', 'exists:users,id'],
         ];
     }
 }

@@ -64,7 +64,7 @@ class CustomerContactController extends Controller
             'is_active'     => $request->input('is_active'),
             'note'          => $request->input('note'),
             'in_charge_user_id' => $request->input('in_charge_user_id'),
-            'created_by_id' => auth()->user()->id,
+            'created_by_id'     => auth()->user()->id,
         ]);
 
         return to_route('contacts.index')->with('message', "ID:{$contact->id} 連絡先を追加しました。");
@@ -93,7 +93,7 @@ class CustomerContactController extends Controller
             'is_active'     => $request->input('is_active'),
             'note'          => $request->input('note'),
             'in_charge_user_id' => $request->input('in_charge_user_id'),
-            'updated_by_id' => auth()->user()->id,
+            'updated_by_id'     => auth()->user()->id,
         ]);
 
         return to_route('contacts.index')->with('message', "ID:{$contact->id} 連絡先を更新しました。");
@@ -113,7 +113,7 @@ class CustomerContactController extends Controller
             'is_active'     => $request->input('is_active'),
             'note'          => $request->input('note'),
             'in_charge_user_id' => $request->input('in_charge_user_id'),
-            'created_by_id' => auth()->user()->id,
+            'created_by_id'     => auth()->user()->id,
         ]);
 
         return to_route('customers.show', $customer)
