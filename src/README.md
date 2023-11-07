@@ -4,7 +4,7 @@
 
 ## ER
 
-[ER図](./docs/ER.mmd)
+![ER図](./docs/ER.drawio.svg)
 
 ## ビジネスフロー
 

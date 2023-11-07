@@ -1,0 +1,249 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="572px" height="803px" viewBox="-0.5 -0.5 572 803" content="&lt;mxfile&gt;&lt;diagram id=&quot;gRcr10DEfie5Q2XBPZV3&quot; name=&quot;Page-1&quot;&gt;7VpRb6M4EP41ke5eVgGSbPPYpu2tdF2p2p501yfkgEN8NRjZpkn6628cbMCGpLShur1rXipmbGN7vpn5ZmhGwSLd/sZRvv7OYkxH/jjejoLrke/PZ3P4qxS7UjE1ioSTuFR5teKBvGCtHGttQWIsrImSMSpJbisjlmU4kpYOcc429rQVo/auOUpwS/EQIdrW/kliuS61F/7XWv8Nk2RtdvbM/VJkJuubiDWK2aahCm5GwYIzJsundLvAVNnO2KVcd3tgtDoYx5nstcCblUueES307XLMUyIEYZnQh5Q7c3OxISlFGUhX0ZrQ+A7tWKF2EhJFT0a6WjNOXlgmEYUhDxQwzKUGMhhbMx7USlArLWdFFuNYL1rBuF7jTYyszzLev5SzpwoBX63HAubfm+uPK9UdEtIcxZhcjcZIrPf7KQFRkmTwHMFqzEGhTYO5xNuDBvYq2MDdMUux5DuYohdMNNDa0y+0uKndxjNT1k2XmWol0q6aVG+u0YQHDeghcL+2wIUxf/zL/e+/jnxAPvDUvSl+VvFZyRlKcUOMicgp2oWOOuIYSRyHSDaURR5XSsd1jHUpXskKvAWjDCx9nbG9T60IpY5K5CgiWXK3X3U9cdxCga7wIRCcl3oDyXKDO1pWzsKZRLIhA4TGI/rBXEZKG2iNbNAXWX8QZOctZAuB+Tlghw7Y3hFbOcBJuBrnsCN24Y8ux+VfJ3TrXB2WkX1rDTshq8TwCWWoocMpItSVQzAhWRE3unMkxIbx2JqeU7bDOIyA5Bv6lC0JxWFWpEtAxp2fAhihyhSNEYV7kiGp7uIMfbpUMx8k1fjjQVzSa9kXx1AOaVHbbi1Tkzrwlsi/1NW/TLX02Bi53mqr7IWdEbL4UhVmIN78SFG2K3W3RJ3LzGimln1+qpdoAJWysaaZxParQE6wvAfnBjtg/lACrmf/XaS5c6u9qlw/czNRaRVliuOZBizHCh6ZWYaTy6O8AjjHFALi2d7hNDSDVoKJCiHhTWfyOJ08/Ol72WOQes+fvI09etCDAOhkVFgswABf6iZ8FMdgfNHQSKuoXKFtcytmJXiShdFaBUSoqpjQObTNaYYMlrvj8ww/vDbvs5FLmQFOJ5dB6lh/2odcIIhzJep+XpnVSR6v5+4OgjLPjxZZdROUlUcoWmJ6BYks2Z/CIB3jFSpo2ylqvYL8FqWEqtd+w/QZK8QdXzDJsOu1PUjPotIXzNkf7HsXobbI0WHYo1xpJ+Pa+d5Mh42vHu9jPr30nhHYppGIPSsRTzznFfp25SrHYatj9PTh9icUQ6mQJIH0Inmm1sGpdTbum6gujiQqvd0PyCooS8Agb9tv1rGf2wciCjaAvgZfKUzEyd7W+U3nMMdXrniUBHtUAjadH+7v7HYSigWiWrpmo8eoxf0ihAhRoX4uD36G8mCYz1wDFbQX/0Z5kMExGw2sEh8rcgWhrhD20n+8RIApH1EhvLcemHS0x4d8cvj2OGhzOWUJEYABpKmyxcFnNj/9K+vMaZTnHXll2pVXvCHySvAhJKr9I5S7HDv98uvdcsTSHIKw9V+WsoB01TYZO3T52SgreDtldbmWd6xQ7O9a85+mo/WPt7Q1z1ksp5f9/4juo3rhIZmuTEzDMx2I9Y8Kyraj/mVGcPMP&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <path d="M 140 31 L 140 14.5 Q 140 1 126.5 1 L 13.5 1 Q 0 1 0 14.5 L 0 31" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 31 L 0 137.5 Q 0 151 13.5 151 L 126.5 151 Q 140 151 140 137.5 L 140 31" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 31 L 140 31" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" text-anchor="middle" font-size="14px">
+            <text x="69.5" y="21.5">
+                permissions
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" font-size="12px">
+            <text x="5.5" y="48.5">
+                id (PK)
+            </text>
+            <text x="5.5" y="62.5">
+                level
+            </text>
+            <text x="5.5" y="76.5">
+                name
+            </text>
+            <text x="5.5" y="90.5">
+                display_name
+            </text>
+            <text x="5.5" y="104.5">
+                created_at
+            </text>
+            <text x="5.5" y="118.5">
+                updated_at
+            </text>
+        </g>
+        <path d="M 140 231 L 140 214.5 Q 140 201 126.5 201 L 13.5 201 Q 0 201 0 214.5 L 0 231" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 231 L 0 417.5 Q 0 431 13.5 431 L 126.5 431 Q 140 431 140 417.5 L 140 231" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 231 L 140 231" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" text-anchor="middle" font-size="14px">
+            <text x="69.5" y="221.5">
+                users
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" font-size="12px">
+            <text x="5.5" y="248.5">
+                id  (PK)
+            </text>
+            <text x="5.5" y="262.5">
+                permission_id (FK)
+            </text>
+            <text x="5.5" y="276.5">
+                name
+            </text>
+            <text x="5.5" y="290.5">
+                name_kana
+            </text>
+            <text x="5.5" y="304.5">
+                email
+            </text>
+            <text x="5.5" y="318.5">
+                email_verified_at
+            </text>
+            <text x="5.5" y="332.5">
+                password
+            </text>
+            <text x="5.5" y="346.5">
+                employee_code
+            </text>
+            <text x="5.5" y="360.5">
+                mobile_number
+            </text>
+            <text x="5.5" y="374.5">
+                employment_date
+            </text>
+            <text x="5.5" y="388.5">
+                resignation_date
+            </text>
+            <text x="5.5" y="402.5">
+                created_at
+            </text>
+            <text x="5.5" y="416.5">
+                updated_at
+            </text>
+        </g>
+        <path d="M 70 151 L 70 201" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 78 159 L 62 159" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 78 201 L 70 185 L 62 201" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 350 231 L 350 214.5 Q 350 201 336.5 201 L 223.5 201 Q 210 201 210 214.5 L 210 231" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 210 231 L 210 437.5 Q 210 451 223.5 451 L 336.5 451 Q 350 451 350 437.5 L 350 231" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 210 231 L 350 231" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" text-anchor="middle" font-size="14px">
+            <text x="279.5" y="221.5">
+                customers
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" font-size="12px">
+            <text x="215.5" y="248.5">
+                id  (PK)
+            </text>
+            <text x="215.5" y="262.5">
+                name
+            </text>
+            <text x="215.5" y="276.5">
+                name_kana
+            </text>
+            <text x="215.5" y="290.5">
+                shortcut
+            </text>
+            <text x="215.5" y="304.5">
+                postal_code
+            </text>
+            <text x="215.5" y="318.5">
+                address
+            </text>
+            <text x="215.5" y="332.5">
+                tel
+            </text>
+            <text x="215.5" y="346.5">
+                fax
+            </text>
+            <text x="215.5" y="360.5">
+                note
+            </text>
+            <text x="215.5" y="374.5">
+                in_charge_user_id  (FK)
+            </text>
+            <text x="215.5" y="388.5">
+                created_by_id  (FK)
+            </text>
+            <text x="215.5" y="402.5">
+                updated_by_id  (FK)
+            </text>
+            <text x="215.5" y="416.5">
+                created_at
+            </text>
+            <text x="215.5" y="430.5">
+                updated_at
+            </text>
+        </g>
+        <path d="M 140 331 L 179.5 331.56" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 148.11 323.11 L 147.89 339.11" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <ellipse cx="187" cy="331.66" rx="7" ry="7" fill="none" stroke="rgb(0, 0, 0)" pointer-events="none"/>
+        <path d="M 211.11 324 L 195 331.77 L 210.89 340 M 195 331.77 L 211 332" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 350 551 L 350 534.5 Q 350 521 336.5 521 L 223.5 521 Q 210 521 210 534.5 L 210 551" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 210 551 L 210 787.5 Q 210 801 223.5 801 L 336.5 801 Q 350 801 350 787.5 L 350 551" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 210 551 L 350 551" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" text-anchor="middle" font-size="14px">
+            <text x="279.5" y="541.5">
+                customer_contacts
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" font-size="12px">
+            <text x="215.5" y="568.5">
+                id  (PK)
+            </text>
+            <text x="215.5" y="582.5">
+                customer_id  (FK)
+            </text>
+            <text x="215.5" y="596.5">
+                name
+            </text>
+            <text x="215.5" y="610.5">
+                name_kana
+            </text>
+            <text x="215.5" y="624.5">
+                tel
+            </text>
+            <text x="215.5" y="638.5">
+                mobile_number
+            </text>
+            <text x="215.5" y="652.5">
+                email
+            </text>
+            <text x="215.5" y="666.5">
+                position
+            </text>
+            <text x="215.5" y="680.5">
+                role
+            </text>
+            <text x="215.5" y="694.5">
+                is_active
+            </text>
+            <text x="215.5" y="708.5">
+                note
+            </text>
+            <text x="215.5" y="722.5">
+                in_charge_user_id  (FK)
+            </text>
+            <text x="215.5" y="736.5">
+                created_by_id  (FK)
+            </text>
+            <text x="215.5" y="750.5">
+                updated_by_id  (FK)
+            </text>
+            <text x="215.5" y="764.5">
+                created_at
+            </text>
+            <text x="215.5" y="778.5">
+                updated_at
+            </text>
+        </g>
+        <path d="M 280 451 L 280 521" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 288 459 L 272 459" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 272 505 L 288 505 M 288 521 L 280 505 L 272 521" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 570 241 L 570 224.5 Q 570 211 556.5 211 L 433.5 211 Q 420 211 420 224.5 L 420 241" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 420 241 L 420 407.5 Q 420 421 433.5 421 L 556.5 421 Q 570 421 570 407.5 L 570 241" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 420 241 L 570 241" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" text-anchor="middle" font-size="14px">
+            <text x="494.5" y="231.5">
+                logistics_addresses
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" font-size="12px">
+            <text x="425.5" y="258.5">
+                id  (PK)
+            </text>
+            <text x="425.5" y="272.5">
+                customer_id  (FK)
+            </text>
+            <text x="425.5" y="286.5">
+                address_type
+            </text>
+            <text x="425.5" y="300.5">
+                post_code
+            </text>
+            <text x="425.5" y="314.5">
+                address
+            </text>
+            <text x="425.5" y="328.5">
+                company_name
+            </text>
+            <text x="425.5" y="342.5">
+                contact_name
+            </text>
+            <text x="425.5" y="356.5">
+                tel
+            </text>
+            <text x="425.5" y="370.5">
+                note
+            </text>
+            <text x="425.5" y="384.5">
+                created_at
+            </text>
+            <text x="425.5" y="398.5">
+                updated_at
+            </text>
+        </g>
+        <path d="M 350 286 L 388.5 286" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 358 278 L 358 294" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <ellipse cx="396" cy="286" rx="7" ry="7" fill="none" stroke="rgb(0, 0, 0)" pointer-events="none"/>
+        <path d="M 420 278 L 404 286 L 420 294 M 404 286 L 420 286" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+    </g>
+</svg>
