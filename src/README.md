@@ -2,7 +2,19 @@
 
 【WIP】以下、アプリ仕様メモです。
 
-## 権限 permissions
+## ER
+
+[ER図](./docs/ER.mmd)
+
+## ビジネスフロー
+
+自社で在庫を持たないビジネスモデル。販売先からの受注に対応する発注を都度行い、商品は仕入先から販売先へ直送する。
+
+![](docs/bizflow.drawio.png)
+
+## アプリ仕様
+
+### 権限 permissions
 
 Relationship:
 
@@ -16,7 +28,7 @@ Relationship:
 | 2  | `admin`        | 管理者          |
 | 3  | `staff`        | 担当者          |
 
-## ユーザー users
+### ユーザー users
 
 Relationship:
 
@@ -32,7 +44,7 @@ Relationship:
 | `edit`     | 編集画面表示  | `admin`以上    |
 | `update`   | 更新          | `admin`以上    |
 
-## 取引先 customers
+### 取引先 customers
 
 Relationship:
 
@@ -49,7 +61,7 @@ Relationship:
 | `update`   | 更新          | なし           |
 | `destroy`  | 削除          | なし           |
 
-## 取引先担当者 customer_contacts
+### 取引先担当者 customer_contacts
 
 Relationship:
 
