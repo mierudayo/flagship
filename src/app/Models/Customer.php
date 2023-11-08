@@ -52,6 +52,11 @@ class Customer extends Model
         return $this->hasMany(CustomerContact::class, 'customer_id');
     }
 
+    public function logisticsAddresses(): HasMany
+    {
+        return $this->hasMany(LogisticsAddress::class);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Scopes

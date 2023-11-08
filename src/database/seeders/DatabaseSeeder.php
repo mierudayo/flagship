@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
                 UserSeeder::class,
                 CustomerSeeder::class,
                 CustomerContactSeeder::class,
+                LogisticsAddressSeeder::class,
             ]);
         }
     }

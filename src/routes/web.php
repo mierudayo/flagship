@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\LogisticsAddressController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -45,6 +46,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('contacts/{contact}', [CustomerContactController::class, 'update'])->name('contacts.update');
     Route::delete('contacts/{contact}', [CustomerContactController::class, 'destroy'])->name('contacts.destroy');
     Route::post('customers/{customer}/contacts', [CustomerContactController::class, 'addContactToCustomer'])->name('customers.contacts.add');
+
+    // LogisticsAddresses
+    Route::post('customers/{customer}/logistics-addresses', [LogisticsAddressController::class, 'addLogisticsAddressToCustomer'])->name('customers.logistics-addresses.add');
 });
 
 

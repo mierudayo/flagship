@@ -3,10 +3,12 @@ import AppLayout from '@/Layouts/AppLayout';
 import { Link, usePage } from "@inertiajs/react";
 import Modal from "../../Components/Modal";
 import ContactForm from "./Partials/ContactForm";
+import AddressForm from "./Partials/AddressForm";
 
 export default function Show({ customer, userSelectOptions }) {
   const { flash } = usePage().props;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
   const {
     name,
     name_kana,
@@ -21,7 +23,8 @@ export default function Show({ customer, userSelectOptions }) {
     in_charge_user,
     contacts,
     created_by,
-    updated_by
+    updated_by,
+    logistics_addresses,
   } = customer;
 
   return (
@@ -36,14 +39,24 @@ export default function Show({ customer, userSelectOptions }) {
         </Link>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="btn btn-secondary">
+          className="btn btn-secondary u-mr-3">
           +連絡先を追加
+        </button>
+        <button
+          onClick={() => setIsAddressModalOpen(true)}
+          className="btn btn-secondary">
+          +出荷元/納品先を追加
         </button>
       </div>
 
       {isModalOpen &&
         <Modal closeModal={() => setIsModalOpen(false)} title="連絡先登録">
           <ContactForm customer={customer} userSelectOptions={userSelectOptions} closeModal={() => setIsModalOpen(false)} />
+        </Modal>}
+
+      {isAddressModalOpen &&
+        <Modal closeModal={() => setIsAddressModalOpen(false)} title="納品先登録">
+          <AddressForm customer={customer} closeModal={() => setIsAddressModalOpen(false)} />
         </Modal>}
 
       <div className="content-section">
@@ -140,6 +153,46 @@ export default function Show({ customer, userSelectOptions }) {
                   <td className="td-cell">{contact.is_active}</td>
                   <td className="td-cell">{contact.note}</td>
                   <td className="td-cell">{contact.in_charge_user?.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div className="content-section">
+        <div>出荷元/納品先 管理</div>
+        <div className="table-wrapper is-scrollable">
+          <table className="table">
+            <thead className="table-header">
+              <tr className="table-row">
+                <th className="th-cell col-fixed">ID</th>
+                <th className="th-cell">区分</th>
+                <th className="th-cell">住所</th>
+                <th className="th-cell">会社名</th>
+                <th className="th-cell">担当者名</th>
+                <th className="th-cell">TEL</th>
+                <th className="th-cell">備考</th>
+              </tr>
+            </thead>
+            <tbody className="table-body">
+              {logistics_addresses.map(logistics => (
+                <tr key={logistics.id} className="table-row is-hoverable">
+                  <td className="td-cell col-fixed">{logistics.id}</td>
+                  <td className="td-cell">
+                    {logistics.address_type === 1
+                      ? "出荷元"
+                      : logistics.address_type === 2
+                        ? "納品先"
+                        : logistics.address_type === 3
+                          ? "兼用"
+                          : ""}
+                  </td>
+                  <td className="td-cell">{logistics.postal_code} {logistics.address}</td>
+                  <td className="td-cell">{logistics.company_name}</td>
+                  <td className="td-cell">{logistics.contact_name}</td>
+                  <td className="td-cell">{logistics.tel}</td>
+                  <td className="td-cell">{logistics.note}</td>
                 </tr>
               ))}
             </tbody>

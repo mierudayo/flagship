@@ -56,7 +56,7 @@ class CustomerController extends Controller
 
     public function show(Customer $customer): Response
     {
-        $customer->load(['contacts.inChargeUser', 'inChargeUser', 'createdBy', 'updatedBy']);
+        $customer->load(['contacts.inChargeUser', 'inChargeUser', 'createdBy', 'updatedBy', 'logisticsAddresses']);
 
         return Inertia::render('Customer/Show', [
             'customer' => array_merge($customer->toArray(), [
