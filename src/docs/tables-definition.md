@@ -95,9 +95,9 @@
 |--------------------|--------------|----------------|--------------|
 | id                 | ID           | unsignedBigInteger | PK           |
 | customer_id        | 取引先ID       | unsignedBigInteger | FK           |
-| cutoff_day         | 締め日         | integer         | 1~28日, 月末(29, 30, 31)は99とする。 |
-| payment_month_offset | 支払月       | integer         | 当月=0, 翌月=1...             |
-| payment_day        | 支払日         | integer         | 1~28日, 月末(29, 30, 31)は99とする。 |
+| cutoff_day         | 締め日         | integer         | 1~28日, 月末(29, 30, 31)は99、前払いは0とする。 |
+| payment_month_offset | 支払月       | integer         | 当月=0, 翌月=1, 翌々月=2 ...             |
+| payment_day        | 支払日         | integer         | 1~28日, 月末(29, 30, 31)は99、前払いは0とする。 |
 | created_at         | 作成日時       | timestamp       |              |
 | updated_at         | 更新日時       | timestamp       |              |
 
@@ -107,8 +107,8 @@
 |--------------------|--------------|----------------|--------------|
 | id                 | ID           | unsignedBigInteger | PK           |
 | customer_id        | 取引先ID       | unsignedBigInteger | FK           |
-| cutoff_day         | 締め日         | integer         | 1~28日, 月末(29, 30, 31)は99とする。 |
-| payment_month_offset | 支払月       | integer         | 当月=0, 翌月=1...             |
-| payment_day        | 支払日         | integer         | 1~28日, 月末(29, 30, 31)は99とする。 |
+| cutoff_day         | 締め日         | integer         | 1~28日, 月末(29, 30, 31)は99、前払いは0とする。 |
+| payment_month_offset | 支払月       | integer         | 当月=0, 翌月=1, 翌々月=2 ...             |
+| payment_day        | 支払日         | integer         | 1~28日, 月末(29, 30, 31)は99、前払いは0とする。 |
 | created_at         | 作成日時       | timestamp       |              |
 | updated_at         | 更新日時       | timestamp       |              |
