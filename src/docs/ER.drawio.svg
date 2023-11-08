@@ -1,249 +1,341 @@
-<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="572px" height="803px" viewBox="-0.5 -0.5 572 803" content="&lt;mxfile&gt;&lt;diagram id=&quot;gRcr10DEfie5Q2XBPZV3&quot; name=&quot;Page-1&quot;&gt;7VpRb6M4EP41ke5eVgGSbPPYpu2tdF2p2p501yfkgEN8NRjZpkn6628cbMCGpLShur1rXipmbGN7vpn5ZmhGwSLd/sZRvv7OYkxH/jjejoLrke/PZ3P4qxS7UjE1ioSTuFR5teKBvGCtHGttQWIsrImSMSpJbisjlmU4kpYOcc429rQVo/auOUpwS/EQIdrW/kliuS61F/7XWv8Nk2RtdvbM/VJkJuubiDWK2aahCm5GwYIzJsundLvAVNnO2KVcd3tgtDoYx5nstcCblUueES307XLMUyIEYZnQh5Q7c3OxISlFGUhX0ZrQ+A7tWKF2EhJFT0a6WjNOXlgmEYUhDxQwzKUGMhhbMx7USlArLWdFFuNYL1rBuF7jTYyszzLev5SzpwoBX63HAubfm+uPK9UdEtIcxZhcjcZIrPf7KQFRkmTwHMFqzEGhTYO5xNuDBvYq2MDdMUux5DuYohdMNNDa0y+0uKndxjNT1k2XmWol0q6aVG+u0YQHDeghcL+2wIUxf/zL/e+/jnxAPvDUvSl+VvFZyRlKcUOMicgp2oWOOuIYSRyHSDaURR5XSsd1jHUpXskKvAWjDCx9nbG9T60IpY5K5CgiWXK3X3U9cdxCga7wIRCcl3oDyXKDO1pWzsKZRLIhA4TGI/rBXEZKG2iNbNAXWX8QZOctZAuB+Tlghw7Y3hFbOcBJuBrnsCN24Y8ux+VfJ3TrXB2WkX1rDTshq8TwCWWoocMpItSVQzAhWRE3unMkxIbx2JqeU7bDOIyA5Bv6lC0JxWFWpEtAxp2fAhihyhSNEYV7kiGp7uIMfbpUMx8k1fjjQVzSa9kXx1AOaVHbbi1Tkzrwlsi/1NW/TLX02Bi53mqr7IWdEbL4UhVmIN78SFG2K3W3RJ3LzGimln1+qpdoAJWysaaZxParQE6wvAfnBjtg/lACrmf/XaS5c6u9qlw/czNRaRVliuOZBizHCh6ZWYaTy6O8AjjHFALi2d7hNDSDVoKJCiHhTWfyOJ08/Ol72WOQes+fvI09etCDAOhkVFgswABf6iZ8FMdgfNHQSKuoXKFtcytmJXiShdFaBUSoqpjQObTNaYYMlrvj8ww/vDbvs5FLmQFOJ5dB6lh/2odcIIhzJep+XpnVSR6v5+4OgjLPjxZZdROUlUcoWmJ6BYks2Z/CIB3jFSpo2ylqvYL8FqWEqtd+w/QZK8QdXzDJsOu1PUjPotIXzNkf7HsXobbI0WHYo1xpJ+Pa+d5Mh42vHu9jPr30nhHYppGIPSsRTzznFfp25SrHYatj9PTh9icUQ6mQJIH0Inmm1sGpdTbum6gujiQqvd0PyCooS8Agb9tv1rGf2wciCjaAvgZfKUzEyd7W+U3nMMdXrniUBHtUAjadH+7v7HYSigWiWrpmo8eoxf0ihAhRoX4uD36G8mCYz1wDFbQX/0Z5kMExGw2sEh8rcgWhrhD20n+8RIApH1EhvLcemHS0x4d8cvj2OGhzOWUJEYABpKmyxcFnNj/9K+vMaZTnHXll2pVXvCHySvAhJKr9I5S7HDv98uvdcsTSHIKw9V+WsoB01TYZO3T52SgreDtldbmWd6xQ7O9a85+mo/WPt7Q1z1ksp5f9/4juo3rhIZmuTEzDMx2I9Y8Kyraj/mVGcPMP&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="732px" height="842px" viewBox="-0.5 -0.5 732 842" content="&lt;mxfile&gt;&lt;diagram id=&quot;gRcr10DEfie5Q2XBPZV3&quot; name=&quot;Page-1&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs/>
     <g>
-        <path d="M 140 31 L 140 14.5 Q 140 1 126.5 1 L 13.5 1 Q 0 1 0 14.5 L 0 31" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
-        <path d="M 0 31 L 0 137.5 Q 0 151 13.5 151 L 126.5 151 Q 140 151 140 137.5 L 140 31" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 0 31 L 140 31" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" text-anchor="middle" font-size="14px">
-            <text x="69.5" y="21.5">
+        <path d="M 141 31 L 141 14.5 Q 141 1 127.5 1 L 14.5 1 Q 1 1 1 14.5 L 1 31" fill="#dae8fc" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 1 31 L 1 137.5 Q 1 151 14.5 151 L 127.5 151 Q 141 151 141 137.5 L 141 31" fill="#ffffff" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 1 31 L 141 31" fill="none" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#333333" font-family="Helvetica" text-anchor="middle" font-size="11.999999999999998px">
+            <text x="70.5" y="20.5">
                 permissions
             </text>
         </g>
-        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" font-size="12px">
-            <text x="5.5" y="48.5">
-                id (PK)
-            </text>
-            <text x="5.5" y="62.5">
-                level
-            </text>
-            <text x="5.5" y="76.5">
-                name
-            </text>
-            <text x="5.5" y="90.5">
-                display_name
-            </text>
-            <text x="5.5" y="104.5">
-                created_at
-            </text>
-            <text x="5.5" y="118.5">
-                updated_at
-            </text>
+        <rect x="1" y="31" width="140" height="120" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(0.9999999999999999)">
+            <switch>
+                <foreignObject pointer-events="none" width="101%" height="101%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 38px; margin-left: 7px;">
+                        <div data-drawio-colors="color: #333333; " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(51, 51, 51); line-height: 1.2; pointer-events: all; white-space: nowrap;">
+                                id (PK)
+                                <br style="font-size: 12px;"/>
+                                level
+                                <br style="font-size: 12px;"/>
+                                name
+                                <br style="font-size: 12px;"/>
+                                display_name
+                                <br style="font-size: 12px;"/>
+                                created_at
+                                <br style="font-size: 12px;"/>
+                                updated_at
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="7" y="50" fill="#333333" font-family="Helvetica" font-size="12px">
+                    id (PK)...
+                </text>
+            </switch>
         </g>
-        <path d="M 140 231 L 140 214.5 Q 140 201 126.5 201 L 13.5 201 Q 0 201 0 214.5 L 0 231" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 0 231 L 0 417.5 Q 0 431 13.5 431 L 126.5 431 Q 140 431 140 417.5 L 140 231" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 0 231 L 140 231" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" text-anchor="middle" font-size="14px">
-            <text x="69.5" y="221.5">
+        <path d="M 141 231 L 141 214.5 Q 141 201 127.5 201 L 14.5 201 Q 1 201 1 214.5 L 1 231" fill="#dae8fc" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 1 231 L 1 447.5 Q 1 461 14.5 461 L 127.5 461 Q 141 461 141 447.5 L 141 231" fill="#ffffff" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 1 231 L 141 231" fill="none" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#333333" font-family="Helvetica" text-anchor="middle" font-size="11.999999999999998px">
+            <text x="70.5" y="220.5">
                 users
             </text>
         </g>
-        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" font-size="12px">
-            <text x="5.5" y="248.5">
-                id  (PK)
-            </text>
-            <text x="5.5" y="262.5">
-                permission_id (FK)
-            </text>
-            <text x="5.5" y="276.5">
-                name
-            </text>
-            <text x="5.5" y="290.5">
-                name_kana
-            </text>
-            <text x="5.5" y="304.5">
-                email
-            </text>
-            <text x="5.5" y="318.5">
-                email_verified_at
-            </text>
-            <text x="5.5" y="332.5">
-                password
-            </text>
-            <text x="5.5" y="346.5">
-                employee_code
-            </text>
-            <text x="5.5" y="360.5">
-                mobile_number
-            </text>
-            <text x="5.5" y="374.5">
-                employment_date
-            </text>
-            <text x="5.5" y="388.5">
-                resignation_date
-            </text>
-            <text x="5.5" y="402.5">
-                created_at
-            </text>
-            <text x="5.5" y="416.5">
-                updated_at
-            </text>
+        <rect x="1" y="231" width="140" height="230" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(0.9999999999999999)">
+            <switch>
+                <foreignObject pointer-events="none" width="101%" height="101%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 238px; margin-left: 7px;">
+                        <div data-drawio-colors="color: #333333; " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(51, 51, 51); line-height: 1.2; pointer-events: all; white-space: nowrap;">
+                                <font style="font-size: 12px;">
+                                    id  (PK)
+                                    <br style="font-size: 12px;"/>
+                                    permission_id (FK)
+                                    <br style="font-size: 12px;"/>
+                                    name
+                                    <br style="font-size: 12px;"/>
+                                    name_kana
+                                    <br style="font-size: 12px;"/>
+                                    email
+                                    <br style="font-size: 12px;"/>
+                                    email_verified_at
+                                    <br style="font-size: 12px;"/>
+                                    password
+                                    <br style="font-size: 12px;"/>
+                                    employee_code
+                                    <br style="font-size: 12px;"/>
+                                    mobile_number
+                                    <br style="font-size: 12px;"/>
+                                    employment_date
+                                    <br style="font-size: 12px;"/>
+                                    resignation_date
+                                    <br style="font-size: 12px;"/>
+                                    created_at
+                                    <br style="font-size: 12px;"/>
+                                    updated_at
+                                </font>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="7" y="250" fill="#333333" font-family="Helvetica" font-size="12px">
+                    id  (PK)...
+                </text>
+            </switch>
         </g>
-        <path d="M 70 151 L 70 201" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 78 159 L 62 159" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 78 201 L 70 185 L 62 201" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 350 231 L 350 214.5 Q 350 201 336.5 201 L 223.5 201 Q 210 201 210 214.5 L 210 231" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 210 231 L 210 437.5 Q 210 451 223.5 451 L 336.5 451 Q 350 451 350 437.5 L 350 231" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 210 231 L 350 231" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" text-anchor="middle" font-size="14px">
-            <text x="279.5" y="221.5">
+        <path d="M 71 151 L 71 201" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 79 159 L 63 159" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 79 201 L 71 185 L 63 201" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 351 231 L 351 214.5 Q 351 201 337.5 201 L 224.5 201 Q 211 201 211 214.5 L 211 231" fill="#dae8fc" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 211 231 L 211 442.5 Q 211 456 224.5 456 L 337.5 456 Q 351 456 351 442.5 L 351 231" fill="#ffffff" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 211 231 L 351 231" fill="none" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#333333" font-family="Helvetica" text-anchor="middle" font-size="11.999999999999998px">
+            <text x="280.5" y="220.5">
                 customers
             </text>
         </g>
-        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" font-size="12px">
-            <text x="215.5" y="248.5">
-                id  (PK)
-            </text>
-            <text x="215.5" y="262.5">
-                name
-            </text>
-            <text x="215.5" y="276.5">
-                name_kana
-            </text>
-            <text x="215.5" y="290.5">
-                shortcut
-            </text>
-            <text x="215.5" y="304.5">
-                postal_code
-            </text>
-            <text x="215.5" y="318.5">
-                address
-            </text>
-            <text x="215.5" y="332.5">
-                tel
-            </text>
-            <text x="215.5" y="346.5">
-                fax
-            </text>
-            <text x="215.5" y="360.5">
-                note
-            </text>
-            <text x="215.5" y="374.5">
-                in_charge_user_id  (FK)
-            </text>
-            <text x="215.5" y="388.5">
-                created_by_id  (FK)
-            </text>
-            <text x="215.5" y="402.5">
-                updated_by_id  (FK)
-            </text>
-            <text x="215.5" y="416.5">
-                created_at
-            </text>
-            <text x="215.5" y="430.5">
-                updated_at
-            </text>
+        <rect x="211" y="231" width="140" height="225" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(0.9999999999999999)">
+            <switch>
+                <foreignObject pointer-events="none" width="101%" height="101%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 238px; margin-left: 217px;">
+                        <div data-drawio-colors="color: #333333; " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(51, 51, 51); line-height: 1.2; pointer-events: all; white-space: nowrap;">
+                                <font style="font-size: 12px;">
+                                    id  (PK)
+                                    <br style="font-size: 12px;"/>
+                                    name
+                                    <br style="font-size: 12px;"/>
+                                    name_kana
+                                    <br style="font-size: 12px;"/>
+                                    shortcut
+                                    <br style="font-size: 12px;"/>
+                                    postal_code
+                                    <br style="font-size: 12px;"/>
+                                    address
+                                    <br style="font-size: 12px;"/>
+                                    tel
+                                    <br style="font-size: 12px;"/>
+                                    fax
+                                    <br style="font-size: 12px;"/>
+                                    note
+                                    <br style="font-size: 12px;"/>
+                                    in_charge_user_id  (FK)
+                                    <br style="font-size: 12px;"/>
+                                    created_by_id  (FK)
+                                    <br style="font-size: 12px;"/>
+                                    updated_by_id  (FK)
+                                    <br style="font-size: 12px;"/>
+                                    created_at
+                                    <br style="font-size: 12px;"/>
+                                    updated_at
+                                </font>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="217" y="250" fill="#333333" font-family="Helvetica" font-size="12px">
+                    id  (PK)...
+                </text>
+            </switch>
         </g>
-        <path d="M 140 331 L 179.5 331.56" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 148.11 323.11 L 147.89 339.11" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
-        <ellipse cx="187" cy="331.66" rx="7" ry="7" fill="none" stroke="rgb(0, 0, 0)" pointer-events="none"/>
-        <path d="M 211.11 324 L 195 331.77 L 210.89 340 M 195 331.77 L 211 332" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 350 551 L 350 534.5 Q 350 521 336.5 521 L 223.5 521 Q 210 521 210 534.5 L 210 551" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 210 551 L 210 787.5 Q 210 801 223.5 801 L 336.5 801 Q 350 801 350 787.5 L 350 551" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 210 551 L 350 551" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" text-anchor="middle" font-size="14px">
-            <text x="279.5" y="541.5">
+        <path d="M 141 346 L 179.52 344.62" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 148.71 337.72 L 149.28 353.71" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <ellipse cx="187.02" cy="344.36" rx="6.999999999999999" ry="6.999999999999999" fill="none" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 210.71 335.51 L 195.01 344.07 L 211.29 351.49 M 195.01 344.07 L 211 343.5" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 351 591 L 351 574.5 Q 351 561 337.5 561 L 224.5 561 Q 211 561 211 574.5 L 211 591" fill="#dae8fc" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 211 591 L 211 827.5 Q 211 841 224.5 841 L 337.5 841 Q 351 841 351 827.5 L 351 591" fill="#ffffff" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 211 591 L 351 591" fill="none" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#333333" font-family="Helvetica" text-anchor="middle" font-size="11.999999999999998px">
+            <text x="280.5" y="580.5">
                 customer_contacts
             </text>
         </g>
-        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" font-size="12px">
-            <text x="215.5" y="568.5">
-                id  (PK)
-            </text>
-            <text x="215.5" y="582.5">
-                customer_id  (FK)
-            </text>
-            <text x="215.5" y="596.5">
-                name
-            </text>
-            <text x="215.5" y="610.5">
-                name_kana
-            </text>
-            <text x="215.5" y="624.5">
-                tel
-            </text>
-            <text x="215.5" y="638.5">
-                mobile_number
-            </text>
-            <text x="215.5" y="652.5">
-                email
-            </text>
-            <text x="215.5" y="666.5">
-                position
-            </text>
-            <text x="215.5" y="680.5">
-                role
-            </text>
-            <text x="215.5" y="694.5">
-                is_active
-            </text>
-            <text x="215.5" y="708.5">
-                note
-            </text>
-            <text x="215.5" y="722.5">
-                in_charge_user_id  (FK)
-            </text>
-            <text x="215.5" y="736.5">
-                created_by_id  (FK)
-            </text>
-            <text x="215.5" y="750.5">
-                updated_by_id  (FK)
-            </text>
-            <text x="215.5" y="764.5">
-                created_at
-            </text>
-            <text x="215.5" y="778.5">
-                updated_at
-            </text>
+        <rect x="211" y="591" width="140" height="250" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(0.9999999999999999)">
+            <switch>
+                <foreignObject pointer-events="none" width="101%" height="101%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 598px; margin-left: 217px;">
+                        <div data-drawio-colors="color: #333333; " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(51, 51, 51); line-height: 1.2; pointer-events: all; white-space: nowrap;">
+                                <font style="font-size: 12px;">
+                                    id  (PK)
+                                    <br style="font-size: 12px;"/>
+                                    customer_id  (FK)
+                                    <br style="font-size: 12px;"/>
+                                    name
+                                    <br style="font-size: 12px;"/>
+                                    name_kana
+                                    <br style="font-size: 12px;"/>
+                                    tel
+                                    <br style="font-size: 12px;"/>
+                                    mobile_number
+                                    <br style="font-size: 12px;"/>
+                                    email
+                                    <br style="font-size: 12px;"/>
+                                    position
+                                    <br style="font-size: 12px;"/>
+                                    role
+                                    <br style="font-size: 12px;"/>
+                                    is_active
+                                    <br style="font-size: 12px;"/>
+                                    note
+                                    <br style="font-size: 12px;"/>
+                                    in_charge_user_id  (FK)
+                                    <br style="font-size: 12px;"/>
+                                    created_by_id  (FK)
+                                    <br style="font-size: 12px;"/>
+                                    updated_by_id  (FK)
+                                    <br style="font-size: 12px;"/>
+                                    created_at
+                                    <br style="font-size: 12px;"/>
+                                    updated_at
+                                </font>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="217" y="610" fill="#333333" font-family="Helvetica" font-size="12px">
+                    id  (PK)...
+                </text>
+            </switch>
         </g>
-        <path d="M 280 451 L 280 521" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 288 459 L 272 459" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 272 505 L 288 505 M 288 521 L 280 505 L 272 521" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 570 241 L 570 224.5 Q 570 211 556.5 211 L 433.5 211 Q 420 211 420 224.5 L 420 241" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 420 241 L 420 407.5 Q 420 421 433.5 421 L 556.5 421 Q 570 421 570 407.5 L 570 241" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 420 241 L 570 241" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" text-anchor="middle" font-size="14px">
-            <text x="494.5" y="231.5">
+        <path d="M 281 456 L 281 529.5" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 289 464 L 273 464" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <ellipse cx="281" cy="537" rx="6.999999999999999" ry="6.999999999999999" fill="none" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 289 561 L 281 545 L 273 561 M 281 545 L 281 561" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 571 241 L 571 224.5 Q 571 211 557.5 211 L 434.5 211 Q 421 211 421 224.5 L 421 241" fill="#dae8fc" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 421 241 L 421 407.5 Q 421 421 434.5 421 L 557.5 421 Q 571 421 571 407.5 L 571 241" fill="#ffffff" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 421 241 L 571 241" fill="none" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#333333" font-family="Helvetica" text-anchor="middle" font-size="11.999999999999998px">
+            <text x="495.5" y="230.5">
                 logistics_addresses
             </text>
         </g>
-        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" font-size="12px">
-            <text x="425.5" y="258.5">
-                id  (PK)
-            </text>
-            <text x="425.5" y="272.5">
-                customer_id  (FK)
-            </text>
-            <text x="425.5" y="286.5">
-                address_type
-            </text>
-            <text x="425.5" y="300.5">
-                post_code
-            </text>
-            <text x="425.5" y="314.5">
-                address
-            </text>
-            <text x="425.5" y="328.5">
-                company_name
-            </text>
-            <text x="425.5" y="342.5">
-                contact_name
-            </text>
-            <text x="425.5" y="356.5">
-                tel
-            </text>
-            <text x="425.5" y="370.5">
-                note
-            </text>
-            <text x="425.5" y="384.5">
-                created_at
-            </text>
-            <text x="425.5" y="398.5">
-                updated_at
+        <rect x="421" y="241" width="150" height="180" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(0.9999999999999999)">
+            <switch>
+                <foreignObject pointer-events="none" width="101%" height="101%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 248px; margin-left: 427px;">
+                        <div data-drawio-colors="color: #333333; " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(51, 51, 51); line-height: 1.2; pointer-events: all; white-space: nowrap;">
+                                <font style="font-size: 12px;">
+                                    id  (PK)
+                                    <br style="font-size: 12px;"/>
+                                    customer_id  (FK)
+                                    <br style="font-size: 12px;"/>
+                                    address_type
+                                    <br style="font-size: 12px;"/>
+                                    post_code
+                                    <br style="font-size: 12px;"/>
+                                    address
+                                    <br style="font-size: 12px;"/>
+                                    company_name
+                                    <br style="font-size: 12px;"/>
+                                    contact_name
+                                    <br style="font-size: 12px;"/>
+                                    tel
+                                    <br style="font-size: 12px;"/>
+                                    note
+                                    <br style="font-size: 12px;"/>
+                                    created_at
+                                    <br style="font-size: 12px;"/>
+                                    updated_at
+                                </font>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="427" y="260" fill="#333333" font-family="Helvetica" font-size="12px">
+                    id  (PK)...
+                </text>
+            </switch>
+        </g>
+        <path d="M 351 287.25 L 389.51 286.56" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 358.86 279.11 L 359.14 295.11" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <ellipse cx="397" cy="286.43" rx="6.999999999999999" ry="6.999999999999999" fill="none" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 420.86 278 L 405 286.29 L 421.14 294 M 405 286.29 L 421 286" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 561 535 L 561 518.5 Q 561 505 547.5 505 L 424.5 505 Q 411 505 411 518.5 L 411 535" fill="#dae8fc" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 411 535 L 411 701.5 Q 411 715 424.5 715 L 547.5 715 Q 561 715 561 701.5 L 561 535" fill="#ffffff" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 411 535 L 561 535" fill="none" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#333333" font-family="Helvetica" text-anchor="middle" font-size="11.999999999999998px">
+            <text x="485.5" y="524.5">
+                sales_terms
             </text>
         </g>
-        <path d="M 350 286 L 388.5 286" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 358 278 L 358 294" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
-        <ellipse cx="396" cy="286" rx="7" ry="7" fill="none" stroke="rgb(0, 0, 0)" pointer-events="none"/>
-        <path d="M 420 278 L 404 286 L 420 294 M 404 286 L 420 286" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <rect x="411" y="535" width="150" height="180" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(0.9999999999999999)">
+            <switch>
+                <foreignObject pointer-events="none" width="101%" height="101%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 542px; margin-left: 417px;">
+                        <div data-drawio-colors="color: #333333; " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(51, 51, 51); line-height: 1.2; pointer-events: all; white-space: nowrap;">
+                                <font style="font-size: 12px;">
+                                    id  (PK)
+                                    <br style="font-size: 12px;"/>
+                                    customer_id  (FK)
+                                    <br style="font-size: 12px;"/>
+                                    <br/>
+                                </font>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="417" y="554" fill="#333333" font-family="Helvetica" font-size="12px">
+                    id  (PK)...
+                </text>
+            </switch>
+        </g>
+        <path d="M 731 486 L 731 469.5 Q 731 456 717.5 456 L 594.5 456 Q 581 456 581 469.5 L 581 486" fill="#dae8fc" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 581 486 L 581 652.5 Q 581 666 594.5 666 L 717.5 666 Q 731 666 731 652.5 L 731 486" fill="#ffffff" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 581 486 L 731 486" fill="none" stroke="#6c8ebf" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#333333" font-family="Helvetica" text-anchor="middle" font-size="11.999999999999998px">
+            <text x="655.5" y="475.5">
+                purchase_terms
+            </text>
+        </g>
+        <rect x="581" y="486" width="150" height="180" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)scale(0.9999999999999999)">
+            <switch>
+                <foreignObject pointer-events="none" width="101%" height="101%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 493px; margin-left: 587px;">
+                        <div data-drawio-colors="color: #333333; " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(51, 51, 51); line-height: 1.2; pointer-events: all; white-space: nowrap;">
+                                <font style="font-size: 12px;">
+                                    id  (PK)
+                                    <br style="font-size: 12px;"/>
+                                    customer_id  (FK)
+                                    <br style="font-size: 12px;"/>
+                                    <br/>
+                                </font>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="587" y="505" fill="#333333" font-family="Helvetica" font-size="12px">
+                    id  (PK)...
+                </text>
+            </switch>
+        </g>
+        <path d="M 349.46 451.05 L 391.96 504.32" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 360.7 452.31 L 348.2 462.29 M 365.69 458.57 L 353.18 468.55" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <ellipse cx="396.63" cy="510.18" rx="6.999999999999999" ry="6.999999999999999" fill="none" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 400.36 527.68 L 412.86 517.7 M 401.31 516.04 L 411.6 528.94" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 350.16 440.03 L 550.11 479.85" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 359.57 433.74 L 356.44 449.43 M 367.41 435.3 L 364.29 451" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <ellipse cx="557.46" cy="481.31" rx="6.999999999999999" ry="6.999999999999999" fill="none" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 571.59 492.28 L 574.72 476.59 M 564.82 482.78 L 581 486" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
     </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Text is not SVG - cannot display
+            </text>
+        </a>
+    </switch>
 </svg>

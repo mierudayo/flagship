@@ -29,7 +29,7 @@
 | created_at        | 作成日時       | timestamp         |             |
 | updated_at        | 更新日時       | timestamp         |             |
 
-## customers
+## customers 取引先
 
 | カラム             | 名称         | 型                  | 説明     |
 |------------------|------------|--------------------|--------|
@@ -48,7 +48,7 @@
 | created_at       | 作成日時     | timestamp          |        |
 | updated_at       | 更新日時     | timestamp          |        |
 
-## customer_contacts
+## customer_contacts 連絡先
 
 取引先に所属する連絡先（担当者）を管理する。
 
@@ -71,7 +71,7 @@
 | created_at        | 作成日時     | timestamp          |        |
 | updated_at        | 更新日時     | timestamp          |        |
 
-## logistics_addresses
+## logistics_addresses 出荷元/納品先住所
 
 取引先の出荷元/納品先を管理する。
 
@@ -88,3 +88,27 @@
 | note            | 備考     | text               |           |
 | created_at      | 作成日時 | timestamps         |           |
 | updated_at      | 更新日時 | timestamps         |           |
+
+## sales_terms 支払条件(販売)
+
+| カラム               | 名称          | 型             | 説明          |
+|--------------------|--------------|----------------|--------------|
+| id                 | ID           | unsignedBigInteger | PK           |
+| customer_id        | 取引先ID       | unsignedBigInteger | FK           |
+| cutoff_day         | 締め日         | integer         | 1~28日, 月末(29, 30, 31)は99とする。 |
+| payment_month_offset | 支払月       | integer         | 当月=0, 翌月=1...             |
+| payment_day        | 支払日         | integer         | 1~28日, 月末(29, 30, 31)は99とする。 |
+| created_at         | 作成日時       | timestamp       |              |
+| updated_at         | 更新日時       | timestamp       |              |
+
+## purchase_terms 支払条件(仕入)
+
+| カラム               | 名称          | 型             | 説明          |
+|--------------------|--------------|----------------|--------------|
+| id                 | ID           | unsignedBigInteger | PK           |
+| customer_id        | 取引先ID       | unsignedBigInteger | FK           |
+| cutoff_day         | 締め日         | integer         | 1~28日, 月末(29, 30, 31)は99とする。 |
+| payment_month_offset | 支払月       | integer         | 当月=0, 翌月=1...             |
+| payment_day        | 支払日         | integer         | 1~28日, 月末(29, 30, 31)は99とする。 |
+| created_at         | 作成日時       | timestamp       |              |
+| updated_at         | 更新日時       | timestamp       |              |
