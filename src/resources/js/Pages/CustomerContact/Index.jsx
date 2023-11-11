@@ -48,7 +48,7 @@ export default function Index({ contactsPaginator }) {
         <Pagination paginator={contactsPaginator} />
       </div>
       {flash.message && (
-        <div class="alert alert-success">{flash.message}</div>
+        <div className="alert alert-success">{flash.message}</div>
       )}
       <ContactsTable contacts={contactsPaginator.data} />
     </AppLayout>

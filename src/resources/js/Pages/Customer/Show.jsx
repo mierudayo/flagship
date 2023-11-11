@@ -70,7 +70,7 @@ export default function Show({ customer, userSelectOptions }) {
         </div>
 
         {flash.message && (
-          <div class="alert alert-success">{flash.message}</div>
+          <div className="alert alert-success">{flash.message}</div>
         )}
 
         <div className="table-wrapper">

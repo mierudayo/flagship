@@ -48,7 +48,7 @@ export default function Index({ customersPaginator, canAdmin }) {
         <Pagination paginator={customersPaginator} />
       </div>
       {flash.message && (
-        <div class="alert alert-success">{flash.message}</div>
+        <div className="alert alert-success">{flash.message}</div>
       )}
       <CustomerTable customers={customersPaginator.data} />
     </AppLayout>

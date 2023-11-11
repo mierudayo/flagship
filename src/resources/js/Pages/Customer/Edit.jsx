@@ -104,7 +104,7 @@ export default function Edit({ customer, userSelectOptions }) {
       </div>
 
       {flash.message && (
-        <div class="alert alert-danger">{flash.message}</div>
+        <div className="alert alert-danger">{flash.message}</div>
       )}
 
       <form id="customerEditForm" onSubmit={submit}>

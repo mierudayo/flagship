@@ -50,7 +50,7 @@ export default function Index({ usersPaginator, canAdmin }) {
         <Pagination paginator={usersPaginator} />
       </div>
       {flash.message && (
-        <div class="alert alert-success">{flash.message}</div>
+        <div className="alert alert-success">{flash.message}</div>
       )}
       <UserTable users={usersPaginator.data} canAdmin={canAdmin} />
     </AppLayout>
