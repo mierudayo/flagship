@@ -24,7 +24,7 @@ class UserController extends Controller
 
         return Inertia::render('User/Index', [
             'usersPaginator' => $usersPaginator,
-            'canAdmin'  => Gate::allows('admin'),
+            'canAdmin'       => Gate::allows('admin'),
         ]);
     }
 
@@ -49,7 +49,7 @@ class UserController extends Controller
         ]);
 
         return to_route('users.index')
-                ->with('message', "ユーザーID:{$user->id} 登録成功しました。");
+            ->with('message', "ユーザーID:{$user->id} 登録成功しました。");
     }
 
     public function edit(User $user): Response
@@ -74,6 +74,6 @@ class UserController extends Controller
         ]);
 
         return to_route('users.index')
-                ->with('message', "ユーザーID:{$user->id} 更新しました。");
+            ->with('message', "ユーザーID:{$user->id} 更新しました。");
     }
 }

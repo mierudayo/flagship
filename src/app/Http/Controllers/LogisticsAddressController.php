@@ -23,6 +23,6 @@ class LogisticsAddressController extends Controller
         ]);
 
         return to_route('customers.show', $customer)
-        ->with('message', "ID:{$logistictAddress->id} 出荷元/納品先を追加しました。");
+            ->with('message', "ID:{$logistictAddress->id} 出荷元/納品先を追加しました。");
     }
 }

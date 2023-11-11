@@ -20,9 +20,9 @@ class CustomerContactController extends Controller
         $keyword    = $request->input('keyword', '');
 
         $contactQuery = CustomerContact::query()
-                        ->with(['inChargeUser', 'customer'])
-                        ->searchByKeyword($keyword)
-                        ->latest();
+            ->with(['inChargeUser', 'customer'])
+            ->searchByKeyword($keyword)
+            ->latest();
         $contactsPaginator = $contactQuery->paginate(50)->withQueryString();
 
         return Inertia::render('CustomerContact/Index', [
@@ -34,7 +34,7 @@ class CustomerContactController extends Controller
     {
         return Inertia::render('CustomerContact/Create', [
             'customerSelectOptions' => Customer::all(),
-            'userSelectOptions' => User::all(),
+            'userSelectOptions'     => User::all(),
         ]);
     }
 
@@ -117,7 +117,7 @@ class CustomerContactController extends Controller
         ]);
 
         return to_route('customers.show', $customer)
-                ->with('message', "ID:{$contact->id} 連絡先を追加しました。");
+            ->with('message', "ID:{$contact->id} 連絡先を追加しました。");
     }
 
     public function destroy(CustomerContact $contact): RedirectResponse

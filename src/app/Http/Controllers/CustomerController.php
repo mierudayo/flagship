@@ -11,7 +11,6 @@ use App\Models\SalesTerm;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -22,8 +21,8 @@ class CustomerController extends Controller
         $keyword    = $request->input('keyword', '');
 
         $customerQuery = Customer::query()
-                        ->with(['inChargeUser', 'contacts'])
-                        ->searchByKeyword($keyword);
+            ->with(['inChargeUser', 'contacts'])
+            ->searchByKeyword($keyword);
         $customersPaginator = $customerQuery->paginate(20)->withQueryString();
 
         return Inertia::render('Customer/Index', [
@@ -48,7 +47,7 @@ class CustomerController extends Controller
         });
 
         return to_route('customers.index')
-                ->with('message', "取引先ID:{$customer->id} 登録成功しました。");
+            ->with('message', "取引先ID:{$customer->id} 登録成功しました。");
     }
 
     public function show(Customer $customer): Response
