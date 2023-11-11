@@ -25,6 +25,8 @@ export default function Show({ customer, userSelectOptions }) {
     created_by,
     updated_by,
     logistics_addresses,
+    purchase_term,
+    sales_term,
   } = customer;
 
   return (
@@ -113,6 +115,42 @@ export default function Show({ customer, userSelectOptions }) {
               <tr className="table-row">
                 <th className="th-cell">担当ユーザー</th>
                 <td className="td-cell">{in_charge_user?.name}</td>
+              </tr>
+
+              <tr className="table-row">
+                <th className="th-cell">取引条件（仕入）</th>
+                <td className="td-cell">
+                  {purchase_term?.billing_type == 1 ? (
+                    <>
+                      <span className="u-mr-3">締め請求</span>
+                      <span className="u-mr-3">{purchase_term?.cutoff_day}日締め</span>
+                      <span>{purchase_term?.payment_month_offset}月{purchase_term?.payment_day}日払い</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="u-mr-3">都度請求</span>
+                      <span>{purchase_term?.payment_day_offset}営業日以内</span>
+                    </>
+                  )}
+                </td>
+              </tr>
+
+              <tr className="table-row">
+                <th className="th-cell">取引条件（販売）</th>
+                <td className="td-cell">
+                  {sales_term?.billing_type == 1 ? (
+                    <>
+                      <span className="u-mr-3">締め請求</span>
+                      <span className="u-mr-3">{sales_term?.cutoff_day}日締め</span>
+                      <span>{sales_term?.payment_month_offset}月{sales_term?.payment_day}日払い</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="u-mr-3">都度請求</span>
+                      <span>{sales_term?.payment_day_offset}営業日以内</span>
+                    </>
+                  )}
+                </td>
               </tr>
 
             </tbody>

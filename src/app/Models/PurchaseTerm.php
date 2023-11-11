@@ -12,9 +12,11 @@ class PurchaseTerm extends Model
 
     protected $fillable = [
         'customer_id',
+        'billing_type',
         'cutoff_day',
         'payment_month_offset',
         'payment_day',
+        'payment_day_offset',
     ];
 
     public function customer(): BelongsTo

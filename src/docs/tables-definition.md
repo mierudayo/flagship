@@ -97,26 +97,30 @@
 
 取引先に対する販売時のデフォルト取引条件を管理する。ただし、伝票単位で条件を管理するために、受注実績で個別の取引条件を管理する。
 
-| カラム               | 名称          | 型             | 説明          |
-|--------------------|--------------|----------------|--------------|
-| id                 | ID           | unsignedBigInteger | PK           |
-| customer_id        | 取引先ID       | unsignedBigInteger | FK           |
-| cutoff_day         | 締め日         | integer         | 1~28日, 月末(29, 30, 31)は99、前払いは0とする。 |
-| payment_month_offset | 支払月       | integer         | 当月=0, 翌月=1, 翌々月=2 ...             |
-| payment_day        | 支払日         | integer         | 1~28日, 月末(29, 30, 31)は99、前払いは0とする。 |
-| created_at         | 作成日時       | timestamp       |              |
-| updated_at         | 更新日時       | timestamp       |              |
+| カラム                | 名称           | 型                 | 説明         |
+|-----------------------|----------------|--------------------|--------------|
+| id                    | ID             | unsignedBigInteger | PK           |
+| customer_id           | 取引先ID       | unsignedBigInteger | FK           |
+| billing_type          | 請求タイプ     | tinyInteger        | 1:締め請求 2:都度請求 |
+| cutoff_day            | 締め日         | integer            | 締め請求時 1~28日, 月末(29, 30, 31)は99 |
+| payment_month_offset  | 支払月         | integer            | 締め請求時 当月:0, 翌月:1, 翌々月:2... |
+| payment_day           | 支払日         | integer            | 締め請求時 1~28日, 月末(29, 30, 31)は99 |
+| payment_day_offset    | 支払期限日数   | integer            | 都度請求時 0:前払い, 3:3営業日, 7:7営業日...等 |
+| created_at            | 作成日時       | timestamp          |              |
+| updated_at            | 更新日時       | timestamp          |              |
 
 ## purchase_terms 取引条件(仕入)
 
 取引先に対する発注時のデフォルト取引条件を管理する。ただし、伝票単位で条件を管理するために、受注実績で個別の取引条件を管理する。
 
-| カラム               | 名称          | 型             | 説明          |
-|--------------------|--------------|----------------|--------------|
-| id                 | ID           | unsignedBigInteger | PK           |
-| customer_id        | 取引先ID       | unsignedBigInteger | FK           |
-| cutoff_day         | 締め日         | integer         | 1~28日, 月末(29, 30, 31)は99、前払いは0とする。 |
-| payment_month_offset | 支払月       | integer         | 当月=0, 翌月=1, 翌々月=2 ...             |
-| payment_day        | 支払日         | integer         | 1~28日, 月末(29, 30, 31)は99、前払いは0とする。 |
-| created_at         | 作成日時       | timestamp       |              |
-| updated_at         | 更新日時       | timestamp       |              |
+| カラム                | 名称           | 型                 | 説明         |
+|-----------------------|----------------|--------------------|--------------|
+| id                    | ID             | unsignedBigInteger | PK           |
+| customer_id           | 取引先ID       | unsignedBigInteger | FK           |
+| billing_type          | 請求タイプ     | tinyInteger        | 1:締め請求 2:都度請求 |
+| cutoff_day            | 締め日         | integer            | 締め請求時 1~28日, 月末(29, 30, 31)は99 |
+| payment_month_offset  | 支払月         | integer            | 締め請求時 当月:0, 翌月:1, 翌々月:2... |
+| payment_day           | 支払日         | integer            | 締め請求時 1~28日, 月末(29, 30, 31)は99 |
+| payment_day_offset    | 支払期限日数   | integer            | 都度請求時 0:前払い, 3:3営業日, 7:7営業日...等 |
+| created_at            | 作成日時       | timestamp          |              |
+| updated_at            | 更新日時       | timestamp          |              |

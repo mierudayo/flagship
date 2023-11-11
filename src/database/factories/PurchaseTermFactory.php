@@ -19,9 +19,11 @@ class PurchaseTermFactory extends Factory
     {
         return [
             'customer_id'           => Customer::inRandomOrder()->first()->id,
-            'cutoff_day'            => $this->faker->randomElement([0, 10, 15, 20, 25, 28, 99]),
+            'billing_type'          => $this->faker->randomElement([1, 2]),
+            'cutoff_day'            => $this->faker->numberBetween(1, 31),
             'payment_month_offset'  => $this->faker->numberBetween(0, 12),
-            'payment_day'           => $this->faker->randomElement([0, 10, 15, 20, 25, 28, 99]),
+            'payment_day'           => $this->faker->numberBetween(1, 31),
+            'payment_day_offset'    => $this->faker->numberBetween(0, 7),
         ];
     }
 }
