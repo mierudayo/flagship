@@ -22,8 +22,9 @@ class CustomerController extends Controller
 
         $customerQuery = Customer::query()
             ->with(['inChargeUser', 'contacts'])
-            ->searchByKeyword($keyword);
-        $customersPaginator = $customerQuery->paginate(20)->withQueryString();
+            ->searchByKeyword($keyword)
+            ->latest();
+        $customersPaginator = $customerQuery->paginate(50)->withQueryString();
 
         return Inertia::render('Customer/Index', [
             'customersPaginator' => $customersPaginator,
