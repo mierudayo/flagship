@@ -1,19 +1,19 @@
 import AppLayout from '@/Layouts/AppLayout';
-import { Link, useForm, usePage } from "@inertiajs/react";
+import { Link, useForm, usePage } from '@inertiajs/react';
 
 export default function Edit({ customer, userSelectOptions }) {
   const { flash } = usePage().props;
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
     name: customer.name,
-    name_kana: customer.name_kana || "",
-    shortcut: customer.shortcut || "",
-    postal_code: customer.postal_code || "",
-    address: customer.address || "",
-    tel: customer.tel || "",
-    fax: customer.fax || "",
-    note: customer.note || "",
-    in_charge_user_id: customer.in_charge_user_id || "",
+    name_kana: customer.name_kana || '',
+    shortcut: customer.shortcut || '',
+    postal_code: customer.postal_code || '',
+    address: customer.address || '',
+    tel: customer.tel || '',
+    fax: customer.fax || '',
+    note: customer.note || '',
+    in_charge_user_id: customer.in_charge_user_id || '',
 
     purchase_billing_type: customer.purchase_term?.billing_type || '',
     purchase_cutoff_day: customer.purchase_term?.cutoff_day || '',

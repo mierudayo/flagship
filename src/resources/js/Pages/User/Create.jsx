@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import AppLayout from '@/Layouts/AppLayout';
-import { Link, useForm } from "@inertiajs/react";
+import { Link, useForm } from '@inertiajs/react';
 
 export default function Create({ permissionSelectOptions }) {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({

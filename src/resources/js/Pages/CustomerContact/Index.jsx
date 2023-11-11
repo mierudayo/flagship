@@ -1,14 +1,14 @@
 import AppLayout from '@/Layouts/AppLayout';
-import { useForm, usePage } from "@inertiajs/react";
-import Pagination from "@/Components/Pagination";
-import ContactsTable from "./Partials/ContactsTable";
+import { useForm, usePage } from '@inertiajs/react';
+import Pagination from '@/Components/Pagination';
+import ContactsTable from './Partials/ContactsTable';
 
 export default function Index({ contactsPaginator }) {
   const params = route().params;
   const { flash } = usePage().props;
 
   const { data, setData, get, errors } = useForm({
-    keyword: params.keyword || "",
+    keyword: params.keyword || '',
   });
 
   function submit(e) {

@@ -1,5 +1,5 @@
 import AppLayout from '@/Layouts/AppLayout';
-import { Link, useForm } from "@inertiajs/react";
+import { Link, useForm } from '@inertiajs/react';
 
 export default function Create({ userSelectOptions }) {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({

@@ -1,14 +1,14 @@
 import AppLayout from '@/Layouts/AppLayout';
-import UserTable from "./Partials/UserTable";
-import { useForm, usePage } from "@inertiajs/react";
-import Pagination from "@/Components/Pagination";
+import UserTable from './Partials/UserTable';
+import { useForm, usePage } from '@inertiajs/react';
+import Pagination from '@/Components/Pagination';
 
 export default function Index({ usersPaginator, canAdmin }) {
   const params = route().params;
   const { flash } = usePage().props;
 
   const { data, setData, get, errors } = useForm({
-    keyword: params.keyword || "",
+    keyword: params.keyword || '',
   });
 
   function submit(e) {

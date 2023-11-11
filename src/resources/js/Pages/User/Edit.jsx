@@ -6,11 +6,11 @@ export default function Edit({ user, permissionSelectOptions }) {
     permission_id: user.permission_id,
     employee_code: user.employee_code,
     name: user.name,
-    name_kana: user.name_kana || "",
+    name_kana: user.name_kana || '',
     email: user.email,
-    mobile_number: user.mobile_number || "",
-    employment_date: user.employment_date || "",
-    resignation_date: user.resignation_date || "",
+    mobile_number: user.mobile_number || '',
+    employment_date: user.employment_date || '',
+    resignation_date: user.resignation_date || '',
   });
 
   function submit(e) {

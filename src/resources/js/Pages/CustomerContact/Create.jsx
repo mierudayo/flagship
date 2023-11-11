@@ -1,5 +1,5 @@
 import AppLayout from '@/Layouts/AppLayout';
-import { Link, useForm } from "@inertiajs/react";
+import { Link, useForm } from '@inertiajs/react';
 
 function TableInputRow({ labelName, inputName, data, errors, setData, isRequired = false }) {
   return (

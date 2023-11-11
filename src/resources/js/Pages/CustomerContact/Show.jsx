@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import AppLayout from '@/Layouts/AppLayout';
-import { Link, usePage } from "@inertiajs/react";
+import { Link, usePage } from '@inertiajs/react';
 
 export default function Show({ contact }) {
   const { flash } = usePage().props;

@@ -60,15 +60,15 @@ export default function Edit({ contact, userSelectOptions, customerSelectOptions
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
     customer_id: contact.customer_id,
     name: contact.name,
-    name_kana: contact.name_kana || "",
-    tel: contact.tel || "",
-    mobile_number: contact.mobile_number || "",
-    email: contact.email || "",
-    position: contact.position || "",
-    role: contact.role || "",
+    name_kana: contact.name_kana || '',
+    tel: contact.tel || '',
+    mobile_number: contact.mobile_number || '',
+    email: contact.email || '',
+    position: contact.position || '',
+    role: contact.role || '',
     is_active: true,
-    note: contact.note || "",
-    in_charge_user_id: contact.in_charge_user_id || "",
+    note: contact.note || '',
+    in_charge_user_id: contact.in_charge_user_id || '',
   });
 
   function submit(e) {
