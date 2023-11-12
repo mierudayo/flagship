@@ -26,6 +26,7 @@ return new class extends Migration
             $table->unsignedBigInteger('in_charge_user_id');
             $table->unsignedBigInteger('created_by_id');
             $table->unsignedBigInteger('updated_by_id');
+            $table->date('inquiry_date'); 
             $table->timestamps();
 
             // Foreign Key References

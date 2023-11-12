@@ -5,6 +5,7 @@ export default function InquiryTable({ inquiries }) {
         <thead className="table-header">
           <tr className="table-row">
             <th className="th-cell col-fixed">ID</th>
+            <th className="th-cell col-fixed">問い合わせ日</th>
             <th className="th-cell">対応者</th>
             <th className="th-cell">問い合せ区分</th>
             <th className="th-cell">ステータス</th>
@@ -18,6 +19,7 @@ export default function InquiryTable({ inquiries }) {
           {inquiries.map(inquiry => (
             <tr key={inquiry.id} className="table-row is-hoverable">
               <td className="td-cell">{inquiry.id}</td>
+              <td className="td-cell">{inquiry.inquiry_date}</td>
               <td className="td-cell">{inquiry.in_charge_user.name}</td>
               <td className="td-cell">
                 <span className={`custom-label ${inquiry.inquiry_type.custom_label}`}>

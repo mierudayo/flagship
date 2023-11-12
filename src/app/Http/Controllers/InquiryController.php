@@ -16,7 +16,7 @@ class InquiryController extends Controller
         $inquiryQuery = Inquiry::query()
             ->with(['customerContact.customer', 'product.category', 'inquiryType', 'inChargeUser'])
             ->searchByKeyword($keyword)
-            ->latest();
+            ->latest('inquiry_date');
         $inquiriesPaginator = $inquiryQuery->paginate(50)->withQueryString();
 
         return Inertia::render('Inquiry/Index', [

@@ -191,6 +191,7 @@
 | in_charge_user_id   | 担当ユーザーID     | unsignedBigInteger | FK                                                |
 | created_by_id       | 作成者ID           | unsignedBigInteger | FK                                                |
 | updated_by_id       | 更新者ID           | unsignedBigInteger | FK                                                |
+| inquiry_date        | 問い合わせ日       | date               |                                                   |
 | created_at          | 作成日時           | timestamp          |                                                   |
 | updated_at          | 更新日時           | timestamp          |                                                   |
 

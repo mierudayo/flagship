@@ -34,6 +34,7 @@ class InquiryFactory extends Factory
             'in_charge_user_id'     => User::inRandomOrder()->first()->id,
             'created_by_id'         => User::inRandomOrder()->first()->id,
             'updated_by_id'         => User::inRandomOrder()->first()->id,
+            'inquiry_date'          => $this->faker->date(),
         ];
     }
 }

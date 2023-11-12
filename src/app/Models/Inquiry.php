@@ -25,6 +25,7 @@ class Inquiry extends Model
         'in_charge_user_id',
         'created_by_id',
         'updated_by_id',
+        'inquiry_date',
     ];
 
     /*
