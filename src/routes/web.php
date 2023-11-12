@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\LogisticsAddressController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductCategoryGroupController;
@@ -61,6 +62,9 @@ Route::middleware('auth')->group(function () {
     Route::post('product-category-group', [ProductCategoryGroupController::class, 'store'])->name('product-category-group.store');
 
     Route::post('product-category', [ProductCategoryController::class, 'store'])->name('product-category.store');
+
+    // Inquiry
+    Route::get('inquiries', [InquiryController::class, 'index'])->name('inquiries.index');
 });
 
 

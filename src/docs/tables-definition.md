@@ -161,3 +161,36 @@
 | display_order   | 表示順      | integer            |                                          |
 | created_at      | 作成日時    | timestamp          |                                          |
 | updated_at      | 更新日時    | timestamp          |                                          |
+
+## inquiry_types 問い合わせ区分
+
+| カラム          | 名称             | 型               | 説明         |
+|-----------------|------------------|------------------|--------------|
+| id              | ID               | unsignedBigInteger | PK         |
+| name            | 区分名           | string           |              |
+| custom_label    | カスタムラベル   | string           | CSSクラス用  |
+| display_order   | 表示順           | integer          |              |
+| created_at      | 作成日時         | timestamp        |              |
+| updated_at      | 更新日時         | timestamp        |              |
+
+## inquiries 問い合わせ
+
+| カラム              | 名称               | 型                 | 説明                                              |
+|---------------------|--------------------|--------------------|---------------------------------------------------|
+| id                  | ID                 | unsignedBigInteger | PK                                                |
+| customer_contact_id | 顧客ID             | unsignedBigInteger | FK                                                |
+| product_id          | 商品ID             | unsignedBigInteger | FK nullable                                       |
+| inquiry_type_id     | 問い合わせ区分ID   | unsignedBigInteger | FK                                                |
+| lead_source         | リード獲得元       | tinyInteger        | 問い合わせ由来 1:HP, 2:TEL, 3:メール, 4:展示会, etc. |
+| status              | 対応状況           | tinyInteger        | 1:対応中, 2:返信待ち, 3:保留, 4:クローズ          |
+| subject             | 件名               | string             |                                                   |
+| message             | 問い合わせ内容     | string             |                                                   |
+| answer              | 回答内容           | string             |                                                   |
+| result              | 結果               | tinyInteger        | 1:成約, 2:失注, 3:見送り, 4:その他                |
+| result_reason       | 結果理由           | string             |                                                   |
+| in_charge_user_id   | 担当ユーザーID     | unsignedBigInteger | FK                                                |
+| created_by_id       | 作成者ID           | unsignedBigInteger | FK                                                |
+| updated_by_id       | 更新者ID           | unsignedBigInteger | FK                                                |
+| created_at          | 作成日時           | timestamp          |                                                   |
+| updated_at          | 更新日時           | timestamp          |                                                   |
+

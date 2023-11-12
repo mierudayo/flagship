@@ -76,6 +76,14 @@ export default function AppLayout({ children }) {
                 商品管理
               </Link>
             </li>
+            <li>
+              <Link
+                href={route('inquiries.index')}
+                className={`side-nav-link ${url.startsWith('/inquiries') ? 'is-active' : ''}`}
+              >
+                問い合わせ
+              </Link>
+            </li>
           </ul>
           <footer className="side-footer">
             <div className="sidebar-dropdown-control">
