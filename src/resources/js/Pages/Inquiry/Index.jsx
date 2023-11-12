@@ -1,5 +1,5 @@
 import AppLayout from '@/Layouts/AppLayout';
-import { useForm, usePage } from '@inertiajs/react';
+import { Link, useForm, usePage } from '@inertiajs/react';
 import Pagination from '@/Components/Pagination';
 import InquiryTable from './Partials/InquiryTable';
 
@@ -28,6 +28,12 @@ export default function Index({ inquiriesPaginator }) {
         >
           新規登録
         </a>
+        <Link
+          href={route('inquiry-types.index')}
+          className="btn btn-secondary u-mr-3"
+        >
+          区分登録
+        </Link>
         <form onSubmit={submit}>
           <div className="u-flex u-mr-3">
             <input

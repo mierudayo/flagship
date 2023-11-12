@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inquiry_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('custom_label')->nullable();
             $table->integer('display_order')->nullable();
             $table->timestamps();

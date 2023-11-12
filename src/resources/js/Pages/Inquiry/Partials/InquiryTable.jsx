@@ -19,7 +19,11 @@ export default function InquiryTable({ inquiries }) {
             <tr key={inquiry.id} className="table-row is-hoverable">
               <td className="td-cell">{inquiry.id}</td>
               <td className="td-cell">{inquiry.in_charge_user.name}</td>
-              <td className="td-cell">{inquiry.inquiry_type.name}</td>
+              <td className="td-cell">
+                <span className={`custom-label ${inquiry.inquiry_type.custom_label}`}>
+                  {inquiry.inquiry_type.name}
+                </span>
+              </td>
               <td className="td-cell">{inquiry.status}</td>
               <td className="td-cell">{inquiry.result}</td>
               <td className="td-cell">{inquiry.product?.name}</td>

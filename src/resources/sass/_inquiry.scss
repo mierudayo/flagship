@@ -1,0 +1,68 @@
+
+/* Custom Label
+-------------------------*/
+.custom-label {
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  color: #333;
+  display: inline-block;
+  font-size: 0.9rem;
+  padding: 1px 4px;
+
+  &.red {
+    background-color: #ff6b6b;
+    border-color: #ff4757;
+    color: #fff;
+  }
+
+  &.green {
+    background-color: #53c978;
+    border-color: #53c978;
+    color: #fff;
+  }
+
+  &.orange {
+    background-color: #ffa502;
+    border-color: #ff7f50;
+    color: #fff;
+  }
+
+  &.gray {
+    background-color: #dfe6e9;
+    border-color: #b2bec3;
+    color: #2d3436;
+  }
+
+  &.blue {
+    background-color: #70a1ff;
+    border-color: #70a1ff;
+    color: #fff;
+  }
+}
+
+/* Custom Radio Input & Label
+-------------------------*/
+.custom-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.custom-radio-label {
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  margin-right: 8px;
+  padding: 1px 4px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.custom-radio-input-field {
+  &:hover {
+    cursor: pointer;
+  }
+}
