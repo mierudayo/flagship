@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
                 LogisticsAddressSeeder::class,
                 PurchaseTermSeeder::class,
                 SalesTermSeeder::class,
+                ProductSeeder::class,
             ]);
         }
     }

@@ -124,3 +124,40 @@
 | payment_day_offset    | 支払期限日数   | integer            | 都度請求時 0:前払い, 3:3営業日, 7:7営業日...等 |
 | created_at            | 作成日時       | timestamp          |              |
 | updated_at            | 更新日時       | timestamp          |              |
+
+## product_category_groups 商品カテゴリグループ
+
+| カラム               | 名称         | 型                 | 説明         |
+|--------------------|----------------|--------------------|--------------|
+| id                 | ID             | unsignedBigInteger | PK           |
+| name               | グループ名     | string          |              |
+| display_order      | 表示順         | integer         |              |
+| created_at         | 作成日時       | timestamp       |              |
+| updated_at         | 更新日時       | timestamp       |              |
+
+## product_categories 商品カテゴリ
+
+| カラム               | 名称           | 型                 | 説明         |
+|--------------------|------------------|--------------------|--------------|
+| id                 | ID               | unsignedBigInteger | PK           |
+| group_id           | グループID       | unsignedBigInteger | FK           |
+| name               | 商品カテゴリ名   | string          |              |
+| display_order      | 表示順           | integer         |              |
+| created_at         | 作成日時         | timestamp       |              |
+| updated_at         | 更新日時         | timestamp       |              |
+
+## products 商品
+
+| カラム          | 名称        | 型                 | 説明                                     |
+|-----------------|-------------|--------------------|------------------------------------------|
+| id              | ID          | unsignedBigInteger | PK                                       |
+| category_id     | カテゴリID  | unsignedBigInteger | FK                                       |
+| product_number  | 商品番号    | string             | （任意）一意の商品識別番号               |
+| product_type    | 商品タイプ  | tinyint            | 1:有形商材(製品), 2:無形商材(サービス)   |
+| name            | 商品名      | string             |                                          |
+| description     | 説明        | string             |                                          |
+| sales_price     | 販売価格    | decimal            | 商品の販売価格                           |
+| purchase_price  | 仕入価格    | decimal            | 商品の仕入価格                           |
+| display_order   | 表示順      | integer            |                                          |
+| created_at      | 作成日時    | timestamp          |                                          |
+| updated_at      | 更新日時    | timestamp          |                                          |

@@ -3,6 +3,9 @@
 use App\Http\Controllers\CustomerContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LogisticsAddressController;
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductCategoryGroupController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -49,6 +52,15 @@ Route::middleware('auth')->group(function () {
 
     // LogisticsAddresses
     Route::post('customers/{customer}/logistics-addresses', [LogisticsAddressController::class, 'addLogisticsAddressToCustomer'])->name('customers.logistics-addresses.add');
+
+    // Product
+    Route::get('products', [ProductController::class, 'index'])->name('products.index');
+    Route::post('products', [ProductController::class, 'store'])->name('products.store');
+    Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
+
+    Route::post('product-category-group', [ProductCategoryGroupController::class, 'store'])->name('product-category-group.store');
+
+    Route::post('product-category', [ProductCategoryController::class, 'store'])->name('product-category.store');
 });
 
 
