@@ -74,6 +74,15 @@ export default function Edit({ inquiry, customerContactOption, productOption, in
           キャンセル
         </Link>
         {processing && <span>Now Loading...</span>}
+        <Link
+          onBefore={() => confirm('本当に削除しますか？')}
+          href={route('inquiries.destroy', inquiry)}
+          method="delete"
+          className="btn btn-danger u-ml-auto"
+          as="button"
+        >
+          削除
+        </Link>
       </div>
       <form id="inquiryCreateForm" onSubmit={submit}>
         <div className="form-inner">

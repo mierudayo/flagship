@@ -95,4 +95,12 @@ class InquiryController extends Controller
         return to_route('inquiries.index')
             ->with('message', "問い合わせID:{$inquiry->id} 更新しました。");
     }
+
+    public function destroy(Inquiry $inquiry): RedirectResponse
+    {
+        // TODO: 子リソース追加後、存在チェック処理追加
+
+        $inquiry->delete();
+        return to_route('inquiries.index');
+    }
 }

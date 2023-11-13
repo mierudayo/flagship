@@ -105,4 +105,22 @@ class InquiryControllerTest extends TestCase
 
         $response->assertRedirect(route('inquiries.index'));
     }
+
+    public function testCanDeleteInquiryByAuthUser(): void
+    {
+        $this->actingAs($this->user);
+
+        Customer::factory()->create();
+        CustomerContact::factory()->create();
+
+        $this->seed(ProductSeeder::class);
+        $this->seed(InquiryTypeSeeder::class);
+
+        $inquiry = Inquiry::factory()->create();
+        $response = $this->delete(route('inquiries.destroy', $inquiry));
+
+        $this->assertDatabaseMissing('inquiries', ['id' => $inquiry->id]);
+        
+        $response->assertRedirect(route('inquiries.index'));
+    }
 }

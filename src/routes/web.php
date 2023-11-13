@@ -74,6 +74,7 @@ Route::middleware('auth')->group(function () {
     Route::post('inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
     Route::get('inquiries/{inquiry}/edit', [InquiryController::class, 'edit'])->name('inquiries.edit');
     Route::patch('inquiries/{inquiry}', [InquiryController::class, 'update'])->name('inquiries.update');
+    Route::delete('inquiries/{inquiry}', [InquiryController::class, 'destroy'])->name('inquiries.destroy');
 });
 
 
