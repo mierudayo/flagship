@@ -54,7 +54,6 @@ class InquiryController extends Controller
             'result_reason'         => $request->input('result_reason'),
             'in_charge_user_id'     => $request->input('in_charge_user_id'),
             'created_by_id'         => auth()->user()->id,
-            'updated_by_id'         => auth()->user()->id,
             'inquiry_date'          => $request->input('inquiry_date'),
         ]);
 

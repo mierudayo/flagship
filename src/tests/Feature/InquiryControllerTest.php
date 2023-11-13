@@ -70,7 +70,9 @@ class InquiryControllerTest extends TestCase
 
         $this->seed(ProductSeeder::class);
         $this->seed(InquiryTypeSeeder::class);
-        $postData = Inquiry::factory()->make()->toArray();
+        $postData = Inquiry::factory()->make([
+            'updated_by_id' => null,
+        ])->toArray();
 
         $response = $this->post(route('inquiries.store', $postData));
 
