@@ -23,7 +23,7 @@ export default function Index({ inquiriesPaginator }) {
       <h1 className="content-title">問い合わせ 一覧</h1>
       <div className="content-navbar">
         <a
-          href=""
+          href={route('inquiries.create')}
           className="btn btn-primary u-mr-3"
         >
           新規登録
@@ -53,6 +53,9 @@ export default function Index({ inquiriesPaginator }) {
         </div>
         <Pagination paginator={inquiriesPaginator} />
       </div>
+      {flash.message && (
+        <div className="alert alert-success">{flash.message}</div>
+      )}
       <InquiryTable inquiries={inquiriesPaginator.data} />
     </AppLayout>
   );

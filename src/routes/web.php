@@ -70,6 +70,8 @@ Route::middleware('auth')->group(function () {
 
     // Inquiry
     Route::get('inquiries', [InquiryController::class, 'index'])->name('inquiries.index');
+    Route::get('inquiries/create', [InquiryController::class, 'create'])->name('inquiries.create');
+    Route::post('inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
 });
 
 

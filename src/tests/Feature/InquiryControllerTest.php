@@ -49,4 +49,33 @@ class InquiryControllerTest extends TestCase
         });
     }
 
+    public function testCanDisplayInquiryCreatePageByAuthUser(): void
+    {
+        $this->actingAs($this->user);
+
+        $response = $this->get(route('inquiries.create'));
+        $response->assertStatus(200);
+
+        $response->assertInertia(function (Assert $page) {
+            $page->component('Inquiry/Create');
+        });
+    }
+
+    public function testCanStoreInquiryWithValidDataByAuthUser(): void
+    {
+        $this->actingAs($this->user);
+
+        Customer::factory()->create();
+        CustomerContact::factory()->create();
+
+        $this->seed(ProductSeeder::class);
+        $this->seed(InquiryTypeSeeder::class);
+        $postData = Inquiry::factory()->make()->toArray();
+
+        $response = $this->post(route('inquiries.store', $postData));
+
+        $this->assertDatabaseHas('inquiries', $postData);
+
+        $response->assertRedirect(route('inquiries.index'));
+    }
 }
