@@ -41,7 +41,7 @@ class InquiryController extends Controller
         ]);
     }
 
-    public function store(InquiryStoreRequest $request)
+    public function store(InquiryStoreRequest $request): RedirectResponse
     {
         $inquiry = Inquiry::create([
             'customer_contact_id'   => $request->input('customer_contact_id'),
