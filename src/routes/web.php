@@ -72,6 +72,8 @@ Route::middleware('auth')->group(function () {
     Route::get('inquiries', [InquiryController::class, 'index'])->name('inquiries.index');
     Route::get('inquiries/create', [InquiryController::class, 'create'])->name('inquiries.create');
     Route::post('inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
+    Route::get('inquiries/{inquiry}/edit', [InquiryController::class, 'edit'])->name('inquiries.edit');
+    Route::patch('inquiries/{inquiry}', [InquiryController::class, 'update'])->name('inquiries.update');
 });
 
 

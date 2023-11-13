@@ -80,4 +80,29 @@ class InquiryControllerTest extends TestCase
 
         $response->assertRedirect(route('inquiries.index'));
     }
+
+    public function testCanUpdateInquiryWithValidDataByAuthUser(): void
+    {
+        $this->actingAs($this->user);
+
+        Customer::factory()->create();
+        CustomerContact::factory()->create();
+
+        $this->seed(ProductSeeder::class);
+        $this->seed(InquiryTypeSeeder::class);
+
+        $inquiry = Inquiry::factory()->create([
+            'updated_by_id' => $this->user->id,
+        ]);
+
+        $postData = Inquiry::factory()->make([
+            'updated_by_id' => $this->user->id,
+        ])->toArray();
+
+        $response = $this->patch(route('inquiries.update', $inquiry), $postData);
+
+        $this->assertDatabaseHas('inquiries', $postData);
+
+        $response->assertRedirect(route('inquiries.index'));
+    }
 }

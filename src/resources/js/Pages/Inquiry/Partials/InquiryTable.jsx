@@ -4,6 +4,7 @@ export default function InquiryTable({ inquiries }) {
       <table className="table">
         <thead className="table-header">
           <tr className="table-row">
+            <th className="th-cell col-fixed">編集</th>
             <th className="th-cell col-fixed">ID</th>
             <th className="th-cell col-fixed">問い合わせ日</th>
             <th className="th-cell">対応者</th>
@@ -18,6 +19,11 @@ export default function InquiryTable({ inquiries }) {
         <tbody className="table-body">
           {inquiries.map(inquiry => (
             <tr key={inquiry.id} className="table-row is-hoverable">
+              <td className="td-cell">
+                <a href={route('inquiries.edit', inquiry)} className="link">
+                  編集
+                </a>
+              </td>
               <td className="td-cell">{inquiry.id}</td>
               <td className="td-cell">{inquiry.inquiry_date}</td>
               <td className="td-cell">{inquiry.in_charge_user.name}</td>
