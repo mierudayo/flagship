@@ -22,11 +22,13 @@ use Inertia\Inertia;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return Inertia::render('Home');
     })->name('home');
 
+    // User
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::get('users/create', [UserController::class, 'create'])->name('users.create')->can('admin');
     Route::post('users', [UserController::class, 'store'])->name('users.store')->can('admin');
@@ -53,16 +55,19 @@ Route::middleware('auth')->group(function () {
     Route::post('customers/{customer}/contacts', [CustomerContactController::class, 'addContactToCustomer'])->name('customers.contacts.add');
 
     // LogisticsAddresses
-    Route::post('customers/{customer}/logistics-addresses', [LogisticsAddressController::class, 'addLogisticsAddressToCustomer'])->name('customers.logistics-addresses.add');
+    Route::post('customers/{customer}/logistics-addresses', [LogisticsAddressController::class, 'addLogisticsAddressToCustomer'])
+        ->name('customers.logistics-addresses.add');
+
+    // ProductCategoryGroup
+    Route::post('product-category-groups', [ProductCategoryGroupController::class, 'store'])->name('product-category-groups.store');
+
+    // ProductCategory
+    Route::post('product-categories', [ProductCategoryController::class, 'store'])->name('product-categories.store');
 
     // Product
     Route::get('products', [ProductController::class, 'index'])->name('products.index');
-    Route::post('products', [ProductController::class, 'store'])->name('products.store');
     Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
-
-    Route::post('product-category-group', [ProductCategoryGroupController::class, 'store'])->name('product-category-group.store');
-
-    Route::post('product-category', [ProductCategoryController::class, 'store'])->name('product-category.store');
+    Route::post('products', [ProductController::class, 'store'])->name('products.store');
 
     // InquiryType
     Route::get('inquiry-types', [InquiryTypeController::class, 'index'])->name('inquiry-types.index');

@@ -9,7 +9,7 @@ export default function CategoryGroupCreateForm() {
 
   function submit(e) {
     e.preventDefault();
-    post(route('product-category-group.store'), {
+    post(route('product-category-groups.store'), {
       onSuccess: () => {
         reset();
       }

@@ -10,7 +10,7 @@ export default function CategoryCreateForm({ groupSelectOptions }) {
 
   function submit(e) {
     e.preventDefault();
-    post(route('product-category.store'), {
+    post(route('product-categories.store'), {
       onSuccess: () => {
         reset();
       }
