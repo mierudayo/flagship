@@ -60,7 +60,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
         $user->update([
             'permission_id'     => $request->input('permission_id'),

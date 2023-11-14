@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InquiryTypeStoreRequest;
 use App\Models\InquiryType;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -18,7 +19,7 @@ class InquiryTypeController extends Controller
         ]);
     }
 
-    public function store(InquiryTypeStoreRequest $request)
+    public function store(InquiryTypeStoreRequest $request): RedirectResponse
     {
         $inquiryType = InquiryType::create([
             'name'          => $request->input('name'),
