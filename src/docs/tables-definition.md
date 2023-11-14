@@ -75,7 +75,7 @@
 | created_at        | 作成日時     | timestamp          |        |
 | updated_at        | 更新日時     | timestamp          |        |
 
-## logistics_addresses 出荷元/納品先住所
+## delivery_addresses 出荷元/納品先住所
 
 取引先の出荷元/納品先を管理する。
 

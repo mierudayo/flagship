@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
                 UserSeeder::class,
                 CustomerSeeder::class,
                 CustomerContactSeeder::class,
-                LogisticsAddressSeeder::class,
+                DeliveryAddressSeeder::class,
                 PurchaseTermSeeder::class,
                 SalesTermSeeder::class,
                 ProductSeeder::class,

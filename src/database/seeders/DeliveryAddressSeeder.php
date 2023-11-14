@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\LogisticsAddress;
+use App\Models\DeliveryAddress;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class LogisticsAddressSeeder extends Seeder
+class DeliveryAddressSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        LogisticsAddress::factory(100)->create();
+        DeliveryAddress::factory(100)->create();
     }
 }

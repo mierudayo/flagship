@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LogisticsAddressAddRequest;
+use App\Http\Requests\DeliveryAddressAddRequest;
 use App\Models\Customer;
-use App\Models\LogisticsAddress;
+use App\Models\DeliveryAddress;
 use Illuminate\Http\RedirectResponse;
 
-class LogisticsAddressController extends Controller
+class DeliveryAddressController extends Controller
 {
-    public function addLogisticsAddressToCustomer(LogisticsAddressAddRequest $request, Customer $customer): RedirectResponse
+    public function addDeliveryAddressToCustomer(DeliveryAddressAddRequest $request, Customer $customer): RedirectResponse
     {
-        $logistictAddress = LogisticsAddress::create([
+        $deliveryAddress = DeliveryAddress::create([
             'customer_id'   => $customer->id,
             'address_type'  => $request->input('address_type'),
             'post_code'     => $request->input('post_code'),
@@ -23,6 +23,6 @@ class LogisticsAddressController extends Controller
         ]);
 
         return to_route('customers.show', $customer)
-            ->with('message', "ID:{$logistictAddress->id} 出荷元/納品先を追加しました。");
+            ->with('message', "ID:{$deliveryAddress->id} 出荷元/納品先を追加しました。");
     }
 }

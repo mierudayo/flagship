@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('logistics_addresses', function (Blueprint $table) {
+        Schema::create('delivery_addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id')->comment('取引先ID');
             $table->tinyInteger('address_type')->comment('住所区分');
@@ -33,9 +33,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('logistics_addresses', function (Blueprint $table) {
+        Schema::table('delivery_addresses', function (Blueprint $table) {
             $table->dropForeign(['customer_id']);
         });
-        Schema::dropIfExists('logistics_addresses');
+        Schema::dropIfExists('delivery_addresses');
     }
 };

@@ -4,7 +4,7 @@ use App\Http\Controllers\CustomerContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\InquiryTypeController;
-use App\Http\Controllers\LogisticsAddressController;
+use App\Http\Controllers\DeliveryAddressController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductCategoryGroupController;
 use App\Http\Controllers\ProductController;
@@ -54,9 +54,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('contacts/{contact}', [CustomerContactController::class, 'destroy'])->name('contacts.destroy');
     Route::post('customers/{customer}/contacts', [CustomerContactController::class, 'addContactToCustomer'])->name('customers.contacts.add');
 
-    // LogisticsAddresses
-    Route::post('customers/{customer}/logistics-addresses', [LogisticsAddressController::class, 'addLogisticsAddressToCustomer'])
-        ->name('customers.logistics-addresses.add');
+    // DeliveryAddress
+    Route::post('customers/{customer}/delivery-addresses', [DeliveryAddressController::class, 'addDeliveryAddressToCustomer'])
+        ->name('customers.delivery-addresses.add');
 
     // ProductCategoryGroup
     Route::post('product-category-groups', [ProductCategoryGroupController::class, 'store'])->name('product-category-groups.store');

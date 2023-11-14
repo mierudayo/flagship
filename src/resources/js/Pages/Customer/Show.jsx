@@ -24,7 +24,7 @@ export default function Show({ customer, userSelectOptions }) {
     contacts,
     created_by,
     updated_by,
-    logistics_addresses,
+    delivery_addresses,
     purchase_term,
     sales_term,
   } = customer;
@@ -214,23 +214,23 @@ export default function Show({ customer, userSelectOptions }) {
               </tr>
             </thead>
             <tbody className="table-body">
-              {logistics_addresses.map(logistics => (
-                <tr key={logistics.id} className="table-row is-hoverable">
-                  <td className="td-cell col-fixed">{logistics.id}</td>
+              {delivery_addresses.map(delivery => (
+                <tr key={delivery.id} className="table-row is-hoverable">
+                  <td className="td-cell col-fixed">{delivery.id}</td>
                   <td className="td-cell">
-                    {logistics.address_type === 1
+                    {delivery.address_type === 1
                       ? "出荷元"
-                      : logistics.address_type === 2
+                      : delivery.address_type === 2
                         ? "納品先"
-                        : logistics.address_type === 3
+                        : delivery.address_type === 3
                           ? "兼用"
                           : ""}
                   </td>
-                  <td className="td-cell">{logistics.postal_code} {logistics.address}</td>
-                  <td className="td-cell">{logistics.company_name}</td>
-                  <td className="td-cell">{logistics.contact_name}</td>
-                  <td className="td-cell">{logistics.tel}</td>
-                  <td className="td-cell">{logistics.note}</td>
+                  <td className="td-cell">{delivery.postal_code} {delivery.address}</td>
+                  <td className="td-cell">{delivery.company_name}</td>
+                  <td className="td-cell">{delivery.contact_name}</td>
+                  <td className="td-cell">{delivery.tel}</td>
+                  <td className="td-cell">{delivery.note}</td>
                 </tr>
               ))}
             </tbody>

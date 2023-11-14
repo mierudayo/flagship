@@ -53,11 +53,11 @@ class Customer extends Model
         return $this->hasMany(CustomerContact::class, 'customer_id');
     }
 
-    public function logisticsAddresses(): HasMany
+    public function deliveryAddresses(): HasMany
     {
-        return $this->hasMany(LogisticsAddress::class);
+        return $this->hasMany(DeliveryAddress::class);
     }
-    
+
     public function purchaseTerm(): HasOne
     {
         return $this->hasOne(PurchaseTerm::class);

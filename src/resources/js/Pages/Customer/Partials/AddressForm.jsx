@@ -69,7 +69,7 @@ export default function AddressForm({ customer, closeModal }) {
 
   function submit(e) {
     e.preventDefault();
-    post(route('customers.logistics-addresses.add', customer), {
+    post(route('customers.delivery-addresses.add', customer), {
       onSuccess: () => {
         reset();
         closeModal();
@@ -79,7 +79,7 @@ export default function AddressForm({ customer, closeModal }) {
 
   return (
     <>
-      <form id="logisticsAddressCreateForm" onSubmit={submit}>
+      <form id="deliveryAddressCreateForm" onSubmit={submit}>
         <div className="table-wrapper is-scrollable">
           <table className="table">
             <tbody className="tbody">
@@ -109,7 +109,7 @@ export default function AddressForm({ customer, closeModal }) {
       </form>
       <button
         type="submit"
-        form="logisticsAddressCreateForm"
+        form="deliveryAddressCreateForm"
         className="btn btn-primary u-mt-3"
         disabled={processing}
       >
