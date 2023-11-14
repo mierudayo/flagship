@@ -1,5 +1,5 @@
 import AppLayout from '@/Layouts/AppLayout';
-import { Link, useForm } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 
 function TableInputRow({ labelName, inputName, data, errors, setData, isRequired = false }) {
   return (
@@ -57,6 +57,8 @@ function RadioComponent({ labelName, inputName, options, isRequired, data, error
 
 
 export default function Edit({ contact, userSelectOptions, customerSelectOptions }) {
+  const { flash } = usePage().props;
+
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
     customer_id: contact.customer_id,
     name: contact.name,
@@ -117,6 +119,11 @@ export default function Edit({ contact, userSelectOptions, customerSelectOptions
           削除
         </Link>
       </div>
+
+      {flash.message && (
+        <div className="alert alert-danger">{flash.message}</div>
+      )}
+
       <form id="customerContactUpdateForm" onSubmit={submit}>
         <div className="table-wrapper is-scrollable">
           <table className="table">

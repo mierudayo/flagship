@@ -122,7 +122,12 @@ class CustomerContactController extends Controller
 
     public function destroy(CustomerContact $contact): RedirectResponse
     {
-        // TODO: リレーション先追加後に存在チェック追加
+        if ($contact->inquiries()->exists()) {
+            return redirect()
+                ->route('contacts.edit', $contact)
+                ->with('message', 'この連絡先は問い合わせデータを持つため削除できません。');
+        }
+
         $contact->delete();
         return to_route('contacts.index');
     }
