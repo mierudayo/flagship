@@ -13,20 +13,22 @@ return new class extends Migration
     {
         Schema::create('inquiries', function (Blueprint $table) {
             $table->id();
+            $table->date('inquiry_date');
             $table->unsignedBigInteger('customer_contact_id');
             $table->unsignedBigInteger('product_id')->nullable();
+            $table->string('product_detail')->nullable();
             $table->unsignedBigInteger('inquiry_type_id');
             $table->tinyInteger('lead_source');
-            $table->tinyInteger('status');
+            $table->integer('project_scale')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->string('subject')->nullable();
-            $table->string('message');
-            $table->string('answer')->nullable();
-            $table->tinyInteger('result')->nullable();
-            $table->string('result_reason')->nullable();
+            $table->text('message');
+            $table->text('answer')->nullable();
+            $table->text('feedback')->nullable();
+            $table->text('note')->nullable();
             $table->unsignedBigInteger('in_charge_user_id');
             $table->unsignedBigInteger('created_by_id');
             $table->unsignedBigInteger('updated_by_id')->nullable();
-            $table->date('inquiry_date');
             $table->timestamps();
 
             // Foreign Key References

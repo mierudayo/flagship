@@ -3,28 +3,21 @@ import { Link, useForm } from '@inertiajs/react';
 
 export default function Edit({ inquiry, customerContactOption, productOption, inquiryTypeOption, inChargeUserOption }) {
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
-    customer_contact_id: inquiry.customer_contact_id || '',
+    inquiry_date: inquiry.inquiry_date,
+    customer_contact_id: inquiry.customer_contact_id,
     product_id: inquiry.product_id || '',
+    product_detail: inquiry.product_detail || '',
     inquiry_type_id: inquiry.inquiry_type_id || '',
-    lead_source: inquiry.lead_source || '',
-    status: inquiry.status || '',
+    lead_source: inquiry.lead_source,
+    project_scale: inquiry.project_scale || '',
+    status: inquiry.status,
     subject: inquiry.subject || '',
-    message: inquiry.message || '',
+    message: inquiry.message,
     answer: inquiry.answer || '',
-    result: inquiry.result || '',
-    result_reason: inquiry.result_reason || '',
-    in_charge_user_id: inquiry.in_charge_user_id || '',
-    created_by_id: inquiry.created_by_id || '',
-    updated_by_id: inquiry.updated_by_id || '',
-    inquiry_date: inquiry.inquiry_date || '',
+    feedback: inquiry.feedback || '',
+    note: inquiry.note || '',
+    in_charge_user_id: inquiry.in_charge_user_id,
   });
-
-  const resultOption = [
-    { label: '成約', value: 1 },
-    { label: '失注', value: 2 },
-    { label: '見送り', value: 3 },
-    { label: 'その他', value: 4 },
-  ];
 
   const leadSourceOption = [
     { label: 'HP', value: 1 },
@@ -37,7 +30,10 @@ export default function Edit({ inquiry, customerContactOption, productOption, in
     { label: '対応中', value: 1 },
     { label: '返信待ち', value: 2 },
     { label: '保留', value: 3 },
-    { label: 'クローズ', value: 4 },
+    { label: '成約', value: 4 },
+    { label: '失注', value: 5 },
+    { label: '見送り', value: 6 },
+    { label: 'その他', value: 7 },
   ];
 
   function submit(e) {
@@ -87,6 +83,21 @@ export default function Edit({ inquiry, customerContactOption, productOption, in
       <form id="inquiryCreateForm" onSubmit={submit}>
         <div className="form-inner">
 
+          <div className="input-group">
+            <label htmlFor="inquiry_date" className="form-label">
+              問い合わせ日
+              <span className="required-mark">必須</span>
+            </label>
+            <input
+              type="date"
+              id="inquiry_date"
+              name="inquiry_date"
+              value={data.inquiry_date}
+              className={`input-field ${errors.inquiry_date ? 'is-invalid' : ''} u-w-160`}
+              onChange={e => setData('inquiry_date', e.target.value)}
+            />
+            <div className="invalid-feedback">{errors.inquiry_date}</div>
+          </div>
 
           <div className="input-group">
             <label htmlFor="customer_contact_id" className="form-label">
@@ -108,22 +119,6 @@ export default function Edit({ inquiry, customerContactOption, productOption, in
               ))}
             </select>
             <div className="invalid-feedback">{errors.customer_contact_id}</div>
-          </div>
-
-          <div className="input-group">
-            <label htmlFor="inquiry_date" className="form-label">
-              問い合わせ日
-              <span className="required-mark">必須</span>
-            </label>
-            <input
-              type="date"
-              id="inquiry_date"
-              name="inquiry_date"
-              value={data.inquiry_date}
-              className={`input-field ${errors.inquiry_date ? 'is-invalid' : ''} u-w-160`}
-              onChange={e => setData('inquiry_date', e.target.value)}
-            />
-            <div className="invalid-feedback">{errors.inquiry_date}</div>
           </div>
 
           <div className="input-group">
@@ -195,6 +190,22 @@ export default function Edit({ inquiry, customerContactOption, productOption, in
           </div>
 
           <div className="input-group">
+            <label htmlFor="project_scale" className="form-label">
+              案件規模
+            </label>
+            <input
+              type="number"
+              id="project_scale"
+              name="project_scale"
+              value={data.project_scale}
+              className={`input-field ${errors.project_scale ? 'is-invalid' : ''}`}
+              onChange={e => setData('project_scale', e.target.value)}
+              placeholder="1 ~ 10,000までの数値を入力"
+            />
+            <div className="invalid-feedback">{errors.project_scale}</div>
+          </div>
+
+          <div className="input-group">
             <label htmlFor="status" className="form-label">
               ステータス
               <span className="required-mark">必須</span>
@@ -206,7 +217,6 @@ export default function Edit({ inquiry, customerContactOption, productOption, in
               onChange={e => setData('status', e.target.value)}
               className={`input-field u-w-128 ${errors.status ? 'is-invalid' : ''}`}
             >
-              <option value=""></option>
               {statusOption.map((option) => (
                 <option key={option.value} value={option.value}>
                   {option.label}
@@ -217,39 +227,18 @@ export default function Edit({ inquiry, customerContactOption, productOption, in
           </div>
 
           <div className="input-group">
-            <label htmlFor="result" className="form-label">
-              結果
-            </label>
-            <select
-              name="result"
-              id="result"
-              value={data.result}
-              onChange={e => setData('result', e.target.value)}
-              className={`input-field u-w-128 ${errors.result ? 'is-invalid' : ''}`}
-            >
-              <option value=""></option>
-              {resultOption.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-            <div className="invalid-feedback">{errors.result}</div>
-          </div>
-
-          <div className="input-group">
-            <label htmlFor="result_reason" className="form-label">
-              結果理由
+            <label htmlFor="feedback" className="form-label">
+              フィードバック
             </label>
             <textarea
-              name="result_reason"
-              id="result_reason"
+              name="feedback"
+              id="feedback"
               cols="30" rows="10"
-              className={`input-field ${errors.result_reason ? 'is-invalid' : ''}`}
-              onChange={e => setData('result_reason', e.target.value)}
-              value={data.result_reason}
+              className={`input-field ${errors.feedback ? 'is-invalid' : ''}`}
+              onChange={e => setData('feedback', e.target.value)}
+              value={data.feedback}
             />
-            <div className="invalid-feedback">{errors.result_reason}</div>
+            <div className="invalid-feedback">{errors.feedback}</div>
           </div>
 
           <div className="input-group">
@@ -316,6 +305,36 @@ export default function Edit({ inquiry, customerContactOption, productOption, in
               ))}
             </select>
             <div className="invalid-feedback">{errors.product_id}</div>
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="product_detail" className="form-label">
+              商品詳細
+            </label>
+            <input
+              type="text"
+              id="product_detail"
+              name="product_detail"
+              value={data.product_detail}
+              className={`input-field ${errors.product_detail ? 'is-invalid' : ''}`}
+              onChange={e => setData('product_detail', e.target.value)}
+            />
+            <div className="invalid-feedback">{errors.product_detail}</div>
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="note" className="form-label">
+              備考
+            </label>
+            <textarea
+              name="note"
+              id="note"
+              cols="30" rows="10"
+              className={`input-field ${errors.note ? 'is-invalid' : ''}`}
+              onChange={e => setData('note', e.target.value)}
+              value={data.note}
+            />
+            <div className="invalid-feedback">{errors.note}</div>
           </div>
 
         </div>

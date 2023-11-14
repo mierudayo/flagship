@@ -22,17 +22,20 @@ class InquiryUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'inquiry_date'          => ['required', 'date'],
             'customer_contact_id'   => ['required', 'integer', 'exists:customer_contacts,id'],
             'product_id'            => ['nullable', 'integer', 'exists:products,id'],
+            'product_detail'        => ['nullable', 'string', 'max:255'],
             'inquiry_type_id'       => ['required', 'integer', 'exists:inquiry_types,id'],
             'lead_source'           => ['required', 'integer', 'in:1,2,3,4'],
-            'status'                => ['required', 'integer', 'in:1,2,3,4'],
+            'project_scale'         => ['nullable', 'integer', 'max:10000'],
+            'status'                => ['required', 'integer', 'in:1,2,3,4,5,6,7'],
+            'subject'               => ['nullable', 'string', 'max:255'],
             'message'               => ['required', 'string', 'max:1000'],
             'answer'                => ['nullable', 'string', 'max:1000'],
-            'result'                => ['nullable', 'integer', 'in:1,2,3,4'],
-            'result_reason'         => ['nullable', 'string', 'max:1000'],
+            'feedback'              => ['nullable', 'string', 'max:1000'],
+            'note'                  => ['nullable', 'string', 'max:1000'],
             'in_charge_user_id'     => ['required', 'integer', 'exists:users,id'],
-            'inquiry_date'          => ['required', 'date'],
         ];
     }
 }

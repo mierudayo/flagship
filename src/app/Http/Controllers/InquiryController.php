@@ -44,19 +44,21 @@ class InquiryController extends Controller
     public function store(InquiryStoreRequest $request): RedirectResponse
     {
         $inquiry = Inquiry::create([
+            'inquiry_date'          => $request->input('inquiry_date'),
             'customer_contact_id'   => $request->input('customer_contact_id'),
             'product_id'            => $request->input('product_id'),
+            'product_detail'        => $request->input('product_detail'),
             'inquiry_type_id'       => $request->input('inquiry_type_id'),
             'lead_source'           => $request->input('lead_source'),
+            'project_scale'         => $request->input('project_scale'),
             'status'                => $request->input('status'),
             'subject'               => $request->input('subject'),
             'message'               => $request->input('message'),
             'answer'                => $request->input('answer'),
-            'result'                => $request->input('result'),
-            'result_reason'         => $request->input('result_reason'),
+            'feedback'              => $request->input('feedback'),
+            'note'                  => $request->input('note'),
             'in_charge_user_id'     => $request->input('in_charge_user_id'),
             'created_by_id'         => auth()->user()->id,
-            'inquiry_date'          => $request->input('inquiry_date'),
         ]);
 
         return to_route('inquiries.index')
@@ -77,19 +79,21 @@ class InquiryController extends Controller
     public function update(InquiryUpdateRequest $request, Inquiry $inquiry): RedirectResponse
     {
         $inquiry->update([
+            'inquiry_date'          => $request->input('inquiry_date'),
             'customer_contact_id'   => $request->input('customer_contact_id'),
             'product_id'            => $request->input('product_id'),
+            'product_detail'        => $request->input('product_detail'),
             'inquiry_type_id'       => $request->input('inquiry_type_id'),
             'lead_source'           => $request->input('lead_source'),
+            'project_scale'         => $request->input('project_scale'),
             'status'                => $request->input('status'),
             'subject'               => $request->input('subject'),
             'message'               => $request->input('message'),
             'answer'                => $request->input('answer'),
-            'result'                => $request->input('result'),
-            'result_reason'         => $request->input('result_reason'),
+            'feedback'              => $request->input('feedback'),
+            'note'                  => $request->input('note'),
             'in_charge_user_id'     => $request->input('in_charge_user_id'),
             'updated_by_id'         => auth()->user()->id,
-            'inquiry_date'          => $request->input('inquiry_date'),
         ]);
 
         return to_route('inquiries.index')

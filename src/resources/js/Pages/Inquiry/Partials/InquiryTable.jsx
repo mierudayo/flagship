@@ -10,7 +10,6 @@ export default function InquiryTable({ inquiries }) {
             <th className="th-cell">対応者</th>
             <th className="th-cell">問い合せ区分</th>
             <th className="th-cell">ステータス</th>
-            <th className="th-cell">結果</th>
             <th className="th-cell" colSpan={2}>商品情報</th>
             <th className="th-cell" colSpan={2}>顧客情報</th>
             <th className="th-cell">件名</th>
@@ -33,7 +32,6 @@ export default function InquiryTable({ inquiries }) {
                 </span>
               </td>
               <td className="td-cell">{inquiry.status}</td>
-              <td className="td-cell">{inquiry.result}</td>
               <td className="td-cell">{inquiry.product?.name}</td>
               <td className="td-cell">{inquiry.product?.category.name}</td>
               <td className="td-cell">{inquiry.customer_contact.name}</td>
