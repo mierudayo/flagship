@@ -24,14 +24,14 @@ class UserStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'permission_id'     => 'required|exists:permissions,id',
-            'employee_code'     => 'required|string|max:5|unique:'.User::class,
-            'name'              => 'required|string|max:255',
-            'name_kana'         => 'nullable|string|max:255',
-            'email'             => 'required|string|email|max:255|unique:'.User::class,
+            'permission_id'     => ['required', 'exists:permissions,id'],
+            'employee_code'     => ['required', 'string', 'max:5', 'unique:users'],
+            'name'              => ['required', 'string', 'max:255'],
+            'name_kana'         => ['nullable', 'string', 'max:255'],
+            'email'             => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password'          => ['required', 'confirmed', Rules\Password::defaults()],
-            'mobile_number'     => 'nullable|string|min:10|max:15',
-            'employment_date'   => 'nullable|date',
+            'mobile_number'     => ['nullable', 'string', 'min:10', 'max:15'],
+            'employment_date'   => ['nullable', 'date'],
         ];
     }
 }

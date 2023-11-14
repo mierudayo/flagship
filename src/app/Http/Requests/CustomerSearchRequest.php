@@ -22,7 +22,7 @@ class CustomerSearchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'keyword' => 'nullable|max:255',
+            'keyword' => ['nullable', 'max:255'],
         ];
     }
 }
