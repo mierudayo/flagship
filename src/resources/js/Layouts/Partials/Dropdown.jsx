@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import { Link } from "@inertiajs/react";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Dropdown = forwardRef((props, ref) => {
   return (
@@ -14,7 +15,10 @@ const Dropdown = forwardRef((props, ref) => {
           </li>
           <li className="dropdown-item">
             <Link method="post" href={route('logout')} className="dropdown-link" as="button">
-              Log out
+              <div className="icon-wrapper">
+                <LogoutIcon className="logout-icon" />
+                <span>Log out</span>
+              </div>
             </Link>
           </li>
         </ul>

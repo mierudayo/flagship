@@ -1,6 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import Dropdown from "./Partials/Dropdown";
+import CorporateFareIcon from '@mui/icons-material/CorporateFare';
+import PeopleIcon from '@mui/icons-material/People';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import CategoryIcon from '@mui/icons-material/Category';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import HomeIcon from '@mui/icons-material/Home';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 export default function AppLayout({ children }) {
   const { auth } = usePage().props
@@ -33,7 +41,7 @@ export default function AppLayout({ children }) {
         <nav className="sidebar-nav">
           <header className="side-header">
             <div className="sidebar-title">Sales Manager+</div>
-            <span className="sidebar-toggler">&lt;&lt;</span>
+            <span className="sidebar-toggler"><KeyboardDoubleArrowLeftIcon /></span>
           </header>
           <ul className="side-nav-list">
             <li>
@@ -41,7 +49,10 @@ export default function AppLayout({ children }) {
                 href={route('home')}
                 className={`side-nav-link ${url === '/' ? 'is-active' : ''}`}
               >
-                HOME
+                <div className="icon-wrapper">
+                  <HomeIcon className="sidenav-icon" />
+                  <span>HOME</span>
+                </div>
               </Link>
             </li>
             <li>
@@ -49,7 +60,10 @@ export default function AppLayout({ children }) {
                 href={route('users.index')}
                 className={`side-nav-link ${component.startsWith('User') ? 'is-active' : ''}`}
               >
-                ユーザー
+                <div className="icon-wrapper">
+                  <PeopleIcon className="sidenav-icon" />
+                  <span>ユーザー</span>
+                </div>
               </Link>
             </li>
             <li>
@@ -57,7 +71,10 @@ export default function AppLayout({ children }) {
                 href={route('customers.index')}
                 className={`side-nav-link ${url.startsWith('/customers') ? 'is-active' : ''}`}
               >
-                取引先
+                <div className="icon-wrapper">
+                  <CorporateFareIcon className="sidenav-icon" />
+                  <span>取引先</span>
+                </div>
               </Link>
             </li>
             <li>
@@ -65,7 +82,10 @@ export default function AppLayout({ children }) {
                 href={route('contacts.index')}
                 className={`side-nav-link ${url.startsWith('/contacts') ? 'is-active' : ''}`}
               >
-                連絡先
+                <div className="icon-wrapper">
+                  <ContactsIcon className="sidenav-icon" />
+                  <span>連絡先</span>
+                </div>
               </Link>
             </li>
             <li>
@@ -73,7 +93,10 @@ export default function AppLayout({ children }) {
                 href={route('products.index')}
                 className={`side-nav-link ${url.startsWith('/products') ? 'is-active' : ''}`}
               >
-                商品管理
+                <div className="icon-wrapper">
+                  <CategoryIcon className="sidenav-icon" />
+                  <span>商品管理</span>
+                </div>
               </Link>
             </li>
             <li>
@@ -81,7 +104,10 @@ export default function AppLayout({ children }) {
                 href={route('inquiries.index')}
                 className={`side-nav-link ${url.startsWith('/inquiries') ? 'is-active' : ''}`}
               >
-                問い合わせ
+                <div className="icon-wrapper">
+                  <MarkEmailUnreadIcon className="sidenav-icon" />
+                  <span>問い合わせ</span>
+                </div>
               </Link>
             </li>
           </ul>
@@ -93,8 +119,10 @@ export default function AppLayout({ children }) {
                   className={`dropdown-toggle ${showDropdown ? 'active' : ''}`}
                   onClick={() => setShowDropdown(!showDropdown)}
                 >
-                  <div className="user-email">{auth.user.email}</div>
-                  <div className="indicator">⬆️</div>
+                  <div className="icon-wrapper">
+                    <AccountCircleIcon className="account-icon" />
+                    <span>{auth.user.name}</span>
+                  </div>
                 </button>
               </div>
             </div>

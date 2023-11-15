@@ -1,0 +1,22 @@
+
+.icon-wrapper {
+  align-items: center;
+  display: flex;
+}
+
+.MuiSvgIcon-root {
+  &.sidenav-icon {
+    margin-right: 8px;
+  }
+
+  &.logout-icon {
+    margin-right: 4px;
+    font-size: 1.25rem;
+  }
+
+  &.account-icon {
+    margin-right: 4px;
+    font-size: 1.75rem;
+  }
+}
+
