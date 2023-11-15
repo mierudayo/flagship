@@ -1,0 +1,133 @@
+:root {
+  --height-sidefooter: 48px;
+}
+
+.sidebar {
+  background-color: var(--color-sidebar);
+  bottom: 0;
+  color: var(--white);
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: var(--width-sidebar);
+}
+
+.side-header {
+  align-items: center;
+  display: flex;
+  height: var(--height-side-header);
+  justify-content: space-between;
+  padding: 0 16px;
+  position: sticky;
+  top: 0;
+
+  .sidebar-title {
+    font-weight: bold;
+  }
+
+  .sidebar-toggler {
+    align-items: center;
+    border: 1px solid;
+    border-radius: 8px;
+    display: flex;
+    font-size: 0.8rem;
+    height: 32px;
+    justify-content: center;
+    line-height: 1;
+    width: 32px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.side-nav-list {
+  overflow: auto;
+  height: calc(100vh - var(--height-side-header));
+}
+
+.side-nav-link {
+  display: block;
+  padding: 8px 24px;
+
+  &.is-active {
+    background-color: var(--transparent-navy);
+  }
+
+  &:hover {
+    background-color: var(--transparent-navy);
+  }
+}
+
+.side-footer {
+  border-top: 1px solid var(--transparent-navy);
+  height: var(--height-sidefooter);
+  background-color: var(--color-sidebar);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* Dropdown Trigger
+-------------------------*/
+.sidebar-dropdown-control {
+  width: 100%;
+}
+
+.dropdown-toggle-wrapper {
+  margin: 0 8px;
+  text-align: center;
+}
+
+.dropdown-toggle {
+  border-radius: 4px;
+  display: flex;
+  padding: 4px 8px;
+  width: 100%;
+
+  &:hover,
+  &.active {
+    cursor: pointer;
+    background-color: var(--transparent-navy);
+  }
+}
+
+/* Dropdown Menu
+-------------------------*/
+.sidebar-dropdown {
+  position: absolute;
+  bottom: var(--height-sidefooter);
+  width: 100%;
+}
+
+.sidebar-dropdown-content {
+  background-color: var(--black);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 4px 8px;
+
+  .dropdown-item {
+    &:last-child {
+      border-top: 1px solid gray;
+    }
+
+    .dropdown-link {
+      font-size: 0.9rem;
+      display: block;
+      opacity: 0.7;
+      padding: 8px 0;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 1;
+        text-decoration: underline;
+      }
+    }
+  }
+}
