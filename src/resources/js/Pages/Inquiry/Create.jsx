@@ -1,5 +1,6 @@
 import AppLayout from '@/Layouts/AppLayout';
-import { Link, useForm } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
+import CancelButton from '../../Components/CancelButton';
 
 export default function Create({ customerContactOption, productOption, inquiryTypeOption, inChargeUserOption }) {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
@@ -43,13 +44,6 @@ export default function Create({ customerContactOption, productOption, inquiryTy
     });
   };
 
-  function handleBeforeLeave() {
-    if (isDirty) {
-      return confirm('入力内容が破棄されますがよろしいですか？');
-    }
-    return true;
-  };
-
   return (
     <AppLayout>
       <h1 className="content-title">問い合わせ 登録</h1>
@@ -62,13 +56,7 @@ export default function Create({ customerContactOption, productOption, inquiryTy
         >
           登録する
         </button>
-        <Link
-          onBefore={handleBeforeLeave}
-          href={route('inquiries.index')}
-          className="btn btn-secondary"
-        >
-          キャンセル
-        </Link>
+        <CancelButton isDirty={isDirty} route={route('inquiries.index')} />
         {processing && <span>Now Loading...</span>}
       </div>
       <form id="inquiryCreateForm" onSubmit={submit}>

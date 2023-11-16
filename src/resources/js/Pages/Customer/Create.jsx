@@ -1,5 +1,6 @@
 import AppLayout from '@/Layouts/AppLayout';
-import { Link, useForm } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
+import CancelButton from '../../Components/CancelButton';
 
 export default function Create({ userSelectOptions }) {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
@@ -60,13 +61,6 @@ export default function Create({ userSelectOptions }) {
     });
   };
 
-  function handleBeforeLeave() {
-    if (isDirty) {
-      return confirm('入力内容が破棄されますがよろしいですか？');
-    }
-    return true;
-  };
-
   return (
     <AppLayout>
       <h1 className="content-title">取引先 登録</h1>
@@ -79,13 +73,7 @@ export default function Create({ userSelectOptions }) {
         >
           登録する
         </button>
-        <Link
-          onBefore={handleBeforeLeave}
-          href={route('customers.index')}
-          className="btn btn-secondary"
-        >
-          キャンセル
-        </Link>
+        <CancelButton isDirty={isDirty} route={route('customers.index')} />
         {processing && <span>Now Loading...</span>}
       </div>
       <form id="customerCreateForm" onSubmit={submit}>

@@ -1,5 +1,6 @@
 import AppLayout from '@/Layouts/AppLayout';
-import { Link, useForm } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
+import CancelButton from '../../Components/CancelButton';
 
 export default function Edit({ user, permissionSelectOptions }) {
   const { data, setData, patch, processing, errors, isDirty } = useForm({
@@ -18,13 +19,6 @@ export default function Edit({ user, permissionSelectOptions }) {
     patch(route('users.update', user));
   };
 
-  function handleBeforeLeave() {
-    if (isDirty) {
-      return confirm('入力内容が破棄されますがよろしいですか？');
-    }
-    return true;
-  };
-
   return (
     <AppLayout>
       <h1 className="content-title">ユーザー 編集</h1>
@@ -37,13 +31,7 @@ export default function Edit({ user, permissionSelectOptions }) {
         >
           更新する
         </button>
-        <Link
-          onBefore={handleBeforeLeave}
-          href={route('users.index')}
-          className="btn btn-secondary"
-        >
-          キャンセル
-        </Link>
+        <CancelButton isDirty={isDirty} route={route('users.index')} />
         {processing && <span>Now Loading...</span>}
       </div>
       <form id="userCreateForm" onSubmit={submit}>

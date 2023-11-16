@@ -1,5 +1,6 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm, usePage } from "@inertiajs/react";
+import CancelButton from '../../Components/CancelButton';
 
 function TableInputRow({ labelName, inputName, data, errors, setData, isRequired = false }) {
   return (
@@ -82,13 +83,6 @@ export default function Edit({ contact, userSelectOptions, customerSelectOptions
     });
   };
 
-  function handleBeforeLeave() {
-    if (isDirty) {
-      return confirm('入力内容が破棄されますがよろしいですか？');
-    }
-    return true;
-  };
-
   return (
     <AppLayout>
       <h1 className="content-title">連絡先 登録</h1>
@@ -101,13 +95,7 @@ export default function Edit({ contact, userSelectOptions, customerSelectOptions
         >
           更新する
         </button>
-        <Link
-          onBefore={handleBeforeLeave}
-          href={route('contacts.index')}
-          className="btn btn-secondary"
-        >
-          キャンセル
-        </Link>
+        <CancelButton isDirty={isDirty} route={route('contacts.index')} />
         {processing && <span>Now Loading...</span>}
         <Link
           onBefore={() => confirm('本当に削除しますか？')}

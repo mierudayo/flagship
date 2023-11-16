@@ -1,5 +1,6 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm, usePage } from '@inertiajs/react';
+import CancelButton from '../../Components/CancelButton';
 
 export default function Edit({ customer, userSelectOptions }) {
   const { flash } = usePage().props;
@@ -65,13 +66,6 @@ export default function Edit({ customer, userSelectOptions }) {
     });
   };
 
-  function handleBeforeLeave() {
-    if (isDirty) {
-      return confirm('入力内容が破棄されますがよろしいですか？');
-    }
-    return true;
-  };
-
   return (
     <AppLayout>
       <h1 className="content-title">取引先 編集</h1>
@@ -84,13 +78,7 @@ export default function Edit({ customer, userSelectOptions }) {
         >
           更新する
         </button>
-        <Link
-          onBefore={handleBeforeLeave}
-          href={route('customers.index')}
-          className="btn btn-secondary"
-        >
-          キャンセル
-        </Link>
+        <CancelButton isDirty={isDirty} route={route('customers.index')} />
         {processing && <span>Now Loading...</span>}
         <Link
           onBefore={() => confirm('本当に削除しますか？')}
