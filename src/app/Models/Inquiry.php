@@ -76,7 +76,7 @@ class Inquiry extends Model
     */
     protected function getStatusLabelAttribute(): string
     {
-        return InquiryStatus::from($this->status)->getLabel();
+        return InquiryStatus::getLabelFromValue($this->status);
     }
 
     /*

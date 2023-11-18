@@ -42,6 +42,6 @@ class DeliveryAddress extends Model
     */
     protected function getAddressTypeLabelAttribute(): string
     {
-        return DeliveryAddressType::from($this->address_type)->getLabel();
+        return DeliveryAddressType::getLabelFromValue($this->address_type);
     }
 }
