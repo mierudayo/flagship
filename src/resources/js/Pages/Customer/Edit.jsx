@@ -2,7 +2,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import CancelButton from '../../Components/CancelButton';
 
-export default function Edit({ customer, userSelectOptions }) {
+export default function Edit({ customer, userSelectOptions, paymentTerms }) {
   const { flash } = usePage().props;
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
@@ -29,35 +29,25 @@ export default function Edit({ customer, userSelectOptions }) {
     sales_payment_day_offset: customer.sales_term?.payment_day_offset ?? '',
   });
 
-  const billingTypeOption = [
-    { label: '締め請求', value: 1 },
-    { label: '都度請求', value: 2 },
-  ];
-  const cutoffDayOption = [
-    { label: '10日締め', value: 10 },
-    { label: '15日締め', value: 15 },
-    { label: '20日締め', value: 20 },
-    { label: '25日締め', value: 25 },
-    { label: '月末締め', value: 99 },
-  ];
-  const paymentMonthOffsetOption = [
-    { label: '当月', value: 0 },
-    { label: '翌月', value: 1 },
-    { label: '翌々月', value: 2 },
-  ];
-  const paymentDayOption = [
-    { label: '10日', value: 10 },
-    { label: '15日', value: 15 },
-    { label: '20日', value: 20 },
-    { label: '25日', value: 25 },
-    { label: '末日', value: 99 },
-  ];
-  const paymentDayOffsetOption = [
-    { label: '前払い', value: 0 },
-    { label: '3営業日以内', value: 3 },
-    { label: '7営業日以内', value: 7 },
-  ];
+  const billingTypeOptions = Object.entries(paymentTerms.billingTypes).map(([id, label]) => (
+    <option key={id} value={id}>{label}</option>
+  ));
 
+  const cutoffDayOptions = Object.entries(paymentTerms.cutoffDays).map(([id, label]) => (
+    <option key={id} value={id}>{label}</option>
+  ));
+
+  const paymentMonthOffsetOptions = Object.entries(paymentTerms.monthOffsets).map(([id, label]) => (
+    <option key={id} value={id}>{label}</option>
+  ));
+
+  const paymentDayOptions = Object.entries(paymentTerms.paymentDay).map(([id, label]) => (
+    <option key={id} value={id}>{label}</option>
+  ));
+
+  const paymentDayOffsetOptions = Object.entries(paymentTerms.dayOffsets).map(([id, label]) => (
+    <option key={id} value={id}>{label}</option>
+  ));
 
   function submit(e) {
     e.preventDefault();
@@ -255,11 +245,7 @@ export default function Edit({ customer, userSelectOptions }) {
                 className={`input-field u-w-128 u-mr-3 ${errors.purchase_billing_type ? 'is-invalid' : ''}`}
               >
                 <option value="">-- 請求方法 --</option>
-                {billingTypeOption.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
+                {billingTypeOptions}
               </select>
               {data.purchase_billing_type == 1 && (
                 <>
@@ -271,11 +257,7 @@ export default function Edit({ customer, userSelectOptions }) {
                     className={`input-field u-w-128 ${errors.purchase_cutoff_day ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 締め日 --</option>
-                    {cutoffDayOption.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
+                    {cutoffDayOptions}
                   </select>
                   <select
                     name="purchase_payment_month_offset"
@@ -285,11 +267,7 @@ export default function Edit({ customer, userSelectOptions }) {
                     className={`input-field u-w-128 ${errors.purchase_payment_month_offset ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 支払月 --</option>
-                    {paymentMonthOffsetOption.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
+                    {paymentMonthOffsetOptions}
                   </select>
                   <select
                     name="purchase_payment_day"
@@ -299,11 +277,7 @@ export default function Edit({ customer, userSelectOptions }) {
                     className={`input-field u-w-128 ${errors.purchase_payment_day ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 支払日 --</option>
-                    {paymentDayOption.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
+                    {paymentDayOptions}
                   </select>
                 </>
               )}
@@ -317,11 +291,7 @@ export default function Edit({ customer, userSelectOptions }) {
                     className={`input-field u-w-128 ${errors.purchase_payment_day_offset ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 期限 --</option>
-                    {paymentDayOffsetOption.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
+                    {paymentDayOffsetOptions}
                   </select>
                 </>
               )}
@@ -341,11 +311,7 @@ export default function Edit({ customer, userSelectOptions }) {
                 className={`input-field u-w-128 u-mr-3 ${errors.sales_billing_type ? 'is-invalid' : ''}`}
               >
                 <option value="">-- 請求方法 --</option>
-                {billingTypeOption.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
+                {billingTypeOptions}
               </select>
               {data.sales_billing_type == 1 && (
                 <>
@@ -357,11 +323,7 @@ export default function Edit({ customer, userSelectOptions }) {
                     className={`input-field u-w-128 ${errors.sales_cutoff_day ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 締め日 --</option>
-                    {cutoffDayOption.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
+                    {cutoffDayOptions}
                   </select>
                   <select
                     name="sales_payment_month_offset"
@@ -371,11 +333,7 @@ export default function Edit({ customer, userSelectOptions }) {
                     className={`input-field u-w-128 ${errors.sales_payment_month_offset ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 支払月 --</option>
-                    {paymentMonthOffsetOption.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
+                    {paymentMonthOffsetOptions}
                   </select>
                   <select
                     name="sales_payment_day"
@@ -385,11 +343,7 @@ export default function Edit({ customer, userSelectOptions }) {
                     className={`input-field u-w-128 ${errors.sales_payment_day ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 支払日 --</option>
-                    {paymentDayOption.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
+                    {paymentDayOptions}
                   </select>
                 </>
               )}
@@ -403,11 +357,7 @@ export default function Edit({ customer, userSelectOptions }) {
                     className={`input-field u-w-128 ${errors.sales_payment_day_offset ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 期限 --</option>
-                    {paymentDayOffsetOption.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
+                    {paymentDayOffsetOptions}
                   </select>
                 </>
               )}

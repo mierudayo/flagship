@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Enums\DeliveryAddressType;
+use App\Enums\PaymentTerm\BillingType;
+use App\Enums\PaymentTerm\CutoffDay;
+use App\Enums\PaymentTerm\PaymentDay;
+use App\Enums\PaymentTerm\PaymentDayOffset;
+use App\Enums\PaymentTerm\PaymentMonthOffset;
 use App\Http\Requests\CustomerSearchRequest;
 use App\Http\Requests\CustomerStoreRequest;
 use App\Http\Requests\CustomerUpdateRequest;
@@ -36,6 +41,7 @@ class CustomerController extends Controller
     {
         return Inertia::render('Customer/Create', [
             'userSelectOptions' => User::all(),
+            'paymentTerms'      => $this->getPaymentTerms(),
         ]);
     }
 
@@ -72,6 +78,7 @@ class CustomerController extends Controller
         return Inertia::render('Customer/Edit', [
             'customer' => $customer,
             'userSelectOptions' => User::all(),
+            'paymentTerms'      => $this->getPaymentTerms(),
         ]);
     }
 
@@ -204,5 +211,16 @@ class CustomerController extends Controller
                 'payment_day_offset'    => $request->input('sales_payment_day_offset'),
             ],
         );
+    }
+
+    private function getPaymentTerms(): array
+    {
+        return [
+            'billingTypes' => BillingType::toArray(),
+            'cutoffDays'   => CutoffDay::toArray(),
+            'monthOffsets' => PaymentMonthOffset::toArray(),
+            'paymentDay'   => PaymentDay::toArray(),
+            'dayOffsets'   => PaymentDayOffset::toArray(),
+        ];
     }
 }
