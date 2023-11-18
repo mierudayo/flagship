@@ -2,7 +2,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from '@inertiajs/react';
 import CancelButton from '../../Components/CancelButton';
 
-export default function Create({ customerContactOption, productOption, inquiryTypeOption, inChargeUserOption }) {
+export default function Create({ customerContactOption, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus }) {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     inquiry_date: '',
     customer_contact_id: '',
@@ -27,15 +27,9 @@ export default function Create({ customerContactOption, productOption, inquiryTy
     { label: '展示会', value: 4 },
   ];
 
-  const statusOption = [
-    { label: '対応中', value: 1 },
-    { label: '返信待ち', value: 2 },
-    { label: '保留', value: 3 },
-    { label: '成約', value: 4 },
-    { label: '失注', value: 5 },
-    { label: '見送り', value: 6 },
-    { label: 'その他', value: 7 },
-  ];
+  const statusOptions = Object.entries(inquiryStatus).map(([statusId, statusLabel]) => (
+    <option key={statusId} value={statusId}>{statusLabel}</option>
+  ));
 
   function submit(e) {
     e.preventDefault();
@@ -196,11 +190,7 @@ export default function Create({ customerContactOption, productOption, inquiryTy
               onChange={e => setData('status', e.target.value)}
               className={`input-field u-w-128 ${errors.status ? 'is-invalid' : ''}`}
             >
-              {statusOption.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
+              {statusOptions}
             </select>
             <div className="invalid-feedback">{errors.status}</div>
           </div>

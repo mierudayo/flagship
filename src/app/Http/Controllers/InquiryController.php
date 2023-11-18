@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\InquiryStatus;
 use App\Http\Requests\InquirySearchRequest;
 use App\Http\Requests\InquiryStoreRequest;
 use App\Http\Requests\InquiryUpdateRequest;
@@ -38,6 +39,7 @@ class InquiryController extends Controller
             'productOption'         => Product::all(),
             'inquiryTypeOption'     => InquiryType::all(),
             'inChargeUserOption'    => User::all(),
+            'inquiryStatus'         => InquiryStatus::toArray(),
         ]);
     }
 
@@ -73,6 +75,7 @@ class InquiryController extends Controller
             'productOption'         => Product::all(),
             'inquiryTypeOption'     => InquiryType::all(),
             'inChargeUserOption'    => User::all(),
+            'inquiryStatus'         => InquiryStatus::toArray(),
         ]);
     }
 
