@@ -74,6 +74,8 @@ class InquiryControllerTest extends TestCase
             'updated_by_id' => null,
         ])->toArray();
 
+        unset($postData['status_label']);
+
         $response = $this->post(route('inquiries.store', $postData));
 
         $this->assertDatabaseHas('inquiries', $postData);
@@ -99,6 +101,8 @@ class InquiryControllerTest extends TestCase
             'updated_by_id' => $this->user->id,
         ])->toArray();
 
+        unset($postData['status_label']);
+
         $response = $this->patch(route('inquiries.update', $inquiry), $postData);
 
         $this->assertDatabaseHas('inquiries', $postData);
@@ -120,7 +124,7 @@ class InquiryControllerTest extends TestCase
         $response = $this->delete(route('inquiries.destroy', $inquiry));
 
         $this->assertDatabaseMissing('inquiries', ['id' => $inquiry->id]);
-        
+
         $response->assertRedirect(route('inquiries.index'));
     }
 }
