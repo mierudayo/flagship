@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\InquiryStatus;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Inquiry extends Model
 {
     use HasFactory;
+
+    protected $appends = ['status_label'];
 
     protected $fillable = [
         'inquiry_date',
@@ -64,6 +67,16 @@ class Inquiry extends Model
     public function updatedBy(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Accessors
+    |--------------------------------------------------------------------------
+    */
+    protected function getStatusLabelAttribute(): string
+    {
+        return InquiryStatus::from($this->status)->getLabel();
     }
 
     /*
