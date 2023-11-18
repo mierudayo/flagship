@@ -34,6 +34,8 @@ class DeliveryAddressControllerTest extends TestCase
             'customer_id'   => $customer->id,
         ])->toArray();
 
+        unset($postData['address_type_label']);
+
         $response = $this->post(route('customers.delivery-addresses.add', $customer), $postData);
         $this->assertDatabaseHas('delivery_addresses', $postData);
 

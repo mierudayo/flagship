@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\DeliveryAddressType;
 use App\Http\Requests\CustomerSearchRequest;
 use App\Http\Requests\CustomerStoreRequest;
 use App\Http\Requests\CustomerUpdateRequest;
@@ -61,6 +62,7 @@ class CustomerController extends Controller
                 'updated_at' => $customer->updated_at->format('Y-m-d H:i'),
             ]),
             'userSelectOptions' => User::all(),
+            'deliveryAddressTypes' => DeliveryAddressType::toArray(),
         ]);
     }
 

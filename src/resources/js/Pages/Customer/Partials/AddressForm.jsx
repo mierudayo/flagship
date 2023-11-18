@@ -34,18 +34,18 @@ function RadioComponent({ labelName, inputName, options, isRequired, data, error
         </label>
       </th>
       <td className="td-cell u-flex">
-        {options.map((option, index) => (
-          <div key={index} className="radio-option u-mr-2">
+        {Object.entries(options).map(([value, typeLabel]) => (
+          <div key={value} className="radio-option u-mr-2">
             <input
               type="radio"
-              id={`${inputName}-${option.value}`}
+              id={`${inputName}-${value}`}
               name={inputName}
-              value={option.value}
-              checked={data[inputName] == option.value}
+              value={value}
+              checked={data[inputName] == value}
               onChange={e => setData(inputName, e.target.value)}
               className={errors[inputName] ? 'is-invalid' : ''}
             />
-            <label htmlFor={`${inputName}-${option.value}`}>{option.label}</label>
+            <label htmlFor={`${inputName}-${value}`}>{typeLabel}</label>
           </div>
         ))}
         {errors[inputName] && (<div className="invalid-feedback">{errors[inputName]}</div>)}
@@ -56,7 +56,7 @@ function RadioComponent({ labelName, inputName, options, isRequired, data, error
 
 
 
-export default function AddressForm({ customer, closeModal }) {
+export default function AddressForm({ customer, deliveryAddressTypes, closeModal }) {
   const { data, setData, post, processing, errors, reset } = useForm({
     address_type: 1,
     post_code: '',
@@ -86,11 +86,7 @@ export default function AddressForm({ customer, closeModal }) {
             <RadioComponent
                 labelName="区分"
                 inputName="address_type"
-                options={[
-                  { label: '出荷元', value: 1 },
-                  { label: '納品先', value: 2 },
-                  { label: '出荷/納品兼用', value: 3 },
-                ]}
+                options={deliveryAddressTypes}
                 isRequired={true}
                 data={data}
                 errors={errors}

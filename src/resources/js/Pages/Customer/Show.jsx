@@ -5,7 +5,7 @@ import Modal from '../../Components/Modal';
 import ContactForm from './Partials/ContactForm';
 import AddressForm from './Partials/AddressForm';
 
-export default function Show({ customer, userSelectOptions }) {
+export default function Show({ customer, userSelectOptions, deliveryAddressTypes }) {
   const { flash } = usePage().props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
@@ -58,7 +58,7 @@ export default function Show({ customer, userSelectOptions }) {
 
       {isAddressModalOpen &&
         <Modal closeModal={() => setIsAddressModalOpen(false)} title="納品先登録">
-          <AddressForm customer={customer} closeModal={() => setIsAddressModalOpen(false)} />
+          <AddressForm customer={customer} deliveryAddressTypes={deliveryAddressTypes} closeModal={() => setIsAddressModalOpen(false)} />
         </Modal>}
 
       <div className="content-section">
@@ -218,13 +218,7 @@ export default function Show({ customer, userSelectOptions }) {
                 <tr key={delivery.id} className="table-row is-hoverable">
                   <td className="td-cell col-fixed">{delivery.id}</td>
                   <td className="td-cell">
-                    {delivery.address_type === 1
-                      ? "出荷元"
-                      : delivery.address_type === 2
-                        ? "納品先"
-                        : delivery.address_type === 3
-                          ? "兼用"
-                          : ""}
+                    {delivery.address_type_label}
                   </td>
                   <td className="td-cell">{delivery.postal_code} {delivery.address}</td>
                   <td className="td-cell">{delivery.company_name}</td>

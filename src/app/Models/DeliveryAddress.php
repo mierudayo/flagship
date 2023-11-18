@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\DeliveryAddressType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class DeliveryAddress extends Model
 {
     use HasFactory;
+
+    protected $appends = ['address_type_label'];
 
     protected $fillable = [
         'customer_id',
@@ -30,5 +33,15 @@ class DeliveryAddress extends Model
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Accessors
+    |--------------------------------------------------------------------------
+    */
+    protected function getAddressTypeLabelAttribute(): string
+    {
+        return DeliveryAddressType::from($this->address_type)->getLabel();
     }
 }
