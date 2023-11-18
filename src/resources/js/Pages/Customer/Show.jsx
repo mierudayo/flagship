@@ -120,16 +120,14 @@ export default function Show({ customer, userSelectOptions, deliveryAddressTypes
               <tr className="table-row">
                 <th className="th-cell">取引条件（仕入）</th>
                 <td className="td-cell">
-                  {purchase_term?.billing_type == 1 ? (
+                  {purchase_term?.billing_type === 1 ? (
                     <>
-                      <span className="u-mr-3">締め請求</span>
-                      <span className="u-mr-3">{purchase_term?.cutoff_day}日締め</span>
-                      <span>{purchase_term?.payment_month_offset}月{purchase_term?.payment_day}日払い</span>
+                      <span className="u-mr-3">{purchase_term?.cutoff_day_label}</span>
+                      <span>{purchase_term?.payment_month_offset_label}{purchase_term?.payment_day_label}払い</span>
                     </>
                   ) : (
                     <>
-                      <span className="u-mr-3">都度請求</span>
-                      <span>{purchase_term?.payment_day_offset}営業日以内</span>
+                      <span>{purchase_term?.payment_day_offset_label}</span>
                     </>
                   )}
                 </td>
@@ -138,16 +136,14 @@ export default function Show({ customer, userSelectOptions, deliveryAddressTypes
               <tr className="table-row">
                 <th className="th-cell">取引条件（販売）</th>
                 <td className="td-cell">
-                  {sales_term?.billing_type == 1 ? (
+                  {sales_term?.billing_type === 1 ? (
                     <>
-                      <span className="u-mr-3">締め請求</span>
-                      <span className="u-mr-3">{sales_term?.cutoff_day}日締め</span>
-                      <span>{sales_term?.payment_month_offset}月{sales_term?.payment_day}日払い</span>
+                      <span className="u-mr-3">{sales_term?.cutoff_day_label}</span>
+                      <span>{sales_term?.payment_month_offset_label}{sales_term?.payment_day_label}払い</span>
                     </>
                   ) : (
                     <>
-                      <span className="u-mr-3">都度請求</span>
-                      <span>{sales_term?.payment_day_offset}営業日以内</span>
+                      <span>{sales_term?.payment_day_offset_label}</span>
                     </>
                   )}
                 </td>

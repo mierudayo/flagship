@@ -27,4 +27,17 @@ enum CutoffDay: int
             ->mapWithKeys(fn($case) => [$case->value => $case->getLabel()])
             ->all();
     }
+
+    public static function getLabelFromValue(?int $value): ?string
+    {
+        if ($value === null) {
+            return null;
+        }
+
+        try {
+            return self::from($value)->getLabel();
+        } catch (\ValueError $exception) {
+            return null;
+        }
+    }
 }
