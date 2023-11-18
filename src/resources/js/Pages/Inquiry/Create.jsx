@@ -2,7 +2,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from '@inertiajs/react';
 import CancelButton from '../../Components/CancelButton';
 
-export default function Create({ customerContactOption, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus }) {
+export default function Create({ customerContactOption, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     inquiry_date: '',
     customer_contact_id: '',
@@ -20,12 +20,9 @@ export default function Create({ customerContactOption, productOption, inquiryTy
     in_charge_user_id: '',
   });
 
-  const leadSourceOption = [
-    { label: 'HP', value: 1 },
-    { label: 'TEL', value: 2 },
-    { label: 'メール', value: 3 },
-    { label: '展示会', value: 4 },
-  ];
+  const leadSourceOptions = Object.entries(inquiryLeadSource).map(([statusId, statusLabel]) => (
+    <option key={statusId} value={statusId}>{statusLabel}</option>
+  ));
 
   const statusOptions = Object.entries(inquiryStatus).map(([statusId, statusLabel]) => (
     <option key={statusId} value={statusId}>{statusLabel}</option>
@@ -153,11 +150,7 @@ export default function Create({ customerContactOption, productOption, inquiryTy
               className={`input-field u-w-128 ${errors.lead_source ? 'is-invalid' : ''}`}
             >
               <option value=""></option>
-              {leadSourceOption.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
+              {leadSourceOptions}
             </select>
             <div className="invalid-feedback">{errors.lead_source}</div>
           </div>
