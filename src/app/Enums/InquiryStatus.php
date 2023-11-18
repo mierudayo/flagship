@@ -4,24 +4,24 @@ namespace App\Enums;
 
 enum InquiryStatus: int
 {
-    case Processing     = 1;
-    case AwaitingReply  = 2;
-    case OnHold         = 3;
-    case Successful     = 4;
-    case Failed         = 5;
-    case Passed         = 6;
-    case Other          = 7;
+    case PROCESSING     = 1;
+    case AWAITING_REPLY = 2;
+    case ON_HOLD        = 3;
+    case SUCCESS        = 4;
+    case FAILED         = 5;
+    case PASSED         = 6;
+    case OTHER          = 7;
 
     public function getLabel(): string
     {
         return match($this) {
-            self::Processing    => '対応中',
-            self::AwaitingReply => '返信待ち',
-            self::OnHold        => '保留',
-            self::Successful    => '成約',
-            self::Failed        => '失注',
-            self::Passed        => '見送り',
-            self::Other         => 'その他',
+            self::PROCESSING     => '対応中',
+            self::AWAITING_REPLY => '返信待ち',
+            self::ON_HOLD        => '保留',
+            self::SUCCESS        => '成約',
+            self::FAILED         => '失注',
+            self::PASSED         => '見送り',
+            self::OTHER          => 'その他',
         };
     }
 

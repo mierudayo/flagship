@@ -6,16 +6,16 @@ enum InquiryLeadSource: int
 {
     case HP         = 1;
     case TEL        = 2;
-    case Mail       = 3;
-    case Exhibition = 4;
+    case MAIL       = 3;
+    case EXHIBITION = 4;
 
     public function getLabel(): string
     {
         return match($this) {
             self::HP         => 'HP',
             self::TEL        => 'TEL',
-            self::Mail       => 'メール',
-            self::Exhibition => '展示会',
+            self::MAIL       => 'メール',
+            self::EXHIBITION => '展示会',
         };
     }
 
