@@ -1,6 +1,7 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm } from '@inertiajs/react';
 import CancelButton from '../../Components/CancelButton';
+import OptionsList from '../../Components/OptionsList';
 
 export default function Edit({ inquiry, customerContactOption, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) {
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
@@ -19,15 +20,6 @@ export default function Edit({ inquiry, customerContactOption, productOption, in
     note: inquiry.note || '',
     in_charge_user_id: inquiry.in_charge_user_id,
   });
-
-  const leadSourceOptions = Object.entries(inquiryLeadSource).map(([statusId, statusLabel]) => (
-    <option key={statusId} value={statusId}>{statusLabel}</option>
-  ));
-
-  const statusOptions = Object.entries(inquiryStatus).map(([statusId, statusLabel]) => (
-    <option key={statusId} value={statusId}>{statusLabel}</option>
-  ));
-
 
   function submit(e) {
     e.preventDefault();
@@ -160,7 +152,7 @@ export default function Edit({ inquiry, customerContactOption, productOption, in
               className={`input-field u-w-128 ${errors.lead_source ? 'is-invalid' : ''}`}
             >
               <option value=""></option>
-              {leadSourceOptions}
+              <OptionsList options={inquiryLeadSource} />
             </select>
             <div className="invalid-feedback">{errors.lead_source}</div>
           </div>
@@ -193,7 +185,7 @@ export default function Edit({ inquiry, customerContactOption, productOption, in
               onChange={e => setData('status', e.target.value)}
               className={`input-field u-w-128 ${errors.status ? 'is-invalid' : ''}`}
             >
-              {statusOptions}
+              <OptionsList options={inquiryStatus} />
             </select>
             <div className="invalid-feedback">{errors.status}</div>
           </div>

@@ -1,6 +1,7 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import CancelButton from '../../Components/CancelButton';
+import OptionsList from '../../Components/OptionsList';
 
 export default function Edit({ customer, userSelectOptions, paymentTerms }) {
   const { flash } = usePage().props;
@@ -28,26 +29,6 @@ export default function Edit({ customer, userSelectOptions, paymentTerms }) {
     sales_payment_day: customer.sales_term?.payment_day || '',
     sales_payment_day_offset: customer.sales_term?.payment_day_offset ?? '',
   });
-
-  const billingTypeOptions = Object.entries(paymentTerms.billingTypes).map(([id, label]) => (
-    <option key={id} value={id}>{label}</option>
-  ));
-
-  const cutoffDayOptions = Object.entries(paymentTerms.cutoffDays).map(([id, label]) => (
-    <option key={id} value={id}>{label}</option>
-  ));
-
-  const paymentMonthOffsetOptions = Object.entries(paymentTerms.monthOffsets).map(([id, label]) => (
-    <option key={id} value={id}>{label}</option>
-  ));
-
-  const paymentDayOptions = Object.entries(paymentTerms.paymentDay).map(([id, label]) => (
-    <option key={id} value={id}>{label}</option>
-  ));
-
-  const paymentDayOffsetOptions = Object.entries(paymentTerms.dayOffsets).map(([id, label]) => (
-    <option key={id} value={id}>{label}</option>
-  ));
 
   function submit(e) {
     e.preventDefault();
@@ -245,7 +226,7 @@ export default function Edit({ customer, userSelectOptions, paymentTerms }) {
                 className={`input-field u-w-128 u-mr-3 ${errors.purchase_billing_type ? 'is-invalid' : ''}`}
               >
                 <option value="">-- 請求方法 --</option>
-                {billingTypeOptions}
+                <OptionsList options={paymentTerms.billingTypes} />
               </select>
               {data.purchase_billing_type == 1 && (
                 <>
@@ -257,7 +238,7 @@ export default function Edit({ customer, userSelectOptions, paymentTerms }) {
                     className={`input-field u-w-128 ${errors.purchase_cutoff_day ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 締め日 --</option>
-                    {cutoffDayOptions}
+                    <OptionsList options={paymentTerms.cutoffDays} />
                   </select>
                   <select
                     name="purchase_payment_month_offset"
@@ -267,7 +248,7 @@ export default function Edit({ customer, userSelectOptions, paymentTerms }) {
                     className={`input-field u-w-128 ${errors.purchase_payment_month_offset ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 支払月 --</option>
-                    {paymentMonthOffsetOptions}
+                    <OptionsList options={paymentTerms.monthOffsets} />
                   </select>
                   <select
                     name="purchase_payment_day"
@@ -277,7 +258,7 @@ export default function Edit({ customer, userSelectOptions, paymentTerms }) {
                     className={`input-field u-w-128 ${errors.purchase_payment_day ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 支払日 --</option>
-                    {paymentDayOptions}
+                    <OptionsList options={paymentTerms.paymentDay} />
                   </select>
                 </>
               )}
@@ -291,7 +272,7 @@ export default function Edit({ customer, userSelectOptions, paymentTerms }) {
                     className={`input-field u-w-128 ${errors.purchase_payment_day_offset ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 期限 --</option>
-                    {paymentDayOffsetOptions}
+                    <OptionsList options={paymentTerms.dayOffsets} />
                   </select>
                 </>
               )}
@@ -311,7 +292,7 @@ export default function Edit({ customer, userSelectOptions, paymentTerms }) {
                 className={`input-field u-w-128 u-mr-3 ${errors.sales_billing_type ? 'is-invalid' : ''}`}
               >
                 <option value="">-- 請求方法 --</option>
-                {billingTypeOptions}
+                <OptionsList options={paymentTerms.billingTypes} />
               </select>
               {data.sales_billing_type == 1 && (
                 <>
@@ -323,7 +304,7 @@ export default function Edit({ customer, userSelectOptions, paymentTerms }) {
                     className={`input-field u-w-128 ${errors.sales_cutoff_day ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 締め日 --</option>
-                    {cutoffDayOptions}
+                    <OptionsList options={paymentTerms.cutoffDays} />
                   </select>
                   <select
                     name="sales_payment_month_offset"
@@ -333,7 +314,7 @@ export default function Edit({ customer, userSelectOptions, paymentTerms }) {
                     className={`input-field u-w-128 ${errors.sales_payment_month_offset ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 支払月 --</option>
-                    {paymentMonthOffsetOptions}
+                    <OptionsList options={paymentTerms.monthOffsets} />
                   </select>
                   <select
                     name="sales_payment_day"
@@ -343,7 +324,7 @@ export default function Edit({ customer, userSelectOptions, paymentTerms }) {
                     className={`input-field u-w-128 ${errors.sales_payment_day ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 支払日 --</option>
-                    {paymentDayOptions}
+                    <OptionsList options={paymentTerms.paymentDay} />
                   </select>
                 </>
               )}
@@ -357,7 +338,7 @@ export default function Edit({ customer, userSelectOptions, paymentTerms }) {
                     className={`input-field u-w-128 ${errors.sales_payment_day_offset ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 期限 --</option>
-                    {paymentDayOffsetOptions}
+                    <OptionsList options={paymentTerms.dayOffsets} />
                   </select>
                 </>
               )}
