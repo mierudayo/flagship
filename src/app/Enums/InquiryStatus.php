@@ -2,8 +2,13 @@
 
 namespace App\Enums;
 
+use App\Enums\Traits\WithLabel;
+use App\Enums\Traits\WithValueArray;
+
 enum InquiryStatus: int
 {
+    use WithLabel, WithValueArray;
+
     case PROCESSING     = 1;
     case AWAITING_REPLY = 2;
     case ON_HOLD        = 3;
@@ -23,27 +28,5 @@ enum InquiryStatus: int
             self::PASSED         => '見送り',
             self::OTHER          => 'その他',
         };
-    }
-
-    public static function toArray(): array
-    {
-        return collect(self::cases())
-            ->mapWithKeys(function ($case) {
-                return [$case->value => $case->getLabel()];
-            })
-            ->all();
-    }
-
-    public static function getLabelFromValue(?int $value): ?string
-    {
-        if ($value === null) {
-            return null;
-        }
-
-        try {
-            return self::from($value)->getLabel();
-        } catch (\ValueError $exception) {
-            return null;
-        }
     }
 }

@@ -2,8 +2,13 @@
 
 namespace App\Enums\PaymentTerm;
 
+use App\Enums\Traits\WithLabel;
+use App\Enums\Traits\WithValueArray;
+
 enum PaymentDayOffset: int
 {
+    use WithLabel, WithValueArray;
+
     case PREPAYMENT        = 0;
     case WITHIN_3_DAYS     = 3;
     case WITHIN_7_DAYS     = 7;
@@ -15,25 +20,5 @@ enum PaymentDayOffset: int
             self::WITHIN_3_DAYS   => '3営業日以内',
             self::WITHIN_7_DAYS   => '7営業日以内',
         };
-    }
-
-    public static function toArray(): array
-    {
-        return collect(self::cases())
-            ->mapWithKeys(fn($case) => [$case->value => $case->getLabel()])
-            ->all();
-    }
-
-    public static function getLabelFromValue(?int $value): ?string
-    {
-        if ($value === null) {
-            return null;
-        }
-
-        try {
-            return self::from($value)->getLabel();
-        } catch (\ValueError $exception) {
-            return null;
-        }
     }
 }

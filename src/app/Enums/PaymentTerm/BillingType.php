@@ -2,8 +2,13 @@
 
 namespace App\Enums\PaymentTerm;
 
+use App\Enums\Traits\WithLabel;
+use App\Enums\Traits\WithValueArray;
+
 enum BillingType: int
 {
+    use WithLabel, WithValueArray;
+
     case CLOSE_BILLING  = 1;
     case EACH_TIME      = 2;
 
@@ -13,25 +18,5 @@ enum BillingType: int
             self::CLOSE_BILLING => '締め請求',
             self::EACH_TIME     => '都度請求',
         };
-    }
-
-    public static function toArray(): array
-    {
-        return collect(self::cases())
-            ->mapWithKeys(fn($case) => [$case->value => $case->getLabel()])
-            ->all();
-    }
-
-    public static function getLabelFromValue(?int $value): ?string
-    {
-        if ($value === null) {
-            return null;
-        }
-
-        try {
-            return self::from($value)->getLabel();
-        } catch (\ValueError $exception) {
-            return null;
-        }
     }
 }

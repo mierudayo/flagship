@@ -2,8 +2,13 @@
 
 namespace App\Enums\PaymentTerm;
 
+use App\Enums\Traits\WithLabel;
+use App\Enums\Traits\WithValueArray;
+
 enum PaymentDay: int
 {
+    use WithLabel, WithValueArray;
+
     case DAY_10    = 10;
     case DAY_15    = 15;
     case DAY_20    = 20;
@@ -19,26 +24,6 @@ enum PaymentDay: int
             self::DAY_25    => '25日',
             self::END_MONTH => '末日',
         };
-    }
-
-    public static function toArray(): array
-    {
-        return collect(self::cases())
-            ->mapWithKeys(fn($case) => [$case->value => $case->getLabel()])
-            ->all();
-    }
-
-    public static function getLabelFromValue(?int $value): ?string
-    {
-        if ($value === null) {
-            return null;
-        }
-
-        try {
-            return self::from($value)->getLabel();
-        } catch (\ValueError $exception) {
-            return null;
-        }
     }
 }
 

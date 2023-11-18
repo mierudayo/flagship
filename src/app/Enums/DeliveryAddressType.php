@@ -2,8 +2,13 @@
 
 namespace App\Enums;
 
+use App\Enums\Traits\WithLabel;
+use App\Enums\Traits\WithValueArray;
+
 enum DeliveryAddressType: int
 {
+    use WithLabel, WithValueArray;
+
     case SHIPPER    = 1;
     case CONSIGNEE  = 2;
     case BOTH       = 3;
@@ -15,25 +20,5 @@ enum DeliveryAddressType: int
             self::CONSIGNEE => '納品先',
             self::BOTH      => '出荷/納品兼用',
         };
-    }
-
-    public static function toArray(): array
-    {
-        return collect(self::cases())
-            ->mapWithKeys(fn($case) => [$case->value => $case->getLabel()])
-            ->all();
-    }
-
-    public static function getLabelFromValue(?int $value): ?string
-    {
-        if ($value === null) {
-            return null;
-        }
-
-        try {
-            return self::from($value)->getLabel();
-        } catch (\ValueError $exception) {
-            return null;
-        }
     }
 }
