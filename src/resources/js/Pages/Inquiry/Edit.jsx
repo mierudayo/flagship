@@ -2,7 +2,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm } from '@inertiajs/react';
 import CancelButton from '../../Components/CancelButton';
 
-export default function Edit({ inquiry, customerContactOption, productOption, inquiryTypeOption, inChargeUserOption }) {
+export default function Edit({ inquiry, customerContactOption, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus }) {
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
     inquiry_date: inquiry.inquiry_date,
     customer_contact_id: inquiry.customer_contact_id,
