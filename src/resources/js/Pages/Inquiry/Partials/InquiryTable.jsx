@@ -1,3 +1,5 @@
+import { Link } from '@inertiajs/react';
+
 export default function InquiryTable({ inquiries }) {
   return (
     <div className="table-wrapper is-scrollable">
@@ -19,9 +21,9 @@ export default function InquiryTable({ inquiries }) {
           {inquiries.map(inquiry => (
             <tr key={inquiry.id} className="table-row is-hoverable">
               <td className="td-cell">
-                <a href={route('inquiries.edit', inquiry)} className="link">
+                <Link href={route('inquiries.edit', inquiry)} className="link">
                   編集
-                </a>
+                </Link>
               </td>
               <td className="td-cell">{inquiry.id}</td>
               <td className="td-cell">{inquiry.inquiry_date}</td>

@@ -1,5 +1,5 @@
 import AppLayout from '@/Layouts/AppLayout';
-import { useForm, usePage } from '@inertiajs/react';
+import { Link, useForm, usePage } from '@inertiajs/react';
 import Pagination from '@/Components/Pagination';
 import ContactsTable from './Partials/ContactsTable';
 
@@ -22,12 +22,12 @@ export default function Index({ contactsPaginator }) {
     <AppLayout>
       <h1 className="content-title">連絡先 一覧</h1>
       <div className="content-navbar">
-        <a
+        <Link
           href={route('contacts.create')}
           className="btn btn-primary u-mr-3"
         >
           新規登録
-        </a>
+        </Link>
         <form onSubmit={submit}>
           <div className="u-flex u-mr-3">
             <input

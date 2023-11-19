@@ -1,3 +1,5 @@
+import { Link } from '@inertiajs/react';
+
 export default function CustomerTable({ customers }) {
   return (
     <div className="table-wrapper is-scrollable">
@@ -16,12 +18,12 @@ export default function CustomerTable({ customers }) {
           {customers.map(customer => (
             <tr key={customer.id} className="table-row is-hoverable">
               <td className="td-cell col-fixed">
-                <a href={route('customers.edit', customer)} className="link">{customer.id}</a>
+                <Link href={route('customers.edit', customer)} className="link">{customer.id}</Link>
               </td>
               <td className="td-cell">
-                <a href={route('customers.show', customer)} className="link">
+                <Link href={route('customers.show', customer)} className="link">
                   {customer.name}
-                </a>
+                </Link>
               </td>
               <td className="td-cell">
                 {customer.contacts.map(contact => (

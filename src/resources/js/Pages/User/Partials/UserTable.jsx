@@ -1,3 +1,5 @@
+import { Link } from '@inertiajs/react';
+
 export default function UserTable({ users, canAdmin }) {
   return (
     <div className="table-wrapper is-scrollable">
@@ -19,7 +21,7 @@ export default function UserTable({ users, canAdmin }) {
             <tr key={user.id} className="table-row is-hoverable">
               <td className="td-cell col-fixed">
                 {canAdmin
-                  ? <a href={route('users.edit', user)} className="link">{user.id}</a>
+                  ? <Link href={route('users.edit', user)} className="link">{user.id}</Link>
                   : <span>{user.id}</span>
                 }
               </td>

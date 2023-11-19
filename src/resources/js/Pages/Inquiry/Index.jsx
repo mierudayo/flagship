@@ -22,12 +22,12 @@ export default function Index({ inquiriesPaginator }) {
     <AppLayout>
       <h1 className="content-title">問い合わせ 一覧</h1>
       <div className="content-navbar">
-        <a
+        <Link
           href={route('inquiries.create')}
           className="btn btn-primary u-mr-3"
         >
           新規登録
-        </a>
+        </Link>
         <Link
           href={route('inquiry-types.index')}
           className="btn btn-secondary u-mr-3"

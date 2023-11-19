@@ -1,6 +1,6 @@
 import AppLayout from '@/Layouts/AppLayout';
 import UserTable from './Partials/UserTable';
-import { useForm, usePage } from '@inertiajs/react';
+import { Link, useForm, usePage } from '@inertiajs/react';
 import Pagination from '@/Components/Pagination';
 
 export default function Index({ usersPaginator, canAdmin }) {
@@ -23,12 +23,12 @@ export default function Index({ usersPaginator, canAdmin }) {
       <h1 className="content-title">ユーザー 一覧</h1>
       <div className="content-navbar">
         {canAdmin && (
-          <a
+          <Link
             href={route('users.create')}
             className="btn btn-primary u-mr-3"
           >
             新規登録
-          </a>
+          </Link>
         )}
         <form onSubmit={submit}>
           <div className="u-flex u-mr-3">
