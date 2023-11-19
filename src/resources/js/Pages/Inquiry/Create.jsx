@@ -4,6 +4,7 @@ import CancelButton from '../../Components/CancelButton';
 import TableInputRow from '../../Components/TableInputRow';
 import TableSelectRow from '../../Components/TableSelectRow';
 import TableGenericSelectRow from '../../Components/TableGenericSelectRow';
+import TableTextAreaRow from '../../Components/TableTextAreaRow';
 
 const Create = ({ customerContactOption, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
@@ -63,9 +64,23 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
 
               <TableInputRow type="text" labelName="件名" inputName="subject" data={data} errors={errors} setData={setData} isRequired={false} />
 
-              <TableInputRow type="text" labelName="問い合わせ内容" inputName="message" data={data} errors={errors} setData={setData} isRequired={true} />
+              <TableTextAreaRow
+                labelName="問い合わせ内容"
+                inputName="message"
+                data={data}
+                errors={errors}
+                setData={setData}
+                isRequired={true}
+              />
 
-              <TableInputRow type="text" labelName="回答内容" inputName="answer" data={data} errors={errors} setData={setData} isRequired={false} />
+              <TableTextAreaRow
+                labelName="回答内容"
+                inputName="answer"
+                data={data}
+                errors={errors}
+                setData={setData}
+                isRequired={false}
+              />
 
               <TableSelectRow
                 label="リード獲得元"
@@ -89,7 +104,14 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                 isRequired={true}
               />
 
-              <TableInputRow type="text" labelName="フィードバック" inputName="feedback" data={data} errors={errors} setData={setData} isRequired={false} />
+              <TableTextAreaRow
+                labelName="フィードバック"
+                inputName="feedback"
+                data={data}
+                errors={errors}
+                setData={setData}
+                isRequired={false}
+              />
 
               <TableGenericSelectRow
                 label="担当ユーザー"
@@ -120,7 +142,14 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
 
               <TableInputRow type="text" labelName="商品詳細" inputName="product_detail" data={data} errors={errors} setData={setData} isRequired={false} />
 
-              <TableInputRow type="text" labelName="備考" inputName="note" data={data} errors={errors} setData={setData} isRequired={false} />
+              <TableTextAreaRow
+                labelName="備考"
+                inputName="note"
+                data={data}
+                errors={errors}
+                setData={setData}
+                isRequired={false}
+              />
 
             </tbody>
           </table>

@@ -4,6 +4,7 @@ import CancelButton from '../../Components/CancelButton';
 import OptionsList from '../../Components/OptionsList';
 import TableInputRow from '../../Components/TableInputRow';
 import TableGenericSelectRow from '../../Components/TableGenericSelectRow';
+import TableTextAreaRow from '../../Components/TableTextAreaRow';
 
 const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
   const { flash } = usePage().props;
@@ -79,7 +80,14 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
               <TableInputRow type="text" labelName="住所" inputName="address" data={data} errors={errors} setData={setData} />
               <TableInputRow type="text" labelName="TEL" inputName="tel" data={data} errors={errors} setData={setData} />
               <TableInputRow type="text" labelName="FAX" inputName="fax" data={data} errors={errors} setData={setData} />
-              <TableInputRow type="text" labelName="備考" inputName="note" data={data} errors={errors} setData={setData} />
+              <TableTextAreaRow
+                labelName="備考"
+                inputName="note"
+                data={data}
+                errors={errors}
+                setData={setData}
+                isRequired={false}
+              />
 
               <TableGenericSelectRow
                 label="担当ユーザー"

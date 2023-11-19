@@ -3,6 +3,7 @@ import { useForm } from '@inertiajs/react';
 import CancelButton from '../../Components/CancelButton';
 import TableInputRow from '../../Components/TableInputRow';
 import TableGenericSelectRow from '../../Components/TableGenericSelectRow';
+import TableTextAreaRow from '../../Components/TableTextAreaRow';
 
 function RadioComponent({ labelName, inputName, options, isRequired, data, errors, setData }) {
   return (
@@ -107,7 +108,14 @@ const Create = ({ userSelectOptions, customerSelectOptions }) => {
                 errors={errors}
                 setData={setData}
               />
-              <TableInputRow labelName="備考" inputName="note" data={data} errors={errors} setData={setData} />
+              <TableTextAreaRow
+                labelName="備考"
+                inputName="note"
+                data={data}
+                errors={errors}
+                setData={setData}
+                isRequired={false}
+              />
 
               <TableGenericSelectRow
                 label="担当ユーザー"
