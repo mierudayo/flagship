@@ -9,7 +9,8 @@
   left: 0;
   position: fixed;
   top: 0;
-  width: var(--width-sidebar);
+  width: var(--width-sidebar-open);
+  z-index: 1000;
 }
 
 .side-header {
@@ -27,8 +28,9 @@
 
   .sidebar-toggler {
     align-items: center;
-    border: 1px solid;
+    background-color: var(--transparent-navy);
     border-radius: 8px;
+    color: var(--navy);
     display: flex;
     font-size: 0.8rem;
     height: 32px;
@@ -37,7 +39,9 @@
     width: 32px;
 
     &:hover {
+      color: var(--white);
       cursor: pointer;
+      opacity: 0.8;
     }
   }
 }
@@ -132,6 +136,38 @@
         opacity: 1;
         text-decoration: underline;
       }
+    }
+  }
+}
+
+/* サイドバー開閉
+-------------------------*/
+.sidebar {
+  &.is-collapse {
+    transition: width 0.2s ease;
+    width: var(--width-sidebar-collapse);
+
+    .sidebar-title {
+      display: none;
+    }
+
+    .side-nav-link,
+    .sidebar-dropdown-control {
+      .icon-wrapper {
+        justify-content: center;
+        .sidenav-icon {
+          margin: 0;
+        }
+        span  {
+          display: none;
+        }
+      }
+    }
+
+    .sidebar-dropdown {
+      left: 0;
+      position: fixed;
+      width: 200px;
     }
   }
 }

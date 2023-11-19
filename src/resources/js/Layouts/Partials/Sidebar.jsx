@@ -9,8 +9,9 @@ import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onToggle }) {
   const { auth } = usePage().props
   const { url, component } = usePage();
   const [showDropdown, setShowDropdown] = useState(false);
@@ -34,12 +35,20 @@ export default function Sidebar() {
       document.removeEventListener('click', handleDocumentClick);
     };
   }, []);
+
+  const SidebarIcon = isOpen ? <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />;
+
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${!isOpen ? 'is-collapse' : ''}`}>
       <nav className="sidebar-nav">
         <header className="side-header">
           <div className="sidebar-title">Sales Manager+</div>
-          <span className="sidebar-toggler"><KeyboardDoubleArrowLeftIcon /></span>
+          <span
+            className="sidebar-toggler"
+            onClick={onToggle}
+          >
+            {SidebarIcon}
+          </span>
         </header>
         <ul className="side-nav-list">
           <li>
