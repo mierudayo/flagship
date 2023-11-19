@@ -48,6 +48,12 @@
   width: auto;
 }
 
+/* 上下に隣接する場合はmarginを設定
+-------------------------*/
+.input-field + .input-field {
+  margin-top: 8px;
+}
+
 /* Validation
 -------------------------*/
 .invalid-feedback {

@@ -1,35 +1,13 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm, usePage } from "@inertiajs/react";
 import CancelButton from '../../Components/CancelButton';
-
-function TableInputRow({ labelName, inputName, data, errors, setData, isRequired = false }) {
-  return (
-    <tr className="table-row">
-      <th className="th-cell u-w-200">
-        <label htmlFor={inputName} className="form-label">
-          {labelName}
-          {isRequired && <span className="required-mark">必須</span>}
-        </label>
-      </th>
-      <td className="td-cell">
-        <input
-          type="text"
-          id={inputName}
-          name={inputName}
-          value={data[inputName]}
-          className={`input-field ${errors[inputName] ? 'is-invalid' : ''}`}
-          onChange={e => setData(inputName, e.target.value)}
-        />
-        {errors[inputName] && (<div className="invalid-feedback">{errors[inputName]}</div>)}
-      </td>
-    </tr>
-  );
-}
+import TableInputRow from '../../Components/TableInputRow';
+import TableGenericSelectRow from '../../Components/TableGenericSelectRow';
 
 function RadioComponent({ labelName, inputName, options, isRequired, data, errors, setData }) {
   return (
-    <tr className="table-row">
-      <th className="th-cell u-w-200">
+    <tr className="table-row is-flexible">
+      <th className="th-cell u-w-160">
         <label className="form-label">
           {labelName}
           {isRequired && <span className="required-mark">必須</span>}
@@ -116,32 +94,17 @@ const Edit = ({ contact, userSelectOptions, customerSelectOptions }) => {
         <div className="table-wrapper is-scrollable">
           <table className="table">
             <tbody className="tbody">
-            <tr className="table-row">
-                <th className="th-cell u-w-200">
 
-                  <label htmlFor="customer_id" className="form-label">
-                    所属取引先
-                    <span className="required-mark">必須</span>
-                  </label>
-                </th>
-                <td className="td-cell u-flex">
-                  <select
-                    name="customer_id"
-                    id="customer_id"
-                    value={data.customer_id}
-                    onChange={e => setData('customer_id', e.target.value)}
-                    className={`input-field ${errors.customer_id ? 'is-invalid' : ''}`}
-                  >
-                    <option value="">-- 所属する取引先を選択 --</option>
-                    {customerSelectOptions.map((customer) => (
-                      <option key={customer.id} value={customer.id}>
-                        {customer.id}: {customer.name}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.customer_id && (<div className="invalid-feedback">{errors.customer_id}</div>)}
-                </td>
-              </tr>
+            <TableGenericSelectRow
+                label="所属取引先"
+                name="customer_id"
+                data={data}
+                setData={setData}
+                errors={errors}
+                options={customerSelectOptions}
+                isRequired={true}
+              />
+
               <TableInputRow labelName="担当者名" inputName="name" data={data} errors={errors} setData={setData} isRequired={true} />
               <TableInputRow labelName="よみがな" inputName="name_kana" data={data} errors={errors} setData={setData} />
               <TableInputRow labelName="TEL" inputName="tel" data={data} errors={errors} setData={setData} />
@@ -162,30 +125,15 @@ const Edit = ({ contact, userSelectOptions, customerSelectOptions }) => {
               />
               <TableInputRow labelName="備考" inputName="note" data={data} errors={errors} setData={setData} />
 
-              <tr className="table-row">
-                <th className="th-cell u-w-200">
-                  <label htmlFor="in_charge_user_id" className="form-label">
-                    担当ユーザー
-                  </label>
-                </th>
-                <td className="td-cell u-flex">
-                  <select
-                    name="in_charge_user_id"
-                    id="in_charge_user_id"
-                    value={data.in_charge_user_id}
-                    onChange={e => setData('in_charge_user_id', e.target.value)}
-                    className={`input-field ${errors.in_charge_user_id ? 'is-invalid' : ''}`}
-                  >
-                    <option value="">-- 担当ユーザーを選択 --</option>
-                    {userSelectOptions.map((user) => (
-                      <option key={user.id} value={user.id}>
-                        {user.id}: {user.name}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
-                </td>
-              </tr>
+              <TableGenericSelectRow
+                label="担当ユーザー"
+                name="in_charge_user_id"
+                data={data}
+                setData={setData}
+                errors={errors}
+                options={userSelectOptions}
+                isRequired={false}
+              />
 
             </tbody>
           </table>
