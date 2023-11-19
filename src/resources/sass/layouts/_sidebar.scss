@@ -1,3 +1,5 @@
+@use '../global/mixins' as *;
+
 :root {
   --height-sidefooter: 48px;
 }
@@ -11,6 +13,10 @@
   top: 0;
   width: var(--width-sidebar-open);
   z-index: 1000;
+
+  @include mobile-screen() {
+    display: none;
+  }
 }
 
 .side-header {
