@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { router } from '@inertiajs/react'
+import { router, usePage } from '@inertiajs/react'
 import Sidebar from './Partials/Sidebar';
 import NavList from './Partials/NavList';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -9,6 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 export default function AppLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isHeaderNavOpen, setIsHeaderNavOpen] = useState(false);
+  const { appName } = usePage().props;
 
   const HeaderNavIcon = isHeaderNavOpen ?
     <CloseIcon className="header-menu-icon" /> :
@@ -29,7 +30,7 @@ export default function AppLayout({ children }) {
           <button className="nav-toggler" onClick={() => setIsHeaderNavOpen(!isHeaderNavOpen)}>
           {HeaderNavIcon}
           </button>
-          <div className="header-title">Sales Manager+</div>
+          <div className="header-title">{appName}</div>
           <button className="header-account-nav">
             <AccountCircleOutlinedIcon className="header-account-icon" />
           </button>

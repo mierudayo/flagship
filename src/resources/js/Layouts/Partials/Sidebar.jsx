@@ -7,7 +7,7 @@ import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 export default function Sidebar({ isOpen, onToggle }) {
-  const { auth } = usePage().props
+  const { auth, appName } = usePage().props
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const triggerRef = useRef(null);
@@ -36,7 +36,7 @@ export default function Sidebar({ isOpen, onToggle }) {
     <aside className={`sidebar ${!isOpen ? 'is-collapse' : ''}`}>
       <nav className="sidebar-nav">
         <header className="side-header">
-          <div className="sidebar-title">Sales Manager+</div>
+          <div className="sidebar-title">{appName}</div>
           <span
             className="sidebar-toggler"
             onClick={onToggle}
