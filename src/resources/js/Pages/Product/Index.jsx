@@ -3,7 +3,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm } from '@inertiajs/react';
 import ProductTable from './Partials/ProductTable';
 
-export default function Index({ productsPaginator }) {
+const Index = ({ productsPaginator }) => {
   const params = route().params;
 
   const { data, setData, get, errors } = useForm({
@@ -18,7 +18,7 @@ export default function Index({ productsPaginator }) {
   };
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">商品一覧</h1>
       <div className="content-navbar">
         <Link
@@ -47,6 +47,10 @@ export default function Index({ productsPaginator }) {
         <Pagination paginator={productsPaginator} />
       </div>
       <ProductTable products={productsPaginator.data} />
-    </AppLayout>
+    </>
   );
 }
+
+Index.layout = page => <AppLayout children={page} />
+
+export default Index

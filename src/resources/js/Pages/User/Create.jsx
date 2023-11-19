@@ -3,7 +3,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from '@inertiajs/react';
 import CancelButton from '../../Components/CancelButton';
 
-export default function Create({ permissionSelectOptions }) {
+const Create = ({ permissionSelectOptions }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     permission_id: '',
     employee_code: '',
@@ -28,7 +28,7 @@ export default function Create({ permissionSelectOptions }) {
   };
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">ユーザー 登録</h1>
       <div className="content-navbar">
         <button
@@ -197,6 +197,10 @@ export default function Create({ permissionSelectOptions }) {
         </div>
 
       </form>
-    </AppLayout>
+    </>
   );
 }
+
+Create.layout = page => <AppLayout children={page} />
+
+export default Create

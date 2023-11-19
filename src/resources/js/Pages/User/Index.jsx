@@ -3,7 +3,7 @@ import UserTable from './Partials/UserTable';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import Pagination from '@/Components/Pagination';
 
-export default function Index({ usersPaginator, canAdmin }) {
+const Index = ({ usersPaginator, canAdmin }) => {
   const params = route().params;
   const { flash } = usePage().props;
 
@@ -19,7 +19,7 @@ export default function Index({ usersPaginator, canAdmin }) {
   };
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">ユーザー 一覧</h1>
       <div className="content-navbar">
         {canAdmin && (
@@ -53,6 +53,11 @@ export default function Index({ usersPaginator, canAdmin }) {
         <div className="alert alert-success">{flash.message}</div>
       )}
       <UserTable users={usersPaginator.data} canAdmin={canAdmin} />
-    </AppLayout>
+    </>
   );
 }
+
+Index.layout = page => <AppLayout children={page} />
+
+export default Index
+

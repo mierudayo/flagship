@@ -3,7 +3,7 @@ import { useForm } from '@inertiajs/react';
 import CancelButton from '../../Components/CancelButton';
 import OptionsList from '../../Components/OptionsList';
 
-export default function Create({ userSelectOptions, paymentTerms }) {
+const Create = ({ userSelectOptions, paymentTerms }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     name: '',
     name_kana: '',
@@ -34,7 +34,7 @@ export default function Create({ userSelectOptions, paymentTerms }) {
   };
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">取引先 登録</h1>
       <div className="content-navbar">
         <button
@@ -329,7 +329,11 @@ export default function Create({ userSelectOptions, paymentTerms }) {
           </div>
         </div>
       </form>
-    </AppLayout>
+    </>
   );
 }
+
+Create.layout = page => <AppLayout children={page} />
+
+export default Create
 

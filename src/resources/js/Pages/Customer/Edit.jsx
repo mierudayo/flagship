@@ -3,7 +3,7 @@ import { Link, useForm, usePage } from '@inertiajs/react';
 import CancelButton from '../../Components/CancelButton';
 import OptionsList from '../../Components/OptionsList';
 
-export default function Edit({ customer, userSelectOptions, paymentTerms }) {
+const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
   const { flash } = usePage().props;
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
@@ -38,7 +38,7 @@ export default function Edit({ customer, userSelectOptions, paymentTerms }) {
   };
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">取引先 編集</h1>
       <div className="content-navbar">
         <button
@@ -346,6 +346,10 @@ export default function Edit({ customer, userSelectOptions, paymentTerms }) {
           </div>
         </div>
       </form>
-    </AppLayout>
+    </>
   );
 }
+
+Edit.layout = page => <AppLayout children={page} />
+
+export default Edit

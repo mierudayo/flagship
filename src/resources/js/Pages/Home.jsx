@@ -1,10 +1,14 @@
 import AppLayout from '../Layouts/AppLayout'
 
-export default function Home() {
+const Home = () => {
   return (
-    <AppLayout>
+    <>
       <h1>HOME</h1>
       <p>Welcome to Sales Manager+</p>
-    </AppLayout>
+    </>
   );
 }
+
+Home.layout = page => <AppLayout children={page} />
+
+export default Home

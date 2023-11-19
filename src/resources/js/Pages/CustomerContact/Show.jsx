@@ -2,7 +2,7 @@ import { useState } from 'react';
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, usePage } from '@inertiajs/react';
 
-export default function Show({ contact }) {
+const Show = ({ contact }) => {
   const { flash } = usePage().props;
   const {
     name,
@@ -23,7 +23,7 @@ export default function Show({ contact }) {
   } = contact;
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">連絡先 詳細</h1>
       <div className="content-navbar">
         <Link
@@ -110,6 +110,10 @@ export default function Show({ contact }) {
         </div>
       </div>
 
-    </AppLayout>
+    </>
   );
 }
+
+Show.layout = page => <AppLayout children={page} />
+
+export default Show

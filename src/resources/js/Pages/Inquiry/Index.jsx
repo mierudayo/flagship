@@ -3,7 +3,7 @@ import { Link, useForm, usePage } from '@inertiajs/react';
 import Pagination from '@/Components/Pagination';
 import InquiryTable from './Partials/InquiryTable';
 
-export default function Index({ inquiriesPaginator }) {
+const Index = ({ inquiriesPaginator }) => {
   const params = route().params;
   const { flash } = usePage().props;
 
@@ -19,7 +19,7 @@ export default function Index({ inquiriesPaginator }) {
   };
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">問い合わせ 一覧</h1>
       <div className="content-navbar">
         <Link
@@ -57,6 +57,10 @@ export default function Index({ inquiriesPaginator }) {
         <div className="alert alert-success">{flash.message}</div>
       )}
       <InquiryTable inquiries={inquiriesPaginator.data} />
-    </AppLayout>
+    </>
   );
 }
+
+Index.layout = page => <AppLayout children={page} />
+
+export default Index

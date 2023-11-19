@@ -3,7 +3,7 @@ import CustomerTable from './Partials/CustomerTable';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import Pagination from '@/Components/Pagination';
 
-export default function Index({ customersPaginator, canAdmin }) {
+const Index = ({ customersPaginator, canAdmin }) => {
   const params = route().params;
   const { flash } = usePage().props;
 
@@ -19,7 +19,7 @@ export default function Index({ customersPaginator, canAdmin }) {
   };
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">取引先 一覧</h1>
       <div className="content-navbar">
         <Link
@@ -51,6 +51,10 @@ export default function Index({ customersPaginator, canAdmin }) {
         <div className="alert alert-success">{flash.message}</div>
       )}
       <CustomerTable customers={customersPaginator.data} />
-    </AppLayout>
+    </>
   );
 }
+
+Index.layout = page => <AppLayout children={page} />
+
+export default Index

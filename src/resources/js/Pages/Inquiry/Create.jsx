@@ -3,7 +3,7 @@ import { useForm } from '@inertiajs/react';
 import CancelButton from '../../Components/CancelButton';
 import OptionsList from '../../Components/OptionsList';
 
-export default function Create({ customerContactOption, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) {
+const Create = ({ customerContactOption, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     inquiry_date: '',
     customer_contact_id: '',
@@ -29,7 +29,7 @@ export default function Create({ customerContactOption, productOption, inquiryTy
   };
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">問い合わせ 登録</h1>
       <div className="content-navbar">
         <button
@@ -294,6 +294,10 @@ export default function Create({ customerContactOption, productOption, inquiryTy
 
         </div>
       </form>
-    </AppLayout>
+    </>
   );
 }
+
+Create.layout = page => <AppLayout children={page} />
+
+export default Create

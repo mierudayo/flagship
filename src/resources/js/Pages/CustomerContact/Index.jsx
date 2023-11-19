@@ -3,7 +3,7 @@ import { Link, useForm, usePage } from '@inertiajs/react';
 import Pagination from '@/Components/Pagination';
 import ContactsTable from './Partials/ContactsTable';
 
-export default function Index({ contactsPaginator }) {
+const Index = ({ contactsPaginator }) => {
   const params = route().params;
   const { flash } = usePage().props;
 
@@ -19,7 +19,7 @@ export default function Index({ contactsPaginator }) {
   };
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">連絡先 一覧</h1>
       <div className="content-navbar">
         <Link
@@ -51,6 +51,10 @@ export default function Index({ contactsPaginator }) {
         <div className="alert alert-success">{flash.message}</div>
       )}
       <ContactsTable contacts={contactsPaginator.data} />
-    </AppLayout>
+    </>
   );
 }
+
+Index.layout = page => <AppLayout children={page} />
+
+export default Index

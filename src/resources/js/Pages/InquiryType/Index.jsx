@@ -3,11 +3,11 @@ import { usePage } from '@inertiajs/react';
 import InquiryTypeCreateForm from './Partials/InquiryTypeCreateForm';
 import InquiryTypeTable from './Partials/InquiryTypeTable';
 
-export default function Index({ inquiryTypes }) {
+const Index = ({ inquiryTypes }) => {
   const { flash } = usePage().props;
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">問い合わせ区分 管理</h1>
 
       {flash.message && (
@@ -17,6 +17,10 @@ export default function Index({ inquiryTypes }) {
       <InquiryTypeCreateForm />
 
       <InquiryTypeTable inquiryTypes={inquiryTypes} />
-    </AppLayout>
+    </>
   );
 }
+
+Index.layout = page => <AppLayout children={page} />
+
+export default Index

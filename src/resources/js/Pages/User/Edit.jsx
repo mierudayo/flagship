@@ -2,7 +2,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from "@inertiajs/react";
 import CancelButton from '../../Components/CancelButton';
 
-export default function Edit({ user, permissionSelectOptions }) {
+const Edit = ({ user, permissionSelectOptions }) => {
   const { data, setData, patch, processing, errors, isDirty } = useForm({
     permission_id: user.permission_id,
     employee_code: user.employee_code,
@@ -20,7 +20,7 @@ export default function Edit({ user, permissionSelectOptions }) {
   };
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">ユーザー 編集</h1>
       <div className="content-navbar">
         <button
@@ -171,6 +171,10 @@ export default function Edit({ user, permissionSelectOptions }) {
         </div>
 
       </form>
-    </AppLayout>
+    </>
   );
 }
+
+Edit.layout = page => <AppLayout children={page} />
+
+export default Edit

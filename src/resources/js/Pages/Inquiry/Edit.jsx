@@ -3,7 +3,7 @@ import { Link, useForm } from '@inertiajs/react';
 import CancelButton from '../../Components/CancelButton';
 import OptionsList from '../../Components/OptionsList';
 
-export default function Edit({ inquiry, customerContactOption, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) {
+const Edit = ({ inquiry, customerContactOption, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) => {
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
     inquiry_date: inquiry.inquiry_date,
     customer_contact_id: inquiry.customer_contact_id,
@@ -29,7 +29,7 @@ export default function Edit({ inquiry, customerContactOption, productOption, in
   };
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">問い合わせ 編集</h1>
       <div className="content-navbar">
         <button
@@ -303,6 +303,10 @@ export default function Edit({ inquiry, customerContactOption, productOption, in
 
         </div>
       </form>
-    </AppLayout>
+    </>
   );
 }
+
+Edit.layout = page => <AppLayout children={page} />
+
+export default Edit

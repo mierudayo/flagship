@@ -57,7 +57,7 @@ function RadioComponent({ labelName, inputName, options, isRequired, data, error
 }
 
 
-export default function Create({ userSelectOptions, customerSelectOptions }) {
+const Create = ({ userSelectOptions, customerSelectOptions }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     customer_id: '',
     name: '',
@@ -82,7 +82,7 @@ export default function Create({ userSelectOptions, customerSelectOptions }) {
   };
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">連絡先 登録</h1>
       <div className="content-navbar">
         <button
@@ -175,6 +175,10 @@ export default function Create({ userSelectOptions, customerSelectOptions }) {
           </table>
         </div>
       </form>
-    </AppLayout>
+    </>
   );
 }
+
+Create.layout = page => <AppLayout children={page} />
+
+export default Create

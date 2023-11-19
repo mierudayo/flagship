@@ -57,7 +57,7 @@ function RadioComponent({ labelName, inputName, options, isRequired, data, error
 }
 
 
-export default function Edit({ contact, userSelectOptions, customerSelectOptions }) {
+const Edit = ({ contact, userSelectOptions, customerSelectOptions }) => {
   const { flash } = usePage().props;
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
@@ -84,7 +84,7 @@ export default function Edit({ contact, userSelectOptions, customerSelectOptions
   };
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">連絡先 登録</h1>
       <div className="content-navbar">
         <button
@@ -191,6 +191,10 @@ export default function Edit({ contact, userSelectOptions, customerSelectOptions
           </table>
         </div>
       </form>
-    </AppLayout>
+    </>
   );
 }
+
+Edit.layout = page => <AppLayout children={page} />
+
+export default Edit

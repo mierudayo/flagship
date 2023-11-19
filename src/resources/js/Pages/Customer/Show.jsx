@@ -5,7 +5,7 @@ import Modal from '../../Components/Modal';
 import ContactForm from './Partials/ContactForm';
 import AddressForm from './Partials/AddressForm';
 
-export default function Show({ customer, userSelectOptions, deliveryAddressTypes }) {
+const Show = ({ customer, userSelectOptions, deliveryAddressTypes }) => {
   const { flash } = usePage().props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
@@ -30,7 +30,7 @@ export default function Show({ customer, userSelectOptions, deliveryAddressTypes
   } = customer;
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">取引先 詳細</h1>
       <div className="content-navbar">
         <Link
@@ -228,6 +228,10 @@ export default function Show({ customer, userSelectOptions, deliveryAddressTypes
         </div>
       </div>
 
-    </AppLayout>
+    </>
   );
 }
+
+Show.layout = page => <AppLayout children={page} />
+
+export default Show

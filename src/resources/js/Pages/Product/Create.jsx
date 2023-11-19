@@ -4,11 +4,11 @@ import CategoryCreateForm from './Partials/CategoryCreateForm';
 import CategoryGroupCreateForm from './Partials/CategoryGroupCreateForm';
 import ProductCreateForm from './Partials/ProductCreateForm';
 
-export default function Create({ groupSelectOptions, categorySelectOptions }) {
+const Create = ({ groupSelectOptions, categorySelectOptions }) => {
   const { flash } = usePage().props;
 
   return (
-    <AppLayout>
+    <>
       <h1 className="content-title">商品登録</h1>
       <div className="content-navbar">
         <Link
@@ -25,6 +25,10 @@ export default function Create({ groupSelectOptions, categorySelectOptions }) {
       <CategoryGroupCreateForm />
       <CategoryCreateForm groupSelectOptions={groupSelectOptions} />
       <ProductCreateForm groupSelectOptions={groupSelectOptions} categorySelectOptions={categorySelectOptions} />
-    </AppLayout>
+    </>
   );
 }
+
+Create.layout = page => <AppLayout children={page} />
+
+export default Create
