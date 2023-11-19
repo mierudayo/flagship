@@ -6,7 +6,7 @@ function TableInputRow({ labelName, inputName, data, errors, setData, isRequired
       <th className="th-cell u-w-200">
         <label htmlFor={inputName} className="form-label">
           {labelName}
-          {isRequired && <span className="required-mark">必須</span>}
+          {isRequired && <span className="required-mark">*</span>}
         </label>
       </th>
       <td className="td-cell">
@@ -30,7 +30,7 @@ function RadioComponent({ labelName, inputName, options, isRequired, data, error
       <th className="th-cell u-w-200">
         <label className="form-label">
           {labelName}
-          {isRequired && <span className="required-mark">必須</span>}
+          {isRequired && <span className="required-mark">*</span>}
         </label>
       </th>
       <td className="td-cell u-flex">

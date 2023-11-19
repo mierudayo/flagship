@@ -4,7 +4,7 @@ export default function TableGenericSelectRow({ label, name, data, setData, erro
       <th className="th-cell">
         <label htmlFor={name} className="form-label">
           {label}
-          {isRequired && <span className="required-mark">必須</span>}
+          {isRequired && <span className="required-mark">*</span>}
         </label>
       </th>
       <td className="td-cell u-flex">

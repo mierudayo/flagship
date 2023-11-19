@@ -4,7 +4,7 @@ export default function TableInputRow({ type = 'text', labelName, inputName, dat
       <th className={`th-cell ${widthClass}`}>
         <label htmlFor={inputName} className="form-label">
           {labelName}
-          {isRequired && <span className="required-mark">必須</span>}
+          {isRequired && <span className="required-mark">*</span>}
         </label>
       </th>
       <td className="td-cell">

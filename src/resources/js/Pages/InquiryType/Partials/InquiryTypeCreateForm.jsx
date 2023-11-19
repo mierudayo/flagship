@@ -24,7 +24,7 @@ export default function InquiryTypeCreateForm() {
         <div className="input-group">
           <label htmlFor="name" className="form-label">
             区分名
-            <span className="required-mark">必須</span>
+            <span className="required-mark">*</span>
           </label>
           <input
             type="text"

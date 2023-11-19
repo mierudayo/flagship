@@ -6,7 +6,7 @@ export default function TableSelectRow({ label, name, data, errors, setData, opt
       <th className="th-cell">
       <label htmlFor={name} className="form-label">
         {label}
-        {isRequired && <span className="required-mark">必須</span>}
+        {isRequired && <span className="required-mark">*</span>}
       </label>
       </th>
       <td className="td-cell">

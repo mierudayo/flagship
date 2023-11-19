@@ -33,7 +33,7 @@ export default function ProductCreateForm({ categorySelectOptions }) {
         <div className="input-group">
           <label id="category_id" className="form-label">
             カテゴリ
-            <span className="required-mark">必須</span>
+            <span className="required-mark">*</span>
           </label>
           <select
             name="category_id"
@@ -55,7 +55,7 @@ export default function ProductCreateForm({ categorySelectOptions }) {
         <div className="input-group">
           <label id="product_type" className="form-label">
             商品タイプ
-            <span className="required-mark">必須</span>
+            <span className="required-mark">*</span>
           </label>
           <select
             name="product_type"
@@ -77,7 +77,7 @@ export default function ProductCreateForm({ categorySelectOptions }) {
         <div className="input-group">
           <label htmlFor="name" className="form-label">
             商品名
-            <span className="required-mark">必須</span>
+            <span className="required-mark">*</span>
           </label>
           <input
             type="text"

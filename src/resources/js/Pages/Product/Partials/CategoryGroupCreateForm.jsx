@@ -22,7 +22,7 @@ export default function CategoryGroupCreateForm() {
         <div className="input-group">
           <label htmlFor="name" className="form-label">
             カテゴリグループ名
-            <span className="required-mark">必須</span>
+            <span className="required-mark">*</span>
           </label>
           <input
             type="text"

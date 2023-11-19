@@ -23,7 +23,7 @@ export default function CategoryCreateForm({ groupSelectOptions }) {
         <div className="input-group">
           <label htmlFor="group_id" className="form-label">
             カテゴリグループ
-            <span className="required-mark">必須</span>
+            <span className="required-mark">*</span>
           </label>
           <select
             name="group_id"
@@ -44,7 +44,7 @@ export default function CategoryCreateForm({ groupSelectOptions }) {
         <div className="input-group">
           <label htmlFor="name" className="form-label">
             カテゴリ名
-            <span className="required-mark">必須</span>
+            <span className="required-mark">*</span>
           </label>
           <input
             type="text"

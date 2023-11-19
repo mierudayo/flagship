@@ -10,7 +10,7 @@ function RadioComponent({ labelName, inputName, options, isRequired, data, error
       <th className="th-cell">
         <label className="form-label">
           {labelName}
-          {isRequired && <span className="required-mark">必須</span>}
+          {isRequired && <span className="required-mark">*</span>}
         </label>
       </th>
       <td className="td-cell u-flex">
