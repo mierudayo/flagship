@@ -1,17 +1,6 @@
-// Base, Global
-@use 'reset';
 @use 'base';
-@use 'variables';
-
-// Pages
-@use 'layout';
-@use 'sidebar';
-@use 'login';
+@use 'global';
+@use 'components';
+@use 'layouts';
 @use 'pages';
-@use 'inquiry';
-
-// Components
-@use 'component';
-
-// Utility
 @use 'utility';

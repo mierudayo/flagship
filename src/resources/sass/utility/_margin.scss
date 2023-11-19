@@ -1,11 +1,3 @@
-
-/* -----------------------
-Display
------------------------ */
-.u-flex {
-  display: flex;
-}
-
 /* -----------------------
 Margin
 ----------------------- */
@@ -79,36 +71,3 @@ Margin
 .u-mr-0 { margin-right: 0; }
 .u-mb-0 { margin-bottom: 0; }
 .u-ml-0 { margin-left: 0; }
-
-/* -----------------------
-Text Alignment
------------------------ */
-.u-text-left { text-align: left; }
-.u-text-center { text-align: center; }
-.u-text-right { text-align: right; }
-.u-text-justify { text-align: justify; }
-
-
-/* -----------------------
-Width
------------------------ */
-// Width: .u-w-8, .u-w-16, ..., .u-w-400.
-@for $i from 1 through 50 {
-  .u-w-#{$i * 8} {
-    width: #{$i * 8}px;
-  }
-}
-
-// Min Width: .u-min-w-8, .u-min-w-16, ..., .u-min-w-400.
-@for $i from 1 through 50 {
-  .u-min-w-#{$i * 8} {
-    min-width: #{$i * 8}px;
-  }
-}
-
-// Max Width: .u-max-w-8, .u-max-w-16, ..., .u-max-w-400.
-@for $i from 1 through 50 {
-  .u-max-w-#{$i * 8} {
-    max-width: #{$i * 8}px;
-  }
-}
