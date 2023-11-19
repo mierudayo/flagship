@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { router } from '@inertiajs/react'
 import Sidebar from './Partials/Sidebar';
 import NavList from './Partials/NavList';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -16,6 +17,10 @@ export default function AppLayout({ children }) {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  router.on('success', () => {
+    setIsHeaderNavOpen(false)
+  })
 
   return (
     <div className="page-wrapper">
