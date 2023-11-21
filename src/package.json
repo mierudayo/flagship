@@ -18,6 +18,7 @@
         "@inertiajs/react": "^1.0.12",
         "@mui/icons-material": "^5.14.18",
         "@mui/material": "^5.14.18",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "react-select": "^5.8.0"
     }
 }
