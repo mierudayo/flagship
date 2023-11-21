@@ -8,18 +8,18 @@ export default function TableRadioRow({ labelName, inputName, options, isRequire
         </label>
       </th>
       <td className="td-cell u-flex">
-        {Object.entries(options).map(([value, typeLabel]) => (
-          <div key={value} className="radio-option u-mr-2">
+        {options.map(option => (
+          <div key={option.value} className="radio-option u-mr-2">
             <input
               type="radio"
-              id={`${inputName}-${value}`}
+              id={`${inputName}-${option.value}`}
               name={inputName}
-              value={value}
-              checked={data[inputName] == value}
+              value={option.value}
+              checked={data[inputName] == option.value}
               onChange={e => setData(inputName, e.target.value)}
               className={errors[inputName] ? 'is-invalid' : ''}
             />
-            <label htmlFor={`${inputName}-${value}`}>{typeLabel}</label>
+            <label htmlFor={`${inputName}-${option.value}`}>{option.label}</label>
           </div>
         ))}
         {errors[inputName] && (<div className="invalid-feedback">{errors[inputName]}</div>)}

@@ -7,7 +7,7 @@ trait WithValueArray
     public static function toArray(): array
     {
         return collect(self::cases())
-            ->mapWithKeys(fn($case) => [$case->value => $case->getLabel()])
+            ->map(fn($case) => ['value' => $case->value, 'label' => $case->getLabel()])
             ->all();
     }
 }
