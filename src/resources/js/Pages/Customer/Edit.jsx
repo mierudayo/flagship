@@ -1,10 +1,14 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm, usePage } from '@inertiajs/react';
+import Select from 'react-select'
 import CancelButton from '../../Components/CancelButton';
 import OptionsList from '../../Components/OptionsList';
 import TableInputRow from '../../Components/TableInputRow';
-import TableGenericSelectRow from '../../Components/TableGenericSelectRow';
 import TableTextAreaRow from '../../Components/TableTextAreaRow';
+import TableRow from '../../Components/Table/TableRow';
+import TableHeaderCell from '../../Components/Table/TableHeaderCell';
+import TableDataCell from '../../Components/Table/TableDataCell';
+import FormLabel from '../../Components/Form/FormLabel';
 
 const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
   const { flash } = usePage().props;
@@ -70,7 +74,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
       )}
 
       <form id="customerEditForm" onSubmit={submit}>
-      <div className="table-wrapper is-scrollable">
+        <div className="table-wrapper is-scrollable">
           <table className="table">
             <tbody className="tbody">
               <TableInputRow type="text" labelName="取引先名" inputName="name" data={data} errors={errors} setData={setData} isRequired={true} widthClass="u-w-200" />
@@ -89,15 +93,23 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                 isRequired={false}
               />
 
-              <TableGenericSelectRow
-                label="担当ユーザー"
-                name="in_charge_user_id"
-                data={data}
-                setData={setData}
-                errors={errors}
-                options={userSelectOptions}
-                isRequired={false}
-              />
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel label="担当ユーザー" isRequired={false} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Select
+                    value={userSelectOptions.map(user => ({ ...user, value: user.id, label: user.name })).find(obj => obj.id === data.in_charge_user_id)}
+                    onChange={obj => setData('in_charge_user_id', obj?.id)}
+                    options={userSelectOptions.map(user => ({ ...user, value: user.id, label: user.name }))}
+                    isClearable={true}
+                    isSearchable={true}
+                    placeholder="担当ユーザーを選択..."
+                    noOptionsMessage={() => "該当する選択肢がありません"}
+                  />
+                  {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
+                </TableDataCell>
+              </TableRow>
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">

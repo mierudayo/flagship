@@ -1,8 +1,12 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from "@inertiajs/react";
+import Select from 'react-select'
 import CancelButton from '../../Components/CancelButton';
 import TableInputRow from '../../Components/TableInputRow';
-import TableGenericSelectRow from '../../Components/TableGenericSelectRow';
+import TableRow from '../../Components/Table/TableRow';
+import TableHeaderCell from '../../Components/Table/TableHeaderCell';
+import TableDataCell from '../../Components/Table/TableDataCell';
+import FormLabel from '../../Components/Form/FormLabel';
 
 const Edit = ({ user, permissionSelectOptions }) => {
   const { data, setData, patch, processing, errors, isDirty } = useForm({
@@ -15,6 +19,8 @@ const Edit = ({ user, permissionSelectOptions }) => {
     employment_date: user.employment_date || '',
     resignation_date: user.resignation_date || '',
   });
+
+  const permissionOptions = permissionSelectOptions.map(permission => ({ ...permission, value: permission.id, label: permission.display_name }));
 
   function submit(e) {
     e.preventDefault();
@@ -42,15 +48,23 @@ const Edit = ({ user, permissionSelectOptions }) => {
             <tbody className="tbody">
               <TableInputRow labelName="社員番号" inputName="employee_code" data={data} errors={errors} setData={setData} isRequired={true} widthClass="u-w-200" />
 
-              <TableGenericSelectRow
-                label="権限"
-                name="permission_id"
-                data={data}
-                setData={setData}
-                errors={errors}
-                options={permissionSelectOptions}
-                isRequired={true}
-              />
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel label="権限" isRequired={true} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Select
+                    value={permissionOptions.find(obj => obj.id === data.permission_id)}
+                    onChange={obj => setData('permission_id', obj?.id)}
+                    options={permissionOptions}
+                    isClearable={true}
+                    isSearchable={true}
+                    placeholder="権限を選択..."
+                    noOptionsMessage={() => "該当する選択肢がありません"}
+                  />
+                  {errors.permission_id && (<div className="invalid-feedback">{errors.permission_id}</div>)}
+                </TableDataCell>
+              </TableRow>
 
               <TableInputRow labelName="名前" inputName="name" data={data} errors={errors} setData={setData} isRequired={true} />
 
