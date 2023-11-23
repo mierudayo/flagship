@@ -3,11 +3,11 @@ import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from '@inertiajs/react';
 import CustomSelect from '../../Components/Form/CustomSelect';
 import CancelButton from '../../Components/CancelButton';
-import TableInputRow from '../../Components/TableInputRow';
 import TableRow from '../../Components/Table/TableRow';
 import TableHeaderCell from '../../Components/Table/TableHeaderCell';
 import TableDataCell from '../../Components/Table/TableDataCell';
 import FormLabel from '../../Components/Form/FormLabel';
+import Input from '../../Components/Form/Input';
 
 const Create = ({ permissionSelectOptions }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
@@ -52,7 +52,20 @@ const Create = ({ permissionSelectOptions }) => {
         <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
-              <TableInputRow labelName="社員番号" inputName="employee_code" data={data} errors={errors} setData={setData} isRequired={true} widthClass="u-w-200" />
+              <TableRow className="is-flexible">
+                <TableHeaderCell className="u-w-200">
+                  <FormLabel htmlFor="employee_code" label="社員番号" isRequired={true} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="employee_code"
+                    type="text"
+                    value={data.employee_code}
+                    onChange={e => setData('employee_code', e.target.value)}
+                  />
+                  {errors.employee_code && (<div className="invalid-feedback">{errors.employee_code}</div>)}
+                </TableDataCell>
+              </TableRow>
 
               <TableRow className="is-flexible">
                 <TableHeaderCell>
@@ -73,19 +86,110 @@ const Create = ({ permissionSelectOptions }) => {
                 </TableDataCell>
               </TableRow>
 
-              <TableInputRow labelName="名前" inputName="name" data={data} errors={errors} setData={setData} isRequired={true} />
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="name" label="名前" isRequired={true} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="name"
+                    type="name"
+                    value={data.name}
+                    onChange={e => setData('name', e.target.value)}
+                  />
+                  {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
+                </TableDataCell>
+              </TableRow>
 
-              <TableInputRow labelName="読み仮名" inputName="name_kana" data={data} errors={errors} setData={setData} />
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="name_kana" label="読み仮名" isRequired={false} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="name_kana"
+                    type="text"
+                    value={data.name_kana}
+                    onChange={e => setData('name_kana', e.target.value)}
+                  />
+                  {errors.name_kana && (<div className="invalid-feedback">{errors.name_kana}</div>)}
+                </TableDataCell>
+              </TableRow>
 
-              <TableInputRow type="email" labelName="E-mail" inputName="email" data={data} errors={errors} setData={setData} isRequired={true} />
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="email" label="E-mail" isRequired={true} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={data.email}
+                    onChange={e => setData('email', e.target.value)}
+                  />
+                  {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
+                </TableDataCell>
+              </TableRow>
 
-              <TableInputRow type="password" labelName="Password" inputName="password" data={data} errors={errors} setData={setData} isRequired={true} />
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="password" label="Password" isRequired={true} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="password"
+                    type="password"
+                    value={data.password}
+                    onChange={e => setData('password', e.target.value)}
+                  />
+                  {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
+                </TableDataCell>
+              </TableRow>
 
-              <TableInputRow type="password" labelName="Password確認" inputName="password_confirmation" data={data} errors={errors} setData={setData} isRequired={true} />
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="password_confirmation" label="Password確認" isRequired={true} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="password_confirmation"
+                    type="password"
+                    value={data.password_confirmation}
+                    onChange={e => setData('password_confirmation', e.target.value)}
+                  />
+                  {errors.password_confirmation && (<div className="invalid-feedback">{errors.password_confirmation}</div>)}
+                </TableDataCell>
+              </TableRow>
 
-              <TableInputRow labelName="携帯番号" inputName="mobile_number" data={data} errors={errors} setData={setData} />
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="mobile_number" label="携帯番号" isRequired={false} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="mobile_number"
+                    type="text"
+                    value={data.mobile_number}
+                    onChange={e => setData('mobile_number', e.target.value)}
+                  />
+                  {errors.mobile_number && (<div className="invalid-feedback">{errors.mobile_number}</div>)}
+                </TableDataCell>
+              </TableRow>
 
-              <TableInputRow type="date" labelName="入社日" inputName="employment_date" data={data} errors={errors} setData={setData} />
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="employment_date" label="入社日" isRequired={false} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="employment_date"
+                    type="date"
+                    value={data.employment_date}
+                    onChange={e => setData('employment_date', e.target.value)}
+                  />
+                  {errors.employment_date && (<div className="invalid-feedback">{errors.employment_date}</div>)}
+                </TableDataCell>
+              </TableRow>
             </tbody>
           </table>
         </div>

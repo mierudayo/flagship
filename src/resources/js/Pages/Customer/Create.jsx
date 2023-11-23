@@ -3,12 +3,12 @@ import { useForm } from '@inertiajs/react';
 import CustomSelect from '../../Components/Form/CustomSelect';
 import CancelButton from '../../Components/CancelButton';
 import OptionsList from '../../Components/OptionsList';
-import TableInputRow from '../../Components/TableInputRow';
-import TableTextAreaRow from '../../Components/TableTextAreaRow';
 import TableRow from '../../Components/Table/TableRow';
 import TableHeaderCell from '../../Components/Table/TableHeaderCell';
 import TableDataCell from '../../Components/Table/TableDataCell';
 import FormLabel from '../../Components/Form/FormLabel';
+import Input from '../../Components/Form/Input';
+import Textarea from '../../Components/Form/Textarea';
 
 const Create = ({ userSelectOptions, paymentTerms }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
@@ -59,28 +59,131 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
         <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
-              <TableInputRow type="text" labelName="取引先名" inputName="name" data={data} errors={errors} setData={setData} isRequired={true} widthClass="u-w-200" />
-              <TableInputRow type="text" labelName="読み仮名" inputName="name_kana" data={data} errors={errors} setData={setData} />
-              <TableInputRow type="text" labelName="ショートカット名" inputName="shortcut" data={data} errors={errors} setData={setData} />
-              <TableInputRow type="text" labelName="〒" inputName="postal_code" data={data} errors={errors} setData={setData} />
-              <TableInputRow type="text" labelName="住所" inputName="address" data={data} errors={errors} setData={setData} />
-              <TableInputRow type="text" labelName="TEL" inputName="tel" data={data} errors={errors} setData={setData} />
-              <TableInputRow type="text" labelName="FAX" inputName="fax" data={data} errors={errors} setData={setData} />
-              <TableTextAreaRow
-                labelName="備考"
-                inputName="note"
-                data={data}
-                errors={errors}
-                setData={setData}
-                isRequired={false}
-              />
+              <TableRow className="is-flexible">
+                <TableHeaderCell className="u-w-160">
+                  <FormLabel htmlFor="name" label="取引先名" isRequired={true} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="name"
+                    type="text"
+                    value={data.name}
+                    onChange={e => setData('name', e.target.value)}
+                  />
+                  {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
+                </TableDataCell>
+              </TableRow>
+
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="name_kana" label="読み仮名" isRequired={false} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="name_kana"
+                    type="text"
+                    value={data.name_kana}
+                    onChange={e => setData('name_kana', e.target.value)}
+                  />
+                  {errors.name_kana && (<div className="invalid-feedback">{errors.name_kana}</div>)}
+                </TableDataCell>
+              </TableRow>
+
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="shortcut" label="ショートカット名" isRequired={false} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="shortcut"
+                    type="text"
+                    value={data.shortcut}
+                    onChange={e => setData('shortcut', e.target.value)}
+                  />
+                  {errors.shortcut && (<div className="invalid-feedback">{errors.shortcut}</div>)}
+                </TableDataCell>
+              </TableRow>
+
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="postal_code" label="〒" isRequired={false} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="postal_code"
+                    type="text"
+                    value={data.postal_code}
+                    onChange={e => setData('postal_code', e.target.value)}
+                  />
+                  {errors.postal_code && (<div className="invalid-feedback">{errors.postal_code}</div>)}
+                </TableDataCell>
+              </TableRow>
+
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="address" label="住所" isRequired={false} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="address"
+                    type="text"
+                    value={data.address}
+                    onChange={e => setData('address', e.target.value)}
+                  />
+                  {errors.address && (<div className="invalid-feedback">{errors.address}</div>)}
+                </TableDataCell>
+              </TableRow>
+
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="tel" label="TEL" isRequired={false} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="tel"
+                    type="text"
+                    value={data.tel}
+                    onChange={e => setData('tel', e.target.value)}
+                  />
+                  {errors.tel && (<div className="invalid-feedback">{errors.tel}</div>)}
+                </TableDataCell>
+              </TableRow>
+
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="fax" label="FAX" isRequired={false} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Input
+                    id="fax"
+                    type="text"
+                    value={data.fax}
+                    onChange={e => setData('fax', e.target.value)}
+                  />
+                  {errors.fax && (<div className="invalid-feedback">{errors.fax}</div>)}
+                </TableDataCell>
+              </TableRow>
+
+              <TableRow className="is-flexible">
+                <TableHeaderCell>
+                  <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                </TableHeaderCell>
+                <TableDataCell>
+                  <Textarea
+                    id="note"
+                    value={data.note}
+                    onChange={e => setData('note', e.target.value)}
+                  />
+                  {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
+                </TableDataCell>
+              </TableRow>
 
               <TableRow className="is-flexible">
                 <TableHeaderCell>
                   <FormLabel label="担当ユーザー" isRequired={false} />
                 </TableHeaderCell>
                 <TableDataCell>
-                <CustomSelect
+                  <CustomSelect
                     onChange={value => setData('in_charge_user_id', value)}
                     options={userSelectOptions}
                     value={data.in_charge_user_id}
