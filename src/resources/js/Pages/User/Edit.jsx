@@ -43,7 +43,7 @@ const Edit = ({ user, permissionSelectOptions }) => {
         {processing && <span>Now Loading...</span>}
       </div>
       <form id="userCreateForm" onSubmit={submit}>
-        <div className="table-wrapper is-scrollable">
+        <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
               <TableInputRow labelName="社員番号" inputName="employee_code" data={data} errors={errors} setData={setData} isRequired={true} widthClass="u-w-200" />

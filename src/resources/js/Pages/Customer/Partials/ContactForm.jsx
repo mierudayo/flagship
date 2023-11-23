@@ -61,7 +61,7 @@ export default function ContactForm({ customer, closeModal, userSelectOptions })
   return (
     <>
       <form id="customerContactCreateForm" onSubmit={submit}>
-        <div className="table-wrapper is-scrollable">
+        <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
               <TableInputRow

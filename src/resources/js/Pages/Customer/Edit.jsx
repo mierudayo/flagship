@@ -74,7 +74,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
       )}
 
       <form id="customerEditForm" onSubmit={submit}>
-        <div className="table-wrapper is-scrollable">
+        <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
               <TableInputRow type="text" labelName="取引先名" inputName="name" data={data} errors={errors} setData={setData} isRequired={true} widthClass="u-w-200" />

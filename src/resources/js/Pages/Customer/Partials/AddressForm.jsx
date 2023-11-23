@@ -27,7 +27,7 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
   return (
     <>
       <form id="deliveryAddressCreateForm" onSubmit={submit}>
-        <div className="table-wrapper is-scrollable">
+        <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
               <TableRadioRow

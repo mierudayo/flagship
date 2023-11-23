@@ -92,7 +92,7 @@ const Edit = ({ contact, userSelectOptions, customerSelectOptions }) => {
       )}
 
       <form id="customerContactUpdateForm" onSubmit={submit}>
-        <div className="table-wrapper is-scrollable">
+        <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
 

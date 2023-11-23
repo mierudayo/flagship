@@ -47,7 +47,7 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
         {processing && <span>Now Loading...</span>}
       </div>
       <form id="inquiryCreateForm" onSubmit={submit}>
-        <div className="table-wrapper is-scrollable">
+        <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
               <TableInputRow type="date" labelName="問い合わせ日" inputName="inquiry_date" data={data} errors={errors} setData={setData} isRequired={true} widthClass="u-w-200" />
