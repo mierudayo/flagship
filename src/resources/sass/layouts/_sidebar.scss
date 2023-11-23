@@ -12,7 +12,7 @@
   position: fixed;
   top: 0;
   width: var(--width-sidebar-open);
-  z-index: 1000;
+  z-index: var(--z-index-sidebar);
 
   @include mobile-screen() {
     display: none;

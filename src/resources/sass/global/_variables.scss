@@ -27,4 +27,12 @@
   -------------------------*/
   --width-sidebar-open: 200px;
   --width-sidebar-collapse: 64px;
+
+  /* z-index
+  -------------------------*/
+  --z-index-table-cell: 100;
+  --z-index-table-header: 200;
+  --z-index-header: 900;
+  --z-index-sidebar: 900;
+  --z-index-modal: 1000;
 }
