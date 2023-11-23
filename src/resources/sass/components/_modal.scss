@@ -1,3 +1,5 @@
+@use '../global/mixins' as *;
+
 .modal {
   background-color: rgba(0, 0, 0, 0.5);
   height: 100vh;
@@ -15,6 +17,11 @@
   height: 90vh;
   margin: 40px auto;
   max-width: 800px;
+
+  @include mobile-screen() {
+    height: 100vh;
+    margin: 0;
+  }
 }
 
 /* Header
@@ -36,4 +43,16 @@
 -------------------------*/
 .modal-body {
   padding: 16px;
+
+  &.is-scrollable {
+    overflow-x: scroll;
+    overflow-y: scroll;
+    position: relative;
+    max-height: calc(90vh - 80px);
+
+    @include mobile-screen() {
+      max-height: 90vh;
+    }
+  }
+
 }

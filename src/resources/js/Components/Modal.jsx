@@ -8,7 +8,7 @@ export default function Modal({ children, title, closeModal }) {
             x
           </button>
         </header>
-        <div className="modal-body">
+        <div className="modal-body is-scrollable">
           {children}
         </div>
       </div>
