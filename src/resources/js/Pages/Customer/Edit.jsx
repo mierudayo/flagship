@@ -1,6 +1,6 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm, usePage } from '@inertiajs/react';
-import Select from 'react-select'
+import CustomSelect from '../../Components/Form/CustomSelect';
 import CancelButton from '../../Components/CancelButton';
 import OptionsList from '../../Components/OptionsList';
 import TableInputRow from '../../Components/TableInputRow';
@@ -98,14 +98,15 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                   <FormLabel label="担当ユーザー" isRequired={false} />
                 </TableHeaderCell>
                 <TableDataCell>
-                  <Select
-                    value={userSelectOptions.map(user => ({ ...user, value: user.id, label: user.name })).find(obj => obj.id === data.in_charge_user_id)}
-                    onChange={obj => setData('in_charge_user_id', obj?.id)}
-                    options={userSelectOptions.map(user => ({ ...user, value: user.id, label: user.name }))}
+                  <CustomSelect
+                    onChange={value => setData('in_charge_user_id', value)}
+                    options={userSelectOptions}
+                    value={data.in_charge_user_id}
+                    valueKey="id"
+                    labelKey="name"
                     isClearable={true}
                     isSearchable={true}
                     placeholder="担当ユーザーを選択..."
-                    noOptionsMessage={() => "該当する選択肢がありません"}
                   />
                   {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
                 </TableDataCell>

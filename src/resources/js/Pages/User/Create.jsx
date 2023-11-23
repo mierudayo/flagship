@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from '@inertiajs/react';
-import Select from 'react-select'
+import CustomSelect from '../../Components/Form/CustomSelect';
 import CancelButton from '../../Components/CancelButton';
 import TableInputRow from '../../Components/TableInputRow';
 import TableRow from '../../Components/Table/TableRow';
@@ -59,13 +59,15 @@ const Create = ({ permissionSelectOptions }) => {
                   <FormLabel label="権限" isRequired={true} />
                 </TableHeaderCell>
                 <TableDataCell>
-                  <Select
-                    onChange={obj => setData('permission_id', obj?.id)}
-                    options={permissionSelectOptions.map(permission => ({ ...permission, value: permission.id, label: permission.display_name }))}
+                  <CustomSelect
+                    onChange={value => setData('permission_id', value)}
+                    options={permissionSelectOptions}
+                    value={data.permission_id}
+                    valueKey="id"
+                    labelKey="display_name"
                     isClearable={true}
                     isSearchable={true}
                     placeholder="権限を選択..."
-                    noOptionsMessage={() => "該当する選択肢がありません"}
                   />
                   {errors.permission_id && (<div className="invalid-feedback">{errors.permission_id}</div>)}
                 </TableDataCell>
