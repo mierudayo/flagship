@@ -65,7 +65,7 @@ const Edit = ({ contact, userSelectOptions, customerSelectOptions }) => {
       <form id="customerContactUpdateForm" onSubmit={submit}>
         <div className="table-wrapper">
           <table className="table">
-          <tbody className="tbody">
+            <tbody className="tbody">
               <tr className="table-row is-flexible">
                 <th className="th-cell">
                   <FormLabel label="所属取引先" isRequired={true} />
@@ -201,18 +201,20 @@ const Edit = ({ contact, userSelectOptions, customerSelectOptions }) => {
                 <th className="th-cell">
                   <FormLabel htmlFor="is_active-true" label="使用状況" isRequired={true} />
                 </th>
-                <td className="u-flex">
-                  <RadioGroup
-                    id="is_active"
-                    options={[
-                      { value: true, label: '使用中' },
-                      { value: false, label: '使用不可' },
-                    ]}
-                    value={data.is_active}
-                    onChange={e => setData('is_active', e.target.value === 'true')}
-                    error={errors.is_active}
-                  />
-                  {errors.is_active && (<div className="invalid-feedback">{errors.is_active}</div>)}
+                <td className="td-cell">
+                  <div className="u-flex">
+                    <RadioGroup
+                      id="is_active"
+                      options={[
+                        { value: true, label: '使用中' },
+                        { value: false, label: '使用不可' },
+                      ]}
+                      value={data.is_active}
+                      onChange={e => setData('is_active', e.target.value === 'true')}
+                      error={errors.is_active}
+                    />
+                    {errors.is_active && (<div className="invalid-feedback">{errors.is_active}</div>)}
+                  </div>
                 </td>
               </tr>
 

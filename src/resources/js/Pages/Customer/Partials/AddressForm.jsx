@@ -35,15 +35,17 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                 <th className="th-cell">
                   <FormLabel htmlFor="address_type-1" label="区分" isRequired={true} />
                 </th>
-                <td className="u-flex">
-                  <RadioGroup
-                    id="address_type"
-                    options={deliveryAddressTypes}
-                    value={data.address_type}
-                    onChange={e => setData('address_type', parseInt(e.target.value))}
-                    error={errors.address_type}
-                  />
-                  {errors.address_type && (<div className="invalid-feedback">{errors.address_type}</div>)}
+                <td className="td-cell">
+                  <div className="u-flex">
+                    <RadioGroup
+                      id="address_type"
+                      options={deliveryAddressTypes}
+                      value={data.address_type}
+                      onChange={e => setData('address_type', parseInt(e.target.value))}
+                      error={errors.address_type}
+                    />
+                    {errors.address_type && (<div className="invalid-feedback">{errors.address_type}</div>)}
+                  </div>
                 </td>
               </tr>
 
