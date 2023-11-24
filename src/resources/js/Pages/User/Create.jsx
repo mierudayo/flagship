@@ -59,6 +59,7 @@ const Create = ({ permissionSelectOptions }) => {
                     type="text"
                     value={data.employee_code}
                     onChange={e => setData('employee_code', e.target.value)}
+                    error={errors.employee_code}
                   />
                   {errors.employee_code && (<div className="invalid-feedback">{errors.employee_code}</div>)}
                 </td>
@@ -90,9 +91,10 @@ const Create = ({ permissionSelectOptions }) => {
                 <td className="td-cell">
                   <Input
                     id="name"
-                    type="name"
+                    type="text"
                     value={data.name}
                     onChange={e => setData('name', e.target.value)}
+                    error={errors.name}
                   />
                   {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
                 </td>
@@ -108,6 +110,7 @@ const Create = ({ permissionSelectOptions }) => {
                     type="text"
                     value={data.name_kana}
                     onChange={e => setData('name_kana', e.target.value)}
+                    error={errors.name_kana}
                   />
                   {errors.name_kana && (<div className="invalid-feedback">{errors.name_kana}</div>)}
                 </td>
@@ -123,6 +126,7 @@ const Create = ({ permissionSelectOptions }) => {
                     type="email"
                     value={data.email}
                     onChange={e => setData('email', e.target.value)}
+                    error={errors.email}
                   />
                   {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
                 </td>
@@ -138,6 +142,7 @@ const Create = ({ permissionSelectOptions }) => {
                     type="password"
                     value={data.password}
                     onChange={e => setData('password', e.target.value)}
+                    error={errors.password}
                   />
                   {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
                 </td>
@@ -168,6 +173,7 @@ const Create = ({ permissionSelectOptions }) => {
                     type="text"
                     value={data.mobile_number}
                     onChange={e => setData('mobile_number', e.target.value)}
+                    error={errors.mobile_number}
                   />
                   {errors.mobile_number && (<div className="invalid-feedback">{errors.mobile_number}</div>)}
                 </td>
@@ -183,6 +189,7 @@ const Create = ({ permissionSelectOptions }) => {
                     type="date"
                     value={data.employment_date}
                     onChange={e => setData('employment_date', e.target.value)}
+                    error={errors.employment_date}
                   />
                   {errors.employment_date && (<div className="invalid-feedback">{errors.employment_date}</div>)}
                 </td>

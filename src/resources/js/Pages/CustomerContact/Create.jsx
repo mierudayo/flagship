@@ -109,6 +109,7 @@ const Create = ({ userSelectOptions }) => {
                     type="text"
                     value={data.name}
                     onChange={e => setData('name', e.target.value)}
+                    error={errors.name}
                   />
                   {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
                 </td>
@@ -124,6 +125,7 @@ const Create = ({ userSelectOptions }) => {
                     type="text"
                     value={data.name_kana}
                     onChange={e => setData('name_kana', e.target.value)}
+                    error={errors.name_kana}
                   />
                   {errors.name_kana && (<div className="invalid-feedback">{errors.name_kana}</div>)}
                 </td>
@@ -139,6 +141,7 @@ const Create = ({ userSelectOptions }) => {
                     type="text"
                     value={data.tel}
                     onChange={e => setData('tel', e.target.value)}
+                    error={errors.tel}
                   />
                   {errors.tel && (<div className="invalid-feedback">{errors.tel}</div>)}
                 </td>
@@ -154,6 +157,7 @@ const Create = ({ userSelectOptions }) => {
                     type="text"
                     value={data.mobile_number}
                     onChange={e => setData('mobile_number', e.target.value)}
+                    error={errors.mobile_number}
                   />
                   {errors.mobile_number && (<div className="invalid-feedback">{errors.mobile_number}</div>)}
                 </td>
@@ -169,6 +173,7 @@ const Create = ({ userSelectOptions }) => {
                     type="text"
                     value={data.email}
                     onChange={e => setData('email', e.target.value)}
+                    error={errors.email}
                   />
                   {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
                 </td>
@@ -184,6 +189,7 @@ const Create = ({ userSelectOptions }) => {
                     type="text"
                     value={data.position}
                     onChange={e => setData('position', e.target.value)}
+                    error={errors.position}
                   />
                   {errors.position && (<div className="invalid-feedback">{errors.position}</div>)}
                 </td>
@@ -199,6 +205,7 @@ const Create = ({ userSelectOptions }) => {
                     type="text"
                     value={data.role}
                     onChange={e => setData('role', e.target.value)}
+                    error={errors.role}
                   />
                   {errors.role && (<div className="invalid-feedback">{errors.role}</div>)}
                 </td>
@@ -232,6 +239,7 @@ const Create = ({ userSelectOptions }) => {
                     id="note"
                     value={data.note}
                     onChange={e => setData('note', e.target.value)}
+                    error={errors.note}
                   />
                   {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
                 </td>

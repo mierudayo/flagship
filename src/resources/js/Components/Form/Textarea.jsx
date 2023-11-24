@@ -1,4 +1,4 @@
-export default function Textarea({ id, name, value, onChange, error }) {
+export default function Textarea({ id, name, value, onChange, error, placeholder, readOnly }) {
   return (
     <textarea
       id={id}
@@ -6,6 +6,8 @@ export default function Textarea({ id, name, value, onChange, error }) {
       value={value}
       className={`textarea-field ${error ? 'is-invalid' : ''}`}
       onChange={onChange}
+      placeholder={placeholder}
+      readOnly={readOnly}
     />
   );
 }

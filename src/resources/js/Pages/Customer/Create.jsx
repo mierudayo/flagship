@@ -66,6 +66,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
                     type="text"
                     value={data.name}
                     onChange={e => setData('name', e.target.value)}
+                    error={errors.name}
                   />
                   {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
                 </td>
@@ -81,6 +82,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
                     type="text"
                     value={data.name_kana}
                     onChange={e => setData('name_kana', e.target.value)}
+                    error={errors.name_kana}
                   />
                   {errors.name_kana && (<div className="invalid-feedback">{errors.name_kana}</div>)}
                 </td>
@@ -96,6 +98,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
                     type="text"
                     value={data.shortcut}
                     onChange={e => setData('shortcut', e.target.value)}
+                    error={errors.shortcut}
                   />
                   {errors.shortcut && (<div className="invalid-feedback">{errors.shortcut}</div>)}
                 </td>
@@ -111,6 +114,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
                     type="text"
                     value={data.postal_code}
                     onChange={e => setData('postal_code', e.target.value)}
+                    error={errors.postal_code}
                   />
                   {errors.postal_code && (<div className="invalid-feedback">{errors.postal_code}</div>)}
                 </td>
@@ -126,6 +130,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
                     type="text"
                     value={data.address}
                     onChange={e => setData('address', e.target.value)}
+                    error={errors.address}
                   />
                   {errors.address && (<div className="invalid-feedback">{errors.address}</div>)}
                 </td>
@@ -141,6 +146,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
                     type="text"
                     value={data.tel}
                     onChange={e => setData('tel', e.target.value)}
+                    error={errors.tel}
                   />
                   {errors.tel && (<div className="invalid-feedback">{errors.tel}</div>)}
                 </td>
@@ -156,6 +162,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
                     type="text"
                     value={data.fax}
                     onChange={e => setData('fax', e.target.value)}
+                    error={errors.fax}
                   />
                   {errors.fax && (<div className="invalid-feedback">{errors.fax}</div>)}
                 </td>
@@ -170,6 +177,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
                     id="note"
                     value={data.note}
                     onChange={e => setData('note', e.target.value)}
+                    error={errors.note}
                   />
                   {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
                 </td>

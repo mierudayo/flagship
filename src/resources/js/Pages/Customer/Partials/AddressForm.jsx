@@ -55,8 +55,9 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                   <Input
                     id="post_code"
                     type="text"
-                    value={data.mobile_number}
+                    value={data.post_code}
                     onChange={e => setData('post_code', e.target.value)}
+                    error={errors.post_code}
                   />
                   {errors.post_code && (<div className="invalid-feedback">{errors.post_code}</div>)}
                 </td>
@@ -70,8 +71,9 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                   <Input
                     id="address"
                     type="text"
-                    value={data.mobile_number}
+                    value={data.address}
                     onChange={e => setData('address', e.target.value)}
+                    error={errors.address}
                   />
                   {errors.address && (<div className="invalid-feedback">{errors.address}</div>)}
                 </td>
@@ -85,8 +87,9 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                   <Input
                     id="company_name"
                     type="text"
-                    value={data.mobile_number}
+                    value={data.company_name}
                     onChange={e => setData('company_name', e.target.value)}
+                    error={errors.company_name}
                   />
                   {errors.company_name && (<div className="invalid-feedback">{errors.company_name}</div>)}
                 </td>
@@ -100,8 +103,9 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                   <Input
                     id="contact_name"
                     type="text"
-                    value={data.mobile_number}
+                    value={data.contact_name}
                     onChange={e => setData('contact_name', e.target.value)}
+                    error={errors.contact_name}
                   />
                   {errors.contact_name && (<div className="invalid-feedback">{errors.contact_name}</div>)}
                 </td>
@@ -115,8 +119,9 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                   <Input
                     id="tel"
                     type="text"
-                    value={data.mobile_number}
+                    value={data.tel}
                     onChange={e => setData('tel', e.target.value)}
+                    error={errors.tel}
                   />
                   {errors.tel && (<div className="invalid-feedback">{errors.tel}</div>)}
                 </td>
@@ -131,6 +136,7 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                     id="note"
                     value={data.note}
                     onChange={e => setData('note', e.target.value)}
+                    error={errors.note}
                   />
                   {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
                 </td>

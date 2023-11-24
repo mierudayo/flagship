@@ -69,6 +69,7 @@ const Edit = ({ inquiry, customerContactOption, productOption, inquiryTypeOption
                     type="date"
                     value={data.inquiry_date}
                     onChange={e => setData('inquiry_date', e.target.value)}
+                    error={errors.inquiry_date}
                   />
                   {errors.inquiry_date && (<div className="invalid-feedback">{errors.inquiry_date}</div>)}
                 </td>
@@ -103,6 +104,7 @@ const Edit = ({ inquiry, customerContactOption, productOption, inquiryTypeOption
                     type="text"
                     value={data.subject}
                     onChange={e => setData('subject', e.target.value)}
+                    error={errors.subject}
                   />
                   {errors.subject && (<div className="invalid-feedback">{errors.subject}</div>)}
                 </td>
@@ -117,6 +119,7 @@ const Edit = ({ inquiry, customerContactOption, productOption, inquiryTypeOption
                     id="message"
                     value={data.message}
                     onChange={e => setData('message', e.target.value)}
+                    error={errors.message}
                   />
                   {errors.message && (<div className="invalid-feedback">{errors.message}</div>)}
                 </td>
@@ -131,6 +134,7 @@ const Edit = ({ inquiry, customerContactOption, productOption, inquiryTypeOption
                     id="answer"
                     value={data.answer}
                     onChange={e => setData('answer', e.target.value)}
+                    error={errors.answer}
                   />
                   {errors.answer && (<div className="invalid-feedback">{errors.answer}</div>)}
                 </td>
@@ -165,6 +169,7 @@ const Edit = ({ inquiry, customerContactOption, productOption, inquiryTypeOption
                     type="number"
                     value={data.project_scale}
                     onChange={e => setData('project_scale', e.target.value)}
+                    error={errors.project_scale}
                   />
                   {errors.project_scale && (<div className="invalid-feedback">{errors.project_scale}</div>)}
                 </td>
@@ -198,6 +203,7 @@ const Edit = ({ inquiry, customerContactOption, productOption, inquiryTypeOption
                     id="feedback"
                     value={data.feedback}
                     onChange={e => setData('feedback', e.target.value)}
+                    error={errors.feedback}
                   />
                   {errors.feedback && (<div className="invalid-feedback">{errors.feedback}</div>)}
                 </td>
@@ -270,6 +276,7 @@ const Edit = ({ inquiry, customerContactOption, productOption, inquiryTypeOption
                     type="text"
                     value={data.product_detail}
                     onChange={e => setData('product_detail', e.target.value)}
+                    error={errors.product_detail}
                   />
                   {errors.product_detail && (<div className="invalid-feedback">{errors.product_detail}</div>)}
                 </td>
@@ -284,6 +291,7 @@ const Edit = ({ inquiry, customerContactOption, productOption, inquiryTypeOption
                     id="note"
                     value={data.note}
                     onChange={e => setData('note', e.target.value)}
+                    error={errors.note}
                   />
                   {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
                 </td>
