@@ -1,11 +1,11 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm, usePage } from "@inertiajs/react";
-import CancelButton from '../../Components/CancelButton';
-import FormLabel from '../../Components/Form/FormLabel';
-import RadioGroup from '../../Components/Form/RadioGroup';
-import Input from '../../Components/Form/Input';
-import Textarea from '../../Components/Form/Textarea';
-import CustomSelect from '../../Components/Form/CustomSelect';
+import CancelButton from '@/Components/CancelButton';
+import FormLabel from '@/Components/Form/FormLabel';
+import RadioGroup from '@/Components/Form/RadioGroup';
+import Input from '@/Components/Form/Input';
+import Textarea from '@/Components/Form/Textarea';
+import CustomSelect from '@/Components/Form/CustomSelect';
 
 const Edit = ({ contact, userSelectOptions, customerSelectOptions }) => {
   const { flash } = usePage().props;

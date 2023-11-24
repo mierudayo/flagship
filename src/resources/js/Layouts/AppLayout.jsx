@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { router, usePage } from '@inertiajs/react'
-import Sidebar from './Partials/Sidebar';
-import NavList from './Partials/NavList';
+
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import CloseIcon from '@mui/icons-material/Close';
+
+import NavList from './Partials/NavList';
+import Sidebar from './Partials/Sidebar';
 
 export default function AppLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

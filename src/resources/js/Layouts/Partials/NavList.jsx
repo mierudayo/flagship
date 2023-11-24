@@ -1,4 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
+
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
 import PeopleIcon from '@mui/icons-material/People';
 import ContactsIcon from '@mui/icons-material/Contacts';

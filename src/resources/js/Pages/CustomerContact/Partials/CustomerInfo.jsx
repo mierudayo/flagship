@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useForm } from '@inertiajs/react';
-import Input from '../../../Components/Form/Input';
+import Input from '@/Components/Form/Input';
 
 export default function CustomerInfo({ handleClickSelect }) {
   const { data, setData, errors } = useForm({

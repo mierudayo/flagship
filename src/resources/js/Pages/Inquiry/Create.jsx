@@ -1,10 +1,10 @@
-import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from '@inertiajs/react';
-import CancelButton from '../../Components/CancelButton';
-import FormLabel from '../../Components/Form/FormLabel';
-import Input from '../../Components/Form/Input';
-import Textarea from '../../Components/Form/Textarea';
-import CustomSelect from '../../Components/Form/CustomSelect';
+import AppLayout from '@/Layouts/AppLayout';
+import CancelButton from '@/Components/CancelButton';
+import CustomSelect from '@/Components/Form/CustomSelect';
+import FormLabel from '@/Components/Form/FormLabel';
+import Input from '@/Components/Form/Input';
+import Textarea from '@/Components/Form/Textarea';
 
 const Create = ({ customerContactOption, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({

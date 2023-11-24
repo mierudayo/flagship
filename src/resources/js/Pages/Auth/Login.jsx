@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
 import { useForm } from '@inertiajs/react';
+import GuestLayout from '@/Layouts/GuestLayout';
 
 export default function Login({ status }) {
   const { data, setData, post, processing, errors, reset } = useForm({

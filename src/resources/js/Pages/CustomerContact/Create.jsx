@@ -2,13 +2,13 @@ import { useState } from 'react';
 import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from '@inertiajs/react';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
-import CancelButton from '../../Components/CancelButton';
-import FormLabel from '../../Components/Form/FormLabel';
-import RadioGroup from '../../Components/Form/RadioGroup';
-import Input from '../../Components/Form/Input';
-import Textarea from '../../Components/Form/Textarea';
-import CustomSelect from '../../Components/Form/CustomSelect';
-import Modal from '../../Components/Modal';
+import CancelButton from '@/Components/CancelButton';
+import FormLabel from '@/Components/Form/FormLabel';
+import RadioGroup from '@/Components/Form/RadioGroup';
+import Input from '@/Components/Form/Input';
+import Textarea from '@/Components/Form/Textarea';
+import CustomSelect from '@/Components/Form/CustomSelect';
+import Modal from '@/Components/Modal';
 import CustomerInfo from './Partials/CustomerInfo';
 
 const Create = ({ userSelectOptions }) => {

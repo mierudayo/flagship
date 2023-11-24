@@ -1,6 +1,6 @@
-import Pagination from '@/Components/Pagination';
-import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm } from '@inertiajs/react';
+import AppLayout from '@/Layouts/AppLayout';
+import Pagination from '@/Components/Pagination';
 import ProductTable from './Partials/ProductTable';
 
 const Index = ({ productsPaginator }) => {

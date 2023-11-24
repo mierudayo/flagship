@@ -1,5 +1,5 @@
-import AppLayout from '@/Layouts/AppLayout';
 import { Link, usePage } from '@inertiajs/react';
+import AppLayout from '@/Layouts/AppLayout';
 import CategoryCreateForm from './Partials/CategoryCreateForm';
 import CategoryGroupCreateForm from './Partials/CategoryGroupCreateForm';
 import ProductCreateForm from './Partials/ProductCreateForm';

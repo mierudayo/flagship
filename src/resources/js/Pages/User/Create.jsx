@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from '@inertiajs/react';
-import CustomSelect from '../../Components/Form/CustomSelect';
-import CancelButton from '../../Components/CancelButton';
-import FormLabel from '../../Components/Form/FormLabel';
-import Input from '../../Components/Form/Input';
+import AppLayout from '@/Layouts/AppLayout';
+import CancelButton from '@/Components/CancelButton';
+import CustomSelect from '@/Components/Form/CustomSelect';
+import FormLabel from '@/Components/Form/FormLabel';
+import Input from '@/Components/Form/Input';
 
 const Create = ({ permissionSelectOptions }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({

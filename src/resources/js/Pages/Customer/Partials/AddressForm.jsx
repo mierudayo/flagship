@@ -1,8 +1,8 @@
-import { useForm } from "@inertiajs/react";
-import RadioGroup from '../../../Components/Form/RadioGroup';
-import FormLabel from '../../../Components/Form/FormLabel';
-import Input from '../../../Components/Form/Input';
-import Textarea from '../../../Components/Form/Textarea';
+import { useForm } from '@inertiajs/react';
+import FormLabel from '@/Components/Form/FormLabel';
+import Input from '@/Components/Form/Input';
+import RadioGroup from '@/Components/Form/RadioGroup';
+import Textarea from '@/Components/Form/Textarea';
 
 export default function AddressForm({ customer, deliveryAddressTypes, closeModal }) {
   const { data, setData, post, processing, errors, reset } = useForm({

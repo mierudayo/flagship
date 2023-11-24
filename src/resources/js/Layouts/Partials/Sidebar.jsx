@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { usePage } from '@inertiajs/react';
-import NavList from './NavList';
-import Dropdown from './Dropdown';
+
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+
+import Dropdown from './Dropdown';
+import NavList from './NavList';
 
 export default function Sidebar({ isOpen, onToggle }) {
   const { auth, appName } = usePage().props

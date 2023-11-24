@@ -1,5 +1,5 @@
-import AppLayout from '@/Layouts/AppLayout';
 import { Link, useForm, usePage } from '@inertiajs/react';
+import AppLayout from '@/Layouts/AppLayout';
 import Pagination from '@/Components/Pagination';
 import InquiryTable from './Partials/InquiryTable';
 

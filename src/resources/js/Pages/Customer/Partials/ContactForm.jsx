@@ -1,9 +1,9 @@
 import { useForm } from '@inertiajs/react';
-import RadioGroup from '../../../Components/Form/RadioGroup';
-import FormLabel from '../../../Components/Form/FormLabel';
-import Input from '../../../Components/Form/Input';
-import Textarea from '../../../Components/Form/Textarea';
-import CustomSelect from '../../../Components/Form/CustomSelect';
+import CustomSelect from '@/Components/Form/CustomSelect';
+import FormLabel from '@/Components/Form/FormLabel';
+import Input from '@/Components/Form/Input';
+import RadioGroup from '@/Components/Form/RadioGroup';
+import Textarea from '@/Components/Form/Textarea';
 
 export default function ContactForm({ customer, closeModal, userSelectOptions }) {
   const { data, setData, post, processing, errors, reset } = useForm({

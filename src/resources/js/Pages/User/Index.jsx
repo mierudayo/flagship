@@ -1,7 +1,7 @@
-import AppLayout from '@/Layouts/AppLayout';
-import UserTable from './Partials/UserTable';
 import { Link, useForm, usePage } from '@inertiajs/react';
+import AppLayout from '@/Layouts/AppLayout';
 import Pagination from '@/Components/Pagination';
+import UserTable from './Partials/UserTable';
 
 const Index = ({ usersPaginator, canAdmin }) => {
   const params = route().params;

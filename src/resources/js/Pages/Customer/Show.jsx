@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import AppLayout from '@/Layouts/AppLayout';
 import { Link, usePage } from '@inertiajs/react';
-import Modal from '../../Components/Modal';
+import AppLayout from '@/Layouts/AppLayout';
+import Modal from '@/Components/Modal';
 import ContactForm from './Partials/ContactForm';
 import AddressForm from './Partials/AddressForm';
 

@@ -1,9 +1,9 @@
+import { useForm } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
-import { useForm } from "@inertiajs/react";
-import CustomSelect from '../../Components/Form/CustomSelect';
-import CancelButton from '../../Components/CancelButton';
-import FormLabel from '../../Components/Form/FormLabel';
-import Input from '../../Components/Form/Input';
+import CancelButton from '@/Components/CancelButton';
+import CustomSelect from '@/Components/Form/CustomSelect';
+import FormLabel from '@/Components/Form/FormLabel';
+import Input from '@/Components/Form/Input';
 
 const Edit = ({ user, permissionSelectOptions }) => {
   const { data, setData, patch, processing, errors, isDirty } = useForm({
