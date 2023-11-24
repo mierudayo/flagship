@@ -3,9 +3,6 @@ import { Link, useForm, usePage } from '@inertiajs/react';
 import CustomSelect from '../../Components/Form/CustomSelect';
 import CancelButton from '../../Components/CancelButton';
 import OptionsList from '../../Components/OptionsList';
-import TableRow from '../../Components/Table/TableRow';
-import TableHeaderCell from '../../Components/Table/TableHeaderCell';
-import TableDataCell from '../../Components/Table/TableDataCell';
 import FormLabel from '../../Components/Form/FormLabel';
 import Input from '../../Components/Form/Input';
 import Textarea from '../../Components/Form/Textarea';
@@ -77,11 +74,11 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
         <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
-              <TableRow className="is-flexible">
-                <TableHeaderCell className="u-w-160">
+              <tr className="table-row is-flexible">
+                <th className="th-cell u-w-160">
                   <FormLabel htmlFor="name" label="取引先名" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="name"
                     type="text"
@@ -89,14 +86,14 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                     onChange={e => setData('name', e.target.value)}
                   />
                   {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="name_kana" label="読み仮名" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="name_kana"
                     type="text"
@@ -104,14 +101,14 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                     onChange={e => setData('name_kana', e.target.value)}
                   />
                   {errors.name_kana && (<div className="invalid-feedback">{errors.name_kana}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="shortcut" label="ショートカット名" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="shortcut"
                     type="text"
@@ -119,14 +116,14 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                     onChange={e => setData('shortcut', e.target.value)}
                   />
                   {errors.shortcut && (<div className="invalid-feedback">{errors.shortcut}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="postal_code" label="〒" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="postal_code"
                     type="text"
@@ -134,14 +131,14 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                     onChange={e => setData('postal_code', e.target.value)}
                   />
                   {errors.postal_code && (<div className="invalid-feedback">{errors.postal_code}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="address" label="住所" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="address"
                     type="text"
@@ -149,14 +146,14 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                     onChange={e => setData('address', e.target.value)}
                   />
                   {errors.address && (<div className="invalid-feedback">{errors.address}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="tel" label="TEL" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="tel"
                     type="text"
@@ -164,14 +161,14 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                     onChange={e => setData('tel', e.target.value)}
                   />
                   {errors.tel && (<div className="invalid-feedback">{errors.tel}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="fax" label="FAX" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="fax"
                     type="text"
@@ -179,28 +176,28 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                     onChange={e => setData('fax', e.target.value)}
                   />
                   {errors.fax && (<div className="invalid-feedback">{errors.fax}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="note" label="備考" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Textarea
                     id="note"
                     value={data.note}
                     onChange={e => setData('note', e.target.value)}
                   />
                   {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel label="担当ユーザー" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('in_charge_user_id', value)}
                     options={userSelectOptions}
@@ -212,8 +209,8 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                     placeholder="担当ユーザーを選択..."
                   />
                   {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">

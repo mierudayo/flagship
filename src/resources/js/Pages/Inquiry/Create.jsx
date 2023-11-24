@@ -1,9 +1,6 @@
 import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from '@inertiajs/react';
 import CancelButton from '../../Components/CancelButton';
-import TableRow from '../../Components/Table/TableRow';
-import TableHeaderCell from '../../Components/Table/TableHeaderCell';
-import TableDataCell from '../../Components/Table/TableDataCell';
 import FormLabel from '../../Components/Form/FormLabel';
 import Input from '../../Components/Form/Input';
 import Textarea from '../../Components/Form/Textarea';
@@ -53,11 +50,11 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
         <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
-              <TableRow className="is-flexible">
-                <TableHeaderCell className="u-w-160">
+              <tr className="table-row is-flexible">
+                <th className="th-cell u-w-160">
                   <FormLabel htmlFor="inquiry_date" label="問い合わせ日" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="inquiry_date"
                     type="date"
@@ -65,14 +62,14 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     onChange={e => setData('inquiry_date', e.target.value)}
                   />
                   {errors.inquiry_date && (<div className="invalid-feedback">{errors.inquiry_date}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel label="顧客" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('customer_contact_id', value)}
                     options={customerContactOption}
@@ -84,14 +81,14 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     placeholder="顧客を選択..."
                   />
                   {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="subject" label="件名" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="subject"
                     type="text"
@@ -99,42 +96,42 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     onChange={e => setData('subject', e.target.value)}
                   />
                   {errors.subject && (<div className="invalid-feedback">{errors.subject}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="message" label="問い合わせ内容" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Textarea
                     id="message"
                     value={data.message}
                     onChange={e => setData('message', e.target.value)}
                   />
                   {errors.message && (<div className="invalid-feedback">{errors.message}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="answer" label="回答内容" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Textarea
                     id="answer"
                     value={data.answer}
                     onChange={e => setData('answer', e.target.value)}
                   />
                   {errors.answer && (<div className="invalid-feedback">{errors.answer}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel label="リード獲得元" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('lead_source', value)}
                     options={inquiryLeadSource}
@@ -146,14 +143,14 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     placeholder="リード獲得元を選択..."
                   />
                   {errors.lead_source && (<div className="invalid-feedback">{errors.lead_source}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="project_scale" label="案件規模" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="project_scale"
                     type="number"
@@ -161,14 +158,14 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     onChange={e => setData('project_scale', e.target.value)}
                   />
                   {errors.project_scale && (<div className="invalid-feedback">{errors.project_scale}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel label="ステータス" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('status', value)}
                     options={inquiryStatus}
@@ -180,28 +177,28 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     placeholder="ステータスを選択..."
                   />
                   {errors.status && (<div className="invalid-feedback">{errors.status}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="feedback" label="フィードバック" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Textarea
                     id="feedback"
                     value={data.feedback}
                     onChange={e => setData('feedback', e.target.value)}
                   />
                   {errors.feedback && (<div className="invalid-feedback">{errors.feedback}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel label="担当ユーザー" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('in_charge_user_id', value)}
                     options={inChargeUserOption}
@@ -213,14 +210,14 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     placeholder="担当ユーザーを選択..."
                   />
                   {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel label="問い合わせ区分" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('inquiry_type_id', value)}
                     options={inquiryTypeOption}
@@ -232,14 +229,14 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     placeholder="問い合わせ区分を選択..."
                   />
                   {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel label="対象商品" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('product_id', value)}
                     options={productOption}
@@ -251,14 +248,14 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     placeholder="対象商品を選択..."
                   />
                   {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="product_detail" label="商品詳細" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="product_detail"
                     type="text"
@@ -266,22 +263,22 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     onChange={e => setData('product_detail', e.target.value)}
                   />
                   {errors.product_detail && (<div className="invalid-feedback">{errors.product_detail}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="note" label="備考" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Textarea
                     id="note"
                     value={data.note}
                     onChange={e => setData('note', e.target.value)}
                   />
                   {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

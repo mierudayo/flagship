@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useForm } from '@inertiajs/react';
 import Input from '../../../Components/Form/Input';
-import TableRow from '../../../Components/Table/TableRow';
-import TableHeaderCell from '../../../Components/Table/TableHeaderCell';
-import TableDataCell from '../../../Components/Table/TableDataCell';;
 
 export default function CustomerInfo({ handleClickSelect }) {
   const { data, setData, errors } = useForm({
@@ -50,28 +47,28 @@ export default function CustomerInfo({ handleClickSelect }) {
       <div className="table-wrapper is-scrollable u-mt-4">
         <table className="table">
           <thead className="table-header">
-            <TableRow>
-              <TableHeaderCell className="u-w-80"></TableHeaderCell>
-              <TableHeaderCell className="u-w-64">ID</TableHeaderCell>
-              <TableHeaderCell>取引先名</TableHeaderCell>
-              <TableHeaderCell>住所</TableHeaderCell>
-            </TableRow>
+            <tr className="table-row">
+              <th className="th-cell u-w-80"></th>
+              <th className="th-cell u-w-64">ID</th>
+              <th className="th-cell">取引先名</th>
+              <th className="th-cell">住所</th>
+            </tr>
           </thead>
           <tbody className="table-body">
             {customers.map(customer => (
-              <TableRow key={customer.id} className="is-hoverable">
-                <TableDataCell>
+              <tr key={customer.id} className="table-row is-hoverable">
+                <td className="td-cell">
                   <button
                     className="btn btn-secondary"
                     onClick={() => handleClickSelect(customer)}
                   >
                     選択
                   </button>
-                </TableDataCell>
-                <TableDataCell>{customer.id}</TableDataCell>
-                <TableDataCell>{customer.name}</TableDataCell>
-                <TableDataCell>{customer.address}</TableDataCell>
-              </TableRow>
+                </td>
+                <td className="td-cell">{customer.id}</td>
+                <td className="td-cell">{customer.name}</td>
+                <td className="td-cell">{customer.address}</td>
+              </tr>
             ))}
           </tbody>
         </table>

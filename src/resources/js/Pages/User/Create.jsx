@@ -3,9 +3,6 @@ import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from '@inertiajs/react';
 import CustomSelect from '../../Components/Form/CustomSelect';
 import CancelButton from '../../Components/CancelButton';
-import TableRow from '../../Components/Table/TableRow';
-import TableHeaderCell from '../../Components/Table/TableHeaderCell';
-import TableDataCell from '../../Components/Table/TableDataCell';
 import FormLabel from '../../Components/Form/FormLabel';
 import Input from '../../Components/Form/Input';
 
@@ -52,11 +49,11 @@ const Create = ({ permissionSelectOptions }) => {
         <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
-              <TableRow className="is-flexible">
-                <TableHeaderCell className="u-w-200">
+              <tr className="table-row is-flexible">
+                <th className="th-cell u-w-200">
                   <FormLabel htmlFor="employee_code" label="社員番号" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="employee_code"
                     type="text"
@@ -64,14 +61,14 @@ const Create = ({ permissionSelectOptions }) => {
                     onChange={e => setData('employee_code', e.target.value)}
                   />
                   {errors.employee_code && (<div className="invalid-feedback">{errors.employee_code}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel label="権限" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('permission_id', value)}
                     options={permissionSelectOptions}
@@ -83,14 +80,14 @@ const Create = ({ permissionSelectOptions }) => {
                     placeholder="権限を選択..."
                   />
                   {errors.permission_id && (<div className="invalid-feedback">{errors.permission_id}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="name" label="名前" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="name"
                     type="name"
@@ -98,14 +95,14 @@ const Create = ({ permissionSelectOptions }) => {
                     onChange={e => setData('name', e.target.value)}
                   />
                   {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="name_kana" label="読み仮名" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="name_kana"
                     type="text"
@@ -113,14 +110,14 @@ const Create = ({ permissionSelectOptions }) => {
                     onChange={e => setData('name_kana', e.target.value)}
                   />
                   {errors.name_kana && (<div className="invalid-feedback">{errors.name_kana}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="email" label="E-mail" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="email"
                     type="email"
@@ -128,14 +125,14 @@ const Create = ({ permissionSelectOptions }) => {
                     onChange={e => setData('email', e.target.value)}
                   />
                   {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="password" label="Password" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="password"
                     type="password"
@@ -143,14 +140,14 @@ const Create = ({ permissionSelectOptions }) => {
                     onChange={e => setData('password', e.target.value)}
                   />
                   {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="password_confirmation" label="Password確認" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="password_confirmation"
                     type="password"
@@ -158,14 +155,14 @@ const Create = ({ permissionSelectOptions }) => {
                     onChange={e => setData('password_confirmation', e.target.value)}
                   />
                   {errors.password_confirmation && (<div className="invalid-feedback">{errors.password_confirmation}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="mobile_number" label="携帯番号" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="mobile_number"
                     type="text"
@@ -173,14 +170,14 @@ const Create = ({ permissionSelectOptions }) => {
                     onChange={e => setData('mobile_number', e.target.value)}
                   />
                   {errors.mobile_number && (<div className="invalid-feedback">{errors.mobile_number}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="employment_date" label="入社日" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="employment_date"
                     type="date"
@@ -188,8 +185,8 @@ const Create = ({ permissionSelectOptions }) => {
                     onChange={e => setData('employment_date', e.target.value)}
                   />
                   {errors.employment_date && (<div className="invalid-feedback">{errors.employment_date}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

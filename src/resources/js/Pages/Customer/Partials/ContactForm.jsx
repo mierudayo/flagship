@@ -1,7 +1,4 @@
 import { useForm } from '@inertiajs/react';
-import TableRow from '../../../Components/Table/TableRow';
-import TableHeaderCell from '../../../Components/Table/TableHeaderCell';
-import TableDataCell from '../../../Components/Table/TableDataCell';
 import RadioGroup from '../../../Components/Form/RadioGroup';
 import FormLabel from '../../../Components/Form/FormLabel';
 import Input from '../../../Components/Form/Input';
@@ -38,11 +35,11 @@ export default function ContactForm({ customer, closeModal, userSelectOptions })
         <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
-              <TableRow className="is-flexible">
-                <TableHeaderCell className="u-w-160">
+              <tr className="table-row is-flexible">
+                <th className="th-cell u-w-160">
                   <FormLabel htmlFor="name" label="担当者名" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="name"
                     type="text"
@@ -50,14 +47,14 @@ export default function ContactForm({ customer, closeModal, userSelectOptions })
                     onChange={e => setData('name', e.target.value)}
                   />
                   {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="name_kana" label="よみがな" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="name_kana"
                     type="text"
@@ -65,14 +62,14 @@ export default function ContactForm({ customer, closeModal, userSelectOptions })
                     onChange={e => setData('name_kana', e.target.value)}
                   />
                   {errors.name_kana && (<div className="invalid-feedback">{errors.name_kana}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="tel" label="TEL" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="tel"
                     type="text"
@@ -80,14 +77,14 @@ export default function ContactForm({ customer, closeModal, userSelectOptions })
                     onChange={e => setData('tel', e.target.value)}
                   />
                   {errors.tel && (<div className="invalid-feedback">{errors.tel}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="mobile_number" label="携帯番号" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="mobile_number"
                     type="text"
@@ -95,14 +92,14 @@ export default function ContactForm({ customer, closeModal, userSelectOptions })
                     onChange={e => setData('mobile_number', e.target.value)}
                   />
                   {errors.mobile_number && (<div className="invalid-feedback">{errors.mobile_number}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="email" label="E-mail" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="email"
                     type="text"
@@ -110,14 +107,14 @@ export default function ContactForm({ customer, closeModal, userSelectOptions })
                     onChange={e => setData('email', e.target.value)}
                   />
                   {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="position" label="役職" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="position"
                     type="text"
@@ -125,14 +122,14 @@ export default function ContactForm({ customer, closeModal, userSelectOptions })
                     onChange={e => setData('position', e.target.value)}
                   />
                   {errors.position && (<div className="invalid-feedback">{errors.position}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="role" label="役割" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Input
                     id="role"
                     type="text"
@@ -140,14 +137,14 @@ export default function ContactForm({ customer, closeModal, userSelectOptions })
                     onChange={e => setData('role', e.target.value)}
                   />
                   {errors.role && (<div className="invalid-feedback">{errors.role}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="is_active-true" label="使用状況" isRequired={true} />
-                </TableHeaderCell>
-                <TableDataCell className="u-flex">
+                </th>
+                <td className="u-flex">
                   <RadioGroup
                     id="is_active"
                     options={[
@@ -159,28 +156,28 @@ export default function ContactForm({ customer, closeModal, userSelectOptions })
                     error={errors.is_active}
                   />
                   {errors.is_active && (<div className="invalid-feedback">{errors.is_active}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel htmlFor="note" label="備考" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <Textarea
                     id="note"
                     value={data.note}
                     onChange={e => setData('note', e.target.value)}
                   />
                   {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
 
-              <TableRow className="is-flexible">
-                <TableHeaderCell>
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
                   <FormLabel label="担当ユーザー" isRequired={false} />
-                </TableHeaderCell>
-                <TableDataCell>
+                </th>
+                <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('in_charge_user_id', value)}
                     options={userSelectOptions}
@@ -192,8 +189,8 @@ export default function ContactForm({ customer, closeModal, userSelectOptions })
                     placeholder="担当ユーザーを選択..."
                   />
                   {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
-                </TableDataCell>
-              </TableRow>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
