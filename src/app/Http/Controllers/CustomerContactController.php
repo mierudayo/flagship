@@ -33,7 +33,6 @@ class CustomerContactController extends Controller
     public function create(): Response
     {
         return Inertia::render('CustomerContact/Create', [
-            'customerSelectOptions' => Customer::all(),
             'userSelectOptions'     => User::all(),
         ]);
     }

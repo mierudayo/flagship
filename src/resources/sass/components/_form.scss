@@ -40,6 +40,16 @@
       box-shadow: 0 0 0 2px rgba(220, 53, 69, .25);
     }
   }
+
+  &:read-only {
+    background-color: #eee;
+    color: #333;
+
+    &:focus {
+      border-color: var(--gray);
+      box-shadow: none;
+    }
+  }
 }
 
 .input-field[type="checkbox"],
@@ -77,14 +87,6 @@
       box-shadow: 0 0 0 2px rgba(220, 53, 69, .25);
     }
   }
-}
-
-
-
-/* 上下に隣接する場合はmarginを設定
--------------------------*/
-.input-field + .input-field {
-  margin-top: 8px;
 }
 
 /* Validation

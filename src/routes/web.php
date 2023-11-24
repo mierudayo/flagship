@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CustomerController as ApiCustomerController;
 use App\Http\Controllers\CustomerContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InquiryController;
@@ -27,6 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return Inertia::render('Home');
     })->name('home');
+
+    // API
+    Route::get('api/customers', [ApiCustomerController::class, 'index']);
 
     // User
     Route::get('users', [UserController::class, 'index'])->name('users.index');

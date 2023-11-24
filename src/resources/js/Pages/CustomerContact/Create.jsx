@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from '@inertiajs/react';
+import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import CancelButton from '../../Components/CancelButton';
 import TableRow from '../../Components/Table/TableRow';
 import TableHeaderCell from '../../Components/Table/TableHeaderCell';
@@ -9,8 +11,13 @@ import RadioGroup from '../../Components/Form/RadioGroup';
 import Input from '../../Components/Form/Input';
 import Textarea from '../../Components/Form/Textarea';
 import CustomSelect from '../../Components/Form/CustomSelect';
+import Modal from '../../Components/Modal';
+import CustomerInfo from './Partials/CustomerInfo';
 
-const Create = ({ userSelectOptions, customerSelectOptions }) => {
+const Create = ({ userSelectOptions }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customerName, setCustomerName] = useState('');
+
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     customer_id: '',
     name: '',
@@ -34,6 +41,12 @@ const Create = ({ userSelectOptions, customerSelectOptions }) => {
     });
   };
 
+  function selectCustomer(customer) {
+    setData('customer_id', customer.id);
+    setCustomerName(customer.name);
+    setIsModalOpen(false);
+  }
+
   return (
     <>
       <h1 className="content-title">連絡先 登録</h1>
@@ -49,6 +62,14 @@ const Create = ({ userSelectOptions, customerSelectOptions }) => {
         <CancelButton isDirty={isDirty} route={route('contacts.index')} />
         {processing && <span>Now Loading...</span>}
       </div>
+
+      {isModalOpen &&
+        <Modal closeModal={() => setIsModalOpen(false)} title="取引先 呼び出し">
+          <CustomerInfo
+            handleClickSelect={customer => selectCustomer(customer)}
+          />
+        </Modal>}
+
       <form id="customerContactCreateForm" onSubmit={submit}>
         <div className="table-wrapper">
           <table className="table">
@@ -58,16 +79,25 @@ const Create = ({ userSelectOptions, customerSelectOptions }) => {
                   <FormLabel label="所属取引先" isRequired={true} />
                 </TableHeaderCell>
                 <TableDataCell>
-                  <CustomSelect
-                    onChange={value => setData('customer_id', value)}
-                    options={customerSelectOptions}
-                    value={data.customer_id}
-                    valueKey="id"
-                    labelKey="name"
-                    isClearable={true}
-                    isSearchable={true}
-                    placeholder="所属取引先を選択..."
-                  />
+                  <div className="u-flex">
+                    <Input
+                      type="text"
+                      value={data.customer_id}
+                      className="u-max-w-64"
+                      placeholder="ID"
+                      readOnly={true}
+                    />
+                    <Input
+                      type="text"
+                      value={customerName}
+                      className="u-max-w-240"
+                      placeholder=" 取引先名"
+                      readOnly={true}
+                    />
+                    <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(true)}>
+                      <ManageSearchIcon />
+                    </button>
+                  </div>
                   {errors.customer_id && (<div className="invalid-feedback">{errors.customer_id}</div>)}
                 </TableDataCell>
               </TableRow>
