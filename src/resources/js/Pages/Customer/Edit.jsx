@@ -232,7 +232,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                     id="purchase_billing_type"
                     value={data.purchase_billing_type}
                     onChange={e => setData('purchase_billing_type', e.target.value)}
-                    className={`input-field u-w-128 u-mr-3 ${errors.purchase_billing_type ? 'is-invalid' : ''}`}
+                    className={`form-select u-w-128 u-mr-3 ${errors.purchase_billing_type ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 請求方法 --</option>
                     <OptionsList options={paymentTerms.billingTypes} />
@@ -244,7 +244,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                         id="purchase_cutoff_day"
                         value={data.purchase_cutoff_day}
                         onChange={e => setData('purchase_cutoff_day', e.target.value)}
-                        className={`input-field u-w-128 ${errors.purchase_cutoff_day ? 'is-invalid' : ''}`}
+                        className={`form-select u-w-128 ${errors.purchase_cutoff_day ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 締め日 --</option>
                         <OptionsList options={paymentTerms.cutoffDays} />
@@ -254,7 +254,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                         id="purchase_payment_month_offset"
                         value={data.purchase_payment_month_offset}
                         onChange={e => setData('purchase_payment_month_offset', e.target.value)}
-                        className={`input-field u-w-128 ${errors.purchase_payment_month_offset ? 'is-invalid' : ''}`}
+                        className={`form-select u-w-128 ${errors.purchase_payment_month_offset ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 支払月 --</option>
                         <OptionsList options={paymentTerms.monthOffsets} />
@@ -264,7 +264,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                         id="purchase_payment_day"
                         value={data.purchase_payment_day}
                         onChange={e => setData('purchase_payment_day', e.target.value)}
-                        className={`input-field u-w-128 ${errors.purchase_payment_day ? 'is-invalid' : ''}`}
+                        className={`form-select u-w-128 ${errors.purchase_payment_day ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 支払日 --</option>
                         <OptionsList options={paymentTerms.paymentDay} />
@@ -278,7 +278,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                         id="purchase_payment_day_offset"
                         value={data.purchase_payment_day_offset}
                         onChange={e => setData('purchase_payment_day_offset', e.target.value)}
-                        className={`input-field u-w-128 ${errors.purchase_payment_day_offset ? 'is-invalid' : ''}`}
+                        className={`form-select u-w-128 ${errors.purchase_payment_day_offset ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 期限 --</option>
                         <OptionsList options={paymentTerms.dayOffsets} />
@@ -300,7 +300,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                     id="sales_billing_type"
                     value={data.sales_billing_type}
                     onChange={e => setData('sales_billing_type', e.target.value)}
-                    className={`input-field u-w-128 u-mr-3 ${errors.sales_billing_type ? 'is-invalid' : ''}`}
+                    className={`form-select u-w-128 u-mr-3 ${errors.sales_billing_type ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 請求方法 --</option>
                     <OptionsList options={paymentTerms.billingTypes} />
@@ -312,7 +312,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                         id="sales_cutoff_day"
                         value={data.sales_cutoff_day}
                         onChange={e => setData('sales_cutoff_day', e.target.value)}
-                        className={`input-field u-w-128 ${errors.sales_cutoff_day ? 'is-invalid' : ''}`}
+                        className={`form-select u-w-128 ${errors.sales_cutoff_day ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 締め日 --</option>
                         <OptionsList options={paymentTerms.cutoffDays} />
@@ -322,7 +322,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                         id="sales_payment_month_offset"
                         value={data.sales_payment_month_offset}
                         onChange={e => setData('sales_payment_month_offset', e.target.value)}
-                        className={`input-field u-w-128 ${errors.sales_payment_month_offset ? 'is-invalid' : ''}`}
+                        className={`form-select u-w-128 ${errors.sales_payment_month_offset ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 支払月 --</option>
                         <OptionsList options={paymentTerms.monthOffsets} />
@@ -332,7 +332,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                         id="sales_payment_day"
                         value={data.sales_payment_day}
                         onChange={e => setData('sales_payment_day', e.target.value)}
-                        className={`input-field u-w-128 ${errors.sales_payment_day ? 'is-invalid' : ''}`}
+                        className={`form-select u-w-128 ${errors.sales_payment_day ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 支払日 --</option>
                         <OptionsList options={paymentTerms.paymentDay} />
@@ -346,7 +346,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                         id="sales_payment_day_offset"
                         value={data.sales_payment_day_offset}
                         onChange={e => setData('sales_payment_day_offset', e.target.value)}
-                        className={`input-field u-w-128 ${errors.sales_payment_day_offset ? 'is-invalid' : ''}`}
+                        className={`form-select u-w-128 ${errors.sales_payment_day_offset ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 期限 --</option>
                         <OptionsList options={paymentTerms.dayOffsets} />
