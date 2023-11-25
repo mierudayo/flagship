@@ -98,7 +98,7 @@ const Edit = ({ inquiry, productOption, inquiryTypeOption, inChargeUserOption, i
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="顧客" isRequired={true} />
+                  <FormLabel label="連絡先" isRequired={true} />
                 </th>
                 <td className="td-cell">
                   <div className="u-flex">
@@ -200,6 +200,7 @@ const Edit = ({ inquiry, productOption, inquiryTypeOption, inChargeUserOption, i
                     value={data.project_scale}
                     onChange={e => setData('project_scale', e.target.value)}
                     error={errors.project_scale}
+                    placeholder="1 ~ 10,000までの数値を入力"
                   />
                   {errors.project_scale && (<div className="invalid-feedback">{errors.project_scale}</div>)}
                 </td>
@@ -241,7 +242,7 @@ const Edit = ({ inquiry, productOption, inquiryTypeOption, inChargeUserOption, i
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="担当ユーザー" isRequired={true} />
+                  <FormLabel label="対応者" isRequired={true} />
                 </th>
                 <td className="td-cell">
                   <CustomSelect
@@ -252,7 +253,7 @@ const Edit = ({ inquiry, productOption, inquiryTypeOption, inChargeUserOption, i
                     labelKey="name"
                     isClearable={true}
                     isSearchable={true}
-                    placeholder="担当ユーザーを選択..."
+                    placeholder="対応者を選択..."
                   />
                   {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
                 </td>

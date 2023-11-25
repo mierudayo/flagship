@@ -88,7 +88,7 @@ const Create = ({ userSelectOptions }) => {
                       type="text"
                       value={customerName}
                       className="u-max-w-240"
-                      placeholder=" 取引先名"
+                      placeholder="取引先名"
                       readOnly={true}
                     />
                     <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(true)}>
@@ -101,7 +101,7 @@ const Create = ({ userSelectOptions }) => {
 
               <tr className="table-row is-flexible">
                 <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="name" label="担当者名" isRequired={true} />
+                  <FormLabel htmlFor="name" label="名前" isRequired={true} />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -142,6 +142,7 @@ const Create = ({ userSelectOptions }) => {
                     value={data.tel}
                     onChange={e => setData('tel', e.target.value)}
                     error={errors.tel}
+                    className="u-w-160"
                   />
                   {errors.tel && (<div className="invalid-feedback">{errors.tel}</div>)}
                 </td>
@@ -158,6 +159,7 @@ const Create = ({ userSelectOptions }) => {
                     value={data.mobile_number}
                     onChange={e => setData('mobile_number', e.target.value)}
                     error={errors.mobile_number}
+                    className="u-w-160"
                   />
                   {errors.mobile_number && (<div className="invalid-feedback">{errors.mobile_number}</div>)}
                 </td>

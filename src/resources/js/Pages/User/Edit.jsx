@@ -53,6 +53,7 @@ const Edit = ({ user, permissionSelectOptions }) => {
                     value={data.employee_code}
                     onChange={e => setData('employee_code', e.target.value)}
                     error={errors.employee_code}
+                    className="u-w-160"
                   />
                   {errors.employee_code && (<div className="invalid-feedback">{errors.employee_code}</div>)}
                 </td>
@@ -95,7 +96,7 @@ const Edit = ({ user, permissionSelectOptions }) => {
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="name_kana" label="読み仮名" isRequired={false} />
+                  <FormLabel htmlFor="name_kana" label="よみがな" isRequired={false} />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -136,6 +137,7 @@ const Edit = ({ user, permissionSelectOptions }) => {
                     value={data.mobile_number}
                     onChange={e => setData('mobile_number', e.target.value)}
                     error={errors.mobile_number}
+                    className="u-w-160"
                   />
                   {errors.mobile_number && (<div className="invalid-feedback">{errors.mobile_number}</div>)}
                 </td>

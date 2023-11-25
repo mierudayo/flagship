@@ -192,6 +192,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     value={data.project_scale}
                     onChange={e => setData('project_scale', e.target.value)}
                     error={errors.project_scale}
+                    placeholder="1 ~ 10,000までの数値を入力"
                   />
                   {errors.project_scale && (<div className="invalid-feedback">{errors.project_scale}</div>)}
                 </td>
@@ -233,7 +234,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="担当ユーザー" isRequired={true} />
+                  <FormLabel label="対応者" isRequired={true} />
                 </th>
                 <td className="td-cell">
                   <CustomSelect
@@ -244,7 +245,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     labelKey="name"
                     isClearable={true}
                     isSearchable={true}
-                    placeholder="担当ユーザーを選択..."
+                    placeholder="対応者を選択..."
                   />
                   {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
                 </td>

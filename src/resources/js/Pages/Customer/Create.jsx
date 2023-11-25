@@ -52,6 +52,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
         <CancelButton isDirty={isDirty} route={route('customers.index')} />
         {processing && <span>Now Loading...</span>}
       </div>
+
       <form id="customerCreateForm" onSubmit={submit}>
         <div className="table-wrapper">
           <table className="table">
@@ -74,7 +75,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="name_kana" label="読み仮名" isRequired={false} />
+                  <FormLabel htmlFor="name_kana" label="よみがな" isRequired={false} />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -115,6 +116,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
                     value={data.postal_code}
                     onChange={e => setData('postal_code', e.target.value)}
                     error={errors.postal_code}
+                    className="u-max-w-160"
                   />
                   {errors.postal_code && (<div className="invalid-feedback">{errors.postal_code}</div>)}
                 </td>
@@ -147,6 +149,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
                     value={data.tel}
                     onChange={e => setData('tel', e.target.value)}
                     error={errors.tel}
+                    className="u-max-w-160"
                   />
                   {errors.tel && (<div className="invalid-feedback">{errors.tel}</div>)}
                 </td>
@@ -163,6 +166,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
                     value={data.fax}
                     onChange={e => setData('fax', e.target.value)}
                     error={errors.fax}
+                    className="u-max-w-160"
                   />
                   {errors.fax && (<div className="invalid-feedback">{errors.fax}</div>)}
                 </td>
@@ -337,7 +341,6 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
                   )}
                 </td>
               </tr>
-
             </tbody>
           </table>
         </div>
