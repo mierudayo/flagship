@@ -8,8 +8,8 @@ import RadioGroup from '@/Components/Form/RadioGroup';
 import Input from '@/Components/Form/Input';
 import Textarea from '@/Components/Form/Textarea';
 import CustomSelect from '@/Components/Form/CustomSelect';
+import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
-import CustomerInfo from './Partials/CustomerInfo';
 
 const Edit = ({ contact, userSelectOptions }) => {
   const { flash } = usePage().props;
@@ -76,7 +76,7 @@ const Edit = ({ contact, userSelectOptions }) => {
 
       {isModalOpen &&
         <Modal closeModal={() => setIsModalOpen(false)} title="取引先 呼び出し">
-          <CustomerInfo
+          <CustomerLookup
             handleClickSelect={customer => selectCustomer(customer)}
           />
         </Modal>}

@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useForm } from '@inertiajs/react';
 import Input from '@/Components/Form/Input';
 
-export default function CustomerInfo({ handleClickSelect }) {
+export default function CustomerLookup({ handleClickSelect }) {
   const inputRef = useRef(null);
 
   const { data, setData, errors } = useForm({
