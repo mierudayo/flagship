@@ -2,6 +2,7 @@ import { Link, useForm } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import CancelButton from '@/Components/CancelButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
+import DateInput from '@/Components/Form/DateInput';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import Textarea from '@/Components/Form/Textarea';
@@ -64,9 +65,8 @@ const Edit = ({ inquiry, customerContactOption, productOption, inquiryTypeOption
                   <FormLabel htmlFor="inquiry_date" label="問い合わせ日" isRequired={true} />
                 </th>
                 <td className="td-cell">
-                  <Input
+                  <DateInput
                     id="inquiry_date"
-                    type="date"
                     value={data.inquiry_date}
                     onChange={e => setData('inquiry_date', e.target.value)}
                     error={errors.inquiry_date}

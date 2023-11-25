@@ -3,6 +3,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import CancelButton from '@/Components/CancelButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import FormLabel from '@/Components/Form/FormLabel';
+import DateInput from '@/Components/Form/DateInput';
 import Input from '@/Components/Form/Input';
 
 const Edit = ({ user, permissionSelectOptions }) => {
@@ -145,9 +146,8 @@ const Edit = ({ user, permissionSelectOptions }) => {
                   <FormLabel htmlFor="employment_date" label="入社日" isRequired={false} />
                 </th>
                 <td className="td-cell">
-                  <Input
+                  <DateInput
                     id="employment_date"
-                    type="date"
                     value={data.employment_date}
                     onChange={e => setData('employment_date', e.target.value)}
                     error={errors.employment_date}
@@ -161,9 +161,8 @@ const Edit = ({ user, permissionSelectOptions }) => {
                   <FormLabel htmlFor="resignation_date" label="退職日" isRequired={false} />
                 </th>
                 <td className="td-cell">
-                  <Input
+                  <DateInput
                     id="resignation_date"
-                    type="date"
                     value={data.resignation_date}
                     onChange={e => setData('resignation_date', e.target.value)}
                     error={errors.resignation_date}

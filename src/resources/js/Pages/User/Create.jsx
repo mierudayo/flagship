@@ -3,6 +3,7 @@ import { useForm } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import CancelButton from '@/Components/CancelButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
+import DateInput from '@/Components/Form/DateInput';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 
@@ -184,9 +185,8 @@ const Create = ({ permissionSelectOptions }) => {
                   <FormLabel htmlFor="employment_date" label="入社日" isRequired={false} />
                 </th>
                 <td className="td-cell">
-                  <Input
+                  <DateInput
                     id="employment_date"
-                    type="date"
                     value={data.employment_date}
                     onChange={e => setData('employment_date', e.target.value)}
                     error={errors.employment_date}
