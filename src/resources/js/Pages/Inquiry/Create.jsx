@@ -1,4 +1,5 @@
 import { useForm } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import CancelButton from '@/Components/CancelButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
@@ -8,8 +9,9 @@ import Input from '@/Components/Form/Input';
 import Textarea from '@/Components/Form/Textarea';
 
 const Create = ({ customerContactOption, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) => {
+  const { today } = usePage().props.date;
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
-    inquiry_date: '',
+    inquiry_date: today,
     customer_contact_id: '',
     product_id: '',
     product_detail: '',
@@ -61,7 +63,6 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     value={data.inquiry_date}
                     onChange={e => setData('inquiry_date', e.target.value)}
                     error={errors.inquiry_date}
-                    isToday={true}
                   />
                   {errors.inquiry_date && (<div className="invalid-feedback">{errors.inquiry_date}</div>)}
                 </td>
