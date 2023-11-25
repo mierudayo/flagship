@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CustomerContactController as ApiCustomerContactController;
 use App\Http\Controllers\Api\CustomerController as ApiCustomerController;
 use App\Http\Controllers\CustomerContactController;
 use App\Http\Controllers\CustomerController;
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
 
     // API
     Route::get('api/customers', [ApiCustomerController::class, 'index']);
+    Route::get('api/contacts', [ApiCustomerContactController::class, 'index']);
 
     // User
     Route::get('users', [UserController::class, 'index'])->name('users.index');

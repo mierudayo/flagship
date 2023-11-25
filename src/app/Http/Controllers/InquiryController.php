@@ -7,7 +7,6 @@ use App\Enums\InquiryStatus;
 use App\Http\Requests\InquirySearchRequest;
 use App\Http\Requests\InquiryStoreRequest;
 use App\Http\Requests\InquiryUpdateRequest;
-use App\Models\CustomerContact;
 use App\Models\Inquiry;
 use App\Models\InquiryType;
 use App\Models\Product;
@@ -36,7 +35,6 @@ class InquiryController extends Controller
     public function create(): Response
     {
         return Inertia::render('Inquiry/Create', [
-            'customerContactOption' => CustomerContact::all(),
             'productOption'         => Product::all(),
             'inquiryTypeOption'     => InquiryType::all(),
             'inChargeUserOption'    => User::all(),
@@ -72,8 +70,7 @@ class InquiryController extends Controller
     public function edit(Inquiry $inquiry): Response
     {
         return Inertia::render('Inquiry/Edit', [
-            'inquiry'               => $inquiry,
-            'customerContactOption' => CustomerContact::all(),
+            'inquiry'               => $inquiry->load(['customerContact']),
             'productOption'         => Product::all(),
             'inquiryTypeOption'     => InquiryType::all(),
             'inChargeUserOption'    => User::all(),

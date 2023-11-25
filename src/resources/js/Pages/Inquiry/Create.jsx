@@ -1,5 +1,6 @@
-import { useForm } from '@inertiajs/react';
-import { usePage } from '@inertiajs/react';
+import { useState } from 'react';
+import { useForm, usePage } from '@inertiajs/react';
+import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AppLayout from '@/Layouts/AppLayout';
 import CancelButton from '@/Components/CancelButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
@@ -7,9 +8,14 @@ import DateInput from '@/Components/Form/DateInput';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import Textarea from '@/Components/Form/Textarea';
+import ContactLookup from '@/Components/ContactLookup';
+import Modal from '@/Components/Modal';
 
-const Create = ({ customerContactOption, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) => {
+const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) => {
   const { today } = usePage().props.date;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [contactName, setContactName] = useState('');
+
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     inquiry_date: today,
     customer_contact_id: '',
@@ -34,6 +40,12 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
     });
   };
 
+  function selectContact(contact) {
+    setData('customer_contact_id', contact.id);
+    setContactName(contact.name);
+    setIsModalOpen(false);
+  }
+
   return (
     <>
       <h1 className="content-title">問い合わせ 登録</h1>
@@ -49,6 +61,14 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
         <CancelButton isDirty={isDirty} route={route('inquiries.index')} />
         {processing && <span>Now Loading...</span>}
       </div>
+
+      {isModalOpen &&
+        <Modal closeModal={() => setIsModalOpen(false)} title="連絡先 呼び出し">
+          <ContactLookup
+            handleClickSelect={contact => selectContact(contact)}
+          />
+        </Modal>}
+
       <form id="inquiryCreateForm" onSubmit={submit}>
         <div className="table-wrapper">
           <table className="table">
@@ -70,19 +90,28 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="顧客" isRequired={true} />
+                  <FormLabel label="連絡先" isRequired={true} />
                 </th>
                 <td className="td-cell">
-                  <CustomSelect
-                    onChange={value => setData('customer_contact_id', value)}
-                    options={customerContactOption}
-                    value={data.customer_contact_id}
-                    valueKey="id"
-                    labelKey="name"
-                    isClearable={true}
-                    isSearchable={true}
-                    placeholder="顧客を選択..."
-                  />
+                  <div className="u-flex">
+                    <Input
+                      type="text"
+                      value={data.customer_contact_id}
+                      className="u-max-w-64"
+                      placeholder="ID"
+                      readOnly={true}
+                    />
+                    <Input
+                      type="text"
+                      value={contactName}
+                      className="u-max-w-240"
+                      placeholder="連絡先名"
+                      readOnly={true}
+                    />
+                    <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(true)}>
+                      <ManageSearchIcon />
+                    </button>
+                  </div>
                   {errors.customer_contact_id && (<div className="invalid-feedback">{errors.customer_contact_id}</div>)}
                 </td>
               </tr>
