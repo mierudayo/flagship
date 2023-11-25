@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useForm } from '@inertiajs/react';
 import Input from '@/Components/Form/Input';
 
 export default function CustomerInfo({ handleClickSelect }) {
+  const inputRef = useRef(null);
+
   const { data, setData, errors } = useForm({
     keyword: '',
   });
@@ -11,6 +13,9 @@ export default function CustomerInfo({ handleClickSelect }) {
 
   useEffect(() => {
     fetchCustomers();
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, []);
 
   async function fetchCustomers() {
@@ -35,6 +40,7 @@ export default function CustomerInfo({ handleClickSelect }) {
           <div className="u-flex u-mr-3">
             <Input
               type="search"
+              ref={inputRef}
               onChange={handleChange}
               placeholder="取引先名, よみがな, ショートカット名で検索（Enter）"
             />
