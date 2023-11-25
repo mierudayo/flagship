@@ -43,7 +43,7 @@ const Edit = ({ user, permissionSelectOptions }) => {
           <table className="table">
             <tbody className="tbody">
               <tr className="table-row is-flexible">
-                <th className="th-cell u-w-200">
+                <th className="th-cell u-w-160">
                   <FormLabel htmlFor="employee_code" label="社員番号" isRequired={true} />
                 </th>
                 <td className="td-cell">
