@@ -1,14 +1,20 @@
-import AppLayout from '@/Layouts/AppLayout';
+import { useState } from 'react';
 import { Link, useForm, usePage } from "@inertiajs/react";
+import ManageSearchIcon from '@mui/icons-material/ManageSearch';
+import AppLayout from '@/Layouts/AppLayout';
 import CancelButton from '@/Components/CancelButton';
 import FormLabel from '@/Components/Form/FormLabel';
 import RadioGroup from '@/Components/Form/RadioGroup';
 import Input from '@/Components/Form/Input';
 import Textarea from '@/Components/Form/Textarea';
 import CustomSelect from '@/Components/Form/CustomSelect';
+import Modal from '@/Components/Modal';
+import CustomerInfo from './Partials/CustomerInfo';
 
-const Edit = ({ contact, userSelectOptions, customerSelectOptions }) => {
+const Edit = ({ contact, userSelectOptions }) => {
   const { flash } = usePage().props;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customerName, setCustomerName] = useState(contact.customer.name);
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
     customer_id: contact.customer_id,
@@ -32,6 +38,12 @@ const Edit = ({ contact, userSelectOptions, customerSelectOptions }) => {
       }
     });
   };
+
+  function selectCustomer(customer) {
+    setData('customer_id', customer.id);
+    setCustomerName(customer.name);
+    setIsModalOpen(false);
+  }
 
   return (
     <>
@@ -62,6 +74,13 @@ const Edit = ({ contact, userSelectOptions, customerSelectOptions }) => {
         <div className="alert alert-danger">{flash.message}</div>
       )}
 
+      {isModalOpen &&
+        <Modal closeModal={() => setIsModalOpen(false)} title="取引先 呼び出し">
+          <CustomerInfo
+            handleClickSelect={customer => selectCustomer(customer)}
+          />
+        </Modal>}
+
       <form id="customerContactUpdateForm" onSubmit={submit}>
         <div className="table-wrapper">
           <table className="table">
@@ -71,16 +90,25 @@ const Edit = ({ contact, userSelectOptions, customerSelectOptions }) => {
                   <FormLabel label="所属取引先" isRequired={true} />
                 </th>
                 <td className="td-cell">
-                  <CustomSelect
-                    onChange={value => setData('customer_id', value)}
-                    options={customerSelectOptions}
-                    value={data.customer_id}
-                    valueKey="id"
-                    labelKey="name"
-                    isClearable={true}
-                    isSearchable={true}
-                    placeholder="所属取引先を選択..."
-                  />
+                  <div className="u-flex">
+                    <Input
+                      type="text"
+                      value={data.customer_id}
+                      className="u-max-w-64"
+                      placeholder="ID"
+                      readOnly={true}
+                    />
+                    <Input
+                      type="text"
+                      value={customerName}
+                      className="u-max-w-240"
+                      placeholder=" 取引先名"
+                      readOnly={true}
+                    />
+                    <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(true)}>
+                      <ManageSearchIcon />
+                    </button>
+                  </div>
                   {errors.customer_id && (<div className="invalid-feedback">{errors.customer_id}</div>)}
                 </td>
               </tr>

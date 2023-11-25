@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import AppLayout from '@/Layouts/AppLayout';
 import { useForm } from '@inertiajs/react';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
+import AppLayout from '@/Layouts/AppLayout';
 import CancelButton from '@/Components/CancelButton';
 import FormLabel from '@/Components/Form/FormLabel';
 import RadioGroup from '@/Components/Form/RadioGroup';
