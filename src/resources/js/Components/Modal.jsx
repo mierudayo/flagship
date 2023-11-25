@@ -1,4 +1,20 @@
+import { useEffect } from 'react';
+
 export default function Modal({ children, title, closeModal }) {
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [closeModal]);
+
   return (
     <div className="modal">
       <div className="modal-container">
@@ -15,4 +31,3 @@ export default function Modal({ children, title, closeModal }) {
     </div>
   );
 }
-
