@@ -184,7 +184,7 @@ const Show = ({ customer, userSelectOptions, deliveryAddressTypes }) => {
                   <td className="td-cell">{contact.mobile_number}</td>
                   <td className="td-cell">{contact.email}</td>
                   <td className="td-cell">{contact.position}</td>
-                  <td className="td-cell">{contact.is_active}</td>
+                  <td className="td-cell">{contact.is_active_label}</td>
                   <td className="td-cell">{contact.note}</td>
                   <td className="td-cell">{contact.in_charge_user?.name}</td>
                 </tr>

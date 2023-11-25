@@ -12,6 +12,10 @@ class CustomerContact extends Model
 {
     use HasFactory;
 
+    protected $appends = [
+        'is_active_label'
+    ];
+
     protected $fillable = [
         'customer_id',
         'name',
@@ -58,6 +62,16 @@ class CustomerContact extends Model
     public function inquiries(): HasMany
     {
         return $this->hasMany(Inquiry::class);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Accessors
+    |--------------------------------------------------------------------------
+    */
+    protected function getIsActiveLabelAttribute(): string
+    {
+        return $this->is_active ? '使用中' : '使用不可';
     }
 
     /*

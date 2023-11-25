@@ -12,7 +12,7 @@ const Show = ({ contact }) => {
     email,
     position,
     role,
-    is_active,
+    is_active_label,
     note,
     in_charge_user,
     created_at,
@@ -92,7 +92,7 @@ const Show = ({ contact }) => {
 
               <tr className="table-row">
                 <th className="th-cell">使用状況</th>
-                <td className="td-cell">{is_active}</td>
+                <td className="td-cell">{is_active_label}</td>
               </tr>
 
               <tr className="table-row">
