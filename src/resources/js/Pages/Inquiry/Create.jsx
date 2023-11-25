@@ -69,7 +69,7 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="顧客" isRequired={false} />
+                  <FormLabel label="顧客" isRequired={true} />
                 </th>
                 <td className="td-cell">
                   <CustomSelect
@@ -82,7 +82,7 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     isSearchable={true}
                     placeholder="顧客を選択..."
                   />
-                  {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
+                  {errors.customer_contact_id && (<div className="invalid-feedback">{errors.customer_contact_id}</div>)}
                 </td>
               </tr>
 
@@ -235,7 +235,7 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     isSearchable={true}
                     placeholder="問い合わせ区分を選択..."
                   />
-                  {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
+                  {errors.inquiry_type_id && (<div className="invalid-feedback">{errors.inquiry_type_id}</div>)}
                 </td>
               </tr>
 
@@ -254,7 +254,7 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     isSearchable={true}
                     placeholder="対象商品を選択..."
                   />
-                  {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
+                  {errors.product_id && (<div className="invalid-feedback">{errors.product_id}</div>)}
                 </td>
               </tr>
 
