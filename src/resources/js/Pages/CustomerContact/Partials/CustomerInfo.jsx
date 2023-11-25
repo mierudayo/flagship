@@ -44,9 +44,9 @@ export default function CustomerInfo({ handleClickSelect }) {
         </header>
       </form>
 
-      <div className="table-wrapper is-scrollable u-mt-4">
+      <div className="table-wrapper in-modal is-scrollable u-mt-4">
         <table className="table">
-          <thead className="table-header">
+          <thead className="table-header is-sticky">
             <tr className="table-row">
               <th className="th-cell u-w-80"></th>
               <th className="th-cell u-w-64">ID</th>

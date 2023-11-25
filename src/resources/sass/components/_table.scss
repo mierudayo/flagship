@@ -35,9 +35,12 @@ Table styles
 
 .table-header {
   background-color: var(--color-table-header);
-  position: sticky;
-  top: 0;
-  z-index: var(--z-index-table-header);
+
+  &.is-sticky {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-index-table-header);
+  }
 }
 
 .th-cell,

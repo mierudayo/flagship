@@ -158,7 +158,7 @@ const Show = ({ customer, userSelectOptions, deliveryAddressTypes }) => {
         <div>連絡先一覧</div>
         <div className="table-wrapper is-scrollable">
           <table className="table">
-            <thead className="table-header">
+            <thead className="table-header is-sticky">
               <tr className="table-row">
                 <th className="th-cell col-fixed">ID</th>
                 <th className="th-cell">役割</th>
@@ -198,7 +198,7 @@ const Show = ({ customer, userSelectOptions, deliveryAddressTypes }) => {
         <div>出荷元/納品先 管理</div>
         <div className="table-wrapper is-scrollable">
           <table className="table">
-            <thead className="table-header">
+            <thead className="table-header is-sticky">
               <tr className="table-row">
                 <th className="th-cell col-fixed">ID</th>
                 <th className="th-cell">区分</th>

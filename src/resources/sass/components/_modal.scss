@@ -14,12 +14,14 @@
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  height: 90vh;
+  height: var(--height-modal-container);
+  max-height: 800px;
   margin: 40px auto;
   max-width: 800px;
 
   @include mobile-screen() {
     height: 100vh;
+    max-height: 100vh;
     margin: 0;
   }
 }
@@ -30,6 +32,7 @@
   align-items: center;
   border-bottom: 1px solid #ddd;
   display: flex;
+  height: var(--height-modal-header);
   justify-content: space-between;
   padding: 8px 16px;
 }
@@ -43,16 +46,21 @@
 -------------------------*/
 .modal-body {
   padding: 16px;
+  height: var(--height-modal-body);
 
   &.is-scrollable {
     overflow-x: scroll;
     overflow-y: scroll;
     position: relative;
-    max-height: calc(90vh - 80px);
-
-    @include mobile-screen() {
-      max-height: 90vh;
-    }
   }
 
+  @include mobile-screen() {
+    height: calc(100vh - var(--height-modal-header));
+  }
+}
+
+/* Table in Modal
+-------------------------*/
+.in-modal {
+  height: calc(800px - var(--height-modal-header) - 96px);
 }

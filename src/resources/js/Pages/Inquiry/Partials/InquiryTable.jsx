@@ -4,7 +4,7 @@ export default function InquiryTable({ inquiries }) {
   return (
     <div className="table-wrapper is-scrollable">
       <table className="table">
-        <thead className="table-header">
+        <thead className="table-header is-sticky">
           <tr className="table-row">
             <th className="th-cell col-fixed">編集</th>
             <th className="th-cell col-fixed">ID</th>
