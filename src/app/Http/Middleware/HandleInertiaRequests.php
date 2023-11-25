@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -43,6 +44,9 @@ class HandleInertiaRequests extends Middleware
             : null,
             'flash' => [
                 'message' => fn () => $request->session()->get('message')
+            ],
+            'date' => [
+                'today' => Carbon::today()->format('Y-m-d'),
             ],
         ]);
     }

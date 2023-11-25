@@ -61,6 +61,7 @@ const Create = ({ customerContactOption, productOption, inquiryTypeOption, inCha
                     value={data.inquiry_date}
                     onChange={e => setData('inquiry_date', e.target.value)}
                     error={errors.inquiry_date}
+                    isToday={true}
                   />
                   {errors.inquiry_date && (<div className="invalid-feedback">{errors.inquiry_date}</div>)}
                 </td>
