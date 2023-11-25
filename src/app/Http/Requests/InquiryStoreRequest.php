@@ -37,6 +37,30 @@ class InquiryStoreRequest extends FormRequest
             'note'                  => ['nullable', 'string', 'max:1000'],
             'in_charge_user_id'     => ['required', 'integer', 'exists:users,id'],
         ];
+    }
 
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'inquiry_date'          => '問い合わせ日',
+            'customer_contact_id'   => '顧客',
+            'product_id'            => '対象商品',
+            'product_detail'        => '商品詳細',
+            'inquiry_type_id'       => '問い合わせ区分',
+            'lead_source'           => 'リード獲得元',
+            'project_scale'         => '案件規模',
+            'status'                => 'ステータス',
+            'subject'               => '件名',
+            'message'               => '問い合わせ内容',
+            'answer'                => '回答内容',
+            'feedback'              => 'フィードバック',
+            'note'                  => '備考',
+            'in_charge_user_id'     => '担当ユーザー',
+        ];
     }
 }

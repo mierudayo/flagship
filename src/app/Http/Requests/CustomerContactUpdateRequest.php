@@ -35,4 +35,26 @@ class CustomerContactUpdateRequest extends FormRequest
             'in_charge_user_id' => ['nullable', 'integer', 'exists:users,id'],
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'customer_id'       => '所属取引先',
+            'name'              => '担当者名',
+            'name_kana'         => 'よみがな',
+            'tel'               => 'TEL',
+            'mobile_number'     => '携帯番号',
+            'email'             => 'E-mail',
+            'position'          => '役職',
+            'role'              => '役割',
+            'is_active'         => '使用状況',
+            'note'              => '備考',
+            'in_charge_user_id' => '担当ユーザー',
+        ];
+    }
 }

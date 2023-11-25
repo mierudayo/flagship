@@ -34,4 +34,23 @@ class UserStoreRequest extends FormRequest
             'employment_date'   => ['nullable', 'date'],
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'permission_id'     => '権限',
+            'employee_code'     => '社員番号',
+            'name'              => '名前',
+            'name_kana'         => 'よみがな',
+            'email'             => 'E-mail',
+            'password'          => 'パスワード',
+            'mobile_number'     => '携帯番号',
+            'employment_date'   => '入社日',
+        ];
+    }
 }

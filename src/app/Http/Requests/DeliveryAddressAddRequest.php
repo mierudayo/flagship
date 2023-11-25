@@ -31,4 +31,22 @@ class DeliveryAddressAddRequest extends FormRequest
             'note'          => ['nullable', 'string'],
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'address_type'  => '区分',
+            'post_code'     => '郵便番号',
+            'address'       => '住所',
+            'company_name'  => '会社名',
+            'contact_name'  => '担当者名',
+            'tel'           => 'TEL',
+            'note'          => '備考',
+        ];
+    }
 }

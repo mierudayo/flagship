@@ -27,4 +27,18 @@ class ProductCategoryStoreRequest extends FormRequest
             'display_order' => ['nullable', 'integer', 'min:1'],
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'group_id'      => 'カテゴリグループ',
+            'name'          => 'カテゴリ名',
+            'display_order' => '表示順',
+        ];
+    }
 }

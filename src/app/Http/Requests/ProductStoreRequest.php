@@ -31,6 +31,24 @@ class ProductStoreRequest extends FormRequest
             'purchase_price'    => ['nullable', 'numeric', 'min:0', 'max:99999999.99'],
             'display_order'     => ['nullable', 'integer', 'min:1'],
         ];
+    }
 
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'category_id'       => 'カテゴリ',
+            'product_number'    => '商品番号',
+            'product_type'      => '商品タイプ',
+            'name'              => '商品名',
+            'description'       => '説明',
+            'sales_price'       => '販売単価',
+            'purchase_price'    => '仕入単価',
+            'display_order'     => '表示順',
+        ];
     }
 }
