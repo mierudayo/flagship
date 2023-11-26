@@ -1,6 +1,7 @@
 import { Link, useForm, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import Pagination from '@/Components/Pagination';
+import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import CustomerTable from './Partials/CustomerTable';
 
 const Index = ({ customersPaginator, canAdmin }) => {
@@ -28,20 +29,15 @@ const Index = ({ customersPaginator, canAdmin }) => {
         >
           新規登録
         </Link>
-        <form onSubmit={submit}>
-          <div className="u-flex u-mr-3">
-            <input
-              type="search"
-              name="keyword"
-              value={data.keyword}
-              onChange={(e) => setData('keyword', e.target.value)}
-              className={`input-field ${errors.keyword ? 'is-invalid' : ''}`}
-              placeholder="名前, ヨミガナで検索"
-            />
-            <button className="btn btn-secondary">検索</button>
-          </div>
-          {errors.keyword && <div className="invalid-feedback">{errors.keyword}</div>}
-        </form>
+
+        <KeywordSearchForm
+          placeholder="取引先名, ヨミガナで検索"
+          data={data}
+          setData={setData}
+          errors={errors}
+          submit={submit}
+        />
+
         <div className="record-count">
           {customersPaginator.total}件
         </div>

@@ -22,6 +22,15 @@
   padding: 8px 0 ;
   overflow-x: scroll;
 
+  .keyword-search-box {
+    display: flex;
+    margin-right: 16px;
+
+    .input-field {
+      min-width: 160px;
+    }
+  }
+
   .record-count {
     min-width: 80px;
   }

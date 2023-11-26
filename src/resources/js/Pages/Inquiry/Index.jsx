@@ -1,6 +1,7 @@
 import { Link, useForm, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import Pagination from '@/Components/Pagination';
+import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import InquiryTable from './Partials/InquiryTable';
 
 const Index = ({ inquiriesPaginator }) => {
@@ -34,20 +35,15 @@ const Index = ({ inquiriesPaginator }) => {
         >
           区分登録
         </Link>
-        <form onSubmit={submit}>
-          <div className="u-flex u-mr-3">
-            <input
-              type="search"
-              name="keyword"
-              value={data.keyword}
-              onChange={(e) => setData('keyword', e.target.value)}
-              className={`input-field ${errors.keyword ? 'is-invalid' : ''}`}
-              placeholder="件名, 問い合わせ内容で検索"
-            />
-            <button className="btn btn-secondary">検索</button>
-          </div>
-          {errors.keyword && <div className="invalid-feedback">{errors.keyword}</div>}
-        </form>
+
+        <KeywordSearchForm
+          placeholder="件名、内容で検索"
+          data={data}
+          setData={setData}
+          errors={errors}
+          submit={submit}
+        />
+
         <div className="record-count">
           {inquiriesPaginator.total}件
         </div>
