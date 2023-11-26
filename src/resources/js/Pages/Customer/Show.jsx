@@ -47,7 +47,7 @@ const Show = ({ customer, userSelectOptions, deliveryAddressTypes }) => {
         <button
           onClick={() => setIsAddressModalOpen(true)}
           className="btn btn-secondary">
-          +出荷元/納品先を追加
+          +配送情報を追加
         </button>
       </div>
 
@@ -57,7 +57,7 @@ const Show = ({ customer, userSelectOptions, deliveryAddressTypes }) => {
         </Modal>}
 
       {isAddressModalOpen &&
-        <Modal closeModal={() => setIsAddressModalOpen(false)} title="納品先登録">
+        <Modal closeModal={() => setIsAddressModalOpen(false)} title="配送情報 登録">
           <AddressForm customer={customer} deliveryAddressTypes={deliveryAddressTypes} closeModal={() => setIsAddressModalOpen(false)} />
         </Modal>}
 
@@ -118,7 +118,7 @@ const Show = ({ customer, userSelectOptions, deliveryAddressTypes }) => {
               </tr>
 
               <tr className="table-row">
-                <th className="th-cell">取引条件（仕入）</th>
+                <th className="th-cell">支払条件</th>
                 <td className="td-cell">
                   {purchase_term?.billing_type === 1 ? (
                     <>
@@ -134,7 +134,7 @@ const Show = ({ customer, userSelectOptions, deliveryAddressTypes }) => {
               </tr>
 
               <tr className="table-row">
-                <th className="th-cell">取引条件（販売）</th>
+                <th className="th-cell">請求条件</th>
                 <td className="td-cell">
                   {sales_term?.billing_type === 1 ? (
                     <>
@@ -195,7 +195,7 @@ const Show = ({ customer, userSelectOptions, deliveryAddressTypes }) => {
       </div>
 
       <div className="content-section">
-        <div>出荷元/納品先 管理</div>
+        <div>配送情報 一覧</div>
         <div className="table-wrapper is-scrollable">
           <table className="table">
             <thead className="table-header is-sticky">
