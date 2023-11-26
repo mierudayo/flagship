@@ -68,10 +68,7 @@ class CustomerController extends Controller
         $customer->load(['contacts.inChargeUser', 'inChargeUser', 'createdBy', 'updatedBy', 'deliveryAddresses', 'purchaseTerm', 'salesTerm']);
 
         return Inertia::render('Customer/Show', [
-            'customer' => array_merge($customer->toArray(), [
-                'created_at' => $customer->created_at->format('Y-m-d H:i'),
-                'updated_at' => $customer->updated_at->format('Y-m-d H:i'),
-            ]),
+            'customer' => $customer,
             'userSelectOptions' => User::all(),
             'deliveryAddressTypes' => DeliveryAddressType::toArray(),
         ]);

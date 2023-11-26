@@ -27,6 +27,11 @@ class Customer extends Model
         'updated_by_id',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i',
+        'updated_at' => 'datetime:Y-m-d H:i',
+    ];
+
     /*
     |--------------------------------------------------------------------------
     | Relationships

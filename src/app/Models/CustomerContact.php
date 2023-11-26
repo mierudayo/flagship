@@ -34,6 +34,8 @@ class CustomerContact extends Model
 
     protected $casts = [
         'is_active' => 'boolean',
+        'created_at' => 'datetime:Y-m-d H:i',
+        'updated_at' => 'datetime:Y-m-d H:i',
     ];
 
     /*
