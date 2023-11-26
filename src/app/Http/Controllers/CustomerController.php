@@ -105,10 +105,10 @@ class CustomerController extends Controller
 
     public function destroy(Customer $customer): RedirectResponse
     {
-        if ($customer->contacts()->exists()) {
+        if (!$customer->canDelete()) {
             return redirect()
                 ->route('customers.edit', $customer)
-                ->with('message', 'この取引先は連絡先データを持つため削除できません。');
+                ->with('message', 'この取引先は関連データを持つため削除できません。');
         }
 
         $customer->delete();

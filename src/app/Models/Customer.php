@@ -85,4 +85,23 @@ class Customer extends Model
                   ->orWhere('shortcut', 'LIKE', "%$keyword%");
         });
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Business Logic
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function canDelete(): bool
+    {
+        if ($this->contacts()->exists()) {
+            return false;
+        }
+
+        if ($this->deliveryAddresses()->exists()) {
+            return false;
+        }
+
+        return true;
+    }
 }
