@@ -26,7 +26,7 @@ const Edit = ({ contact, userSelectOptions }) => {
     email: contact.email || '',
     position: contact.position || '',
     role: contact.role || '',
-    is_active: contact.is_active === 1,
+    is_active: contact.is_active,
     note: contact.note || '',
     in_charge_user_id: contact.in_charge_user_id || '',
   });

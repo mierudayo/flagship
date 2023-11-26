@@ -32,6 +32,9 @@ class CustomerContact extends Model
         'updated_by_id',
     ];
 
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
 
     /*
     |--------------------------------------------------------------------------

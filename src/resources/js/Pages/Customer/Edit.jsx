@@ -35,10 +35,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms, deliveryAddressTypes 
     sales_payment_day: customer.sales_term?.payment_day || '',
     sales_payment_day_offset: customer.sales_term?.payment_day_offset ?? '',
 
-    contacts: convertNullToEmptyString(customer.contacts).map(contact => ({
-      ...contact,
-      is_active: Boolean(contact.is_active)
-    })),
+    contacts: convertNullToEmptyString(customer.contacts),
     delivery_addresses: convertNullToEmptyString(customer.delivery_addresses),
   });
 
