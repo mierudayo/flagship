@@ -69,7 +69,7 @@ class CustomerContactController extends Controller
     public function edit(CustomerContact $contact): Response
     {
         return Inertia::render('CustomerContact/Edit', [
-            'contact'   => $contact->load(['customer']),
+            'contact'   => $contact->load(['customer', 'createdBy', 'updatedBy']),
             'userSelectOptions' => User::all(),
         ]);
     }

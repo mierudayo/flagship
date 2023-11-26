@@ -49,6 +49,12 @@ const Edit = ({ contact, userSelectOptions }) => {
   return (
     <>
       <h1 className="content-title">連絡先 編集</h1>
+      <div className="content-info-bar">
+        <div>登録: {contact.created_at} ({contact.created_by.name})</div>
+        {contact.updated_by && (
+          <div>更新: {contact.updated_at} ({contact.updated_by.name})</div>
+        )}
+      </div>
       <div className="content-navbar">
         <button
           type="submit"

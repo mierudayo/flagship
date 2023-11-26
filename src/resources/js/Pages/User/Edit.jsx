@@ -27,6 +27,10 @@ const Edit = ({ user, permissionSelectOptions }) => {
   return (
     <>
       <h1 className="content-title">ユーザー 編集</h1>
+      <div className="content-info-bar">
+        <div>登録: {user.created_at}</div>
+        <div>更新: {user.updated_at}</div>
+      </div>
       <div className="content-navbar">
         <button
           type="submit"
@@ -41,7 +45,7 @@ const Edit = ({ user, permissionSelectOptions }) => {
       </div>
 
       <FormErrorAlert errors={errors} />
-      
+
       <form id="userCreateForm" onSubmit={submit}>
         <div className="table-wrapper">
           <table className="table">

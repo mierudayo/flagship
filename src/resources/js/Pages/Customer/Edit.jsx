@@ -108,6 +108,12 @@ const Edit = ({ customer, userSelectOptions, paymentTerms, deliveryAddressTypes 
   return (
     <>
       <h1 className="content-title">取引先 編集</h1>
+      <div className="content-info-bar">
+        <div>登録: {customer.created_at} ({customer.created_by.name})</div>
+        {customer.updated_by && (
+          <div>更新: {customer.updated_at} ({customer.updated_by.name})</div>
+        )}
+      </div>
       <div className="content-navbar">
         <button
           type="submit"

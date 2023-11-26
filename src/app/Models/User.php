@@ -58,6 +58,8 @@ class User extends Authenticatable
         'employment_date',
         'resignation_date',
         'permission',
+        'created_at',
+        'updated_at',
     ];
 
     /**
@@ -68,6 +70,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'created_at' => 'datetime:Y-m-d H:i',
+        'updated_at' => 'datetime:Y-m-d H:i',
     ];
 
     /*

@@ -49,6 +49,12 @@ const Edit = ({ inquiry, productOption, inquiryTypeOption, inChargeUserOption, i
   return (
     <>
       <h1 className="content-title">問い合わせ 編集</h1>
+      <div className="content-info-bar">
+        <div>登録: {inquiry.created_at} ({inquiry.created_by.name})</div>
+        {inquiry.updated_by && (
+          <div>更新: {inquiry.updated_at} ({inquiry.updated_by.name})</div>
+        )}
+      </div>
       <div className="content-navbar">
         <button
           type="submit"

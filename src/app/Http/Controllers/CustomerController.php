@@ -76,7 +76,7 @@ class CustomerController extends Controller
 
     public function edit(Customer $customer): Response
     {
-        $customer->load(['purchaseTerm', 'salesTerm', 'contacts', 'deliveryAddresses']);
+        $customer->load(['purchaseTerm', 'salesTerm', 'contacts', 'deliveryAddresses', 'createdBy', 'updatedBy']);
 
         return Inertia::render('Customer/Edit', [
             'customer' => $customer,
