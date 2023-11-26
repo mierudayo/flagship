@@ -5,6 +5,7 @@ import CustomSelect from '@/Components/Form/CustomSelect';
 import FormLabel from '@/Components/Form/FormLabel';
 import DateInput from '@/Components/Form/DateInput';
 import Input from '@/Components/Form/Input';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 const Edit = ({ user, permissionSelectOptions }) => {
   const { data, setData, patch, processing, errors, isDirty } = useForm({
@@ -38,6 +39,9 @@ const Edit = ({ user, permissionSelectOptions }) => {
         <CancelButton isDirty={isDirty} route={route('users.index')} />
         {processing && <span>Now Loading...</span>}
       </div>
+
+      <FormErrorAlert errors={errors} />
+      
       <form id="userCreateForm" onSubmit={submit}>
         <div className="table-wrapper">
           <table className="table">

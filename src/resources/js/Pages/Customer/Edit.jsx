@@ -6,9 +6,10 @@ import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import OptionsList from '@/Components/OptionsList';
 import Textarea from '@/Components/Form/Textarea';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import { convertNullToEmptyString } from '@/Utils/arrayHelpers';
 
-const Edit = ({ customer, userSelectOptions, paymentTerms , deliveryAddressTypes}) => {
+const Edit = ({ customer, userSelectOptions, paymentTerms, deliveryAddressTypes }) => {
   const { flash } = usePage().props;
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
@@ -132,6 +133,8 @@ const Edit = ({ customer, userSelectOptions, paymentTerms , deliveryAddressTypes
       {flash.message && (
         <div className="alert alert-danger">{flash.message}</div>
       )}
+
+      <FormErrorAlert errors={errors} />
 
       <form id="customerEditForm" onSubmit={submit}>
         <div className="table-wrapper">

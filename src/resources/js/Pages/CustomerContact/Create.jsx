@@ -10,6 +10,7 @@ import Textarea from '@/Components/Form/Textarea';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 const Create = ({ userSelectOptions }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,6 +60,8 @@ const Create = ({ userSelectOptions }) => {
         <CancelButton isDirty={isDirty} route={route('contacts.index')} />
         {processing && <span>Now Loading...</span>}
       </div>
+
+      <FormErrorAlert errors={errors} />
 
       {isModalOpen &&
         <Modal closeModal={() => setIsModalOpen(false)} title="取引先 呼び出し">

@@ -6,6 +6,7 @@ import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import OptionsList from '@/Components/OptionsList';
 import Textarea from '@/Components/Form/Textarea';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 const Create = ({ userSelectOptions, paymentTerms, deliveryAddressTypes }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
@@ -113,6 +114,8 @@ const Create = ({ userSelectOptions, paymentTerms, deliveryAddressTypes }) => {
         <CancelButton isDirty={isDirty} route={route('customers.index')} />
         {processing && <span>Now Loading...</span>}
       </div>
+
+      <FormErrorAlert errors={errors} />
 
       <form id="customerCreateForm" onSubmit={submit}>
         <div className="table-wrapper">

@@ -10,6 +10,7 @@ import Input from '@/Components/Form/Input';
 import Textarea from '@/Components/Form/Textarea';
 import ContactLookup from '@/Components/ContactLookup';
 import Modal from '@/Components/Modal';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 const Edit = ({ inquiry, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -69,6 +70,8 @@ const Edit = ({ inquiry, productOption, inquiryTypeOption, inChargeUserOption, i
           削除
         </Link>
       </div>
+
+      <FormErrorAlert errors={errors} />
 
       {isModalOpen &&
         <Modal closeModal={() => setIsModalOpen(false)} title="連絡先 呼び出し">

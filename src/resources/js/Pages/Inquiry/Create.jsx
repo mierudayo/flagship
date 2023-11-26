@@ -10,6 +10,7 @@ import Input from '@/Components/Form/Input';
 import Textarea from '@/Components/Form/Textarea';
 import ContactLookup from '@/Components/ContactLookup';
 import Modal from '@/Components/Modal';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) => {
   const { today } = usePage().props.date;
@@ -61,6 +62,8 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
         <CancelButton isDirty={isDirty} route={route('inquiries.index')} />
         {processing && <span>Now Loading...</span>}
       </div>
+
+      <FormErrorAlert errors={errors} />
 
       {isModalOpen &&
         <Modal closeModal={() => setIsModalOpen(false)} title="連絡先 呼び出し">

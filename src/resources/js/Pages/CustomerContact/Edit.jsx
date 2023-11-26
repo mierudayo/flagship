@@ -10,6 +10,7 @@ import Textarea from '@/Components/Form/Textarea';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 const Edit = ({ contact, userSelectOptions }) => {
   const { flash } = usePage().props;
@@ -73,6 +74,8 @@ const Edit = ({ contact, userSelectOptions }) => {
       {flash.message && (
         <div className="alert alert-danger">{flash.message}</div>
       )}
+
+      <FormErrorAlert errors={errors} />
 
       {isModalOpen &&
         <Modal closeModal={() => setIsModalOpen(false)} title="取引先 呼び出し">
