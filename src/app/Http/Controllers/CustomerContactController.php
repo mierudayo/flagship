@@ -43,6 +43,7 @@ class CustomerContactController extends Controller
 
         return Inertia::render('CustomerContact/Show', [
             'contact' => array_merge($contact->toArray(), [
+                // TODO: Null可能性ありハンドリングする
                 'created_at' => $contact->created_at->format('Y-m-d H:i'),
                 'updated_at' => $contact->updated_at->format('Y-m-d H:i'),
             ]),

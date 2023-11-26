@@ -46,6 +46,18 @@ class CustomerStoreRequest extends FormRequest
             'sales_payment_month_offset'    => ['nullable', 'integer', 'min:0', 'max:12'],
             'sales_payment_day'             => ['nullable', 'integer', 'min:1', 'max:99'],
             'sales_payment_day_offset'      => ['nullable', 'integer', 'min:0'],
+
+            // CustomerContact
+            'contacts.*.name'              => ['required', 'string'],
+            'contacts.*.name_kana'         => ['nullable', 'string', 'max:255'],
+            'contacts.*.tel'               => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
+            'contacts.*.mobile_number'     => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
+            'contacts.*.email'             => ['nullable', 'string', 'max:255', 'email'],
+            'contacts.*.position'          => ['nullable', 'string', 'max:255'],
+            'contacts.*.role'              => ['nullable', 'string', 'max:255'],
+            'contacts.*.is_active'         => ['required', 'boolean'],
+            'contacts.*.note'              => ['nullable', 'string', 'max:2000'],
+            'contacts.*.in_charge_user_id' => ['nullable', 'integer', 'exists:users,id'],
         ];
     }
 

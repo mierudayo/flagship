@@ -137,8 +137,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'contacts.*' => [
+            'required' => '必須項目です',
         ],
     ],
 

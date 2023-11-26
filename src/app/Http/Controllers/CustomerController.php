@@ -12,6 +12,7 @@ use App\Http\Requests\CustomerSearchRequest;
 use App\Http\Requests\CustomerStoreRequest;
 use App\Http\Requests\CustomerUpdateRequest;
 use App\Models\Customer;
+use App\Models\CustomerContact;
 use App\Models\PurchaseTerm;
 use App\Models\SalesTerm;
 use App\Models\User;
@@ -51,6 +52,7 @@ class CustomerController extends Controller
             $createdCustomer = $this->createCustomer($request);
             $this->createPurchaseTermIfNeeded($request, $createdCustomer);
             $this->createSalesTermIfNeeded($request, $createdCustomer);
+            $this->createContacts($request, $createdCustomer);
             return $createdCustomer;
         });
 
@@ -211,6 +213,35 @@ class CustomerController extends Controller
                 'payment_day_offset'    => $request->input('sales_payment_day_offset'),
             ],
         );
+    }
+
+    private function createContacts(CustomerStoreRequest $request, Customer $customer): void
+    {
+        $contacts = $this->prepareContactsData($request->input('contacts'), $customer);
+        CustomerContact::insert($contacts);
+    }
+
+    /**
+     * リクエストから受け取ったcontactsデータを、
+     * customer_contactsテーブル用のデータとして整形する。
+     *
+     * @param array $contacts リクエストから受け取った連絡先データ
+     * @param Customer $customer 連絡先に関連付ける取引先インスタンス
+     * @return array 整形された連絡先データ
+     */
+    private function prepareContactsData(array $contacts, Customer $customer): array
+    {
+        $customerId  = $customer->id;
+        $createdById = auth()->user()->id;
+
+        return collect($contacts)->map(function ($contact) use ($customerId, $createdById) {
+            return array_merge($contact, [
+                'customer_id'   => $customerId,
+                'created_by_id' => $createdById,
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ]);
+        })->toArray();
     }
 
     private function getPaymentTerms(): array

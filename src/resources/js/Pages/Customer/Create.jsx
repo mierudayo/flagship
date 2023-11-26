@@ -28,6 +28,7 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
     sales_payment_month_offset: '',
     sales_payment_day: '',
     sales_payment_day_offset: '',
+    contacts: [],
   });
 
   function submit(e) {
@@ -36,6 +37,33 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
       onSuccess: () => reset(),
     });
   };
+
+  function addContact() {
+    setData('contacts', [
+      ...data.contacts,
+      {
+        name: '',
+        name_kana: '',
+        tel: '',
+        mobile_number: '',
+        email: '',
+        position: '',
+        role: '',
+        is_active: true,
+        note: '',
+        in_charge_user_id: '',
+      }
+    ])
+  }
+
+  function updateContact(index, key, value) {
+    const updatedContacts = [...data.contacts];
+    updatedContacts[index] = {
+      ...updatedContacts[index],
+      [key]: value
+    };
+    setData('contacts', updatedContacts);
+  }
 
   return (
     <>
@@ -343,6 +371,191 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <div className="content-section u-mt-4">
+          <div>連絡先 登録</div>
+          <div className="table-wrapper is-scrollable">
+            <table className="table">
+              <thead className="table-header is-sticky">
+                <tr className="table-row">
+                  <th className="th-cell col-fixed"></th>
+                  <th className="th-cell u-min-w-200">
+                    <FormLabel label="名前" isRequired={true} />
+                  </th>
+                  <th className="th-cell u-min-w-200">
+                    <FormLabel label="よみがな" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-200">
+                    <FormLabel label="TEL" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-200">
+                    <FormLabel label="携帯番号" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-200">
+                    <FormLabel label="Email" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-200">
+                    <FormLabel label="役職" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-200">
+                    <FormLabel label="役割" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-128">
+                    <FormLabel label="使用状況" isRequired={true} />
+                  </th>
+                  <th className="th-cell u-min-w-400">
+                    <FormLabel label="備考" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-400">
+                    <FormLabel label="担当ユーザー" isRequired={false} />
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="tbody">
+                {data.contacts.map((contact, index) => (
+                  <tr key={index} className="table-row is-hoverable">
+                    <td className="td-cell col-fixed u-w-80">
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={contact.name}
+                        onChange={e => updateContact(index, 'name', e.target.value)}
+                        error={errors[`contacts.${index}.name`]}
+                      />
+                      {errors[`contacts.${index}.name`] && (
+                        <div className="invalid-feedback">
+                          {errors[`contacts.${index}.name`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={contact.name_kana}
+                        onChange={e => updateContact(index, 'name_kana', e.target.value)}
+                        error={errors[`contacts.${index}.name_kana`]}
+                      />
+                      {errors[`contacts.${index}.name_kana`] && (
+                        <div className="invalid-feedback">
+                          {errors[`contacts.${index}.name_kana`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={contact.tel}
+                        onChange={e => updateContact(index, 'tel', e.target.value)}
+                        error={errors[`contacts.${index}.tel`]}
+                      />
+                      {errors[`contacts.${index}.tel`] && (
+                        <div className="invalid-feedback">
+                          {errors[`contacts.${index}.tel`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={contact.mobile_number}
+                        onChange={e => updateContact(index, 'mobile_number', e.target.value)}
+                        error={errors[`contacts.${index}.mobile_number`]}
+                      />
+                      {errors[`contacts.${index}.mobile_number`] && (
+                        <div className="invalid-feedback">
+                          {errors[`contacts.${index}.mobile_number`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={contact.email}
+                        onChange={e => updateContact(index, 'email', e.target.value)}
+                        error={errors[`contacts.${index}.email`]}
+                      />
+                      {errors[`contacts.${index}.email`] && (
+                        <div className="invalid-feedback">
+                          {errors[`contacts.${index}.email`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={contact.position}
+                        onChange={e => updateContact(index, 'position', e.target.value)}
+                        error={errors[`contacts.${index}.position`]}
+                      />
+                      {errors[`contacts.${index}.position`] && (
+                        <div className="invalid-feedback">
+                          {errors[`contacts.${index}.position`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={contact.role}
+                        onChange={e => updateContact(index, 'role', e.target.value)}
+                        error={errors[`contacts.${index}.role`]}
+                      />
+                      {errors[`contacts.${index}.role`] && (
+                        <div className="invalid-feedback">
+                          {errors[`contacts.${index}.role`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <select
+                        value={data.is_active}
+                        onChange={e => updateContact(index, 'is_active', e.target.value === 'true')}
+                        className={`form-select ${errors[`contacts.${index}.is_active`] ? 'is-invalid' : ''}`}
+                      >
+                        <option value="true">使用中</option>
+                        <option value="false">使用不可</option>
+                      </select>
+                      {errors[`contacts.${index}.is_active`] && (
+                        <div className="invalid-feedback">
+                          {errors[`contacts.${index}.is_active`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={contact.note}
+                        onChange={e => updateContact(index, 'note', e.target.value)}
+                        error={errors[`contacts.${index}.note`]}
+                      />
+                      {errors[`contacts.${index}.note`] && (
+                        <div className="invalid-feedback">
+                          {errors[`contacts.${index}.note`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      {/* TODO: 担当ユーザーセレクトボックスを追加 */}
+                    </td>
+
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <button type="button" className="btn btn-secondary u-mt-3" onClick={addContact}>+ 行を追加</button>
         </div>
       </form>
     </>
