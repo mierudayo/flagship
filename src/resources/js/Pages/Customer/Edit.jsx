@@ -35,7 +35,10 @@ const Edit = ({ customer, userSelectOptions, paymentTerms, deliveryAddressTypes 
     sales_payment_day: customer.sales_term?.payment_day || '',
     sales_payment_day_offset: customer.sales_term?.payment_day_offset ?? '',
 
-    contacts: convertNullToEmptyString(customer.contacts),
+    contacts: convertNullToEmptyString(customer.contacts).map(contact => ({
+      ...contact,
+      is_active: Boolean(contact.is_active)
+    })),
     delivery_addresses: convertNullToEmptyString(customer.delivery_addresses),
   });
 
@@ -582,12 +585,21 @@ const Edit = ({ customer, userSelectOptions, paymentTerms, deliveryAddressTypes 
 
                     <td className="td-cell">
                       <select
-                        value={data.is_active}
-                        onChange={e => updateContact(index, 'is_active', e.target.value === 'true')}
+                        value={contact.is_active}
+                        onChange={e => {
+                          console.log(contact.is_active);
+                          console.log(e.target.value);
+                          console.log(e.target.value === 'true');
+                          updateContact(index, 'is_active', e.target.value === 'true')
+                        }}
                         className={`form-select ${errors[`contacts.${index}.is_active`] ? 'is-invalid' : ''}`}
                       >
-                        <option value="true">使用中</option>
-                        <option value="false">使用不可</option>
+                        <OptionsList
+                          options={[
+                            {value: true, label: '使用中'},
+                            {value: false, label: '使用不可'}
+                          ]}
+                        />
                       </select>
                       {errors[`contacts.${index}.is_active`] && (
                         <div className="invalid-feedback">
@@ -669,7 +681,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms, deliveryAddressTypes 
 
                     <td className="td-cell">
                       <select
-                        value={data.address_type}
+                        value={deliveryAddress.address_type}
                         onChange={e => updateDeliveryAddress(index, 'address_type', e.target.value)}
                         className={`form-select ${errors[`contacts.${index}.address_type`] ? 'is-invalid' : ''}`}
                       >
