@@ -644,7 +644,7 @@ const Create = ({ userSelectOptions, paymentTerms, deliveryAddressTypes }) => {
                     <td className="td-cell">
                       <select
                         value={data.address_type}
-                        onChange={e => updateDeliveryAddress(index, 'address_type', e.target.value === 'true')}
+                        onChange={e => updateDeliveryAddress(index, 'address_type', e.target.value)}
                         className={`form-select ${errors[`contacts.${index}.address_type`] ? 'is-invalid' : ''}`}
                       >
                         <OptionsList options={deliveryAddressTypes} />
