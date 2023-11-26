@@ -13,6 +13,7 @@ use App\Http\Requests\CustomerStoreRequest;
 use App\Http\Requests\CustomerUpdateRequest;
 use App\Models\Customer;
 use App\Models\CustomerContact;
+use App\Models\DeliveryAddress;
 use App\Models\PurchaseTerm;
 use App\Models\SalesTerm;
 use App\Models\User;
@@ -43,6 +44,7 @@ class CustomerController extends Controller
         return Inertia::render('Customer/Create', [
             'userSelectOptions' => User::all(),
             'paymentTerms'      => $this->getPaymentTerms(),
+            'deliveryAddressTypes' => DeliveryAddressType::toArray(),
         ]);
     }
 
@@ -53,6 +55,7 @@ class CustomerController extends Controller
             $this->createPurchaseTermIfNeeded($request, $createdCustomer);
             $this->createSalesTermIfNeeded($request, $createdCustomer);
             $this->createContacts($request, $createdCustomer);
+            $this->createDeliveryAddresses($request, $createdCustomer);
             return $createdCustomer;
         });
 
@@ -283,6 +286,31 @@ class CustomerController extends Controller
                     'updated_by_id'     => $updatedById,
                 ];
             })->toArray();
+    }
+
+    private function createDeliveryAddresses(CustomerStoreRequest $request, Customer $customer): void
+    {
+        $deliveryAddresses = $this->prepareDeliveryAddressesData($request->input('delivery_addresses'), $customer);
+        DeliveryAddress::insert($deliveryAddresses);
+    }
+
+    /**
+     * リクエストから受け取ったdelivery_addressesデータを、
+     * delivery_addressesテーブル用のデータとして整形する。
+     *
+     * @param array $delivery_addresses リクエストから受け取った連絡先データ
+     * @param Customer $customer 関連付ける取引先インスタンス
+     * @return array 整形された配送情報データ
+     */
+    private function prepareDeliveryAddressesData(array $delivery_addresses, Customer $customer): array
+    {
+        $customerId  = $customer->id;
+
+        return collect($delivery_addresses)->map(function ($contact) use ($customerId) {
+            return array_merge($contact, [
+                'customer_id'   => $customerId,
+            ]);
+        })->toArray();
     }
 
     private function getPaymentTerms(): array

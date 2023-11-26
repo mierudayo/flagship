@@ -140,6 +140,9 @@ return [
         'contacts.*' => [
             'required' => '必須項目です',
         ],
+        'delivery_addresses.*' => [
+            'required' => '必須項目です',
+        ],
     ],
 
     /*

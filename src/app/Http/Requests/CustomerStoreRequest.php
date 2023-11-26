@@ -58,6 +58,14 @@ class CustomerStoreRequest extends FormRequest
             'contacts.*.is_active'         => ['required', 'boolean'],
             'contacts.*.note'              => ['nullable', 'string', 'max:2000'],
             'contacts.*.in_charge_user_id' => ['nullable', 'integer', 'exists:users,id'],
+
+            // DeliveryAddress
+            'delivery_addresses.*.post_code'     => ['nullable', 'string', 'max:8', 'regex:/^\d{3}-?\d{4}$/'],
+            'delivery_addresses.*.address'       => ['required', 'string', 'max:255'],
+            'delivery_addresses.*.company_name'  => ['nullable', 'string', 'max:255'],
+            'delivery_addresses.*.contact_name'  => ['nullable', 'string', 'max:255'],
+            'delivery_addresses.*.tel'           => ['nullable', 'string', 'max:15', 'regex:/^(\d{1,4}-?\d{1,4}-?\d{1,4})$/'],
+            'delivery_addresses.*.note'          => ['nullable', 'string'],
         ];
     }
 
