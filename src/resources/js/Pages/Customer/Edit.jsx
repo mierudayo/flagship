@@ -19,7 +19,7 @@ function convertNullToEmptyString(array) {
   });
 }
 
-const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
+const Edit = ({ customer, userSelectOptions, paymentTerms , deliveryAddressTypes}) => {
   const { flash } = usePage().props;
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
@@ -46,6 +46,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
     sales_payment_day_offset: customer.sales_term?.payment_day_offset ?? '',
 
     contacts: convertNullToEmptyString(customer.contacts),
+    delivery_addresses: convertNullToEmptyString(customer.delivery_addresses),
   });
 
   function submit(e) {
@@ -84,6 +85,34 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
       [key]: value
     };
     setData('contacts', updatedContacts);
+  }
+
+  function addDeliveryAddress() {
+    setData('delivery_addresses', [
+      ...data.delivery_addresses,
+      {
+        address_type: 1,
+        postal_code: '',
+        address: '',
+        company_name: '',
+        contact_name: '',
+        tel: '',
+        note: '',
+      }
+    ])
+  }
+
+  function removeDeliveryAddress(indexToRemove) {
+    setData('delivery_addresses', data.delivery_addresses.filter((_, index) => index !== indexToRemove));
+  }
+
+  function updateDeliveryAddress(index, key, value) {
+    const updatedDeliveryAddresses = [...data.delivery_addresses];
+    updatedDeliveryAddresses[index] = {
+      ...updatedDeliveryAddresses[index],
+      [key]: value
+    }
+    setData('delivery_addresses', updatedDeliveryAddresses);
   }
 
   return (
@@ -599,6 +628,158 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
             </table>
           </div>
           <button type="button" className="btn btn-secondary u-mt-3" onClick={addContact}>+ 行を追加</button>
+        </div>
+
+        <div className="content-section u-mt-4">
+          <div>配送情報 登録</div>
+          <div className="table-wrapper is-scrollable">
+            <table className="table">
+              <thead className="table-header is-sticky">
+                <tr className="table-row">
+                  <th className="th-cell col-fixed"></th>
+                  <th className="th-cell u-min-w-160">
+                    <FormLabel label="区分" isRequired={true} />
+                  </th>
+                  <th className="th-cell u-min-w-160">
+                    <FormLabel label="郵便番号" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-320">
+                    <FormLabel label="住所" isRequired={true} />
+                  </th>
+                  <th className="th-cell u-min-w-320">
+                    <FormLabel label="会社名" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-200">
+                    <FormLabel label="担当者名" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-200">
+                    <FormLabel label="TEL" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-200">
+                    <FormLabel label="備考" isRequired={false} />
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="tbody">
+                {data.delivery_addresses.map((deliveryAddress, index) => (
+                  <tr key={index} className="table-row is-hoverable">
+                    <td className="td-cell col-fixed u-w-80">
+                      {!deliveryAddress.id && (
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          onClick={() => removeDeliveryAddress(index)}
+                        >
+                          削除
+                        </button>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <select
+                        value={data.address_type}
+                        onChange={e => updateDeliveryAddress(index, 'address_type', e.target.value)}
+                        className={`form-select ${errors[`contacts.${index}.address_type`] ? 'is-invalid' : ''}`}
+                      >
+                        <OptionsList options={deliveryAddressTypes} />
+                      </select>
+                      {errors[`contacts.${index}.address_type`] && (
+                        <div className="invalid-feedback">
+                          {errors[`contacts.${index}.address_type`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={deliveryAddress.postal_code}
+                        onChange={e => updateDeliveryAddress(index, 'postal_code', e.target.value)}
+                        error={errors[`delivery_addresses.${index}.postal_code`]}
+                      />
+                      {errors[`delivery_addresses.${index}.postal_code`] && (
+                        <div className="invalid-feedback">
+                          {errors[`delivery_addresses.${index}.postal_code`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={deliveryAddress.address}
+                        onChange={e => updateDeliveryAddress(index, 'address', e.target.value)}
+                        error={errors[`delivery_addresses.${index}.address`]}
+                      />
+                      {errors[`delivery_addresses.${index}.address`] && (
+                        <div className="invalid-feedback">
+                          {errors[`delivery_addresses.${index}.address`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={deliveryAddress.company_name}
+                        onChange={e => updateDeliveryAddress(index, 'company_name', e.target.value)}
+                        error={errors[`delivery_addresses.${index}.company_name`]}
+                      />
+                      {errors[`delivery_addresses.${index}.company_name`] && (
+                        <div className="invalid-feedback">
+                          {errors[`delivery_addresses.${index}.company_name`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={deliveryAddress.contact_name}
+                        onChange={e => updateDeliveryAddress(index, 'contact_name', e.target.value)}
+                        error={errors[`delivery_addresses.${index}.contact_name`]}
+                      />
+                      {errors[`delivery_addresses.${index}.contact_name`] && (
+                        <div className="invalid-feedback">
+                          {errors[`delivery_addresses.${index}.contact_name`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={deliveryAddress.tel}
+                        onChange={e => updateDeliveryAddress(index, 'tel', e.target.value)}
+                        error={errors[`delivery_addresses.${index}.tel`]}
+                      />
+                      {errors[`delivery_addresses.${index}.tel`] && (
+                        <div className="invalid-feedback">
+                          {errors[`delivery_addresses.${index}.tel`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={deliveryAddress.note}
+                        onChange={e => updateDeliveryAddress(index, 'note', e.target.value)}
+                        error={errors[`delivery_addresses.${index}.note`]}
+                      />
+                      {errors[`delivery_addresses.${index}.note`] && (
+                        <div className="invalid-feedback">
+                          {errors[`delivery_addresses.${index}.note`]}
+                        </div>
+                      )}
+                    </td>
+
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <button type="button" className="btn btn-secondary u-mt-3" onClick={addDeliveryAddress}>+ 行を追加</button>
         </div>
       </form>
     </>

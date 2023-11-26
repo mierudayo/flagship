@@ -79,11 +79,13 @@ class CustomerController extends Controller
 
     public function edit(Customer $customer): Response
     {
-        $customer->load(['purchaseTerm', 'salesTerm', 'contacts']);
+        $customer->load(['purchaseTerm', 'salesTerm', 'contacts', 'deliveryAddresses']);
+
         return Inertia::render('Customer/Edit', [
             'customer' => $customer,
             'userSelectOptions' => User::all(),
             'paymentTerms'      => $this->getPaymentTerms(),
+            'deliveryAddressTypes' => DeliveryAddressType::toArray(),
         ]);
     }
 
@@ -94,6 +96,7 @@ class CustomerController extends Controller
             $this->updateOrCreatePurchaseTermIfNeeded($request, $customer);
             $this->updateOrCreateSalesTermIfNeeded($request, $customer);
             $this->upsertContacts($request, $customer);
+            $this->upsertDeliveryAddresses($request, $customer);
         });
 
         return to_route('customers.show', $customer)
@@ -312,6 +315,33 @@ class CustomerController extends Controller
             ]);
         })->toArray();
     }
+
+    private function upsertDeliveryAddresses(CustomerUpdateRequest $request, Customer $customer): void
+    {
+        $deliveryAddresses = $this->prepareUpdateDeliveryAddressesData($request->input('delivery_addresses'), $customer);
+        DeliveryAddress::upsert($deliveryAddresses, ['id']);
+    }
+
+    private function prepareUpdateDeliveryAddressesData(array $deliveryAddresses, Customer $customer): array
+    {
+        $customerId  = $customer->id;
+
+        return collect($deliveryAddresses)
+            ->map(function ($deliveryAddress) use ($customerId) {
+                return [
+                    'id'                => $deliveryAddress['id'] ?? null,
+                    'customer_id'       => $customerId,
+                    'address_type'      => $deliveryAddress['address_type'],
+                    'postal_code'       => $deliveryAddress['postal_code'],
+                    'address'           => $deliveryAddress['address'],
+                    'company_name'      => $deliveryAddress['company_name'],
+                    'contact_name'      => $deliveryAddress['contact_name'],
+                    'tel'               => $deliveryAddress['tel'],
+                    'note'              => $deliveryAddress['note'],
+                ];
+            })->toArray();
+    }
+
 
     private function getPaymentTerms(): array
     {
