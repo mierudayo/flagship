@@ -7,6 +7,18 @@ import Input from '@/Components/Form/Input';
 import OptionsList from '@/Components/OptionsList';
 import Textarea from '@/Components/Form/Textarea';
 
+function convertNullToEmptyString(array) {
+  return array.map(item => {
+      const newItem = { ...item };
+      Object.keys(newItem).forEach(key => {
+          if (newItem[key] === null) {
+              newItem[key] = '';
+          }
+      });
+      return newItem;
+  });
+}
+
 const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
   const { flash } = usePage().props;
 
@@ -33,7 +45,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
     sales_payment_day: customer.sales_term?.payment_day || '',
     sales_payment_day_offset: customer.sales_term?.payment_day_offset ?? '',
 
-    contacts: customer.contacts,
+    contacts: convertNullToEmptyString(customer.contacts),
   });
 
   function submit(e) {
