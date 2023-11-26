@@ -9,13 +9,13 @@ import Textarea from '@/Components/Form/Textarea';
 
 function convertNullToEmptyString(array) {
   return array.map(item => {
-      const newItem = { ...item };
-      Object.keys(newItem).forEach(key => {
-          if (newItem[key] === null) {
-              newItem[key] = '';
-          }
-      });
-      return newItem;
+    const newItem = { ...item };
+    Object.keys(newItem).forEach(key => {
+      if (newItem[key] === null) {
+        newItem[key] = '';
+      }
+    });
+    return newItem;
   });
 }
 
@@ -450,13 +450,15 @@ const Edit = ({ customer, userSelectOptions, paymentTerms }) => {
                 {data.contacts.map((contact, index) => (
                   <tr key={index} className="table-row is-hoverable">
                     <td className="td-cell col-fixed u-w-80">
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        onClick={() => removeContact(index)}
-                      >
-                        削除
-                      </button>
+                      {!contact.id && (
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          onClick={() => removeContact(index)}
+                        >
+                          行削除
+                        </button>
+                      )}
                     </td>
 
                     <td className="td-cell">

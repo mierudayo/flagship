@@ -261,8 +261,6 @@ class CustomerController extends Controller
      */
     private function prepareUpdateContactsData(array $contacts, Customer $customer): array
     {
-        // TODO: UI上で行削除されたレコードの更新スキップと削除処理
-
         $updatedById = auth()->user()->id;
         $customerId  = $customer->id;
 
