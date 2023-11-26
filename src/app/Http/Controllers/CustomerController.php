@@ -56,7 +56,7 @@ class CustomerController extends Controller
             return $createdCustomer;
         });
 
-        return to_route('customers.index')
+        return to_route('customers.show', $customer)
             ->with('message', "取引先ID:{$customer->id} 登録成功しました。");
     }
 
@@ -92,8 +92,8 @@ class CustomerController extends Controller
             $this->updateOrCreateSalesTermIfNeeded($request, $customer);
         });
 
-        return to_route('customers.index')
-            ->with('message', "取引先ID:{$customer->id} 更新しました。");
+        return to_route('customers.show', $customer)
+            ->with('message', "取引先情報を更新しました。");
     }
 
     public function destroy(Customer $customer): RedirectResponse
