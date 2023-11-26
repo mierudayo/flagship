@@ -56,6 +56,10 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
     ])
   }
 
+  function removeContact(indexToRemove) {
+    setData('contacts', data.contacts.filter((_, index) => index !== indexToRemove));
+  }
+
   function updateContact(index, key, value) {
     const updatedContacts = [...data.contacts];
     updatedContacts[index] = {
@@ -416,6 +420,13 @@ const Create = ({ userSelectOptions, paymentTerms }) => {
                 {data.contacts.map((contact, index) => (
                   <tr key={index} className="table-row is-hoverable">
                     <td className="td-cell col-fixed u-w-80">
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => removeContact(index)}
+                      >
+                        削除
+                      </button>
                     </td>
 
                     <td className="td-cell">
