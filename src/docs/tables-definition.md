@@ -1,17 +1,18 @@
-****# テーブル定義
+# テーブル定義
 
-- [permissions 権限](#permissions-権限)
-- [users ユーザー](#users-ユーザー)
-- [customers 取引先](#customers-取引先)
-- [customer\_contacts 連絡先](#customer_contacts-連絡先)
-- [delivery\_addresses 出荷元/納品先住所](#delivery_addresses-出荷元納品先住所)
-- [sales\_terms 取引条件(販売)](#sales_terms-取引条件販売)
-- [purchase\_terms 取引条件(仕入)](#purchase_terms-取引条件仕入)
-- [product\_category\_groups 商品カテゴリグループ](#product_category_groups-商品カテゴリグループ)
-- [product\_categories 商品カテゴリ](#product_categories-商品カテゴリ)
-- [products 商品](#products-商品)
-- [inquiry\_types 問い合わせ区分](#inquiry_types-問い合わせ区分)
-- [inquiries 問い合わせ](#inquiries-問い合わせ)
+- [テーブル定義](#テーブル定義)
+  - [permissions 権限](#permissions-権限)
+  - [users ユーザー](#users-ユーザー)
+  - [customers 取引先](#customers-取引先)
+  - [customer\_contacts 連絡先](#customer_contacts-連絡先)
+  - [delivery\_addresses 出荷元/納品先住所](#delivery_addresses-出荷元納品先住所)
+  - [sales\_terms 取引条件(販売)](#sales_terms-取引条件販売)
+  - [purchase\_terms 取引条件(仕入)](#purchase_terms-取引条件仕入)
+  - [product\_category\_groups 商品カテゴリグループ](#product_category_groups-商品カテゴリグループ)
+  - [product\_categories 商品カテゴリ](#product_categories-商品カテゴリ)
+  - [products 商品](#products-商品)
+  - [inquiry\_types 問い合わせ区分](#inquiry_types-問い合わせ区分)
+  - [inquiries 問い合わせ](#inquiries-問い合わせ)
 
 ## permissions 権限
 
