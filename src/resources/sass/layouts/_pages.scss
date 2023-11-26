@@ -20,6 +20,11 @@
   align-items: center;
   display: flex;
   padding: 8px 0 ;
+  overflow-x: scroll;
+
+  .record-count {
+    min-width: 80px;
+  }
 }
 
 .content-section {

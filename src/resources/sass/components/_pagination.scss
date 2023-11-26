@@ -2,6 +2,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
+  margin-left: auto;
 }
 
 .pagination-link {
@@ -30,4 +31,5 @@
 .current-page {
   font-size: 0.9rem;
   margin: 0 4px;
+  min-width: 40px;
 }

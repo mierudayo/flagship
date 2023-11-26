@@ -41,7 +41,7 @@ const Index = ({ productsPaginator }) => {
           </div>
           {errors.keyword && <div className="invalid-feedback">{errors.keyword}</div>}
         </form>
-        <div className="record-count u-mr-3">
+        <div className="record-count">
           {productsPaginator.total}件
         </div>
         <Pagination paginator={productsPaginator} />

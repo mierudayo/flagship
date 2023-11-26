@@ -42,7 +42,7 @@ const Index = ({ customersPaginator, canAdmin }) => {
           </div>
           {errors.keyword && <div className="invalid-feedback">{errors.keyword}</div>}
         </form>
-        <div className="record-count u-mr-3">
+        <div className="record-count">
           {customersPaginator.total}件
         </div>
         <Pagination paginator={customersPaginator} />
