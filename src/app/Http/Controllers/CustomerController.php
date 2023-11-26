@@ -76,7 +76,7 @@ class CustomerController extends Controller
 
     public function edit(Customer $customer): Response
     {
-        $customer->load(['purchaseTerm', 'salesTerm']);
+        $customer->load(['purchaseTerm', 'salesTerm', 'contacts']);
         return Inertia::render('Customer/Edit', [
             'customer' => $customer,
             'userSelectOptions' => User::all(),
@@ -90,6 +90,7 @@ class CustomerController extends Controller
             $this->updateCustomer($request, $customer);
             $this->updateOrCreatePurchaseTermIfNeeded($request, $customer);
             $this->updateOrCreateSalesTermIfNeeded($request, $customer);
+            $this->upsertContacts($request, $customer);
         });
 
         return to_route('customers.show', $customer)
@@ -242,6 +243,48 @@ class CustomerController extends Controller
                 'updated_at'    => now(),
             ]);
         })->toArray();
+    }
+
+    private function upsertContacts(CustomerUpdateRequest $request, Customer $customer): void
+    {
+        $contacts = $this->prepareUpdateContactsData($request->input('contacts'), $customer);
+        CustomerContact::upsert($contacts, ['id']);
+    }
+
+    /**
+     * リクエストから受け取ったcontactsデータを、
+     * customer_contactsテーブル用に既存データ更新と新規追加のデータとして整形する。
+     *
+     * @param array $contacts リクエストから受け取った連絡先データ
+     * @param Customer $customer 連絡先に関連付ける取引先インスタンス
+     * @return array 整形された連絡先データ
+     */
+    private function prepareUpdateContactsData(array $contacts, Customer $customer): array
+    {
+        // TODO: UI上で行削除されたレコードの更新スキップと削除処理
+
+        $updatedById = auth()->user()->id;
+        $customerId  = $customer->id;
+
+        return collect($contacts)
+            ->map(function ($contact) use ($customerId, $updatedById) {
+                return [
+                    'id'                => $contact['id'] ?? null,
+                    'customer_id'       => $customerId,
+                    'name'              => $contact['name'],
+                    'name_kana'         => $contact['name_kana'],
+                    'tel'               => $contact['tel'],
+                    'mobile_number'     => $contact['mobile_number'],
+                    'email'             => $contact['email'],
+                    'position'          => $contact['position'],
+                    'role'              => $contact['role'],
+                    'is_active'         => $contact['is_active'],
+                    'note'              => $contact['note'],
+                    'in_charge_user_id' => $contact['in_charge_user_id'],
+                    'created_by_id'     => $contact['created_by_id'] ?? $updatedById,
+                    'updated_by_id'     => $updatedById,
+                ];
+            })->toArray();
     }
 
     private function getPaymentTerms(): array
