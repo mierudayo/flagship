@@ -6,18 +6,7 @@ import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import OptionsList from '@/Components/OptionsList';
 import Textarea from '@/Components/Form/Textarea';
-
-function convertNullToEmptyString(array) {
-  return array.map(item => {
-    const newItem = { ...item };
-    Object.keys(newItem).forEach(key => {
-      if (newItem[key] === null) {
-        newItem[key] = '';
-      }
-    });
-    return newItem;
-  });
-}
+import { convertNullToEmptyString } from '@/Utils/arrayHelpers';
 
 const Edit = ({ customer, userSelectOptions, paymentTerms , deliveryAddressTypes}) => {
   const { flash } = usePage().props;
