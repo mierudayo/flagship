@@ -20,7 +20,7 @@ class DeliveryAddressFactory extends Factory
         return [
             'customer_id'   => Customer::inRandomOrder()->first()->id,
             'address_type'  => $this->faker->randomElement([1, 2, 3]),
-            'post_code'     => $this->faker->optional(0.8)->postcode,
+            'postal_code'     => $this->faker->optional(0.8)->postcode,
             'address'       => $this->faker->address,
             'company_name'  => $this->faker->optional(0.8)->company,
             'contact_name'  => $this->faker->optional(0.8)->name,

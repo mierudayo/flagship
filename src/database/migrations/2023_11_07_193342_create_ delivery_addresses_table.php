@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id')->comment('取引先ID');
             $table->tinyInteger('address_type')->comment('住所区分');
-            $table->string('post_code')->nullable()->comment('郵便番号');
+            $table->string('postal_code')->nullable()->comment('郵便番号');
             $table->string('address')->comment('住所');
             $table->string('company_name')->nullable()->comment('会社名');
             $table->string('contact_name')->nullable()->comment('担当者名');

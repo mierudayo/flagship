@@ -97,7 +97,7 @@
 | id              | ID       | bigIncrements      | PK        |
 | customer_id     | 取引先ID | unsignedBigInteger | FK        |
 | address_type    | 住所区分 | tinyInteger        | 1:出荷元, 2:納品先, 3:兼用 |
-| post_code       | 郵便番号 | string             |           |
+| postal_code       | 郵便番号 | string             |           |
 | address         | 住所     | string             |           |
 | company_name    | 会社名   | string             |           |
 | contact_name    | 担当者名 | string             |           |

@@ -75,7 +75,7 @@ const Create = ({ userSelectOptions, paymentTerms, deliveryAddressTypes }) => {
       ...data.delivery_addresses,
       {
         address_type: 1,
-        post_code: '',
+        postal_code: '',
         address: '',
         company_name: '',
         contact_name: '',
@@ -659,13 +659,13 @@ const Create = ({ userSelectOptions, paymentTerms, deliveryAddressTypes }) => {
                     <td className="td-cell">
                       <Input
                         type="text"
-                        value={deliveryAddress.post_code}
-                        onChange={e => updateDeliveryAddress(index, 'post_code', e.target.value)}
-                        error={errors[`delivery_addresses.${index}.post_code`]}
+                        value={deliveryAddress.postal_code}
+                        onChange={e => updateDeliveryAddress(index, 'postal_code', e.target.value)}
+                        error={errors[`delivery_addresses.${index}.postal_code`]}
                       />
-                      {errors[`delivery_addresses.${index}.post_code`] && (
+                      {errors[`delivery_addresses.${index}.postal_code`] && (
                         <div className="invalid-feedback">
-                          {errors[`delivery_addresses.${index}.post_code`]}
+                          {errors[`delivery_addresses.${index}.postal_code`]}
                         </div>
                       )}
                     </td>

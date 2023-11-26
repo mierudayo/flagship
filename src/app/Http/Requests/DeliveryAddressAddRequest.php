@@ -23,7 +23,7 @@ class DeliveryAddressAddRequest extends FormRequest
     {
         return [
             'address_type'  => ['required', 'integer', 'in:1,2,3'],
-            'post_code'     => ['nullable', 'string', 'max:8', 'regex:/^\d{3}-?\d{4}$/'],
+            'postal_code'     => ['nullable', 'string', 'max:8', 'regex:/^\d{3}-?\d{4}$/'],
             'address'       => ['required', 'string', 'max:255'],
             'company_name'  => ['nullable', 'string', 'max:255'],
             'contact_name'  => ['nullable', 'string', 'max:255'],
@@ -41,7 +41,7 @@ class DeliveryAddressAddRequest extends FormRequest
     {
         return [
             'address_type'  => '区分',
-            'post_code'     => '郵便番号',
+            'postal_code'     => '郵便番号',
             'address'       => '住所',
             'company_name'  => '会社名',
             'contact_name'  => '担当者名',

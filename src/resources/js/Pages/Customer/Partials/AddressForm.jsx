@@ -7,7 +7,7 @@ import Textarea from '@/Components/Form/Textarea';
 export default function AddressForm({ customer, deliveryAddressTypes, closeModal }) {
   const { data, setData, post, processing, errors, reset } = useForm({
     address_type: 1,
-    post_code: '',
+    postal_code: '',
     address: '',
     company_name: '',
     contact_name: '',
@@ -51,17 +51,17 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="post_code" label="郵便番号" isRequired={false} />
+                  <FormLabel htmlFor="postal_code" label="郵便番号" isRequired={false} />
                 </th>
                 <td className="td-cell">
                   <Input
-                    id="post_code"
+                    id="postal_code"
                     type="text"
-                    value={data.post_code}
-                    onChange={e => setData('post_code', e.target.value)}
-                    error={errors.post_code}
+                    value={data.postal_code}
+                    onChange={e => setData('postal_code', e.target.value)}
+                    error={errors.postal_code}
                   />
-                  {errors.post_code && (<div className="invalid-feedback">{errors.post_code}</div>)}
+                  {errors.postal_code && (<div className="invalid-feedback">{errors.postal_code}</div>)}
                 </td>
               </tr>
 
