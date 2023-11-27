@@ -90,9 +90,13 @@ class CustomerContact extends Model
             return $query;
         }
 
-        return $query->where(function ($query) use ($keyword) {
-            $query->where('name', 'LIKE', "%$keyword%")
-                  ->orWhere('name_kana', 'LIKE', "%$keyword%");
+        return $query->where(function ($q) use ($keyword) {
+            $q->where('name', 'LIKE', "%$keyword%")
+                ->orWhere('name_kana', 'LIKE', "%$keyword%")
+                ->orWhereHas('customer', function (Builder $subQuery) use ($keyword) {
+                    $subQuery->where('name', 'LIKE', "%$keyword%")
+                        ->orWhere('name_kana', 'LIKE', "%$keyword%");
+                });
         });
     }
 }

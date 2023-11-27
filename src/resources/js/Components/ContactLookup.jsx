@@ -42,7 +42,7 @@ export default function ContactLookup({ handleClickSelect }) {
               type="search"
               ref={inputRef}
               onChange={handleChange}
-              placeholder="取引先名, よみがな, で検索（Enter）"
+              placeholder="連絡先名または取引先名で検索（Enter）"
             />
             <button className="btn btn-secondary">検索</button>
           </div>
