@@ -70,7 +70,7 @@ class InquiryController extends Controller
     public function edit(Inquiry $inquiry): Response
     {
         return Inertia::render('Inquiry/Edit', [
-            'inquiry'               => $inquiry->load(['customerContact', 'createdBy', 'updatedBy']),
+            'inquiry'               => $inquiry->load(['customerContact.customer', 'createdBy', 'updatedBy']),
             'productOption'         => Product::all(),
             'inquiryTypeOption'     => InquiryType::all(),
             'inChargeUserOption'    => User::all(),

@@ -16,6 +16,10 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
   const { today } = usePage().props.date;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [contactName, setContactName] = useState('');
+  const [customerName, setCustomerName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [contactTel, setContactTel] = useState('');
+  const [contactMobile, setContactMobile] = useState('');
 
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     inquiry_date: today,
@@ -44,6 +48,10 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
   function selectContact(contact) {
     setData('customer_contact_id', contact.id);
     setContactName(contact.name);
+    setCustomerName(contact.customer.name);
+    setContactEmail(contact.email ?? '');
+    setContactTel(contact.tel ?? '');
+    setContactMobile(contact.mobile_number ?? '');
     setIsModalOpen(false);
   }
 
@@ -100,20 +108,54 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     <Input
                       type="text"
                       value={data.customer_contact_id}
-                      className="u-max-w-64"
+                      className="u-max-w-64 u-mr-1"
                       placeholder="ID"
                       readOnly={true}
                     />
                     <Input
                       type="text"
                       value={contactName}
-                      className="u-max-w-240"
+                      className="u-max-w-240 u-mr-1"
                       placeholder="連絡先名"
                       readOnly={true}
                     />
                     <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(true)}>
                       <ManageSearchIcon />
                     </button>
+                  </div>
+                  <div className="u-mt-2">
+                    <Input
+                      type="text"
+                      value={customerName}
+                      className="u-max-w-368"
+                      placeholder="取引先名"
+                      readOnly={true}
+                    />
+                  </div>
+                  <div className="u-mt-2">
+                    <Input
+                      type="text"
+                      value={contactEmail}
+                      className="u-max-w-368"
+                      placeholder="E-mail"
+                      readOnly={true}
+                    />
+                  </div>
+                  <div className="u-flex u-mt-2">
+                    <Input
+                      type="text"
+                      value={contactTel}
+                      className="u-max-w-176 u-mr-3"
+                      placeholder="TEL"
+                      readOnly={true}
+                    />
+                    <Input
+                      type="text"
+                      value={contactMobile}
+                      className="u-max-w-176"
+                      placeholder="携帯"
+                      readOnly={true}
+                    />
                   </div>
                   {errors.customer_contact_id && (<div className="invalid-feedback">{errors.customer_contact_id}</div>)}
                 </td>
