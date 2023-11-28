@@ -20,10 +20,14 @@ class InquiryController extends Controller
     public function index(InquirySearchRequest $request): Response
     {
         $keyword    = $request->input('keyword', '');
+        $inquiryId    = $request->input('inquiry_id', '');
+        $customerInfo = $request->input('customer_info', '');
 
         $inquiryQuery = Inquiry::query()
             ->with(['customerContact.customer', 'product.category', 'inquiryType', 'inChargeUser'])
             ->searchByKeyword($keyword)
+            ->searchById($inquiryId)
+            ->searchByCustomerInfo($customerInfo)
             ->latest('inquiry_date');
         $inquiriesPaginator = $inquiryQuery->paginate(50)->withQueryString();
 

@@ -100,4 +100,32 @@ class Inquiry extends Model
                   ->orWhere('message', 'LIKE', "%$keyword%");
         });
     }
+
+    public function scopeSearchById(Builder $query, ?string $id): Builder
+    {
+        if (!$id) {
+            return $query;
+        }
+
+        return $query->where(function ($query) use ($id) {
+            $query->where('id', $id);
+        });
+    }
+
+    public function scopeSearchByCustomerInfo(Builder $query, ?string $customerInfo): Builder
+    {
+        if (!$customerInfo) {
+            return $query;
+        }
+
+        return $query->where(function ($q) use ($customerInfo) {
+            $q->whereHas('customerContact', function (Builder $subQuery) use ($customerInfo) {
+                $subQuery->where('name', 'LIKE', "%$customerInfo%")
+                    ->orWhere('name_kana', 'LIKE', "%$customerInfo%")
+                    ->orWhereHas('customer', function (Builder $subSubQuery) use ($customerInfo) {
+                        $subSubQuery->where('name', 'LIKE', "%$customerInfo%");
+                    });
+            });
+        });
+    }
 }
