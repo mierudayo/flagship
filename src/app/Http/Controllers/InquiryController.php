@@ -22,10 +22,13 @@ class InquiryController extends Controller
         $keyword    = $request->input('keyword', '');
         $inquiryId    = $request->input('inquiry_id', '');
         $customerInfo = $request->input('customer_info', '');
+        $startDate  = $request->input('start_date');
+        $endDate    = $request->input('end_date');
 
         $inquiryQuery = Inquiry::query()
             ->with(['customerContact.customer', 'product.category', 'inquiryType', 'inChargeUser'])
             ->searchByKeyword($keyword)
+            ->searchByInquiryPeriod($startDate, $endDate)
             ->searchById($inquiryId)
             ->searchByCustomerInfo($customerInfo)
             ->latest('inquiry_date');

@@ -6,6 +6,7 @@ import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import InquiryTable from './Partials/InquiryTable';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
+import DateInput from '@/Components/Form/DateInput';
 
 const Index = ({ inquiriesPaginator }) => {
   const params = route().params;
@@ -16,6 +17,8 @@ const Index = ({ inquiriesPaginator }) => {
     keyword: params.keyword || '',
     inquiry_id: params.inquiry_id || '',
     customer_info: params.customer_info || '',
+    start_date: params.start_date || '',
+    end_date: params.end_date || '',
   });
 
   function submit(e) {
@@ -79,7 +82,25 @@ const Index = ({ inquiriesPaginator }) => {
                 className="u-max-w-80"
               />
             </div>
-            <div className="">
+            <div className="u-mr-2">
+              <FormLabel htmlFor="start_date" label="問い合わせ日" />
+              <div className="u-flex">
+              <DateInput
+                id="start_date"
+                value={data.start_date}
+                onChange={e => setData('start_date', e.target.value)}
+                error={errors.start_date}
+              />
+              <span className="u-mx-1">~</span>
+              <DateInput
+                id="end_date"
+                value={data.end_date}
+                onChange={e => setData('end_date', e.target.value)}
+                error={errors.end_date}
+              />
+              </div>
+            </div>
+            <div className="u-mr-2">
               <FormLabel htmlFor="customer_info" label="顧客情報" />
               <Input
                 id="customer_info"
@@ -102,7 +123,7 @@ const Index = ({ inquiriesPaginator }) => {
               className="btn btn-secondary"
               preserveState={true}
               onSuccess={() => {
-                reset('keyword', 'inquiry_id', 'customer_info')
+                reset('keyword', 'inquiry_id', 'customer_info', 'start_date', 'end_date');
               }}
             >
               クリア

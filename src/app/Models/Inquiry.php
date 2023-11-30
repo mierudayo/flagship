@@ -97,8 +97,25 @@ class Inquiry extends Model
 
         return $query->where(function ($query) use ($keyword) {
             $query->where('subject', 'LIKE', "%$keyword%")
-                  ->orWhere('message', 'LIKE', "%$keyword%");
+                ->orWhere('message', 'LIKE', "%$keyword%");
         });
+    }
+
+    public function scopeSearchByInquiryPeriod(Builder $query, ?string $startDate, ?string $endDate): Builder
+    {
+        if ($startDate && $endDate) {
+            return $query->whereBetween('inquiry_date', [$startDate, $endDate]);
+        }
+
+        if ($startDate) {
+            return $query->where('inquiry_date', '>=', $startDate);
+        }
+
+        if ($endDate) {
+            return $query->where('inquiry_date', '<=', $endDate);
+        }
+
+        return $query;
     }
 
     public function scopeSearchById(Builder $query, ?string $id): Builder
