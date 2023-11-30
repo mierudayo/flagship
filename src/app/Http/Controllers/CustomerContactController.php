@@ -34,7 +34,7 @@ class CustomerContactController extends Controller
     public function create(): Response
     {
         return Inertia::render('CustomerContact/Create', [
-            'userSelectOptions' => User::all(),
+            'userSelectOptions' => User::active()->get(),
         ]);
     }
 
@@ -71,7 +71,7 @@ class CustomerContactController extends Controller
     {
         return Inertia::render('CustomerContact/Edit', [
             'contact'   => $contact->load(['customer', 'createdBy', 'updatedBy']),
-            'userSelectOptions' => User::all(),
+            'userSelectOptions' => User::active()->get(),
         ]);
     }
 

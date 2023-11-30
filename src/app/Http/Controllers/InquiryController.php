@@ -50,7 +50,7 @@ class InquiryController extends Controller
         return Inertia::render('Inquiry/Create', [
             'productOption'         => Product::all(),
             'inquiryTypeOption'     => InquiryType::all(),
-            'inChargeUserOption'    => User::all(),
+            'inChargeUserOption'    => User::active()->get(),
             'inquiryStatus'         => InquiryStatus::toArray(),
             'inquiryLeadSource'     => InquiryLeadSource::toArray(),
         ]);
@@ -86,7 +86,7 @@ class InquiryController extends Controller
             'inquiry'               => $inquiry->load(['customerContact.customer', 'createdBy', 'updatedBy']),
             'productOption'         => Product::all(),
             'inquiryTypeOption'     => InquiryType::all(),
-            'inChargeUserOption'    => User::all(),
+            'inChargeUserOption'    => User::active()->get(),
             'inquiryStatus'         => InquiryStatus::toArray(),
             'inquiryLeadSource'     => InquiryLeadSource::toArray(),
         ]);

@@ -89,6 +89,13 @@ class User extends Authenticatable
     | Scopes
     |--------------------------------------------------------------------------
     */
+
+    /** 在職中ユーザー */
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->whereNull('resignation_date');
+    }
+
     public function scopeSearchByKeyword(Builder $query, ?string $keyword): Builder
     {
         if (!$keyword) {
