@@ -8,7 +8,7 @@ import OptionsList from '@/Components/OptionsList';
 import Textarea from '@/Components/Form/Textarea';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
-const Create = ({ userSelectOptions, paymentTerms, deliveryAddressTypes }) => {
+const Create = ({ userOptions, paymentTerms, deliveryAddressTypes }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     name: '',
     name_kana: '',
@@ -258,7 +258,7 @@ const Create = ({ userSelectOptions, paymentTerms, deliveryAddressTypes }) => {
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('in_charge_user_id', value)}
-                    options={userSelectOptions}
+                    options={userOptions}
                     value={data.in_charge_user_id}
                     valueKey="id"
                     labelKey="name"

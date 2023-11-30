@@ -12,7 +12,7 @@ import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
-const Edit = ({ contact, userSelectOptions }) => {
+const Edit = ({ contact, userOptions }) => {
   const { flash } = usePage().props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customerName, setCustomerName] = useState(contact.customer.name);
@@ -279,7 +279,7 @@ const Edit = ({ contact, userSelectOptions }) => {
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('in_charge_user_id', value)}
-                    options={userSelectOptions}
+                    options={userOptions}
                     value={data.in_charge_user_id}
                     valueKey="id"
                     labelKey="name"

@@ -1,7 +1,7 @@
 import { useForm } from '@inertiajs/react';
 
 
-export default function ProductCreateForm({ categorySelectOptions }) {
+export default function ProductCreateForm({ categoryOptions }) {
   const { data, setData, post, processing, errors, reset } = useForm({
     category_id: '',
     product_number: '',
@@ -43,7 +43,7 @@ export default function ProductCreateForm({ categorySelectOptions }) {
             className={`input-field ${errors.category_id ? 'is-invalid' : ''}`}
           >
             <option value="">-- カテゴリを選択 --</option>
-            {categorySelectOptions.map((option) => (
+            {categoryOptions.map((option) => (
               <option key={option.id} value={option.id}>
                 {option.name}
               </option>

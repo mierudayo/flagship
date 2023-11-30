@@ -8,7 +8,7 @@ import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
-const Create = ({ permissionSelectOptions }) => {
+const Create = ({ permissionOptions }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     permission_id: '',
     employee_code: '',
@@ -78,7 +78,7 @@ const Create = ({ permissionSelectOptions }) => {
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('permission_id', value)}
-                    options={permissionSelectOptions}
+                    options={permissionOptions}
                     value={data.permission_id}
                     valueKey="id"
                     labelKey="display_name"

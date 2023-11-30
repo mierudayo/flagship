@@ -5,7 +5,7 @@ import Input from '@/Components/Form/Input';
 import RadioGroup from '@/Components/Form/RadioGroup';
 import Textarea from '@/Components/Form/Textarea';
 
-export default function ContactForm({ customer, closeModal, userSelectOptions }) {
+export default function ContactForm({ customer, closeModal, userOptions }) {
   const { data, setData, post, processing, errors, reset } = useForm({
     name: '',
     name_kana: '',
@@ -190,7 +190,7 @@ export default function ContactForm({ customer, closeModal, userSelectOptions })
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('in_charge_user_id', value)}
-                    options={userSelectOptions}
+                    options={userOptions}
                     value={data.in_charge_user_id}
                     valueKey="id"
                     labelKey="name"

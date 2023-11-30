@@ -5,7 +5,7 @@ import Modal from '@/Components/Modal';
 import ContactForm from './Partials/ContactForm';
 import AddressForm from './Partials/AddressForm';
 
-const Show = ({ customer, userSelectOptions, deliveryAddressTypes }) => {
+const Show = ({ customer, userOptions, deliveryAddressTypes }) => {
   const { flash } = usePage().props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
@@ -53,7 +53,7 @@ const Show = ({ customer, userSelectOptions, deliveryAddressTypes }) => {
 
       {isModalOpen &&
         <Modal closeModal={() => setIsModalOpen(false)} title="連絡先登録">
-          <ContactForm customer={customer} userSelectOptions={userSelectOptions} closeModal={() => setIsModalOpen(false)} />
+          <ContactForm customer={customer} userOptions={userOptions} closeModal={() => setIsModalOpen(false)} />
         </Modal>}
 
       {isAddressModalOpen &&

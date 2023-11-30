@@ -4,7 +4,7 @@ import CategoryCreateForm from './Partials/CategoryCreateForm';
 import CategoryGroupCreateForm from './Partials/CategoryGroupCreateForm';
 import ProductCreateForm from './Partials/ProductCreateForm';
 
-const Create = ({ groupSelectOptions, categorySelectOptions }) => {
+const Create = ({ groupOptions, categoryOptions }) => {
   const { flash } = usePage().props;
 
   return (
@@ -23,8 +23,8 @@ const Create = ({ groupSelectOptions, categorySelectOptions }) => {
       )}
 
       <CategoryGroupCreateForm />
-      <CategoryCreateForm groupSelectOptions={groupSelectOptions} />
-      <ProductCreateForm groupSelectOptions={groupSelectOptions} categorySelectOptions={categorySelectOptions} />
+      <CategoryCreateForm groupOptions={groupOptions} />
+      <ProductCreateForm groupOptions={groupOptions} categoryOptions={categoryOptions} />
     </>
   );
 }

@@ -31,7 +31,7 @@ class UserController extends Controller
     public function create(): Response
     {
         return Inertia::render('User/Create', [
-            'permissionSelectOptions' =>  Permission::all(),
+            'permissionOptions' =>  Permission::all(),
         ]);
     }
 
@@ -56,7 +56,7 @@ class UserController extends Controller
     {
         return Inertia::render('User/Edit', [
             'user' => $user,
-            'permissionSelectOptions' =>  Permission::all(),
+            'permissionOptions' =>  Permission::all(),
         ]);
     }
 

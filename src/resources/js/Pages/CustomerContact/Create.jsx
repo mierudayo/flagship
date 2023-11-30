@@ -12,7 +12,7 @@ import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
-const Create = ({ userSelectOptions }) => {
+const Create = ({ userOptions }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customerName, setCustomerName] = useState('');
 
@@ -259,7 +259,7 @@ const Create = ({ userSelectOptions }) => {
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('in_charge_user_id', value)}
-                    options={userSelectOptions}
+                    options={userOptions}
                     value={data.in_charge_user_id}
                     valueKey="id"
                     labelKey="name"

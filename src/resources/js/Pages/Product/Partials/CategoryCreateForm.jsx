@@ -1,7 +1,7 @@
 import { useForm } from '@inertiajs/react';
 
 
-export default function CategoryCreateForm({ groupSelectOptions }) {
+export default function CategoryCreateForm({ groupOptions }) {
   const { data, setData, post, processing, errors, reset } = useForm({
     group_id: '',
     name: '',
@@ -33,7 +33,7 @@ export default function CategoryCreateForm({ groupSelectOptions }) {
             className={`input-field ${errors.group_id ? 'is-invalid' : ''}`}
           >
             <option value="">-- カテゴリグループを選択 --</option>
-            {groupSelectOptions.map((option) => (
+            {groupOptions.map((option) => (
               <option key={option.id} value={option.id}>
                 {option.name}
               </option>

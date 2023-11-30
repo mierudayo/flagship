@@ -27,12 +27,12 @@ class ProductController extends Controller
 
     public function create(): Response
     {
-        $groupSelectOptions    = ProductCategoryGroup::orderBy('display_order')->get();
-        $categorySelectOptions = ProductCategory::orderBy('display_order')->get();
+        $groupOptions    = ProductCategoryGroup::orderBy('display_order')->get();
+        $categoryOptions = ProductCategory::orderBy('display_order')->get();
 
         return Inertia::render('Product/Create', [
-            'groupSelectOptions'    => $groupSelectOptions,
-            'categorySelectOptions' => $categorySelectOptions,
+            'groupOptions'    => $groupOptions,
+            'categoryOptions' => $categoryOptions,
         ]);
     }
 

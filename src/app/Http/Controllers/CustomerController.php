@@ -42,7 +42,7 @@ class CustomerController extends Controller
     public function create(): Response
     {
         return Inertia::render('Customer/Create', [
-            'userSelectOptions' => User::active()->get(),
+            'userOptions' => User::active()->get(),
             'paymentTerms'      => $this->getPaymentTerms(),
             'deliveryAddressTypes' => DeliveryAddressType::toArray(),
         ]);
@@ -69,7 +69,7 @@ class CustomerController extends Controller
 
         return Inertia::render('Customer/Show', [
             'customer' => $customer,
-            'userSelectOptions' => User::active()->get(),
+            'userOptions' => User::active()->get(),
             'deliveryAddressTypes' => DeliveryAddressType::toArray(),
         ]);
     }
@@ -80,7 +80,7 @@ class CustomerController extends Controller
 
         return Inertia::render('Customer/Edit', [
             'customer' => $customer,
-            'userSelectOptions' => User::active()->get(),
+            'userOptions' => User::active()->get(),
             'paymentTerms'      => $this->getPaymentTerms(),
             'deliveryAddressTypes' => DeliveryAddressType::toArray(),
         ]);

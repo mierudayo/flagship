@@ -9,7 +9,7 @@ import Textarea from '@/Components/Form/Textarea';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import { convertNullToEmptyString } from '@/Utils/arrayHelpers';
 
-const Edit = ({ customer, userSelectOptions, paymentTerms, deliveryAddressTypes }) => {
+const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => {
   const { flash } = usePage().props;
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
@@ -283,7 +283,7 @@ const Edit = ({ customer, userSelectOptions, paymentTerms, deliveryAddressTypes 
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('in_charge_user_id', value)}
-                    options={userSelectOptions}
+                    options={userOptions}
                     value={data.in_charge_user_id}
                     valueKey="id"
                     labelKey="name"

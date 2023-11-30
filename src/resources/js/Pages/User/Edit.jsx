@@ -7,7 +7,7 @@ import DateInput from '@/Components/Form/DateInput';
 import Input from '@/Components/Form/Input';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
-const Edit = ({ user, permissionSelectOptions }) => {
+const Edit = ({ user, permissionOptions }) => {
   const { data, setData, patch, processing, errors, isDirty } = useForm({
     permission_id: user.permission_id,
     employee_code: user.employee_code,
@@ -74,7 +74,7 @@ const Edit = ({ user, permissionSelectOptions }) => {
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('permission_id', value)}
-                    options={permissionSelectOptions}
+                    options={permissionOptions}
                     value={data.permission_id}
                     valueKey="id"
                     labelKey="display_name"
