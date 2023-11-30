@@ -19,19 +19,25 @@ class InquiryController extends Controller
 {
     public function index(InquirySearchRequest $request): Response
     {
-        $keyword    = $request->input('keyword', '');
-        $inquiryId    = $request->input('inquiry_id', '');
-        $customerInfo = $request->input('customer_info', '');
-        $startDate  = $request->input('start_date');
-        $endDate    = $request->input('end_date');
+        $keyword      = $request->input('keyword');
+        $inquiryId    = $request->input('inquiry_id');
+        $customerInfo = $request->input('customer_info');
+        $startDate    = $request->input('start_date');
+        $endDate      = $request->input('end_date');
 
         $inquiryQuery = Inquiry::query()
-            ->with(['customerContact.customer', 'product.category', 'inquiryType', 'inChargeUser'])
+            ->with([
+                'customerContact.customer',
+                'product.category',
+                'inquiryType',
+                'inChargeUser',
+                ])
             ->searchByKeyword($keyword)
             ->searchByInquiryPeriod($startDate, $endDate)
             ->searchById($inquiryId)
             ->searchByCustomerInfo($customerInfo)
             ->latest('inquiry_date');
+
         $inquiriesPaginator = $inquiryQuery->paginate(50)->withQueryString();
 
         return Inertia::render('Inquiry/Index', [

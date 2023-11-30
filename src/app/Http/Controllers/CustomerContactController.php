@@ -17,12 +17,13 @@ class CustomerContactController extends Controller
 {
     public function index(CustomerContactSearchRequest $request): Response
     {
-        $keyword    = $request->input('keyword', '');
+        $keyword = $request->input('keyword');
 
         $contactQuery = CustomerContact::query()
             ->with(['inChargeUser', 'customer'])
             ->searchByKeyword($keyword)
             ->latest();
+
         $contactsPaginator = $contactQuery->paginate(50)->withQueryString();
 
         return Inertia::render('CustomerContact/Index', [
@@ -33,7 +34,7 @@ class CustomerContactController extends Controller
     public function create(): Response
     {
         return Inertia::render('CustomerContact/Create', [
-            'userSelectOptions'     => User::all(),
+            'userSelectOptions' => User::all(),
         ]);
     }
 
@@ -49,16 +50,16 @@ class CustomerContactController extends Controller
     public function store(CustomerContactStoreRequest $request): RedirectResponse
     {
         $contact = CustomerContact::create([
-            'customer_id'   => $request->input('customer_id'),
-            'name'          => $request->input('name'),
-            'name_kana'     => $request->input('name_kana'),
-            'tel'           => $request->input('tel'),
-            'mobile_number' => $request->input('mobile_number'),
-            'email'         => $request->input('email'),
-            'position'      => $request->input('position'),
-            'role'          => $request->input('role'),
-            'is_active'     => $request->input('is_active'),
-            'note'          => $request->input('note'),
+            'customer_id'       => $request->input('customer_id'),
+            'name'              => $request->input('name'),
+            'name_kana'         => $request->input('name_kana'),
+            'tel'               => $request->input('tel'),
+            'mobile_number'     => $request->input('mobile_number'),
+            'email'             => $request->input('email'),
+            'position'          => $request->input('position'),
+            'role'              => $request->input('role'),
+            'is_active'         => $request->input('is_active'),
+            'note'              => $request->input('note'),
             'in_charge_user_id' => $request->input('in_charge_user_id'),
             'created_by_id'     => auth()->user()->id,
         ]);
@@ -77,16 +78,16 @@ class CustomerContactController extends Controller
     public function update(CustomerContactUpdateRequest $request, CustomerContact $contact): RedirectResponse
     {
         $contact->update([
-            'customer_id'   => $request->input('customer_id'),
-            'name'          => $request->input('name'),
-            'name_kana'     => $request->input('name_kana'),
-            'tel'           => $request->input('tel'),
-            'mobile_number' => $request->input('mobile_number'),
-            'email'         => $request->input('email'),
-            'position'      => $request->input('position'),
-            'role'          => $request->input('role'),
-            'is_active'     => $request->input('is_active'),
-            'note'          => $request->input('note'),
+            'customer_id'       => $request->input('customer_id'),
+            'name'              => $request->input('name'),
+            'name_kana'         => $request->input('name_kana'),
+            'tel'               => $request->input('tel'),
+            'mobile_number'     => $request->input('mobile_number'),
+            'email'             => $request->input('email'),
+            'position'          => $request->input('position'),
+            'role'              => $request->input('role'),
+            'is_active'         => $request->input('is_active'),
+            'note'              => $request->input('note'),
             'in_charge_user_id' => $request->input('in_charge_user_id'),
             'updated_by_id'     => auth()->user()->id,
         ]);
@@ -97,16 +98,16 @@ class CustomerContactController extends Controller
     public function addContactToCustomer(CustomerContactAddRequest $request, Customer $customer): RedirectResponse
     {
         $contact = CustomerContact::create([
-            'customer_id'   => $customer->id,
-            'name'          => $request->input('name'),
-            'name_kana'     => $request->input('name_kana'),
-            'tel'           => $request->input('tel'),
-            'mobile_number' => $request->input('mobile_number'),
-            'email'         => $request->input('email'),
-            'position'      => $request->input('position'),
-            'role'          => $request->input('role'),
-            'is_active'     => $request->input('is_active'),
-            'note'          => $request->input('note'),
+            'customer_id'       => $customer->id,
+            'name'              => $request->input('name'),
+            'name_kana'         => $request->input('name_kana'),
+            'tel'               => $request->input('tel'),
+            'mobile_number'     => $request->input('mobile_number'),
+            'email'             => $request->input('email'),
+            'position'          => $request->input('position'),
+            'role'              => $request->input('role'),
+            'is_active'         => $request->input('is_active'),
+            'note'              => $request->input('note'),
             'in_charge_user_id' => $request->input('in_charge_user_id'),
             'created_by_id'     => auth()->user()->id,
         ]);

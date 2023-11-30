@@ -46,18 +46,22 @@ class PurchaseTerm extends Model
     {
         return BillingType::getLabelFromValue($this->billing_type);
     }
+
     protected function getCutoffDayLabelAttribute(): ?string
     {
         return CutoffDay::getLabelFromValue($this->cutoff_day);
     }
+
     protected function getPaymentMonthOffsetLabelAttribute(): ?string
     {
         return PaymentMonthOffset::getLabelFromValue($this->payment_month_offset);
     }
+
     protected function getPaymentDayLabelAttribute(): ?string
     {
         return PaymentDay::getLabelFromValue($this->payment_day);
     }
+    
     protected function getPaymentDayOffsetLabelAttribute(): ?string
     {
         return PaymentDayOffset::getLabelFromValue($this->payment_day_offset);

@@ -85,9 +85,9 @@ class Customer extends Model
         }
 
         return $query->where(function ($query) use ($keyword) {
-            $query->where('name', 'LIKE', "%$keyword%")
-                  ->orWhere('name_kana', 'LIKE', "%$keyword%")
-                  ->orWhere('shortcut', 'LIKE', "%$keyword%");
+            $query->where('name', 'like', "%$keyword%")
+                  ->orWhere('name_kana', 'like', "%$keyword%")
+                  ->orWhere('shortcut', 'like', "%$keyword%");
         });
     }
 

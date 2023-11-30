@@ -17,7 +17,7 @@ class UserController extends Controller
 {
     public function index(UserSearchRequest $request): Response
     {
-        $keyword    = $request->input('keyword', '');
+        $keyword = $request->input('keyword');
 
         $usersQuery      = User::query()->with('permission')->searchByKeyword($keyword);
         $usersPaginator  = $usersQuery->paginate(20)->withQueryString();

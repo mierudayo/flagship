@@ -23,7 +23,7 @@ class DeliveryAddressAddRequest extends FormRequest
     {
         return [
             'address_type'  => ['required', 'integer', 'in:1,2,3'],
-            'postal_code'     => ['nullable', 'string', 'max:8', 'regex:/^\d{3}-?\d{4}$/'],
+            'postal_code'   => ['nullable', 'string', 'max:8', 'regex:/^\d{3}-?\d{4}$/'],
             'address'       => ['required', 'string', 'max:255'],
             'company_name'  => ['nullable', 'string', 'max:255'],
             'contact_name'  => ['nullable', 'string', 'max:255'],

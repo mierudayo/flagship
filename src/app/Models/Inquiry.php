@@ -42,7 +42,6 @@ class Inquiry extends Model
     |--------------------------------------------------------------------------
     | Relationships
     |--------------------------------------------------------------------------
-    |
     */
     public function customerContact(): BelongsTo
     {
@@ -96,8 +95,8 @@ class Inquiry extends Model
         }
 
         return $query->where(function ($query) use ($keyword) {
-            $query->where('subject', 'LIKE', "%$keyword%")
-                ->orWhere('message', 'LIKE', "%$keyword%");
+            $query->where('subject', 'like', "%$keyword%")
+                ->orWhere('message', 'like', "%$keyword%");
         });
     }
 
@@ -135,10 +134,10 @@ class Inquiry extends Model
 
         return $query->where(function ($q) use ($customerInfo) {
             $q->whereHas('customerContact', function (Builder $subQuery) use ($customerInfo) {
-                $subQuery->where('name', 'LIKE', "%$customerInfo%")
-                    ->orWhere('name_kana', 'LIKE', "%$customerInfo%")
+                $subQuery->where('name', 'like', "%$customerInfo%")
+                    ->orWhere('name_kana', 'like', "%$customerInfo%")
                     ->orWhereHas('customer', function (Builder $subSubQuery) use ($customerInfo) {
-                        $subSubQuery->where('name', 'LIKE', "%$customerInfo%");
+                        $subSubQuery->where('name', 'like', "%$customerInfo%");
                     });
             });
         });

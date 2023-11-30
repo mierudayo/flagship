@@ -28,7 +28,6 @@ class DeliveryAddress extends Model
     |--------------------------------------------------------------------------
     | Relationships
     |--------------------------------------------------------------------------
-    |
     */
     public function customer(): BelongsTo
     {

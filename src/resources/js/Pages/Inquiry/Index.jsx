@@ -66,9 +66,7 @@ const Index = ({ inquiriesPaginator }) => {
         <Pagination paginator={inquiriesPaginator} />
       </div>
 
-      <div
-        className={`filter-section ${isOpen ? 'show' : ''}`}
-      >
+      <div className={`filter-section ${isOpen ? 'show' : ''}`}>
         <form onSubmit={submit}>
           <div className="u-flex">
             <div className="u-mr-2">
@@ -85,19 +83,19 @@ const Index = ({ inquiriesPaginator }) => {
             <div className="u-mr-2">
               <FormLabel htmlFor="start_date" label="問い合わせ日" />
               <div className="u-flex">
-              <DateInput
-                id="start_date"
-                value={data.start_date}
-                onChange={e => setData('start_date', e.target.value)}
-                error={errors.start_date}
-              />
-              <span className="u-mx-1">~</span>
-              <DateInput
-                id="end_date"
-                value={data.end_date}
-                onChange={e => setData('end_date', e.target.value)}
-                error={errors.end_date}
-              />
+                <DateInput
+                  id="start_date"
+                  value={data.start_date}
+                  onChange={e => setData('start_date', e.target.value)}
+                  error={errors.start_date}
+                />
+                <span className="u-mx-1">~</span>
+                <DateInput
+                  id="end_date"
+                  value={data.end_date}
+                  onChange={e => setData('end_date', e.target.value)}
+                  error={errors.end_date}
+                />
               </div>
             </div>
             <div className="u-mr-2">
@@ -130,14 +128,13 @@ const Index = ({ inquiriesPaginator }) => {
             </Link>
           </div>
         </form>
-      </div >
+      </div>
 
-      {
-        flash.message && (
-          <div className="alert alert-success">{flash.message}</div>
-        )
-      }
-      < InquiryTable inquiries={inquiriesPaginator.data} />
+      {flash.message && (
+        <div className="alert alert-success">{flash.message}</div>
+      )}
+
+      <InquiryTable inquiries={inquiriesPaginator.data} />
     </>
   );
 }

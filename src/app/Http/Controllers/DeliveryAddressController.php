@@ -14,7 +14,7 @@ class DeliveryAddressController extends Controller
         $deliveryAddress = DeliveryAddress::create([
             'customer_id'   => $customer->id,
             'address_type'  => $request->input('address_type'),
-            'postal_code'     => $request->input('postal_code'),
+            'postal_code'   => $request->input('postal_code'),
             'address'       => $request->input('address'),
             'company_name'  => $request->input('company_name'),
             'contact_name'  => $request->input('contact_name'),

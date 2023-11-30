@@ -78,7 +78,6 @@ class User extends Authenticatable
     |--------------------------------------------------------------------------
     | Relationships
     |--------------------------------------------------------------------------
-    |
     */
     public function permission(): BelongsTo
     {
@@ -97,8 +96,8 @@ class User extends Authenticatable
         }
 
         return $query->where(function ($query) use ($keyword) {
-            $query->where('name', 'LIKE', "%$keyword%")
-                  ->orWhere('name_kana', 'LIKE', "%$keyword%");
+            $query->where('name', 'like', "%$keyword%")
+                  ->orWhere('name_kana', 'like', "%$keyword%");
         });
     }
 }

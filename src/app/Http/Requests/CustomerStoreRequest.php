@@ -23,14 +23,14 @@ class CustomerStoreRequest extends FormRequest
     {
         return [
             // Customer
-            'name'             => ['required', 'string', 'max:255'],
-            'name_kana'        => ['nullable', 'string', 'max:255'],
-            'shortcut'         => ['nullable', 'string', 'max:255'],
-            'postal_code'      => ['nullable', 'string', 'max:10'],
-            'address'          => ['nullable', 'string', 'max:255'],
-            'tel'              => ['nullable', 'string', 'max:15'],
-            'fax'              => ['nullable', 'string', 'max:15'],
-            'note'             => ['nullable', 'string'],
+            'name'              => ['required', 'string', 'max:255'],
+            'name_kana'         => ['nullable', 'string', 'max:255'],
+            'shortcut'          => ['nullable', 'string', 'max:255'],
+            'postal_code'       => ['nullable', 'string', 'max:10'],
+            'address'           => ['nullable', 'string', 'max:255'],
+            'tel'               => ['nullable', 'string', 'max:15'],
+            'fax'               => ['nullable', 'string', 'max:15'],
+            'note'              => ['nullable', 'string'],
             'in_charge_user_id' => ['nullable', 'integer', 'exists:users,id'],
 
             // PurchaseTerm
@@ -60,7 +60,7 @@ class CustomerStoreRequest extends FormRequest
             'contacts.*.in_charge_user_id' => ['nullable', 'integer', 'exists:users,id'],
 
             // DeliveryAddress
-            'delivery_addresses.*.postal_code'     => ['nullable', 'string', 'max:8', 'regex:/^\d{3}-?\d{4}$/'],
+            'delivery_addresses.*.postal_code'   => ['nullable', 'string', 'max:8', 'regex:/^\d{3}-?\d{4}$/'],
             'delivery_addresses.*.address'       => ['required', 'string', 'max:255'],
             'delivery_addresses.*.company_name'  => ['nullable', 'string', 'max:255'],
             'delivery_addresses.*.contact_name'  => ['nullable', 'string', 'max:255'],

@@ -34,7 +34,7 @@ class Product extends Model
         }
 
         return $query->where(function ($query) use ($keyword) {
-            $query->where('name', 'LIKE', "%$keyword%");
+            $query->where('name', 'like', "%$keyword%");
         });
     }
 }

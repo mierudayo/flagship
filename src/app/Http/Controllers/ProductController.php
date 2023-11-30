@@ -15,8 +15,8 @@ class ProductController extends Controller
 {
     public function index(ProductSearchRequest $request): Response
     {
-        $keyword    = $request->input('keyword', '');
-        
+        $keyword = $request->input('keyword');
+
         $productsQuery     = Product::query()->with(['category.group'])->searchByKeyword($keyword);
         $productsPaginator = $productsQuery->paginate(100)->withQueryString();
 

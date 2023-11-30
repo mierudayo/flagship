@@ -26,7 +26,7 @@ class CustomerController extends Controller
 {
     public function index(CustomerSearchRequest $request): Response
     {
-        $keyword    = $request->input('keyword', '');
+        $keyword = $request->input('keyword');
 
         $customerQuery = Customer::query()
             ->with(['inChargeUser', 'contacts'])

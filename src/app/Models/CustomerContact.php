@@ -91,11 +91,11 @@ class CustomerContact extends Model
         }
 
         return $query->where(function ($q) use ($keyword) {
-            $q->where('name', 'LIKE', "%$keyword%")
-                ->orWhere('name_kana', 'LIKE', "%$keyword%")
+            $q->where('name', 'like', "%$keyword%")
+                ->orWhere('name_kana', 'like', "%$keyword%")
                 ->orWhereHas('customer', function (Builder $subQuery) use ($keyword) {
-                    $subQuery->where('name', 'LIKE', "%$keyword%")
-                        ->orWhere('name_kana', 'LIKE', "%$keyword%");
+                    $subQuery->where('name', 'like', "%$keyword%")
+                        ->orWhere('name_kana', 'like', "%$keyword%");
                 });
         });
     }
