@@ -58,8 +58,20 @@
   padding: 0 16px;
 
   &.show {
-    padding: 16px;
+    padding: 8px 16px;
     margin-bottom: 16px;
     height: auto;
   }
+}
+
+.filter-form-body {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  padding: 8px 0;
+}
+
+.filter-form-footer {
+  display: flex;
+  padding: 8px 0;
 }

@@ -68,7 +68,7 @@ const Index = ({ inquiriesPaginator }) => {
 
       <div className={`filter-section ${isOpen ? 'show' : ''}`}>
         <form onSubmit={submit}>
-          <div className="u-flex">
+          <div className="filter-form-body">
             <div className="u-mr-2">
               <FormLabel htmlFor="inquiry_id" label="ID" />
               <Input
@@ -110,11 +110,11 @@ const Index = ({ inquiriesPaginator }) => {
               />
             </div>
           </div>
-          <div className="u-flex u-mt-3">
+          <div className="filter-form-footer">
             <button
               className="btn btn-primary u-mr-3"
             >
-              決定
+              検索
             </button>
             <Link
               href={route('inquiries.index')}
