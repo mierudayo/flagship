@@ -107,9 +107,7 @@ class Inquiry extends Model
             return $query;
         }
 
-        return $query->where(function ($query) use ($id) {
-            $query->where('id', $id);
-        });
+        return $query->where('id', $id);
     }
 
     public function scopeSearchByCustomerInfo(Builder $query, ?string $customerInfo): Builder
