@@ -37,7 +37,7 @@ export default function CustomSelect(props) {
       placeholder={placeholder}
       noOptionsMessage={noOptionsMessage}
       menuPortalTarget={document.body}
-      styles={{ menuPortal: base => ({ ...base, zIndex: 300 }) }}
+      styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
     />
   );
 }
