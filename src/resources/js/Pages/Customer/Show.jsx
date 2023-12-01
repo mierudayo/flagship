@@ -32,6 +32,12 @@ const Show = ({ customer, userOptions, deliveryAddressTypes }) => {
   return (
     <>
       <h1 className="content-title">取引先 詳細</h1>
+      <div className="content-info-bar">
+        <div>登録: {created_at} ({created_by.name})</div>
+        {updated_by && (
+          <div>更新: {updated_at} ({updated_by.name})</div>
+        )}
+      </div>
       <div className="content-navbar">
         <Link
           href={route('customers.edit', customer)}
@@ -63,10 +69,8 @@ const Show = ({ customer, userOptions, deliveryAddressTypes }) => {
 
       <div className="content-section">
 
-        <div className="u-flex">
-          <div className="u-mr-4">基本情報</div>
-          <span className="u-mr-3">登録: {created_at} {created_by.name}</span>
-          {updated_by && (<span>更新: {updated_at} {updated_by.name}</span>)}
+        <div className="content-section-title">
+          基本情報
         </div>
 
         {flash.message && (
@@ -155,7 +159,9 @@ const Show = ({ customer, userOptions, deliveryAddressTypes }) => {
       </div>
 
       <div className="content-section">
-        <div>連絡先一覧</div>
+        <div className="content-section-title">
+          連絡先
+        </div>
         <div className="table-wrapper is-scrollable">
           <table className="table">
             <thead className="table-header is-sticky">
@@ -195,7 +201,9 @@ const Show = ({ customer, userOptions, deliveryAddressTypes }) => {
       </div>
 
       <div className="content-section">
-        <div>配送情報 一覧</div>
+        <div className="content-section-title">
+          配送情報
+        </div>
         <div className="table-wrapper is-scrollable">
           <table className="table">
             <thead className="table-header is-sticky">

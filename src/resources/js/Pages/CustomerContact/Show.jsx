@@ -41,7 +41,10 @@ const Show = ({ contact }) => {
       </div>
 
       <div className="content-section">
-        <div className="u-mr-4">基本情報</div>
+        
+        <div className="content-section-title">
+          基本情報
+        </div>
 
         {flash.message && (
           <div className="alert alert-success">{flash.message}</div>
