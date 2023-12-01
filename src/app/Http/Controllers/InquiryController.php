@@ -31,7 +31,7 @@ class InquiryController extends Controller
                 'product.category',
                 'inquiryType',
                 'inChargeUser',
-                ])
+            ])
             ->searchByKeyword($keyword)
             ->searchByInquiryPeriod($startDate, $endDate)
             ->searchById($inquiryId)

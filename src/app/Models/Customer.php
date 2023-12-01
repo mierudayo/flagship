@@ -36,7 +36,6 @@ class Customer extends Model
     |--------------------------------------------------------------------------
     | Relationships
     |--------------------------------------------------------------------------
-    |
     */
     public function inChargeUser(): BelongsTo
     {
@@ -86,8 +85,8 @@ class Customer extends Model
 
         return $query->where(function ($query) use ($keyword) {
             $query->where('name', 'like', "%$keyword%")
-                  ->orWhere('name_kana', 'like', "%$keyword%")
-                  ->orWhere('shortcut', 'like', "%$keyword%");
+                ->orWhere('name_kana', 'like', "%$keyword%")
+                ->orWhere('shortcut', 'like', "%$keyword%");
         });
     }
 
@@ -95,7 +94,6 @@ class Customer extends Model
     |--------------------------------------------------------------------------
     | Business Logic
     |--------------------------------------------------------------------------
-    |
     */
     public function canDelete(): bool
     {

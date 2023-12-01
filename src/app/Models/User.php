@@ -89,7 +89,6 @@ class User extends Authenticatable
     | Scopes
     |--------------------------------------------------------------------------
     */
-
     /** 在職中ユーザー */
     public function scopeActive(Builder $query): Builder
     {
@@ -104,7 +103,7 @@ class User extends Authenticatable
 
         return $query->where(function ($query) use ($keyword) {
             $query->where('name', 'like', "%$keyword%")
-                  ->orWhere('name_kana', 'like', "%$keyword%");
+                ->orWhere('name_kana', 'like', "%$keyword%");
         });
     }
 }

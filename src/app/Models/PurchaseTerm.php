@@ -61,7 +61,7 @@ class PurchaseTerm extends Model
     {
         return PaymentDay::getLabelFromValue($this->payment_day);
     }
-    
+
     protected function getPaymentDayOffsetLabelAttribute(): ?string
     {
         return PaymentDayOffset::getLabelFromValue($this->payment_day_offset);

@@ -42,7 +42,6 @@ class CustomerContact extends Model
     |--------------------------------------------------------------------------
     | Relationships
     |--------------------------------------------------------------------------
-    |
     */
     public function customer(): BelongsTo
     {
