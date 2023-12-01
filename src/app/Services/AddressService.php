@@ -29,11 +29,15 @@ class AddressService
     /**
      * 住所から都道府県IDを取得する。
      *
-     * @param string $address 住所
+     * @param string|null $address 住所
      * @return int|null 抽出された都道府県ID、または null
      */
-    public function getPrefectureIdFromAddress(string $address): ?int
+    public function getPrefectureIdFromAddress(?string $address): ?int
     {
+        if ($address === null) {
+            return null;
+        }
+        
         $prefectureName = $this->extractPrefectureFromAddress($address);
 
         if ($prefectureName) {
