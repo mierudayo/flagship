@@ -8,6 +8,8 @@
   - [delivery\_addresses 出荷元/納品先住所](#delivery_addresses-出荷元納品先住所)
   - [sales\_terms 取引条件(販売)](#sales_terms-取引条件販売)
   - [purchase\_terms 取引条件(仕入)](#purchase_terms-取引条件仕入)
+  - [regions 地域](#regions-地域)
+  - [prefectures 都道府県](#prefectures-都道府県)
   - [product\_category\_groups 商品カテゴリグループ](#product_category_groups-商品カテゴリグループ)
   - [product\_categories 商品カテゴリ](#product_categories-商品カテゴリ)
   - [products 商品](#products-商品)
@@ -56,6 +58,7 @@
 | name_kana        | ヨミガナ         | string             |        |
 | shortcut         | ショートカット名 | string             |        |
 | postal_code      | 郵便番号         | string             |        |
+| prefecture_id    | 都道府県ID       | unsignedBigInteger | FK nullable |
 | address          | 住所             | string             |        |
 | tel              | TEL              | string             |        |
 | fax              | FAX              | string             |        |
@@ -99,6 +102,7 @@
 | customer_id     | 取引先ID | unsignedBigInteger | FK        |
 | address_type    | 住所区分 | tinyInteger        | 1:出荷元, 2:納品先, 3:兼用 |
 | postal_code       | 郵便番号 | string             |           |
+| prefecture_id   | 都道府県ID | unsignedBigInteger | FK nullable |
 | address         | 住所     | string             |           |
 | company_name    | 会社名   | string             |           |
 | contact_name    | 担当者名 | string             |           |
@@ -138,6 +142,21 @@
 | payment_day_offset    | 支払期限日数   | integer            | 都度請求時 0:前払い, 3:3営業日, 7:7営業日...等 |
 | created_at            | 作成日時       | timestamp          |              |
 | updated_at            | 更新日時       | timestamp          |              |
+
+## regions 地域
+
+| カラム     | 名称    | 型                 | 説明 |
+|------------|---------|--------------------|------|
+| id         | ID      | unsignedBigInteger | PK   |
+| name       | 地域名  | string             |      |
+
+## prefectures 都道府県
+
+| カラム     | 名称        | 型                 | 説明         |
+|------------|-------------|--------------------|--------------|
+| id         | ID          | unsignedBigInteger | PK           |
+| name       | 都道府県名  | string             |              |
+| region_id  | 地域ID      | unsignedBigInteger | FK (regions) |
 
 ## product_category_groups 商品カテゴリグループ
 

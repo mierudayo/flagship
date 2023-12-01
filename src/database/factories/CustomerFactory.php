@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Prefecture;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,6 +23,7 @@ class CustomerFactory extends Factory
             'name_kana'     => $this->faker->optional()->name,
             'shortcut'      => $this->faker->optional()->word,
             'postal_code'   => $this->faker->optional()->postcode,
+            'prefecture_id' => $this->faker->optional()->randomElement(Prefecture::pluck('id')->toArray()),
             'address'       => $this->faker->optional()->address,
             'tel'           => $this->faker->optional()->phoneNumber,
             'fax'           => $this->faker->optional()->phoneNumber,
