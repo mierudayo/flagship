@@ -36,6 +36,8 @@ export default function CustomSelect(props) {
       isSearchable={isSearchable}
       placeholder={placeholder}
       noOptionsMessage={noOptionsMessage}
+      menuPortalTarget={document.body}
+      styles={{ menuPortal: base => ({ ...base, zIndex: 300 }) }}
     />
   );
 }
