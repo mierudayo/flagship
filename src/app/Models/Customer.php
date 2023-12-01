@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\AddressService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -70,6 +71,21 @@ class Customer extends Model
     public function salesTerm(): HasOne
     {
         return $this->hasOne(SalesTerm::class);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Accessors & Mutators
+    |--------------------------------------------------------------------------
+    */
+    public function setAddressAttribute(?string $value): void
+    {
+        $this->attributes['address'] = $value;
+
+        $addressService = new AddressService();
+        $prefectureId   = $addressService->getPrefectureIdFromAddress($value);
+
+        $this->attributes['prefecture_id'] = $prefectureId;
     }
 
     /*

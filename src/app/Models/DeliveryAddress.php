@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\DeliveryAddressType;
+use App\Services\AddressService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -36,11 +37,21 @@ class DeliveryAddress extends Model
 
     /*
     |--------------------------------------------------------------------------
-    | Accessors
+    | Accessors & Mutators
     |--------------------------------------------------------------------------
     */
     protected function getAddressTypeLabelAttribute(): string
     {
         return DeliveryAddressType::getLabelFromValue($this->address_type);
+    }
+
+    public function setAddressAttribute(?string $value): void
+    {
+        $this->attributes['address'] = $value;
+
+        $addressService = new AddressService();
+        $prefectureId   = $addressService->getPrefectureIdFromAddress($value);
+
+        $this->attributes['prefecture_id'] = $prefectureId;
     }
 }
