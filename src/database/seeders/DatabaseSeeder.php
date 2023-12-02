@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
                 PrefectureSeeder::class,
                 CustomerSeeder::class,
                 CustomerContactSeeder::class,
+                BillingAddressSeeder::class,
                 DeliveryAddressSeeder::class,
                 PurchaseTermSeeder::class,
                 SalesTermSeeder::class,

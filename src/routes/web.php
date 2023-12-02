@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CustomerContactController as ApiCustomerContactController;
 use App\Http\Controllers\Api\CustomerController as ApiCustomerController;
+use App\Http\Controllers\BillingAddressController;
 use App\Http\Controllers\CustomerContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InquiryController;
@@ -60,6 +61,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('contacts/{contact}', [CustomerContactController::class, 'update'])->name('contacts.update');
     Route::delete('contacts/{contact}', [CustomerContactController::class, 'destroy'])->name('contacts.destroy');
     Route::post('customers/{customer}/contacts', [CustomerContactController::class, 'addContactToCustomer'])->name('customers.contacts.add');
+
+    // BillingAddress
+    Route::get('billing-addresses', [BillingAddressController::class, 'index'])
+        ->name('billing-addresses.index');
 
     // DeliveryAddress
     Route::post('customers/{customer}/delivery-addresses', [DeliveryAddressController::class, 'addDeliveryAddressToCustomer'])

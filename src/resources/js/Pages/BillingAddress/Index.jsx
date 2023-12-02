@@ -2,9 +2,10 @@ import { Link, useForm, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
-import CustomerTable from './Partials/CustomerTable';
+import BillingAddressTable from './Partials/BillingAddressTable';
 
-const Index = ({ customersPaginator, canAdmin }) => {
+
+const Index = ({ billingAddressPaginator }) => {
   const params = route().params;
   const { flash } = usePage().props;
 
@@ -14,31 +15,24 @@ const Index = ({ customersPaginator, canAdmin }) => {
 
   function submit(e) {
     e.preventDefault();
-    get(route('customers.index'), {
+    get(route('billing-addresses.index'), {
       preserveState: true,
     });
   };
 
   return (
     <>
-      <h1 className="content-title">取引先 一覧</h1>
+      <h1 className="content-title">請求先 一覧</h1>
       <div className="content-navbar">
         <Link
-          href={route('customers.create')}
+          // href={route('')}
           className="btn btn-primary u-mr-3"
         >
           新規登録
         </Link>
 
-        <Link
-          href={route('billing-addresses.index')}
-          className="btn btn-secondary u-mr-3"
-        >
-          請求先一覧へ
-        </Link>
-
         <KeywordSearchForm
-          placeholder="取引先名, ヨミガナで検索"
+          placeholder="請求先名, ヨミガナで検索"
           data={data}
           setData={setData}
           errors={errors}
@@ -46,14 +40,14 @@ const Index = ({ customersPaginator, canAdmin }) => {
         />
 
         <div className="record-count">
-          {customersPaginator.total}件
+          {billingAddressPaginator.total}件
         </div>
-        <Pagination paginator={customersPaginator} />
+        <Pagination paginator={billingAddressPaginator} />
       </div>
       {flash.message && (
         <div className="alert alert-success">{flash.message}</div>
       )}
-      <CustomerTable customers={customersPaginator.data} />
+      <BillingAddressTable billingAddresses={billingAddressPaginator.data} />
     </>
   );
 }
