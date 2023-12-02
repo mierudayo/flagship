@@ -8,6 +8,8 @@
   - [delivery\_addresses 出荷元/納品先住所](#delivery_addresses-出荷元納品先住所)
   - [sales\_terms 取引条件(販売)](#sales_terms-取引条件販売)
   - [purchase\_terms 取引条件(仕入)](#purchase_terms-取引条件仕入)
+  - [billing\_addresses 請求先](#billing_addresses-請求先)
+  - [billing\_address\_customer 中間テーブル](#billing_address_customer-中間テーブル)
   - [regions 地域](#regions-地域)
   - [prefectures 都道府県](#prefectures-都道府県)
   - [product\_category\_groups 商品カテゴリグループ](#product_category_groups-商品カテゴリグループ)
@@ -16,6 +18,10 @@
   - [inquiry\_types 問い合わせ区分](#inquiry_types-問い合わせ区分)
   - [inquiries 問い合わせ](#inquiries-問い合わせ)
   - [sales\_activities 営業履歴](#sales_activities-営業履歴)
+  - [sales\_orders 受注](#sales_orders-受注)
+  - [sales\_order\_details 受注明細](#sales_order_details-受注明細)
+  - [purchase\_orders 発注](#purchase_orders-発注)
+  - [purchase\_order\_details 発注明細](#purchase_order_details-発注明細)
 
 ## permissions 権限
 
@@ -144,6 +150,32 @@
 | created_at            | 作成日時       | timestamp          |              |
 | updated_at            | 更新日時       | timestamp          |              |
 
+## billing_addresses 請求先
+
+| カラム                  | 名称             | 型                  | 説明   |
+|------------------------|------------------|---------------------|--------|
+| id                     | ID               | bigIncrements       | PK     |
+| name                   | 請求先名         | string              |        |
+| name_kana              | ヨミガナ         | string              |        |
+| shortcut               | ショートカット名 | string              |        |
+| billing_contact_name   | 請求先担当者     | string              |        |
+| postal_code            | 郵便番号         | string              |        |
+| address                | 住所             | string              |        |
+| email                  | E-mail           | string              |        |
+| tel                    | TEL              | string              |        |
+| fax                    | FAX              | string              |        |
+| invoice_delivery_method| 請求先送付方法   | string              |        |
+| note                   | 備考             | text                |        |
+| created_at             | 作成日時         | timestamp           |        |
+| updated_at             | 更新日時         | timestamp           |        |
+
+## billing_address_customer 中間テーブル
+
+| カラム              | 名称             | 型                 | 説明            |
+|---------------------|-----------------|---------------------|----------------|
+| billing_address_id  | 請求先ID         | unsignedBigInteger |  FK   |
+| customer_id         | 顧客ID           | unsignedBigInteger |  FK   |
+
 ## regions 地域
 
 | カラム     | 名称    | 型                 | 説明 |
@@ -246,3 +278,58 @@
 | updated_by_id       | 更新者ID           | unsignedBigInteger | FK                                                |
 | created_at          | 作成日時           | timestamp          |                                                   |
 | updated_at          | 更新日時           | timestamp          |                                                   |
+
+## sales_orders 受注
+
+| カラム                | 名称          | 型                  | 説明          |
+|-----------------------|---------------|---------------------|--------------|
+| id                    | ID            | unsignedBigInteger  | PK           |
+| customer_id           | 取引先ID      | unsignedBigInteger  | FK           |
+| customer_contact_id   | 連絡先ID      | unsignedBigInteger  | FK           |
+| billing_address_id    | 請求先ID      | unsignedBigInteger  | FK           |
+| delivery_address_id   | 納品先ID      | unsignedBigInteger  | FK           |
+| product_category_id   | 集計品目ID    | unsignedBigInteger  | FK           |
+| billing_type          | 請求タイプ    | tinyInteger         | 1:締め請求 2:都度請求 |
+| cutoff_day            | 締め日        | integer             | 締め請求時 1~28日, 月末(29, 30, 31)は99 |
+| payment_month_offset  | 支払月        | integer             | 締め請求時 当月:0, 翌月:1, 翌々月:2... |
+| payment_day           | 支払日        | integer             | 締め請求時 1~28日, 月末(29, 30, 31)は99 |
+| payment_day_offset    | 支払期限日数  | integer             | 都度請求時 0:前払い, 3:3営業日, 7:7営業日...等 |
+| payment_date          | 入金日        | date                |              |
+| payment_status        | 入金状況      | string              |              |
+| customer_name         | 販売先名      | string              |              |
+| delivery_address      | 納品先住所    | string              |              |
+| order_date            | 受注日        | date                |              |
+| shipping_date         | 出荷日        | date                |              |
+| shipping_status       | 出荷状況      | string              |              |
+| delivery_date         | 納品日        | date                |              |
+| delivery_status       | 納品状況      | string              |              |
+| delivery_memo         | 配送メモ      | string              |              |
+| total_amount          | 総合計金額    | integer             |              |
+| note                  | 備考          | text                |              |
+| sales_in_charge_id    | 受注担当者ID  | unsignedBigInteger  | FK           |
+| created_by_id         | 作成者ID      | unsignedBigInteger  | FK           |
+| updated_by_id         | 更新者ID      | unsignedBigInteger  | FK           |
+| created_at            | 作成日時      | timestamp           |              |
+| updated_at            | 更新日時      | timestamp           |              |
+
+## sales_order_details 受注明細
+
+| カラム                | 名称             | 型                    | 説明                     |
+|-----------------------|------------------|-----------------------|--------------------------|
+| id                    | ID               | unsignedBigInteger    | PK                       |
+| sales_order_id        | 受注ID           | unsignedBigInteger    | FK                       |
+| product_id            | 商品ID           | unsignedBigInteger    | FK                       |
+| product_detail        | 商品詳細         | string                |                          |
+| quantity              | 数量             | integer               |                          |
+| unit_price            | 単価（税抜き）   | decimal               |                          |
+| tax_rate              | 税率             | decimal               | 例: 0.1 は10%            |
+| is_tax_inclusive      | 税の種類         | boolean               | 外税：false, 内税：true  |
+| subtotal              | 小計（税抜き）   | decimal               |                          |
+| total                 | 総計（税込）     | decimal               |                          |
+| note                  | 備考             | text                  |                          |
+| created_at            | 作成日時         | timestamp             |                          |
+| updated_at            | 更新日時         | timestamp             |                          |
+
+## purchase_orders 発注
+
+## purchase_order_details 発注明細
