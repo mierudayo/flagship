@@ -10,6 +10,7 @@ use App\Http\Controllers\DeliveryAddressController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductCategoryGroupController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SalesActivityController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -86,6 +87,10 @@ Route::middleware('auth')->group(function () {
     Route::get('inquiries/{inquiry}/edit', [InquiryController::class, 'edit'])->name('inquiries.edit');
     Route::patch('inquiries/{inquiry}', [InquiryController::class, 'update'])->name('inquiries.update');
     Route::delete('inquiries/{inquiry}', [InquiryController::class, 'destroy'])->name('inquiries.destroy');
+
+    // SalesActivity
+    Route::post('customers/{customer}/sales-activities', [SalesActivityController::class, 'appendToCustomerContact'])
+        ->name('customers.contacts.sales-activities.append');
 });
 
 

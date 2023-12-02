@@ -15,6 +15,7 @@
   - [products 商品](#products-商品)
   - [inquiry\_types 問い合わせ区分](#inquiry_types-問い合わせ区分)
   - [inquiries 問い合わせ](#inquiries-問い合わせ)
+  - [sales\_activities 営業履歴](#sales_activities-営業履歴)
 
 ## permissions 権限
 
@@ -222,6 +223,22 @@
 | subject             | 件名               | string             |                                                   |
 | message             | 問い合わせ内容     | text               |                                                   |
 | answer              | 回答内容           | text               |                                                   |
+| feedback            | フィードバック     | text               |                                                   |
+| note                | 備考               | text               |                                                   |
+| in_charge_user_id   | 担当ユーザーID     | unsignedBigInteger | FK                                                |
+| created_by_id       | 作成者ID           | unsignedBigInteger | FK                                                |
+| updated_by_id       | 更新者ID           | unsignedBigInteger | FK                                                |
+| created_at          | 作成日時           | timestamp          |                                                   |
+| updated_at          | 更新日時           | timestamp          |                                                   |
+
+## sales_activities 営業履歴
+
+| カラム              | 名称               | 型                 | 説明                                              |
+|---------------------|--------------------|--------------------|---------------------------------------------------|
+| id                  | ID                 | unsignedBigInteger | PK                                                |
+| contact_date        | 連絡日             | date               |                                                   |
+| customer_contact_id | 顧客ID             | unsignedBigInteger | FK                                                |
+| proposal            | 提案内容           | text               |                                                   |
 | feedback            | フィードバック     | text               |                                                   |
 | note                | 備考               | text               |                                                   |
 | in_charge_user_id   | 担当ユーザーID     | unsignedBigInteger | FK                                                |

@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
                 ProductSeeder::class,
                 InquiryTypeSeeder::class,
                 InquirySeeder::class,
+                SalesActivitySeeder::class,
             ]);
         }
     }

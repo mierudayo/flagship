@@ -68,6 +68,11 @@ class CustomerContact extends Model
         return $this->hasMany(Inquiry::class);
     }
 
+    public function salesActivities(): HasMany
+    {
+        return $this->hasMany(SalesActivity::class);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Accessors
