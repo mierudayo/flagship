@@ -4,6 +4,7 @@ import CorporateFareIcon from '@mui/icons-material/CorporateFare';
 import PeopleIcon from '@mui/icons-material/People';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import CategoryIcon from '@mui/icons-material/Category';
+import CurrencyYenIcon from '@mui/icons-material/CurrencyYen';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import HomeIcon from '@mui/icons-material/Home';
 
@@ -75,6 +76,17 @@ export default function NavList() {
           <div className="icon-wrapper">
             <MarkEmailUnreadIcon className="sidenav-icon" />
             <span>問い合わせ</span>
+          </div>
+        </Link>
+      </li>
+      <li>
+        <Link
+          href={route('sales-orders.index')}
+          className={`side-nav-link ${url.startsWith('/sales-orders') ? 'is-active' : ''}`}
+        >
+          <div className="icon-wrapper">
+            <CurrencyYenIcon className="sidenav-icon" />
+            <span>受注</span>
           </div>
         </Link>
       </li>

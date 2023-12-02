@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductCategoryGroupController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SalesActivityController;
+use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -96,6 +97,9 @@ Route::middleware('auth')->group(function () {
     // SalesActivity
     Route::post('customers/{customer}/sales-activities', [SalesActivityController::class, 'appendToCustomerContact'])
         ->name('customers.contacts.sales-activities.append');
+
+    // SalesOrder
+    Route::get('sales-orders', [SalesOrderController::class, 'index'])->name('sales-orders.index');
 });
 
 
