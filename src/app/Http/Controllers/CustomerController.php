@@ -32,6 +32,7 @@ class CustomerController extends Controller
             ->with(['inChargeUser', 'contacts'])
             ->searchByKeyword($keyword)
             ->latest();
+
         $customersPaginator = $customerQuery->paginate(50)->withQueryString();
 
         return Inertia::render('Customer/Index', [
@@ -42,9 +43,9 @@ class CustomerController extends Controller
     public function create(): Response
     {
         return Inertia::render('Customer/Create', [
-            'userOptions' => User::active()->get(),
-            'paymentTerms'      => $this->getPaymentTerms(),
-            'deliveryAddressTypes' => DeliveryAddressType::toArray(),
+            'userOptions'           => User::active()->get(),
+            'paymentTerms'          => $this->getPaymentTerms(),
+            'deliveryAddressTypes'  => DeliveryAddressType::toArray(),
         ]);
     }
 
@@ -65,24 +66,40 @@ class CustomerController extends Controller
 
     public function show(Customer $customer): Response
     {
-        $customer->load(['contacts.inChargeUser', 'inChargeUser', 'createdBy', 'updatedBy', 'deliveryAddresses', 'purchaseTerm', 'salesTerm', 'contacts.salesActivities.inChargeUser']);
+        $customer->load([
+            'contacts.inChargeUser',
+            'inChargeUser',
+            'createdBy',
+            'updatedBy',
+            'deliveryAddresses',
+            'purchaseTerm',
+            'salesTerm',
+            'contacts.salesActivities.inChargeUser'
+        ]);
 
         return Inertia::render('Customer/Show', [
-            'customer' => $customer,
-            'userOptions' => User::active()->get(),
-            'deliveryAddressTypes' => DeliveryAddressType::toArray(),
+            'customer'              => $customer,
+            'userOptions'           => User::active()->get(),
+            'deliveryAddressTypes'  => DeliveryAddressType::toArray(),
         ]);
     }
 
     public function edit(Customer $customer): Response
     {
-        $customer->load(['purchaseTerm', 'salesTerm', 'contacts', 'deliveryAddresses', 'createdBy', 'updatedBy']);
+        $customer->load([
+            'purchaseTerm',
+            'salesTerm',
+            'contacts',
+            'deliveryAddresses',
+            'createdBy',
+            'updatedBy'
+        ]);
 
         return Inertia::render('Customer/Edit', [
-            'customer' => $customer,
-            'userOptions' => User::active()->get(),
-            'paymentTerms'      => $this->getPaymentTerms(),
-            'deliveryAddressTypes' => DeliveryAddressType::toArray(),
+            'customer'              => $customer,
+            'userOptions'           => User::active()->get(),
+            'paymentTerms'          => $this->getPaymentTerms(),
+            'deliveryAddressTypes'  => DeliveryAddressType::toArray(),
         ]);
     }
 
