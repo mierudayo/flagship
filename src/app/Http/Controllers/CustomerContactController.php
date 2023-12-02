@@ -118,10 +118,10 @@ class CustomerContactController extends Controller
 
     public function destroy(CustomerContact $contact): RedirectResponse
     {
-        if ($contact->inquiries()->exists()) {
+        if (!$contact->canDelete()) {
             return redirect()
                 ->route('contacts.edit', $contact)
-                ->with('message', 'この連絡先は問い合わせデータを持つため削除できません。');
+                ->with('message', 'この連絡先は問い合わせ・営業履歴データを持つため削除できません。');
         }
 
         $contact->delete();

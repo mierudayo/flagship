@@ -103,4 +103,22 @@ class CustomerContact extends Model
                 });
         });
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Methods
+    |--------------------------------------------------------------------------
+    */
+    public function canDelete(): bool
+    {
+        if ($this->inquiries()->exists()) {
+            return false;
+        }
+
+        if ($this->salesActivities()->exists()) {
+            return false;
+        }
+
+        return true;
+    }
 }
