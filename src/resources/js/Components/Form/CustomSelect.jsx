@@ -24,7 +24,7 @@ export default function CustomSelect(props) {
     label: option[labelKey]
   }));
 
-  const selectedValue = formattedOptions.find(option => option[valueKey] === value);
+  const selectedValue = formattedOptions.find(option => option[valueKey] === value) || null;
 
   return (
     <Select
