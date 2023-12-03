@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('sales_orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('customer_contact_id');
-            $table->unsignedBigInteger('billing_address_id');
+            $table->unsignedBigInteger('customer_contact_id')->nullable();
+            $table->unsignedBigInteger('billing_address_id')->nullable(); // TODO: 仕様再検討（必須になるかも)
             $table->unsignedBigInteger('delivery_address_id');
             $table->unsignedBigInteger('product_category_id');
             // 請求条件
@@ -39,7 +39,7 @@ return new class extends Migration
             $table->text('note')->nullable();
             $table->unsignedBigInteger('sales_in_charge_id');
             $table->unsignedBigInteger('created_by_id');
-            $table->unsignedBigInteger('updated_by_id');
+            $table->unsignedBigInteger('updated_by_id')->nullable();
             $table->timestamps();
 
             // 外部キー制約

@@ -38,7 +38,7 @@ export default function NavList() {
       <li>
         <Link
           href={route('customers.index')}
-          className={`side-nav-link ${url.startsWith('/customers') ? 'is-active' : ''}`}
+          className={`side-nav-link ${component.startsWith('Customer/') ? 'is-active' : ''}`}
         >
           <div className="icon-wrapper">
             <CorporateFareIcon className="sidenav-icon" />
@@ -82,7 +82,7 @@ export default function NavList() {
       <li>
         <Link
           href={route('sales-orders.index')}
-          className={`side-nav-link ${url.startsWith('/sales-orders') ? 'is-active' : ''}`}
+          className={`side-nav-link ${component.startsWith('SalesOrder/')? 'is-active' : ''}`}
         >
           <div className="icon-wrapper">
             <CurrencyYenIcon className="sidenav-icon" />
