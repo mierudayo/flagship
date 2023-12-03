@@ -11,7 +11,7 @@ class CustomerContactController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $keyword    = $request->input('keyword', '');
+        $keyword = $request->input('keyword');
 
         $customers = CustomerContact::query()
             ->with(['customer'])

@@ -131,7 +131,7 @@ class CustomerController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | Utility
+    | Business Logic
     |--------------------------------------------------------------------------
     */
     private function createCustomer(CustomerStoreRequest $request): Customer

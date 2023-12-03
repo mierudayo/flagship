@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SalesActivityStoreRequest;
 use App\Models\Customer;
 use App\Models\SalesActivity;
+use Illuminate\Http\RedirectResponse;
 
 class SalesActivityController extends Controller
 {
-    public function appendToCustomerContact(SalesActivityStoreRequest $request, Customer $customer)
+    public function appendToCustomerContact(SalesActivityStoreRequest $request, Customer $customer): RedirectResponse
     {
         $salesActivity = SalesActivity::create([
             'contact_date'          => $request->input('contact_date'),
@@ -21,6 +22,6 @@ class SalesActivityController extends Controller
         ]);
 
         return to_route('customers.show', $customer)
-        ->with('message', "ID:{$salesActivity->id} 営業履歴を追加しました。");
+            ->with('message', "ID:{$salesActivity->id} 営業履歴を追加しました。");
     }
 }

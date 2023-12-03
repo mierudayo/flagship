@@ -11,10 +11,13 @@ class CustomerController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $keyword    = $request->input('keyword', '');
+        $keyword = $request->input('keyword');
 
         $customers = Customer::query()
-            ->with(['contacts', 'deliveryAddresses'])
+            ->with([
+                'contacts',
+                'deliveryAddresses',
+            ])
             ->searchByKeyword($keyword)
             ->latest()
             ->limit(50)

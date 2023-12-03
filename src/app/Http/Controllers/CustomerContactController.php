@@ -95,6 +95,18 @@ class CustomerContactController extends Controller
         return to_route('contacts.index')->with('message', "ID:{$contact->id} 連絡先を更新しました。");
     }
 
+    public function destroy(CustomerContact $contact): RedirectResponse
+    {
+        if (!$contact->canDelete()) {
+            return redirect()
+                ->route('contacts.edit', $contact)
+                ->with('message', 'この連絡先は問い合わせ・営業履歴データを持つため削除できません。');
+        }
+
+        $contact->delete();
+        return to_route('contacts.index');
+    }
+
     public function addContactToCustomer(CustomerContactAddRequest $request, Customer $customer): RedirectResponse
     {
         $contact = CustomerContact::create([
@@ -114,17 +126,5 @@ class CustomerContactController extends Controller
 
         return to_route('customers.show', $customer)
             ->with('message', "ID:{$contact->id} 連絡先を追加しました。");
-    }
-
-    public function destroy(CustomerContact $contact): RedirectResponse
-    {
-        if (!$contact->canDelete()) {
-            return redirect()
-                ->route('contacts.edit', $contact)
-                ->with('message', 'この連絡先は問い合わせ・営業履歴データを持つため削除できません。');
-        }
-
-        $contact->delete();
-        return to_route('contacts.index');
     }
 }
