@@ -10,6 +10,7 @@ export default function SalesOrderTable({ salesOrders }) {
             <th className="th-cell u-min-w-240">販売先</th>
             <th className="th-cell u-min-w-120">販売担当</th>
             <th className="th-cell u-min-w-120">合計金額</th>
+            <th className="th-cell u-min-w-280">明細</th>
             <th className="th-cell">備考</th>
           </tr>
         </thead>
@@ -22,6 +23,11 @@ export default function SalesOrderTable({ salesOrders }) {
               <td className="td-cell">{salesOrder.customer_name}</td>
               <td className="td-cell">{salesOrder.sales_in_charge.name}</td>
               <td className="td-cell">{salesOrder.total_amount}</td>
+              <td className="td-cell">
+                {salesOrder.sales_order_details.map(detail => (
+                  <div key={detail.id}>{detail.id} : {detail.product_name} {detail.subtotal}円</div>
+                ))}
+              </td>
               <td className="td-cell">{salesOrder.note}</td>
             </tr>
           ))}

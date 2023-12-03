@@ -319,10 +319,11 @@
 | id                    | ID               | unsignedBigInteger    | PK                       |
 | sales_order_id        | 受注ID           | unsignedBigInteger    | FK                       |
 | product_id            | 商品ID           | unsignedBigInteger    | FK                       |
+| product_name          | 商品名           | string                |                          |
 | product_detail        | 商品詳細         | string                |                          |
-| quantity              | 数量             | integer               |                          |
+| quantity              | 数量             | decimal               |                          |
 | unit_price            | 単価（税抜き）   | decimal               |                          |
-| tax_rate              | 税率             | decimal               | 例: 0.1 は10%            |
+| tax_rate              | 税率             | decimal               | デフォルト0.1 (10%)      |
 | is_tax_inclusive      | 税の種類         | boolean               | 外税：false, 内税：true  |
 | subtotal              | 小計（税抜き）   | decimal               |                          |
 | total                 | 総計（税込）     | decimal               |                          |

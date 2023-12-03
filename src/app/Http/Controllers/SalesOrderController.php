@@ -27,6 +27,7 @@ class SalesOrderController extends Controller
                 'customer',
                 'salesInCharge',
                 'productCategory',
+                'salesOrderDetails',
             ])
             ->searchByKeyword($keyword)
             ->latest();
