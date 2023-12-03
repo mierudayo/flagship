@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
+import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AppLayout from '@/Layouts/AppLayout';
 import CancelButton from '@/Components/CancelButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
@@ -9,21 +10,27 @@ import Input from '@/Components/Form/Input';
 import OptionsList from '@/Components/OptionsList';
 import Textarea from '@/Components/Form/Textarea';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
+import CustomerLookup from '@/Components/CustomerLookup';
+import Modal from '@/Components/Modal';
 
-const Create = ({ customer, userOptions, productCategoryOptions, paymentTerms }) => {
+const Create = ({ userOptions, productCategoryOptions, paymentTerms }) => {
   const { today } = usePage().props.date;
+  const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
+  const [customerContacts, setCustomerContacts]   = useState([]);
+  const [deliveryAddresses, setDeliveryAddresses] = useState([]);
 
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
-    customer_name: customer.name,
+    customer_id: '',
+    customer_name: '',
     customer_contact_id: '',
     billing_address_id: '', // TODO: 仕様再検討（必須になるかも)
     delivery_address_id: '',
     product_category_id: '',
-    billing_type: customer.sales_term?.billing_type,
-    cutoff_day: customer.sales_term?.cutoff_day,
-    payment_month_offset: customer.sales_term?.payment_month_offset,
-    payment_day: customer.sales_term?.payment_day,
-    payment_day_offset: customer.sales_term?.payment_day_offset,
+    billing_type: '',
+    cutoff_day: '',
+    payment_month_offset: '',
+    payment_day: '',
+    payment_day_offset: '',
     payment_date: '',
     payment_status: '',
     delivery_address: 'TEMP', // TODO: 後で修正
@@ -34,15 +41,27 @@ const Create = ({ customer, userOptions, productCategoryOptions, paymentTerms })
     delivery_status: '',
     delivery_memo: '',
     note: '',
-    sales_in_charge_id: customer.in_charge_user_id || '',
+    sales_in_charge_id: '',
   });
 
   function submit(e) {
     e.preventDefault();
-    post(route('customers.sales-orders.store', customer), {
+    post(route('sales-orders.store'), {
       onSuccess: () => reset(),
     });
   };
+
+  function selectCustomer(customer) {
+    setData({
+      ...data,
+      'customer_id': customer.id,
+      'customer_name': customer.name,
+      'sales_in_charge_id': customer.in_charge_user_id || '',
+    });
+    setCustomerContacts(customer.contacts || []);
+    setDeliveryAddresses(customer.delivery_addresses || [])
+    setIsCustomerModalOpen(false);
+  }
 
   return (
     <>
@@ -62,30 +81,41 @@ const Create = ({ customer, userOptions, productCategoryOptions, paymentTerms })
 
       <FormErrorAlert errors={errors} />
 
+      {isCustomerModalOpen &&
+        <Modal closeModal={() => setIsCustomerModalOpen(false)} title="販売先を選択">
+          <CustomerLookup
+            handleClickSelect={customer => selectCustomer(customer)}
+          />
+        </Modal>}
+
       <form id="salesOrderCreateForm" onSubmit={submit}>
         <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
 
               <tr className="table-row is-flexible">
-                <th className="th-cell u-w-160">
-                  <FormLabel label="販売先" isRequired={false} />
+                <th className="th-cell">
+                  <FormLabel label="所属取引先" isRequired={true} />
                 </th>
                 <td className="td-cell">
                   <div className="u-flex">
                     <Input
                       type="text"
-                      value={customer.id}
+                      value={data.customer_id}
                       className="u-max-w-64"
+                      placeholder="ID"
                       readOnly={true}
                     />
                     <Input
                       type="text"
                       value={data.customer_name}
                       className="u-max-w-240"
-                      placeholder="販売先名"
+                      placeholder="販売先"
                       readOnly={true}
                     />
+                    <button type="button" className="btn btn-secondary" onClick={() => setIsCustomerModalOpen(true)}>
+                      <ManageSearchIcon />
+                    </button>
                   </div>
                   {errors.customer_id && (<div className="invalid-feedback">{errors.customer_id}</div>)}
                 </td>
@@ -98,7 +128,7 @@ const Create = ({ customer, userOptions, productCategoryOptions, paymentTerms })
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('customer_contact_id', value)}
-                    options={customer.contacts}
+                    options={customerContacts}
                     value={data.customer_contact_id}
                     valueKey="id"
                     labelKey="name"
@@ -117,7 +147,7 @@ const Create = ({ customer, userOptions, productCategoryOptions, paymentTerms })
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('delivery_address_id', value)}
-                    options={customer.delivery_addresses}
+                    options={deliveryAddresses}
                     value={data.delivery_address_id}
                     valueKey="id"
                     labelKey="address"

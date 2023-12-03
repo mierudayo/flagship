@@ -1,17 +1,12 @@
-import { useState } from 'react';
-import { Link, router, useForm, usePage } from '@inertiajs/react';
+import { Link, useForm, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import SalesOrderTable from "./Partials/SalesOrderTable";
-import CustomerLookup from '@/Components/CustomerLookup';
-import Modal from '@/Components/Modal';
-
 
 const Index = ({ salesOrdersPaginator }) => {
   const params = route().params;
   const { flash } = usePage().props;
-  const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
 
   const { data, setData, get, errors } = useForm({
     keyword: params.keyword || '',
@@ -24,35 +19,17 @@ const Index = ({ salesOrdersPaginator }) => {
     });
   };
 
-  function selectCustomer(customer) {
-    router.get(route('customers.sales-orders.create', customer));
-  }
-
   return (
     <>
       <h1 className="content-title">受注 一覧</h1>
 
-      {isCustomerModalOpen &&
-        <Modal closeModal={() => setIsCustomerModalOpen(false)} title="販売先を選択してください">
-          <CustomerLookup
-            handleClickSelect={customer => selectCustomer(customer)}
-          />
-        </Modal>}
-
       <div className="content-navbar">
-        <button
-          type="button"
-          className="btn btn-primary u-mr-3"
-          onClick={() => setIsCustomerModalOpen(true)}
-        >
-          新規登録
-        </button>
-        {/* <Link
-          // href={route('sales-orders.create')}
+        <Link
+          href={route('sales-orders.create')}
           className="btn btn-primary u-mr-3"
         >
           新規登録
-        </Link> */}
+        </Link>
 
         <KeywordSearchForm
           placeholder="受注ID, 取引先名で検索"

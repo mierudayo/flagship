@@ -9,7 +9,6 @@ use App\Enums\PaymentTerm\PaymentDayOffset;
 use App\Enums\PaymentTerm\PaymentMonthOffset;
 use App\Http\Requests\SalesOrderSearchRequest;
 use App\Http\Requests\SalesOrderStoreRequest;
-use App\Models\Customer;
 use App\Models\ProductCategory;
 use App\Models\SalesOrder;
 use App\Models\User;
@@ -39,26 +38,19 @@ class SalesOrderController extends Controller
         ]);
     }
 
-    public function create(Customer $customer): Response
+    public function create(): Response
     {
-        $customer = $customer->load([
-            'salesTerm',
-            'contacts',
-            'deliveryAddresses',
-        ]);
-
         return Inertia::render('SalesOrder/Create', [
-            'customer'               => $customer,
             'userOptions'            => User::active()->get(),
             'productCategoryOptions' => ProductCategory::all(),
             'paymentTerms'           => $this->getPaymentTerms(),
         ]);
     }
 
-    public function store(SalesOrderStoreRequest $request, Customer $customer): RedirectResponse
+    public function store(SalesOrderStoreRequest $request): RedirectResponse
     {
         $salesOrder = SalesOrder::create([
-            'customer_id'           => $customer->id,
+            'customer_id'           => $request->input('customer_id'),
             'customer_contact_id'   => $request->input('customer_contact_id'),
             'billing_address_id'    => $request->input('billing_address_id'),
             'delivery_address_id'   => $request->input('delivery_address_id'),
@@ -71,7 +63,7 @@ class SalesOrderController extends Controller
             'payment_date'          => $request->input('payment_date'),
             'payment_status'        => $request->input('payment_status'),
             'customer_name'         => $request->input('customer_name'),
-            'delivery_address'      => $request->input('delivery_address') ?? '', // TODO: 変換ロジック実装
+            'delivery_address'      => $request->input('delivery_address'),
             'order_date'            => $request->input('order_date'),
             'shipping_date'         => $request->input('shipping_date'),
             'shipping_status'       => $request->input('shipping_status'),

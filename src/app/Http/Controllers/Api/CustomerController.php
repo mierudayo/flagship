@@ -14,6 +14,7 @@ class CustomerController extends Controller
         $keyword    = $request->input('keyword', '');
 
         $customers = Customer::query()
+            ->with(['contacts', 'deliveryAddresses'])
             ->searchByKeyword($keyword)
             ->latest()
             ->limit(50)
