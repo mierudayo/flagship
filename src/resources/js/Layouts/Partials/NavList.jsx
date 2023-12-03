@@ -27,7 +27,7 @@ export default function NavList() {
       <li>
         <Link
           href={route('users.index')}
-          className={`side-nav-link ${component.startsWith('User') ? 'is-active' : ''}`}
+          className={`side-nav-link ${component.startsWith('User/') ? 'is-active' : ''}`}
         >
           <div className="icon-wrapper">
             <PeopleIcon className="sidenav-icon" />
@@ -49,7 +49,7 @@ export default function NavList() {
       <li>
         <Link
           href={route('contacts.index')}
-          className={`side-nav-link ${url.startsWith('/contacts') ? 'is-active' : ''}`}
+          className={`side-nav-link ${component.startsWith('CustomerContact/') ? 'is-active' : ''}`}
         >
           <div className="icon-wrapper">
             <ContactsIcon className="sidenav-icon" />
@@ -60,7 +60,7 @@ export default function NavList() {
       <li>
         <Link
           href={route('products.index')}
-          className={`side-nav-link ${url.startsWith('/products') ? 'is-active' : ''}`}
+          className={`side-nav-link ${component.startsWith('Product/') ? 'is-active' : ''}`}
         >
           <div className="icon-wrapper">
             <CategoryIcon className="sidenav-icon" />
@@ -71,7 +71,7 @@ export default function NavList() {
       <li>
         <Link
           href={route('inquiries.index')}
-          className={`side-nav-link ${url.startsWith('/inquiries') ? 'is-active' : ''}`}
+          className={`side-nav-link ${component.startsWith('Inquiry/') ? 'is-active' : ''}`}
         >
           <div className="icon-wrapper">
             <MarkEmailUnreadIcon className="sidenav-icon" />
