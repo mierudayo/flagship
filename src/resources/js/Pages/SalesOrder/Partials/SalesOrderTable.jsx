@@ -28,7 +28,7 @@ export default function SalesOrderTable({ salesOrders }) {
                   <div key={detail.id}>{detail.id} : {detail.product_name} {detail.subtotal}円</div>
                 ))}
               </td>
-              <td className="td-cell">{salesOrder.note}</td>
+              <td className="td-cell u-ellipsis u-max-w-200">{salesOrder.note}</td>
             </tr>
           ))}
         </tbody>

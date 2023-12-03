@@ -38,7 +38,7 @@ export default function InquiryTable({ inquiries }) {
                   {inquiry.inquiry_type.name}
                 </span>
               </td>
-              <td className="td-cell">{inquiry.subject}</td>
+              <td className="td-cell u-ellipsis u-max-w-200">{inquiry.subject}</td>
             </tr>
           ))}
         </tbody>

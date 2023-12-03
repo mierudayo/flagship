@@ -7,3 +7,11 @@ Text Alignment
 .u-text-justify { text-align: justify; }
 
 
+/* -----------------------
+Ellipsis
+----------------------- */
+.u-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
