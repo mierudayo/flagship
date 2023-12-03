@@ -55,7 +55,7 @@ class Customer extends Model
 
     public function contacts(): HasMany
     {
-        return $this->hasMany(CustomerContact::class, 'customer_id');
+        return $this->hasMany(CustomerContact::class);
     }
 
     public function deliveryAddresses(): HasMany

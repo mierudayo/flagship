@@ -45,7 +45,7 @@ class CustomerContact extends Model
     */
     public function customer(): BelongsTo
     {
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->belongsTo(Customer::class);
     }
 
     public function inChargeUser(): BelongsTo
