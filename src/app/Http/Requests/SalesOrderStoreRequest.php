@@ -22,32 +22,31 @@ class SalesOrderStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'customer_id'           => 'required|integer|exists:customers,id',
-            'customer_contact_id'   => 'nullable|integer|exists:customer_contacts,id',
-            'billing_address_id'    => 'nullable|integer|exists:billing_addresses,id', // TODO: 仕様再検討（必須になるかも)
-            'delivery_address_id'   => 'required|integer|exists:delivery_addresses,id',
-            'product_category_id'   => 'required|integer|exists:product_categories,id',
+            'customer_id'           => ['required', 'integer', 'exists:customers,id'],
+            'customer_contact_id'   => ['nullable', 'integer', 'exists:customer_contacts,id'],
+            'billing_address_id'    => ['nullable', 'integer', 'exists:billing_addresses,id'], // TODO: 仕様再検討（必須になるかも)
+            'delivery_address_id'   => ['required', 'integer', 'exists:delivery_addresses,id'],
+            'product_category_id'   => ['required', 'integer', 'exists:product_categories,id'],
 
             // SalesTerm
-            'billing_type'          => 'nullable|integer|in:1,2',
-            'cutoff_day'            => 'nullable|integer|min:1|max:28',
-            'payment_month_offset'  => 'nullable|integer|min:0',
-            'payment_day'           => 'nullable|integer|min:1|max:28',
-            'payment_day_offset'    => 'nullable|integer|min:0',
-            'payment_date'          => 'nullable|date',
-            'payment_status'        => 'nullable|string|max:255',
+            'billing_type'          => ['nullable', 'integer', 'in:1,2'],
+            'cutoff_day'            => ['nullable', 'integer', 'min:1', 'max:28'],
+            'payment_month_offset'  => ['nullable', 'integer', 'min:0'],
+            'payment_day'           => ['nullable', 'integer', 'min:1', 'max:28'],
+            'payment_day_offset'    => ['nullable', 'integer', 'min:0'],
+            'payment_date'          => ['nullable', 'date'],
+            'payment_status'        => ['nullable', 'string', 'max:255'],
 
-            'customer_name'         => 'required|string|max:255',
-            'delivery_address'      => 'required|string|max:255',
-            'order_date'            => 'required|date',
-            'shipping_date'         => 'nullable|date',
-            'shipping_status'       => 'nullable|string|max:255',
-            'delivery_date'         => 'nullable|date',
-            'delivery_status'       => 'nullable|string|max:255',
-            'delivery_memo'         => 'nullable|string|max:255',
-
-            'note'                  => 'nullable|string',
-            'sales_in_charge_id'    => 'required|integer|exists:users,id',
+            'customer_name'         => ['required', 'string', 'max:255'],
+            'delivery_address'      => ['required', 'string', 'max:255'],
+            'order_date'            => ['required', 'date'],
+            'shipping_date'         => ['nullable', 'date'],
+            'shipping_status'       => ['nullable', 'string', 'max:255'],
+            'delivery_date'         => ['nullable', 'date'],
+            'delivery_status'       => ['nullable', 'string', 'max:255'],
+            'delivery_memo'         => ['nullable', 'string', 'max:255'],
+            'note'                  => ['nullable', 'string'],
+            'sales_in_charge_id'    => ['required', 'integer', 'exists:users,id'],
 
             // SalesOrderDetail
             'sales_order_details.*.product_id'       => ['nullable', 'integer', 'exists:products,id'],
