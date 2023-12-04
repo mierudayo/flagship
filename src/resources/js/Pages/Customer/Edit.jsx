@@ -589,12 +589,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                     <td className="td-cell">
                       <select
                         value={contact.is_active}
-                        onChange={e => {
-                          console.log(contact.is_active);
-                          console.log(e.target.value);
-                          console.log(e.target.value === 'true');
-                          updateContact(index, 'is_active', e.target.value === 'true')
-                        }}
+                        onChange={e => updateContact(index, 'is_active', e.target.value === 'true')}
                         className={`form-select ${errors[`contacts.${index}.is_active`] ? 'is-invalid' : ''}`}
                       >
                         <OptionsList
