@@ -599,8 +599,8 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                       >
                         <OptionsList
                           options={[
-                            {value: true, label: '使用中'},
-                            {value: false, label: '使用不可'}
+                            { value: true, label: '使用中' },
+                            { value: false, label: '使用不可' }
                           ]}
                         />
                       </select>
@@ -626,7 +626,21 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                     </td>
 
                     <td className="td-cell">
-                      {/* TODO: 担当ユーザーセレクトボックスを追加 */}
+                      <CustomSelect
+                        onChange={value => updateContact(index, 'in_charge_user_id', value)}
+                        options={userOptions}
+                        value={contact.in_charge_user_id}
+                        valueKey="id"
+                        labelKey="name"
+                        isClearable={true}
+                        isSearchable={true}
+                        placeholder="担当ユーザーを選択..."
+                      />
+                      {errors[`contacts.${index}.in_charge_user_id`] && (
+                        <div className="invalid-feedback">
+                          {errors[`contacts.${index}.in_charge_user_id`]}
+                        </div>
+                      )}
                     </td>
 
                   </tr>
