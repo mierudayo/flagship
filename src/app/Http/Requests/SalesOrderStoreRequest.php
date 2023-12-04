@@ -47,7 +47,17 @@ class SalesOrderStoreRequest extends FormRequest
             'delivery_memo'         => 'nullable|string|max:255',
 
             'note'                  => 'nullable|string',
-            'sales_in_charge_id'    => 'required|integer|exists:users,id'
+            'sales_in_charge_id'    => 'required|integer|exists:users,id',
+
+            // SalesOrderDetail
+            'sales_order_details.*.product_id'       => ['nullable', 'integer', 'exists:products,id'],
+            'sales_order_details.*.product_name'     => ['required', 'string', 'max:255'],
+            'sales_order_details.*.product_detail'   => ['nullable', 'string', 'max:255'],
+            'sales_order_details.*.quantity'         => ['required', 'numeric', 'min:0.01', 'max:99999999'],
+            'sales_order_details.*.unit_price'       => ['required', 'numeric', 'min:0.01', 'max:99999999'],
+            'sales_order_details.*.tax_rate'         => ['numeric', 'max:1'],
+            'sales_order_details.*.is_tax_inclusive' => ['boolean'],
+            'sales_order_details.*.note'             => ['nullable', 'string', 'max:255'],
         ];
     }
 

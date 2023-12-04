@@ -13,10 +13,10 @@ import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
 
-const Create = ({ userOptions, productCategoryOptions, paymentTerms }) => {
+const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTerms }) => {
   const { today } = usePage().props.date;
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
-  const [customerContacts, setCustomerContacts]   = useState([]);
+  const [customerContacts, setCustomerContacts] = useState([]);
   const [deliveryAddresses, setDeliveryAddresses] = useState([]);
 
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
@@ -42,6 +42,7 @@ const Create = ({ userOptions, productCategoryOptions, paymentTerms }) => {
     delivery_memo: '',
     note: '',
     sales_in_charge_id: '',
+    sales_order_details: [],
   });
 
   function submit(e) {
@@ -61,6 +62,37 @@ const Create = ({ userOptions, productCategoryOptions, paymentTerms }) => {
     setCustomerContacts(customer.contacts || []);
     setDeliveryAddresses(customer.delivery_addresses || [])
     setIsCustomerModalOpen(false);
+  }
+
+  function addDetail() {
+    setData('sales_order_details', [
+      ...data.sales_order_details,
+      {
+        product_id: '',
+        product_name: '',
+        product_detail: '',
+        quantity: '',
+        unit_price: '',
+        tax_rate: 0.10,
+        is_tax_inclusive: false,
+        subtotal: '',
+        total: '',
+        note: '',
+      }
+    ])
+  }
+
+  function removeSalesOrderDetail(indexToRemove) {
+    setData('sales_order_details', data.sales_order_details.filter((_, index) => index !== indexToRemove));
+  }
+
+  function updateDetail(index, key, value) {
+    const updatedDetails = [...data.sales_order_details];
+    updatedDetails[index] = {
+      ...updatedDetails[index],
+      [key]: value
+    }
+    setData('sales_order_details', updatedDetails);
   }
 
   return (
@@ -397,6 +429,189 @@ const Create = ({ userOptions, productCategoryOptions, paymentTerms }) => {
 
             </tbody>
           </table>
+        </div>
+
+        <div className="content-section u-mt-4">
+          <div>受注明細 登録</div>
+          <div className="table-wrapper is-scrollable">
+            <table className="table">
+              <thead className="table-header is-sticky">
+                <tr className="table-row">
+                  <th className="th-cell col-fixed">
+
+                  </th>
+                  <th className="th-cell u-min-w-200">
+                    <FormLabel label="商品" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-200">
+                    <FormLabel label="商品名" isRequired={true} />
+                  </th>
+                  <th className="th-cell u-min-w-200">
+                    <FormLabel label="商品詳細" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-160">
+                    <FormLabel label="数量" isRequired={true} />
+                  </th>
+                  <th className="th-cell u-min-w-160">
+                    <FormLabel label="単価" isRequired={true} />
+                  </th>
+                  <th className="th-cell u-min-w-112">
+                    <FormLabel label="税率" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-104">
+                    <FormLabel label="税種別" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-400">
+                    <FormLabel label="備考" isRequired={false} />
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="tbody">
+                {data.sales_order_details.map((detail, index) => (
+                  <tr key={index} className="table-row is-hoverable">
+                    <td className="td-cell col-fixed u-w-80">
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => removeSalesOrderDetail(index)}
+                      >
+                        削除
+                      </button>
+                    </td>
+
+                    <td className="td-cell">
+                      <select
+                        value={detail.product_id}
+                        onChange={e => updateDetail(index, 'product_id', e.target.value)}
+                        className={`form-select ${errors[`sales_order_details.${index}.product_id`] ? 'is-invalid' : ''}`}
+                      >
+                        <option value=""></option>
+                        <OptionsList
+                          options={productOptions.map(obj => ({value: obj.id, label: obj.name}))}
+                        />
+                      </select>
+                      {errors[`sales_order_details.${index}.product_id`] && (
+                        <div className="invalid-feedback">
+                          {errors[`sales_order_details.${index}.product_id`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={detail.product_name}
+                        onChange={e => updateDetail(index, 'product_name', e.target.value)}
+                        error={errors[`sales_order_details.${index}.product_name`]}
+                      />
+                      {errors[`sales_order_details.${index}.product_name`] && (
+                        <div className="invalid-feedback">
+                          {errors[`sales_order_details.${index}.product_name`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={detail.product_detail}
+                        onChange={e => updateDetail(index, 'product_detail', e.target.value)}
+                        error={errors[`sales_order_details.${index}.product_detail`]}
+                      />
+                      {errors[`sales_order_details.${index}.product_detail`] && (
+                        <div className="invalid-feedback">
+                          {errors[`sales_order_details.${index}.product_detail`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="number"
+                        value={detail.quantity}
+                        onChange={e => updateDetail(index, 'quantity', e.target.value)}
+                        error={errors[`sales_order_details.${index}.quantity`]}
+                      />
+                      {errors[`sales_order_details.${index}.quantity`] && (
+                        <div className="invalid-feedback">
+                          {errors[`sales_order_details.${index}.quantity`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="number"
+                        value={detail.unit_price}
+                        onChange={e => updateDetail(index, 'unit_price', e.target.value)}
+                        error={errors[`sales_order_details.${index}.unit_price`]}
+                      />
+                      {errors[`sales_order_details.${index}.unit_price`] && (
+                        <div className="invalid-feedback">
+                          {errors[`sales_order_details.${index}.unit_price`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <select
+                        value={detail.tax_rate}
+                        onChange={e => updateDetail(index, 'tax_rate', e.target.value)}
+                        className={`form-select ${errors[`sales_order_details.${index}.tax_rate`] ? 'is-invalid' : ''}`}
+                      >
+                        <OptionsList
+                          options={[
+                            { value: 0.1, label: '10%' },
+                            { value: 0.8, label: '8%' },
+                          ]}
+                        />
+                      </select>
+                      {errors[`sales_order_details.${index}.tax_rate`] && (
+                        <div className="invalid-feedback">
+                          {errors[`sales_order_details.${index}.tax_rate`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <select
+                        value={detail.is_tax_inclusive}
+                        onChange={e => updateDetail(index, 'is_tax_inclusive', e.target.value === 'true')}
+                        className={`form-select ${errors[`sales_order_details.${index}.is_tax_inclusive`] ? 'is-invalid' : ''}`}
+                      >
+                        <OptionsList
+                          options={[
+                            { value: false, label: '外税' },
+                            { value: true, label: '内税' },
+                          ]}
+                        />
+                      </select>
+                      {errors[`sales_order_details.${index}.is_tax_inclusive`] && (
+                        <div className="invalid-feedback">
+                          {errors[`sales_order_details.${index}.is_tax_inclusive`]}
+                        </div>
+                      )}
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={detail.note}
+                        onChange={e => updateDetail(index, 'note', e.target.value)}
+                        error={errors[`sales_order_details.${index}.note`]}
+                      />
+                      {errors[`sales_order_details.${index}.note`] && (
+                        <div className="invalid-feedback">
+                          {errors[`sales_order_details.${index}.note`]}
+                        </div>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <button type="button" className="btn btn-secondary u-mt-3" onClick={addDetail}>+ 行を追加</button>
         </div>
       </form >
     </>

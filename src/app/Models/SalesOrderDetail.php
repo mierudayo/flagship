@@ -22,7 +22,6 @@ class SalesOrderDetail extends Model
         'subtotal',
         'total',
         'note',
-        'created_at',
     ];
 
     public function salesOrder(): BelongsTo

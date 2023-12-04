@@ -9,8 +9,10 @@ use App\Enums\PaymentTerm\PaymentDayOffset;
 use App\Enums\PaymentTerm\PaymentMonthOffset;
 use App\Http\Requests\SalesOrderSearchRequest;
 use App\Http\Requests\SalesOrderStoreRequest;
+use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\SalesOrder;
+use App\Models\SalesOrderDetail;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -43,6 +45,7 @@ class SalesOrderController extends Controller
     {
         return Inertia::render('SalesOrder/Create', [
             'userOptions'            => User::active()->get(),
+            'productOptions'         => Product::all(),
             'productCategoryOptions' => ProductCategory::all(),
             'paymentTerms'           => $this->getPaymentTerms(),
         ]);
@@ -50,6 +53,7 @@ class SalesOrderController extends Controller
 
     public function store(SalesOrderStoreRequest $request): RedirectResponse
     {
+        // TODO: トランザクションにまとめて登録処理
         $salesOrder = SalesOrder::create([
             'customer_id'           => $request->input('customer_id'),
             'customer_contact_id'   => $request->input('customer_contact_id'),
@@ -76,6 +80,28 @@ class SalesOrderController extends Controller
             'sales_in_charge_id'    => $request->input('sales_in_charge_id'),
             'created_by_id'         => auth()->user()->id,
         ]);
+
+        // TODO: refactor 後でメソッド化,
+        $salesOrderDetails = collect($request->input('sales_order_details'))
+            ->map(function ($detail) use ($salesOrder) {
+                $subtotal = $detail['quantity'] * $detail['unit_price'];
+                $total    = $subtotal + $subtotal * $detail['tax_rate'];
+                return [
+                    'sales_order_id'    => $salesOrder->id,
+                    'product_id'        => $detail['product_id'],
+                    'product_name'      => $detail['product_name'],
+                    'product_detail'    => $detail['product_detail'],
+                    'quantity'          => $detail['quantity'],
+                    'unit_price'        => $detail['unit_price'],
+                    'tax_rate'          => $detail['tax_rate'],
+                    'is_tax_inclusive'  => $detail['is_tax_inclusive'],
+                    'subtotal'          => $subtotal,
+                    'total'             => $total,
+                    'note'              => $detail['note'],
+                ];
+            })->toArray();
+
+        SalesOrderDetail::insert($salesOrderDetails);
 
         return to_route('sales-orders.index')
             ->with('message', "受注ID:{$salesOrder->id} 登録成功しました。");

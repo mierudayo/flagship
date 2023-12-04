@@ -143,6 +143,9 @@ return [
         'delivery_addresses.*' => [
             'required' => '必須項目です',
         ],
+        'sales_order_details.*' => [
+            'required' => '必須項目です',
+        ],
     ],
 
     /*
