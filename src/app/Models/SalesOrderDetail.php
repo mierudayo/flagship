@@ -12,6 +12,7 @@ class SalesOrderDetail extends Model
 
     protected $fillable = [
         'sales_order_id',
+        'row_number',
         'product_id',
         'product_name',
         'product_detail',

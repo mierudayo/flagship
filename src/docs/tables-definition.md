@@ -318,6 +318,7 @@
 |-----------------------|------------------|-----------------------|--------------------------|
 | id                    | ID               | unsignedBigInteger    | PK                       |
 | sales_order_id        | 受注ID           | unsignedBigInteger    | FK                       |
+| row_number            | 明細番号           | integer    |                        |
 | product_id            | 商品ID           | unsignedBigInteger    | FK                       |
 | product_name          | 商品名           | string                |                          |
 | product_detail        | 商品詳細         | string                |                          |

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('sales_order_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('sales_order_id');
+            $table->integer('row_number');
             $table->unsignedBigInteger('product_id')->nullable();
             $table->string('product_name');
             $table->string('product_detail')->nullable();

@@ -83,7 +83,7 @@ class SalesOrderController extends Controller
 
         // TODO: refactor 後でメソッド化,
         $salesOrderDetails = collect($request->input('sales_order_details'))
-            ->map(function ($detail) use ($salesOrder) {
+            ->map(function ($detail, $index) use ($salesOrder) {
 
                 // TODO: 計算をメソッド化
                 $quantity = $detail['quantity'];
@@ -105,6 +105,7 @@ class SalesOrderController extends Controller
 
                 return [
                     'sales_order_id'    => $salesOrder->id,
+                    'row_number'        => $index + 1,
                     'product_id'        => $detail['product_id'],
                     'product_name'      => $detail['product_name'],
                     'product_detail'    => $detail['product_detail'],

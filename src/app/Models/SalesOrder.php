@@ -87,7 +87,7 @@ class SalesOrder extends Model
 
     public function salesOrderDetails(): HasMany
     {
-        return $this->hasMany(SalesOrderDetail::class);
+        return $this->hasMany(SalesOrderDetail::class)->orderBy('row_number');
     }
 
     /*

@@ -20,6 +20,7 @@ class SalesOrderDetailFactory extends Factory
     {
         return [
             'sales_order_id'    => SalesOrder::inRandomOrder()->first()->id,
+            'row_number'        => $this->faker->unique()->numberBetween(1, 100),
             'product_id'        => Product::inRandomOrder()->first()->id,
             'product_name'      => $this->faker->word,
             'product_detail'    => $this->faker->sentence,
