@@ -324,6 +324,7 @@
 | quantity              | 数量             | decimal               |                          |
 | unit_price            | 単価（税抜き）   | decimal               |                          |
 | tax_rate              | 税率             | decimal               | デフォルト0.1 (10%)      |
+| tax_amount            | 税額              | decimal               |                     |
 | is_tax_inclusive      | 税の種類         | boolean               | 外税：false, 内税：true  |
 | subtotal              | 小計（税抜き）   | decimal               |                          |
 | total                 | 総計（税込）     | decimal               |                          |

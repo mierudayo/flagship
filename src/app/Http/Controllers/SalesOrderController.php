@@ -84,8 +84,25 @@ class SalesOrderController extends Controller
         // TODO: refactor 後でメソッド化,
         $salesOrderDetails = collect($request->input('sales_order_details'))
             ->map(function ($detail) use ($salesOrder) {
-                $subtotal = $detail['quantity'] * $detail['unit_price'];
-                $total    = $subtotal + $subtotal * $detail['tax_rate'];
+
+                // TODO: 計算をメソッド化
+                $quantity = $detail['quantity'];
+                $unitPrice = $detail['unit_price'];
+                $taxRate = $detail['tax_rate'];
+                $isTaxInclusive = $detail['is_tax_inclusive'];
+
+                $basicSubtotal = $quantity * $unitPrice;
+
+                if ($isTaxInclusive) {
+                    $subtotal  = $basicSubtotal / (1 + $taxRate);
+                    $taxAmount = $basicSubtotal - $subtotal;
+                    $total     = $basicSubtotal;
+                } else {
+                    $subtotal   = $basicSubtotal;
+                    $taxAmount  = $subtotal * $taxRate;
+                    $total      = $subtotal + $taxAmount;
+                }
+
                 return [
                     'sales_order_id'    => $salesOrder->id,
                     'product_id'        => $detail['product_id'],
@@ -94,7 +111,8 @@ class SalesOrderController extends Controller
                     'quantity'          => $detail['quantity'],
                     'unit_price'        => $detail['unit_price'],
                     'tax_rate'          => $detail['tax_rate'],
-                    'is_tax_inclusive'  => $detail['is_tax_inclusive'],
+                    'is_tax_inclusive'  => $isTaxInclusive,
+                    'tax_amount'        => $taxAmount,
                     'subtotal'          => $subtotal,
                     'total'             => $total,
                     'note'              => $detail['note'],

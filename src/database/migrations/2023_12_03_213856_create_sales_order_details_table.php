@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('unit_price', 10, 2);
             $table->decimal('tax_rate', 5, 2)->default(0.10);
             $table->boolean('is_tax_inclusive')->default(false);
+            $table->decimal('tax_amount', 12, 2);
             $table->decimal('subtotal', 12, 2);
             $table->decimal('total', 12, 2);
             $table->text('note')->nullable();
