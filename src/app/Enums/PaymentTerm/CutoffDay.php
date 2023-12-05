@@ -9,20 +9,20 @@ enum CutoffDay: int
 {
     use WithLabel, WithValueArray;
 
-    case DAY_10    = 10;
-    case DAY_15    = 15;
-    case DAY_20    = 20;
-    case DAY_25    = 25;
-    case END_MONTH = 99;
+    case Day10       = 10;
+    case Day15       = 15;
+    case Day20       = 20;
+    case Day25       = 25;
+    case EndMonth    = 99;
 
     public function getLabel(): string
     {
         return match($this) {
-            self::DAY_10    => '10日締め',
-            self::DAY_15    => '15日締め',
-            self::DAY_20    => '20日締め',
-            self::DAY_25    => '25日締め',
-            self::END_MONTH => '月末締め',
+            self::Day10      => '10日締め',
+            self::Day15      => '15日締め',
+            self::Day20      => '20日締め',
+            self::Day25      => '25日締め',
+            self::EndMonth   => '月末締め',
         };
     }
 }

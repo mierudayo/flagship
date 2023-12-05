@@ -9,18 +9,18 @@ enum InquiryLeadSource: int
 {
     use WithLabel, WithValueArray;
 
-    case HP         = 1;
-    case TEL        = 2;
-    case MAIL       = 3;
-    case EXHIBITION = 4;
+    case Hp         = 1;
+    case Tel        = 2;
+    case Email      = 3;
+    case Exhibition = 4;
 
     public function getLabel(): string
     {
         return match($this) {
-            self::HP         => 'HP',
-            self::TEL        => 'TEL',
-            self::MAIL       => 'メール',
-            self::EXHIBITION => '展示会',
+            self::Hp         => 'HP',
+            self::Tel        => 'TEL',
+            self::Email      => 'メール',
+            self::Exhibition => '展示会',
         };
     }
 }

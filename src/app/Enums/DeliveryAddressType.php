@@ -9,16 +9,16 @@ enum DeliveryAddressType: int
 {
     use WithLabel, WithValueArray;
 
-    case CONSIGNEE  = 1;
-    case SHIPPER    = 2;
-    case BOTH       = 3;
+    case Consignee  = 1;
+    case Shipper    = 2;
+    case Both       = 3;
 
     public function getLabel(): string
     {
         return match($this) {
-            self::CONSIGNEE => '納品先',
-            self::SHIPPER   => '引取先',
-            self::BOTH      => '兼用',
+            self::Consignee => '納品先',
+            self::Shipper   => '引取先',
+            self::Both      => '兼用',
         };
     }
 }

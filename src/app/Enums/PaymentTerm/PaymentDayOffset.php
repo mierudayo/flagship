@@ -9,16 +9,16 @@ enum PaymentDayOffset: int
 {
     use WithLabel, WithValueArray;
 
-    case PREPAYMENT        = 0;
-    case WITHIN_3_DAYS     = 3;
-    case WITHIN_7_DAYS     = 7;
+    case Prepayment       = 0;
+    case Within3Days      = 3;
+    case Within7Days      = 7;
 
     public function getLabel(): string
     {
         return match($this) {
-            self::PREPAYMENT      => '前払い',
-            self::WITHIN_3_DAYS   => '3営業日以内',
-            self::WITHIN_7_DAYS   => '7営業日以内',
+            self::Prepayment    => '前払い',
+            self::Within3Days   => '3営業日以内',
+            self::Within7Days   => '7営業日以内',
         };
     }
 }
