@@ -43,6 +43,7 @@ class SalesOrderFactory extends Factory
             'delivery_date'         => $this->faker->date(),
             'delivery_status'       => $this->faker->word,
             'delivery_memo'         => $this->faker->sentence,
+            'subtotal_amount'       => $this->faker->numberBetween(1000, 10000),
             'total_amount'          => $this->faker->numberBetween(1000, 10000),
             'note'                  => $this->faker->paragraph,
             'sales_in_charge_id'    => User::inRandomOrder()->first()->id,

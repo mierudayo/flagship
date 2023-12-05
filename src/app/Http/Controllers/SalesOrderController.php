@@ -75,15 +75,17 @@ class SalesOrderController extends Controller
             'delivery_date'         => $request->input('delivery_date'),
             'delivery_status'       => $request->input('delivery_status'),
             'delivery_memo'         => $request->input('delivery_memo'),
-            'total_amount'          => 0, // TODO: 計算ロジック追加
             'note'                  => $request->input('note'),
             'sales_in_charge_id'    => $request->input('sales_in_charge_id'),
             'created_by_id'         => auth()->user()->id,
         ]);
 
+        $subtotalAmount = 0;
+        $totalAmount    = 0;
+
         // TODO: refactor 後でメソッド化,
         $salesOrderDetails = collect($request->input('sales_order_details'))
-            ->map(function ($detail, $index) use ($salesOrder) {
+            ->map(function ($detail, $index) use (&$subtotalAmount, &$totalAmount, $salesOrder) {
 
                 // TODO: 計算をメソッド化
                 $quantity = $detail['quantity'];
@@ -103,6 +105,9 @@ class SalesOrderController extends Controller
                     $total      = $subtotal + $taxAmount;
                 }
 
+                $subtotalAmount  += $subtotal;
+                $totalAmount  += $total;
+
                 return [
                     'sales_order_id'    => $salesOrder->id,
                     'row_number'        => $index + 1,
@@ -121,6 +126,11 @@ class SalesOrderController extends Controller
             })->toArray();
 
         SalesOrderDetail::insert($salesOrderDetails);
+
+        $salesOrder->update([
+            'subtotal_amount' => $subtotalAmount,
+            'total_amount'    => $totalAmount,
+        ]);
 
         return to_route('sales-orders.index')
             ->with('message', "受注ID:{$salesOrder->id} 登録成功しました。");

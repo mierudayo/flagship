@@ -304,7 +304,8 @@
 | delivery_date         | 納品日        | date                |              |
 | delivery_status       | 納品状況      | string              |              |
 | delivery_memo         | 配送メモ      | string              |              |
-| total_amount          | 総合計金額    | integer             |              |
+| subtotal_amount       | 税抜き合計金額 | integer             |              |
+| total_amount          | 税込み合計金額 | integer             |              |
 | note                  | 備考          | text                |              |
 | sales_in_charge_id    | 受注担当者ID  | unsignedBigInteger  | FK           |
 | created_by_id         | 作成者ID      | unsignedBigInteger  | FK           |

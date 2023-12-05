@@ -33,6 +33,7 @@ class SalesOrder extends Model
         'delivery_date',
         'delivery_status',
         'delivery_memo',
+        'subtotal_amount',
         'total_amount',
         'note',
         'sales_in_charge_id',
