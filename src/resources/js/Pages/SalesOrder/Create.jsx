@@ -12,6 +12,7 @@ import Textarea from '@/Components/Form/Textarea';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
+import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 
 const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTerms }) => {
   const { today } = usePage().props.date;
@@ -149,7 +150,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       <ManageSearchIcon />
                     </button>
                   </div>
-                  {errors.customer_id && (<div className="invalid-feedback">{errors.customer_id}</div>)}
+                  <InvalidFeedback errors={errors} name="customer_id" />
                 </td>
               </tr>
 
@@ -168,7 +169,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     isSearchable={true}
                     placeholder="..."
                   />
-                  {errors.customer_contact_id && (<div className="invalid-feedback">{errors.customer_contact_id}</div>)}
+                  <InvalidFeedback errors={errors} name="customer_contact_id" />
                 </td>
               </tr>
 
@@ -187,7 +188,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     isSearchable={true}
                     placeholder="..."
                   />
-                  {errors.delivery_address_id && (<div className="invalid-feedback">{errors.delivery_address_id}</div>)}
+                  <InvalidFeedback errors={errors} name="delivery_address_id" />
                 </td>
               </tr>
 
@@ -203,7 +204,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     error={errors.order_date}
                     max={today}
                   />
-                  {errors.order_date && (<div className="invalid-feedback">{errors.order_date}</div>)}
+                  <InvalidFeedback errors={errors} name="order_date" />
                 </td>
               </tr>
 
@@ -231,7 +232,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       <option>確定</option>
                     </select>
                   </div>
-                  {errors.shipping_date && (<div className="invalid-feedback">{errors.order_date}</div>)}
+                  <InvalidFeedback errors={errors} name="shipping_date" />
                 </td>
               </tr>
 
@@ -259,7 +260,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       <option>確定</option>
                     </select>
                   </div>
-                  {errors.delivery_date && (<div className="invalid-feedback">{errors.delivery_date}</div>)}
+                  <InvalidFeedback errors={errors} name="delivery_date" />
                 </td>
               </tr>
 
@@ -274,7 +275,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     value={data.delivery_memo}
                     onChange={e => setData('delivery_memo', e.target.value)}
                   />
-                  {errors.delivery_memo && (<div className="invalid-feedback">{errors.delivery_memo}</div>)}
+                  <InvalidFeedback errors={errors} name="delivery_memo" />
                 </td>
               </tr>
 
@@ -289,7 +290,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     onChange={e => setData('note', e.target.value)}
                     error={errors.note}
                   />
-                  {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
+                  <InvalidFeedback errors={errors} name="note" />
                 </td>
               </tr>
 
@@ -308,7 +309,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     isSearchable={true}
                     placeholder="..."
                   />
-                  {errors.product_category_id && (<div className="invalid-feedback">{errors.product_category_id}</div>)}
+                  <InvalidFeedback errors={errors} name="product_category_id" />
                 </td>
               </tr>
 
@@ -327,7 +328,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     isSearchable={true}
                     placeholder="..."
                   />
-                  {errors.sales_in_charge_id && (<div className="invalid-feedback">{errors.sales_in_charge_id}</div>)}
+                  <InvalidFeedback errors={errors} name="sales_in_charge_id" />
                 </td>
               </tr>
 
@@ -423,7 +424,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       <option>確定</option>
                     </select>
                   </div>
-                  {errors.payment_date && (<div className="invalid-feedback">{errors.order_date}</div>)}
+                  <InvalidFeedback errors={errors} name="payment_date" />
                 </td>
               </tr>
 
@@ -487,14 +488,10 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       >
                         <option value=""></option>
                         <OptionsList
-                          options={productOptions.map(obj => ({value: obj.id, label: obj.name}))}
+                          options={productOptions.map(obj => ({ value: obj.id, label: obj.name }))}
                         />
                       </select>
-                      {errors[`sales_order_details.${index}.product_id`] && (
-                        <div className="invalid-feedback">
-                          {errors[`sales_order_details.${index}.product_id`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.product_id`} />
                     </td>
 
                     <td className="td-cell">
@@ -504,11 +501,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         onChange={e => updateDetail(index, 'product_name', e.target.value)}
                         error={errors[`sales_order_details.${index}.product_name`]}
                       />
-                      {errors[`sales_order_details.${index}.product_name`] && (
-                        <div className="invalid-feedback">
-                          {errors[`sales_order_details.${index}.product_name`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.product_name`} />
                     </td>
 
                     <td className="td-cell">
@@ -518,11 +511,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         onChange={e => updateDetail(index, 'product_detail', e.target.value)}
                         error={errors[`sales_order_details.${index}.product_detail`]}
                       />
-                      {errors[`sales_order_details.${index}.product_detail`] && (
-                        <div className="invalid-feedback">
-                          {errors[`sales_order_details.${index}.product_detail`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.product_detail`} />
                     </td>
 
                     <td className="td-cell">
@@ -532,11 +521,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         onChange={e => updateDetail(index, 'quantity', e.target.value)}
                         error={errors[`sales_order_details.${index}.quantity`]}
                       />
-                      {errors[`sales_order_details.${index}.quantity`] && (
-                        <div className="invalid-feedback">
-                          {errors[`sales_order_details.${index}.quantity`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.quantity`} />
                     </td>
 
                     <td className="td-cell">
@@ -546,11 +531,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         onChange={e => updateDetail(index, 'unit_price', e.target.value)}
                         error={errors[`sales_order_details.${index}.unit_price`]}
                       />
-                      {errors[`sales_order_details.${index}.unit_price`] && (
-                        <div className="invalid-feedback">
-                          {errors[`sales_order_details.${index}.unit_price`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.unit_price`} />
                     </td>
 
                     <td className="td-cell">
@@ -566,11 +547,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           ]}
                         />
                       </select>
-                      {errors[`sales_order_details.${index}.tax_rate`] && (
-                        <div className="invalid-feedback">
-                          {errors[`sales_order_details.${index}.tax_rate`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.tax_rate`} />
                     </td>
 
                     <td className="td-cell">
@@ -586,11 +563,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           ]}
                         />
                       </select>
-                      {errors[`sales_order_details.${index}.is_tax_inclusive`] && (
-                        <div className="invalid-feedback">
-                          {errors[`sales_order_details.${index}.is_tax_inclusive`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.is_tax_inclusive`} />
                     </td>
 
                     <td className="td-cell">
@@ -600,11 +573,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         onChange={e => updateDetail(index, 'note', e.target.value)}
                         error={errors[`sales_order_details.${index}.note`]}
                       />
-                      {errors[`sales_order_details.${index}.note`] && (
-                        <div className="invalid-feedback">
-                          {errors[`sales_order_details.${index}.note`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.note`} />
                     </td>
                   </tr>
                 ))}

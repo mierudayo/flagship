@@ -7,6 +7,7 @@ import CustomSelect from '@/Components/Form/CustomSelect';
 import DateInput from '@/Components/Form/DateInput';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
+import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import Textarea from '@/Components/Form/Textarea';
 import ContactLookup from '@/Components/ContactLookup';
 import Modal from '@/Components/Modal';
@@ -95,7 +96,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     onChange={e => setData('inquiry_date', e.target.value)}
                     error={errors.inquiry_date}
                   />
-                  {errors.inquiry_date && (<div className="invalid-feedback">{errors.inquiry_date}</div>)}
+                  <InvalidFeedback errors={errors} name="inquiry_date" />
                 </td>
               </tr>
 
@@ -157,7 +158,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                       readOnly={true}
                     />
                   </div>
-                  {errors.customer_contact_id && (<div className="invalid-feedback">{errors.customer_contact_id}</div>)}
+                  <InvalidFeedback errors={errors} name="customer_contact_id" />
                 </td>
               </tr>
 
@@ -173,7 +174,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     onChange={e => setData('subject', e.target.value)}
                     error={errors.subject}
                   />
-                  {errors.subject && (<div className="invalid-feedback">{errors.subject}</div>)}
+                  <InvalidFeedback errors={errors} name="subject" />
                 </td>
               </tr>
 
@@ -188,7 +189,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     onChange={e => setData('message', e.target.value)}
                     error={errors.message}
                   />
-                  {errors.message && (<div className="invalid-feedback">{errors.message}</div>)}
+                  <InvalidFeedback errors={errors} name="message" />
                 </td>
               </tr>
 
@@ -203,7 +204,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     onChange={e => setData('answer', e.target.value)}
                     error={errors.answer}
                   />
-                  {errors.answer && (<div className="invalid-feedback">{errors.answer}</div>)}
+                  <InvalidFeedback errors={errors} name="answer" />
                 </td>
               </tr>
 
@@ -222,7 +223,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     isSearchable={true}
                     placeholder="リード獲得元を選択..."
                   />
-                  {errors.lead_source && (<div className="invalid-feedback">{errors.lead_source}</div>)}
+                  <InvalidFeedback errors={errors} name="lead_source" />
                 </td>
               </tr>
 
@@ -239,7 +240,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     error={errors.project_scale}
                     placeholder="1 ~ 10,000までの数値を入力"
                   />
-                  {errors.project_scale && (<div className="invalid-feedback">{errors.project_scale}</div>)}
+                  <InvalidFeedback errors={errors} name="project_scale" />
                 </td>
               </tr>
 
@@ -258,7 +259,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     isSearchable={true}
                     placeholder="ステータスを選択..."
                   />
-                  {errors.status && (<div className="invalid-feedback">{errors.status}</div>)}
+                  <InvalidFeedback errors={errors} name="status" />
                 </td>
               </tr>
 
@@ -273,7 +274,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     onChange={e => setData('feedback', e.target.value)}
                     error={errors.feedback}
                   />
-                  {errors.feedback && (<div className="invalid-feedback">{errors.feedback}</div>)}
+                  <InvalidFeedback errors={errors} name="feedback" />
                 </td>
               </tr>
 
@@ -292,7 +293,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     isSearchable={true}
                     placeholder="対応者を選択..."
                   />
-                  {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
+                  <InvalidFeedback errors={errors} name="in_charge_user_id" />
                 </td>
               </tr>
 
@@ -311,7 +312,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     isSearchable={true}
                     placeholder="問い合わせ区分を選択..."
                   />
-                  {errors.inquiry_type_id && (<div className="invalid-feedback">{errors.inquiry_type_id}</div>)}
+                  <InvalidFeedback errors={errors} name="inquiry_type_id" />
                 </td>
               </tr>
 
@@ -330,7 +331,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     isSearchable={true}
                     placeholder="対象商品を選択..."
                   />
-                  {errors.product_id && (<div className="invalid-feedback">{errors.product_id}</div>)}
+                  <InvalidFeedback errors={errors} name="product_id" />
                 </td>
               </tr>
 
@@ -346,7 +347,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     onChange={e => setData('product_detail', e.target.value)}
                     error={errors.product_detail}
                   />
-                  {errors.product_detail && (<div className="invalid-feedback">{errors.product_detail}</div>)}
+                  <InvalidFeedback errors={errors} name="product_detail" />
                 </td>
               </tr>
 
@@ -361,7 +362,7 @@ const Create = ({ productOption, inquiryTypeOption, inChargeUserOption, inquiryS
                     onChange={e => setData('note', e.target.value)}
                     error={errors.note}
                   />
-                  {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
+                  <InvalidFeedback errors={errors} name="note" />
                 </td>
               </tr>
             </tbody>

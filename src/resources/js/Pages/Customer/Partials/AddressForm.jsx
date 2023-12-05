@@ -1,6 +1,7 @@
 import { useForm } from '@inertiajs/react';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
+import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import RadioGroup from '@/Components/Form/RadioGroup';
 import Textarea from '@/Components/Form/Textarea';
 
@@ -44,7 +45,7 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                       onChange={e => setData('address_type', parseInt(e.target.value))}
                       error={errors.address_type}
                     />
-                    {errors.address_type && (<div className="invalid-feedback">{errors.address_type}</div>)}
+                    <InvalidFeedback errors={errors} name="address_type" />
                   </div>
                 </td>
               </tr>
@@ -61,7 +62,7 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                     onChange={e => setData('postal_code', e.target.value)}
                     error={errors.postal_code}
                   />
-                  {errors.postal_code && (<div className="invalid-feedback">{errors.postal_code}</div>)}
+                  <InvalidFeedback errors={errors} name="postal_code" />
                 </td>
               </tr>
 
@@ -77,7 +78,7 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                     onChange={e => setData('address', e.target.value)}
                     error={errors.address}
                   />
-                  {errors.address && (<div className="invalid-feedback">{errors.address}</div>)}
+                  <InvalidFeedback errors={errors} name="address" />
                 </td>
               </tr>
 
@@ -93,7 +94,7 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                     onChange={e => setData('company_name', e.target.value)}
                     error={errors.company_name}
                   />
-                  {errors.company_name && (<div className="invalid-feedback">{errors.company_name}</div>)}
+                  <InvalidFeedback errors={errors} name="company_name" />
                 </td>
               </tr>
 
@@ -109,7 +110,7 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                     onChange={e => setData('contact_name', e.target.value)}
                     error={errors.contact_name}
                   />
-                  {errors.contact_name && (<div className="invalid-feedback">{errors.contact_name}</div>)}
+                  <InvalidFeedback errors={errors} name="contact_name" />
                 </td>
               </tr>
 
@@ -125,7 +126,7 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                     onChange={e => setData('tel', e.target.value)}
                     error={errors.tel}
                   />
-                  {errors.tel && (<div className="invalid-feedback">{errors.tel}</div>)}
+                  <InvalidFeedback errors={errors} name="tel" />
                 </td>
               </tr>
 
@@ -140,7 +141,7 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                     onChange={e => setData('note', e.target.value)}
                     error={errors.note}
                   />
-                  {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
+                  <InvalidFeedback errors={errors} name="note" />
                 </td>
               </tr>
             </tbody>

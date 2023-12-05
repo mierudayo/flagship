@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useForm } from '@inertiajs/react';
 import GuestLayout from '@/Layouts/GuestLayout';
+import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 
 export default function Login({ status }) {
   const { data, setData, post, processing, errors, reset } = useForm({
@@ -45,7 +46,7 @@ export default function Login({ status }) {
                 type="email"
                 value={data.email}
               />
-              <div className='invalid-feedback'>{errors.email}</div>
+              <InvalidFeedback errors={errors} name="email" />
             </div>
 
             {/* Password */}
@@ -61,7 +62,7 @@ export default function Login({ status }) {
                 type="password"
                 value={data.password}
               />
-              <div className='invalid-feedback'>{errors.password}</div>
+              <InvalidFeedback errors={errors} name="password" />
             </div>
 
             {/* Remember Me */}

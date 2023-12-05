@@ -1,5 +1,5 @@
 import { useForm } from '@inertiajs/react';
-
+import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 
 export default function ProductCreateForm({ categoryOptions }) {
   const { data, setData, post, processing, errors, reset } = useForm({
@@ -49,7 +49,7 @@ export default function ProductCreateForm({ categoryOptions }) {
               </option>
             ))}
           </select>
-          <div className="invalid-feedback">{errors.category_id}</div>
+          <InvalidFeedback errors={errors} name="category_id" />
         </div>
 
         <div className="input-group">
@@ -71,7 +71,7 @@ export default function ProductCreateForm({ categoryOptions }) {
               </option>
             ))}
           </select>
-          <div className="invalid-feedback">{errors.product_type}</div>
+          <InvalidFeedback errors={errors} name="product_type" />
         </div>
 
         <div className="input-group">
@@ -87,7 +87,7 @@ export default function ProductCreateForm({ categoryOptions }) {
             className={`input-field ${errors.name ? 'is-invalid' : ''}`}
             onChange={e => setData('name', e.target.value)}
           />
-          <div className="invalid-feedback">{errors.name}</div>
+          <InvalidFeedback errors={errors} name="name" />
         </div>
 
         <div className="input-group">
@@ -102,7 +102,7 @@ export default function ProductCreateForm({ categoryOptions }) {
             className={`input-field ${errors.product_number ? 'is-invalid' : ''}`}
             onChange={e => setData('product_number', e.target.value)}
           />
-          <div className="invalid-feedback">{errors.product_number}</div>
+          <InvalidFeedback errors={errors} name="product_number" />
         </div>
 
         <div className="input-group">
@@ -117,7 +117,7 @@ export default function ProductCreateForm({ categoryOptions }) {
             className={`input-field ${errors.sales_price ? 'is-invalid' : ''}`}
             onChange={e => setData('sales_price', e.target.value)}
           />
-          <div className="invalid-feedback">{errors.sales_price}</div>
+          <InvalidFeedback errors={errors} name="sales_price" />
         </div>
 
         <div className="input-group">
@@ -132,7 +132,7 @@ export default function ProductCreateForm({ categoryOptions }) {
             className={`input-field ${errors.purchase_price ? 'is-invalid' : ''}`}
             onChange={e => setData('purchase_price', e.target.value)}
           />
-          <div className="invalid-feedback">{errors.purchase_price}</div>
+          <InvalidFeedback errors={errors} name="purchase_price" />
         </div>
 
         <div className="input-group">
@@ -147,7 +147,7 @@ export default function ProductCreateForm({ categoryOptions }) {
             className={`input-field ${errors.description ? 'is-invalid' : ''}`}
             onChange={e => setData('description', e.target.value)}
           />
-          <div className="invalid-feedback">{errors.description}</div>
+          <InvalidFeedback errors={errors} name="description" />
         </div>
 
         <div className="input-group">
@@ -163,7 +163,7 @@ export default function ProductCreateForm({ categoryOptions }) {
             onChange={e => setData('display_order', e.target.value)}
             placeholder="数値を入力"
           />
-          <div className="invalid-feedback">{errors.display_order}</div>
+          <InvalidFeedback errors={errors} name="display_order" />
         </div>
 
         <button

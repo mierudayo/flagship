@@ -6,6 +6,7 @@ import CancelButton from '@/Components/CancelButton';
 import FormLabel from '@/Components/Form/FormLabel';
 import RadioGroup from '@/Components/Form/RadioGroup';
 import Input from '@/Components/Form/Input';
+import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import Textarea from '@/Components/Form/Textarea';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import CustomerLookup from '@/Components/CustomerLookup';
@@ -98,7 +99,7 @@ const Create = ({ userOptions }) => {
                       <ManageSearchIcon />
                     </button>
                   </div>
-                  {errors.customer_id && (<div className="invalid-feedback">{errors.customer_id}</div>)}
+                  <InvalidFeedback errors={errors} name="customer_id" />
                 </td>
               </tr>
 
@@ -114,7 +115,7 @@ const Create = ({ userOptions }) => {
                     onChange={e => setData('name', e.target.value)}
                     error={errors.name}
                   />
-                  {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
+                  <InvalidFeedback errors={errors} name="name" />
                 </td>
               </tr>
 
@@ -130,7 +131,7 @@ const Create = ({ userOptions }) => {
                     onChange={e => setData('name_kana', e.target.value)}
                     error={errors.name_kana}
                   />
-                  {errors.name_kana && (<div className="invalid-feedback">{errors.name_kana}</div>)}
+                  <InvalidFeedback errors={errors} name="name_kana" />
                 </td>
               </tr>
 
@@ -147,7 +148,7 @@ const Create = ({ userOptions }) => {
                     error={errors.tel}
                     className="u-w-160"
                   />
-                  {errors.tel && (<div className="invalid-feedback">{errors.tel}</div>)}
+                  <InvalidFeedback errors={errors} name="tel" />
                 </td>
               </tr>
 
@@ -164,7 +165,7 @@ const Create = ({ userOptions }) => {
                     error={errors.mobile_number}
                     className="u-w-160"
                   />
-                  {errors.mobile_number && (<div className="invalid-feedback">{errors.mobile_number}</div>)}
+                  <InvalidFeedback errors={errors} name="mobile_number" />
                 </td>
               </tr>
 
@@ -180,7 +181,7 @@ const Create = ({ userOptions }) => {
                     onChange={e => setData('email', e.target.value)}
                     error={errors.email}
                   />
-                  {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
+                  <InvalidFeedback errors={errors} name="email" />
                 </td>
               </tr>
 
@@ -196,7 +197,7 @@ const Create = ({ userOptions }) => {
                     onChange={e => setData('position', e.target.value)}
                     error={errors.position}
                   />
-                  {errors.position && (<div className="invalid-feedback">{errors.position}</div>)}
+                  <InvalidFeedback errors={errors} name="position" />
                 </td>
               </tr>
 
@@ -212,7 +213,7 @@ const Create = ({ userOptions }) => {
                     onChange={e => setData('role', e.target.value)}
                     error={errors.role}
                   />
-                  {errors.role && (<div className="invalid-feedback">{errors.role}</div>)}
+                  <InvalidFeedback errors={errors} name="role" />
                 </td>
               </tr>
 
@@ -232,7 +233,7 @@ const Create = ({ userOptions }) => {
                       onChange={e => setData('is_active', e.target.value === 'true')}
                       error={errors.is_active}
                     />
-                    {errors.is_active && (<div className="invalid-feedback">{errors.is_active}</div>)}
+                    <InvalidFeedback errors={errors} name="is_active" />
                   </div>
                 </td>
               </tr>
@@ -248,7 +249,7 @@ const Create = ({ userOptions }) => {
                     onChange={e => setData('note', e.target.value)}
                     error={errors.note}
                   />
-                  {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
+                  <InvalidFeedback errors={errors} name="note" />
                 </td>
               </tr>
 
@@ -267,7 +268,7 @@ const Create = ({ userOptions }) => {
                     isSearchable={true}
                     placeholder="担当ユーザーを選択..."
                   />
-                  {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
+                  <InvalidFeedback errors={errors} name="in_charge_user_id" />
                 </td>
               </tr>
             </tbody>

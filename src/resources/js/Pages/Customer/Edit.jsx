@@ -4,6 +4,7 @@ import CancelButton from '@/Components/CancelButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
+import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import OptionsList from '@/Components/OptionsList';
 import Textarea from '@/Components/Form/Textarea';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
@@ -158,7 +159,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                     onChange={e => setData('name', e.target.value)}
                     error={errors.name}
                   />
-                  {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
+                  <InvalidFeedback errors={errors} name="name" />
                 </td>
               </tr>
 
@@ -174,7 +175,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                     onChange={e => setData('name_kana', e.target.value)}
                     error={errors.name_kana}
                   />
-                  {errors.name_kana && (<div className="invalid-feedback">{errors.name_kana}</div>)}
+                  <InvalidFeedback errors={errors} name="name_kana" />
                 </td>
               </tr>
 
@@ -190,7 +191,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                     onChange={e => setData('shortcut', e.target.value)}
                     error={errors.shortcut}
                   />
-                  {errors.shortcut && (<div className="invalid-feedback">{errors.shortcut}</div>)}
+                  <InvalidFeedback errors={errors} name="shortcut" />
                 </td>
               </tr>
 
@@ -207,7 +208,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                     error={errors.postal_code}
                     className="u-max-w-160"
                   />
-                  {errors.postal_code && (<div className="invalid-feedback">{errors.postal_code}</div>)}
+                  <InvalidFeedback errors={errors} name="postal_code" />
                 </td>
               </tr>
 
@@ -223,7 +224,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                     onChange={e => setData('address', e.target.value)}
                     error={errors.address}
                   />
-                  {errors.address && (<div className="invalid-feedback">{errors.address}</div>)}
+                  <InvalidFeedback errors={errors} name="address" />
                 </td>
               </tr>
 
@@ -240,7 +241,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                     error={errors.tel}
                     className="u-max-w-160"
                   />
-                  {errors.tel && (<div className="invalid-feedback">{errors.tel}</div>)}
+                  <InvalidFeedback errors={errors} name="tel" />
                 </td>
               </tr>
 
@@ -257,7 +258,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                     error={errors.fax}
                     className="u-max-w-160"
                   />
-                  {errors.fax && (<div className="invalid-feedback">{errors.fax}</div>)}
+                  <InvalidFeedback errors={errors} name="fax" />
                 </td>
               </tr>
 
@@ -272,7 +273,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                     onChange={e => setData('note', e.target.value)}
                     error={errors.note}
                   />
-                  {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
+                  <InvalidFeedback errors={errors} name="note" />
                 </td>
               </tr>
 
@@ -291,7 +292,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                     isSearchable={true}
                     placeholder="担当ユーザーを選択..."
                   />
-                  {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
+                  <InvalidFeedback errors={errors} name="in_charge_user_id" />
                 </td>
               </tr>
 
@@ -495,11 +496,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateContact(index, 'name', e.target.value)}
                         error={errors[`contacts.${index}.name`]}
                       />
-                      {errors[`contacts.${index}.name`] && (
-                        <div className="invalid-feedback">
-                          {errors[`contacts.${index}.name`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.name`} />
                     </td>
 
                     <td className="td-cell">
@@ -509,11 +506,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateContact(index, 'name_kana', e.target.value)}
                         error={errors[`contacts.${index}.name_kana`]}
                       />
-                      {errors[`contacts.${index}.name_kana`] && (
-                        <div className="invalid-feedback">
-                          {errors[`contacts.${index}.name_kana`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.name_kana`} />
                     </td>
 
                     <td className="td-cell">
@@ -523,11 +516,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateContact(index, 'tel', e.target.value)}
                         error={errors[`contacts.${index}.tel`]}
                       />
-                      {errors[`contacts.${index}.tel`] && (
-                        <div className="invalid-feedback">
-                          {errors[`contacts.${index}.tel`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.tel`} />
                     </td>
 
                     <td className="td-cell">
@@ -537,11 +526,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateContact(index, 'mobile_number', e.target.value)}
                         error={errors[`contacts.${index}.mobile_number`]}
                       />
-                      {errors[`contacts.${index}.mobile_number`] && (
-                        <div className="invalid-feedback">
-                          {errors[`contacts.${index}.mobile_number`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.mobile_number`} />
                     </td>
 
                     <td className="td-cell">
@@ -551,11 +536,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateContact(index, 'email', e.target.value)}
                         error={errors[`contacts.${index}.email`]}
                       />
-                      {errors[`contacts.${index}.email`] && (
-                        <div className="invalid-feedback">
-                          {errors[`contacts.${index}.email`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.email`} />
                     </td>
 
                     <td className="td-cell">
@@ -565,11 +546,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateContact(index, 'position', e.target.value)}
                         error={errors[`contacts.${index}.position`]}
                       />
-                      {errors[`contacts.${index}.position`] && (
-                        <div className="invalid-feedback">
-                          {errors[`contacts.${index}.position`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.position`} />
                     </td>
 
                     <td className="td-cell">
@@ -579,11 +556,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateContact(index, 'role', e.target.value)}
                         error={errors[`contacts.${index}.role`]}
                       />
-                      {errors[`contacts.${index}.role`] && (
-                        <div className="invalid-feedback">
-                          {errors[`contacts.${index}.role`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.role`} />
                     </td>
 
                     <td className="td-cell">
@@ -599,11 +572,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                           ]}
                         />
                       </select>
-                      {errors[`contacts.${index}.is_active`] && (
-                        <div className="invalid-feedback">
-                          {errors[`contacts.${index}.is_active`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.is_active`} />
                     </td>
 
                     <td className="td-cell">
@@ -613,11 +582,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateContact(index, 'note', e.target.value)}
                         error={errors[`contacts.${index}.note`]}
                       />
-                      {errors[`contacts.${index}.note`] && (
-                        <div className="invalid-feedback">
-                          {errors[`contacts.${index}.note`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.note`} />
                     </td>
 
                     <td className="td-cell">
@@ -631,11 +596,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         isSearchable={true}
                         placeholder="担当ユーザーを選択..."
                       />
-                      {errors[`contacts.${index}.in_charge_user_id`] && (
-                        <div className="invalid-feedback">
-                          {errors[`contacts.${index}.in_charge_user_id`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.in_charge_user_id`} />
                     </td>
 
                   </tr>
@@ -699,11 +660,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                       >
                         <OptionsList options={deliveryAddressTypes} />
                       </select>
-                      {errors[`contacts.${index}.address_type`] && (
-                        <div className="invalid-feedback">
-                          {errors[`contacts.${index}.address_type`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.address_type`} />
                     </td>
 
                     <td className="td-cell">
@@ -713,11 +670,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateDeliveryAddress(index, 'postal_code', e.target.value)}
                         error={errors[`delivery_addresses.${index}.postal_code`]}
                       />
-                      {errors[`delivery_addresses.${index}.postal_code`] && (
-                        <div className="invalid-feedback">
-                          {errors[`delivery_addresses.${index}.postal_code`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`delivery_addresses.${index}.postal_code`} />
                     </td>
 
                     <td className="td-cell">
@@ -727,11 +680,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateDeliveryAddress(index, 'address', e.target.value)}
                         error={errors[`delivery_addresses.${index}.address`]}
                       />
-                      {errors[`delivery_addresses.${index}.address`] && (
-                        <div className="invalid-feedback">
-                          {errors[`delivery_addresses.${index}.address`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`delivery_addresses.${index}.address`} />
                     </td>
 
                     <td className="td-cell">
@@ -741,11 +690,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateDeliveryAddress(index, 'company_name', e.target.value)}
                         error={errors[`delivery_addresses.${index}.company_name`]}
                       />
-                      {errors[`delivery_addresses.${index}.company_name`] && (
-                        <div className="invalid-feedback">
-                          {errors[`delivery_addresses.${index}.company_name`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`delivery_addresses.${index}.company_name`} />
                     </td>
 
                     <td className="td-cell">
@@ -755,11 +700,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateDeliveryAddress(index, 'contact_name', e.target.value)}
                         error={errors[`delivery_addresses.${index}.contact_name`]}
                       />
-                      {errors[`delivery_addresses.${index}.contact_name`] && (
-                        <div className="invalid-feedback">
-                          {errors[`delivery_addresses.${index}.contact_name`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`delivery_addresses.${index}.contact_name`} />
                     </td>
 
                     <td className="td-cell">
@@ -769,11 +710,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateDeliveryAddress(index, 'tel', e.target.value)}
                         error={errors[`delivery_addresses.${index}.tel`]}
                       />
-                      {errors[`delivery_addresses.${index}.tel`] && (
-                        <div className="invalid-feedback">
-                          {errors[`delivery_addresses.${index}.tel`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`delivery_addresses.${index}.tel`} />
                     </td>
 
                     <td className="td-cell">
@@ -783,11 +720,7 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
                         onChange={e => updateDeliveryAddress(index, 'note', e.target.value)}
                         error={errors[`delivery_addresses.${index}.note`]}
                       />
-                      {errors[`delivery_addresses.${index}.note`] && (
-                        <div className="invalid-feedback">
-                          {errors[`delivery_addresses.${index}.note`]}
-                        </div>
-                      )}
+                      <InvalidFeedback errors={errors} name={`delivery_addresses.${index}.note`} />
                     </td>
 
                   </tr>

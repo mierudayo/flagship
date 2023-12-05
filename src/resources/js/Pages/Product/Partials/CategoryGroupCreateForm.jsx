@@ -1,4 +1,5 @@
 import { useForm } from '@inertiajs/react';
+import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 
 
 export default function CategoryGroupCreateForm() {
@@ -32,7 +33,7 @@ export default function CategoryGroupCreateForm() {
             className={`input-field ${errors.name ? 'is-invalid' : ''}`}
             onChange={e => setData('name', e.target.value)}
           />
-          <div className="invalid-feedback">{errors.name}</div>
+          <InvalidFeedback errors={errors} name="name" />
         </div>
         <div className="input-group">
           <label htmlFor="display_order" className="form-label">
@@ -47,7 +48,7 @@ export default function CategoryGroupCreateForm() {
             onChange={e => setData('display_order', e.target.value)}
             placeholder="数値を入力"
           />
-          <div className="invalid-feedback">{errors.display_order}</div>
+          <InvalidFeedback errors={errors} name="display_order" />
         </div>
         <button
           type="submit"

@@ -2,6 +2,7 @@ import { useForm, usePage } from '@inertiajs/react';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import FormLabel from '@/Components/Form/FormLabel';
 import DateInput from '@/Components/Form/DateInput';
+import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import Textarea from '@/Components/Form/Textarea';
 import OptionsList from '@/Components/OptionsList';
 
@@ -50,7 +51,7 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
                     error={errors.contact_date}
                     max={date.today}
                   />
-                  {errors.contact_date && (<div className="invalid-feedback">{errors.contact_date}</div>)}
+                  <InvalidFeedback errors={errors} name="contact_date" />
                 </td>
               </tr>
 
@@ -68,7 +69,7 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
                     <option hidden></option>
                     <OptionsList options={contactOptions} />
                   </select>
-                  {errors.customer_contact_id && (<div className="invalid-feedback">{errors.customer_contact_id}</div>)}
+                  <InvalidFeedback errors={errors} name="customer_contact_id" />
                 </td>
               </tr>
 
@@ -83,7 +84,7 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
                     onChange={e => setData('proposal', e.target.value)}
                     error={errors.proposal}
                   />
-                  {errors.proposal && (<div className="invalid-feedback">{errors.proposal}</div>)}
+                  <InvalidFeedback errors={errors} name="proposal" />
                 </td>
               </tr>
 
@@ -98,7 +99,7 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
                     onChange={e => setData('feedback', e.target.value)}
                     error={errors.feedback}
                   />
-                  {errors.feedback && (<div className="invalid-feedback">{errors.feedback}</div>)}
+                  <InvalidFeedback errors={errors} name="feedback" />
                 </td>
               </tr>
 
@@ -113,7 +114,7 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
                     onChange={e => setData('note', e.target.value)}
                     error={errors.note}
                   />
-                  {errors.note && (<div className="invalid-feedback">{errors.note}</div>)}
+                  <InvalidFeedback errors={errors} name="note" />
                 </td>
               </tr>
 
@@ -132,7 +133,7 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
                     isSearchable={true}
                     placeholder="担当ユーザーを選択..."
                   />
-                  {errors.in_charge_user_id && (<div className="invalid-feedback">{errors.in_charge_user_id}</div>)}
+                  <InvalidFeedback errors={errors} name="in_charge_user_id" />
                 </td>
               </tr>
 

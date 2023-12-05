@@ -5,6 +5,7 @@ import CustomSelect from '@/Components/Form/CustomSelect';
 import FormLabel from '@/Components/Form/FormLabel';
 import DateInput from '@/Components/Form/DateInput';
 import Input from '@/Components/Form/Input';
+import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 const Edit = ({ user, permissionOptions }) => {
@@ -63,7 +64,7 @@ const Edit = ({ user, permissionOptions }) => {
                     error={errors.employee_code}
                     className="u-w-160"
                   />
-                  {errors.employee_code && (<div className="invalid-feedback">{errors.employee_code}</div>)}
+                  <InvalidFeedback errors={errors} name="employee_code" />
                 </td>
               </tr>
 
@@ -82,7 +83,7 @@ const Edit = ({ user, permissionOptions }) => {
                     isSearchable={true}
                     placeholder="権限を選択..."
                   />
-                  {errors.permission_id && (<div className="invalid-feedback">{errors.permission_id}</div>)}
+                  <InvalidFeedback errors={errors} name="permission_id" />
                 </td>
               </tr>
 
@@ -98,7 +99,7 @@ const Edit = ({ user, permissionOptions }) => {
                     onChange={e => setData('name', e.target.value)}
                     error={errors.name}
                   />
-                  {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
+                  <InvalidFeedback errors={errors} name="name" />
                 </td>
               </tr>
 
@@ -114,7 +115,7 @@ const Edit = ({ user, permissionOptions }) => {
                     onChange={e => setData('name_kana', e.target.value)}
                     error={errors.name_kana}
                   />
-                  {errors.name_kana && (<div className="invalid-feedback">{errors.name_kana}</div>)}
+                  <InvalidFeedback errors={errors} name="name_kana" />
                 </td>
               </tr>
 
@@ -130,7 +131,7 @@ const Edit = ({ user, permissionOptions }) => {
                     onChange={e => setData('email', e.target.value)}
                     error={errors.email}
                   />
-                  {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
+                  <InvalidFeedback errors={errors} name="email" />
                 </td>
               </tr>
 
@@ -147,7 +148,7 @@ const Edit = ({ user, permissionOptions }) => {
                     error={errors.mobile_number}
                     className="u-w-160"
                   />
-                  {errors.mobile_number && (<div className="invalid-feedback">{errors.mobile_number}</div>)}
+                  <InvalidFeedback errors={errors} name="mobile_number" />
                 </td>
               </tr>
 
@@ -162,7 +163,7 @@ const Edit = ({ user, permissionOptions }) => {
                     onChange={e => setData('employment_date', e.target.value)}
                     error={errors.employment_date}
                   />
-                  {errors.employment_date && (<div className="invalid-feedback">{errors.employment_date}</div>)}
+                  <InvalidFeedback errors={errors} name="employment_date" />
                 </td>
               </tr>
 
@@ -177,7 +178,7 @@ const Edit = ({ user, permissionOptions }) => {
                     onChange={e => setData('resignation_date', e.target.value)}
                     error={errors.resignation_date}
                   />
-                  {errors.resignation_date && (<div className="invalid-feedback">{errors.resignation_date}</div>)}
+                  <InvalidFeedback errors={errors} name="resignation_date" />
                 </td>
               </tr>
             </tbody>

@@ -6,6 +6,7 @@ import CustomSelect from '@/Components/Form/CustomSelect';
 import DateInput from '@/Components/Form/DateInput';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
+import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 const Create = ({ permissionOptions }) => {
@@ -67,7 +68,7 @@ const Create = ({ permissionOptions }) => {
                     error={errors.employee_code}
                     className="u-w-160"
                   />
-                  {errors.employee_code && (<div className="invalid-feedback">{errors.employee_code}</div>)}
+                  <InvalidFeedback errors={errors} name="employee_code" />
                 </td>
               </tr>
 
@@ -86,7 +87,7 @@ const Create = ({ permissionOptions }) => {
                     isSearchable={true}
                     placeholder="権限を選択..."
                   />
-                  {errors.permission_id && (<div className="invalid-feedback">{errors.permission_id}</div>)}
+                  <InvalidFeedback errors={errors} name="permission_id" />
                 </td>
               </tr>
 
@@ -102,7 +103,7 @@ const Create = ({ permissionOptions }) => {
                     onChange={e => setData('name', e.target.value)}
                     error={errors.name}
                   />
-                  {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
+                  <InvalidFeedback errors={errors} name="name" />
                 </td>
               </tr>
 
@@ -118,7 +119,7 @@ const Create = ({ permissionOptions }) => {
                     onChange={e => setData('name_kana', e.target.value)}
                     error={errors.name_kana}
                   />
-                  {errors.name_kana && (<div className="invalid-feedback">{errors.name_kana}</div>)}
+                  <InvalidFeedback errors={errors} name="name_kana" />
                 </td>
               </tr>
 
@@ -134,7 +135,7 @@ const Create = ({ permissionOptions }) => {
                     onChange={e => setData('email', e.target.value)}
                     error={errors.email}
                   />
-                  {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
+                  <InvalidFeedback errors={errors} name="email" />
                 </td>
               </tr>
 
@@ -150,7 +151,7 @@ const Create = ({ permissionOptions }) => {
                     onChange={e => setData('password', e.target.value)}
                     error={errors.password}
                   />
-                  {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
+                  <InvalidFeedback errors={errors} name="password" />
                 </td>
               </tr>
 
@@ -165,7 +166,7 @@ const Create = ({ permissionOptions }) => {
                     value={data.password_confirmation}
                     onChange={e => setData('password_confirmation', e.target.value)}
                   />
-                  {errors.password_confirmation && (<div className="invalid-feedback">{errors.password_confirmation}</div>)}
+                  <InvalidFeedback errors={errors} name="password_confirmation" />
                 </td>
               </tr>
 
@@ -182,7 +183,7 @@ const Create = ({ permissionOptions }) => {
                     error={errors.mobile_number}
                     className="u-w-160"
                   />
-                  {errors.mobile_number && (<div className="invalid-feedback">{errors.mobile_number}</div>)}
+                  <InvalidFeedback errors={errors} name="mobile_number" />
                 </td>
               </tr>
 
@@ -197,7 +198,7 @@ const Create = ({ permissionOptions }) => {
                     onChange={e => setData('employment_date', e.target.value)}
                     error={errors.employment_date}
                   />
-                  {errors.employment_date && (<div className="invalid-feedback">{errors.employment_date}</div>)}
+                  <InvalidFeedback errors={errors} name="employment_date" />
                 </td>
               </tr>
             </tbody>
