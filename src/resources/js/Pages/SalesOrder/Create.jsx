@@ -468,7 +468,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
               </thead>
               <tbody className="tbody">
                 {data.sales_order_details.map((detail, index) => (
-                  <tr key={index} className="table-row is-hoverable">
+                  <tr key={index} className="table-row">
                     <td className="td-cell col-fixed u-w-80">
                       <button
                         type="button"

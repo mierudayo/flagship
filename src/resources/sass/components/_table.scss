@@ -4,7 +4,7 @@
   /* Color
   -------------------------*/
   --color-table-bg: #fff;
-  --color-table-hover: #eee;
+  --color-table-hover: #f0faff;
   --color-table-border: #ddd;
   --color-table-header: #ccc;
 }
@@ -145,8 +145,12 @@ Hoverable row, cell
 ----------------------- */
 .table-row {
   &.is-hoverable {
-    &:hover {
+    .th-cell,
+    .td-cell {
+      transition: background-color 0.2s ease;
+    }
 
+    &:hover {
       .th-cell,
       .td-cell {
         background-color: var(--color-table-hover);

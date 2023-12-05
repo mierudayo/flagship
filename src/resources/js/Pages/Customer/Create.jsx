@@ -450,7 +450,7 @@ const Create = ({ userOptions, paymentTerms, deliveryAddressTypes }) => {
               </thead>
               <tbody className="tbody">
                 {data.contacts.map((contact, index) => (
-                  <tr key={index} className="table-row is-hoverable">
+                  <tr key={index} className="table-row">
                     <td className="td-cell col-fixed u-w-80">
                       <button
                         type="button"
@@ -651,7 +651,7 @@ const Create = ({ userOptions, paymentTerms, deliveryAddressTypes }) => {
               </thead>
               <tbody className="tbody">
                 {data.delivery_addresses.map((deliveryAddress, index) => (
-                  <tr key={index} className="table-row is-hoverable">
+                  <tr key={index} className="table-row">
                     <td className="td-cell col-fixed u-w-80">
                       <button
                         type="button"

@@ -196,7 +196,7 @@ const Show = ({ customer, userOptions, deliveryAddressTypes }) => {
                 <tr key={contact.id} className="table-row is-hoverable">
                   <td className="td-cell col-fixed">{contact.id}</td>
                   <td className="td-cell">{contact.role}</td>
-                  <td className="td-cell">{contact.name}</td>
+                  <td className="td-cell u-min-w-160">{contact.name}</td>
                   <td className="td-cell">{contact.name_kana}</td>
                   <td className="td-cell">{contact.tel}</td>
                   <td className="td-cell">{contact.mobile_number}</td>
@@ -220,20 +220,18 @@ const Show = ({ customer, userOptions, deliveryAddressTypes }) => {
           <table className="table">
             <thead className="table-header is-sticky">
               <tr className="table-row">
-                <th className="th-cell col-fixed">ID</th>
-                <th className="th-cell">区分</th>
-                <th className="th-cell">住所</th>
-                <th className="th-cell">会社名</th>
-                <th className="th-cell">担当者名</th>
-                <th className="th-cell">TEL</th>
+                <th className="th-cell u-w-120 col-fixed">区分</th>
+                <th className="th-cell u-min-w-240">住所</th>
+                <th className="th-cell u-min-w-200">会社名</th>
+                <th className="th-cell u-min-w-160">担当者名</th>
+                <th className="th-cell u-min-w-160">TEL</th>
                 <th className="th-cell">備考</th>
               </tr>
             </thead>
             <tbody className="table-body">
               {delivery_addresses.map(delivery => (
                 <tr key={delivery.id} className="table-row is-hoverable">
-                  <td className="td-cell col-fixed">{delivery.id}</td>
-                  <td className="td-cell">
+                  <td className="td-cell col-fixed">
                     {delivery.address_type_label}
                   </td>
                   <td className="td-cell">{delivery.postal_code} {delivery.address}</td>
@@ -256,9 +254,8 @@ const Show = ({ customer, userOptions, deliveryAddressTypes }) => {
           <table className="table">
             <thead className="table-header is-sticky">
               <tr className="table-row">
-                <th className="th-cell col-fixed">ID</th>
+                <th className="th-cell u-w-136">連絡日</th>
                 <th className="th-cell u-min-w-120">営業担当</th>
-                <th className="th-cell u-min-w-136">連絡日</th>
                 <th className="th-cell u-min-w-120">連絡先</th>
                 <th className="th-cell">提案内容</th>
                 <th className="th-cell">反応</th>
@@ -269,9 +266,8 @@ const Show = ({ customer, userOptions, deliveryAddressTypes }) => {
               {contacts.map(contact => (
                 contact.sales_activities.map(activity => (
                   <tr key={activity.id} className="table-row is-hoverable">
-                    <td className="td-cell col-fixed">{activity.id}</td>
-                    <td className="td-cell">{activity.in_charge_user.name}</td>
                     <td className="td-cell">{activity.contact_date}</td>
+                    <td className="td-cell">{activity.in_charge_user.name}</td>
                     <td className="td-cell">{contact.name}</td>
                     <td className="td-cell">{activity.proposal}</td>
                     <td className="td-cell">{activity.feedback}</td>
