@@ -336,4 +336,50 @@
 
 ## purchase_orders 発注
 
+| カラム                | 名称          | 型                  | 説明          |
+|-----------------------|---------------|---------------------|--------------|
+| id                    | ID            | unsignedBigInteger  | PK           |
+| customer_id           | 取引先ID      | unsignedBigInteger  | FK           |
+| customer_contact_id   | 連絡先ID      | unsignedBigInteger  | FK           |
+| billing_address_id    | 請求先ID      | unsignedBigInteger  | FK           |
+| delivery_address_id   | 出荷元ID      | unsignedBigInteger  | FK           |
+| product_category_id   | 集計品目ID    | unsignedBigInteger  | FK           |
+| billing_type          | 請求タイプ    | tinyInteger         | 1:締め請求 2:都度請求 |
+| cutoff_day            | 締め日        | integer             | 締め請求時 1~28日, 月末(29, 30, 31)は99 |
+| payment_month_offset  | 支払月        | integer             | 締め請求時 当月:0, 翌月:1, 翌々月:2... |
+| payment_day           | 支払日        | integer             | 締め請求時 1~28日, 月末(29, 30, 31)は99 |
+| payment_day_offset    | 支払期限日数   | integer             | 都度請求時 0:前払い, 3:3営業日, 7:7営業日...等 |
+| payment_date          | 支払日        | date                |              |
+| payment_status        | 支払状況      | string              |              |
+| customer_name         | 仕入先名      | string              |              |
+| ship_from_address     | 出荷元住所    | string              |              |
+| purchase_date         | 発注日       | date                |              |
+| subtotal_amount       | 税抜き合計金額 | integer             |              |
+| total_amount          | 税込み合計金額 | integer             |              |
+| note                  | 備考         | text                |              |
+| purchase_in_charge_id | 発注担当者ID  | unsignedBigInteger  | FK           |
+| created_by_id         | 作成者ID     | unsignedBigInteger  | FK           |
+| updated_by_id         | 更新者ID     | unsignedBigInteger  | FK           |
+| created_at            | 作成日時      | timestamp           |              |
+| updated_at            | 更新日時      | timestamp           |              |
+
 ## purchase_order_details 発注明細
+
+| カラム                | 名称             | 型                    | 説明                     |
+|-----------------------|------------------|-----------------------|--------------------------|
+| id                    | ID               | unsignedBigInteger    | PK                       |
+| purchase_order_id     | 発注ID           | unsignedBigInteger    | FK                       |
+| row_number            | 明細番号           | integer    |                        |
+| product_id            | 商品ID           | unsignedBigInteger    | FK                       |
+| product_name          | 商品名           | string                |                          |
+| product_detail        | 商品詳細         | string                |                          |
+| quantity              | 数量             | decimal               |                          |
+| unit_price            | 単価（税抜き）   | decimal               |                          |
+| tax_rate              | 税率             | decimal               | デフォルト0.1 (10%)      |
+| tax_amount            | 税額              | decimal               |                     |
+| is_tax_inclusive      | 税の種類         | boolean               | 外税：false, 内税：true  |
+| subtotal              | 小計（税抜き）   | decimal               |                          |
+| total                 | 総計（税込）     | decimal               |                          |
+| note                  | 備考             | text                  |                          |
+| created_at            | 作成日時         | timestamp             |                          |
+| updated_at            | 更新日時         | timestamp             |                          |

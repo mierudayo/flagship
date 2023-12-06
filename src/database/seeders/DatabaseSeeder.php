@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
                 SalesActivitySeeder::class,
                 SalesOrderSeeder::class,
                 SalesOrderDetailSeeder::class,
+                PurchaseOrderSeeder::class,
+                PurchaseOrderDetailSeeder::class,
             ]);
         }
     }
