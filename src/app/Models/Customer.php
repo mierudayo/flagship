@@ -73,6 +73,16 @@ class Customer extends Model
         return $this->hasOne(SalesTerm::class);
     }
 
+    public function salesOrders(): HasMany
+    {
+        return $this->hasMany(SalesOrder::class);
+    }
+
+    public function purchaseOrders(): HasMany
+    {
+        return $this->hasMany(PurchaseOrder::class);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Accessors & Mutators
@@ -118,6 +128,14 @@ class Customer extends Model
         }
 
         if ($this->deliveryAddresses()->exists()) {
+            return false;
+        }
+
+        if ($this->salesOrders()->exists()) {
+            return false;
+        }
+
+        if ($this->purchaseOrders()->exists()) {
             return false;
         }
 
