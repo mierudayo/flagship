@@ -11,6 +11,7 @@ use App\Http\Controllers\DeliveryAddressController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductCategoryGroupController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\SalesActivityController;
 use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\UserController;
@@ -92,6 +93,9 @@ Route::middleware('auth')->group(function () {
     Route::get('sales-orders', [SalesOrderController::class, 'index'])->name('sales-orders.index');
     Route::get('sales-orders/create', [SalesOrderController::class, 'create'])->name('sales-orders.create');
     Route::post('sales-orders', [SalesOrderController::class, 'store'])->name('sales-orders.store');
+
+    // PurchaseOrder
+    Route::get('purchase-orders', [PurchaseOrderController::class, 'index'])->name('purchase-orders.index');
 });
 
 
