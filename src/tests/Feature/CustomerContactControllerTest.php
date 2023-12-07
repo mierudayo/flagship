@@ -38,7 +38,7 @@ class CustomerContactControllerTest extends TestCase
 
         $response->assertInertia(function (Assert $page) {
             $page->component('CustomerContact/Index');
-            $page->has('contactsPaginator');
+            $page->has('customerContacts');
         });
     }
 

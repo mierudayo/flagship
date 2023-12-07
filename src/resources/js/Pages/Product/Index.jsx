@@ -4,7 +4,7 @@ import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import ProductTable from './Partials/ProductTable';
 
-const Index = ({ productsPaginator }) => {
+const Index = ({ products }) => {
   const params = route().params;
 
   const { data, setData, get, errors } = useForm({
@@ -38,11 +38,11 @@ const Index = ({ productsPaginator }) => {
         />
 
         <div className="record-count">
-          {productsPaginator.total}件
+          {products.total}件
         </div>
-        <Pagination paginator={productsPaginator} />
+        <Pagination paginator={products} />
       </div>
-      <ProductTable products={productsPaginator.data} />
+      <ProductTable products={products.data} />
     </>
   );
 }

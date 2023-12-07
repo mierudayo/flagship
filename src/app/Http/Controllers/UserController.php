@@ -19,12 +19,15 @@ class UserController extends Controller
     {
         $keyword = $request->input('keyword');
 
-        $usersQuery      = User::query()->with('permission')->searchByKeyword($keyword);
-        $usersPaginator  = $usersQuery->paginate(20)->withQueryString();
+        $users = User::query()
+            ->with('permission')
+            ->searchByKeyword($keyword)
+            ->paginate(20)
+            ->withQueryString();
 
         return Inertia::render('User/Index', [
-            'usersPaginator' => $usersPaginator,
-            'canAdmin'       => Gate::allows('admin'),
+            'users'     => $users,
+            'canAdmin'  => Gate::allows('admin'),
         ]);
     }
 

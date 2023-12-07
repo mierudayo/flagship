@@ -24,7 +24,7 @@ class SalesOrderController extends Controller
     {
         $keyword = $request->input('keyword');
 
-        $salesOrdersQuery = SalesOrder::query()
+        $salesOrders = SalesOrder::query()
             ->with([
                 'customer',
                 'salesInCharge',
@@ -32,12 +32,12 @@ class SalesOrderController extends Controller
                 'salesOrderDetails',
             ])
             ->searchByKeyword($keyword)
-            ->latest();
-
-        $salesOrdersPaginator = $salesOrdersQuery->paginate(100)->withQueryString();
+            ->latest()
+            ->paginate(100)
+            ->withQueryString();
 
         return Inertia::render('SalesOrder/Index', [
-            'salesOrdersPaginator' => $salesOrdersPaginator,
+            'salesOrders' => $salesOrders,
         ]);
     }
 

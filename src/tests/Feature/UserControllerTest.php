@@ -44,7 +44,7 @@ class UserControllerTest extends TestCase
         $response->assertInertia(function (Assert $page) use ($totalUsersIncludingAuth) {
             $page->component('User/Index');
 
-            $page->has('usersPaginator', function (Assert $paginator) use ($totalUsersIncludingAuth) {
+            $page->has('users', function (Assert $paginator) use ($totalUsersIncludingAuth) {
 
                 // ページネーションの基本プロパティを確認
                 $paginator->hasAll([
@@ -62,7 +62,7 @@ class UserControllerTest extends TestCase
                     'total'
                 ]);
 
-                // usersPaginator.data のチェック
+                // users.data のチェック
                 $paginator->has('data', $totalUsersIncludingAuth, function (Assert $user) {
                     $user->hasAll([
                         'id',
@@ -98,8 +98,8 @@ class UserControllerTest extends TestCase
 
         $response->assertInertia(function (Assert $page) use ($expectedCount) {
             $page->component('User/Index');
-            $page->has('usersPaginator');
-            $page->where('usersPaginator.total', $expectedCount);
+            $page->has('users');
+            $page->where('users.total', $expectedCount);
         });
     }
 

@@ -25,7 +25,7 @@ class InquiryController extends Controller
         $startDate    = $request->input('start_date');
         $endDate      = $request->input('end_date');
 
-        $inquiryQuery = Inquiry::query()
+        $inquiries = Inquiry::query()
             ->with([
                 'customerContact.customer',
                 'product.category',
@@ -36,12 +36,12 @@ class InquiryController extends Controller
             ->searchByInquiryPeriod($startDate, $endDate)
             ->searchById($inquiryId)
             ->searchByCustomerInfo($customerInfo)
-            ->latest('inquiry_date');
-
-        $inquiriesPaginator = $inquiryQuery->paginate(50)->withQueryString();
+            ->latest('inquiry_date')
+            ->paginate(50)
+            ->withQueryString();
 
         return Inertia::render('Inquiry/Index', [
-            'inquiriesPaginator' => $inquiriesPaginator,
+            'inquiries' => $inquiries,
         ]);
     }
 

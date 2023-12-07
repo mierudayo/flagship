@@ -40,7 +40,7 @@ class CustomerControllerTest extends TestCase
         $response->assertInertia(function (Assert $page) use ($customersCount) {
             $page->component('Customer/Index');
 
-            $page->has('customersPaginator', function (Assert $paginator) use ($customersCount) {
+            $page->has('customers', function (Assert $paginator) use ($customersCount) {
 
                 $paginator->hasAll([
                     'current_page',

@@ -4,7 +4,7 @@ import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import CustomerTable from './Partials/CustomerTable';
 
-const Index = ({ customersPaginator, canAdmin }) => {
+const Index = ({ customers }) => {
   const params = route().params;
   const { flash } = usePage().props;
 
@@ -46,14 +46,14 @@ const Index = ({ customersPaginator, canAdmin }) => {
         />
 
         <div className="record-count">
-          {customersPaginator.total}件
+          {customers.total}件
         </div>
-        <Pagination paginator={customersPaginator} />
+        <Pagination paginator={customers} />
       </div>
       {flash.message && (
         <div className="alert alert-success">{flash.message}</div>
       )}
-      <CustomerTable customers={customersPaginator.data} />
+      <CustomerTable customers={customers.data} />
     </>
   );
 }

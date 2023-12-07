@@ -17,11 +17,14 @@ class ProductController extends Controller
     {
         $keyword = $request->input('keyword');
 
-        $productsQuery     = Product::query()->with(['category.group'])->searchByKeyword($keyword);
-        $productsPaginator = $productsQuery->paginate(100)->withQueryString();
+        $products = Product::query()
+            ->with(['category.group'])
+            ->searchByKeyword($keyword)
+            ->paginate(100)
+            ->withQueryString();
 
         return Inertia::render('Product/Index', [
-            'productsPaginator' => $productsPaginator,
+            'products' => $products,
         ]);
     }
 

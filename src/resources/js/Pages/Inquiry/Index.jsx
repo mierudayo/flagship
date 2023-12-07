@@ -8,7 +8,7 @@ import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import DateInput from '@/Components/Form/DateInput';
 
-const Index = ({ inquiriesPaginator }) => {
+const Index = ({ inquiries }) => {
   const params = route().params;
   const { flash } = usePage().props;
   const [isOpen, setIsOpen] = useState(false);
@@ -61,9 +61,9 @@ const Index = ({ inquiriesPaginator }) => {
         </button>
 
         <div className="record-count">
-          {inquiriesPaginator.total}件
+          {inquiries.total}件
         </div>
-        <Pagination paginator={inquiriesPaginator} />
+        <Pagination paginator={inquiries} />
       </div>
 
       <div className={`filter-section ${isOpen ? 'show' : ''}`}>
@@ -134,7 +134,7 @@ const Index = ({ inquiriesPaginator }) => {
         <div className="alert alert-success">{flash.message}</div>
       )}
 
-      <InquiryTable inquiries={inquiriesPaginator.data} />
+      <InquiryTable inquiries={inquiries.data} />
     </>
   );
 }
