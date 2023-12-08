@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Enums\InquiryLeadSource;
-use App\Enums\InquiryStatus;
 use App\Http\Requests\InquirySearchRequest;
 use App\Http\Requests\InquiryStoreRequest;
 use App\Http\Requests\InquiryUpdateRequest;
@@ -51,7 +50,6 @@ class InquiryController extends Controller
             'productOptions'         => Product::all(),
             'inquiryTypeOptions'     => InquiryType::all(),
             'inChargeUserOptions'    => User::active()->get(),
-            'inquiryStatus'          => InquiryStatus::toArray(),
             'inquiryLeadSources'     => inquiryLeadSource::toArray(),
         ]);
     }
@@ -93,7 +91,6 @@ class InquiryController extends Controller
             'productOptions'         => Product::all(),
             'inquiryTypeOptions'     => InquiryType::all(),
             'inChargeUserOptions'    => User::active()->get(),
-            'inquiryStatus'          => InquiryStatus::toArray(),
             'inquiryLeadSources'     => InquiryLeadSource::toArray(),
         ]);
     }

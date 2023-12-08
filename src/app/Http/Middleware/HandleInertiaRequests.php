@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Enums\DeliveryAddressType;
+use App\Enums\InquiryStatus;
 use App\Enums\PaymentTerm\BillingType;
 use App\Enums\PaymentTerm\CutoffDay;
 use App\Enums\PaymentTerm\PaymentDay;
@@ -62,6 +63,7 @@ class HandleInertiaRequests extends Middleware
                 'dayOffsets'   => PaymentDayOffset::toArray(),
             ],
             'deliveryAddressTypes'  => DeliveryAddressType::toArray(),
+            'inquiryStatus'         => InquiryStatus::toArray(),
         ]);
     }
 }
