@@ -28,12 +28,13 @@ class PurchaseOrderStoreRequest extends FormRequest
             'delivery_address_id'   => ['required', 'integer', 'exists:delivery_addresses,id'],
             'product_category_id'   => ['required', 'integer', 'exists:product_categories,id'],
 
-            // PurchaseOrder
-            'billing_type'          => ['required', 'integer', 'in:1,2'],
-            'cutoff_day'            => ['nullable', 'integer', 'between:1,99'],
-            'payment_month_offset'  => ['nullable', 'integer', 'min:0'],
-            'payment_day'           => ['nullable', 'integer', 'between:1,99'],
+            // PurchaseTerm
+            'billing_type'          => ['required', 'in:1,2'],
+            'cutoff_day'            => ['nullable', 'integer', 'min:1', 'max:99'],
+            'payment_month_offset'  => ['nullable', 'integer', 'min:0', 'max:12'],
+            'payment_day'           => ['nullable', 'integer', 'min:1', 'max:99'],
             'payment_day_offset'    => ['nullable', 'integer', 'min:0'],
+
             'payment_date'          => ['nullable', 'date'],
             'payment_status'        => ['nullable', 'string', 'max:255'],
 

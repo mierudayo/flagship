@@ -29,11 +29,12 @@ class SalesOrderStoreRequest extends FormRequest
             'product_category_id'   => ['required', 'integer', 'exists:product_categories,id'],
 
             // SalesTerm
-            'billing_type'          => ['nullable', 'integer', 'in:1,2'],
-            'cutoff_day'            => ['nullable', 'integer', 'min:1', 'max:28'],
-            'payment_month_offset'  => ['nullable', 'integer', 'min:0'],
-            'payment_day'           => ['nullable', 'integer', 'min:1', 'max:28'],
+            'billing_type'          => ['required', 'in:1,2'],
+            'cutoff_day'            => ['nullable', 'integer', 'min:1', 'max:99'],
+            'payment_month_offset'  => ['nullable', 'integer', 'min:0', 'max:12'],
+            'payment_day'           => ['nullable', 'integer', 'min:1', 'max:99'],
             'payment_day_offset'    => ['nullable', 'integer', 'min:0'],
+
             'payment_date'          => ['nullable', 'date'],
             'payment_status'        => ['nullable', 'string', 'max:255'],
 
