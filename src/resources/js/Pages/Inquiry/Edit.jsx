@@ -13,7 +13,7 @@ import ContactLookup from '@/Components/ContactLookup';
 import Modal from '@/Components/Modal';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
-const Edit = ({ inquiry, productOption, inquiryTypeOption, inChargeUserOption, inquiryStatus, inquiryLeadSource }) => {
+const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatus, inquiryLeadSources }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [contactName, setContactName] = useState(inquiry.customer_contact.name);
   const [customerName, setCustomerName] = useState(inquiry.customer_contact.customer.name);
@@ -229,7 +229,7 @@ const Edit = ({ inquiry, productOption, inquiryTypeOption, inChargeUserOption, i
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('lead_source', value)}
-                    options={inquiryLeadSource}
+                    options={inquiryLeadSources}
                     value={data.lead_source}
                     valueKey="value"
                     labelKey="label"
@@ -299,7 +299,7 @@ const Edit = ({ inquiry, productOption, inquiryTypeOption, inChargeUserOption, i
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('in_charge_user_id', value)}
-                    options={inChargeUserOption}
+                    options={inChargeUserOptions}
                     value={data.in_charge_user_id}
                     valueKey="id"
                     labelKey="name"
@@ -318,7 +318,7 @@ const Edit = ({ inquiry, productOption, inquiryTypeOption, inChargeUserOption, i
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('inquiry_type_id', value)}
-                    options={inquiryTypeOption}
+                    options={inquiryTypeOptions}
                     value={data.inquiry_type_id}
                     valueKey="id"
                     labelKey="name"
@@ -337,7 +337,7 @@ const Edit = ({ inquiry, productOption, inquiryTypeOption, inChargeUserOption, i
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('product_id', value)}
-                    options={productOption}
+                    options={productOptions}
                     value={data.product_id}
                     valueKey="id"
                     labelKey="name"

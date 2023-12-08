@@ -48,11 +48,11 @@ class InquiryController extends Controller
     public function create(): Response
     {
         return Inertia::render('Inquiry/Create', [
-            'productOption'         => Product::all(),
-            'inquiryTypeOption'     => InquiryType::all(),
-            'inChargeUserOption'    => User::active()->get(),
-            'inquiryStatus'         => InquiryStatus::toArray(),
-            'inquiryLeadSource'     => InquiryLeadSource::toArray(),
+            'productOptions'         => Product::all(),
+            'inquiryTypeOptions'     => InquiryType::all(),
+            'inChargeUserOptions'    => User::active()->get(),
+            'inquiryStatus'          => InquiryStatus::toArray(),
+            'inquiryLeadSources'     => inquiryLeadSource::toArray(),
         ]);
     }
 
@@ -89,12 +89,12 @@ class InquiryController extends Controller
         ]);
 
         return Inertia::render('Inquiry/Edit', [
-            'inquiry'               => $inquiry,
-            'productOption'         => Product::all(),
-            'inquiryTypeOption'     => InquiryType::all(),
-            'inChargeUserOption'    => User::active()->get(),
-            'inquiryStatus'         => InquiryStatus::toArray(),
-            'inquiryLeadSource'     => InquiryLeadSource::toArray(),
+            'inquiry'                => $inquiry,
+            'productOptions'         => Product::all(),
+            'inquiryTypeOptions'     => InquiryType::all(),
+            'inChargeUserOptions'    => User::active()->get(),
+            'inquiryStatus'          => InquiryStatus::toArray(),
+            'inquiryLeadSources'     => InquiryLeadSource::toArray(),
         ]);
     }
 
