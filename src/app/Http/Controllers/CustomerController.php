@@ -2,12 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\DeliveryAddressType;
-use App\Enums\PaymentTerm\BillingType;
-use App\Enums\PaymentTerm\CutoffDay;
-use App\Enums\PaymentTerm\PaymentDay;
-use App\Enums\PaymentTerm\PaymentDayOffset;
-use App\Enums\PaymentTerm\PaymentMonthOffset;
 use App\Http\Requests\CustomerSearchRequest;
 use App\Http\Requests\CustomerStoreRequest;
 use App\Http\Requests\CustomerUpdateRequest;
@@ -43,9 +37,7 @@ class CustomerController extends Controller
     public function create(): Response
     {
         return Inertia::render('Customer/Create', [
-            'userOptions'           => User::active()->get(),
-            'paymentTerms'          => $this->getPaymentTerms(),
-            'deliveryAddressTypes'  => DeliveryAddressType::toArray(),
+            'userOptions'   => User::active()->get(),
         ]);
     }
 
@@ -80,7 +72,6 @@ class CustomerController extends Controller
         return Inertia::render('Customer/Show', [
             'customer'              => $customer,
             'userOptions'           => User::active()->get(),
-            'deliveryAddressTypes'  => DeliveryAddressType::toArray(),
         ]);
     }
 
@@ -96,10 +87,8 @@ class CustomerController extends Controller
         ]);
 
         return Inertia::render('Customer/Edit', [
-            'customer'              => $customer,
-            'userOptions'           => User::active()->get(),
-            'paymentTerms'          => $this->getPaymentTerms(),
-            'deliveryAddressTypes'  => DeliveryAddressType::toArray(),
+            'customer'      => $customer,
+            'userOptions'   => User::active()->get(),
         ]);
     }
 
@@ -354,17 +343,5 @@ class CustomerController extends Controller
                     'note'              => $deliveryAddress['note'],
                 ];
             })->toArray();
-    }
-
-
-    private function getPaymentTerms(): array
-    {
-        return [
-            'billingTypes' => BillingType::toArray(),
-            'cutoffDays'   => CutoffDay::toArray(),
-            'monthOffsets' => PaymentMonthOffset::toArray(),
-            'paymentDay'   => PaymentDay::toArray(),
-            'dayOffsets'   => PaymentDayOffset::toArray(),
-        ];
     }
 }

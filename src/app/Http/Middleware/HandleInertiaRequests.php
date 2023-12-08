@@ -2,6 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\DeliveryAddressType;
+use App\Enums\PaymentTerm\BillingType;
+use App\Enums\PaymentTerm\CutoffDay;
+use App\Enums\PaymentTerm\PaymentDay;
+use App\Enums\PaymentTerm\PaymentDayOffset;
+use App\Enums\PaymentTerm\PaymentMonthOffset;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -48,6 +54,14 @@ class HandleInertiaRequests extends Middleware
             'date' => [
                 'today' => Carbon::today()->format('Y-m-d'),
             ],
+            'paymentTerms' => [
+                'billingTypes' => BillingType::toArray(),
+                'cutoffDays'   => CutoffDay::toArray(),
+                'monthOffsets' => PaymentMonthOffset::toArray(),
+                'paymentDay'   => PaymentDay::toArray(),
+                'dayOffsets'   => PaymentDayOffset::toArray(),
+            ],
+            'deliveryAddressTypes'  => DeliveryAddressType::toArray(),
         ]);
     }
 }

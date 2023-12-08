@@ -2,11 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\PaymentTerm\BillingType;
-use App\Enums\PaymentTerm\CutoffDay;
-use App\Enums\PaymentTerm\PaymentDay;
-use App\Enums\PaymentTerm\PaymentDayOffset;
-use App\Enums\PaymentTerm\PaymentMonthOffset;
 use App\Http\Requests\PurchaseOrderSearchRequest;
 use App\Http\Requests\PurchaseOrderStoreRequest;
 use App\Models\Product;
@@ -47,7 +42,6 @@ class PurchaseOrderController extends Controller
             'userOptions'            => User::active()->get(),
             'productOptions'         => Product::all(),
             'productCategoryOptions' => ProductCategory::all(),
-            'paymentTerms'           => $this->getPaymentTerms(),
         ]);
     }
 
@@ -132,16 +126,5 @@ class PurchaseOrderController extends Controller
 
         return to_route('purchase-orders.index')
             ->with('message', "発注ID:{$purchaseOrder->id} 登録成功しました。");
-    }
-
-    private function getPaymentTerms(): array
-    {
-        return [
-            'billingTypes' => BillingType::toArray(),
-            'cutoffDays'   => CutoffDay::toArray(),
-            'monthOffsets' => PaymentMonthOffset::toArray(),
-            'paymentDay'   => PaymentDay::toArray(),
-            'dayOffsets'   => PaymentDayOffset::toArray(),
-        ];
     }
 }

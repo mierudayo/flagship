@@ -2,11 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\PaymentTerm\BillingType;
-use App\Enums\PaymentTerm\CutoffDay;
-use App\Enums\PaymentTerm\PaymentDay;
-use App\Enums\PaymentTerm\PaymentDayOffset;
-use App\Enums\PaymentTerm\PaymentMonthOffset;
 use App\Http\Requests\SalesOrderSearchRequest;
 use App\Http\Requests\SalesOrderStoreRequest;
 use App\Models\Product;
@@ -47,7 +42,6 @@ class SalesOrderController extends Controller
             'userOptions'            => User::active()->get(),
             'productOptions'         => Product::all(),
             'productCategoryOptions' => ProductCategory::all(),
-            'paymentTerms'           => $this->getPaymentTerms(),
         ]);
     }
 
@@ -134,16 +128,5 @@ class SalesOrderController extends Controller
 
         return to_route('sales-orders.index')
             ->with('message', "受注ID:{$salesOrder->id} 登録成功しました。");
-    }
-
-    private function getPaymentTerms(): array
-    {
-        return [
-            'billingTypes' => BillingType::toArray(),
-            'cutoffDays'   => CutoffDay::toArray(),
-            'monthOffsets' => PaymentMonthOffset::toArray(),
-            'paymentDay'   => PaymentDay::toArray(),
-            'dayOffsets'   => PaymentDayOffset::toArray(),
-        ];
     }
 }
