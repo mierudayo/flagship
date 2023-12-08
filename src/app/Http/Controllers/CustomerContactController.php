@@ -64,13 +64,20 @@ class CustomerContactController extends Controller
             'created_by_id'     => auth()->user()->id,
         ]);
 
-        return to_route('contacts.index')->with('message', "ID:{$contact->id} 連絡先を追加しました。");
+        return to_route('contacts.index')
+            ->with('message', "ID:{$contact->id} 連絡先を追加しました。");
     }
 
     public function edit(CustomerContact $contact): Response
     {
+        $contact->load([
+            'customer',
+            'createdBy',
+            'updatedBy'
+        ]);
+
         return Inertia::render('CustomerContact/Edit', [
-            'contact'   => $contact->load(['customer', 'createdBy', 'updatedBy']),
+            'contact'     => $contact,
             'userOptions' => User::active()->get(),
         ]);
     }
@@ -92,7 +99,8 @@ class CustomerContactController extends Controller
             'updated_by_id'     => auth()->user()->id,
         ]);
 
-        return to_route('contacts.index')->with('message', "ID:{$contact->id} 連絡先を更新しました。");
+        return to_route('contacts.index')
+            ->with('message', "ID:{$contact->id} 連絡先を更新しました。");
     }
 
     public function destroy(CustomerContact $contact): RedirectResponse

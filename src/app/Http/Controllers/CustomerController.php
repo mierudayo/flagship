@@ -70,8 +70,8 @@ class CustomerController extends Controller
         ]);
 
         return Inertia::render('Customer/Show', [
-            'customer'              => $customer,
-            'userOptions'           => User::active()->get(),
+            'customer'      => $customer,
+            'userOptions'   => User::active()->get(),
         ]);
     }
 

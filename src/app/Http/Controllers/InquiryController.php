@@ -82,8 +82,14 @@ class InquiryController extends Controller
 
     public function edit(Inquiry $inquiry): Response
     {
+        $inquiry->load([
+            'customerContact.customer',
+            'createdBy',
+            'updatedBy'
+        ]);
+
         return Inertia::render('Inquiry/Edit', [
-            'inquiry'               => $inquiry->load(['customerContact.customer', 'createdBy', 'updatedBy']),
+            'inquiry'               => $inquiry,
             'productOption'         => Product::all(),
             'inquiryTypeOption'     => InquiryType::all(),
             'inChargeUserOption'    => User::active()->get(),
@@ -118,8 +124,6 @@ class InquiryController extends Controller
 
     public function destroy(Inquiry $inquiry): RedirectResponse
     {
-        // TODO: 子リソース追加後、存在チェック処理追加
-
         $inquiry->delete();
         return to_route('inquiries.index');
     }
