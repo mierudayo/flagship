@@ -15,14 +15,12 @@ class BillingAddressController extends Controller
 
         $billingAddresses = BillingAddress::query()
             ->searchByKeyword($keyword)
-            ->latest();
-
-        $billingAddressPaginator = $billingAddresses
+            ->latest()
             ->paginate(50)
             ->withQueryString();
 
         return Inertia::render('BillingAddress/Index', [
-            'billingAddressPaginator' => $billingAddressPaginator,
+            'billingAddresses' => $billingAddresses,
         ]);
     }
 }

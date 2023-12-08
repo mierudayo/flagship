@@ -5,7 +5,7 @@ import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import BillingAddressTable from './Partials/BillingAddressTable';
 
 
-const Index = ({ billingAddressPaginator }) => {
+const Index = ({ billingAddresses }) => {
   const params = route().params;
   const { flash } = usePage().props;
 
@@ -40,14 +40,14 @@ const Index = ({ billingAddressPaginator }) => {
         />
 
         <div className="record-count">
-          {billingAddressPaginator.total}件
+          {billingAddresses.total}件
         </div>
-        <Pagination paginator={billingAddressPaginator} />
+        <Pagination paginator={billingAddresses} />
       </div>
       {flash.message && (
         <div className="alert alert-success">{flash.message}</div>
       )}
-      <BillingAddressTable billingAddresses={billingAddressPaginator.data} />
+      <BillingAddressTable billingAddresses={billingAddresses.data} />
     </>
   );
 }
