@@ -25,7 +25,7 @@ const Index = ({ purchaseOrders }) => {
 
       <div className="content-navbar">
         <Link
-          // href={route('purchase-orders.create')}
+          href={route('purchase-orders.create')}
           className="btn btn-primary u-mr-3"
         >
           新規登録

@@ -146,6 +146,9 @@ return [
         'sales_order_details.*' => [
             'required' => '必須項目です',
         ],
+        'purchase_order_details.*' => [
+            'required' => '必須項目です',
+        ],
     ],
 
     /*
