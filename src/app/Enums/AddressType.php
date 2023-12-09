@@ -5,7 +5,7 @@ namespace App\Enums;
 use App\Enums\Traits\WithLabel;
 use App\Enums\Traits\WithValueArray;
 
-enum DeliveryAddressType: int
+enum AddressType: int
 {
     use WithLabel, WithValueArray;
 

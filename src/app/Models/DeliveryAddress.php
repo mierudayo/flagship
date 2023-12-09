@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\DeliveryAddressType;
+use App\Enums\AddressType;
 use App\Services\AddressService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -42,7 +42,7 @@ class DeliveryAddress extends Model
     */
     protected function getAddressTypeLabelAttribute(): string
     {
-        return DeliveryAddressType::getLabelFromValue($this->address_type);
+        return AddressType::getLabelFromValue($this->address_type);
     }
 
     public function setAddressAttribute(?string $value): void

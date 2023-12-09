@@ -9,7 +9,7 @@ import OptionsList from '@/Components/OptionsList';
 import Textarea from '@/Components/Form/Textarea';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
-const Create = ({ userOptions, paymentTerms, deliveryAddressTypes }) => {
+const Create = ({ userOptions, paymentTerms, addressTypes }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     name: '',
     name_kana: '',
@@ -629,7 +629,7 @@ const Create = ({ userOptions, paymentTerms, deliveryAddressTypes }) => {
                         onChange={e => updateDeliveryAddress(index, 'address_type', e.target.value)}
                         className={`form-select ${errors[`contacts.${index}.address_type`] ? 'is-invalid' : ''}`}
                       >
-                        <OptionsList options={deliveryAddressTypes} />
+                        <OptionsList options={addressTypes} />
                       </select>
                       <InvalidFeedback errors={errors} name={`contacts.${index}.address_type`} />
                     </td>

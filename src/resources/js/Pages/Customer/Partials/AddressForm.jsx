@@ -5,7 +5,7 @@ import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import RadioGroup from '@/Components/Form/RadioGroup';
 import Textarea from '@/Components/Form/Textarea';
 
-export default function AddressForm({ customer, deliveryAddressTypes, closeModal }) {
+export default function AddressForm({ customer, addressTypes, closeModal }) {
   const { data, setData, post, processing, errors, reset } = useForm({
     address_type: 1,
     postal_code: '',
@@ -40,7 +40,7 @@ export default function AddressForm({ customer, deliveryAddressTypes, closeModal
                   <div className="u-flex">
                     <RadioGroup
                       id="address_type"
-                      options={deliveryAddressTypes}
+                      options={addressTypes}
                       value={data.address_type}
                       onChange={e => setData('address_type', parseInt(e.target.value))}
                       error={errors.address_type}
