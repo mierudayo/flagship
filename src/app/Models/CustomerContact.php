@@ -18,6 +18,7 @@ class CustomerContact extends Model
 
     protected $fillable = [
         'customer_id',
+        'lead_source_id',
         'name',
         'name_kana',
         'tel',
@@ -46,6 +47,11 @@ class CustomerContact extends Model
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function leadSource(): BelongsTo
+    {
+        return $this->belongsTo(LeadSource::class);
     }
 
     public function inChargeUser(): BelongsTo

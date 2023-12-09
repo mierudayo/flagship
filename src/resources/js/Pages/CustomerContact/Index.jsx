@@ -30,6 +30,13 @@ const Index = ({ customerContacts }) => {
           新規登録
         </Link>
 
+        <Link
+          href={route('lead-sources.index')}
+          className="btn btn-secondary u-mr-3"
+        >
+          獲得元管理を開く
+        </Link>
+
         <KeywordSearchForm
           placeholder="名前, ヨミガナで検索"
           data={data}

@@ -8,6 +8,7 @@ use App\Http\Requests\CustomerUpdateRequest;
 use App\Models\Customer;
 use App\Models\CustomerContact;
 use App\Models\DeliveryAddress;
+use App\Models\LeadSource;
 use App\Models\PurchaseTerm;
 use App\Models\SalesTerm;
 use App\Models\User;
@@ -66,12 +67,14 @@ class CustomerController extends Controller
             'deliveryAddresses',
             'purchaseTerm',
             'salesTerm',
-            'contacts.salesActivities.inChargeUser'
+            'contacts.salesActivities.inChargeUser',
+            'contacts.leadSource',
         ]);
 
         return Inertia::render('Customer/Show', [
             'customer'      => $customer,
             'userOptions'   => User::active()->get(),
+            'leadSourceOptions' => LeadSource::all(),
         ]);
     }
 

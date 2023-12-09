@@ -24,6 +24,7 @@ class CustomerContactAddRequest extends FormRequest
         return [
             'name'              => ['required', 'string'],
             'name_kana'         => ['nullable', 'string', 'max:255'],
+            'lead_source_id'    => ['nullable', 'integer', 'exists:lead_sources,id'],
             'tel'               => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
             'mobile_number'     => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
             'email'             => ['nullable', 'string', 'max:255', 'email'],
@@ -44,6 +45,7 @@ class CustomerContactAddRequest extends FormRequest
     {
         return [
             'customer_id'       => '所属取引先',
+            'lead_source_id'    => '獲得元',
             'name'              => '担当者名',
             'name_kana'         => 'よみがな',
             'tel'               => 'TEL',

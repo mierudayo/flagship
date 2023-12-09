@@ -4,6 +4,7 @@
   - [permissions 権限](#permissions-権限)
   - [users ユーザー](#users-ユーザー)
   - [customers 取引先](#customers-取引先)
+  - [lead\_sources リード獲得元](#lead_sources-リード獲得元)
   - [customer\_contacts 連絡先](#customer_contacts-連絡先)
   - [delivery\_addresses 出荷元/納品先住所](#delivery_addresses-出荷元納品先住所)
   - [sales\_terms 取引条件(販売)](#sales_terms-取引条件販売)
@@ -76,6 +77,16 @@
 | created_at       | 作成日時         | timestamp          |        |
 | updated_at       | 更新日時         | timestamp          |        |
 
+## lead_sources リード獲得元
+
+| カラム          | 名称    | 型 | 説明 |
+|---------------|--------------|---------------|--------|
+| id 　　　　     | ID     | bigIncrements | PK |
+| name          | 名称    | string | |
+| display_order | 表示順   | integer | |
+| created_at    | 作成日時 | timestamp | |
+| updated_at    | 更新日時 | timestamp | |
+
 ## customer_contacts 連絡先
 
 取引先に所属する連絡先（担当者）を管理する。連絡先は必ず取引先に所属するため、個人顧客の場合は同一の内容で取引先を作成すること。
@@ -84,6 +95,7 @@
 |-------------------|----------------|--------------------|--------|
 | id                | ID             | bigIncrements      | PK     |
 | customer_id       | 取引先ID       | unsignedBigInteger | FK     |
+| lead_source_id    | 獲得元ID       | unsignedBigInteger | FK     |
 | name              | 連絡先名       | string             |        |
 | name_kana         | ヨミガナ       | string             |        |
 | tel               | TEL            | string             |        |

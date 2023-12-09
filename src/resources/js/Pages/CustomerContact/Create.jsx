@@ -13,12 +13,13 @@ import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
-const Create = ({ userOptions }) => {
+const Create = ({ userOptions, leadSourceOptions }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customerName, setCustomerName] = useState('');
 
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     customer_id: '',
+    lead_source_id: '',
     name: '',
     name_kana: '',
     tel: '',
@@ -269,6 +270,25 @@ const Create = ({ userOptions }) => {
                     placeholder="担当ユーザーを選択..."
                   />
                   <InvalidFeedback errors={errors} name="in_charge_user_id" />
+                </td>
+              </tr>
+
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
+                  <FormLabel label="獲得元" isRequired={false} />
+                </th>
+                <td className="td-cell">
+                  <CustomSelect
+                    onChange={value => setData('lead_source_id', value)}
+                    options={leadSourceOptions}
+                    value={data.lead_source_id}
+                    valueKey="id"
+                    labelKey="name"
+                    isClearable={true}
+                    isSearchable={true}
+                    placeholder="獲得元を選択..."
+                  />
+                  <InvalidFeedback errors={errors} name="lead_source_id" />
                 </td>
               </tr>
             </tbody>

@@ -23,6 +23,7 @@ class CustomerContactUpdateRequest extends FormRequest
     {
         return [
             'customer_id'       => ['required', 'integer', 'exists:customers,id'],
+            'lead_source_id'    => ['nullable', 'integer', 'exists:lead_sources,id'],
             'name'              => ['required', 'string'],
             'name_kana'         => ['nullable', 'string', 'max:255'],
             'tel'               => ['nullable', 'string', 'max:20', 'regex:/^[\d\-+\s]+$/'],
@@ -45,6 +46,7 @@ class CustomerContactUpdateRequest extends FormRequest
     {
         return [
             'customer_id'       => '所属取引先',
+            'lead_source_id'    => '獲得元',
             'name'              => '担当者名',
             'name_kana'         => 'よみがな',
             'tel'               => 'TEL',

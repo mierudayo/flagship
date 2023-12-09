@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
                 RegionSeeder::class,
                 PrefectureSeeder::class,
                 CustomerSeeder::class,
+                LeadSourceSeeder::class,
                 CustomerContactSeeder::class,
                 BillingAddressSeeder::class,
                 DeliveryAddressSeeder::class,

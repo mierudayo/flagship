@@ -8,6 +8,7 @@ use App\Http\Requests\CustomerContactStoreRequest;
 use App\Http\Requests\CustomerContactUpdateRequest;
 use App\Models\Customer;
 use App\Models\CustomerContact;
+use App\Models\LeadSource;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -35,12 +36,19 @@ class CustomerContactController extends Controller
     {
         return Inertia::render('CustomerContact/Create', [
             'userOptions' => User::active()->get(),
+            'leadSourceOptions' => LeadSource::all(),
         ]);
     }
 
     public function show(CustomerContact $contact)
     {
-        $contact->load(['customer', 'inChargeUser', 'createdBy', 'updatedBy']);
+        $contact->load([
+            'customer',
+            'inChargeUser',
+            'createdBy',
+            'updatedBy',
+            'leadSource',
+        ]);
 
         return Inertia::render('CustomerContact/Show', [
             'contact' => $contact,
@@ -51,6 +59,7 @@ class CustomerContactController extends Controller
     {
         $contact = CustomerContact::create([
             'customer_id'       => $request->input('customer_id'),
+            'lead_source_id' => $request->input('lead_source_id'),
             'name'              => $request->input('name'),
             'name_kana'         => $request->input('name_kana'),
             'tel'               => $request->input('tel'),
@@ -79,6 +88,7 @@ class CustomerContactController extends Controller
         return Inertia::render('CustomerContact/Edit', [
             'contact'     => $contact,
             'userOptions' => User::active()->get(),
+            'leadSourceOptions' => LeadSource::all(),
         ]);
     }
 
@@ -86,6 +96,7 @@ class CustomerContactController extends Controller
     {
         $contact->update([
             'customer_id'       => $request->input('customer_id'),
+            'lead_source_id' => $request->input('lead_source_id'),
             'name'              => $request->input('name'),
             'name_kana'         => $request->input('name_kana'),
             'tel'               => $request->input('tel'),
@@ -119,6 +130,7 @@ class CustomerContactController extends Controller
     {
         $contact = CustomerContact::create([
             'customer_id'       => $customer->id,
+            'lead_source_id'    => $request->input('lead_source_id'),
             'name'              => $request->input('name'),
             'name_kana'         => $request->input('name_kana'),
             'tel'               => $request->input('tel'),

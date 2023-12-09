@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\InquiryTypeController;
 use App\Http\Controllers\DeliveryAddressController;
+use App\Http\Controllers\LeadSourceController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductCategoryGroupController;
 use App\Http\Controllers\ProductController;
@@ -53,6 +54,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('contacts/{contact}', [CustomerContactController::class, 'update'])->name('contacts.update');
     Route::delete('contacts/{contact}', [CustomerContactController::class, 'destroy'])->name('contacts.destroy');
     Route::post('customers/{customer}/contacts', [CustomerContactController::class, 'addContactToCustomer'])->name('customers.contacts.add');
+
+    // LeadSource
+    Route::get('lead-sources', [LeadSourceController::class, 'index'])->name('lead-sources.index');
+    Route::post('lead-sources', [LeadSourceController::class, 'store'])->name('lead-sources.store');
 
     // BillingAddress
     Route::get('billing-addresses', [BillingAddressController::class, 'index'])

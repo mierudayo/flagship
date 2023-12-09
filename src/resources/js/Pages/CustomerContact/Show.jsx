@@ -20,6 +20,7 @@ const Show = ({ contact }) => {
     created_by,
     updated_by,
     customer,
+    lead_source,
   } = contact;
 
   return (
@@ -41,7 +42,7 @@ const Show = ({ contact }) => {
       </div>
 
       <div className="content-section">
-        
+
         <div className="content-section-title">
           基本情報
         </div>
@@ -107,6 +108,11 @@ const Show = ({ contact }) => {
               <tr className="table-row">
                 <th className="th-cell">担当ユーザー</th>
                 <td className="td-cell">{in_charge_user?.name}</td>
+              </tr>
+
+              <tr className="table-row">
+                <th className="th-cell">獲得元</th>
+                <td className="td-cell">{lead_source?.name}</td>
               </tr>
 
             </tbody>

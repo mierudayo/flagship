@@ -6,7 +6,7 @@ import ContactForm from './Partials/ContactForm';
 import AddressForm from './Partials/AddressForm';
 import SalesActivityForm from "./Partials/SalesActivityForm";
 
-const Show = ({ customer, userOptions, deliveryAddressTypes }) => {
+const Show = ({ customer, userOptions, deliveryAddressTypes, leadSourceOptions }) => {
   const { flash } = usePage().props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
@@ -66,7 +66,12 @@ const Show = ({ customer, userOptions, deliveryAddressTypes }) => {
 
       {isModalOpen &&
         <Modal closeModal={() => setIsModalOpen(false)} title="連絡先登録">
-          <ContactForm customer={customer} userOptions={userOptions} closeModal={() => setIsModalOpen(false)} />
+          <ContactForm
+            customer={customer}
+            userOptions={userOptions}
+            leadSourceOptions={leadSourceOptions}
+            closeModal={() => setIsModalOpen(false)}
+          />
         </Modal>}
 
       {isAddressModalOpen &&
@@ -189,6 +194,7 @@ const Show = ({ customer, userOptions, deliveryAddressTypes }) => {
                 <th className="th-cell">使用状況</th>
                 <th className="th-cell">備考</th>
                 <th className="th-cell">担当ユーザー</th>
+                <th className="th-cell">獲得元</th>
               </tr>
             </thead>
             <tbody className="table-body">
@@ -205,6 +211,7 @@ const Show = ({ customer, userOptions, deliveryAddressTypes }) => {
                   <td className="td-cell">{contact.is_active_label}</td>
                   <td className="td-cell">{contact.note}</td>
                   <td className="td-cell">{contact.in_charge_user?.name}</td>
+                  <td className="td-cell">{contact.lead_source?.name}</td>
                 </tr>
               ))}
             </tbody>
