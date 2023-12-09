@@ -1,5 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
+import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 
 const Show = ({ contact }) => {
@@ -25,15 +26,13 @@ const Show = ({ contact }) => {
         </Link>
       </div>
 
+      <Alert type="success" message={flash.message} />
+
       <div className="content-section">
 
         <div className="content-section-title">
           基本情報
         </div>
-
-        {flash.message && (
-          <div className="alert alert-success">{flash.message}</div>
-        )}
 
         <div className="table-wrapper">
           <table className="table">

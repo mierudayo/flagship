@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
+import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import Modal from '@/Components/Modal';
 import ContactForm from './Partials/ContactForm';
@@ -68,15 +69,13 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
           <SalesActivityForm customer={customer} userOptions={userOptions} closeModal={() => setIsSalesActivityModalOpen(false)} />
         </Modal>}
 
+      <Alert type="success" message={flash.message} />
+
       <div className="content-section">
 
         <div className="content-section-title">
           基本情報
         </div>
-
-        {flash.message && (
-          <div className="alert alert-success">{flash.message}</div>
-        )}
 
         <div className="table-wrapper">
           <table className="table">

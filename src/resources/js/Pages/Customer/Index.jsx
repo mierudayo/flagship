@@ -1,5 +1,6 @@
 import { Link, useForm, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
+import Alert from '@/Components/Alert';
 import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import CustomerTable from './Partials/CustomerTable';
@@ -50,9 +51,9 @@ const Index = ({ customers }) => {
         </div>
         <Pagination paginator={customers} />
       </div>
-      {flash.message && (
-        <div className="alert alert-success">{flash.message}</div>
-      )}
+
+      <Alert type="success" message={flash.message} />
+
       <CustomerTable customers={customers.data} />
     </>
   );

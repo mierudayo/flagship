@@ -1,5 +1,6 @@
 import { usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
+import Alert from '@/Components/Alert';
 import LeadSourceCreateForm from './Partials/LeadSourceCreateForm';
 import LeadSourceTable from './Partials/LeadSourceTable';
 
@@ -12,9 +13,7 @@ const Index = ({ leadSources }) => {
 
       <LeadSourceCreateForm />
 
-      {flash.message && (
-        <div className="alert alert-success">{flash.message}</div>
-      )}
+      <Alert type="success" message={flash.message} />
 
       <LeadSourceTable leadSources={leadSources} />
 

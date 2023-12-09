@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useForm, usePage } from "@inertiajs/react";
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AppLayout from '@/Layouts/AppLayout';
+import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import CancelButton from '@/Components/CancelButton';
 import FormLabel from '@/Components/Form/FormLabel';
@@ -82,9 +83,7 @@ const Edit = ({ contact, userOptions, leadSourceOptions }) => {
         </Link>
       </div>
 
-      {flash.message && (
-        <div className="alert alert-danger">{flash.message}</div>
-      )}
+      <Alert type="danger" message={flash.message} />
 
       <FormErrorAlert errors={errors} />
 

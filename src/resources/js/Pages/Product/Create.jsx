@@ -1,5 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
+import Alert from '@/Components/Alert';
 import CategoryCreateForm from './Partials/CategoryCreateForm';
 import CategoryGroupCreateForm from './Partials/CategoryGroupCreateForm';
 import ProductCreateForm from './Partials/ProductCreateForm';
@@ -18,9 +19,8 @@ const Create = ({ groupOptions, categoryOptions }) => {
           キャンセル
         </Link>
       </div>
-      {flash.message && (
-        <div className="alert alert-success">{flash.message}</div>
-      )}
+
+      <Alert type="success" message={flash.message} />
 
       <CategoryGroupCreateForm />
       <CategoryCreateForm groupOptions={groupOptions} />

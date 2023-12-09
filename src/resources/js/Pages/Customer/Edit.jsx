@@ -1,5 +1,6 @@
 import { Link, useForm, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
+import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import CancelButton from '@/Components/CancelButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
@@ -141,9 +142,7 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
         </Link>
       </div>
 
-      {flash.message && (
-        <div className="alert alert-danger">{flash.message}</div>
-      )}
+      <Alert type="danger" message={flash.message} />
 
       <FormErrorAlert errors={errors} />
 
