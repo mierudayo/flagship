@@ -18,11 +18,11 @@ enum CutoffDay: int
     public function getLabel(): string
     {
         return match($this) {
-            self::Day10      => '10日締め',
-            self::Day15      => '15日締め',
-            self::Day20      => '20日締め',
-            self::Day25      => '25日締め',
-            self::EndMonth   => '月末締め',
+            self::Day10      => '10日',
+            self::Day15      => '15日',
+            self::Day20      => '20日',
+            self::Day25      => '25日',
+            self::EndMonth   => '月末',
         };
     }
 }

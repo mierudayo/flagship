@@ -17,8 +17,8 @@ enum PaymentDayOffset: int
     {
         return match($this) {
             self::Prepayment    => '前払い',
-            self::Within3Days   => '3営業日以内',
-            self::Within7Days   => '7営業日以内',
+            self::Within3Days   => '3営業日',
+            self::Within7Days   => '7営業日',
         };
     }
 }
