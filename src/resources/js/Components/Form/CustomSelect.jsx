@@ -11,8 +11,28 @@ export default function CustomSelect(props) {
     isClearable = true,
     isSearchable = true,
     valueKey = 'id',
-    labelKey = 'name'
+    labelKey = 'name',
+    error,
   } = props;
+
+  /** react-selectのスタイル適用方法 */
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      borderColor: state.isFocused && !error ? 'var(--color-focus)' : error ? 'var(--color-invalid-focus)' : provided.borderColor,
+      boxShadow: state.isFocused && !error ? 'var(--color-focus-shadow)' : error ? 'var(--color-invalid-focus-shadow)' : provided.boxShadow,
+      '&:hover': {
+        borderColor: state.isFocused && !error ? 'var(--color-focus)' : error ? 'var(--color-invalid-focus)' : provided.borderColor,
+        boxShadow: state.isFocused && !error ? 'var(--color-focus-shadow)' : error ? 'var(--color-invalid-focus-shadow)' : provided.boxShadow,
+      },
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? 'var(--color-focus)' : provided.backgroundColor,
+      color: state.isSelected ? 'white' : provided.color,
+    }),
+  };
+
 
   function handleChange(selectedOption) {
     onChange(selectedOption?.[valueKey] ?? null);
@@ -37,7 +57,10 @@ export default function CustomSelect(props) {
       placeholder={placeholder}
       noOptionsMessage={noOptionsMessage}
       menuPortalTarget={document.body}
-      styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
+      styles={{
+        ...customStyles,
+        menuPortal: base => ({ ...base, zIndex: 9999 })
+      }}
     />
   );
 }

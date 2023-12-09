@@ -1,8 +1,10 @@
-
 :root {
-  --red: #ff0000;
-  --sky-blue: #86b4ff;
-  --gray:#ccc;
+  --gray: #ccc;
+  --color-required: #ff0000;
+  --color-focus: #89c4f4;
+  --color-focus-shadow: 0 0 0 2px rgba(137, 196, 244, 0.5);
+  --color-invalid-focus: #ff0000;
+  --color-invalid-focus-shadow: 0 0 0 2px rgba(220, 53, 69, .25);
 }
 
 .input-group {
@@ -24,22 +26,26 @@
   font-family: inherit;
   letter-spacing: 1px;
   max-height: var(--max-height-partials);
-  padding: 8px;
+  padding: 4px 8px;
   width: 100%;
 
   &:focus {
-    border-color: var(--sky-blue);
-    box-shadow: 0 0 0 2px rgba(134, 180, 255, 0.5);
+    border-color: var(--color-focus);
+    box-shadow: var(--color-focus-shadow);
     outline: none;
   }
 
   &.is-invalid {
-    border: 1px solid var(--red);;
+    border: 1px solid var(--color-invalid-focus);
 
     &:focus {
-      box-shadow: 0 0 0 2px rgba(220, 53, 69, .25);
+      box-shadow: var(--color-invalid-focus-shadow);
     }
   }
+}
+
+.form-select {
+  height: var(--max-height-partials);
 }
 
 .input-field:read-only {
@@ -75,16 +81,16 @@
   resize: vertical;
 
   &:focus {
-    border-color: var(--sky-blue);
-    box-shadow: 0 0 0 2px rgba(134, 180, 255, 0.5);
+    border-color: var(--color-focus);
+    box-shadow: var(--color-focus-shadow);
     outline: none;
   }
 
   &.is-invalid {
-    border: 1px solid var(--red);
+    border: 1px solid var(--color-invalid-focus);
 
     &:focus {
-      box-shadow: 0 0 0 2px rgba(220, 53, 69, .25);
+      box-shadow: var(--color-invalid-focus-shadow);
     }
   }
 
@@ -102,7 +108,7 @@
 /* Validation
 -------------------------*/
 .invalid-feedback {
-  color: var(--red);
+  color: var(--color-invalid-focus);
   font-size: 0.875rem;
 }
 
@@ -116,10 +122,9 @@
   font-weight: bold;
 
   .required-mark {
-    color: var(--red);
+    color: var(--color-required);
     font-size: 1.1rem;
     font-weight: bold;
     margin-left: 8px;
   }
 }
-
