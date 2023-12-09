@@ -175,10 +175,10 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
                 <th className="th-cell">携帯</th>
                 <th className="th-cell">E-mail</th>
                 <th className="th-cell">役職</th>
-                <th className="th-cell">使用状況</th>
-                <th className="th-cell">備考</th>
-                <th className="th-cell">担当ユーザー</th>
-                <th className="th-cell">獲得元</th>
+                <th className="th-cell u-min-w-120">担当ユーザー</th>
+                <th className="th-cell u-min-w-120">獲得元</th>
+                <th className="th-cell u-min-w-112">使用状況</th>
+                <th className="th-cell u-w-120">備考</th>
               </tr>
             </thead>
             <tbody className="table-body">
@@ -188,14 +188,14 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
                   <td className="td-cell">{contact.role}</td>
                   <td className="td-cell u-min-w-160">{contact.name}</td>
                   <td className="td-cell">{contact.name_kana}</td>
-                  <td className="td-cell">{contact.tel}</td>
-                  <td className="td-cell">{contact.mobile_number}</td>
-                  <td className="td-cell">{contact.email}</td>
+                  <td className="td-cell u-min-w-160">{contact.tel}</td>
+                  <td className="td-cell u-min-w-160">{contact.mobile_number}</td>
+                  <td className="td-cell u-min-w-160">{contact.email}</td>
                   <td className="td-cell">{contact.position}</td>
-                  <td className="td-cell">{contact.is_active_label}</td>
-                  <td className="td-cell">{contact.note}</td>
                   <td className="td-cell">{contact.in_charge_user?.name}</td>
                   <td className="td-cell">{contact.lead_source?.name}</td>
+                  <td className="td-cell">{contact.is_active_label}</td>
+                  <td className="td-cell u-ellipsis u-max-w-320">{contact.note}</td>
                 </tr>
               ))}
             </tbody>
@@ -211,7 +211,7 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
           <table className="table">
             <thead className="table-header is-sticky">
               <tr className="table-row">
-                <th className="th-cell u-w-120 col-fixed">区分</th>
+                <th className="th-cell u-min-w-120 col-fixed">区分</th>
                 <th className="th-cell u-min-w-240">住所</th>
                 <th className="th-cell u-min-w-200">会社名</th>
                 <th className="th-cell u-min-w-160">担当者名</th>
@@ -229,7 +229,7 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
                   <td className="td-cell">{delivery.company_name}</td>
                   <td className="td-cell">{delivery.contact_name}</td>
                   <td className="td-cell">{delivery.tel}</td>
-                  <td className="td-cell">{delivery.note}</td>
+                  <td className="td-cell u-ellipsis u-max-w-320">{delivery.note}</td>
                 </tr>
               ))}
             </tbody>
