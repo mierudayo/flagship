@@ -7,7 +7,7 @@ export default function PaymentSelectGroup({ data, setData, errors, paymentTermO
     <div className="">
       <SelectInput
         name={billingTypeKey}
-        label="請求方法..."
+        label="..."
         value={billingType}
         onChange={e => setData(billingTypeKey, e.target.value)}
         error={errors[billingTypeKey]}

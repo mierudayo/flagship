@@ -262,9 +262,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <label htmlFor="billing_type" className="form-label">
-                    請求条件
-                  </label>
+                  <FormLabel htmlFor="billing_type" label="支払条件" isRequired={false} />
                 </th>
                 <td className="td-cell">
                   <select

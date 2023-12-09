@@ -275,9 +275,7 @@ const Create = ({ userOptions, paymentTermOptions, addressTypeOptions }) => {
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <label htmlFor="purchase_billing_type" className="form-label">
-                    支払条件
-                  </label>
+                  <FormLabel htmlFor="purchase_billing_type" label="支払条件" isRequired={false} />
                 </th>
                 <td className="td-cell">
                   <PaymentSelectGroup
@@ -296,9 +294,7 @@ const Create = ({ userOptions, paymentTermOptions, addressTypeOptions }) => {
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <label htmlFor="sales_billing_type" className="form-label">
-                    請求条件
-                  </label>
+                  <FormLabel htmlFor="sales_billing_type" label="請求条件" isRequired={false} />
                 </th>
                 <td className="td-cell">
                   <PaymentSelectGroup
