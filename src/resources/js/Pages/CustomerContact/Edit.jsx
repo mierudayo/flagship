@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useForm, usePage } from "@inertiajs/react";
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AppLayout from '@/Layouts/AppLayout';
+import ContentInfoBar from '@/Components/ContentInfoBar';
 import CancelButton from '@/Components/CancelButton';
 import FormLabel from '@/Components/Form/FormLabel';
 import RadioGroup from '@/Components/Form/RadioGroup';
@@ -51,12 +52,14 @@ const Edit = ({ contact, userOptions, leadSourceOptions }) => {
   return (
     <>
       <h1 className="content-title">連絡先 編集</h1>
-      <div className="content-info-bar">
-        <div>登録: {contact.created_at} ({contact.created_by.name})</div>
-        {contact.updated_by && (
-          <div>更新: {contact.updated_at} ({contact.updated_by.name})</div>
-        )}
-      </div>
+
+      <ContentInfoBar
+        createdAt={contact.created_at}
+        createdBy={contact.created_by.name}
+        updatedAt={contact.updated_at}
+        updatedBy={contact.updated_by?.name}
+      />
+
       <div className="content-navbar">
         <button
           type="submit"

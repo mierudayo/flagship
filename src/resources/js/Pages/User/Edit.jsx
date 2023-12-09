@@ -1,5 +1,6 @@
 import { useForm } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
+import ContentInfoBar from '@/Components/ContentInfoBar';
 import CancelButton from '@/Components/CancelButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import FormLabel from '@/Components/Form/FormLabel';
@@ -28,10 +29,12 @@ const Edit = ({ user, permissionOptions }) => {
   return (
     <>
       <h1 className="content-title">ユーザー 編集</h1>
-      <div className="content-info-bar">
-        <div>登録: {user.created_at}</div>
-        <div>更新: {user.updated_at}</div>
-      </div>
+
+      <ContentInfoBar
+        createdAt={user.created_at}
+        updatedAt={user.updated_at}
+      />
+
       <div className="content-navbar">
         <button
           type="submit"

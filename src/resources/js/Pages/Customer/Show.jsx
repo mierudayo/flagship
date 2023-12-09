@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
+import ContentInfoBar from '@/Components/ContentInfoBar';
 import Modal from '@/Components/Modal';
 import ContactForm from './Partials/ContactForm';
 import AddressForm from './Partials/AddressForm';
@@ -15,12 +16,14 @@ const Show = ({ customer, userOptions, deliveryAddressTypes, leadSourceOptions }
   return (
     <>
       <h1 className="content-title">取引先 詳細</h1>
-      <div className="content-info-bar">
-        <div>登録: {customer.created_at} ({customer.created_by.name})</div>
-        {customer.updated_by && (
-          <div>更新: {customer.updated_at} ({customer.updated_by.name})</div>
-        )}
-      </div>
+
+      <ContentInfoBar
+        createdAt={customer.created_at}
+        createdBy={customer.created_by.name}
+        updatedAt={customer.updated_at}
+        updatedBy={customer.updated_by?.name}
+      />
+
       <div className="content-navbar">
         <Link
           href={route('customers.edit', customer)}

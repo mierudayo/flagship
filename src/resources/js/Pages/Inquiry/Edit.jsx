@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useForm } from '@inertiajs/react';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AppLayout from '@/Layouts/AppLayout';
+import ContentInfoBar from '@/Components/ContentInfoBar';
 import CancelButton from '@/Components/CancelButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import DateInput from '@/Components/Form/DateInput';
@@ -58,12 +59,14 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
   return (
     <>
       <h1 className="content-title">問い合わせ 編集</h1>
-      <div className="content-info-bar">
-        <div>登録: {inquiry.created_at} ({inquiry.created_by.name})</div>
-        {inquiry.updated_by && (
-          <div>更新: {inquiry.updated_at} ({inquiry.updated_by.name})</div>
-        )}
-      </div>
+
+      <ContentInfoBar
+        createdAt={inquiry.created_at}
+        createdBy={inquiry.created_by.name}
+        updatedAt={inquiry.updated_at}
+        updatedBy={inquiry.updated_by?.name}
+      />
+
       <div className="content-navbar">
         <button
           type="submit"

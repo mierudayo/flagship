@@ -1,18 +1,21 @@
 import { Link, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
+import ContentInfoBar from '@/Components/ContentInfoBar';
 
 const Show = ({ contact }) => {
   const { flash } = usePage().props;
- 
+
   return (
     <>
       <h1 className="content-title">連絡先 詳細</h1>
-      <div className="content-info-bar">
-        <div>登録: {contact.created_at} ({contact.created_by.name})</div>
-        {contact.updated_by && (
-          <div>更新: {contact.updated_at} ({contact.updated_by.name})</div>
-        )}
-      </div>
+
+      <ContentInfoBar
+        createdAt={contact.created_at}
+        createdBy={contact.created_by.name}
+        updatedAt={contact.updated_at}
+        updatedBy={contact.updated_by?.name}
+      />
+
       <div className="content-navbar">
         <Link
           href={route('contacts.edit', contact)}

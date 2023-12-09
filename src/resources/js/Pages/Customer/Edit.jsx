@@ -1,5 +1,6 @@
 import { Link, useForm, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
+import ContentInfoBar from '@/Components/ContentInfoBar';
 import CancelButton from '@/Components/CancelButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import FormLabel from '@/Components/Form/FormLabel';
@@ -109,12 +110,14 @@ const Edit = ({ customer, userOptions, paymentTerms, deliveryAddressTypes }) => 
   return (
     <>
       <h1 className="content-title">取引先 編集</h1>
-      <div className="content-info-bar">
-        <div>登録: {customer.created_at} ({customer.created_by.name})</div>
-        {customer.updated_by && (
-          <div>更新: {customer.updated_at} ({customer.updated_by.name})</div>
-        )}
-      </div>
+
+      <ContentInfoBar
+        createdAt={customer.created_at}
+        createdBy={customer.created_by.name}
+        updatedAt={customer.updated_at}
+        updatedBy={customer.updated_by?.name}
+      />
+
       <div className="content-navbar">
         <button
           type="submit"
