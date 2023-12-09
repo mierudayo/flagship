@@ -11,33 +11,14 @@ const Show = ({ customer, userOptions, deliveryAddressTypes, leadSourceOptions }
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
   const [isSalesActivityModalOpen, setIsSalesActivityModalOpen] = useState(false);
-  const {
-    name,
-    name_kana,
-    shortcut,
-    postal_code,
-    address,
-    tel,
-    fax,
-    note,
-    created_at,
-    updated_at,
-    in_charge_user,
-    contacts,
-    created_by,
-    updated_by,
-    delivery_addresses,
-    purchase_term,
-    sales_term,
-  } = customer;
 
   return (
     <>
       <h1 className="content-title">取引先 詳細</h1>
       <div className="content-info-bar">
-        <div>登録: {created_at} ({created_by.name})</div>
-        {updated_by && (
-          <div>更新: {updated_at} ({updated_by.name})</div>
+        <div>登録: {customer.created_at} ({customer.created_by.name})</div>
+        {customer.updated_by && (
+          <div>更新: {customer.updated_at} ({customer.updated_by.name})</div>
         )}
       </div>
       <div className="content-navbar">
@@ -100,55 +81,55 @@ const Show = ({ customer, userOptions, deliveryAddressTypes, leadSourceOptions }
 
               <tr className="table-row">
                 <th className="th-cell u-w-200">取引先名</th>
-                <td className="td-cell">{name}</td>
+                <td className="td-cell">{customer.name}</td>
               </tr>
 
               <tr className="table-row">
                 <th className="th-cell">よみがな</th>
-                <td className="td-cell">{name_kana}</td>
+                <td className="td-cell">{customer.name_kana}</td>
               </tr>
 
               <tr className="table-row">
                 <th className="th-cell">ショートカット名</th>
-                <td className="td-cell">{shortcut}</td>
+                <td className="td-cell">{customer.shortcut}</td>
               </tr>
 
               <tr className="table-row">
                 <th className="th-cell">住所</th>
-                <td className="td-cell">{postal_code} {address}</td>
+                <td className="td-cell">{customer.postal_code} {customer.address}</td>
               </tr>
 
               <tr className="table-row">
                 <th className="th-cell">TEL</th>
-                <td className="td-cell">{tel}</td>
+                <td className="td-cell">{customer.tel}</td>
               </tr>
 
               <tr className="table-row">
                 <th className="th-cell">FAX</th>
-                <td className="td-cell">{fax}</td>
+                <td className="td-cell">{customer.fax}</td>
               </tr>
 
               <tr className="table-row">
                 <th className="th-cell">備考</th>
-                <td className="td-cell">{note}</td>
+                <td className="td-cell">{customer.note}</td>
               </tr>
 
               <tr className="table-row">
                 <th className="th-cell">担当ユーザー</th>
-                <td className="td-cell">{in_charge_user?.name}</td>
+                <td className="td-cell">{customer.in_charge_user?.name}</td>
               </tr>
 
               <tr className="table-row">
                 <th className="th-cell">支払条件</th>
                 <td className="td-cell">
-                  {purchase_term?.billing_type === 1 ? (
+                  {customer.purchase_term?.billing_type === 1 ? (
                     <>
-                      <span className="u-mr-3">{purchase_term?.cutoff_day_label}</span>
-                      <span>{purchase_term?.payment_month_offset_label}{purchase_term?.payment_day_label}払い</span>
+                      <span className="u-mr-3">{customer.purchase_term?.cutoff_day_label}</span>
+                      <span>{customer.purchase_term?.payment_month_offset_label}{customer.purchase_term?.payment_day_label}払い</span>
                     </>
                   ) : (
                     <>
-                      <span>{purchase_term?.payment_day_offset_label}</span>
+                      <span>{customer.purchase_term?.payment_day_offset_label}</span>
                     </>
                   )}
                 </td>
@@ -157,14 +138,14 @@ const Show = ({ customer, userOptions, deliveryAddressTypes, leadSourceOptions }
               <tr className="table-row">
                 <th className="th-cell">請求条件</th>
                 <td className="td-cell">
-                  {sales_term?.billing_type === 1 ? (
+                  {customer.sales_term?.billing_type === 1 ? (
                     <>
-                      <span className="u-mr-3">{sales_term?.cutoff_day_label}</span>
-                      <span>{sales_term?.payment_month_offset_label}{sales_term?.payment_day_label}払い</span>
+                      <span className="u-mr-3">{customer.sales_term?.cutoff_day_label}</span>
+                      <span>{customer.sales_term?.payment_month_offset_label}{customer.sales_term?.payment_day_label}払い</span>
                     </>
                   ) : (
                     <>
-                      <span>{sales_term?.payment_day_offset_label}</span>
+                      <span>{customer.sales_term?.payment_day_offset_label}</span>
                     </>
                   )}
                 </td>
@@ -198,7 +179,7 @@ const Show = ({ customer, userOptions, deliveryAddressTypes, leadSourceOptions }
               </tr>
             </thead>
             <tbody className="table-body">
-              {contacts.map(contact => (
+              {customer.contacts.map(contact => (
                 <tr key={contact.id} className="table-row is-hoverable">
                   <td className="td-cell col-fixed">{contact.id}</td>
                   <td className="td-cell">{contact.role}</td>
@@ -236,7 +217,7 @@ const Show = ({ customer, userOptions, deliveryAddressTypes, leadSourceOptions }
               </tr>
             </thead>
             <tbody className="table-body">
-              {delivery_addresses.map(delivery => (
+              {customer.delivery_addresses.map(delivery => (
                 <tr key={delivery.id} className="table-row is-hoverable">
                   <td className="td-cell col-fixed">
                     {delivery.address_type_label}
@@ -270,7 +251,7 @@ const Show = ({ customer, userOptions, deliveryAddressTypes, leadSourceOptions }
               </tr>
             </thead>
             <tbody className="table-body">
-              {contacts.map(contact => (
+              {customer.contacts.map(contact => (
                 contact.sales_activities.map(activity => (
                   <tr key={activity.id} className="table-row is-hoverable">
                     <td className="td-cell">{activity.contact_date}</td>
