@@ -14,7 +14,7 @@ import ContactLookup from '@/Components/ContactLookup';
 import Modal from '@/Components/Modal';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
-const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatus, inquiryLeadSources }) => {
+const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatusOptions, inquiryLeadSources }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [contactName, setContactName] = useState(inquiry.customer_contact.name);
   const [customerName, setCustomerName] = useState(inquiry.customer_contact.customer.name);
@@ -268,7 +268,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('status', value)}
-                    options={inquiryStatus}
+                    options={inquiryStatusOptions}
                     value={data.status}
                     valueKey="value"
                     labelKey="label"

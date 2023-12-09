@@ -7,7 +7,7 @@ import ContactForm from './Partials/ContactForm';
 import AddressForm from './Partials/AddressForm';
 import SalesActivityForm from "./Partials/SalesActivityForm";
 
-const Show = ({ customer, userOptions, addressTypes, leadSourceOptions }) => {
+const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) => {
   const { flash } = usePage().props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
@@ -60,7 +60,7 @@ const Show = ({ customer, userOptions, addressTypes, leadSourceOptions }) => {
 
       {isAddressModalOpen &&
         <Modal closeModal={() => setIsAddressModalOpen(false)} title="配送情報 登録">
-          <AddressForm customer={customer} addressTypes={addressTypes} closeModal={() => setIsAddressModalOpen(false)} />
+          <AddressForm customer={customer} addressTypeOptions={addressTypeOptions} closeModal={() => setIsAddressModalOpen(false)} />
         </Modal>}
 
       {isSalesActivityModalOpen &&

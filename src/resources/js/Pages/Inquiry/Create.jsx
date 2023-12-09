@@ -13,7 +13,7 @@ import ContactLookup from '@/Components/ContactLookup';
 import Modal from '@/Components/Modal';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
-const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatus, inquiryLeadSources }) => {
+const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatusOptions, inquiryLeadSources }) => {
   const { today } = usePage().props.date;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [contactName, setContactName] = useState('');
@@ -251,7 +251,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                 <td className="td-cell">
                   <CustomSelect
                     onChange={value => setData('status', value)}
-                    options={inquiryStatus}
+                    options={inquiryStatusOptions}
                     value={data.status}
                     valueKey="value"
                     labelKey="label"

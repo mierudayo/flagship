@@ -55,15 +55,15 @@ class HandleInertiaRequests extends Middleware
             'date' => [
                 'today' => Carbon::today()->format('Y-m-d'),
             ],
-            'paymentTerms' => [
+            'paymentTermOptions' => [
                 'billingTypes' => BillingType::toArray(),
                 'cutoffDays'   => CutoffDay::toArray(),
                 'monthOffsets' => PaymentMonthOffset::toArray(),
                 'paymentDay'   => PaymentDay::toArray(),
                 'dayOffsets'   => PaymentDayOffset::toArray(),
             ],
-            'addressTypes'  => AddressType::toArray(),
-            'inquiryStatus'         => InquiryStatus::toArray(),
+            'addressTypeOptions'    => AddressType::toArray(),
+            'inquiryStatusOptions'  => InquiryStatus::toArray(),
         ]);
     }
 }

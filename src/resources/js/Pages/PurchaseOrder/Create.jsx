@@ -14,7 +14,7 @@ import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 
-const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTerms }) => {
+const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTermOptions }) => {
   const { today } = usePage().props.date;
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
   const [customerContacts, setCustomerContacts] = useState([]);
@@ -271,7 +271,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     className={`form-select u-w-128 u-mr-3 ${errors.billing_type ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 請求方法 --</option>
-                    <OptionsList options={paymentTerms.billingTypes} />
+                    <OptionsList options={paymentTermOptions.billingTypes} />
                   </select>
                   <InvalidFeedback errors={errors} name="billing_type" />
                   {data.billing_type == 1 && (
@@ -284,7 +284,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         className={`form-select u-w-128 ${errors.cutoff_day ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 締め日 --</option>
-                        <OptionsList options={paymentTerms.cutoffDays} />
+                        <OptionsList options={paymentTermOptions.cutoffDays} />
                       </select>
                       <InvalidFeedback errors={errors} name="cutoffDays" />
                       <select
@@ -295,7 +295,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         className={`form-select u-w-128 ${errors.payment_month_offset ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 支払月 --</option>
-                        <OptionsList options={paymentTerms.monthOffsets} />
+                        <OptionsList options={paymentTermOptions.monthOffsets} />
                       </select>
                       <InvalidFeedback errors={errors} name="payment_month_offset" />
                       <select
@@ -306,7 +306,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         className={`form-select u-w-128 ${errors.payment_day ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 支払日 --</option>
-                        <OptionsList options={paymentTerms.paymentDay} />
+                        <OptionsList options={paymentTermOptions.paymentDay} />
                       </select>
                       <InvalidFeedback errors={errors} name="payment_day" />
                     </>
@@ -321,7 +321,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         className={`form-select u-w-128 ${errors.payment_day_offset ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 期限 --</option>
-                        <OptionsList options={paymentTerms} />
+                        <OptionsList options={paymentTermOptions} />
                       </select>
                       <InvalidFeedback errors={errors} name="payment_day_offset" />
                     </>

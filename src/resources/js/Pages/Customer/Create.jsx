@@ -9,7 +9,7 @@ import OptionsList from '@/Components/OptionsList';
 import Textarea from '@/Components/Form/Textarea';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
-const Create = ({ userOptions, paymentTerms, addressTypes }) => {
+const Create = ({ userOptions, paymentTermOptions, addressTypeOptions }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     name: '',
     name_kana: '',
@@ -286,7 +286,7 @@ const Create = ({ userOptions, paymentTerms, addressTypes }) => {
                     className={`form-select u-w-128 u-mr-3 ${errors.purchase_billing_type ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 請求方法 --</option>
-                    <OptionsList options={paymentTerms.billingTypes} />
+                    <OptionsList options={paymentTermOptions.billingTypes} />
                   </select>
                   {data.purchase_billing_type == 1 && (
                     <>
@@ -298,7 +298,7 @@ const Create = ({ userOptions, paymentTerms, addressTypes }) => {
                         className={`form-select u-w-128 ${errors.purchase_cutoff_day ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 締め日 --</option>
-                        <OptionsList options={paymentTerms.cutoffDays} />
+                        <OptionsList options={paymentTermOptions.cutoffDays} />
                       </select>
                       <select
                         name="purchase_payment_month_offset"
@@ -308,7 +308,7 @@ const Create = ({ userOptions, paymentTerms, addressTypes }) => {
                         className={`form-select u-w-128 ${errors.purchase_payment_month_offset ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 支払月 --</option>
-                        <OptionsList options={paymentTerms.monthOffsets} />
+                        <OptionsList options={paymentTermOptions.monthOffsets} />
                       </select>
                       <select
                         name="purchase_payment_day"
@@ -318,7 +318,7 @@ const Create = ({ userOptions, paymentTerms, addressTypes }) => {
                         className={`form-select u-w-128 ${errors.purchase_payment_day ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 支払日 --</option>
-                        <OptionsList options={paymentTerms.paymentDay} />
+                        <OptionsList options={paymentTermOptions.paymentDay} />
                       </select>
                     </>
                   )}
@@ -332,7 +332,7 @@ const Create = ({ userOptions, paymentTerms, addressTypes }) => {
                         className={`form-select u-w-128 ${errors.purchase_payment_day_offset ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 期限 --</option>
-                        <OptionsList options={paymentTerms.dayOffsets} />
+                        <OptionsList options={paymentTermOptions.dayOffsets} />
                       </select>
                     </>
                   )}
@@ -354,7 +354,7 @@ const Create = ({ userOptions, paymentTerms, addressTypes }) => {
                     className={`form-select u-w-128 u-mr-3 ${errors.sales_billing_type ? 'is-invalid' : ''}`}
                   >
                     <option value="">-- 請求方法 --</option>
-                    <OptionsList options={paymentTerms.billingTypes} />
+                    <OptionsList options={paymentTermOptions.billingTypes} />
                   </select>
                   {data.sales_billing_type == 1 && (
                     <>
@@ -366,7 +366,7 @@ const Create = ({ userOptions, paymentTerms, addressTypes }) => {
                         className={`form-select u-w-128 ${errors.sales_cutoff_day ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 締め日 --</option>
-                        <OptionsList options={paymentTerms.cutoffDays} />
+                        <OptionsList options={paymentTermOptions.cutoffDays} />
                       </select>
                       <select
                         name="sales_payment_month_offset"
@@ -376,7 +376,7 @@ const Create = ({ userOptions, paymentTerms, addressTypes }) => {
                         className={`form-select u-w-128 ${errors.sales_payment_month_offset ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 支払月 --</option>
-                        <OptionsList options={paymentTerms.monthOffsets} />
+                        <OptionsList options={paymentTermOptions.monthOffsets} />
                       </select>
                       <select
                         name="sales_payment_day"
@@ -386,7 +386,7 @@ const Create = ({ userOptions, paymentTerms, addressTypes }) => {
                         className={`form-select u-w-128 ${errors.sales_payment_day ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 支払日 --</option>
-                        <OptionsList options={paymentTerms.paymentDay} />
+                        <OptionsList options={paymentTermOptions.paymentDay} />
                       </select>
                     </>
                   )}
@@ -400,7 +400,7 @@ const Create = ({ userOptions, paymentTerms, addressTypes }) => {
                         className={`form-select u-w-128 ${errors.sales_payment_day_offset ? 'is-invalid' : ''}`}
                       >
                         <option value="">-- 期限 --</option>
-                        <OptionsList options={paymentTerms.dayOffsets} />
+                        <OptionsList options={paymentTermOptions.dayOffsets} />
                       </select>
                     </>
                   )}
@@ -629,7 +629,7 @@ const Create = ({ userOptions, paymentTerms, addressTypes }) => {
                         onChange={e => updateDeliveryAddress(index, 'address_type', e.target.value)}
                         className={`form-select ${errors[`contacts.${index}.address_type`] ? 'is-invalid' : ''}`}
                       >
-                        <OptionsList options={addressTypes} />
+                        <OptionsList options={addressTypeOptions} />
                       </select>
                       <InvalidFeedback errors={errors} name={`contacts.${index}.address_type`} />
                     </td>
