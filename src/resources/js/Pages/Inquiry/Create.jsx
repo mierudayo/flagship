@@ -13,7 +13,7 @@ import ContactLookup from '@/Components/ContactLookup';
 import Modal from '@/Components/Modal';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
-const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatusOptions, inquiryLeadSources }) => {
+const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatusOptions, contactMethodOptions }) => {
   const { today } = usePage().props.date;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [contactName, setContactName] = useState('');
@@ -28,7 +28,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
     product_id: '',
     product_detail: '',
     inquiry_type_id: '',
-    lead_source: '',
+    contact_method: '',
     project_scale: '',
     status: 1,
     subject: '',
@@ -210,20 +210,20 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="リード獲得元" isRequired={true} />
+                  <FormLabel label="問い合わせ由来" isRequired={true} />
                 </th>
                 <td className="td-cell">
                   <CustomSelect
-                    onChange={value => setData('lead_source', value)}
-                    options={inquiryLeadSources}
-                    value={data.lead_source}
+                    onChange={value => setData('contact_method', value)}
+                    options={contactMethodOptions}
+                    value={data.contact_method}
                     valueKey="value"
                     labelKey="label"
                     isClearable={true}
                     isSearchable={true}
-                    placeholder="リード獲得元を選択..."
+                    placeholder="問い合わせ由来を選択..."
                   />
-                  <InvalidFeedback errors={errors} name="lead_source" />
+                  <InvalidFeedback errors={errors} name="contact_method" />
                 </td>
               </tr>
 

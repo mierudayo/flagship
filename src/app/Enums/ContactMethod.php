@@ -5,7 +5,7 @@ namespace App\Enums;
 use App\Enums\Traits\WithLabel;
 use App\Enums\Traits\WithValueArray;
 
-enum InquiryLeadSource: int
+enum ContactMethod: int
 {
     use WithLabel, WithValueArray;
 

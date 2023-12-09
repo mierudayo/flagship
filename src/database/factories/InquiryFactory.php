@@ -26,7 +26,7 @@ class InquiryFactory extends Factory
             'product_id'            => Product::inRandomOrder()->first()->id,
             'product_detail'        => $this->faker->optional()->word,
             'inquiry_type_id'       => InquiryType::inRandomOrder()->first()->id,
-            'lead_source'           => $this->faker->randomElement([1, 2, 3, 4]),
+            'contact_method'        => $this->faker->randomElement([1, 2, 3, 4]),
             'project_scale'         => $this->faker->optional()->numberBetween(0, 10000),
             'status'                => $this->faker->randomElement([1, 2, 3, 4, 5, 6, 7]),
             'subject'               => $this->faker->sentence,

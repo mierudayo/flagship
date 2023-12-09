@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\InquiryLeadSource;
 use App\Http\Requests\InquirySearchRequest;
 use App\Http\Requests\InquiryStoreRequest;
 use App\Http\Requests\InquiryUpdateRequest;
@@ -50,7 +49,6 @@ class InquiryController extends Controller
             'productOptions'         => Product::all(),
             'inquiryTypeOptions'     => InquiryType::all(),
             'inChargeUserOptions'    => User::active()->get(),
-            'inquiryLeadSources'     => inquiryLeadSource::toArray(),
         ]);
     }
 
@@ -62,7 +60,7 @@ class InquiryController extends Controller
             'product_id'            => $request->input('product_id'),
             'product_detail'        => $request->input('product_detail'),
             'inquiry_type_id'       => $request->input('inquiry_type_id'),
-            'lead_source'           => $request->input('lead_source'),
+            'contact_method'        => $request->input('contact_method'),
             'project_scale'         => $request->input('project_scale'),
             'status'                => $request->input('status'),
             'subject'               => $request->input('subject'),
@@ -91,7 +89,6 @@ class InquiryController extends Controller
             'productOptions'         => Product::all(),
             'inquiryTypeOptions'     => InquiryType::all(),
             'inChargeUserOptions'    => User::active()->get(),
-            'inquiryLeadSources'     => InquiryLeadSource::toArray(),
         ]);
     }
 
@@ -103,7 +100,7 @@ class InquiryController extends Controller
             'product_id'            => $request->input('product_id'),
             'product_detail'        => $request->input('product_detail'),
             'inquiry_type_id'       => $request->input('inquiry_type_id'),
-            'lead_source'           => $request->input('lead_source'),
+            'contact_method'        => $request->input('contact_method'),
             'project_scale'         => $request->input('project_scale'),
             'status'                => $request->input('status'),
             'subject'               => $request->input('subject'),

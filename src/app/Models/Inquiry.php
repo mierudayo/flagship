@@ -21,7 +21,7 @@ class Inquiry extends Model
         'product_detail',
         'inquiry_type_id',
         'project_scale',
-        'lead_source',
+        'contact_method',
         'status',
         'subject',
         'message',

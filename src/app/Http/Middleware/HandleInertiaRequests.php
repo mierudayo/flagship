@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Enums\AddressType;
+use App\Enums\ContactMethod;
 use App\Enums\InquiryStatus;
 use App\Enums\PaymentTerm\BillingType;
 use App\Enums\PaymentTerm\CutoffDay;
@@ -64,6 +65,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'addressTypeOptions'    => AddressType::toArray(),
             'inquiryStatusOptions'  => InquiryStatus::toArray(),
+            'contactMethodOptions'  => ContactMethod::toArray(),
         ]);
     }
 }
