@@ -239,6 +239,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     isClearable={true}
                     isSearchable={true}
                     placeholder="問い合わせ由来を選択..."
+                    error={errors.contact_method}
                   />
                   <InvalidFeedback errors={errors} name="contact_method" />
                 </td>
@@ -275,6 +276,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     isClearable={true}
                     isSearchable={true}
                     placeholder="ステータスを選択..."
+                    error={errors.status}
                   />
                   <InvalidFeedback errors={errors} name="status" />
                 </td>
@@ -309,6 +311,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     isClearable={true}
                     isSearchable={true}
                     placeholder="対応者を選択..."
+                    error={errors.in_charge_user_id}
                   />
                   <InvalidFeedback errors={errors} name="in_charge_user_id" />
                 </td>
@@ -328,6 +331,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     isClearable={true}
                     isSearchable={true}
                     placeholder="問い合わせ区分を選択..."
+                    error={errors.inquiry_type_id}
                   />
                   <InvalidFeedback errors={errors} name="inquiry_type_id" />
                 </td>
@@ -347,6 +351,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     isClearable={true}
                     isSearchable={true}
                     placeholder="対象商品を選択..."
+                    error={errors.product_id}
                   />
                   <InvalidFeedback errors={errors} name="product_id" />
                 </td>

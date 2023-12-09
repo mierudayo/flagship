@@ -199,6 +199,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
                     isClearable={true}
                     isSearchable={true}
                     placeholder="担当ユーザーを選択..."
+                    error={errors.in_charge_user_id}
                   />
                   <InvalidFeedback errors={errors} name="in_charge_user_id" />
                 </td>
@@ -218,6 +219,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
                     isClearable={true}
                     isSearchable={true}
                     placeholder="獲得元を選択..."
+                    error={errors.lead_source_id}
                   />
                   <InvalidFeedback errors={errors} name="lead_source_id" />
                 </td>

@@ -132,6 +132,7 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
                     isClearable={true}
                     isSearchable={true}
                     placeholder="担当ユーザーを選択..."
+                    error={errors.in_charge_user_id}
                   />
                   <InvalidFeedback errors={errors} name="in_charge_user_id" />
                 </td>

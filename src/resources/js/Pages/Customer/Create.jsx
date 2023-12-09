@@ -267,6 +267,7 @@ const Create = ({ userOptions, paymentTermOptions, addressTypeOptions }) => {
                     isClearable={true}
                     isSearchable={true}
                     placeholder="担当ユーザーを選択..."
+                    error={errors.in_charge_user_id}
                   />
                   <InvalidFeedback errors={errors} name="in_charge_user_id" />
                 </td>
@@ -475,6 +476,7 @@ const Create = ({ userOptions, paymentTermOptions, addressTypeOptions }) => {
                         isClearable={true}
                         isSearchable={true}
                         placeholder="担当ユーザーを選択..."
+                        error={errors[`contacts.${index}.in_charge_user_id`]}
                       />
                       <InvalidFeedback errors={errors} name={`contacts.${index}.in_charge_user_id`} />
                     </td>

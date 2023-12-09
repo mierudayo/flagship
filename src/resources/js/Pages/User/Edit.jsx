@@ -85,6 +85,7 @@ const Edit = ({ user, permissionOptions }) => {
                     isClearable={true}
                     isSearchable={true}
                     placeholder="権限を選択..."
+                    error={errors.permission_id}
                   />
                   <InvalidFeedback errors={errors} name="permission_id" />
                 </td>

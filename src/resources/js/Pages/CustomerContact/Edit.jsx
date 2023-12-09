@@ -268,6 +268,7 @@ const Edit = ({ contact, userOptions, leadSourceOptions }) => {
                 </th>
                 <td className="td-cell">
                   <Textarea
+
                     id="note"
                     value={data.note}
                     onChange={e => setData('note', e.target.value)}
@@ -291,6 +292,7 @@ const Edit = ({ contact, userOptions, leadSourceOptions }) => {
                     isClearable={true}
                     isSearchable={true}
                     placeholder="担当ユーザーを選択..."
+                    error={errors.in_charge_user_id}
                   />
                   <InvalidFeedback errors={errors} name="in_charge_user_id" />
                 </td>
@@ -310,6 +312,7 @@ const Edit = ({ contact, userOptions, leadSourceOptions }) => {
                     isClearable={true}
                     isSearchable={true}
                     placeholder="獲得元を選択..."
+                    error={errors.lead_source_id}
                   />
                   <InvalidFeedback errors={errors} name="lead_source_id" />
                 </td>

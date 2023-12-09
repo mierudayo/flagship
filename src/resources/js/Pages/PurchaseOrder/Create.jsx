@@ -163,6 +163,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     isClearable={true}
                     isSearchable={true}
                     placeholder="..."
+                    error={errors.customer_contact_id}
                   />
                   <InvalidFeedback errors={errors} name="customer_contact_id" />
                 </td>
@@ -182,6 +183,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     isClearable={true}
                     isSearchable={true}
                     placeholder="..."
+                    error={errors.delivery_address_id}
                   />
                   <InvalidFeedback errors={errors} name="delivery_address_id" />
                 </td>
@@ -232,6 +234,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     isClearable={true}
                     isSearchable={true}
                     placeholder="..."
+                    error={errors.product_category_id}
                   />
                   <InvalidFeedback errors={errors} name="product_category_id" />
                 </td>
@@ -251,6 +254,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     isClearable={true}
                     isSearchable={true}
                     placeholder="..."
+                    error={errors.purchase_in_charge_id}
                   />
                   <InvalidFeedback errors={errors} name="purchase_in_charge_id" />
                 </td>
