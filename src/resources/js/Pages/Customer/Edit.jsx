@@ -147,202 +147,210 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
       <FormErrorAlert errors={errors} />
 
       <form id="customerEditForm" onSubmit={submit}>
-        <div className="table-wrapper">
-          <table className="table">
-            <tbody className="tbody">
-              <tr className="table-row is-flexible">
-                <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="name" label="取引先名" isRequired={true} />
-                </th>
-                <td className="td-cell">
-                  <Input
-                    id="name"
-                    type="text"
-                    value={data.name}
-                    onChange={e => setData('name', e.target.value)}
-                    error={errors.name}
-                  />
-                  <InvalidFeedback errors={errors} name="name" />
-                </td>
-              </tr>
+        <div className="content-section">
+          <div className="content-section-header">
+            <div className="content-section-title">基本情報</div>
+          </div>
+          <div className="table-wrapper">
+            <table className="table">
+              <tbody className="tbody">
+                <tr className="table-row is-flexible">
+                  <th className="th-cell u-w-160">
+                    <FormLabel htmlFor="name" label="取引先名" isRequired={true} />
+                  </th>
+                  <td className="td-cell">
+                    <Input
+                      id="name"
+                      type="text"
+                      value={data.name}
+                      onChange={e => setData('name', e.target.value)}
+                      error={errors.name}
+                    />
+                    <InvalidFeedback errors={errors} name="name" />
+                  </td>
+                </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="name_kana" label="よみがな" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <Input
-                    id="name_kana"
-                    type="text"
-                    value={data.name_kana}
-                    onChange={e => setData('name_kana', e.target.value)}
-                    error={errors.name_kana}
-                  />
-                  <InvalidFeedback errors={errors} name="name_kana" />
-                </td>
-              </tr>
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="name_kana" label="よみがな" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <Input
+                      id="name_kana"
+                      type="text"
+                      value={data.name_kana}
+                      onChange={e => setData('name_kana', e.target.value)}
+                      error={errors.name_kana}
+                    />
+                    <InvalidFeedback errors={errors} name="name_kana" />
+                  </td>
+                </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="shortcut" label="ショートカット名" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <Input
-                    id="shortcut"
-                    type="text"
-                    value={data.shortcut}
-                    onChange={e => setData('shortcut', e.target.value)}
-                    error={errors.shortcut}
-                  />
-                  <InvalidFeedback errors={errors} name="shortcut" />
-                </td>
-              </tr>
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="shortcut" label="ショートカット名" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <Input
+                      id="shortcut"
+                      type="text"
+                      value={data.shortcut}
+                      onChange={e => setData('shortcut', e.target.value)}
+                      error={errors.shortcut}
+                    />
+                    <InvalidFeedback errors={errors} name="shortcut" />
+                  </td>
+                </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="postal_code" label="〒" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <Input
-                    id="postal_code"
-                    type="text"
-                    value={data.postal_code}
-                    onChange={e => setData('postal_code', e.target.value)}
-                    error={errors.postal_code}
-                    className="u-max-w-160"
-                  />
-                  <InvalidFeedback errors={errors} name="postal_code" />
-                </td>
-              </tr>
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="postal_code" label="〒" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <Input
+                      id="postal_code"
+                      type="text"
+                      value={data.postal_code}
+                      onChange={e => setData('postal_code', e.target.value)}
+                      error={errors.postal_code}
+                      className="u-max-w-160"
+                    />
+                    <InvalidFeedback errors={errors} name="postal_code" />
+                  </td>
+                </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="address" label="住所" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <Input
-                    id="address"
-                    type="text"
-                    value={data.address}
-                    onChange={e => setData('address', e.target.value)}
-                    error={errors.address}
-                  />
-                  <InvalidFeedback errors={errors} name="address" />
-                </td>
-              </tr>
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="address" label="住所" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <Input
+                      id="address"
+                      type="text"
+                      value={data.address}
+                      onChange={e => setData('address', e.target.value)}
+                      error={errors.address}
+                    />
+                    <InvalidFeedback errors={errors} name="address" />
+                  </td>
+                </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="tel" label="TEL" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <Input
-                    id="tel"
-                    type="text"
-                    value={data.tel}
-                    onChange={e => setData('tel', e.target.value)}
-                    error={errors.tel}
-                    className="u-max-w-160"
-                  />
-                  <InvalidFeedback errors={errors} name="tel" />
-                </td>
-              </tr>
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="tel" label="TEL" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <Input
+                      id="tel"
+                      type="text"
+                      value={data.tel}
+                      onChange={e => setData('tel', e.target.value)}
+                      error={errors.tel}
+                      className="u-max-w-160"
+                    />
+                    <InvalidFeedback errors={errors} name="tel" />
+                  </td>
+                </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="fax" label="FAX" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <Input
-                    id="fax"
-                    type="text"
-                    value={data.fax}
-                    onChange={e => setData('fax', e.target.value)}
-                    error={errors.fax}
-                    className="u-max-w-160"
-                  />
-                  <InvalidFeedback errors={errors} name="fax" />
-                </td>
-              </tr>
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="fax" label="FAX" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <Input
+                      id="fax"
+                      type="text"
+                      value={data.fax}
+                      onChange={e => setData('fax', e.target.value)}
+                      error={errors.fax}
+                      className="u-max-w-160"
+                    />
+                    <InvalidFeedback errors={errors} name="fax" />
+                  </td>
+                </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="note" label="備考" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <Textarea
-                    id="note"
-                    value={data.note}
-                    onChange={e => setData('note', e.target.value)}
-                    error={errors.note}
-                  />
-                  <InvalidFeedback errors={errors} name="note" />
-                </td>
-              </tr>
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <Textarea
+                      id="note"
+                      value={data.note}
+                      onChange={e => setData('note', e.target.value)}
+                      error={errors.note}
+                    />
+                    <InvalidFeedback errors={errors} name="note" />
+                  </td>
+                </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel label="担当ユーザー" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <CustomSelect
-                    onChange={value => setData('in_charge_user_id', value)}
-                    options={userOptions}
-                    value={data.in_charge_user_id}
-                    valueKey="id"
-                    labelKey="name"
-                    isClearable={true}
-                    isSearchable={true}
-                    placeholder="担当ユーザーを選択..."
-                    error={errors.in_charge_user_id}
-                  />
-                  <InvalidFeedback errors={errors} name="in_charge_user_id" />
-                </td>
-              </tr>
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel label="担当ユーザー" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <CustomSelect
+                      onChange={value => setData('in_charge_user_id', value)}
+                      options={userOptions}
+                      value={data.in_charge_user_id}
+                      valueKey="id"
+                      labelKey="name"
+                      isClearable={true}
+                      isSearchable={true}
+                      placeholder="担当ユーザーを選択..."
+                      error={errors.in_charge_user_id}
+                    />
+                    <InvalidFeedback errors={errors} name="in_charge_user_id" />
+                  </td>
+                </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="purchase_billing_type" label="支払条件" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <PaymentSelectGroup
-                    data={data}
-                    setData={setData}
-                    errors={errors}
-                    paymentTermOptions={paymentTermOptions}
-                    billingTypeKey="purchase_billing_type"
-                    cutoffDayKey="purchase_cutoff_day"
-                    paymentMonthOffsetKey="purchase_payment_month_offset"
-                    paymentDayKey="purchase_payment_day"
-                    paymentDayOffsetKey="purchase_payment_day_offset"
-                  />
-                </td>
-              </tr>
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="purchase_billing_type" label="支払条件" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <PaymentSelectGroup
+                      data={data}
+                      setData={setData}
+                      errors={errors}
+                      paymentTermOptions={paymentTermOptions}
+                      billingTypeKey="purchase_billing_type"
+                      cutoffDayKey="purchase_cutoff_day"
+                      paymentMonthOffsetKey="purchase_payment_month_offset"
+                      paymentDayKey="purchase_payment_day"
+                      paymentDayOffsetKey="purchase_payment_day_offset"
+                    />
+                  </td>
+                </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="sales_billing_type" label="請求条件" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <PaymentSelectGroup
-                    data={data}
-                    setData={setData}
-                    errors={errors}
-                    paymentTermOptions={paymentTermOptions}
-                    billingTypeKey="sales_billing_type"
-                    cutoffDayKey="sales_cutoff_day"
-                    paymentMonthOffsetKey="sales_payment_month_offset"
-                    paymentDayKey="sales_payment_day"
-                    paymentDayOffsetKey="sales_payment_day_offset"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="sales_billing_type" label="請求条件" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <PaymentSelectGroup
+                      data={data}
+                      setData={setData}
+                      errors={errors}
+                      paymentTermOptions={paymentTermOptions}
+                      billingTypeKey="sales_billing_type"
+                      cutoffDayKey="sales_cutoff_day"
+                      paymentMonthOffsetKey="sales_payment_month_offset"
+                      paymentDayKey="sales_payment_day"
+                      paymentDayOffsetKey="sales_payment_day_offset"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <div className="content-section u-mt-4">
-          <div>連絡先 登録</div>
+        <div className="content-section">
+          <div className="content-section-header">
+            <div className="content-section-title">連絡先</div>
+            <button type="button" className="btn btn-secondary" onClick={addContact}>+ 行を追加</button>
+          </div>
           <div className="table-wrapper is-scrollable">
             <table className="table">
               <thead className="table-header is-sticky">
@@ -390,7 +398,7 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
                           className="btn btn-secondary"
                           onClick={() => removeContact(index)}
                         >
-                          行削除
+                          削除
                         </button>
                       )}
                     </td>
@@ -511,11 +519,13 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
               </tbody>
             </table>
           </div>
-          <button type="button" className="btn btn-secondary u-mt-3" onClick={addContact}>+ 行を追加</button>
         </div>
 
-        <div className="content-section u-mt-4">
-          <div>配送情報 登録</div>
+        <div className="content-section">
+          <div className="content-section-header">
+            <div className="content-section-title">配送情報</div>
+            <button type="button" className="btn btn-secondary" onClick={addDeliveryAddress}>+ 行を追加</button>
+          </div>
           <div className="table-wrapper is-scrollable">
             <table className="table">
               <thead className="table-header is-sticky">
@@ -635,7 +645,6 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
               </tbody>
             </table>
           </div>
-          <button type="button" className="btn btn-secondary u-mt-3" onClick={addDeliveryAddress}>+ 行を追加</button>
         </div>
       </form>
     </>

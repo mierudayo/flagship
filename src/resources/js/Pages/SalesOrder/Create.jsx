@@ -122,320 +122,328 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
         </Modal>}
 
       <form id="salesOrderCreateForm" onSubmit={submit}>
-        <div className="table-wrapper">
-          <table className="table">
-            <tbody className="tbody">
+        <div className="content-section">
+          <div className="content-section-header">
+            <div className="content-section-title">受注内容</div>
+          </div>
+          <div className="table-wrapper">
+            <table className="table">
+              <tbody className="tbody">
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel label="所属取引先" isRequired={true} />
-                </th>
-                <td className="td-cell">
-                  <div className="u-flex">
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel label="所属取引先" isRequired={true} />
+                  </th>
+                  <td className="td-cell">
+                    <div className="u-flex">
+                      <Input
+                        type="text"
+                        value={data.customer_id}
+                        className="u-max-w-64"
+                        placeholder="ID"
+                        readOnly={true}
+                      />
+                      <Input
+                        type="text"
+                        value={data.customer_name}
+                        className="u-max-w-240"
+                        placeholder="販売先"
+                        readOnly={true}
+                      />
+                      <button type="button" className="btn btn-secondary" onClick={() => setIsCustomerModalOpen(true)}>
+                        <ManageSearchIcon />
+                      </button>
+                    </div>
+                    <InvalidFeedback errors={errors} name="customer_id" />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel label="販売先担当者" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <CustomSelect
+                      onChange={value => setData('customer_contact_id', value)}
+                      options={customerContacts}
+                      value={data.customer_contact_id}
+                      valueKey="id"
+                      labelKey="name"
+                      isClearable={true}
+                      isSearchable={true}
+                      placeholder="..."
+                      error={errors.customer_contact_id}
+                    />
+                    <InvalidFeedback errors={errors} name="customer_contact_id" />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel label="納品先情報" isRequired={true} />
+                  </th>
+                  <td className="td-cell">
+                    <CustomSelect
+                      onChange={value => setData('delivery_address_id', value)}
+                      options={deliveryAddresses}
+                      value={data.delivery_address_id}
+                      valueKey="id"
+                      labelKey="address"
+                      isClearable={true}
+                      isSearchable={true}
+                      placeholder="..."
+                      error={errors.delivery_address_id}
+                    />
+                    <InvalidFeedback errors={errors} name="delivery_address_id" />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell u-w-160">
+                    <FormLabel htmlFor="order_date" label="受注日" isRequired={true} />
+                  </th>
+                  <td className="td-cell">
+                    <DateInput
+                      id="order_date"
+                      value={data.order_date}
+                      onChange={e => setData('order_date', e.target.value)}
+                      error={errors.order_date}
+                      max={today}
+                    />
+                    <InvalidFeedback errors={errors} name="order_date" />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell u-w-160">
+                    <FormLabel htmlFor="shipping_date" label="出荷日" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <div className="u-flex">
+                      <DateInput
+                        id="shipping_date"
+                        value={data.shipping_date}
+                        onChange={e => setData('shipping_date', e.target.value)}
+                        error={errors.shipping_date}
+                        className="u-mr-2"
+                      />
+                      <select
+                        name="shipping_status"
+                        value={data.shipping_status}
+                        onChange={e => setData('shipping_status', e.target.value)}
+                        className={`form-select u-w-80 ${errors.shipping_status ? 'is-invalid' : ''}`}
+                      >
+                        <option></option>
+                        <option>予定</option>
+                        <option>確定</option>
+                      </select>
+                    </div>
+                    <InvalidFeedback errors={errors} name="shipping_date" />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell u-w-160">
+                    <FormLabel htmlFor="delivery_date" label="納品日" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <div className="u-flex">
+                      <DateInput
+                        id="delivery_date"
+                        value={data.delivery_date}
+                        onChange={e => setData('delivery_date', e.target.value)}
+                        error={errors.delivery_date}
+                        className="u-mr-2"
+                      />
+                      <select
+                        name="delivery_status"
+                        value={data.delivery_status}
+                        onChange={e => setData('delivery_status', e.target.value)}
+                        className={`form-select u-w-80 ${errors.delivery_status ? 'is-invalid' : ''}`}
+                      >
+                        <option></option>
+                        <option>予定</option>
+                        <option>確定</option>
+                      </select>
+                    </div>
+                    <InvalidFeedback errors={errors} name="delivery_date" />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell u-w-160">
+                    <FormLabel htmlFor="delivery_memo" label="配送メモ" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
                     <Input
+                      id="delivery_memo"
                       type="text"
-                      value={data.customer_id}
-                      className="u-max-w-64"
-                      placeholder="ID"
-                      readOnly={true}
+                      value={data.delivery_memo}
+                      onChange={e => setData('delivery_memo', e.target.value)}
                     />
-                    <Input
-                      type="text"
-                      value={data.customer_name}
-                      className="u-max-w-240"
-                      placeholder="販売先"
-                      readOnly={true}
+                    <InvalidFeedback errors={errors} name="delivery_memo" />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <Textarea
+                      id="note"
+                      value={data.note}
+                      onChange={e => setData('note', e.target.value)}
+                      error={errors.note}
                     />
-                    <button type="button" className="btn btn-secondary" onClick={() => setIsCustomerModalOpen(true)}>
-                      <ManageSearchIcon />
-                    </button>
-                  </div>
-                  <InvalidFeedback errors={errors} name="customer_id" />
-                </td>
-              </tr>
+                    <InvalidFeedback errors={errors} name="note" />
+                  </td>
+                </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel label="販売先担当者" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <CustomSelect
-                    onChange={value => setData('customer_contact_id', value)}
-                    options={customerContacts}
-                    value={data.customer_contact_id}
-                    valueKey="id"
-                    labelKey="name"
-                    isClearable={true}
-                    isSearchable={true}
-                    placeholder="..."
-                    error={errors.customer_contact_id}
-                  />
-                  <InvalidFeedback errors={errors} name="customer_contact_id" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel label="納品先情報" isRequired={true} />
-                </th>
-                <td className="td-cell">
-                  <CustomSelect
-                    onChange={value => setData('delivery_address_id', value)}
-                    options={deliveryAddresses}
-                    value={data.delivery_address_id}
-                    valueKey="id"
-                    labelKey="address"
-                    isClearable={true}
-                    isSearchable={true}
-                    placeholder="..."
-                    error={errors.delivery_address_id}
-                  />
-                  <InvalidFeedback errors={errors} name="delivery_address_id" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="order_date" label="受注日" isRequired={true} />
-                </th>
-                <td className="td-cell">
-                  <DateInput
-                    id="order_date"
-                    value={data.order_date}
-                    onChange={e => setData('order_date', e.target.value)}
-                    error={errors.order_date}
-                    max={today}
-                  />
-                  <InvalidFeedback errors={errors} name="order_date" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="shipping_date" label="出荷日" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <div className="u-flex">
-                    <DateInput
-                      id="shipping_date"
-                      value={data.shipping_date}
-                      onChange={e => setData('shipping_date', e.target.value)}
-                      error={errors.shipping_date}
-                      className="u-mr-2"
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel label="商品カテゴリ" isRequired={true} />
+                  </th>
+                  <td className="td-cell">
+                    <CustomSelect
+                      onChange={value => setData('product_category_id', value)}
+                      options={productCategoryOptions}
+                      value={data.product_category_id}
+                      valueKey="id"
+                      labelKey="name"
+                      isClearable={true}
+                      isSearchable={true}
+                      placeholder="..."
+                      error={errors.product_category_id}
                     />
+                    <InvalidFeedback errors={errors} name="product_category_id" />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel label="受注担当" isRequired={true} />
+                  </th>
+                  <td className="td-cell">
+                    <CustomSelect
+                      onChange={value => setData('sales_in_charge_id', value)}
+                      options={userOptions}
+                      value={data.sales_in_charge_id}
+                      valueKey="id"
+                      labelKey="name"
+                      isClearable={true}
+                      isSearchable={true}
+                      placeholder="..."
+                      error={errors.sales_in_charge_id}
+                    />
+                    <InvalidFeedback errors={errors} name="sales_in_charge_id" />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="billing_type" label="請求条件" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
                     <select
-                      name="shipping_status"
-                      value={data.shipping_status}
-                      onChange={e => setData('shipping_status', e.target.value)}
-                      className={`form-select u-w-80 ${errors.shipping_status ? 'is-invalid' : ''}`}
+                      name="billing_type"
+                      id="billing_type"
+                      value={data.billing_type}
+                      onChange={e => setData('billing_type', e.target.value)}
+                      className={`form-select u-w-128 u-mr-3 ${errors.billing_type ? 'is-invalid' : ''}`}
                     >
-                      <option></option>
-                      <option>予定</option>
-                      <option>確定</option>
+                      <option value="">-- 請求方法 --</option>
+                      <OptionsList options={paymentTermOptions.billingTypes} />
                     </select>
-                  </div>
-                  <InvalidFeedback errors={errors} name="shipping_date" />
-                </td>
-              </tr>
+                    {data.billing_type == 1 && (
+                      <>
+                        <select
+                          name="cutoff_day"
+                          id="cutoff_day"
+                          value={data.cutoff_day}
+                          onChange={e => setData('cutoff_day', e.target.value)}
+                          className={`form-select u-w-128 ${errors.cutoff_day ? 'is-invalid' : ''}`}
+                        >
+                          <option value="">-- 締め日 --</option>
+                          <OptionsList options={paymentTermOptions.cutoffDays} />
+                        </select>
+                        <select
+                          name="payment_month_offset"
+                          id="payment_month_offset"
+                          value={data.payment_month_offset}
+                          onChange={e => setData('payment_month_offset', e.target.value)}
+                          className={`form-select u-w-128 ${errors.payment_month_offset ? 'is-invalid' : ''}`}
+                        >
+                          <option value="">-- 支払月 --</option>
+                          <OptionsList options={paymentTermOptions.monthOffsets} />
+                        </select>
+                        <select
+                          name="payment_day"
+                          id="payment_day"
+                          value={data.payment_day}
+                          onChange={e => setData('payment_day', e.target.value)}
+                          className={`form-select u-w-128 ${errors.payment_day ? 'is-invalid' : ''}`}
+                        >
+                          <option value="">-- 支払日 --</option>
+                          <OptionsList options={paymentTermOptions.paymentDay} />
+                        </select>
+                      </>
+                    )}
+                    {data.billing_type == 2 && (
+                      <>
+                        <select
+                          name="payment_day_offset"
+                          id="payment_day_offset"
+                          value={data.payment_day_offset}
+                          onChange={e => setData('payment_day_offset', e.target.value)}
+                          className={`form-select u-w-128 ${errors.payment_day_offset ? 'is-invalid' : ''}`}
+                        >
+                          <option value="">-- 期限 --</option>
+                          <OptionsList options={paymentTermOptions.dayOffsets} />
+                        </select>
+                      </>
+                    )}
+                  </td>
+                </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="delivery_date" label="納品日" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <div className="u-flex">
-                    <DateInput
-                      id="delivery_date"
-                      value={data.delivery_date}
-                      onChange={e => setData('delivery_date', e.target.value)}
-                      error={errors.delivery_date}
-                      className="u-mr-2"
-                    />
-                    <select
-                      name="delivery_status"
-                      value={data.delivery_status}
-                      onChange={e => setData('delivery_status', e.target.value)}
-                      className={`form-select u-w-80 ${errors.delivery_status ? 'is-invalid' : ''}`}
-                    >
-                      <option></option>
-                      <option>予定</option>
-                      <option>確定</option>
-                    </select>
-                  </div>
-                  <InvalidFeedback errors={errors} name="delivery_date" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="delivery_memo" label="配送メモ" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <Input
-                    id="delivery_memo"
-                    type="text"
-                    value={data.delivery_memo}
-                    onChange={e => setData('delivery_memo', e.target.value)}
-                  />
-                  <InvalidFeedback errors={errors} name="delivery_memo" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="note" label="備考" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <Textarea
-                    id="note"
-                    value={data.note}
-                    onChange={e => setData('note', e.target.value)}
-                    error={errors.note}
-                  />
-                  <InvalidFeedback errors={errors} name="note" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel label="商品カテゴリ" isRequired={true} />
-                </th>
-                <td className="td-cell">
-                  <CustomSelect
-                    onChange={value => setData('product_category_id', value)}
-                    options={productCategoryOptions}
-                    value={data.product_category_id}
-                    valueKey="id"
-                    labelKey="name"
-                    isClearable={true}
-                    isSearchable={true}
-                    placeholder="..."
-                    error={errors.product_category_id}
-                  />
-                  <InvalidFeedback errors={errors} name="product_category_id" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel label="受注担当" isRequired={true} />
-                </th>
-                <td className="td-cell">
-                  <CustomSelect
-                    onChange={value => setData('sales_in_charge_id', value)}
-                    options={userOptions}
-                    value={data.sales_in_charge_id}
-                    valueKey="id"
-                    labelKey="name"
-                    isClearable={true}
-                    isSearchable={true}
-                    placeholder="..."
-                    error={errors.sales_in_charge_id}
-                  />
-                  <InvalidFeedback errors={errors} name="sales_in_charge_id" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="billing_type" label="請求条件" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <select
-                    name="billing_type"
-                    id="billing_type"
-                    value={data.billing_type}
-                    onChange={e => setData('billing_type', e.target.value)}
-                    className={`form-select u-w-128 u-mr-3 ${errors.billing_type ? 'is-invalid' : ''}`}
-                  >
-                    <option value="">-- 請求方法 --</option>
-                    <OptionsList options={paymentTermOptions.billingTypes} />
-                  </select>
-                  {data.billing_type == 1 && (
-                    <>
+                <tr className="table-row is-flexible">
+                  <th className="th-cell u-w-160">
+                    <FormLabel htmlFor="payment_date" label="入金日" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <div className="u-flex">
+                      <DateInput
+                        id="payment_date"
+                        value={data.payment_date}
+                        onChange={e => setData('payment_date', e.target.value)}
+                        error={errors.payment_date}
+                        className="u-mr-2"
+                      />
                       <select
-                        name="cutoff_day"
-                        id="cutoff_day"
-                        value={data.cutoff_day}
-                        onChange={e => setData('cutoff_day', e.target.value)}
-                        className={`form-select u-w-128 ${errors.cutoff_day ? 'is-invalid' : ''}`}
+                        name="payment_status"
+                        value={data.payment_status}
+                        onChange={e => setData('payment_status', e.target.value)}
+                        className={`form-select u-w-80 ${errors.payment_status ? 'is-invalid' : ''}`}
                       >
-                        <option value="">-- 締め日 --</option>
-                        <OptionsList options={paymentTermOptions.cutoffDays} />
+                        <option></option>
+                        <option>予定</option>
+                        <option>確定</option>
                       </select>
-                      <select
-                        name="payment_month_offset"
-                        id="payment_month_offset"
-                        value={data.payment_month_offset}
-                        onChange={e => setData('payment_month_offset', e.target.value)}
-                        className={`form-select u-w-128 ${errors.payment_month_offset ? 'is-invalid' : ''}`}
-                      >
-                        <option value="">-- 支払月 --</option>
-                        <OptionsList options={paymentTermOptions.monthOffsets} />
-                      </select>
-                      <select
-                        name="payment_day"
-                        id="payment_day"
-                        value={data.payment_day}
-                        onChange={e => setData('payment_day', e.target.value)}
-                        className={`form-select u-w-128 ${errors.payment_day ? 'is-invalid' : ''}`}
-                      >
-                        <option value="">-- 支払日 --</option>
-                        <OptionsList options={paymentTermOptions.paymentDay} />
-                      </select>
-                    </>
-                  )}
-                  {data.billing_type == 2 && (
-                    <>
-                      <select
-                        name="payment_day_offset"
-                        id="payment_day_offset"
-                        value={data.payment_day_offset}
-                        onChange={e => setData('payment_day_offset', e.target.value)}
-                        className={`form-select u-w-128 ${errors.payment_day_offset ? 'is-invalid' : ''}`}
-                      >
-                        <option value="">-- 期限 --</option>
-                        <OptionsList options={paymentTermOptions.dayOffsets} />
-                      </select>
-                    </>
-                  )}
-                </td>
-              </tr>
+                    </div>
+                    <InvalidFeedback errors={errors} name="payment_date" />
+                  </td>
+                </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="payment_date" label="入金日" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <div className="u-flex">
-                    <DateInput
-                      id="payment_date"
-                      value={data.payment_date}
-                      onChange={e => setData('payment_date', e.target.value)}
-                      error={errors.payment_date}
-                      className="u-mr-2"
-                    />
-                    <select
-                      name="payment_status"
-                      value={data.payment_status}
-                      onChange={e => setData('payment_status', e.target.value)}
-                      className={`form-select u-w-80 ${errors.payment_status ? 'is-invalid' : ''}`}
-                    >
-                      <option></option>
-                      <option>予定</option>
-                      <option>確定</option>
-                    </select>
-                  </div>
-                  <InvalidFeedback errors={errors} name="payment_date" />
-                </td>
-              </tr>
-
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <div className="content-section u-mt-4">
-          <div>受注明細 登録</div>
+        <div className="content-section">
+          <div className="content-section-header">
+            <div className="content-section-title">受注明細</div>
+            <button type="button" className="btn btn-secondary u-mr-3" onClick={addDetail}>+ 行を追加</button>
+          </div>
           <div className="table-wrapper is-scrollable">
             <table className="table">
               <thead className="table-header is-sticky">
@@ -582,7 +590,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
               </tbody>
             </table>
           </div>
-          <button type="button" className="btn btn-secondary u-mt-3" onClick={addDetail}>+ 行を追加</button>
         </div>
       </form >
     </>

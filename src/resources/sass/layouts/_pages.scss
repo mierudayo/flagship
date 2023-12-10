@@ -26,12 +26,22 @@
 }
 
 .content-section {
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.content-section-header {
+  align-items: center;
+  display: flex;
+  margin-bottom: 8px;
 }
 
 .content-section-title {
+  font-size: 1.1rem;
   font-weight: bold;
+  margin-right: 16px;
+  min-width: 80px;
 }
+
 
 .form-inner {
   background-color: #fff;
