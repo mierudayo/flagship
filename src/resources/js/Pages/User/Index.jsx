@@ -6,11 +6,11 @@ import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import UserTable from './Partials/UserTable';
 
 const Index = ({ users, canAdmin }) => {
-  const params = route().params;
+  const urlParams = route().params;
   const { flash } = usePage().props;
 
   const { data, setData, get, errors } = useForm({
-    keyword: params.keyword || '',
+    keyword: urlParams.keyword || '',
   });
 
   function submit(e) {

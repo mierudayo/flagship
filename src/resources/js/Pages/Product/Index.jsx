@@ -5,10 +5,10 @@ import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import ProductTable from './Partials/ProductTable';
 
 const Index = ({ products }) => {
-  const params = route().params;
+  const urlParams = route().params;
 
   const { data, setData, get, errors } = useForm({
-    keyword: params.keyword || '',
+    keyword: urlParams.keyword || '',
   });
 
   function submit(e) {

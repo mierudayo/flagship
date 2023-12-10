@@ -7,11 +7,11 @@ import BillingAddressTable from './Partials/BillingAddressTable';
 
 
 const Index = ({ billingAddresses }) => {
-  const params = route().params;
+  const urlParams = route().params;
   const { flash } = usePage().props;
 
   const { data, setData, get, errors } = useForm({
-    keyword: params.keyword || '',
+    keyword: urlParams.keyword || '',
   });
 
   function submit(e) {

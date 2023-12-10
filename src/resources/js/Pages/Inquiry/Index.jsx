@@ -12,26 +12,26 @@ import DateInput from '@/Components/Form/DateInput';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
 
 const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOptions, inquiryStatusOptions }) => {
-  const params = route().params;
+  const urlParams = route().params;
   const { flash } = usePage().props;
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
-    if (Object.keys(params).length > 0) {
+    if (Object.keys(urlParams).length > 0) {
       setIsFilterOpen(true);
     }
   }, []);
 
   const { data, setData, get, errors } = useForm({
-    keyword: params.keyword || '',
-    inquiry_id: params.inquiry_id || '',
-    customer_info: params.customer_info || '',
-    start_date: params.start_date || '',
-    end_date: params.end_date || '',
-    in_charge_user_id: params.in_charge_user_id || '',
-    status: params.status || '',
-    inquiry_type_id: params.inquiry_type_id || '',
-    product_id: params.product_id || '',
+    keyword: urlParams.keyword || '',
+    inquiry_id: urlParams.inquiry_id || '',
+    customer_info: urlParams.customer_info || '',
+    start_date: urlParams.start_date || '',
+    end_date: urlParams.end_date || '',
+    in_charge_user_id: urlParams.in_charge_user_id || '',
+    status: urlParams.status || '',
+    inquiry_type_id: urlParams.inquiry_type_id || '',
+    product_id: urlParams.product_id || '',
   });
 
   function submit(e) {
