@@ -9,6 +9,7 @@ import InquiryTable from './Partials/InquiryTable';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import DateInput from '@/Components/Form/DateInput';
+import ToggleFilterButton from '@/Components/ToggleFilterButton';
 
 const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOptions, inquiryStatusOptions }) => {
   const params = route().params;
@@ -59,12 +60,7 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
           submit={submit}
         />
 
-        <button
-          className="btn btn-secondary u-mr-3"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? '詳細条件を閉じる' : '詳細条件を開く'}
-        </button>
+        <ToggleFilterButton isOpen={isOpen} setIsOpen={setIsOpen} />
 
         <div className="record-count">
           {inquiries.total}件

@@ -9,6 +9,11 @@
   padding: 4px 16px;
   white-space: nowrap;
 
+  &.with-icon {
+    padding: 4px 8px;
+    height: var(--max-height-partials);
+  }
+
   &[disabled] {
     opacity: 0.5;
   }
@@ -20,7 +25,6 @@
   &.btn-primary {
     background-color: #0079FF;
     color: var(--white);
-    &:focus,
     &:hover {
       background-color: #006ce7;
     }
@@ -30,7 +34,6 @@
     background-color: #eee;
     border: 1px solid #ddd;
     color: #27374D;
-    &:focus,
     &:hover {
       background-color: #ddd;
     }
@@ -40,7 +43,6 @@
     background-color: #eee;
     border: 1px solid #ddd;
     color: red;
-    &:focus,
     &:hover {
       background-color: #ddd;
     }
