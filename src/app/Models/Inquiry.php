@@ -126,6 +126,42 @@ class Inquiry extends Model
         return $query->where('id', $id);
     }
 
+    public function scopeSearchByInCharge(Builder $query, ?string $inChargeId): Builder
+    {
+        if (!$inChargeId) {
+            return $query;
+        }
+
+        return $query->where('in_charge_user_id', $inChargeId);
+    }
+
+    public function scopeSearchByStatus(Builder $query, ?string $status): Builder
+    {
+        if (!$status) {
+            return $query;
+        }
+
+        return $query->where('status', $status);
+    }
+
+    public function scopeSearchByInquiryType(Builder $query, ?string $inquiryTypeId): Builder
+    {
+        if (!$inquiryTypeId) {
+            return $query;
+        }
+
+        return $query->where('inquiry_type_id', $inquiryTypeId);
+    }
+
+    public function scopeSearchByProduct(Builder $query, ?string $productId): Builder
+    {
+        if (!$productId) {
+            return $query;
+        }
+
+        return $query->where('product_id', $productId);
+    }
+
     public function scopeSearchByCustomerInfo(Builder $query, ?string $customerInfo): Builder
     {
         if (!$customerInfo) {

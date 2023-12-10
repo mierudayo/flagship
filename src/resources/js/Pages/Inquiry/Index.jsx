@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
+import CustomSelect from '@/Components/Form/CustomSelect';
 import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import InquiryTable from './Partials/InquiryTable';
@@ -9,7 +10,7 @@ import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import DateInput from '@/Components/Form/DateInput';
 
-const Index = ({ inquiries }) => {
+const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOptions, inquiryStatusOptions }) => {
   const params = route().params;
   const { flash } = usePage().props;
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +21,10 @@ const Index = ({ inquiries }) => {
     customer_info: params.customer_info || '',
     start_date: params.start_date || '',
     end_date: params.end_date || '',
+    in_charge_user_id: params.in_charge_user_id || '',
+    status: params.status || '',
+    inquiry_type_id: params.inquiry_type_id || '',
+    product_id: params.product_id || '',
   });
 
   function submit(e) {
@@ -110,6 +115,66 @@ const Index = ({ inquiries }) => {
                 className="u-max-w-200"
               />
             </div>
+
+            <div className="u-mr-2 u-min-w-200">
+              <FormLabel label="対象商品" />
+              <CustomSelect
+                onChange={value => setData('product_id', value)}
+                options={productOptions}
+                value={data.product_id}
+                valueKey="id"
+                labelKey="name"
+                isClearable={true}
+                isSearchable={true}
+                placeholder="..."
+                error={errors.product_id}
+              />
+            </div>
+
+            <div className="u-mr-2 u-min-w-200">
+              <FormLabel label="担当者" />
+              <CustomSelect
+                onChange={value => setData('in_charge_user_id', value)}
+                options={inChargeUserOptions}
+                value={data.in_charge_user_id}
+                valueKey="id"
+                labelKey="name"
+                isClearable={true}
+                isSearchable={true}
+                placeholder="..."
+                error={errors.in_charge_user_id}
+              />
+            </div>
+
+            <div className="u-mr-2 u-min-w-160">
+              <FormLabel label="ステータス" />
+              <CustomSelect
+                onChange={value => setData('status', value)}
+                options={inquiryStatusOptions}
+                value={data.status}
+                valueKey="value"
+                labelKey="label"
+                isClearable={true}
+                isSearchable={true}
+                placeholder="..."
+                error={errors.status}
+              />
+            </div>
+
+            <div className="u-mr-2 u-min-w-160">
+              <FormLabel label="区分" />
+              <CustomSelect
+                onChange={value => setData('inquiry_type_id', value)}
+                options={inquiryTypeOptions}
+                value={data.inquiry_type_id}
+                valueKey="id"
+                labelKey="name"
+                isClearable={true}
+                isSearchable={true}
+                placeholder="..."
+                error={errors.inquiry_type_id}
+              />
+            </div>
           </div>
           <div className="filter-form-footer">
             <button
@@ -122,7 +187,7 @@ const Index = ({ inquiries }) => {
               className="btn btn-secondary"
               preserveState={true}
               onSuccess={() => {
-                reset('keyword', 'inquiry_id', 'customer_info', 'start_date', 'end_date');
+                reset();
               }}
             >
               クリア

@@ -22,6 +22,10 @@ class InquiryController extends Controller
         $customerInfo = $request->input('customer_info');
         $startDate    = $request->input('start_date');
         $endDate      = $request->input('end_date');
+        $inChargeId   = $request->input('in_charge_user_id');
+        $status       = $request->input('status');
+        $inquiryTypeId  = $request->input('inquiry_type_id');
+        $productId  = $request->input('product_id');
 
         $inquiries = Inquiry::query()
             ->with([
@@ -34,12 +38,19 @@ class InquiryController extends Controller
             ->searchByInquiryPeriod($startDate, $endDate)
             ->searchById($inquiryId)
             ->searchByCustomerInfo($customerInfo)
+            ->searchByInCharge($inChargeId)
+            ->searchByStatus($status)
+            ->searchByInquiryType($inquiryTypeId)
+            ->searchByProduct($productId)
             ->latest('inquiry_date')
             ->paginate(50)
             ->withQueryString();
 
         return Inertia::render('Inquiry/Index', [
-            'inquiries' => $inquiries,
+            'inquiries'             => $inquiries,
+            'productOptions'        => Product::all(),
+            'inquiryTypeOptions'    => InquiryType::all(),
+            'inChargeUserOptions'   => User::active()->get(),
         ]);
     }
 
