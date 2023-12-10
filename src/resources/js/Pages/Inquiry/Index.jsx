@@ -16,7 +16,7 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
   const { flash } = usePage().props;
   const [isOpen, setIsOpen] = useState(false);
 
-  const { data, setData, get, errors, reset } = useForm({
+  const { data, setData, get, errors } = useForm({
     keyword: params.keyword || '',
     inquiry_id: params.inquiry_id || '',
     customer_info: params.customer_info || '',
@@ -183,7 +183,18 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
               className="btn btn-secondary"
               preserveState={true}
               onSuccess={() => {
-                reset();
+                setData({
+                  ...data,
+                  keyword: '',
+                  inquiry_id: '',
+                  customer_info: '',
+                  start_date: '',
+                  end_date: '',
+                  in_charge_user_id: '',
+                  status: '',
+                  inquiry_type_id: '',
+                  product_id: '',
+                })
               }}
             >
               クリア
