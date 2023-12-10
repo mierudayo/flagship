@@ -49,10 +49,10 @@
   overflow: hidden;
   transition: height 0.3s ease, padding 0.3s ease;
   width: 100%;
-  padding: 0 16px;
+  padding: 0 8px;
 
   &.show {
-    padding: 8px 16px;
+    padding: 8px;
     margin-bottom: 16px;
     height: auto;
   }
@@ -62,10 +62,10 @@
   display: flex;
   flex-wrap: wrap;
   overflow-x: auto;
-  padding: 8px 0;
+  padding: 8px;
 }
 
 .filter-form-footer {
   display: flex;
-  padding: 8px 0;
+  padding: 8px;
 }
