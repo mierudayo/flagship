@@ -46,7 +46,10 @@ export default function CustomSelect(props) {
     label: option[labelKey]
   }));
 
-  const selectedValue = formattedOptions.find(option => option[valueKey] === value) || null;
+  /**
+   * route().paramsでURLパラメータから取得した値は文字列のため、等価比較演算子でint型のid系にも対応する
+   */
+  const selectedValue = formattedOptions.find(option => option[valueKey] == value) || null;
 
   return (
     <Select
