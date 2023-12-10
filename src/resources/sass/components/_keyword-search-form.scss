@@ -1,0 +1,19 @@
+.keyword-search-box {
+  align-items: center;
+  display: flex;
+  margin-right: 16px;
+  position: relative;
+
+  .search-icon-wrapper {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    left: 8px;
+    position: absolute;
+  }
+
+  .input-field {
+    min-width: 240px;
+    padding-left: 32px;
+  }
+}
