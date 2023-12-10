@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
@@ -15,6 +15,12 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
   const params = route().params;
   const { flash } = usePage().props;
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (Object.keys(params).length > 0) {
+      setIsOpen(true);
+    }
+  }, []);
 
   const { data, setData, get, errors } = useForm({
     keyword: params.keyword || '',
