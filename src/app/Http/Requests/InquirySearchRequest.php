@@ -23,7 +23,7 @@ class InquirySearchRequest extends FormRequest
     {
         return [
             'keyword'           => ['nullable', 'string', 'max:255'],
-            'start_date'        => ['nullable', 'date', 'before_or_equal:end_date'],
+            'start_date'        => ['nullable', 'date'],
             'end_date'          => ['nullable', 'date', 'after_or_equal:start_date'],
             'inquiry_id'        => ['nullable', 'integer'],
             'customer_info'     => ['nullable', 'string', 'max:255'],
