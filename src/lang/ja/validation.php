@@ -138,16 +138,48 @@ return [
 
     'custom' => [
         'contacts.*' => [
-            'required' => '必須項目です',
+            'required'  => '必須項目です',
+            'exists'    => '存在しない値が選択されました',
+            'max'       => [
+                'numeric' => ':max以下の数字を指定してください',
+                'string'  => ':max文字以下で指定してください',
+                'array'   => ':max個以下指定してください',
+            ],
+            'integer'     => '整数で指定してください',
+            'numeric'     => '数字を指定してください',
         ],
         'delivery_addresses.*' => [
-            'required' => '必須項目です',
+            'required'  => '必須項目です',
+            'exists'    => '存在しない値が選択されました',
+            'max'       => [
+                'numeric' => ':max以下の数字を指定してください',
+                'string'  => ':max文字以下で指定してください',
+                'array'   => ':max個以下指定してください',
+            ],
+            'integer'     => '整数で指定してください',
+            'numeric'     => '数字を指定してください',
         ],
         'sales_order_details.*' => [
-            'required' => '必須項目です',
+            'required'  => '必須項目です',
+            'exists'    => '存在しない値が選択されました',
+            'max'       => [
+                'numeric' => ':max以下の数字を指定してください',
+                'string'  => ':max文字以下で指定してください',
+                'array'   => ':max個以下指定してください',
+            ],
+            'integer'     => '整数で指定してください',
+            'numeric'     => '数字を指定してください',
         ],
         'purchase_order_details.*' => [
-            'required' => '必須項目です',
+            'required'  => '必須項目です',
+            'exists'    => '存在しない値が選択されました',
+            'max'       => [
+                'numeric' => ':max以下の数字を指定してください',
+                'string'  => ':max文字以下で指定してください',
+                'array'   => ':max個以下指定してください',
+            ],
+            'integer'     => '整数で指定してください',
+            'numeric'     => '数字を指定してください',
         ],
     ],
 
