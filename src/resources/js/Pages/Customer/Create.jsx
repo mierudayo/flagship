@@ -105,6 +105,19 @@ const Create = ({ userOptions, paymentTermOptions, addressTypeOptions }) => {
     setData('delivery_addresses', updatedDeliveryAddresses);
   }
 
+  function copyCustomerToAddress() {
+    setData('delivery_addresses', [
+      ...data.delivery_addresses,
+      {
+        address_type: 1,
+        postal_code: data.postal_code || '',
+        address: data.address || '',
+        company_name: data.name || '',
+        tel: data.tel || '',
+      }
+    ]);
+  }
+
   return (
     <>
       <h1 className="content-title">取引先 登録</h1>
@@ -499,7 +512,8 @@ const Create = ({ userOptions, paymentTermOptions, addressTypeOptions }) => {
         <div className="content-section">
           <div className="content-section-header">
             <div className="content-section-title">配送情報</div>
-            <button type="button" className="btn btn-secondary" onClick={addDeliveryAddress}>+ 行を追加</button>
+            <button type="button" className="btn btn-secondary u-mr-3" onClick={addDeliveryAddress}>+ 行を追加</button>
+            <button type="button" className="btn btn-secondary u-mr-3" onClick={copyCustomerToAddress}>+ 基本情報をコピー追加</button>
           </div>
           <div className="table-wrapper is-scrollable">
             <table className="table">
