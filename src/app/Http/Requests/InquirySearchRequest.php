@@ -22,7 +22,15 @@ class InquirySearchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'keyword' => ['nullable', 'max:255'],
+            'keyword'           => ['nullable', 'string', 'max:255'],
+            'start_date'        => ['nullable', 'date', 'before_or_equal:end_date'],
+            'end_date'          => ['nullable', 'date', 'after_or_equal:start_date'],
+            'inquiry_id'        => ['nullable', 'integer'],
+            'customer_info'     => ['nullable', 'string', 'max:255'],
+            'in_charge_user_id' => ['nullable', 'integer'],
+            'status'            => ['nullable', 'integer'],
+            'inquiry_type_id'   => ['nullable', 'integer'],
+            'product_id'        => ['nullable', 'integer']
         ];
     }
 }
