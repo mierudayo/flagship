@@ -17,16 +17,6 @@ class InquiryController extends Controller
 {
     public function index(InquirySearchRequest $request): Response
     {
-        $keyword      = $request->input('keyword');
-        $inquiryId    = $request->input('inquiry_id');
-        $customerInfo = $request->input('customer_info');
-        $startDate    = $request->input('start_date');
-        $endDate      = $request->input('end_date');
-        $inChargeId   = $request->input('in_charge_user_id');
-        $status       = $request->input('status');
-        $inquiryTypeId  = $request->input('inquiry_type_id');
-        $productId  = $request->input('product_id');
-
         $inquiries = Inquiry::query()
             ->with([
                 'customerContact.customer',
@@ -34,14 +24,17 @@ class InquiryController extends Controller
                 'inquiryType',
                 'inChargeUser',
             ])
-            ->searchByKeyword($keyword)
-            ->searchByInquiryPeriod($startDate, $endDate)
-            ->searchById($inquiryId)
-            ->searchByCustomerInfo($customerInfo)
-            ->searchByInCharge($inChargeId)
-            ->searchByStatus($status)
-            ->searchByInquiryType($inquiryTypeId)
-            ->searchByProduct($productId)
+            ->searchByKeyword($request->input('keyword'))
+            ->searchByInquiryPeriod(
+                $request->input('start_date'),
+                $request->input('end_date')
+            )
+            ->searchById($request->input('inquiry_id'))
+            ->searchByCustomerInfo($request->input('customer_info'))
+            ->searchByInCharge($request->input('in_charge_user_id'))
+            ->searchByStatus($request->input('status'))
+            ->searchByInquiryType($request->input('inquiry_type_id'))
+            ->searchByProduct($request->input('product_id'))
             ->latest('inquiry_date')
             ->paginate(50)
             ->withQueryString();
