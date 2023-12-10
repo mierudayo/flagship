@@ -38,7 +38,8 @@ class CustomerController extends Controller
     public function create(): Response
     {
         return Inertia::render('Customer/Create', [
-            'userOptions'   => User::active()->get(),
+            'userOptions'       => User::active()->get(),
+            'leadSourceOptions' => LeadSource::all(),
         ]);
     }
 
@@ -92,6 +93,7 @@ class CustomerController extends Controller
         return Inertia::render('Customer/Edit', [
             'customer'      => $customer,
             'userOptions'   => User::active()->get(),
+            'leadSourceOptions' => LeadSource::all(),
         ]);
     }
 
@@ -291,6 +293,7 @@ class CustomerController extends Controller
                     'is_active'         => $contact['is_active'],
                     'note'              => $contact['note'],
                     'in_charge_user_id' => $contact['in_charge_user_id'],
+                    'lead_source_id'    => $contact['lead_source_id'],
                     'created_by_id'     => $contact['created_by_id'] ?? $updatedById,
                     'updated_by_id'     => $updatedById,
                 ];

@@ -13,7 +13,7 @@ import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import { convertNullToEmptyString } from '@/Utils/arrayHelpers';
 import PaymentSelectGroup from './Partials/PaymentSelectGroup';
 
-const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions }) => {
+const Edit = ({ customer, userOptions, leadSourceOptions, paymentTermOptions, addressTypeOptions }) => {
   const { flash } = usePage().props;
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
@@ -63,8 +63,9 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
         position: '',
         role: '',
         is_active: true,
-        note: '',
         in_charge_user_id: '',
+        lead_source_id: '',
+        note: '',
       }
     ])
   }
@@ -397,6 +398,9 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
                   <th className="th-cell u-min-w-240">
                     <FormLabel label="担当ユーザー" isRequired={false} />
                   </th>
+                  <th className="th-cell u-min-w-240">
+                    <FormLabel label="リード獲得元" isRequired={false} />
+                  </th>
                   <th className="th-cell u-min-w-400">
                     <FormLabel label="備考" isRequired={false} />
                   </th>
@@ -516,6 +520,21 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
                         error={errors[`contacts.${index}.in_charge_user_id`]}
                       />
                       <InvalidFeedback errors={errors} name={`contacts.${index}.in_charge_user_id`} />
+                    </td>
+
+                    <td className="td-cell">
+                      <CustomSelect
+                        onChange={value => updateContact(index, 'lead_source_id', value)}
+                        options={leadSourceOptions}
+                        value={contact.lead_source_id}
+                        valueKey="id"
+                        labelKey="name"
+                        isClearable={true}
+                        isSearchable={true}
+                        placeholder="..."
+                        error={errors[`contacts.${index}.lead_source_id`]}
+                      />
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.lead_source_id`} />
                     </td>
 
                     <td className="td-cell">

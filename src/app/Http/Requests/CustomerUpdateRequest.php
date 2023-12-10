@@ -58,6 +58,7 @@ class CustomerUpdateRequest extends FormRequest
             'contacts.*.is_active'         => ['required', 'boolean'],
             'contacts.*.note'              => ['nullable', 'string', 'max:2000'],
             'contacts.*.in_charge_user_id' => ['nullable', 'integer', 'exists:users,id'],
+            'contacts.*.lead_source_id'    => ['nullable', 'integer', 'exists:lead_sources,id'],
 
             // DeliveryAddress
             'delivery_addresses.*.address_type'  => ['required', 'integer', 'in:1,2,3'],
