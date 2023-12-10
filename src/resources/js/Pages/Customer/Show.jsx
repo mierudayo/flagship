@@ -112,16 +112,6 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
               </tr>
 
               <tr className="table-row">
-                <th className="th-cell">備考</th>
-                <td className="td-cell">{customer.note}</td>
-              </tr>
-
-              <tr className="table-row">
-                <th className="th-cell">担当ユーザー</th>
-                <td className="td-cell">{customer.in_charge_user?.name}</td>
-              </tr>
-
-              <tr className="table-row">
                 <th className="th-cell">支払条件</th>
                 <td className="td-cell">
                   {customer.purchase_term?.billing_type === 1 ? (
@@ -151,6 +141,16 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
                     </>
                   )}
                 </td>
+              </tr>
+
+              <tr className="table-row">
+                <th className="th-cell">担当ユーザー</th>
+                <td className="td-cell">{customer.in_charge_user?.name}</td>
+              </tr>
+
+              <tr className="table-row">
+                <th className="th-cell">備考</th>
+                <td className="td-cell">{customer.note}</td>
               </tr>
 
             </tbody>

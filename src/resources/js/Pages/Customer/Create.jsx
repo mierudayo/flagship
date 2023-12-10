@@ -19,18 +19,22 @@ const Create = ({ userOptions, paymentTermOptions, addressTypeOptions }) => {
     address: '',
     tel: '',
     fax: '',
-    note: '',
-    in_charge_user_id: '',
+
     purchase_billing_type: '',
     purchase_cutoff_day: '',
     purchase_payment_month_offset: '',
     purchase_payment_day: '',
     purchase_payment_day_offset: '',
+
     sales_billing_type: '',
     sales_cutoff_day: '',
     sales_payment_month_offset: '',
     sales_payment_day: '',
     sales_payment_day_offset: '',
+
+    in_charge_user_id: '',
+    note: '',
+
     contacts: [],
     delivery_addresses: [],
   });
@@ -244,41 +248,6 @@ const Create = ({ userOptions, paymentTermOptions, addressTypeOptions }) => {
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel htmlFor="note" label="備考" isRequired={false} />
-                  </th>
-                  <td className="td-cell">
-                    <Textarea
-                      id="note"
-                      value={data.note}
-                      onChange={e => setData('note', e.target.value)}
-                      error={errors.note}
-                    />
-                    <InvalidFeedback errors={errors} name="note" />
-                  </td>
-                </tr>
-
-                <tr className="table-row is-flexible">
-                  <th className="th-cell">
-                    <FormLabel label="担当ユーザー" isRequired={false} />
-                  </th>
-                  <td className="td-cell">
-                    <CustomSelect
-                      onChange={value => setData('in_charge_user_id', value)}
-                      options={userOptions}
-                      value={data.in_charge_user_id}
-                      valueKey="id"
-                      labelKey="name"
-                      isClearable={true}
-                      isSearchable={true}
-                      placeholder="担当ユーザーを選択..."
-                      error={errors.in_charge_user_id}
-                    />
-                    <InvalidFeedback errors={errors} name="in_charge_user_id" />
-                  </td>
-                </tr>
-
-                <tr className="table-row is-flexible">
-                  <th className="th-cell">
                     <FormLabel htmlFor="purchase_billing_type" label="支払条件" isRequired={false} />
                   </th>
                   <td className="td-cell">
@@ -312,6 +281,41 @@ const Create = ({ userOptions, paymentTermOptions, addressTypeOptions }) => {
                       paymentDayKey="sales_payment_day"
                       paymentDayOffsetKey="sales_payment_day_offset"
                     />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel label="担当ユーザー" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <CustomSelect
+                      onChange={value => setData('in_charge_user_id', value)}
+                      options={userOptions}
+                      value={data.in_charge_user_id}
+                      valueKey="id"
+                      labelKey="name"
+                      isClearable={true}
+                      isSearchable={true}
+                      placeholder="..."
+                      error={errors.in_charge_user_id}
+                    />
+                    <InvalidFeedback errors={errors} name="in_charge_user_id" />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <Textarea
+                      id="note"
+                      value={data.note}
+                      onChange={e => setData('note', e.target.value)}
+                      error={errors.note}
+                    />
+                    <InvalidFeedback errors={errors} name="note" />
                   </td>
                 </tr>
               </tbody>
@@ -351,13 +355,13 @@ const Create = ({ userOptions, paymentTermOptions, addressTypeOptions }) => {
                     <FormLabel label="役割" isRequired={false} />
                   </th>
                   <th className="th-cell u-min-w-128">
-                    <FormLabel label="使用状況" isRequired={true} />
+                    <FormLabel label="使用状況" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-240">
+                    <FormLabel label="担当ユーザー" isRequired={false} />
                   </th>
                   <th className="th-cell u-min-w-400">
                     <FormLabel label="備考" isRequired={false} />
-                  </th>
-                  <th className="th-cell u-min-w-400">
-                    <FormLabel label="担当ユーザー" isRequired={false} />
                   </th>
                 </tr>
               </thead>
@@ -461,16 +465,6 @@ const Create = ({ userOptions, paymentTermOptions, addressTypeOptions }) => {
                     </td>
 
                     <td className="td-cell">
-                      <Input
-                        type="text"
-                        value={contact.note}
-                        onChange={e => updateContact(index, 'note', e.target.value)}
-                        error={errors[`contacts.${index}.note`]}
-                      />
-                      <InvalidFeedback errors={errors} name={`contacts.${index}.note`} />
-                    </td>
-
-                    <td className="td-cell">
                       <CustomSelect
                         onChange={value => updateContact(index, 'in_charge_user_id', value)}
                         options={userOptions}
@@ -479,10 +473,20 @@ const Create = ({ userOptions, paymentTermOptions, addressTypeOptions }) => {
                         labelKey="name"
                         isClearable={true}
                         isSearchable={true}
-                        placeholder="担当ユーザーを選択..."
+                        placeholder="..."
                         error={errors[`contacts.${index}.in_charge_user_id`]}
                       />
                       <InvalidFeedback errors={errors} name={`contacts.${index}.in_charge_user_id`} />
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={contact.note}
+                        onChange={e => updateContact(index, 'note', e.target.value)}
+                        error={errors[`contacts.${index}.note`]}
+                      />
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.note`} />
                     </td>
 
                   </tr>

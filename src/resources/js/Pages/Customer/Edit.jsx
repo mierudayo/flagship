@@ -24,8 +24,6 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
     address: customer.address || '',
     tel: customer.tel || '',
     fax: customer.fax || '',
-    note: customer.note || '',
-    in_charge_user_id: customer.in_charge_user_id || '',
 
     purchase_billing_type: customer.purchase_term?.billing_type || '',
     purchase_cutoff_day: customer.purchase_term?.cutoff_day || '',
@@ -38,6 +36,9 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
     sales_payment_month_offset: customer.sales_term?.payment_month_offset ?? '',
     sales_payment_day: customer.sales_term?.payment_day || '',
     sales_payment_day_offset: customer.sales_term?.payment_day_offset ?? '',
+
+    in_charge_user_id: customer.in_charge_user_id || '',
+    note: customer.note || '',
 
     contacts: convertNullToEmptyString(customer.contacts),
     delivery_addresses: convertNullToEmptyString(customer.delivery_addresses),
@@ -271,41 +272,6 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel htmlFor="note" label="備考" isRequired={false} />
-                  </th>
-                  <td className="td-cell">
-                    <Textarea
-                      id="note"
-                      value={data.note}
-                      onChange={e => setData('note', e.target.value)}
-                      error={errors.note}
-                    />
-                    <InvalidFeedback errors={errors} name="note" />
-                  </td>
-                </tr>
-
-                <tr className="table-row is-flexible">
-                  <th className="th-cell">
-                    <FormLabel label="担当ユーザー" isRequired={false} />
-                  </th>
-                  <td className="td-cell">
-                    <CustomSelect
-                      onChange={value => setData('in_charge_user_id', value)}
-                      options={userOptions}
-                      value={data.in_charge_user_id}
-                      valueKey="id"
-                      labelKey="name"
-                      isClearable={true}
-                      isSearchable={true}
-                      placeholder="担当ユーザーを選択..."
-                      error={errors.in_charge_user_id}
-                    />
-                    <InvalidFeedback errors={errors} name="in_charge_user_id" />
-                  </td>
-                </tr>
-
-                <tr className="table-row is-flexible">
-                  <th className="th-cell">
                     <FormLabel htmlFor="purchase_billing_type" label="支払条件" isRequired={false} />
                   </th>
                   <td className="td-cell">
@@ -339,6 +305,41 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
                       paymentDayKey="sales_payment_day"
                       paymentDayOffsetKey="sales_payment_day_offset"
                     />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel label="担当ユーザー" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <CustomSelect
+                      onChange={value => setData('in_charge_user_id', value)}
+                      options={userOptions}
+                      value={data.in_charge_user_id}
+                      valueKey="id"
+                      labelKey="name"
+                      isClearable={true}
+                      isSearchable={true}
+                      placeholder="..."
+                      error={errors.in_charge_user_id}
+                    />
+                    <InvalidFeedback errors={errors} name="in_charge_user_id" />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <Textarea
+                      id="note"
+                      value={data.note}
+                      onChange={e => setData('note', e.target.value)}
+                      error={errors.note}
+                    />
+                    <InvalidFeedback errors={errors} name="note" />
                   </td>
                 </tr>
               </tbody>
@@ -378,13 +379,13 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
                     <FormLabel label="役割" isRequired={false} />
                   </th>
                   <th className="th-cell u-min-w-128">
-                    <FormLabel label="使用状況" isRequired={true} />
+                    <FormLabel label="使用状況" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-240">
+                    <FormLabel label="担当ユーザー" isRequired={false} />
                   </th>
                   <th className="th-cell u-min-w-400">
                     <FormLabel label="備考" isRequired={false} />
-                  </th>
-                  <th className="th-cell u-min-w-400">
-                    <FormLabel label="担当ユーザー" isRequired={false} />
                   </th>
                 </tr>
               </thead>
@@ -490,16 +491,6 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
                     </td>
 
                     <td className="td-cell">
-                      <Input
-                        type="text"
-                        value={contact.note}
-                        onChange={e => updateContact(index, 'note', e.target.value)}
-                        error={errors[`contacts.${index}.note`]}
-                      />
-                      <InvalidFeedback errors={errors} name={`contacts.${index}.note`} />
-                    </td>
-
-                    <td className="td-cell">
                       <CustomSelect
                         onChange={value => updateContact(index, 'in_charge_user_id', value)}
                         options={userOptions}
@@ -508,10 +499,20 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
                         labelKey="name"
                         isClearable={true}
                         isSearchable={true}
-                        placeholder="担当ユーザーを選択..."
+                        placeholder="..."
                         error={errors[`contacts.${index}.in_charge_user_id`]}
                       />
                       <InvalidFeedback errors={errors} name={`contacts.${index}.in_charge_user_id`} />
+                    </td>
+
+                    <td className="td-cell">
+                      <Input
+                        type="text"
+                        value={contact.note}
+                        onChange={e => updateContact(index, 'note', e.target.value)}
+                        error={errors[`contacts.${index}.note`]}
+                      />
+                      <InvalidFeedback errors={errors} name={`contacts.${index}.note`} />
                     </td>
 
                   </tr>
