@@ -176,7 +176,7 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
                 <th className="th-cell">役職</th>
                 <th className="th-cell u-min-w-120">担当ユーザー</th>
                 <th className="th-cell u-min-w-120">獲得元</th>
-                <th className="th-cell u-min-w-112">使用状況</th>
+                <th className="th-cell u-text-center u-min-w-80">使用状況</th>
                 <th className="th-cell u-w-120">備考</th>
               </tr>
             </thead>
@@ -193,7 +193,7 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
                   <td className="td-cell">{contact.position}</td>
                   <td className="td-cell">{contact.in_charge_user?.name}</td>
                   <td className="td-cell">{contact.lead_source?.name}</td>
-                  <td className="td-cell">{contact.is_active_label}</td>
+                  <td className="td-cell u-text-center">{contact.is_active_label}</td>
                   <td className="td-cell u-ellipsis u-max-w-320">{contact.note}</td>
                 </tr>
               ))}

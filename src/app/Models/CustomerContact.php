@@ -86,7 +86,7 @@ class CustomerContact extends Model
     */
     protected function getIsActiveLabelAttribute(): string
     {
-        return $this->is_active ? '使用中' : '使用不可';
+        return $this->is_active ? '✅' : '🆖';
     }
 
     /*
