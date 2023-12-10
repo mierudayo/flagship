@@ -48,9 +48,9 @@ class InquiryController extends Controller
 
         return Inertia::render('Inquiry/Index', [
             'inquiries'             => $inquiries,
-            'productOptions'        => Product::all(),
+            'productOptions'        => Product::hasInquiries()->get(),
             'inquiryTypeOptions'    => InquiryType::all(),
-            'inChargeUserOptions'   => User::active()->get(),
+            'inChargeUserOptions'   => User::active()->hasInquiries()->get(),
         ]);
     }
 
