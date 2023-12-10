@@ -2,7 +2,7 @@
 import ExpandLessOutlinedIcon from '@mui/icons-material/ExpandLessOutlined';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
-export default function ToggleFilterButton({ isOpen, setIsOpen }) {
+export default function ToggleFilterButton({ isFilterOpen, setIsFilterOpen }) {
   const iconStyle = {
     fontSize: '1.5rem',
     marginRight: '4px',
@@ -12,16 +12,16 @@ export default function ToggleFilterButton({ isOpen, setIsOpen }) {
   return (
     <button
       className="btn btn-secondary with-icon u-mr-3"
-      onClick={() => setIsOpen(!isOpen)}
+      onClick={() => setIsFilterOpen(!isFilterOpen)}
     >
       <div className="u-flex u-items-center">
-        {isOpen ? (
+        {isFilterOpen ? (
           <ExpandLessOutlinedIcon style={iconStyle} />
         ) : (
           <FilterAltIcon style={iconStyle} />
         )}
         <span>
-          {isOpen ? '詳細を閉じる' : '詳細条件を開く'}
+          {isFilterOpen ? '詳細を閉じる' : '詳細条件を開く'}
         </span>
       </div>
     </button>

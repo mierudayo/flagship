@@ -14,11 +14,11 @@ import ToggleFilterButton from '@/Components/ToggleFilterButton';
 const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOptions, inquiryStatusOptions }) => {
   const params = route().params;
   const { flash } = usePage().props;
-  const [isOpen, setIsOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
     if (Object.keys(params).length > 0) {
-      setIsOpen(true);
+      setIsFilterOpen(true);
     }
   }, []);
 
@@ -66,7 +66,7 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
           submit={submit}
         />
 
-        <ToggleFilterButton isOpen={isOpen} setIsOpen={setIsOpen} />
+        <ToggleFilterButton isFilterOpen={isFilterOpen} setIsFilterOpen={setIsFilterOpen} />
 
         <div className="record-count">
           {inquiries.total}件
@@ -74,7 +74,7 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
         <Pagination paginator={inquiries} />
       </div>
 
-      <div className={`filter-section ${isOpen ? 'show' : ''}`}>
+      <div className={`filter-section ${isFilterOpen ? 'show' : ''}`}>
         <form onSubmit={submit}>
           <div className="filter-form-body">
             <div className="u-mr-2">
