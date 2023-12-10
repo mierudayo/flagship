@@ -19,6 +19,8 @@ export default function CustomSelect(props) {
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
+      minHeight: 'var(--max-height-partials)',
+      maxHeight: 'var(--max-height-partials)',
       borderColor: state.isFocused && !error ? 'var(--color-focus)' : error ? 'var(--color-invalid-focus)' : provided.borderColor,
       boxShadow: state.isFocused && !error ? 'var(--color-focus-shadow)' : error ? 'var(--color-invalid-focus-shadow)' : provided.boxShadow,
       '&:hover': {
