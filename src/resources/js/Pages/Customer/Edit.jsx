@@ -574,11 +574,11 @@ const Edit = ({ customer, userOptions, paymentTermOptions, addressTypeOptions })
                       <select
                         value={deliveryAddress.address_type}
                         onChange={e => updateDeliveryAddress(index, 'address_type', e.target.value)}
-                        className={`form-select ${errors[`contacts.${index}.address_type`] ? 'is-invalid' : ''}`}
+                        className={`form-select ${errors[`delivery_addresses.${index}.address_type`] ? 'is-invalid' : ''}`}
                       >
                         <OptionsList options={addressTypeOptions} />
                       </select>
-                      <InvalidFeedback errors={errors} name={`contacts.${index}.address_type`} />
+                      <InvalidFeedback errors={errors} name={`delivery_addresses.${index}.address_type`} />
                     </td>
 
                     <td className="td-cell">
