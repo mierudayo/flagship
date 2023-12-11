@@ -26,12 +26,17 @@ class CustomerController extends Controller
         $customers = Customer::query()
             ->with(['inChargeUser', 'contacts'])
             ->searchByKeyword($keyword)
+            ->searchById($request->input('customer_id'))
+            ->searchByAddress($request->input('address'))
+            ->searchByPhone($request->input('phone'))
+            ->searchByInCharge($request->input('in_charge_user_id'))
             ->latest()
             ->paginate(50)
             ->withQueryString();
 
         return Inertia::render('Customer/Index', [
             'customers' => $customers,
+            'inChargeUserOptions'  => User::hasCustomers()->get(),
         ]);
     }
 

@@ -116,6 +116,45 @@ class Customer extends Model
         });
     }
 
+    public function scopeSearchById(Builder $query, ?string $id): Builder
+    {
+        if (!$id) {
+            return $query;
+        }
+
+        return $query->where('id', $id);
+    }
+
+    public function scopeSearchByInCharge(Builder $query, ?string $inChargeId): Builder
+    {
+        if (!$inChargeId) {
+            return $query;
+        }
+
+        return $query->where('in_charge_user_id', $inChargeId);
+    }
+
+    public function scopeSearchByAddress(Builder $query, ?string $address): Builder
+    {
+        if (!$address) {
+            return $query;
+        }
+
+        return $query->where('address', 'like', "%$address%");
+    }
+
+    public function scopeSearchByPhone(Builder $query, ?string $phone): Builder
+    {
+        if (!$phone) {
+            return $query;
+        }
+
+        return $query->where(function ($q) use ($phone) {
+            $q->where('tel', 'like', "%$phone%")
+                ->orWhere('fax', 'like', "%$phone%");
+        });
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Business Logic

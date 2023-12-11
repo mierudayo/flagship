@@ -85,6 +85,11 @@ class User extends Authenticatable
         return $this->belongsTo(Permission::class);
     }
 
+    public function customers(): HasMany
+    {
+        return $this->hasMany(Customer::class, 'in_charge_user_id');
+    }
+
     public function inquiries() : HasMany
     {
         return $this->hasMany(Inquiry::class, 'in_charge_user_id');
@@ -99,6 +104,11 @@ class User extends Authenticatable
     public function scopeActive(Builder $query): Builder
     {
         return $query->whereNull('resignation_date');
+    }
+
+    public function scopeHasCustomers(Builder $query): Builder
+    {
+        return $query->whereHas('customers');
     }
 
     public function scopeHasInquiries(Builder $query): Builder
