@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id')->nullable();
             $table->string('product_detail')->nullable();
             $table->unsignedBigInteger('inquiry_type_id');
-            $table->tinyInteger('contact_method');
+            $table->tinyInteger('contact_method')->nullable();
             $table->integer('project_scale')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->string('subject')->nullable();
