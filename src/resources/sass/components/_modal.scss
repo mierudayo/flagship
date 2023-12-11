@@ -49,8 +49,8 @@
   height: var(--height-modal-body);
 
   &.is-scrollable {
-    overflow-x: scroll;
-    overflow-y: scroll;
+    overflow-x: auto;
+    overflow-y: auto;
     position: relative;
   }
 

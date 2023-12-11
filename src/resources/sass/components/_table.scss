@@ -18,8 +18,8 @@ Table styles
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   &.is-scrollable {
-    overflow-x: scroll;
-    overflow-y: scroll;
+    overflow-x: auto;
+    overflow-y: auto;
     position: relative;
     max-height: calc(100vh - 80px);
   }
