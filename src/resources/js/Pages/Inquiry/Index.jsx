@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useForm, usePage } from '@inertiajs/react';
+
+import MenuItem from '@mui/material/MenuItem';
+
 import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
 import CustomSelect from '@/Components/Form/CustomSelect';
+import DropdownMenu from '@/Components/DropdownMenu';
 import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import InquiryTable from './Partials/InquiryTable';
@@ -51,12 +55,18 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
         >
           新規登録
         </Link>
-        <Link
-          href={route('inquiry-types.index')}
-          className="btn btn-secondary u-mr-3"
+
+        <DropdownMenu
+          buttonLabel="設定"
+          buttonClassName="u-mr-3"
         >
-          区分登録
-        </Link>
+          <Link href={route('inquiry-types.index')}>
+            <MenuItem>
+              区分登録
+            </MenuItem>
+          </Link>
+        </DropdownMenu>
+
 
         <KeywordSearchForm
           placeholder="件名、内容で検索"

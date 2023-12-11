@@ -1,6 +1,10 @@
 import { Link, useForm, usePage } from '@inertiajs/react';
+
+import MenuItem from '@mui/material/MenuItem';
+
 import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
+import DropdownMenu from '@/Components/DropdownMenu';
 import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import CustomerTable from './Partials/CustomerTable';
@@ -31,12 +35,21 @@ const Index = ({ customers }) => {
           新規登録
         </Link>
 
-        <Link
-          href={route('billing-addresses.index')}
-          className="btn btn-secondary u-mr-3"
+        <DropdownMenu
+          buttonLabel="設定"
+          buttonClassName="u-mr-3"
         >
-          請求先一覧へ
-        </Link>
+          <Link href={route('billing-addresses.index')}>
+            <MenuItem>
+              請求先管理
+            </MenuItem>
+          </Link>
+          <Link href={route('lead-sources.index')}>
+            <MenuItem>
+              リード獲得元管理
+            </MenuItem>
+          </Link>
+        </DropdownMenu>
 
         <KeywordSearchForm
           placeholder="取引先名, ヨミガナで検索"
