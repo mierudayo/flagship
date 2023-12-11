@@ -35,7 +35,7 @@ const Create = ({ userOptions, leadSourceOptions, paymentTermOptions, addressTyp
     in_charge_user_id: '',
     note: '',
 
-    contacts: [],
+    contacts: [{ is_active: true }],
     delivery_addresses: [],
   });
 

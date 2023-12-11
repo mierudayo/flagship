@@ -38,7 +38,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     purchase_date: today,
     note: '',
     purchase_in_charge_id: '',
-    purchase_order_details: [],
+    purchase_order_details: [{}],
   });
 
   function submit(e) {
@@ -327,7 +327,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           className={`form-select u-w-128 ${errors.payment_day_offset ? 'is-invalid' : ''}`}
                         >
                           <option value="">-- 期限 --</option>
-                          <OptionsList options={paymentTermOptions} />
+                          <OptionsList options={paymentTermOptions.dayOffsets} />
                         </select>
                         <InvalidFeedback errors={errors} name="payment_day_offset" />
                       </>
