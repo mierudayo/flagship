@@ -98,8 +98,8 @@ const Index = ({ customers, inChargeUserOptions }) => {
         <Pagination paginator={customers} />
       </div>
 
-      <div className={`filter-section ${isFilterOpen ? 'show' : ''}`}>
-        <form onSubmit={submit}>
+      <form onSubmit={submit}>
+        <div className={`filter-section ${isFilterOpen ? 'show' : ''}`}>
           <div className="filter-form-body">
             <div className="u-mr-2">
               <FormLabel htmlFor="customer_id" label="取引先No." />
@@ -150,9 +150,7 @@ const Index = ({ customers, inChargeUserOptions }) => {
             </div>
           </div>
           <div className="filter-form-footer">
-            <button
-              className="btn btn-primary u-mr-3"
-            >
+            <button className="btn btn-primary u-mr-3">
               検索
             </button>
             <Link
@@ -164,8 +162,8 @@ const Index = ({ customers, inChargeUserOptions }) => {
               クリア
             </Link>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
 
       <Alert type="success" message={flash.message} />
 

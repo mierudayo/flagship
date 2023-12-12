@@ -38,6 +38,21 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
     product_id: urlParams.product_id || '',
   });
 
+  function resetSearchInputs() {
+    setData({
+      ...data,
+      keyword: '',
+      inquiry_id: '',
+      customer_info: '',
+      start_date: '',
+      end_date: '',
+      in_charge_user_id: '',
+      status: '',
+      inquiry_type_id: '',
+      product_id: '',
+    })
+  }
+
   function submit(e) {
     e.preventDefault();
     get(route('inquiries.index'), {
@@ -84,8 +99,8 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
         <Pagination paginator={inquiries} />
       </div>
 
-      <div className={`filter-section ${isFilterOpen ? 'show' : ''}`}>
-        <form onSubmit={submit}>
+      <form onSubmit={submit}>
+        <div className={`filter-section ${isFilterOpen ? 'show' : ''}`}>
           <div className="filter-form-body">
             <div className="u-mr-2">
               <FormLabel htmlFor="inquiry_id" label="ID" />
@@ -98,6 +113,7 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
                 className="u-max-w-80"
               />
             </div>
+
             <div className="u-mr-2">
               <FormLabel htmlFor="start_date" label="問い合わせ日" />
               <div className="u-flex">
@@ -116,6 +132,7 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
                 />
               </div>
             </div>
+
             <div className="u-mr-2">
               <FormLabel htmlFor="customer_info" label="顧客情報" />
               <Input
@@ -189,35 +206,20 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
             </div>
           </div>
           <div className="filter-form-footer">
-            <button
-              className="btn btn-primary u-mr-3"
-            >
+            <button className="btn btn-primary u-mr-3">
               検索
             </button>
             <Link
               href={route('inquiries.index')}
               className="btn btn-secondary"
               preserveState={true}
-              onSuccess={() => {
-                setData({
-                  ...data,
-                  keyword: '',
-                  inquiry_id: '',
-                  customer_info: '',
-                  start_date: '',
-                  end_date: '',
-                  in_charge_user_id: '',
-                  status: '',
-                  inquiry_type_id: '',
-                  product_id: '',
-                })
-              }}
+              onSuccess={resetSearchInputs}
             >
               クリア
             </Link>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
 
       <Alert type="success" message={flash.message} />
 
