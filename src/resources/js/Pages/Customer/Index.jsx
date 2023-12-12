@@ -102,14 +102,14 @@ const Index = ({ customers, inChargeUserOptions }) => {
         <form onSubmit={submit}>
           <div className="filter-form-body">
             <div className="u-mr-2">
-              <FormLabel htmlFor="customer_id" label="ID" />
+              <FormLabel htmlFor="customer_id" label="取引先No." />
               <Input
                 id="customer_id"
                 type="number"
                 value={data.customer_id}
                 onChange={e => setData('customer_id', e.target.value)}
                 error={errors.customer_id}
-                className="u-w-80"
+                className="u-w-88"
               />
             </div>
             <div className="u-mr-2">
@@ -124,7 +124,7 @@ const Index = ({ customers, inChargeUserOptions }) => {
               />
             </div>
             <div className="u-mr-2">
-              <FormLabel htmlFor="phone" label="連絡先" />
+              <FormLabel htmlFor="phone" label="TEL/FAX" />
               <Input
                 id="phone"
                 type="text"
@@ -132,7 +132,6 @@ const Index = ({ customers, inChargeUserOptions }) => {
                 onChange={e => setData('phone', e.target.value)}
                 error={errors.phone}
                 className="u-w-200"
-                placeholder="tel, fax"
               />
             </div>
             <div className="u-mr-2 u-w-200">

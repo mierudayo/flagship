@@ -24,7 +24,7 @@ class CustomerController extends Controller
         $keyword = $request->input('keyword');
 
         $customers = Customer::query()
-            ->with(['inChargeUser', 'contacts'])
+            ->with(['inChargeUser'])
             ->searchByKeyword($keyword)
             ->searchById($request->input('customer_id'))
             ->searchByAddress($request->input('address'))
