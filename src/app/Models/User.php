@@ -127,4 +127,32 @@ class User extends Authenticatable
                 ->orWhere('name_kana', 'like', "%$keyword%");
         });
     }
+
+    public function scopeSearchById(Builder $query, ?string $id): Builder
+    {
+        if (!$id) {
+            return $query;
+        }
+
+        return $query->where('id', $id);
+    }
+
+    public function scopeSearchByEmployeeCode(Builder $query, ?string $employeeCode): Builder
+    {
+        if (!$employeeCode) {
+            return $query;
+        }
+
+        return $query->where('employee_code', $employeeCode);
+    }
+
+    public function scopeSearchByEmail(Builder $query, ?string $email): Builder
+    {
+        if (!$email) {
+            return $query;
+        }
+
+        return $query->where('email', 'like', "%$email%");
+    }
+
 }

@@ -17,12 +17,13 @@ class UserController extends Controller
 {
     public function index(UserSearchRequest $request): Response
     {
-        $keyword = $request->input('keyword');
-
         $users = User::query()
             ->with('permission')
-            ->searchByKeyword($keyword)
-            ->paginate(20)
+            ->searchByKeyword($request->input('keyword'))
+            ->searchById($request->input('user_id'))
+            ->searchByEmployeeCode($request->input('employee_code'))
+            ->searchByEmail($request->input('email'))
+            ->paginate(50)
             ->withQueryString();
 
         return Inertia::render('User/Index', [

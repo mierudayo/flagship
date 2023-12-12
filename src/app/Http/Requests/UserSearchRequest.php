@@ -22,7 +22,10 @@ class UserSearchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'keyword' => ['nullable', 'max:255'],
+            'keyword'       => ['nullable', 'max:255'],
+            'user_id'       => ['nullable', 'integer'],
+            'employee_code' => ['nullable', 'max:255'],
+            'email'         => ['nullable', 'max:255'],
         ];
     }
 }
