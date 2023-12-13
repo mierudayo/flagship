@@ -105,9 +105,9 @@ class SalesOrderController extends Controller
                 return [
                     'sales_order_id'    => $salesOrder->id,
                     'row_number'        => $index + 1,
-                    'product_id'        => $detail['product_id'],
-                    'product_name'      => $detail['product_name'],
-                    'product_detail'    => $detail['product_detail'],
+                    'product_id'        => $detail['product_id'] ?? null,
+                    'product_name'      => $detail['product_name'] ?? null,
+                    'product_detail'    => $detail['product_detail'] ?? null,
                     'quantity'          => $detail['quantity'],
                     'unit_price'        => $detail['unit_price'],
                     'tax_rate'          => $detail['tax_rate'],
@@ -115,7 +115,7 @@ class SalesOrderController extends Controller
                     'tax_amount'        => $taxAmount,
                     'subtotal'          => $subtotal,
                     'total'             => $total,
-                    'note'              => $detail['note'],
+                    'note'              => $detail['note'] ?? null,
                 ];
             })->toArray();
 

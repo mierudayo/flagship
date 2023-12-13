@@ -43,7 +43,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     delivery_memo: '',
     note: '',
     sales_in_charge_id: '',
-    sales_order_details: [{}],
+    sales_order_details: [{ tax_rate: 0.10, is_tax_inclusive: false,}],
   });
 
   function submit(e) {
