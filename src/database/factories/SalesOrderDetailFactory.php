@@ -28,9 +28,6 @@ class SalesOrderDetailFactory extends Factory
             'unit_price'        => $this->faker->randomFloat(2, 100, 5000),
             'tax_rate'          => 0.10,
             'is_tax_inclusive'  => $this->faker->boolean,
-            'tax_amount'        => $this->faker->randomFloat(2, 1000, 50000),
-            'subtotal'          => $this->faker->randomFloat(2, 1000, 50000),
-            'total'             => $this->faker->randomFloat(2, 1000, 50000),
             'note'              => $this->faker->text
         ];
     }

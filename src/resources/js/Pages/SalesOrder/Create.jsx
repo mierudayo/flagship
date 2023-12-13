@@ -76,8 +76,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
         unit_price: '',
         tax_rate: 0.10,
         is_tax_inclusive: false,
-        subtotal: '',
-        total: '',
         note: '',
       }
     ])
