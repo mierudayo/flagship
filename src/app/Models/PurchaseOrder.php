@@ -28,8 +28,6 @@ class PurchaseOrder extends Model
         'customer_name',
         'ship_from_address',
         'purchase_date',
-        'subtotal_amount',
-        'total_amount',
         'note',
         'purchase_in_charge_id',
         'created_by_id',

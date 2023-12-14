@@ -38,7 +38,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     purchase_date: today,
     note: '',
     purchase_in_charge_id: '',
-    purchase_order_details: [{}],
+    purchase_order_details: [{ tax_rate: 0.10, is_tax_inclusive: false,}],
   });
 
   function submit(e) {
@@ -71,8 +71,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
         unit_price: '',
         tax_rate: 0.10,
         is_tax_inclusive: false,
-        subtotal: '',
-        total: '',
         note: '',
       }
     ])

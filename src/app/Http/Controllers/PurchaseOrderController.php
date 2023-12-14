@@ -64,65 +64,28 @@ class PurchaseOrderController extends Controller
             'customer_name'         => $request->input('customer_name'),
             'ship_from_address'     => $request->input('ship_from_address'),
             'purchase_date'         => $request->input('purchase_date'),
-            'subtotal_amount'       => $request->input('subtotal_amount'),
-            'total_amount'          => $request->input('total_amount'),
             'note'                  => $request->input('note'),
             'purchase_in_charge_id' => $request->input('purchase_in_charge_id'),
             'created_by_id'         => auth()->user()->id,
         ]);
 
-        $subtotalAmount = 0;
-        $totalAmount    = 0;
-
         // TODO: refactor 後でメソッド化,
         $purchaseOrderDetails = collect($request->input('purchase_order_details'))
             ->map(function ($detail, $index) use (&$subtotalAmount, &$totalAmount, $purchaseOrder) {
-
-                // TODO: 計算をメソッド化
-                $quantity = $detail['quantity'];
-                $unitPrice = $detail['unit_price'];
-                $taxRate = $detail['tax_rate'];
-                $isTaxInclusive = $detail['is_tax_inclusive'];
-
-                $basicSubtotal = $quantity * $unitPrice;
-
-                if ($isTaxInclusive) {
-                    $subtotal  = $basicSubtotal / (1 + $taxRate);
-                    $taxAmount = $basicSubtotal - $subtotal;
-                    $total     = $basicSubtotal;
-                } else {
-                    $subtotal   = $basicSubtotal;
-                    $taxAmount  = $subtotal * $taxRate;
-                    $total      = $subtotal + $taxAmount;
-                }
-
-                $subtotalAmount  += $subtotal;
-                $totalAmount  += $total;
-
                 return [
                     'purchase_order_id' => $purchaseOrder->id,
                     'row_number'        => $index + 1,
-                    'product_id'        => $detail['product_id'],
-                    'product_name'      => $detail['product_name'],
-                    'product_detail'    => $detail['product_detail'],
+                    'product_id'        => $detail['product_id'] ?? null,
+                    'product_name'      => $detail['product_name'] ?? null,
+                    'product_detail'    => $detail['product_detail'] ?? null,
                     'quantity'          => $detail['quantity'],
                     'unit_price'        => $detail['unit_price'],
                     'tax_rate'          => $detail['tax_rate'],
-                    'is_tax_inclusive'  => $isTaxInclusive,
-                    'tax_amount'        => $taxAmount,
-                    'subtotal'          => $subtotal,
-                    'total'             => $total,
-                    'note'              => $detail['note'],
+                    'note'              => $detail['note'] ?? null,
                 ];
             })->toArray();
 
         PurchaseOrderDetail::insert($purchaseOrderDetails);
-
-        $purchaseOrder->update([
-            'subtotal_amount' => $subtotalAmount,
-            'total_amount'    => $totalAmount,
-        ]);
-
 
         return to_route('purchase-orders.index')
             ->with('message', "発注ID:{$purchaseOrder->id} 登録成功しました。");

@@ -38,8 +38,6 @@ class PurchaseOrderFactory extends Factory
             'customer_name'         => $this->faker->name,
             'ship_from_address'     => $this->faker->address,
             'purchase_date'         => $this->faker->date(),
-            'subtotal_amount'       => $this->faker->numberBetween(1000, 10000),
-            'total_amount'          => $this->faker->numberBetween(1000, 10000),
             'note'                  => $this->faker->paragraph,
             'purchase_in_charge_id' => User::inRandomOrder()->first()->id,
             'created_by_id'         => User::inRandomOrder()->first()->id,

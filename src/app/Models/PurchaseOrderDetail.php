@@ -20,8 +20,6 @@ class PurchaseOrderDetail extends Model
         'unit_price',
         'tax_rate',
         'is_tax_inclusive',
-        'subtotal',
-        'total',
         'note',
     ];
 

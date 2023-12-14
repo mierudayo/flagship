@@ -30,8 +30,6 @@ return new class extends Migration
             $table->string('customer_name');
             $table->string('ship_from_address');
             $table->date('purchase_date');
-            $table->integer('subtotal_amount')->nullable();
-            $table->integer('total_amount')->nullable();
             $table->text('note')->nullable();
             $table->unsignedBigInteger('purchase_in_charge_id');
             $table->unsignedBigInteger('created_by_id');

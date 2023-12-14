@@ -362,8 +362,6 @@
 | customer_name         | 仕入先名      | string              |              |
 | ship_from_address     | 出荷元住所    | string              |              |
 | purchase_date         | 発注日       | date                |              |
-| subtotal_amount       | 税抜き合計金額 | integer             |              |
-| total_amount          | 税込み合計金額 | integer             |              |
 | note                  | 備考         | text                |              |
 | purchase_in_charge_id | 発注担当者ID  | unsignedBigInteger  | FK           |
 | created_by_id         | 作成者ID     | unsignedBigInteger  | FK           |
@@ -386,8 +384,6 @@
 | tax_rate              | 税率             | decimal               | デフォルト0.1 (10%)      |
 | tax_amount            | 税額              | decimal               |                     |
 | is_tax_inclusive      | 税の種類         | boolean               | 外税：false, 内税：true  |
-| subtotal              | 小計（税抜き）   | decimal               |                          |
-| total                 | 総計（税込）     | decimal               |                          |
 | note                  | 備考             | text                  |                          |
 | created_at            | 作成日時         | timestamp             |                          |
 | updated_at            | 更新日時         | timestamp             |                          |

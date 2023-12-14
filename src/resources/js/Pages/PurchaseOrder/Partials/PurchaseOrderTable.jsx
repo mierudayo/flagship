@@ -20,11 +20,11 @@ export default function PurchaseOrderTable({ purchaseOrders }) {
               <td className="td-cell">{purchaseOrder.product_category.name}</td>
               <td className="td-cell">{purchaseOrder.customer_name}</td>
               <td className="td-cell">{purchaseOrder.purchase_in_charge.name}</td>
-              <td className="td-cell">{purchaseOrder.total_amount}</td>
               <td className="td-cell">
-                {purchaseOrder.purchase_order_details.map(detail => (
-                  <div key={detail.id}>{detail.id} : {detail.product_name} {detail.subtotal}円</div>
-                ))}
+                {/* TODO: 合計額を表示 */}
+              </td>
+              <td className="td-cell">
+                {/* TODO: 明細情報を表示 */}
               </td>
               <td className="td-cell u-ellipsis u-max-w-200">{purchaseOrder.note}</td>
             </tr>
