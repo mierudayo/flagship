@@ -86,7 +86,7 @@ class SalesOrderController extends Controller
                     'quantity'          => $detail['quantity'],
                     'unit_price'        => $detail['unit_price'],
                     'tax_rate'          => $detail['tax_rate'],
-                    'is_tax_inclusive'          => $detail['is_tax_inclusive'],
+                    'is_tax_inclusive'  => (boolean)$detail['is_tax_inclusive'],
                     'note'              => $detail['note'] ?? null,
                 ];
             })->toArray();
