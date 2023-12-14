@@ -35,8 +35,6 @@ return new class extends Migration
             $table->date('delivery_date')->nullable();
             $table->string('delivery_status')->nullable();
             $table->string('delivery_memo')->nullable();
-            $table->integer('subtotal_amount')->nullable();
-            $table->integer('total_amount')->nullable();
             $table->text('note')->nullable();
             $table->unsignedBigInteger('sales_in_charge_id');
             $table->unsignedBigInteger('created_by_id');

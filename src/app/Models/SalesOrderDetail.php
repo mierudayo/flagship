@@ -35,4 +35,39 @@ class SalesOrderDetail extends Model
         return $this->belongsTo(Product::class);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Accessors
+    |--------------------------------------------------------------------------
+    */
+
+    /** 小計(税抜き) */
+    public function getSubtotalAttribute(): string
+    {
+        return number_format($this->calculateSubtotal(), 2, '.', '');
+    }
+
+    /** 合計(税込) */
+    public function getTotalAttribute(): string
+    {
+        $total = $this->calculateSubtotal() * (1 + $this->tax_rate);
+        return number_format($total, 2, '.', '');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | other methods
+    |--------------------------------------------------------------------------
+    */
+
+    protected function calculateSubtotal(): float
+    {
+        $subtotal = $this->quantity * $this->unit_price;
+
+        if ($this->is_tax_inclusive) {
+            $subtotal =  $subtotal / (1 + $this->tax_rate);
+        }
+
+        return $subtotal;
+    }
 }

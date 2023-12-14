@@ -22,7 +22,10 @@ export default function SalesOrderTable({ salesOrders }) {
               <td className="td-cell">{salesOrder.product_category.name}</td>
               <td className="td-cell">{salesOrder.customer_name}</td>
               <td className="td-cell">{salesOrder.sales_in_charge.name}</td>
-              <td className="td-cell">{salesOrder.total_amount}</td>
+              <td className="td-cell">
+                {salesOrder.display_subtotal_amount} <br />
+                ({salesOrder.display_total_amount})
+              </td>
               <td className="td-cell">
                 {salesOrder.sales_order_details.map(detail => (
                   <div key={detail.id}>{detail.id} : {detail.product_name} {detail.subtotal}円</div>

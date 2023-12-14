@@ -74,57 +74,24 @@ class SalesOrderController extends Controller
             'created_by_id'         => auth()->user()->id,
         ]);
 
-        $subtotalAmount = 0;
-        $totalAmount    = 0;
-
         // TODO: refactor 後でメソッド化,
         $salesOrderDetails = collect($request->input('sales_order_details'))
-            ->map(function ($detail, $index) use (&$subtotalAmount, &$totalAmount, $salesOrder) {
-
-                // TODO: 計算をメソッド化
-                $quantity = $detail['quantity'];
-                $unitPrice = $detail['unit_price'];
-                $taxRate = $detail['tax_rate'];
-                $isTaxInclusive = $detail['is_tax_inclusive'];
-
-                $basicSubtotal = $quantity * $unitPrice;
-
-                if ($isTaxInclusive) {
-                    $subtotal  = $basicSubtotal / (1 + $taxRate);
-                    $taxAmount = $basicSubtotal - $subtotal;
-                    $total     = $basicSubtotal;
-                } else {
-                    $subtotal   = $basicSubtotal;
-                    $taxAmount  = $subtotal * $taxRate;
-                    $total      = $subtotal + $taxAmount;
-                }
-
-                $subtotalAmount  += $subtotal;
-                $totalAmount  += $total;
-
+            ->map(function ($detail, $index) use ($salesOrder) {
                 return [
                     'sales_order_id'    => $salesOrder->id,
                     'row_number'        => $index + 1,
-                    'product_id'        => $detail['product_id'],
-                    'product_name'      => $detail['product_name'],
-                    'product_detail'    => $detail['product_detail'],
+                    'product_id'        => $detail['product_id'] ?? null,
+                    'product_name'      => $detail['product_name'] ?? null,
+                    'product_detail'    => $detail['product_detail'] ?? null,
                     'quantity'          => $detail['quantity'],
                     'unit_price'        => $detail['unit_price'],
                     'tax_rate'          => $detail['tax_rate'],
-                    'is_tax_inclusive'  => $isTaxInclusive,
-                    'tax_amount'        => $taxAmount,
-                    'subtotal'          => $subtotal,
-                    'total'             => $total,
-                    'note'              => $detail['note'],
+                    'is_tax_inclusive'  => (boolean)$detail['is_tax_inclusive'],
+                    'note'              => $detail['note'] ?? null,
                 ];
             })->toArray();
 
         SalesOrderDetail::insert($salesOrderDetails);
-
-        $salesOrder->update([
-            'subtotal_amount' => $subtotalAmount,
-            'total_amount'    => $totalAmount,
-        ]);
 
         return to_route('sales-orders.index')
             ->with('message', "受注ID:{$salesOrder->id} 登録成功しました。");

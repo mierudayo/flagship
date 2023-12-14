@@ -12,6 +12,11 @@ class SalesOrder extends Model
 {
     use HasFactory;
 
+    protected $appends = [
+        'display_subtotal_amount',
+        'display_total_amount',
+    ];
+
     protected $fillable = [
         'customer_id',
         'customer_contact_id',
@@ -90,6 +95,35 @@ class SalesOrder extends Model
     {
         return $this->hasMany(SalesOrderDetail::class)->orderBy('row_number');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Accessors
+    |--------------------------------------------------------------------------
+    */
+
+    /** 受注合計額(税抜き) */
+    public function getSubtotalAmountAttribute(): int
+    {
+        return $this->salesOrderDetails->sum('subtotal');
+    }
+
+    public function getDisplaySubtotalAmountAttribute(): string
+    {
+        return number_format($this->subtotal_amount);
+    }
+
+    /** 受注合計額(税込) */
+    public function getTotalAmountAttribute(): int
+    {
+        return $this->salesOrderDetails->sum('total');
+    }
+
+    public function getDisplayTotalAmountAttribute(): string
+    {
+        return number_format($this->total_amount);
+    }
+
 
     /*
     |--------------------------------------------------------------------------
