@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AppLayout from '@/Layouts/AppLayout';
@@ -43,7 +43,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     delivery_memo: '',
     note: '',
     sales_in_charge_id: '',
-    sales_order_details: [{ tax_rate: 0.10, is_tax_inclusive: false,}],
+    sales_order_details: [{ tax_rate: 0.10, is_tax_inclusive: false, }],
   });
 
   function submit(e) {
@@ -446,7 +446,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
             <table className="table">
               <thead className="table-header is-sticky">
                 <tr className="table-row">
-                  <th className="th-cell col-fixed">
+                  <th className="th-cell col-fixed" rowSpan={2}>
 
                   </th>
                   <th className="th-cell u-min-w-200">
@@ -459,131 +459,160 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     <FormLabel label="商品詳細" isRequired={false} />
                   </th>
                   <th className="th-cell u-min-w-160">
-                    <FormLabel label="数量" isRequired={true} />
+                    <FormLabel label="販売数量" isRequired={true} />
                   </th>
                   <th className="th-cell u-min-w-160">
-                    <FormLabel label="単価" isRequired={true} />
+                    <FormLabel label="販売単価" isRequired={true} />
                   </th>
-                  <th className="th-cell u-min-w-112">
+                  <th className="th-cell u-min-w-112" rowSpan={2}>
                     <FormLabel label="税率" isRequired={false} />
                   </th>
-                  <th className="th-cell u-min-w-104">
+                  <th className="th-cell u-min-w-104" rowSpan={2}>
                     <FormLabel label="税種別" isRequired={false} />
                   </th>
-                  <th className="th-cell u-min-w-400">
+                  <th className="th-cell u-min-w-400" rowSpan={2}>
                     <FormLabel label="備考" isRequired={false} />
                   </th>
+                </tr>
+                <tr className="table-row">
+                  <th className="th-cell" colSpan={3}><FormLabel label="仕入先" isRequired={false} /></th>
+                  <th className="th-cell"><FormLabel label="仕入数量" isRequired={false} /></th>
+                  <th className="th-cell"><FormLabel label="仕入単価" isRequired={false} /></th>
                 </tr>
               </thead>
               <tbody className="tbody">
                 {data.sales_order_details.map((detail, index) => (
-                  <tr key={index} className="table-row">
-                    <td className="td-cell col-fixed u-w-80">
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        onClick={() => removeSalesOrderDetail(index)}
-                      >
-                        削除
-                      </button>
-                    </td>
+                  <Fragment key={index}>
+                    <tr className="table-row">
+                      <td className="td-cell col-fixed u-w-80" rowSpan={2}>
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          onClick={() => removeSalesOrderDetail(index)}
+                        >
+                          削除
+                        </button>
+                      </td>
 
-                    <td className="td-cell">
-                      <select
-                        value={detail.product_id}
-                        onChange={e => updateDetail(index, 'product_id', e.target.value)}
-                        className={`form-select ${errors[`sales_order_details.${index}.product_id`] ? 'is-invalid' : ''}`}
-                      >
-                        <option value=""></option>
-                        <OptionsList
-                          options={productOptions.map(obj => ({ value: obj.id, label: obj.name }))}
+                      <td className="td-cell">
+                        <select
+                          value={detail.product_id}
+                          onChange={e => updateDetail(index, 'product_id', e.target.value)}
+                          className={`form-select ${errors[`sales_order_details.${index}.product_id`] ? 'is-invalid' : ''}`}
+                        >
+                          <option value=""></option>
+                          <OptionsList
+                            options={productOptions.map(obj => ({ value: obj.id, label: obj.name }))}
+                          />
+                        </select>
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.product_id`} />
+                      </td>
+
+                      <td className="td-cell">
+                        <Input
+                          type="text"
+                          value={detail.product_name}
+                          onChange={e => updateDetail(index, 'product_name', e.target.value)}
+                          error={errors[`sales_order_details.${index}.product_name`]}
                         />
-                      </select>
-                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.product_id`} />
-                    </td>
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.product_name`} />
+                      </td>
 
-                    <td className="td-cell">
-                      <Input
-                        type="text"
-                        value={detail.product_name}
-                        onChange={e => updateDetail(index, 'product_name', e.target.value)}
-                        error={errors[`sales_order_details.${index}.product_name`]}
-                      />
-                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.product_name`} />
-                    </td>
-
-                    <td className="td-cell">
-                      <Input
-                        type="text"
-                        value={detail.product_detail}
-                        onChange={e => updateDetail(index, 'product_detail', e.target.value)}
-                        error={errors[`sales_order_details.${index}.product_detail`]}
-                      />
-                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.product_detail`} />
-                    </td>
-
-                    <td className="td-cell">
-                      <Input
-                        type="number"
-                        value={detail.quantity}
-                        onChange={e => updateDetail(index, 'quantity', e.target.value)}
-                        error={errors[`sales_order_details.${index}.quantity`]}
-                      />
-                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.quantity`} />
-                    </td>
-
-                    <td className="td-cell">
-                      <Input
-                        type="number"
-                        value={detail.unit_price}
-                        onChange={e => updateDetail(index, 'unit_price', e.target.value)}
-                        error={errors[`sales_order_details.${index}.unit_price`]}
-                      />
-                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.unit_price`} />
-                    </td>
-
-                    <td className="td-cell">
-                      <select
-                        value={detail.tax_rate}
-                        onChange={e => updateDetail(index, 'tax_rate', e.target.value)}
-                        className={`form-select ${errors[`sales_order_details.${index}.tax_rate`] ? 'is-invalid' : ''}`}
-                      >
-                        <OptionsList
-                          options={[
-                            { value: 0.1, label: '10%' },
-                            { value: 0.8, label: '8%' },
-                          ]}
+                      <td className="td-cell">
+                        <Input
+                          type="text"
+                          value={detail.product_detail}
+                          onChange={e => updateDetail(index, 'product_detail', e.target.value)}
+                          error={errors[`sales_order_details.${index}.product_detail`]}
                         />
-                      </select>
-                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.tax_rate`} />
-                    </td>
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.product_detail`} />
+                      </td>
 
-                    <td className="td-cell">
-                      <select
-                        value={detail.is_tax_inclusive}
-                        onChange={e => updateDetail(index, 'is_tax_inclusive', e.target.value === 'true')}
-                        className={`form-select ${errors[`sales_order_details.${index}.is_tax_inclusive`] ? 'is-invalid' : ''}`}
-                      >
-                        <OptionsList
-                          options={[
-                            { value: false, label: '外税' },
-                            { value: true, label: '内税' },
-                          ]}
+                      <td className="td-cell">
+                        <Input
+                          type="number"
+                          value={detail.quantity}
+                          onChange={e => updateDetail(index, 'quantity', e.target.value)}
+                          error={errors[`sales_order_details.${index}.quantity`]}
                         />
-                      </select>
-                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.is_tax_inclusive`} />
-                    </td>
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.quantity`} />
+                      </td>
 
-                    <td className="td-cell">
-                      <Input
-                        type="text"
-                        value={detail.note}
-                        onChange={e => updateDetail(index, 'note', e.target.value)}
-                        error={errors[`sales_order_details.${index}.note`]}
-                      />
-                      <InvalidFeedback errors={errors} name={`sales_order_details.${index}.note`} />
-                    </td>
-                  </tr>
+                      <td className="td-cell">
+                        <Input
+                          type="number"
+                          value={detail.unit_price}
+                          onChange={e => updateDetail(index, 'unit_price', e.target.value)}
+                          error={errors[`sales_order_details.${index}.unit_price`]}
+                        />
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.unit_price`} />
+                      </td>
+
+                      <td className="td-cell">
+                        <select
+                          value={detail.tax_rate}
+                          onChange={e => updateDetail(index, 'tax_rate', e.target.value)}
+                          className={`form-select ${errors[`sales_order_details.${index}.tax_rate`] ? 'is-invalid' : ''}`}
+                        >
+                          <OptionsList
+                            options={[
+                              { value: 0.1, label: '10%' },
+                              { value: 0.8, label: '8%' },
+                            ]}
+                          />
+                        </select>
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.tax_rate`} />
+                      </td>
+
+                      <td className="td-cell">
+                        <select
+                          value={detail.is_tax_inclusive}
+                          onChange={e => updateDetail(index, 'is_tax_inclusive', e.target.value === 'true')}
+                          className={`form-select ${errors[`sales_order_details.${index}.is_tax_inclusive`] ? 'is-invalid' : ''}`}
+                        >
+                          <OptionsList
+                            options={[
+                              { value: false, label: '外税' },
+                              { value: true, label: '内税' },
+                            ]}
+                          />
+                        </select>
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.is_tax_inclusive`} />
+                      </td>
+
+                      <td className="td-cell">
+                        <Input
+                          type="text"
+                          value={detail.note}
+                          onChange={e => updateDetail(index, 'note', e.target.value)}
+                          error={errors[`sales_order_details.${index}.note`]}
+                        />
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.note`} />
+                      </td>
+                    </tr>
+
+                    {/* 仕入 明細行 */}
+                    <tr className="table-row">
+                      <td className="td-cell" colSpan={3}>
+                        {/* 仕入先情報 */}
+                      </td>
+                      <td className="td-cell">
+                        {/* 仕入数量 */}
+                      </td>
+                      <td className="td-cell">
+                        {/* 仕入単価 */}
+                      </td>
+                      <td className="td-cell">
+                        {/* 税率 */}
+                      </td>
+                      <td className="td-cell">
+                        {/* 税種別 */}
+                      </td>
+                      <td className="td-cell">
+                        {/* 備考 */}
+                      </td>
+                    </tr>
+                  </Fragment>
                 ))}
               </tbody>
             </table>
