@@ -17,8 +17,12 @@ import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTermOptions }) => {
   const { today } = usePage().props.date;
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
+  const [isSupplierModalOpen, setIsSupplierModalOpen] = useState(false);
   const [customerContacts, setCustomerContacts] = useState([]);
   const [deliveryAddresses, setDeliveryAddresses] = useState([]);
+  const [targetIndex, setTargetIndex] = useState(null);
+  const [supplierContacts, setSupplierContacts] = useState([]);
+  const [supplierAddresses, setSupplierAddresses] = useState([]);
 
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     customer_id: '',
@@ -43,7 +47,31 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     delivery_memo: '',
     note: '',
     sales_in_charge_id: '',
-    sales_order_details: [{ tax_rate: 0.10, is_tax_inclusive: false, }],
+    sales_order_details: [{
+      product_id: '',
+      product_name: '',
+      product_detail: '',
+      quantity: '',
+      unit_price: '',
+      tax_rate: 0.10,
+      is_tax_inclusive: false,
+      note: '',
+      purchase_order: {
+        customer_id: '',
+        customer_name: '',
+        customer_contact_id: '',
+        billing_address_id: '',
+        delivery_address_id: '',
+        purchase_in_charge_id: '',
+        purchase_order_details: {
+          quantity: '',
+          unit_price: '',
+          tax_rate: 0.10,
+          is_tax_inclusive: false,
+          note: '',
+        },
+      },
+    }],
   });
 
   function submit(e) {
@@ -65,6 +93,21 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     setIsCustomerModalOpen(false);
   }
 
+  function selectSupplier(supplier) {
+    const purchaseOrder = {
+      ...data.sales_order_details[targetIndex].purchase_order,
+      customer_id: supplier.id,
+      customer_name: supplier.name,
+      customer_contact_id: supplier.contact_id,
+      delivery_address_id: supplier.delivery_address_id,
+    };
+
+    updateDetail(targetIndex, 'purchase_order', purchaseOrder);
+    setSupplierContacts(supplier.contacts || []);
+    setSupplierAddresses(supplier.delivery_addresses || []);
+    setIsSupplierModalOpen(false);
+  }
+
   function addDetail() {
     setData('sales_order_details', [
       ...data.sales_order_details,
@@ -77,6 +120,21 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
         tax_rate: 0.10,
         is_tax_inclusive: false,
         note: '',
+        purchase_order: {
+          customer_id: '',
+          customer_name: '',
+          customer_contact_id: '',
+          billing_address_id: '',
+          delivery_address_id: '',
+          purchase_in_charge_id: '',
+          purchase_order_details: {
+            quantity: '',
+            unit_price: '',
+            tax_rate: 0.10,
+            is_tax_inclusive: false,
+            note: '',
+          },
+        },
       }
     ])
   }
@@ -89,6 +147,24 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     const updatedDetails = [...data.sales_order_details];
     updatedDetails[index] = {
       ...updatedDetails[index],
+      [key]: value
+    }
+    setData('sales_order_details', updatedDetails);
+  }
+
+  function updateDetailPurchaseOrder(index, key, value) {
+    const updatedDetails = [...data.sales_order_details];
+    updatedDetails[index].purchase_order = {
+      ...updatedDetails[index].purchase_order,
+      [key]: value
+    }
+    setData('sales_order_details', updatedDetails);
+  }
+
+  function updateDetailPurchaseOrderDetail(index, key, value) {
+    const updatedDetails = [...data.sales_order_details];
+    updatedDetails[index].purchase_order.purchase_order_details = {
+      ...updatedDetails[index].purchase_order.purchase_order_details,
       [key]: value
     }
     setData('sales_order_details', updatedDetails);
@@ -111,6 +187,20 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
       </div>
 
       <FormErrorAlert errors={errors} />
+
+      {isCustomerModalOpen &&
+        <Modal closeModal={() => setIsCustomerModalOpen(false)} title="販売先を選択">
+          <CustomerLookup
+            handleClickSelect={customer => selectCustomer(customer)}
+          />
+        </Modal>}
+
+      {isSupplierModalOpen &&
+        <Modal closeModal={() => setIsSupplierModalOpen(false)} title="販売先を選択">
+          <CustomerLookup
+            handleClickSelect={supplier => selectSupplier(supplier)}
+          />
+        </Modal>}
 
       {isCustomerModalOpen &&
         <Modal closeModal={() => setIsCustomerModalOpen(false)} title="販売先を選択">
@@ -475,7 +565,8 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                   </th>
                 </tr>
                 <tr className="table-row">
-                  <th className="th-cell" colSpan={3}><FormLabel label="仕入先" isRequired={false} /></th>
+                  <th className="th-cell" colSpan={2}><FormLabel label="仕入先" isRequired={false} /></th>
+                  <th className="th-cell"><FormLabel label="発注担当" isRequired={false} /></th>
                   <th className="th-cell"><FormLabel label="仕入数量" isRequired={false} /></th>
                   <th className="th-cell"><FormLabel label="仕入単価" isRequired={false} /></th>
                 </tr>
@@ -593,23 +684,125 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                     {/* 仕入 明細行 */}
                     <tr className="table-row">
-                      <td className="td-cell" colSpan={3}>
-                        {/* 仕入先情報 */}
+                      <td className="td-cell" colSpan={2}>
+                        <div className="u-flex">
+                          <Input
+                            type="text"
+                            value={detail.purchase_order.customer_id}
+                            className="u-max-w-64"
+                            placeholder="ID"
+                            readOnly={true}
+                          />
+                          <Input
+                            type="text"
+                            value={detail.purchase_order.customer_name}
+                            className="u-max-w-240"
+                            placeholder="仕入先"
+                            readOnly={true}
+                          />
+                          <button type="button" className="btn btn-secondary" onClick={() => {
+                            setIsSupplierModalOpen(true);
+                            setTargetIndex(index);
+                          }}>
+                            <ManageSearchIcon />
+                          </button>
+                        </div>
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.customer_id`} />
+                        <CustomSelect
+                          onChange={value => updateDetailPurchaseOrder(index, 'customer_contact_id', value)}
+                          options={supplierContacts}
+                          value={detail.purchase_order.customer_contact_id}
+                          valueKey="id"
+                          labelKey="name"
+                          isClearable={true}
+                          isSearchable={true}
+                          placeholder="仕入先顧客..."
+                          error={errors[`sales_order_details.${index}.purchase_order.customer_contact_id`]}
+                        />
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.customer_contact_id`} />
+                        <CustomSelect
+                          onChange={value => updateDetailPurchaseOrder(index, 'delivery_address_id', value)}
+                          options={supplierAddresses}
+                          value={detail.purchase_order.delivery_address_id}
+                          valueKey="id"
+                          labelKey="address"
+                          isClearable={true}
+                          isSearchable={true}
+                          placeholder="出荷元..."
+                          error={errors[`sales_order_details.${index}.purchase_order.delivery_address_id`]}
+                        />
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.delivery_address_id`} />
                       </td>
                       <td className="td-cell">
-                        {/* 仕入数量 */}
+                        <CustomSelect
+                          onChange={value => updateDetailPurchaseOrder(index, 'purchase_in_charge_id', value)}
+                          options={userOptions}
+                          value={detail.purchase_order.purchase_in_charge_id}
+                          valueKey="id"
+                          labelKey="name"
+                          isClearable={true}
+                          isSearchable={true}
+                          placeholder="..."
+                          error={errors[`sales_order_details.${index}.purchase_order.purchase_in_charge_id`]}
+                        />
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.purchase_in_charge_id`} />
                       </td>
                       <td className="td-cell">
-                        {/* 仕入単価 */}
+                        <Input
+                          type="number"
+                          value={detail.purchase_order.purchase_order_details.quantity}
+                          onChange={e => updateDetailPurchaseOrderDetail(index, 'quantity', e.target.value)}
+                          error={errors[`sales_order_details.${index}.purchase_order.purchase_order_details.quantity`]}
+                        />
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.purchase_order_details.quantity`} />
                       </td>
                       <td className="td-cell">
-                        {/* 税率 */}
+                        <Input
+                          type="number"
+                          value={detail.purchase_order.purchase_order_details.unit_price}
+                          onChange={e => updateDetailPurchaseOrderDetail(index, 'unit_price', e.target.value)}
+                          error={errors[`sales_order_details.${index}.purchase_order.purchase_order_details.unit_price`]}
+                        />
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.purchase_order_details.unit_price`} />
                       </td>
                       <td className="td-cell">
-                        {/* 税種別 */}
+                        <select
+                          value={detail.purchase_order.purchase_order_details.tax_rate}
+                          onChange={e => updateDetailPurchaseOrderDetail(index, 'tax_rate', e.target.value)}
+                          className={`form-select ${errors[`sales_order_details.${index}.purchase_order.purchase_order_details.tax_rate`] ? 'is-invalid' : ''}`}
+                        >
+                          <OptionsList
+                            options={[
+                              { value: 0.1, label: '10%' },
+                              { value: 0.8, label: '8%' },
+                            ]}
+                          />
+                        </select>
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.purchase_order_details.tax_rate`} />
                       </td>
                       <td className="td-cell">
-                        {/* 備考 */}
+                        <select
+                          value={detail.purchase_order.purchase_order_details.is_tax_inclusive}
+                          onChange={e => updateDetailPurchaseOrderDetail(index, 'is_tax_inclusive', e.target.value)}
+                          className={`form-select ${errors[`sales_order_details.${index}.purchase_order.purchase_order_details.is_tax_inclusive`] ? 'is-invalid' : ''}`}
+                        >
+                          <OptionsList
+                            options={[
+                              { value: false, label: '外税' },
+                              { value: true, label: '内税' },
+                            ]}
+                          />
+                        </select>
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.purchase_order_details.is_tax_inclusive`} />
+                      </td>
+                      <td className="td-cell">
+                        <Input
+                          type="text"
+                          value={detail.purchase_order.purchase_order_details.note}
+                          onChange={e => updateDetailPurchaseOrderDetail(index, 'note', e.target.value)}
+                          error={errors[`sales_order_details.${index}.purchase_order.purchase_order_details.note`]}
+                        />
+                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.purchase_order_details.note`} />
                       </td>
                     </tr>
                   </Fragment>

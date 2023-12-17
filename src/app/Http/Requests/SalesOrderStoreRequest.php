@@ -58,6 +58,19 @@ class SalesOrderStoreRequest extends FormRequest
             'sales_order_details.*.tax_rate'         => ['numeric', 'max:1'],
             'sales_order_details.*.is_tax_inclusive' => ['boolean'],
             'sales_order_details.*.note'             => ['nullable', 'string', 'max:255'],
+
+            // PurchaseOrder
+            'sales_order_details.*.purchase_order.customer_id'           => ['required', 'integer', 'exists:customers,id'],
+            'sales_order_details.*.purchase_order.customer_contact_id'   => ['required', 'integer', 'exists:customer_contacts,id'],
+            'sales_order_details.*.purchase_order.delivery_address_id'   => ['required', 'integer', 'exists:delivery_addresses,id'],
+            'sales_order_details.*.purchase_order.purchase_in_charge_id' => ['required', 'integer', 'exists:users,id'],
+
+            // PurchaseOrderDetail
+            'sales_order_details.*.purchase_order.purchase_order_details.quantity'         => ['required', 'numeric', 'min:0.01', 'max:99999999'],
+            'sales_order_details.*.purchase_order.purchase_order_details.unit_price'       => ['required', 'numeric', 'min:0.01', 'max:99999999'],
+            'sales_order_details.*.purchase_order.purchase_order_details.tax_rate'         => ['numeric', 'max:1'],
+            'sales_order_details.*.purchase_order.purchase_order_details.is_tax_inclusive' => ['boolean'],
+            'sales_order_details.*.purchase_order.purchase_order_details.note'             => ['nullable', 'string', 'max:255'],
         ];
     }
 
