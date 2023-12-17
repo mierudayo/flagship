@@ -51,7 +51,25 @@ class SalesOrderController extends Controller
     public function store(SalesOrderStoreRequest $request): RedirectResponse
     {
         // TODO: トランザクションにまとめて登録処理
-        $salesOrder = SalesOrder::create([
+        $salesOrder           = self::createSalesOrder($request);
+        $salesOrderDetails    = self::createSalesOrderDetails($request, $salesOrder->id);
+        $purchaseOrders       = self::createPurchaseOrders($request);
+        $purchaseOrderDetails = self::createPurchaseOrderDetails($request, $purchaseOrders);
+
+        return to_route('sales-orders.index')
+            ->with('message', "受注ID:{$salesOrder->id} 登録成功しました。");
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | other methods
+    |--------------------------------------------------------------------------
+    */
+
+    /** 受注登録 */
+    private static function createSalesOrder(SalesOrderStoreRequest $request): SalesOrder
+    {
+        return SalesOrder::create([
             'customer_id'           => $request->input('customer_id'),
             'customer_contact_id'   => $request->input('customer_contact_id'),
             'billing_address_id'    => $request->input('billing_address_id'),
@@ -76,14 +94,17 @@ class SalesOrderController extends Controller
             'sales_in_charge_id'    => $request->input('sales_in_charge_id'),
             'created_by_id'         => auth()->user()->id,
         ]);
+    }
 
+    /** 受注明細登録 */
+    private static function createSalesOrderDetails(SalesOrderStoreRequest $request, int $salesOrderId): array
+    {
         $detailRows = $request->input('sales_order_details');
 
-        // TODO: refactor 後でメソッド化,
         $salesOrderDetails = collect($detailRows)
-            ->map(function ($salesOrderDetail, $index) use ($salesOrder) {
+            ->map(function ($salesOrderDetail, $index) use ($salesOrderId) {
                 return [
-                    'sales_order_id'    => $salesOrder->id,
+                    'sales_order_id'    => $salesOrderId,
                     'row_number'        => $index + 1,
                     'product_id'        => $salesOrderDetail['product_id'] ?? null,
                     'product_name'      => $salesOrderDetail['product_name'] ?? null,
@@ -97,7 +118,19 @@ class SalesOrderController extends Controller
             })->toArray();
 
 
-        SalesOrderDetail::insert($salesOrderDetails);
+        $createdSalesOrderDetails = [];
+
+        foreach ($salesOrderDetails as $salesOrderDetail) {
+            $createdSalesOrderDetails[] = SalesOrderDetail::create($salesOrderDetail);
+        }
+
+        return $createdSalesOrderDetails;
+    }
+
+    /** 紐付き発注登録 */
+    private static function createPurchaseOrders(SalesOrderStoreRequest $request): array
+    {
+        $detailRows = $request->input('sales_order_details');
 
         $purchaseOrders = collect($detailRows)
             ->map(function ($detailRow) use ($request) {
@@ -124,11 +157,21 @@ class SalesOrderController extends Controller
                 ];
             })->toArray();
 
-        $purchaseOrderIds = [];
-        foreach ($purchaseOrders as $purchaseOrder) {
-            $purchaseOrder = PurchaseOrder::create($purchaseOrder);
-            $purchaseOrderIds[] = $purchaseOrder->id;
+        $createdPurchaseOrders = [];
 
+        foreach ($purchaseOrders as $purchaseOrder) {
+            $createdPurchaseOrders[] = PurchaseOrder::create($purchaseOrder);
+        }
+
+        return $createdPurchaseOrders;
+    }
+
+    /** 紐付き発注明細登録 */
+    private static function createPurchaseOrderDetails(SalesOrderStoreRequest $request, array $purchaseOrders): array
+    {
+        $detailRows = $request->input('sales_order_details');
+
+        foreach ($purchaseOrders as $purchaseOrder) {
             $purchaseOrderDetails = collect($detailRows)
                 ->map(function ($detailRow, $index) use ($purchaseOrder) {
                     $purchaseOrderDetail = $detailRow['purchase_order']['purchase_order_details'];
@@ -147,9 +190,12 @@ class SalesOrderController extends Controller
                 })->toArray();
         }
 
-        PurchaseOrderDetail::insert($purchaseOrderDetails);
+        $createdPurchaseOrderDetails = [];
 
-        return to_route('sales-orders.index')
-            ->with('message', "受注ID:{$salesOrder->id} 登録成功しました。");
+        foreach ($purchaseOrderDetails as $purchaseOrderDetail) {
+            $createdPurchaseOrderDetails[] = PurchaseOrderDetail::create($purchaseOrderDetail);
+        }
+
+        return $createdPurchaseOrderDetails;
     }
 }
