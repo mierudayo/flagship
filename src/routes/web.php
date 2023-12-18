@@ -98,6 +98,7 @@ Route::middleware('auth')->group(function () {
     Route::get('sales-orders', [SalesOrderController::class, 'index'])->name('sales-orders.index');
     Route::get('sales-orders/create', [SalesOrderController::class, 'create'])->name('sales-orders.create');
     Route::post('sales-orders', [SalesOrderController::class, 'store'])->name('sales-orders.store');
+    Route::get('sales-orders/{salesOrder}', [SalesOrderController::class, 'show'])->name('sales-orders.show');
 
     // PurchaseOrder
     Route::get('purchase-orders', [PurchaseOrderController::class, 'index'])->name('purchase-orders.index');

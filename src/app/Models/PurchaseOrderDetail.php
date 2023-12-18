@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class PurchaseOrderDetail extends Model
 {
@@ -31,5 +32,10 @@ class PurchaseOrderDetail extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function purchaseOrderDetails(): BelongsToMany
+    {
+        return $this->belongsToMany(SalesOrderDetail::class, 'sales_purchase_order_details');
     }
 }
