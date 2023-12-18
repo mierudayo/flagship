@@ -74,4 +74,9 @@ class Product extends Model
 
         return $query->where('category_id', $categoryId);
     }
+
+    public function scopeOrderByDisplayOrder(Builder $query): Builder
+    {
+        return $query->orderByRaw('ISNULL(`display_order`), `display_order` ASC');
+    }
 }

@@ -20,19 +20,20 @@ class ProductController extends Controller
             ->searchByKeyword($request->input('keyword'))
             ->searchByProductNumber($request->input('product_number'))
             ->searchByCategory($request->input('category_id'))
+            ->orderByDisplayOrder()
             ->paginate(100)
             ->withQueryString();
 
         return Inertia::render('Product/Index', [
             'products' => $products,
-            'categoryOptions' => ProductCategory::orderBy('display_order')->get(),
+            'categoryOptions' => ProductCategory::orderByDisplayOrder()->get(),
         ]);
     }
 
     public function create(): Response
     {
-        $groupOptions    = ProductCategoryGroup::orderBy('display_order')->get();
-        $categoryOptions = ProductCategory::orderBy('display_order')->get();
+        $groupOptions    = ProductCategoryGroup::orderByDisplayOrder()->get();
+        $categoryOptions = ProductCategory::orderByDisplayOrder()->get();
 
         return Inertia::render('Product/Create', [
             'groupOptions'    => $groupOptions,

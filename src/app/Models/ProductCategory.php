@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,5 +22,10 @@ class ProductCategory extends Model
     public function products(): HasMany
     {
         return $this->hasMany(Product::class, 'category_id');
+    }
+
+    public function scopeOrderByDisplayOrder(Builder $query): Builder
+    {
+        return $query->orderByRaw('ISNULL(`display_order`), `display_order` ASC');
     }
 }
