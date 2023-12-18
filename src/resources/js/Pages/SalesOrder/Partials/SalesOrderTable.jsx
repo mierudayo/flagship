@@ -33,7 +33,7 @@ export default function SalesOrderTable({ salesOrders }) {
               <td className="td-cell">{salesOrder.id}</td>
               <td className="td-cell">{salesOrder.delivery_date}</td>
               <td className="td-cell">{salesOrder.product_category.name}</td>
-              <td className="td-cell">{salesOrder.customer_name}</td>
+              <td className="td-cell">{salesOrder.customer.name}</td>
               <td className="td-cell">{salesOrder.sales_in_charge.name}</td>
               <td className="td-cell">
                 {salesOrder.display_subtotal_amount} <br />

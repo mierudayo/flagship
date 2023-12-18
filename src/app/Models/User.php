@@ -95,6 +95,11 @@ class User extends Authenticatable
         return $this->hasMany(Inquiry::class, 'in_charge_user_id');
     }
 
+    public function salesOrders(): HasMany
+    {
+        return $this->hasMany(SalesOrder::class, 'sales_in_charge_id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Scopes
@@ -114,6 +119,11 @@ class User extends Authenticatable
     public function scopeHasInquiries(Builder $query): Builder
     {
         return $query->whereHas('inquiries');
+    }
+
+    public function scopeHasSalesOrders(Builder $query): Builder
+    {
+        return $query->whereHas('salesOrders');
     }
 
     public function scopeSearchByKeyword(Builder $query, ?string $keyword): Builder

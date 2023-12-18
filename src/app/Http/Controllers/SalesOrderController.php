@@ -19,8 +19,6 @@ class SalesOrderController extends Controller
 {
     public function index(SalesOrderSearchRequest $request): Response
     {
-        $keyword = $request->input('keyword');
-
         $salesOrders = SalesOrder::query()
             ->with([
                 'customer',
@@ -28,13 +26,20 @@ class SalesOrderController extends Controller
                 'productCategory',
                 'salesOrderDetails',
             ])
-            ->searchByKeyword($keyword)
+            ->searchByKeyword($request->input('keyword'))
+            ->searchByDeliveryPeriod(
+                $request->input('start_date'),
+                $request->input('end_date')
+            )
+            ->searchByCustomerName($request->input('customer_name'))
+            ->searchBySalesInCharge($request->input('sales_in_charge_id'))
             ->latest()
             ->paginate(100)
             ->withQueryString();
 
         return Inertia::render('SalesOrder/Index', [
             'salesOrders' => $salesOrders,
+            'userOptions' => User::hasSalesOrders()->get(),
         ]);
     }
 

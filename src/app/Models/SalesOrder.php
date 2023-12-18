@@ -146,4 +146,41 @@ class SalesOrder extends Model
                 ->orWhere('customer_name', 'like', "%$keyword%");
         });
     }
+
+    public function scopeSearchByDeliveryPeriod(Builder $query, ?string $startDate, ?string $endDate): Builder
+    {
+        if ($startDate && $endDate) {
+            return $query->whereBetween('delivery_date', [$startDate, $endDate]);
+        }
+
+        if ($startDate) {
+            return $query->where('delivery_date', '>=', $startDate);
+        }
+
+        if ($endDate) {
+            return $query->where('delivery_date', '<=', $endDate);
+        }
+
+        return $query;
+    }
+
+    public function scopeSearchByCustomerName(Builder $query, ?string $customerName): Builder
+    {
+        if (!$customerName) {
+            return $query;
+        }
+
+        return $query->whereHas('customer', function ($q) use ($customerName) {
+            $q->where('name', 'like', "%$customerName%");
+        });
+    }
+
+    public function scopeSearchBySalesInCharge(Builder $query, ?string $salesInChargeId): Builder
+    {
+        if (!$salesInChargeId) {
+            return $query;
+        }
+
+        return $query->where('sales_in_charge_id', $salesInChargeId);
+    }
 }
