@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ProductType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Product extends Model
 {
     use HasFactory;
+
+    protected $appends = ['product_type_label'];
 
     protected $fillable = [
         'category_id',
@@ -36,6 +39,11 @@ class Product extends Model
     public function scopeHasInquiries(Builder $query): Builder
     {
         return $query->whereHas('inquiries');
+    }
+
+    protected function getProductTypeLabelAttribute(): string
+    {
+        return ProductType::getLabelFromValue($this->product_type);
     }
 
     public function scopeSearchByKeyword(Builder $query, ?string $keyword): Builder

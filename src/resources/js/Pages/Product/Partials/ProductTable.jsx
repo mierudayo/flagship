@@ -26,7 +26,7 @@ export default function ProductTable({ products }) {
               <td className="td-cell u-text-right">{product.sales_price}</td>
               <td className="td-cell u-text-right">{product.purchase_price}</td>
               <td className="td-cell">{product.description}</td>
-              <td className="td-cell">{product.product_type}</td>
+              <td className="td-cell">{product.product_type_label}</td>
               <td className="td-cell">{product.category.name}</td>
               <td className="td-cell">{product.category.group.name}</td>
             </tr>
