@@ -139,10 +139,10 @@ const Show = ({ salesOrder }) => {
                   <td className="td-cell col-fixed">{detail.row_number}</td>
                   <td className="td-cell">{detail.product_name}</td>
                   <td className="td-cell">{detail.product_detail}</td>
-                  <td className="td-cell">{detail.purchase_order_details[0].purchase_order.customer.name}</td>
-                  <td className="td-cell">{detail.purchase_order_details[0].quantity}</td>
+                  <td className="td-cell">{detail.purchase_order_details[0]?.purchase_order.customer.name}</td>
+                  <td className="td-cell">{detail.purchase_order_details[0]?.quantity}</td>
                   <td className="td-cell">{detail.quantity}</td>
-                  <td className="td-cell">{detail.purchase_order_details[0].unit_price}</td>
+                  <td className="td-cell">{detail.purchase_order_details[0]?.unit_price}</td>
                   <td className="td-cell">{detail.unit_price}</td>
                   <td className="td-cell">{detail.note}</td>
                 </tr>
