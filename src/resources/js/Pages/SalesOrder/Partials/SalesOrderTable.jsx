@@ -41,7 +41,7 @@ export default function SalesOrderTable({ salesOrders }) {
               </td>
               <td className="td-cell">
                 {salesOrder.sales_order_details.map(detail => (
-                  <div key={detail.id}>{detail.id} : {detail.product_name} {detail.subtotal}円</div>
+                  <div key={detail.id}>{detail.row_number} : {detail.product_name} {detail.display_subtotal}円</div>
                 ))}
               </td>
               <td className="td-cell u-ellipsis u-max-w-200">{salesOrder.note}</td>

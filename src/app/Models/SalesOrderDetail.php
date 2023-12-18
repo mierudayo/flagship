@@ -11,6 +11,11 @@ class SalesOrderDetail extends Model
 {
     use HasFactory;
 
+    protected $appends = [
+        'display_subtotal',
+        'display_total',
+    ];
+
     protected $fillable = [
         'sales_order_id',
         'row_number',
@@ -53,11 +58,21 @@ class SalesOrderDetail extends Model
         return number_format($this->calculateSubtotal(), 2, '.', '');
     }
 
+    public function getDisplaySubtotalAttribute(): string
+    {
+        return number_format($this->subtotal);
+    }
+
     /** 合計(税込) */
     public function getTotalAttribute(): string
     {
         $total = $this->calculateSubtotal() * (1 + $this->tax_rate);
         return number_format($total, 2, '.', '');
+    }
+
+    public function getDisplayTotalAttribute(): string
+    {
+        return number_format($this->total);
     }
 
     /*
