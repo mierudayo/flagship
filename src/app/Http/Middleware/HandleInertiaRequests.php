@@ -10,6 +10,7 @@ use App\Enums\PaymentTerm\CutoffDay;
 use App\Enums\PaymentTerm\PaymentDay;
 use App\Enums\PaymentTerm\PaymentDayOffset;
 use App\Enums\PaymentTerm\PaymentMonthOffset;
+use App\Enums\ProductType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -66,6 +67,7 @@ class HandleInertiaRequests extends Middleware
             'addressTypeOptions'    => AddressType::toArray(),
             'inquiryStatusOptions'  => InquiryStatus::toArray(),
             'contactMethodOptions'  => ContactMethod::toArray(),
+            'productTypeOptions'    => ProductType::toArray(),
         ]);
     }
 }

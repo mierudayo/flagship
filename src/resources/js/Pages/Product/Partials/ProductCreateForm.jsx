@@ -1,7 +1,10 @@
-import { useForm } from '@inertiajs/react';
+import { useForm, usePage } from '@inertiajs/react';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 
+import CustomSelect from '@/Components/Form/CustomSelect';
+
 export default function ProductCreateForm({ categoryOptions }) {
+  const { productTypeOptions } = usePage().props;
   const { data, setData, post, processing, errors, reset } = useForm({
     category_id: '',
     product_number: '',
@@ -12,11 +15,6 @@ export default function ProductCreateForm({ categoryOptions }) {
     purchase_price: '',
     display_order: '',
   });
-
-  const productTypeOptions = [
-    { label: '製品', value: 1 },
-    { label: 'サービス', value: 2 },
-  ];
 
   function submit(e) {
     e.preventDefault();
@@ -54,23 +52,20 @@ export default function ProductCreateForm({ categoryOptions }) {
 
         <div className="input-group">
           <label id="product_type" className="form-label">
-            商品タイプ
+            区分
             <span className="required-mark">*</span>
           </label>
-          <select
-            name="product_type"
-            id="product_type"
+          <CustomSelect
+            onChange={value => setData('product_type', value)}
+            options={productTypeOptions}
             value={data.product_type}
-            onChange={e => setData('product_type', e.target.value)}
-            className={`input-field ${errors.product_type ? 'is-invalid' : ''}`}
-          >
-            <option value="">-- タイプを選択 --</option>
-            {productTypeOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+            valueKey="value"
+            labelKey="label"
+            isClearable={true}
+            isSearchable={true}
+            placeholder="..."
+            error={errors.product_type}
+          />
           <InvalidFeedback errors={errors} name="product_type" />
         </div>
 
