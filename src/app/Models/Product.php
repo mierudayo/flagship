@@ -56,4 +56,22 @@ class Product extends Model
             $query->where('name', 'like', "%$keyword%");
         });
     }
+
+    public function scopeSearchByProductNumber(Builder $query, ?string $productNumber): Builder
+    {
+        if (!$productNumber) {
+            return $query;
+        }
+
+        return $query->where('product_number', 'like', "%$productNumber%");
+    }
+
+    public function scopeSearchByCategory(Builder $query, ?string $categoryId): Builder
+    {
+        if (!$categoryId) {
+            return $query;
+        }
+
+        return $query->where('category_id', $categoryId);
+    }
 }

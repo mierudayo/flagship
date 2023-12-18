@@ -15,16 +15,17 @@ class ProductController extends Controller
 {
     public function index(ProductSearchRequest $request): Response
     {
-        $keyword = $request->input('keyword');
-
         $products = Product::query()
             ->with(['category.group'])
-            ->searchByKeyword($keyword)
+            ->searchByKeyword($request->input('keyword'))
+            ->searchByProductNumber($request->input('product_number'))
+            ->searchByCategory($request->input('category_id'))
             ->paginate(100)
             ->withQueryString();
 
         return Inertia::render('Product/Index', [
             'products' => $products,
+            'categoryOptions' => ProductCategory::orderBy('display_order')->get(),
         ]);
     }
 
