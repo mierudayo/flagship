@@ -70,6 +70,8 @@ class SalesOrderController extends Controller
             'deliveryAddress',
             'productCategory',
             'salesInCharge',
+            'createdBy',
+            'updatedBy',
             'salesOrderDetails.purchaseOrderDetails.purchaseOrder.customer',
         ]);
 

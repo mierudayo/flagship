@@ -10,12 +10,12 @@ const Show = ({ salesOrder }) => {
 
       <h1 className="content-title">受注 詳細</h1>
 
-      {/* <ContentInfoBar
+      <ContentInfoBar
         createdAt={salesOrder.created_at}
         createdBy={salesOrder.created_by.name}
         updatedAt={salesOrder.updated_at}
         updatedBy={salesOrder.updated_by?.name}
-      /> */}
+      />
 
       <div className="content-navbar">
         <Link
