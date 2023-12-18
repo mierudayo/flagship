@@ -218,9 +218,25 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
             <table className="table">
               <tbody className="tbody">
 
+              <tr className="table-row is-flexible">
+                  <th className="th-cell u-w-144">
+                    <FormLabel htmlFor="order_date" label="受注日" isRequired={true} />
+                  </th>
+                  <td className="td-cell">
+                    <DateInput
+                      id="order_date"
+                      value={data.order_date}
+                      onChange={e => setData('order_date', e.target.value)}
+                      error={errors.order_date}
+                      max={today}
+                    />
+                    <InvalidFeedback errors={errors} name="order_date" />
+                  </td>
+                </tr>
+
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel label="所属取引先" isRequired={true} />
+                    <FormLabel label="販売先" isRequired={true} />
                   </th>
                   <td className="td-cell">
                     <div className="u-flex">
@@ -248,7 +264,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel label="販売先担当者" isRequired={false} />
+                    <FormLabel label="販売先顧客" isRequired={false} />
                   </th>
                   <td className="td-cell">
                     <CustomSelect
@@ -268,7 +284,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel label="納品先情報" isRequired={true} />
+                    <FormLabel label="納品先" isRequired={true} />
                   </th>
                   <td className="td-cell">
                     <CustomSelect
@@ -283,22 +299,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       error={errors.delivery_address_id}
                     />
                     <InvalidFeedback errors={errors} name="delivery_address_id" />
-                  </td>
-                </tr>
-
-                <tr className="table-row is-flexible">
-                  <th className="th-cell u-w-160">
-                    <FormLabel htmlFor="order_date" label="受注日" isRequired={true} />
-                  </th>
-                  <td className="td-cell">
-                    <DateInput
-                      id="order_date"
-                      value={data.order_date}
-                      onChange={e => setData('order_date', e.target.value)}
-                      error={errors.order_date}
-                      max={today}
-                    />
-                    <InvalidFeedback errors={errors} name="order_date" />
                   </td>
                 </tr>
 
@@ -375,21 +375,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel htmlFor="note" label="備考" isRequired={false} />
-                  </th>
-                  <td className="td-cell">
-                    <Textarea
-                      id="note"
-                      value={data.note}
-                      onChange={e => setData('note', e.target.value)}
-                      error={errors.note}
-                    />
-                    <InvalidFeedback errors={errors} name="note" />
-                  </td>
-                </tr>
-
-                <tr className="table-row is-flexible">
-                  <th className="th-cell">
                     <FormLabel label="商品カテゴリ" isRequired={true} />
                   </th>
                   <td className="td-cell">
@@ -405,26 +390,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       error={errors.product_category_id}
                     />
                     <InvalidFeedback errors={errors} name="product_category_id" />
-                  </td>
-                </tr>
-
-                <tr className="table-row is-flexible">
-                  <th className="th-cell">
-                    <FormLabel label="受注担当" isRequired={true} />
-                  </th>
-                  <td className="td-cell">
-                    <CustomSelect
-                      onChange={value => setData('sales_in_charge_id', value)}
-                      options={userOptions}
-                      value={data.sales_in_charge_id}
-                      valueKey="id"
-                      labelKey="name"
-                      isClearable={true}
-                      isSearchable={true}
-                      placeholder="..."
-                      error={errors.sales_in_charge_id}
-                    />
-                    <InvalidFeedback errors={errors} name="sales_in_charge_id" />
                   </td>
                 </tr>
 
@@ -519,6 +484,41 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       </select>
                     </div>
                     <InvalidFeedback errors={errors} name="payment_date" />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel label="受注担当" isRequired={true} />
+                  </th>
+                  <td className="td-cell">
+                    <CustomSelect
+                      onChange={value => setData('sales_in_charge_id', value)}
+                      options={userOptions}
+                      value={data.sales_in_charge_id}
+                      valueKey="id"
+                      labelKey="name"
+                      isClearable={true}
+                      isSearchable={true}
+                      placeholder="..."
+                      error={errors.sales_in_charge_id}
+                    />
+                    <InvalidFeedback errors={errors} name="sales_in_charge_id" />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                  </th>
+                  <td className="td-cell">
+                    <Textarea
+                      id="note"
+                      value={data.note}
+                      onChange={e => setData('note', e.target.value)}
+                      error={errors.note}
+                    />
+                    <InvalidFeedback errors={errors} name="note" />
                   </td>
                 </tr>
 

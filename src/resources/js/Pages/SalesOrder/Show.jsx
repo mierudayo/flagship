@@ -37,7 +37,12 @@ const Show = ({ salesOrder }) => {
             <tbody className="tbody">
 
               <tr className="table-row">
-                <th className="th-cell u-w-160">販売先</th>
+                <th className="th-cell u-w-144">受注日</th>
+                <td className="td-cell">{salesOrder.order_date}</td>
+              </tr>
+
+              <tr className="table-row">
+                <th className="th-cell">販売先</th>
                 <td className="td-cell">{salesOrder.customer.name}</td>
               </tr>
 
@@ -53,11 +58,6 @@ const Show = ({ salesOrder }) => {
                   <div>{salesOrder.delivery_address.address}</div>
                   <div>{salesOrder.delivery_address.contact_name}</div>
                 </td>
-              </tr>
-
-              <tr className="table-row">
-                <th className="th-cell">受注日</th>
-                <td className="td-cell">{salesOrder.order_date}</td>
               </tr>
 
               <tr className="table-row">
@@ -85,11 +85,6 @@ const Show = ({ salesOrder }) => {
               </tr>
 
               <tr className="table-row">
-                <th className="th-cell">受注担当</th>
-                <td className="td-cell">{salesOrder.sales_in_charge.name}</td>
-              </tr>
-
-              <tr className="table-row">
                 <th className="th-cell">請求条件</th>
                 <td className="td-cell">
                   {/* TODO: 請求条件追加 */}
@@ -101,6 +96,11 @@ const Show = ({ salesOrder }) => {
                 <td className="td-cell">
                   {salesOrder.payment_date} {salesOrder.status}
                 </td>
+              </tr>
+
+              <tr className="table-row">
+                <th className="th-cell">受注担当</th>
+                <td className="td-cell">{salesOrder.sales_in_charge.name}</td>
               </tr>
 
               <tr className="table-row">
