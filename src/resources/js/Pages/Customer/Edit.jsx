@@ -294,11 +294,7 @@ const Edit = ({ customer, userOptions, leadSourceOptions, paymentTermOptions, ad
                       setData={setData}
                       errors={errors}
                       paymentTermOptions={paymentTermOptions}
-                      billingTypeKey="purchase_billing_type"
-                      cutoffDayKey="purchase_cutoff_day"
-                      paymentMonthOffsetKey="purchase_payment_month_offset"
-                      paymentDayKey="purchase_payment_day"
-                      paymentDayOffsetKey="purchase_payment_day_offset"
+                      transactionType="purchase"
                     />
                   </td>
                 </tr>
@@ -313,11 +309,7 @@ const Edit = ({ customer, userOptions, leadSourceOptions, paymentTermOptions, ad
                       setData={setData}
                       errors={errors}
                       paymentTermOptions={paymentTermOptions}
-                      billingTypeKey="sales_billing_type"
-                      cutoffDayKey="sales_cutoff_day"
-                      paymentMonthOffsetKey="sales_payment_month_offset"
-                      paymentDayKey="sales_payment_day"
-                      paymentDayOffsetKey="sales_payment_day_offset"
+                      transactionType="sales"
                     />
                   </td>
                 </tr>

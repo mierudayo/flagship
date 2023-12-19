@@ -1,28 +1,35 @@
 import OptionsList from '@/Components/OptionsList';
 
-export default function PaymentSelectGroup({ data, setData, errors, paymentTermOptions, billingTypeKey, cutoffDayKey, paymentMonthOffsetKey, paymentDayKey, paymentDayOffsetKey }) {
-  const billingType = data[billingTypeKey];
+export default function PaymentSelectGroup({ data, setData, errors, paymentTermOptions, transactionType }) {
+
+  const prefix = transactionType ? `${transactionType}_` : '';
+
+  const billingType         = `${prefix}billing_type`;
+  const cutoffDay           = `${prefix}cutoff_day`;
+  const paymentMonthOffset  = `${prefix}payment_month_offset`;
+  const paymentDay          = `${prefix}payment_day`;
+  const paymentDayOffset    = `${prefix}payment_day_offset`;
 
   return (
     <div className="">
       <SelectInput
-        name={billingTypeKey}
+        name={billingType}
         label="..."
-        value={billingType}
-        onChange={e => setData(billingTypeKey, e.target.value)}
-        error={errors[billingTypeKey]}
+        value={data[billingType]}
+        onChange={e => setData(billingType, e.target.value)}
+        error={errors[billingType]}
         options={paymentTermOptions.billingTypes}
         className="u-w-120"
       />
-      {billingType == 1 && (
+      {data[billingType] == 1 && (
         <>
           <div className="u-flex u-items-center u-my-2">
             <SelectInput
-              name={cutoffDayKey}
+              name={cutoffDay}
               label="締め日..."
-              value={data[cutoffDayKey]}
-              onChange={e => setData(cutoffDayKey, e.target.value)}
-              error={errors[cutoffDayKey]}
+              value={data[cutoffDay]}
+              onChange={e => setData(cutoffDay, e.target.value)}
+              error={errors[cutoffDay]}
               options={paymentTermOptions.cutoffDays}
               className="u-w-120 u-mr-2"
             />
@@ -31,20 +38,20 @@ export default function PaymentSelectGroup({ data, setData, errors, paymentTermO
 
           <div className="u-flex u-items-center u-mb-2">
             <SelectInput
-              name={paymentMonthOffsetKey}
+              name={paymentMonthOffset}
               label="支払月..."
-              value={data[paymentMonthOffsetKey]}
-              onChange={e => setData(paymentMonthOffsetKey, e.target.value)}
-              error={errors[paymentMonthOffsetKey]}
+              value={data[paymentMonthOffset]}
+              onChange={e => setData(paymentMonthOffset, e.target.value)}
+              error={errors[paymentMonthOffset]}
               options={paymentTermOptions.monthOffsets}
               className="u-w-120 u-mr-2"
             />
             <SelectInput
-              name={paymentDayKey}
+              name={paymentDay}
               label="支払日..."
-              value={data[paymentDayKey]}
-              onChange={e => setData(paymentDayKey, e.target.value)}
-              error={errors[paymentDayKey]}
+              value={data[paymentDay]}
+              onChange={e => setData(paymentDay, e.target.value)}
+              error={errors[paymentDay]}
               options={paymentTermOptions.paymentDay}
               className="u-w-120 u-mr-2"
             />
@@ -52,13 +59,13 @@ export default function PaymentSelectGroup({ data, setData, errors, paymentTermO
           </div>
         </>
       )}
-      {billingType == 2 && (
+      {data[billingType] == 2 && (
         <SelectInput
-          name={paymentDayOffsetKey}
+          name={paymentDayOffset}
           label="期限..."
-          value={data[paymentDayOffsetKey]}
-          onChange={e => setData(paymentDayOffsetKey, e.target.value)}
-          error={errors[paymentDayOffsetKey]}
+          value={data[paymentDayOffset]}
+          onChange={e => setData(paymentDayOffset, e.target.value)}
+          error={errors[paymentDayOffset]}
           options={paymentTermOptions.dayOffsets}
           className="u-w-120 u-mt-2"
         />
