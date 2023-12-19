@@ -141,7 +141,7 @@ const Index = ({ users, canAdmin }) => {
   );
 }
 
-Index.layout = page => <AppLayout children={page} />
+Index.layout = page => <AppLayout title="ユーザー 一覧" children={page} />
 
 export default Index
 

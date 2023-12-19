@@ -324,6 +324,6 @@ const Edit = ({ contact, userOptions, leadSourceOptions }) => {
   );
 }
 
-Edit.layout = page => <AppLayout children={page} />
+Edit.layout = page => <AppLayout title="連絡先 編集" children={page} />
 
 export default Edit

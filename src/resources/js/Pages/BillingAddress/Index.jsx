@@ -53,6 +53,6 @@ const Index = ({ billingAddresses }) => {
   );
 }
 
-Index.layout = page => <AppLayout children={page} />
+Index.layout = page => <AppLayout title="請求先一覧" children={page} />
 
 export default Index

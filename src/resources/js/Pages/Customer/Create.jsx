@@ -657,7 +657,7 @@ const Create = ({ userOptions, leadSourceOptions, paymentTermOptions, addressTyp
   );
 }
 
-Create.layout = page => <AppLayout children={page} />
+Create.layout = page => <AppLayout title="取引先 登録" children={page} />
 
 export default Create
 

@@ -20,6 +20,6 @@ const Index = ({ inquiryTypes }) => {
   );
 }
 
-Index.layout = page => <AppLayout children={page} />
+Index.layout = page => <AppLayout title="問い合わせ区分 一覧" children={page} />
 
 export default Index

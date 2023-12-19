@@ -29,6 +29,6 @@ const Create = ({ groupOptions, categoryOptions }) => {
   );
 }
 
-Create.layout = page => <AppLayout children={page} />
+Create.layout = page => <AppLayout title="商品 登録" children={page} />
 
 export default Create

@@ -228,6 +228,6 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
   );
 }
 
-Index.layout = page => <AppLayout children={page} />
+Index.layout = page => <AppLayout title="問い合わせ 一覧" children={page} />
 
 export default Index

@@ -274,6 +274,6 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
   );
 }
 
-Show.layout = page => <AppLayout children={page} />
+Show.layout = page => <AppLayout　title="取引先 詳細" children={page} />
 
 export default Show

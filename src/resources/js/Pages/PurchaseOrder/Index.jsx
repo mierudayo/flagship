@@ -54,6 +54,6 @@ const Index = ({ purchaseOrders }) => {
   );
 }
 
-Index.layout = page => <AppLayout children={page} />
+Index.layout = page => <AppLayout title="発注 一覧" children={page} />
 
 export default Index

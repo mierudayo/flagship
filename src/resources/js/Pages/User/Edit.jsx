@@ -193,6 +193,6 @@ const Edit = ({ user, permissionOptions }) => {
   );
 }
 
-Edit.layout = page => <AppLayout children={page} />
+Edit.layout = page => <AppLayout title="ユーザー 編集" children={page} />
 
 export default Edit

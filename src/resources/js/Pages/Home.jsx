@@ -9,6 +9,6 @@ const Home = () => {
   );
 }
 
-Home.layout = page => <AppLayout children={page} />
+Home.layout = page => <AppLayout title="HOME" children={page} />
 
 export default Home

@@ -685,6 +685,6 @@ const Edit = ({ customer, userOptions, leadSourceOptions, paymentTermOptions, ad
   );
 }
 
-Edit.layout = page => <AppLayout children={page} />
+Edit.layout = page => <AppLayout title="取引先 編集" children={page} />
 
 export default Edit

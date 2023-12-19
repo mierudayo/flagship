@@ -301,6 +301,6 @@ const Create = ({ userOptions, leadSourceOptions }) => {
   );
 }
 
-Create.layout = page => <AppLayout children={page} />
+Create.layout = page => <AppLayout title="連絡先 登録" children={page} />
 
 export default Create

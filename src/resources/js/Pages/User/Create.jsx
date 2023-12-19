@@ -210,6 +210,6 @@ const Create = ({ permissionOptions }) => {
   );
 }
 
-Create.layout = page => <AppLayout children={page} />
+Create.layout = page => <AppLayout title="ユーザー 登録" children={page} />
 
 export default Create

@@ -395,6 +395,6 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
   );
 }
 
-Edit.layout = page => <AppLayout children={page} />
+Edit.layout = page => <AppLayout title="問い合わせ 編集" children={page} />
 
 export default Edit

@@ -523,7 +523,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
   );
 }
 
-Create.layout = page => <AppLayout children={page} />
+Create.layout = page => <AppLayout title="発注 登録" children={page} />
 
 export default Create
 

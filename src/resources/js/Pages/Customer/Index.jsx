@@ -172,6 +172,6 @@ const Index = ({ customers, inChargeUserOptions }) => {
   );
 }
 
-Index.layout = page => <AppLayout children={page} />
+Index.layout = page => <AppLayout title="取引先 一覧" children={page} />
 
 export default Index

@@ -21,6 +21,6 @@ const Index = ({ leadSources }) => {
   );
 }
 
-Index.layout = page => <AppLayout children={page} />
+Index.layout = page => <AppLayout title="リード獲得元 一覧" children={page} />
 
 export default Index
