@@ -6,7 +6,8 @@ import ContentInfoBar from '@/Components/ContentInfoBar';
 import Modal from '@/Components/Modal';
 import ContactForm from './Partials/ContactForm';
 import AddressForm from './Partials/AddressForm';
-import SalesActivityForm from "./Partials/SalesActivityForm";
+import SalesActivityForm from './Partials/SalesActivityForm';
+import TermDetails from './Partials/TermDetails';
 
 const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) => {
   const { flash } = usePage().props;
@@ -114,32 +115,14 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
               <tr className="table-row">
                 <th className="th-cell">支払条件</th>
                 <td className="td-cell">
-                  {customer.purchase_term?.billing_type === 1 ? (
-                    <>
-                      <span className="u-mr-3">{customer.purchase_term?.cutoff_day_label}</span>
-                      <span>{customer.purchase_term?.payment_month_offset_label}{customer.purchase_term?.payment_day_label}払い</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>{customer.purchase_term?.payment_day_offset_label}</span>
-                    </>
-                  )}
+                  <TermDetails term={customer.purchase_term} />
                 </td>
               </tr>
 
               <tr className="table-row">
                 <th className="th-cell">請求条件</th>
                 <td className="td-cell">
-                  {customer.sales_term?.billing_type === 1 ? (
-                    <>
-                      <span className="u-mr-3">{customer.sales_term?.cutoff_day_label}</span>
-                      <span>{customer.sales_term?.payment_month_offset_label}{customer.sales_term?.payment_day_label}払い</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>{customer.sales_term?.payment_day_offset_label}</span>
-                    </>
-                  )}
+                  <TermDetails term={customer.sales_term} />
                 </td>
               </tr>
 
@@ -274,6 +257,6 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
   );
 }
 
-Show.layout = page => <AppLayout　title="取引先 詳細" children={page} />
+Show.layout = page => <AppLayout title="取引先 詳細" children={page} />
 
 export default Show
