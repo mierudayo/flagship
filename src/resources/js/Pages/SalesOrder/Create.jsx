@@ -13,6 +13,7 @@ import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
+import PaymentSelectGroup from './Partials/PaymentSelectGroup';
 
 const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTermOptions }) => {
   const { today } = usePage().props.date;
@@ -218,7 +219,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
             <table className="table">
               <tbody className="tbody">
 
-              <tr className="table-row is-flexible">
+                <tr className="table-row is-flexible">
                   <th className="th-cell u-w-144">
                     <FormLabel htmlFor="order_date" label="受注日" isRequired={true} />
                   </th>
@@ -395,67 +396,15 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel htmlFor="billing_type" label="請求条件" isRequired={false} />
+                    <FormLabel htmlFor="billing_type" label="請求条件" isRequired={true} />
                   </th>
                   <td className="td-cell">
-                    <select
-                      name="billing_type"
-                      id="billing_type"
-                      value={data.billing_type}
-                      onChange={e => setData('billing_type', e.target.value)}
-                      className={`form-select u-w-128 u-mr-3 ${errors.billing_type ? 'is-invalid' : ''}`}
-                    >
-                      <option value="">-- 請求方法 --</option>
-                      <OptionsList options={paymentTermOptions.billingTypes} />
-                    </select>
-                    {data.billing_type == 1 && (
-                      <>
-                        <select
-                          name="cutoff_day"
-                          id="cutoff_day"
-                          value={data.cutoff_day}
-                          onChange={e => setData('cutoff_day', e.target.value)}
-                          className={`form-select u-w-128 ${errors.cutoff_day ? 'is-invalid' : ''}`}
-                        >
-                          <option value="">-- 締め日 --</option>
-                          <OptionsList options={paymentTermOptions.cutoffDays} />
-                        </select>
-                        <select
-                          name="payment_month_offset"
-                          id="payment_month_offset"
-                          value={data.payment_month_offset}
-                          onChange={e => setData('payment_month_offset', e.target.value)}
-                          className={`form-select u-w-128 ${errors.payment_month_offset ? 'is-invalid' : ''}`}
-                        >
-                          <option value="">-- 支払月 --</option>
-                          <OptionsList options={paymentTermOptions.monthOffsets} />
-                        </select>
-                        <select
-                          name="payment_day"
-                          id="payment_day"
-                          value={data.payment_day}
-                          onChange={e => setData('payment_day', e.target.value)}
-                          className={`form-select u-w-128 ${errors.payment_day ? 'is-invalid' : ''}`}
-                        >
-                          <option value="">-- 支払日 --</option>
-                          <OptionsList options={paymentTermOptions.paymentDay} />
-                        </select>
-                      </>
-                    )}
-                    {data.billing_type == 2 && (
-                      <>
-                        <select
-                          name="payment_day_offset"
-                          id="payment_day_offset"
-                          value={data.payment_day_offset}
-                          onChange={e => setData('payment_day_offset', e.target.value)}
-                          className={`form-select u-w-128 ${errors.payment_day_offset ? 'is-invalid' : ''}`}
-                        >
-                          <option value="">-- 期限 --</option>
-                          <OptionsList options={paymentTermOptions.dayOffsets} />
-                        </select>
-                      </>
-                    )}
+                    <PaymentSelectGroup
+                      data={data}
+                      setData={setData}
+                      errors={errors}
+                      paymentTermOptions={paymentTermOptions}
+                    />
                   </td>
                 </tr>
 
