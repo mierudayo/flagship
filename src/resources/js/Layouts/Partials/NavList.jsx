@@ -1,5 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
 
+import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
 import PeopleIcon from '@mui/icons-material/People';
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -77,6 +78,17 @@ export default function NavList() {
           <div className="icon-wrapper">
             <MarkEmailUnreadIcon className="sidenav-icon" />
             <span>問い合わせ</span>
+          </div>
+        </Link>
+      </li>
+      <li>
+        <Link
+          href={route('sales-activities.index')}
+          className={`side-nav-link ${component.startsWith('SalesActivity/') ? 'is-active' : ''}`}
+        >
+          <div className="icon-wrapper">
+            <AddIcCallIcon className="sidenav-icon" />
+            <span>営業履歴</span>
           </div>
         </Link>
       </li>

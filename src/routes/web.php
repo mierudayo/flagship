@@ -91,6 +91,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('inquiries/{inquiry}', [InquiryController::class, 'destroy'])->name('inquiries.destroy');
 
     // SalesActivity
+    Route::get('sales-activities', [SalesActivityController::class, 'index'])->name('sales-activities.index');
     Route::post('customers/{customer}/sales-activities', [SalesActivityController::class, 'appendToCustomerContact'])
         ->name('customers.contacts.sales-activities.append');
 

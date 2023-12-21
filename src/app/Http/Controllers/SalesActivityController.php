@@ -2,13 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SalesActivitySearchRequest;
 use App\Http\Requests\SalesActivityStoreRequest;
 use App\Models\Customer;
 use App\Models\SalesActivity;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class SalesActivityController extends Controller
 {
+    public function index(SalesActivitySearchRequest $request): Response
+    {
+        $salesActivities = SalesActivity::query()
+            ->with([
+                'customerContact.customer',
+                'inChargeUser',
+            ])
+            ->searchByKeyword($request->input('keyword'))
+            ->searchByInquiryPeriod(
+                $request->input('start_date'),
+                $request->input('end_date')
+            )
+            ->searchByInCharge($request->input('in_charge_user_id'))
+            ->latest('contact_date')
+            ->paginate(50);
+
+        return Inertia::render('SalesActivity/Index', [
+            'salesActivities'      => $salesActivities,
+            'inChargeUserOptions'  => User::active()->hasSalesActivities()->get(),
+        ]);
+    }
+
     public function appendToCustomerContact(SalesActivityStoreRequest $request, Customer $customer): RedirectResponse
     {
         $salesActivity = SalesActivity::create([
