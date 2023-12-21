@@ -27,6 +27,7 @@ class SalesActivityStoreRequest extends FormRequest
             'proposal'              => ['required', 'string', 'max:1000'],
             'feedback'              => ['nullable', 'string', 'max:1000'],
             'note'                  => ['nullable', 'string', 'max:1000'],
+            'in_charge_user_id'     => ['required', 'integer', 'exists:users,id'],
         ];
     }
 

@@ -92,6 +92,8 @@ Route::middleware('auth')->group(function () {
 
     // SalesActivity
     Route::get('sales-activities', [SalesActivityController::class, 'index'])->name('sales-activities.index');
+    Route::get('sales-activities/create', [SalesActivityController::class, 'create'])->name('sales-activities.create');
+    Route::post('sales-activities', [SalesActivityController::class, 'store'])->name('sales-activities.store');
     Route::post('customers/{customer}/sales-activities', [SalesActivityController::class, 'appendToCustomerContact'])
         ->name('customers.contacts.sales-activities.append');
 

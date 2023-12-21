@@ -51,7 +51,7 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
       <h1 className="content-title">営業履歴 一覧</h1>
       <div className="content-navbar">
         <Link
-          // href={route('sales-activities.create')}
+          href={route('sales-activities.create')}
           className="btn btn-primary u-mr-3"
         >
           新規登録
