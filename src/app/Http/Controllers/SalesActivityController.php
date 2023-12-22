@@ -88,6 +88,12 @@ class SalesActivityController extends Controller
             ->with('message', "ID:{$salesActivity->id} 営業履歴を更新しました。");
     }
 
+    public function destroy(SalesActivity $salesActivity): RedirectResponse
+    {
+        $salesActivity->delete();
+        return to_route('sales-activities.index');
+    }
+
     public function appendToCustomerContact(SalesActivityStoreRequest $request, Customer $customer): RedirectResponse
     {
         $salesActivity = SalesActivity::create([

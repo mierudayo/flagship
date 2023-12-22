@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useForm, usePage } from '@inertiajs/react';
+import { Link, useForm, usePage } from '@inertiajs/react';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AppLayout from '@/Layouts/AppLayout';
 import CancelButton from '@/Components/CancelButton';
@@ -63,6 +63,15 @@ const Edit = ({ salesActivity, inChargeUserOptions }) => {
         </button>
         <CancelButton isDirty={isDirty} route={route('sales-activities.index')} />
         {processing && <span>Now Loading...</span>}
+        <Link
+          onBefore={() => confirm('本当に削除しますか？')}
+          href={route('sales-activities.destroy', salesActivity)}
+          method="delete"
+          className="btn btn-danger u-ml-auto"
+          as="button"
+        >
+          削除
+        </Link>
       </div>
 
       <FormErrorAlert errors={errors} />

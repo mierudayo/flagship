@@ -96,6 +96,7 @@ Route::middleware('auth')->group(function () {
     Route::post('sales-activities', [SalesActivityController::class, 'store'])->name('sales-activities.store');
     Route::get('sales-activities/{salesActivity}/edit', [SalesActivityController::class, 'edit'])->name('sales-activities.edit');
     Route::patch('sales-activities/{salesActivity}', [SalesActivityController::class, 'update'])->name('sales-activities.update');
+    Route::delete('sales-activities/{salesActivity}', [SalesActivityController::class, 'destroy'])->name('sales-activities.destroy');
     Route::post('customers/{customer}/sales-activities', [SalesActivityController::class, 'appendToCustomerContact'])
         ->name('customers.contacts.sales-activities.append');
 
