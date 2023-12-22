@@ -1,7 +1,4 @@
-import { Link } from '@inertiajs/react';
-
-import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
+import ClickableRow from '@/Components/ClickableRow';
 import NewTabLink from '@/Components/NewTabLink';
 
 export default function InquiryTable({ inquiries }) {
@@ -10,8 +7,7 @@ export default function InquiryTable({ inquiries }) {
       <table className="table">
         <thead className="table-header is-sticky">
           <tr className="table-row">
-            <th className="th-cell u-w-64 u-text-center col-fixed">編集</th>
-            <th className="th-cell u-min-w-64 u-text-center">No.</th>
+            <th className="th-cell u-min-w-64 u-text-center col-fixed">No.</th>
             <th className="th-cell u-min-w-136">問い合わせ日</th>
             <th className="th-cell u-min-w-160">対応者</th>
             <th className="th-cell u-min-w-120">ステータス</th>
@@ -23,15 +19,8 @@ export default function InquiryTable({ inquiries }) {
         </thead>
         <tbody className="table-body">
           {inquiries.map(inquiry => (
-            <tr key={inquiry.id} className="table-row is-hoverable">
-              <td className="td-cell col-fixed u-text-center">
-                <Link href={route('inquiries.edit', inquiry)}>
-                  <IconButton size="small" aria-label="edit">
-                    <EditIcon color="primary" />
-                  </IconButton>
-                </Link>
-              </td>
-              <td className="td-cell u-text-center">{inquiry.id}</td>
+            <ClickableRow key={inquiry.id} url={route('inquiries.edit', inquiry)}>
+              <td className="td-cell u-text-center col-fixed">{inquiry.id}</td>
               <td className="td-cell">{inquiry.inquiry_date}</td>
               <td className="td-cell">{inquiry.in_charge_user.name}</td>
               <td className="td-cell">
@@ -54,7 +43,7 @@ export default function InquiryTable({ inquiries }) {
                 </span>
               </td>
               <td className="td-cell u-ellipsis u-max-w-200">{inquiry.subject}</td>
-            </tr>
+            </ClickableRow>
           ))}
         </tbody>
       </table>

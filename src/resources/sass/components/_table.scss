@@ -162,3 +162,24 @@ Hoverable row, cell
     }
   }
 }
+
+/* -----------------------
+Clickable row, cell
+----------------------- */
+.table-row {
+  &.is-clickable {
+    cursor: pointer;
+
+    .th-cell,
+    .td-cell {
+      transition: background-color 0.2s ease;
+    }
+
+    &:hover {
+      .th-cell,
+      .td-cell {
+        background-color: var(--color-table-hover);
+      }
+    }
+  }
+}
