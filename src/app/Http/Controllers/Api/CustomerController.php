@@ -15,6 +15,7 @@ class CustomerController extends Controller
 
         $customers = Customer::query()
             ->with([
+                'salesTerm',
                 'contacts',
                 'deliveryAddresses',
             ])

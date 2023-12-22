@@ -88,6 +88,11 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
       'customer_id': customer.id,
       'customer_name': customer.name,
       'sales_in_charge_id': customer.in_charge_user_id || '',
+      'billing_type': customer.sales_term?.billing_type ?? '',
+      'cutoff_day': customer.sales_term?.cutoff_day ?? '',
+      'payment_month_offset': customer.sales_term?.payment_month_offset ?? '',
+      'payment_day': customer.sales_term?.payment_day ?? '',
+      'payment_day_offset': customer.sales_term?.payment_day_offset ?? '',
     });
     setCustomerContacts(customer.contacts || []);
     setDeliveryAddresses(customer.delivery_addresses || [])
@@ -265,6 +270,20 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
+                    <FormLabel htmlFor="billing_type" label="請求条件" isRequired={true} />
+                  </th>
+                  <td className="td-cell">
+                    <PaymentSelectGroup
+                      data={data}
+                      setData={setData}
+                      errors={errors}
+                      paymentTermOptions={paymentTermOptions}
+                    />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
                     <FormLabel label="販売先顧客" isRequired={false} />
                   </th>
                   <td className="td-cell">
@@ -391,20 +410,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       error={errors.product_category_id}
                     />
                     <InvalidFeedback errors={errors} name="product_category_id" />
-                  </td>
-                </tr>
-
-                <tr className="table-row is-flexible">
-                  <th className="th-cell">
-                    <FormLabel htmlFor="billing_type" label="請求条件" isRequired={true} />
-                  </th>
-                  <td className="td-cell">
-                    <PaymentSelectGroup
-                      data={data}
-                      setData={setData}
-                      errors={errors}
-                      paymentTermOptions={paymentTermOptions}
-                    />
                   </td>
                 </tr>
 
