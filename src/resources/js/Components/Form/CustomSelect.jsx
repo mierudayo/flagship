@@ -8,6 +8,7 @@ export default function CustomSelect(props) {
     options,
     placeholder,
     noOptionsMessage = () => '該当する選択肢がありません',
+    maxMenuHeight = 200,
     isClearable = true,
     isSearchable = true,
     valueKey = 'id',
@@ -63,6 +64,7 @@ export default function CustomSelect(props) {
       noOptionsMessage={noOptionsMessage}
       menuPosition="fixed"
       menuShouldBlockScroll={true}
+      maxMenuHeight={maxMenuHeight}
       menuPortalTarget={document.body}
       styles={{
         ...customStyles,
