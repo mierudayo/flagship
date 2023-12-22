@@ -1,23 +1,16 @@
-import SearchIcon from '@mui/icons-material/Search';
+import SearchInput from './Form/SearchInput';
 
-export default function KeywordSearchForm({ placeholder, data, setData, errors, submit }) {
+export default function KeywordSearchForm({ placeholder, data, setData, errors, submit}) {
   return (
-    <form onSubmit={submit}>
-      <div className="keyword-search-box">
-        <div className="search-icon-wrapper">
-          <SearchIcon
-            style={{ fontSize: '1.25rem', color: '#888' }}
-          />
-        </div>
-        <input
-          type="search"
-          name="keyword"
-          value={data.keyword}
-          onChange={e => setData('keyword', e.target.value)}
-          className={`input-field ${errors.keyword ? 'is-invalid' : ''}`}
-          placeholder={placeholder}
-        />
-      </div>
+    <form onSubmit={submit} className="u-mr-3">
+      <SearchInput
+        type="search"
+        name="keyword"
+        value={data.keyword}
+        onChange={e => setData('keyword', e.target.value)}
+        className={`input-field ${errors.keyword ? 'is-invalid' : ''}`}
+        placeholder={placeholder}
+      />
       {errors.keyword && <div className="invalid-feedback">{errors.keyword}</div>}
     </form>
   );
