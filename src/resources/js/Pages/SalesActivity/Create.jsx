@@ -15,6 +15,8 @@ import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 const Create = ({ inChargeUserOptions }) => {
   const { today } = usePage().props.date;
+  const { auth }  = usePage().props
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [contactName, setContactName] = useState('');
   const [customerName, setCustomerName] = useState('');
@@ -28,7 +30,7 @@ const Create = ({ inChargeUserOptions }) => {
     proposal: '',
     feedback: '',
     note: '',
-    in_charge_user_id: '',
+    in_charge_user_id: auth.user.id,
   });
 
   function submit(e) {
