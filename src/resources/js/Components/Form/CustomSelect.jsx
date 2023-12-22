@@ -61,6 +61,8 @@ export default function CustomSelect(props) {
       isSearchable={isSearchable}
       placeholder={placeholder}
       noOptionsMessage={noOptionsMessage}
+      menuPosition="fixed"
+      menuShouldBlockScroll={true}
       menuPortalTarget={document.body}
       styles={{
         ...customStyles,
