@@ -1,6 +1,6 @@
 import ClickableRow from '@/Components/ClickableRow';
 
-export default function CustomerTable({ contacts }) {
+export default function ContactsTable({ contacts }) {
   return (
     <div className="table-wrapper is-scrollable">
       <table className="table">
