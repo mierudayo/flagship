@@ -94,6 +94,8 @@ Route::middleware('auth')->group(function () {
     Route::get('sales-activities', [SalesActivityController::class, 'index'])->name('sales-activities.index');
     Route::get('sales-activities/create', [SalesActivityController::class, 'create'])->name('sales-activities.create');
     Route::post('sales-activities', [SalesActivityController::class, 'store'])->name('sales-activities.store');
+    Route::get('sales-activities/{salesActivity}/edit', [SalesActivityController::class, 'edit'])->name('sales-activities.edit');
+    Route::patch('sales-activities/{salesActivity}', [SalesActivityController::class, 'update'])->name('sales-activities.update');
     Route::post('customers/{customer}/sales-activities', [SalesActivityController::class, 'appendToCustomerContact'])
         ->name('customers.contacts.sales-activities.append');
 

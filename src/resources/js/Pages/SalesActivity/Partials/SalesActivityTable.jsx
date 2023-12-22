@@ -23,7 +23,7 @@ export default function SalesActivityTable({ salesActivities }) {
           {salesActivities.map(salesActivity => (
             <tr key={salesActivity.id} className="table-row is-hoverable">
               <td className="td-cell col-fixed u-text-center">
-                <Link >
+                <Link href={route('sales-activities.edit', salesActivity)} >
                   <IconButton size="small" aria-label="edit">
                     <EditIcon color="primary" />
                   </IconButton>
