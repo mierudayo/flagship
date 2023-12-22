@@ -66,3 +66,64 @@
     cursor: pointer;
   }
 }
+
+/* InquiryStatus ステータス毎のラベルレイアウト
+-------------------------*/
+.inquiry-status {
+  --color-danger-bg: #f8d7da;
+  --color-danger: #721c24;
+  --color-success-bg: #08b94e1a;
+  --color-success: #08b94e;
+  --color-neutral-bg: #e2e3e5;
+  --color-neutral: #383d41;
+  --color-info-bg: #d1ecf1;
+  --color-info: #0c5460;
+
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 4px;
+  text-align: center;
+
+  /* Processing - 処理中 */
+  &.status-1 {
+    background-color: var(--color-info-bg);
+    color: var(--color-info);
+  }
+
+  /* AwaitingReply - 返信待ち */
+  &.status-2 {
+    background-color: var(--color-neutral-bg);
+    color: var(--color-neutral);
+  }
+
+  /* OnHold - 保留中 */
+  &.status-3 {
+    background-color: #fef4c5;
+    color: #8a6d3b;
+  }
+
+  /* Success - 成功 */
+  &.status-4 {
+    background-color: var(--color-success-bg);
+    color: var(--color-success);
+  }
+
+  /* Failed - 失敗 */
+  &.status-5 {
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger);
+  }
+
+  /* Passed - 通過 */
+  &.status-6 {
+    background-color: #d6d8db;
+    color: #495057;
+  }
+
+  /* Other - その他 */
+  &.status-7 {
+    background-color: #d6d8db;
+    color: #495057;
+  }
+}

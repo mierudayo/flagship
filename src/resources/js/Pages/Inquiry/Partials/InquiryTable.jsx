@@ -33,7 +33,11 @@ export default function InquiryTable({ inquiries }) {
               <td className="td-cell u-text-center">{inquiry.id}</td>
               <td className="td-cell">{inquiry.inquiry_date}</td>
               <td className="td-cell">{inquiry.in_charge_user.name}</td>
-              <td className="td-cell">{inquiry.status_label}</td>
+              <td className="td-cell">
+                <span className={`inquiry-status status-${inquiry.status}`}>
+                  {inquiry.status_label}
+                </span>
+              </td>
               <td className="td-cell">{inquiry.customer_contact.name}</td>
               <td className="td-cell">{inquiry.customer_contact.customer.name}</td>
               <td className="td-cell">{inquiry.product?.name}</td>
