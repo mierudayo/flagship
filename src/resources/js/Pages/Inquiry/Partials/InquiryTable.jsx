@@ -2,6 +2,7 @@ import { Link } from '@inertiajs/react';
 
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
+import NewTabLink from '@/Components/NewTabLink';
 
 export default function InquiryTable({ inquiries }) {
   return (
@@ -39,7 +40,12 @@ export default function InquiryTable({ inquiries }) {
                 </span>
               </td>
               <td className="td-cell">{inquiry.customer_contact.name}</td>
-              <td className="td-cell">{inquiry.customer_contact.customer.name}</td>
+              <td className="td-cell">
+                <NewTabLink
+                  url={route('customers.show', inquiry.customer_contact.customer)}
+                  displayText={inquiry.customer_contact.customer.name}
+                />
+              </td>
               <td className="td-cell">{inquiry.product?.name}</td>
               <td className="td-cell">{inquiry.product?.category.name}</td>
               <td className="td-cell">
