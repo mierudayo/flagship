@@ -16,11 +16,13 @@ import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatusOptions, contactMethodOptions }) => {
   const { today } = usePage().props.date;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [contactName, setContactName] = useState('');
-  const [customerName, setCustomerName] = useState('');
-  const [contactEmail, setContactEmail] = useState('');
-  const [contactTel, setContactTel] = useState('');
-  const [contactMobile, setContactMobile] = useState('');
+  const [contactInfo, setContactInfo] = useState({
+    contactName: '',
+    customerName: '',
+    contactEmail: '',
+    contactTel: '',
+    contactMobile: '',
+  });
 
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     inquiry_date: today,
@@ -48,11 +50,13 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
 
   function selectContact(contact) {
     setData('customer_contact_id', contact.id);
-    setContactName(contact.name);
-    setCustomerName(contact.customer.name);
-    setContactEmail(contact.email ?? '');
-    setContactTel(contact.tel ?? '');
-    setContactMobile(contact.mobile_number ?? '');
+    setContactInfo({
+      contactName: contact.name,
+      customerName: contact.customer.name,
+      contactEmail: contact.email ?? '',
+      contactTel: contact.tel ?? '',
+      contactMobile: contact.mobile_number ?? ''
+    });
     setIsModalOpen(false);
   }
 
@@ -155,7 +159,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                     />
                     <Input
                       type="text"
-                      value={contactName}
+                      value={contactInfo.contactName}
                       className="u-max-w-240 u-mr-1"
                       placeholder="顧客名"
                       readOnly={true}
@@ -167,7 +171,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                   <div className="u-mt-2">
                     <Input
                       type="text"
-                      value={customerName}
+                      value={contactInfo.customerName}
                       className="u-max-w-368"
                       placeholder="取引先名"
                       readOnly={true}
@@ -176,7 +180,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                   <div className="u-mt-2">
                     <Input
                       type="text"
-                      value={contactEmail}
+                      value={contactInfo.contactEmail}
                       className="u-max-w-368"
                       placeholder="E-mail"
                       readOnly={true}
@@ -185,14 +189,14 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                   <div className="u-flex u-mt-2">
                     <Input
                       type="text"
-                      value={contactTel}
+                      value={contactInfo.contactTel}
                       className="u-max-w-176 u-mr-3"
                       placeholder="TEL"
                       readOnly={true}
                     />
                     <Input
                       type="text"
-                      value={contactMobile}
+                      value={contactInfo.contactMobile}
                       className="u-max-w-176"
                       placeholder="携帯"
                       readOnly={true}

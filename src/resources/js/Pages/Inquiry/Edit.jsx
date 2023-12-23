@@ -16,11 +16,13 @@ import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatusOptions, contactMethodOptions }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [contactName, setContactName] = useState(inquiry.customer_contact.name);
-  const [customerName, setCustomerName] = useState(inquiry.customer_contact.customer.name);
-  const [contactEmail, setContactEmail] = useState(inquiry.customer_contact.email ?? '');
-  const [contactTel, setContactTel] = useState(inquiry.customer_contact.tel ?? '');
-  const [contactMobile, setContactMobile] = useState(inquiry.customer_contact.mobile_number ?? '');
+  const [contactInfo, setContactInfo] = useState({
+    contactName: inquiry.customer_contact.name,
+    customerName: inquiry.customer_contact.customer.name,
+    contactEmail: inquiry.customer_contact.email ?? '',
+    contactTel: inquiry.customer_contact.tel ?? '',
+    contactMobile: inquiry.customer_contact.mobile_number ?? '',
+  });
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
     inquiry_date: inquiry.inquiry_date,
@@ -48,11 +50,13 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
 
   function selectContact(contact) {
     setData('customer_contact_id', contact.id);
-    setContactName(contact.name);
-    setCustomerName(contact.customer.name);
-    setContactEmail(contact.email ?? '');
-    setContactTel(contact.tel ?? '');
-    setContactMobile(contact.mobile_number ?? '');
+    setContactInfo({
+      contactName: contact.name,
+      customerName: contact.customer.name,
+      contactEmail: contact.email ?? '',
+      contactTel: contact.tel ?? '',
+      contactMobile: contact.mobile_number ?? ''
+    });
     setIsModalOpen(false);
   }
 
@@ -172,7 +176,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     />
                     <Input
                       type="text"
-                      value={contactName}
+                      value={contactInfo.contactName}
                       className="u-max-w-240 u-mr-1"
                       placeholder="顧客名"
                       readOnly={true}
@@ -184,7 +188,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                   <div className="u-mt-2">
                     <Input
                       type="text"
-                      value={customerName}
+                      value={contactInfo.customerName}
                       className="u-max-w-368"
                       placeholder="取引先名"
                       readOnly={true}
@@ -193,7 +197,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                   <div className="u-mt-2">
                     <Input
                       type="text"
-                      value={contactEmail}
+                      value={contactInfo.contactEmail}
                       className="u-max-w-368"
                       placeholder="E-mail"
                       readOnly={true}
@@ -202,14 +206,14 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                   <div className="u-flex u-mt-2">
                     <Input
                       type="text"
-                      value={contactTel}
+                      value={contactInfo.contactTel}
                       className="u-max-w-176 u-mr-3"
                       placeholder="TEL"
                       readOnly={true}
                     />
                     <Input
                       type="text"
-                      value={contactMobile}
+                      value={contactInfo.contactMobile}
                       className="u-max-w-176"
                       placeholder="携帯"
                       readOnly={true}
