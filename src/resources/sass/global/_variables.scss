@@ -26,6 +26,10 @@
   --height-modal-header: 48px;
   --height-modal-body: calc(var(--height-modal-container) - var(--height-modal-header));
   --max-height-partials: 36px;
+  --height-content-title: 32px;
+  --height-content-navbar: 56px;
+
+  --max-height-scrollable-table: calc(100vh - var(--height-content-title) - var(--height-content-navbar) - 32px);
 
   /* Width
   -------------------------*/

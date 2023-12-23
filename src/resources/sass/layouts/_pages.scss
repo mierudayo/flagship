@@ -3,11 +3,13 @@
 .content-title {
   font-size: 1.2rem;
   font-weight: bold;
+  height: var(--height-content-title);
 }
 
 .content-navbar {
   align-items: center;
   display: flex;
+  height: var(--height-content-navbar);
   padding: 8px 0 ;
   overflow-x: auto;
 

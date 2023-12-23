@@ -21,7 +21,7 @@ Table styles
     overflow-x: auto;
     overflow-y: auto;
     position: relative;
-    max-height: calc(100vh - 80px);
+    max-height: var(--max-height-scrollable-table);
   }
 }
 
