@@ -39,7 +39,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
             <tbody className="tbody">
               <tr className="table-row is-flexible">
                 <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="name" label="担当者名" isRequired={true} />
+                  <FormLabel htmlFor="name" label="名前" isRequired={true} />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -151,26 +151,6 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="担当ユーザー" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <CustomSelect
-                    onChange={value => setData('in_charge_user_id', value)}
-                    options={userOptions}
-                    value={data.in_charge_user_id}
-                    valueKey="id"
-                    labelKey="name"
-                    isClearable={true}
-                    isSearchable={true}
-                    placeholder="..."
-                    error={errors.in_charge_user_id}
-                  />
-                  <InvalidFeedback errors={errors} name="in_charge_user_id" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
                   <FormLabel label="リード獲得元" isRequired={false} />
                 </th>
                 <td className="td-cell">
@@ -207,6 +187,26 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
                     />
                     <InvalidFeedback errors={errors} name="is_active" />
                   </div>
+                </td>
+              </tr>
+
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
+                  <FormLabel label="担当ユーザー" isRequired={false} />
+                </th>
+                <td className="td-cell">
+                  <CustomSelect
+                    onChange={value => setData('in_charge_user_id', value)}
+                    options={userOptions}
+                    value={data.in_charge_user_id}
+                    valueKey="id"
+                    labelKey="name"
+                    isClearable={true}
+                    isSearchable={true}
+                    placeholder="..."
+                    error={errors.in_charge_user_id}
+                  />
+                  <InvalidFeedback errors={errors} name="in_charge_user_id" />
                 </td>
               </tr>
 

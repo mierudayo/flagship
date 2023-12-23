@@ -39,12 +39,12 @@ const Show = ({ contact }) => {
             <tbody className="tbody">
 
               <tr className="table-row">
-                <th className="th-cell u-w-200">取引先名</th>
+                <th className="th-cell u-w-200">所属取引先</th>
                 <td className="td-cell">{contact.customer.name}</td>
               </tr>
 
               <tr className="table-row">
-                <th className="th-cell u-w-200">担当者名</th>
+                <th className="th-cell u-w-200">名前</th>
                 <td className="td-cell">{contact.name}</td>
               </tr>
 
@@ -79,13 +79,13 @@ const Show = ({ contact }) => {
               </tr>
 
               <tr className="table-row">
-                <th className="th-cell">使用状況</th>
-                <td className="td-cell">{contact.is_active_label}</td>
+                <th className="th-cell">リード獲得元</th>
+                <td className="td-cell">{contact.lead_source?.name}</td>
               </tr>
 
               <tr className="table-row">
-                <th className="th-cell">備考</th>
-                <td className="td-cell">{contact.note}</td>
+                <th className="th-cell">使用状況</th>
+                <td className="td-cell">{contact.is_active_label}</td>
               </tr>
 
               <tr className="table-row">
@@ -94,10 +94,9 @@ const Show = ({ contact }) => {
               </tr>
 
               <tr className="table-row">
-                <th className="th-cell">獲得元</th>
-                <td className="td-cell">{contact.lead_source?.name}</td>
+                <th className="th-cell">備考</th>
+                <td className="td-cell">{contact.note}</td>
               </tr>
-
             </tbody>
           </table>
         </div>
