@@ -222,69 +222,6 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                 </td>
               </tr>
 
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="subject" label="件名" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <Input
-                    id="subject"
-                    type="text"
-                    value={data.subject}
-                    onChange={e => setData('subject', e.target.value)}
-                    error={errors.subject}
-                  />
-                  <InvalidFeedback errors={errors} name="subject" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="message" label="問い合わせ内容" isRequired={true} />
-                </th>
-                <td className="td-cell">
-                  <Textarea
-                    id="message"
-                    value={data.message}
-                    onChange={e => setData('message', e.target.value)}
-                    error={errors.message}
-                    height="large"
-                  />
-                  <InvalidFeedback errors={errors} name="message" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="answer" label="回答内容" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <Textarea
-                    id="answer"
-                    value={data.answer}
-                    onChange={e => setData('answer', e.target.value)}
-                    error={errors.answer}
-                    height="large"
-                  />
-                  <InvalidFeedback errors={errors} name="answer" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel htmlFor="feedback" label="フィードバック" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <Textarea
-                    id="feedback"
-                    value={data.feedback}
-                    onChange={e => setData('feedback', e.target.value)}
-                    error={errors.feedback}
-                    height="medium"
-                  />
-                  <InvalidFeedback errors={errors} name="feedback" />
-                </td>
-              </tr>
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
@@ -356,6 +293,71 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                     error={errors.product_detail}
                   />
                   <InvalidFeedback errors={errors} name="product_detail" />
+                </td>
+              </tr>
+
+
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
+                  <FormLabel htmlFor="subject" label="件名" isRequired={false} />
+                </th>
+                <td className="td-cell">
+                  <Input
+                    id="subject"
+                    type="text"
+                    value={data.subject}
+                    onChange={e => setData('subject', e.target.value)}
+                    error={errors.subject}
+                  />
+                  <InvalidFeedback errors={errors} name="subject" />
+                </td>
+              </tr>
+
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
+                  <FormLabel htmlFor="message" label="問い合わせ内容" isRequired={true} />
+                </th>
+                <td className="td-cell">
+                  <Textarea
+                    id="message"
+                    value={data.message}
+                    onChange={e => setData('message', e.target.value)}
+                    error={errors.message}
+                    height="large"
+                  />
+                  <InvalidFeedback errors={errors} name="message" />
+                </td>
+              </tr>
+
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
+                  <FormLabel htmlFor="answer" label="回答内容" isRequired={false} />
+                </th>
+                <td className="td-cell">
+                  <Textarea
+                    id="answer"
+                    value={data.answer}
+                    onChange={e => setData('answer', e.target.value)}
+                    error={errors.answer}
+                    height="large"
+                  />
+                  <InvalidFeedback errors={errors} name="answer" />
+                </td>
+              </tr>
+
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
+                  <FormLabel htmlFor="feedback" label="フィードバック" isRequired={false} />
+                </th>
+                <td className="td-cell">
+                  <Textarea
+                    id="feedback"
+                    value={data.feedback}
+                    onChange={e => setData('feedback', e.target.value)}
+                    error={errors.feedback}
+                    height="medium"
+                  />
+                  <InvalidFeedback errors={errors} name="feedback" />
                 </td>
               </tr>
 
