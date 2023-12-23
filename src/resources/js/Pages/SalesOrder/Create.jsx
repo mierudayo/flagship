@@ -2,6 +2,10 @@ import { Fragment, useState } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AppLayout from '@/Layouts/AppLayout';
+import IconButton from '@mui/material/IconButton';
+import SyncIcon from '@mui/icons-material/Sync';
+import EditIcon from '@mui/icons-material/Edit';
+
 import CancelButton from '@/Components/CancelButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import DateInput from '@/Components/Form/DateInput';
@@ -81,6 +85,12 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
       onSuccess: () => reset(),
     });
   };
+
+  async function fetchCustomer() {
+    const response = await fetch(`/api/customers/${data.customer_id}`);
+    const customerJson = await response.json();
+    selectCustomer(customerJson);
+  }
 
   function selectCustomer(customer) {
     setData({
@@ -245,7 +255,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     <FormLabel label="販売先" isRequired={true} />
                   </th>
                   <td className="td-cell">
-                    <div className="u-flex">
+                    <div className="u-flex u-items-center">
                       <Input
                         type="text"
                         value={data.customer_id}
@@ -263,6 +273,24 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       <button type="button" className="btn btn-secondary" onClick={() => setIsCustomerModalOpen(true)}>
                         <ManageSearchIcon />
                       </button>
+
+                      {data.customer_id && (
+                        <a
+                          href={route('customers.edit', data.customer_id)}
+                          target="_blank" rel="noopener noreferrer"
+                          className="u-ml-1"
+                        >
+                          <IconButton onClick={() => fetchCustomer()}>
+                            <EditIcon />
+                          </IconButton>
+                        </a>
+                      )}
+
+                      {data.customer_id && (
+                        <IconButton onClick={() => fetchCustomer()}>
+                          <SyncIcon />
+                        </IconButton>
+                      )}
                     </div>
                     <InvalidFeedback errors={errors} name="customer_id" />
                   </td>

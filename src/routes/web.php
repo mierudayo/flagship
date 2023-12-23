@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
 
     // API
     Route::get('api/customers', [ApiCustomerController::class, 'index']);
+    Route::get('api/customers/{customer}', [ApiCustomerController::class, 'find']);
     Route::get('api/contacts', [ApiCustomerContactController::class, 'index']);
 
     // User

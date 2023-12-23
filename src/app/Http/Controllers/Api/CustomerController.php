@@ -26,4 +26,15 @@ class CustomerController extends Controller
 
         return response()->json($customers);
     }
+
+    public function find(Customer $customer): JsonResponse
+    {
+        $customer->load([
+            'salesTerm',
+            'contacts',
+            'deliveryAddresses',
+        ]);
+
+        return response()->json($customer);
+    }
 }
