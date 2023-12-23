@@ -151,7 +151,47 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="is_active-true" label="使用状況" isRequired={true} />
+                  <FormLabel label="担当ユーザー" isRequired={false} />
+                </th>
+                <td className="td-cell">
+                  <CustomSelect
+                    onChange={value => setData('in_charge_user_id', value)}
+                    options={userOptions}
+                    value={data.in_charge_user_id}
+                    valueKey="id"
+                    labelKey="name"
+                    isClearable={true}
+                    isSearchable={true}
+                    placeholder="..."
+                    error={errors.in_charge_user_id}
+                  />
+                  <InvalidFeedback errors={errors} name="in_charge_user_id" />
+                </td>
+              </tr>
+
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
+                  <FormLabel label="リード獲得元" isRequired={false} />
+                </th>
+                <td className="td-cell">
+                  <CustomSelect
+                    onChange={value => setData('lead_source_id', value)}
+                    options={leadSourceOptions}
+                    value={data.lead_source_id}
+                    valueKey="id"
+                    labelKey="name"
+                    isClearable={true}
+                    isSearchable={true}
+                    placeholder="..."
+                    error={errors.lead_source_id}
+                  />
+                  <InvalidFeedback errors={errors} name="lead_source_id" />
+                </td>
+              </tr>
+
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
+                  <FormLabel htmlFor="is_active-true" label="使用状況" isRequired={false} />
                 </th>
                 <td className="td-cell">
                   <div className="u-flex">
@@ -182,46 +222,6 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
                     error={errors.note}
                   />
                   <InvalidFeedback errors={errors} name="note" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel label="担当ユーザー" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <CustomSelect
-                    onChange={value => setData('in_charge_user_id', value)}
-                    options={userOptions}
-                    value={data.in_charge_user_id}
-                    valueKey="id"
-                    labelKey="name"
-                    isClearable={true}
-                    isSearchable={true}
-                    placeholder="担当ユーザーを選択..."
-                    error={errors.in_charge_user_id}
-                  />
-                  <InvalidFeedback errors={errors} name="in_charge_user_id" />
-                </td>
-              </tr>
-
-              <tr className="table-row is-flexible">
-                <th className="th-cell">
-                  <FormLabel label="獲得元" isRequired={false} />
-                </th>
-                <td className="td-cell">
-                  <CustomSelect
-                    onChange={value => setData('lead_source_id', value)}
-                    options={leadSourceOptions}
-                    value={data.lead_source_id}
-                    valueKey="id"
-                    labelKey="name"
-                    isClearable={true}
-                    isSearchable={true}
-                    placeholder="獲得元を選択..."
-                    error={errors.lead_source_id}
-                  />
-                  <InvalidFeedback errors={errors} name="lead_source_id" />
                 </td>
               </tr>
             </tbody>
