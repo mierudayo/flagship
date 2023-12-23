@@ -34,18 +34,18 @@ class CustomerStoreRequest extends FormRequest
             'in_charge_user_id' => ['nullable', 'integer', 'exists:users,id'],
 
             // PurchaseTerm
-            'purchase_billing_type'         => ['nullable', 'in:1,2'],
-            'purchase_cutoff_day'           => ['nullable', 'integer', 'min:1', 'max:99'],
-            'purchase_payment_month_offset' => ['nullable', 'integer', 'min:0', 'max:12'],
-            'purchase_payment_day'          => ['nullable', 'integer', 'min:1', 'max:99'],
-            'purchase_payment_day_offset'   => ['nullable', 'integer', 'min:0'],
+            'purchase_term.billing_type'         => ['nullable', 'in:1,2'],
+            'purchase_term.cutoff_day'           => ['nullable', 'integer', 'min:1', 'max:99'],
+            'purchase_term.payment_month_offset' => ['nullable', 'integer', 'min:0', 'max:12'],
+            'purchase_term.payment_day'          => ['nullable', 'integer', 'min:1', 'max:99'],
+            'purchase_term.payment_day_offset'   => ['nullable', 'integer', 'min:0'],
 
             // SalesTerm
-            'sales_billing_type'            => ['nullable', 'in:1,2'],
-            'sales_cutoff_day'              => ['nullable', 'integer', 'min:1', 'max:99'],
-            'sales_payment_month_offset'    => ['nullable', 'integer', 'min:0', 'max:12'],
-            'sales_payment_day'             => ['nullable', 'integer', 'min:1', 'max:99'],
-            'sales_payment_day_offset'      => ['nullable', 'integer', 'min:0'],
+            'sales_term.billing_type'         => ['nullable', 'in:1,2'],
+            'sales_term.cutoff_day'           => ['nullable', 'integer', 'min:1', 'max:99'],
+            'sales_term.payment_month_offset' => ['nullable', 'integer', 'min:0', 'max:12'],
+            'sales_term.payment_day'          => ['nullable', 'integer', 'min:1', 'max:99'],
+            'sales_term.payment_day_offset'   => ['nullable', 'integer', 'min:0'],
 
             // CustomerContact
             'contacts.*.name'              => ['required', 'string'],
@@ -91,18 +91,18 @@ class CustomerStoreRequest extends FormRequest
             'in_charge_user_id' => '担当ユーザー',
 
             // PurchaseTerm
-            'purchase_billing_type'         => '請求タイプ',
-            'purchase_cutoff_day'           => '締日',
-            'purchase_payment_month_offset' => '支払月',
-            'purchase_payment_day'          => '支払日',
-            'purchase_payment_day_offset'   => '支払期限日数',
+            'purchase_term.billing_type'         => '請求タイプ',
+            'purchase_term.cutoff_day'           => '締日',
+            'purchase_term.payment_month_offset' => '支払月',
+            'purchase_term.payment_day'          => '支払日',
+            'purchase_term.payment_day_offset'   => '支払期限日数',
 
             // SalesTerm
-            'sales_billing_type'            => '請求タイプ',
-            'sales_cutoff_day'              => '締日',
-            'sales_payment_month_offset'    => '支払月',
-            'sales_payment_day'             => '支払日',
-            'sales_payment_day_offset'      => '支払期限日数',
+            'sales_term.billing_type'         => '請求タイプ',
+            'sales_term.cutoff_day'           => '締日',
+            'sales_term.payment_month_offset' => '支払月',
+            'sales_term.payment_day'          => '支払日',
+            'sales_term.payment_day_offset'   => '支払期限日数',
         ];
     }
 }

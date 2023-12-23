@@ -8,7 +8,8 @@ import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import OptionsList from '@/Components/OptionsList';
 import Textarea from '@/Components/Form/Textarea';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
-import PaymentSelectGroup from './Partials/PaymentSelectGroup';
+import PurchasePaymentSelect from './Partials/PurchasePaymentSelect';
+import SalesPaymentSelect from './Partials/SalesPaymentSelect';
 
 const Create = ({ userOptions, leadSourceOptions, paymentTermOptions, addressTypeOptions }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
@@ -19,22 +20,10 @@ const Create = ({ userOptions, leadSourceOptions, paymentTermOptions, addressTyp
     address: '',
     tel: '',
     fax: '',
-
-    purchase_billing_type: '',
-    purchase_cutoff_day: '',
-    purchase_payment_month_offset: '',
-    purchase_payment_day: '',
-    purchase_payment_day_offset: '',
-
-    sales_billing_type: '',
-    sales_cutoff_day: '',
-    sales_payment_month_offset: '',
-    sales_payment_day: '',
-    sales_payment_day_offset: '',
-
+    purchase_term: null,
+    sales_term: null,
     in_charge_user_id: '',
     note: '',
-
     contacts: [{ is_active: true }],
     delivery_addresses: [],
   });
@@ -262,30 +251,28 @@ const Create = ({ userOptions, leadSourceOptions, paymentTermOptions, addressTyp
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel htmlFor="purchase_billing_type" label="支払条件" isRequired={false} />
+                    <FormLabel label="支払条件" isRequired={false} />
                   </th>
                   <td className="td-cell">
-                    <PaymentSelectGroup
+                    <PurchasePaymentSelect
                       data={data}
                       setData={setData}
                       errors={errors}
                       paymentTermOptions={paymentTermOptions}
-                      transactionType="purchase"
                     />
                   </td>
                 </tr>
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel htmlFor="sales_billing_type" label="請求条件" isRequired={false} />
+                    <FormLabel label="請求条件" isRequired={false} />
                   </th>
                   <td className="td-cell">
-                    <PaymentSelectGroup
+                    <SalesPaymentSelect
                       data={data}
                       setData={setData}
                       errors={errors}
                       paymentTermOptions={paymentTermOptions}
-                      transactionType="sales"
                     />
                   </td>
                 </tr>

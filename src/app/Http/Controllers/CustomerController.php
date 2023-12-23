@@ -9,8 +9,6 @@ use App\Models\Customer;
 use App\Models\CustomerContact;
 use App\Models\DeliveryAddress;
 use App\Models\LeadSource;
-use App\Models\PurchaseTerm;
-use App\Models\SalesTerm;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -50,10 +48,10 @@ class CustomerController extends Controller
     {
         $customer = DB::transaction(function () use ($request) {
             $createdCustomer = $this->createCustomer($request);
-            $this->createPurchaseTermIfNeeded($request, $createdCustomer);
-            $this->createSalesTermIfNeeded($request, $createdCustomer);
-            $this->createContacts($request, $createdCustomer);
-            $this->createDeliveryAddresses($request, $createdCustomer);
+            $this->createPurchaseTerm($createdCustomer, $request->input('purchase_term'));
+            $this->createSalesTerm($createdCustomer, $request->input('sales_term'));
+            $this->createContacts($createdCustomer->id, $request->input('contacts'));
+            $this->createDeliveryAddresses($createdCustomer->id, $request->input('delivery_addresses'));
             return $createdCustomer;
         });
 
@@ -104,10 +102,10 @@ class CustomerController extends Controller
     {
         DB::transaction(function () use ($request, &$customer) {
             $this->updateCustomer($request, $customer);
-            $this->updateOrCreatePurchaseTermIfNeeded($request, $customer);
-            $this->updateOrCreateSalesTermIfNeeded($request, $customer);
-            $this->upsertContacts($request, $customer);
-            $this->upsertDeliveryAddresses($request, $customer);
+            $this->updateOrCreatePurchaseTerm($customer, $request->input('purchase_term'));
+            $this->updateOrCreateSalesTerm($customer, $request->input('sales_term'));
+            $this->upsertContacts($customer->id, $request->input('contacts'));
+            $this->upsertDeliveryAddresses($customer->id, $request->input('delivery_addresses'));
         });
 
         return to_route('customers.show', $customer)
@@ -149,38 +147,6 @@ class CustomerController extends Controller
         return $createdCustomer;
     }
 
-    private function createPurchaseTermIfNeeded(CustomerStoreRequest $request, Customer $customer): void
-    {
-        if ($request->input('purchase_billing_type') === null) {
-            return;
-        }
-
-        PurchaseTerm::create([
-            'customer_id'           => $customer->id,
-            'billing_type'          => $request->input('purchase_billing_type'),
-            'cutoff_day'            => $request->input('purchase_cutoff_day'),
-            'payment_month_offset'  => $request->input('purchase_payment_month_offset'),
-            'payment_day'           => $request->input('purchase_payment_day'),
-            'payment_day_offset'    => $request->input('purchase_payment_day_offset'),
-        ]);
-    }
-
-    private function createSalesTermIfNeeded(CustomerStoreRequest $request, Customer $customer): void
-    {
-        if ($request->input('sales_billing_type') === null) {
-            return;
-        }
-
-        SalesTerm::create([
-            'customer_id'           => $customer->id,
-            'billing_type'          => $request->input('sales_billing_type'),
-            'cutoff_day'            => $request->input('sales_cutoff_day'),
-            'payment_month_offset'  => $request->input('sales_payment_month_offset'),
-            'payment_day'           => $request->input('sales_payment_day'),
-            'payment_day_offset'    => $request->input('sales_payment_day_offset'),
-        ]);
-    }
-
     private function updateCustomer(CustomerUpdateRequest $request, Customer $customer): void
     {
         $customer->update([
@@ -197,160 +163,168 @@ class CustomerController extends Controller
         ]);
     }
 
-    private function updateOrCreatePurchaseTermIfNeeded(CustomerUpdateRequest $request, Customer $customer): void
+
+    private function createPurchaseTerm(Customer $customer, ?array $purchaseTerms): void
     {
-        if ($request->input('purchase_billing_type') === null) {
+        if (!$purchaseTerms) {
             return;
         }
 
-        PurchaseTerm::updateOrCreate(
+        $customer->purchaseTerm()->create($purchaseTerms);
+    }
+
+    private function updateOrCreatePurchaseTerm(Customer $customer, ?array $purchaseTerms): void
+    {
+        if (!$purchaseTerms) {
+            return;
+        }
+
+        $customer->purchaseTerm()->updateOrCreate(
             ['customer_id' => $customer->id],
             [
-                'billing_type'          => $request->input('purchase_billing_type'),
-                'cutoff_day'            => $request->input('purchase_cutoff_day'),
-                'payment_month_offset'  => $request->input('purchase_payment_month_offset'),
-                'payment_day'           => $request->input('purchase_payment_day'),
-                'payment_day_offset'    => $request->input('purchase_payment_day_offset'),
+                'billing_type'          => $purchaseTerms['billing_type'] ?? null,
+                'cutoff_day'            => $purchaseTerms['cutoff_day'] ?? null,
+                'payment_month_offset'  => $purchaseTerms['payment_month_offset'] ?? null,
+                'payment_day'           => $purchaseTerms['payment_day'] ?? null,
+                'payment_day_offset'    => $purchaseTerms['payment_day_offset'] ?? null,
             ],
         );
     }
 
-    private function updateOrCreateSalesTermIfNeeded(CustomerUpdateRequest $request, Customer $customer): void
+    private function createSalesTerm(Customer $customer, ?array $salesTerms): void
     {
-        if ($request->input('sales_billing_type') === null) {
+        if (!$salesTerms) {
             return;
         }
 
-        SalesTerm::updateOrCreate(
+        $customer->salesTerm()->create($salesTerms);
+    }
+
+    private function updateOrCreateSalesTerm(Customer $customer, ?array $salesTerms): void
+    {
+        if (!$salesTerms) {
+            return;
+        }
+
+        $customer->salesTerm()->updateOrCreate(
             ['customer_id' => $customer->id],
             [
-                'billing_type'          => $request->input('sales_billing_type'),
-                'cutoff_day'            => $request->input('sales_cutoff_day'),
-                'payment_month_offset'  => $request->input('sales_payment_month_offset'),
-                'payment_day'           => $request->input('sales_payment_day'),
-                'payment_day_offset'    => $request->input('sales_payment_day_offset'),
+                'billing_type'          => $salesTerms['billing_type'] ?? null,
+                'cutoff_day'            => $salesTerms['cutoff_day'] ?? null,
+                'payment_month_offset'  => $salesTerms['payment_month_offset'] ?? null,
+                'payment_day'           => $salesTerms['payment_day'] ?? null,
+                'payment_day_offset'    => $salesTerms['payment_day_offset'] ?? null,
             ],
         );
     }
 
-    private function createContacts(CustomerStoreRequest $request, Customer $customer): void
+    private function createContacts(string $customerId, ?array $contacts): void
     {
-        $contacts = $this->prepareContactsData($request->input('contacts'), $customer);
+        if (!$contacts) {
+            return;
+        }
+
+        $contacts = collect($contacts)->map(function ($contact) use ($customerId) {
+            return  [
+                'customer_id'       => $customerId,
+                'lead_source_id'    => $contact['lead_source_id'] ?? null,
+                'name'              => $contact['name'] ?? null,
+                'name_kana'         => $contact['name_kana'] ?? null,
+                'tel'               => $contact['tel'] ?? null,
+                'mobile_number'     => $contact['mobile_number'] ?? null,
+                'email'             => $contact['email'] ?? null,
+                'position'          => $contact['position'] ?? null,
+                'role'              => $contact['role'] ?? null,
+                'is_active'         => $contact['is_active'] ?? null,
+                'note'              => $contact['note'] ?? null,
+                'in_charge_user_id' => $contact['in_charge_user_id'] ?? null,
+                'created_by_id'     => auth()->user()->id,
+                'created_at'        => now(),
+            ];
+        })->toArray();
+
         CustomerContact::insert($contacts);
     }
 
-    /**
-     * リクエストから受け取ったcontactsデータを、
-     * customer_contactsテーブル用のデータとして整形する。
-     *
-     * @param array $contacts リクエストから受け取った連絡先データ
-     * @param Customer $customer 連絡先に関連付ける取引先インスタンス
-     * @return array 整形された連絡先データ
-     */
-    private function prepareContactsData(array $contacts, Customer $customer): array
-    {
-        $customerId  = $customer->id;
-        $createdById = auth()->user()->id;
 
-        return collect($contacts)->map(function ($contact) use ($customerId, $createdById) {
-            return array_merge($contact, [
-                'customer_id'   => $customerId,
-                'created_by_id' => $createdById,
-                'created_at'    => now(),
-                'updated_at'    => now(),
-            ]);
+    private function upsertContacts(string $customerId, ?array $contacts): void
+    {
+        if (!$contacts) {
+            return;
+        }
+
+        $contacts = collect($contacts)->map(function ($contact) use ($customerId) {
+            return  [
+                'id'                => $contact['id'] ?? null,
+                'customer_id'       => $customerId,
+                'lead_source_id'    => $contact['lead_source_id'] ?? null,
+                'name'              => $contact['name'] ?? null,
+                'name_kana'         => $contact['name_kana'] ?? null,
+                'tel'               => $contact['tel'] ?? null,
+                'mobile_number'     => $contact['mobile_number'] ?? null,
+                'email'             => $contact['email'] ?? null,
+                'position'          => $contact['position'] ?? null,
+                'role'              => $contact['role'] ?? null,
+                'is_active'         => $contact['is_active'] ?? null,
+                'note'              => $contact['note'] ?? null,
+                'in_charge_user_id' => $contact['in_charge_user_id'] ?? null,
+                'created_by_id'     => $contact['created_by_id'] ?? auth()->user()->id,
+                'updated_by_id'     => auth()->user()->id,
+                'created_at'        => $contact['created_at'] ?? now(),
+                'updated_at'        => now(),
+            ];
         })->toArray();
-    }
 
-    private function upsertContacts(CustomerUpdateRequest $request, Customer $customer): void
-    {
-        $contacts = $this->prepareUpdateContactsData($request->input('contacts'), $customer);
         CustomerContact::upsert($contacts, ['id']);
     }
 
-    /**
-     * リクエストから受け取ったcontactsデータを、
-     * customer_contactsテーブル用に既存データ更新と新規追加のデータとして整形する。
-     *
-     * @param array $contacts リクエストから受け取った連絡先データ
-     * @param Customer $customer 連絡先に関連付ける取引先インスタンス
-     * @return array 整形された連絡先データ
-     */
-    private function prepareUpdateContactsData(array $contacts, Customer $customer): array
+    private function createDeliveryAddresses(string $customerId, ?array $deliveryAddresses): void
     {
-        $updatedById = auth()->user()->id;
-        $customerId  = $customer->id;
+        if (!$deliveryAddresses) {
+            return;
+        }
 
-        return collect($contacts)
-            ->map(function ($contact) use ($customerId, $updatedById) {
+        $deliveryAddresses = collect($deliveryAddresses)
+            ->map(function ($deliveryAddress) use ($customerId) {
                 return [
-                    'id'                => $contact['id'] ?? null,
-                    'customer_id'       => $customerId,
-                    'name'              => $contact['name'],
-                    'name_kana'         => $contact['name_kana'],
-                    'tel'               => $contact['tel'],
-                    'mobile_number'     => $contact['mobile_number'],
-                    'email'             => $contact['email'],
-                    'position'          => $contact['position'],
-                    'role'              => $contact['role'],
-                    'is_active'         => $contact['is_active'],
-                    'note'              => $contact['note'],
-                    'in_charge_user_id' => $contact['in_charge_user_id'],
-                    'lead_source_id'    => $contact['lead_source_id'],
-                    'created_by_id'     => $contact['created_by_id'] ?? $updatedById,
-                    'updated_by_id'     => $updatedById,
+                    'customer_id'   => $customerId,
+                    'address_type'  => $deliveryAddress['address_type'],
+                    'postal_code'   => $deliveryAddress['postal_code'] ?? null,
+                    'address'       => $deliveryAddress['address'],
+                    'company_name'  => $deliveryAddress['company_name'] ?? null,
+                    'contact_name'  => $deliveryAddress['contact_name'] ?? null,
+                    'tel'           => $deliveryAddress['tel'] ?? null,
+                    'note'          => $deliveryAddress['note'] ?? null,
+                    'created_at'    => now(),
                 ];
             })->toArray();
-    }
 
-    private function createDeliveryAddresses(CustomerStoreRequest $request, Customer $customer): void
-    {
-        $deliveryAddresses = $this->prepareDeliveryAddressesData($request->input('delivery_addresses'), $customer);
         DeliveryAddress::insert($deliveryAddresses);
     }
 
-    /**
-     * リクエストから受け取ったdelivery_addressesデータを、
-     * delivery_addressesテーブル用のデータとして整形する。
-     *
-     * @param array $delivery_addresses リクエストから受け取った連絡先データ
-     * @param Customer $customer 関連付ける取引先インスタンス
-     * @return array 整形された配送情報データ
-     */
-    private function prepareDeliveryAddressesData(array $delivery_addresses, Customer $customer): array
+    private function upsertDeliveryAddresses(string $customerId, ?array $deliveryAddresses): void
     {
-        $customerId  = $customer->id;
+        if (!$deliveryAddresses) {
+            return;
+        }
 
-        return collect($delivery_addresses)->map(function ($contact) use ($customerId) {
-            return array_merge($contact, [
-                'customer_id'   => $customerId,
-            ]);
-        })->toArray();
-    }
-
-    private function upsertDeliveryAddresses(CustomerUpdateRequest $request, Customer $customer): void
-    {
-        $deliveryAddresses = $this->prepareUpdateDeliveryAddressesData($request->input('delivery_addresses'), $customer);
-        DeliveryAddress::upsert($deliveryAddresses, ['id']);
-    }
-
-    private function prepareUpdateDeliveryAddressesData(array $deliveryAddresses, Customer $customer): array
-    {
-        $customerId  = $customer->id;
-
-        return collect($deliveryAddresses)
+        $deliveryAddresses = collect($deliveryAddresses)
             ->map(function ($deliveryAddress) use ($customerId) {
                 return [
-                    'id'                => $deliveryAddress['id'] ?? null,
-                    'customer_id'       => $customerId,
-                    'address_type'      => $deliveryAddress['address_type'],
-                    'postal_code'       => $deliveryAddress['postal_code'],
-                    'address'           => $deliveryAddress['address'],
-                    'company_name'      => $deliveryAddress['company_name'],
-                    'contact_name'      => $deliveryAddress['contact_name'],
-                    'tel'               => $deliveryAddress['tel'],
-                    'note'              => $deliveryAddress['note'],
+                    'id'            => $deliveryAddress['id'] ?? null,
+                    'customer_id'   => $customerId,
+                    'address_type'  => $deliveryAddress['address_type'],
+                    'postal_code'   => $deliveryAddress['postal_code'] ?? null,
+                    'address'       => $deliveryAddress['address'],
+                    'company_name'  => $deliveryAddress['company_name'] ?? null,
+                    'contact_name'  => $deliveryAddress['contact_name'] ?? null,
+                    'tel'           => $deliveryAddress['tel'] ?? null,
+                    'note'          => $deliveryAddress['note'] ?? null,
+                    'created_at'    => $deliveryAddress['created_at'] ?? now(),
+                    'updated_at'    => now(),
                 ];
             })->toArray();
+
+        DeliveryAddress::upsert($deliveryAddresses, ['id']);
     }
 }

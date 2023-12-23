@@ -11,7 +11,8 @@ import OptionsList from '@/Components/OptionsList';
 import Textarea from '@/Components/Form/Textarea';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import { convertNullToEmptyString } from '@/Utils/arrayHelpers';
-import PaymentSelectGroup from './Partials/PaymentSelectGroup';
+import PurchasePaymentSelect from './Partials/PurchasePaymentSelect';
+import SalesPaymentSelect from './Partials/SalesPaymentSelect';
 
 const Edit = ({ customer, userOptions, leadSourceOptions, paymentTermOptions, addressTypeOptions }) => {
   const { flash } = usePage().props;
@@ -25,17 +26,8 @@ const Edit = ({ customer, userOptions, leadSourceOptions, paymentTermOptions, ad
     tel: customer.tel || '',
     fax: customer.fax || '',
 
-    purchase_billing_type: customer.purchase_term?.billing_type || '',
-    purchase_cutoff_day: customer.purchase_term?.cutoff_day || '',
-    purchase_payment_month_offset: customer.purchase_term?.payment_month_offset ?? '',
-    purchase_payment_day: customer.purchase_term?.payment_day || '',
-    purchase_payment_day_offset: customer.purchase_term?.payment_day_offset ?? '',
-
-    sales_billing_type: customer.sales_term?.billing_type || '',
-    sales_cutoff_day: customer.sales_term?.cutoff_day || '',
-    sales_payment_month_offset: customer.sales_term?.payment_month_offset ?? '',
-    sales_payment_day: customer.sales_term?.payment_day || '',
-    sales_payment_day_offset: customer.sales_term?.payment_day_offset ?? '',
+    purchase_term: customer.purchase_term ?? null,
+    sales_term: customer.sales_term ?? null,
 
     in_charge_user_id: customer.in_charge_user_id || '',
     note: customer.note || '',
@@ -289,12 +281,11 @@ const Edit = ({ customer, userOptions, leadSourceOptions, paymentTermOptions, ad
                     <FormLabel htmlFor="purchase_billing_type" label="支払条件" isRequired={false} />
                   </th>
                   <td className="td-cell">
-                    <PaymentSelectGroup
+                    <PurchasePaymentSelect
                       data={data}
                       setData={setData}
                       errors={errors}
                       paymentTermOptions={paymentTermOptions}
-                      transactionType="purchase"
                     />
                   </td>
                 </tr>
@@ -304,12 +295,11 @@ const Edit = ({ customer, userOptions, leadSourceOptions, paymentTermOptions, ad
                     <FormLabel htmlFor="sales_billing_type" label="請求条件" isRequired={false} />
                   </th>
                   <td className="td-cell">
-                    <PaymentSelectGroup
+                    <SalesPaymentSelect
                       data={data}
                       setData={setData}
                       errors={errors}
                       paymentTermOptions={paymentTermOptions}
-                      transactionType="sales"
                     />
                   </td>
                 </tr>
