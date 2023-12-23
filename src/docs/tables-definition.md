@@ -336,8 +336,7 @@
 | quantity              | 数量             | decimal               |                          |
 | unit_price            | 単価（税抜き）   | decimal               |                          |
 | tax_rate              | 税率             | decimal               | デフォルト0.1 (10%)      |
-| tax_amount            | 税額              | decimal               |                     |
-| is_tax_inclusive      | 税の種類         | boolean               | 外税：false, 内税：true  |
+| is_tax_inclusive      | 内税かどうか       | boolean               | デフォルト=false:外税, true:内税  |
 | note                  | 備考             | text                  |                          |
 | created_at            | 作成日時         | timestamp             |                          |
 | updated_at            | 更新日時         | timestamp             |                          |
@@ -382,8 +381,7 @@
 | quantity              | 数量             | decimal               |                          |
 | unit_price            | 単価（税抜き）   | decimal               |                          |
 | tax_rate              | 税率             | decimal               | デフォルト0.1 (10%)      |
-| tax_amount            | 税額              | decimal               |                     |
-| is_tax_inclusive      | 税の種類         | boolean               | 外税：false, 内税：true  |
+| is_tax_inclusive      | 内税かどうか       | boolean               | デフォルト=false:外税, true:内税  |
 | note                  | 備考             | text                  |                          |
 | created_at            | 作成日時         | timestamp             |                          |
 | updated_at            | 更新日時         | timestamp             |                          |
