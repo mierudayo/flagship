@@ -76,10 +76,25 @@
   font-size: 1rem;
   font-family: inherit;
   letter-spacing: 1px;
-  min-height: var(--max-height-partials);
   padding: 8px;
   width: 100%;
   resize: vertical;
+
+  &.minimum {
+    min-height: var(--max-height-partials);
+  }
+
+  &.small {
+    min-height: 88px;
+  }
+
+  &.medium {
+    min-height: 160px;
+  }
+
+  &.large {
+    min-height: 240px;
+  }
 
   &:focus {
     border-color: var(--color-focus);

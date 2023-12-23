@@ -99,7 +99,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
         </Modal>}
 
       <form id="inquiryCreateForm" onSubmit={submit}>
-        <div className="table-wrapper">
+      <div className="table-wrapper">
           <table className="table">
             <tbody className="tbody">
               <tr className="table-row is-flexible">
@@ -265,6 +265,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     value={data.message}
                     onChange={e => setData('message', e.target.value)}
                     error={errors.message}
+                    height="large"
                   />
                   <InvalidFeedback errors={errors} name="message" />
                 </td>
@@ -280,6 +281,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     value={data.answer}
                     onChange={e => setData('answer', e.target.value)}
                     error={errors.answer}
+                    height="large"
                   />
                   <InvalidFeedback errors={errors} name="answer" />
                 </td>
@@ -295,6 +297,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     value={data.feedback}
                     onChange={e => setData('feedback', e.target.value)}
                     error={errors.feedback}
+                    height="medium"
                   />
                   <InvalidFeedback errors={errors} name="feedback" />
                 </td>
@@ -383,6 +386,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     value={data.note}
                     onChange={e => setData('note', e.target.value)}
                     error={errors.note}
+                    height="large"
                   />
                   <InvalidFeedback errors={errors} name="note" />
                 </td>

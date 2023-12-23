@@ -83,6 +83,7 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
                     value={data.proposal}
                     onChange={e => setData('proposal', e.target.value)}
                     error={errors.proposal}
+                    height="medium"
                   />
                   <InvalidFeedback errors={errors} name="proposal" />
                 </td>
@@ -98,6 +99,7 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
                     value={data.feedback}
                     onChange={e => setData('feedback', e.target.value)}
                     error={errors.feedback}
+                    height="medium"
                   />
                   <InvalidFeedback errors={errors} name="feedback" />
                 </td>
@@ -113,6 +115,7 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
                     value={data.note}
                     onChange={e => setData('note', e.target.value)}
                     error={errors.note}
+                    height="small"
                   />
                   <InvalidFeedback errors={errors} name="note" />
                 </td>

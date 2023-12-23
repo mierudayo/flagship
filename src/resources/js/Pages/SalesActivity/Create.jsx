@@ -186,6 +186,7 @@ const Create = ({ inChargeUserOptions }) => {
                     value={data.proposal}
                     onChange={e => setData('proposal', e.target.value)}
                     error={errors.proposal}
+                    height="medium"
                   />
                   <InvalidFeedback errors={errors} name="proposal" />
                 </td>
@@ -201,6 +202,7 @@ const Create = ({ inChargeUserOptions }) => {
                     value={data.feedback}
                     onChange={e => setData('feedback', e.target.value)}
                     error={errors.feedback}
+                    height="medium"
                   />
                   <InvalidFeedback errors={errors} name="feedback" />
                 </td>
@@ -216,6 +218,7 @@ const Create = ({ inChargeUserOptions }) => {
                     value={data.note}
                     onChange={e => setData('note', e.target.value)}
                     error={errors.note}
+                    height="medium"
                   />
                   <InvalidFeedback errors={errors} name="note" />
                 </td>
