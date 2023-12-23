@@ -21,11 +21,9 @@ class CustomerController extends Controller
 {
     public function index(CustomerSearchRequest $request): Response
     {
-        $keyword = $request->input('keyword');
-
         $customers = Customer::query()
             ->with(['inChargeUser'])
-            ->searchByKeyword($keyword)
+            ->searchByKeyword($request->input('keyword'))
             ->searchById($request->input('customer_id'))
             ->searchByAddress($request->input('address'))
             ->searchByPhone($request->input('phone'))
@@ -35,8 +33,8 @@ class CustomerController extends Controller
             ->withQueryString();
 
         return Inertia::render('Customer/Index', [
-            'customers' => $customers,
-            'inChargeUserOptions'  => User::hasCustomers()->get(),
+            'customers'             => $customers,
+            'inChargeUserOptions'   => User::hasCustomers()->get(),
         ]);
     }
 
@@ -78,8 +76,8 @@ class CustomerController extends Controller
         ]);
 
         return Inertia::render('Customer/Show', [
-            'customer'      => $customer,
-            'userOptions'   => User::active()->get(),
+            'customer'          => $customer,
+            'userOptions'       => User::active()->get(),
             'leadSourceOptions' => LeadSource::all(),
         ]);
     }
@@ -96,8 +94,8 @@ class CustomerController extends Controller
         ]);
 
         return Inertia::render('Customer/Edit', [
-            'customer'      => $customer,
-            'userOptions'   => User::active()->get(),
+            'customer'          => $customer,
+            'userOptions'       => User::active()->get(),
             'leadSourceOptions' => LeadSource::all(),
         ]);
     }
