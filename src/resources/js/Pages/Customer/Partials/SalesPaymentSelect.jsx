@@ -25,24 +25,20 @@ export default function SalesPaymentSelect({ data, setData, errors, paymentTermO
     });
   }
 
-  function handleChange(e) {
-    const name = e.target.name;
-    const value = e.target.value;
-
+  function handleChange(key, value) {
     setData('sales_term', {
       ...data.sales_term,
-      [name]: value,
+      [key]: value,
     });
   }
 
   return (
-    <div className="">
+    <div>
       <div className="u-flex">
         <SelectInput
-          name="billing_type"
           label="..."
           value={billingType}
-          onChange={handleChange}
+          onChange={e => handleChange('billing_type', e.target.value)}
           error={errors['sales_term.billing_type']}
           options={paymentTermOptions.billingTypes}
           className="u-w-120 u-mr-2"
@@ -65,10 +61,9 @@ export default function SalesPaymentSelect({ data, setData, errors, paymentTermO
         <>
           <div className="u-flex u-items-center u-my-2">
             <SelectInput
-              name="cutoff_day"
               label="締め日..."
               value={data.sales_term?.cutoff_day}
-              onChange={handleChange}
+              onChange={e => handleChange('cutoff_day', e.target.value)}
               error={errors['sales_term.cutoff_day']}
               options={paymentTermOptions.cutoffDays}
               className="u-w-120 u-mr-2"
@@ -78,19 +73,17 @@ export default function SalesPaymentSelect({ data, setData, errors, paymentTermO
 
           <div className="u-flex u-items-center u-mb-2">
             <SelectInput
-              name="payment_month_offset"
               label="支払月..."
               value={data.sales_term?.payment_month_offset}
-              onChange={handleChange}
+              onChange={e => handleChange('payment_month_offset', e.target.value)}
               error={errors['sales_term.payment_month_offset']}
               options={paymentTermOptions.monthOffsets}
               className="u-w-120 u-mr-2"
             />
             <SelectInput
-              name="payment_day"
               label="支払日..."
               value={data.sales_term?.payment_day}
-              onChange={handleChange}
+              onChange={e => handleChange('payment_day', e.target.value)}
               error={errors['sales_term.payment_day']}
               options={paymentTermOptions.paymentDay}
               className="u-w-120 u-mr-2"
@@ -101,10 +94,9 @@ export default function SalesPaymentSelect({ data, setData, errors, paymentTermO
       )}
       {billingType == 2 && (
         <SelectInput
-          name="payment_day_offset"
           label="期限..."
           value={data.sales_term?.payment_day_offset}
-          onChange={handleChange}
+          onChange={e => handleChange('payment_day_offset', e.target.value)}
           error={errors['sales_term.payment_day_offset']}
           options={paymentTermOptions.dayOffsets}
           className="u-w-120 u-mt-2"
@@ -120,8 +112,6 @@ const SelectInput = ({ name = null, label, value, onChange, error, options, clas
   return (
     <>
       <select
-        name={name}
-        id={name}
         value={value}
         onChange={onChange}
         className={selectClassName}
