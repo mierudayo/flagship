@@ -29,6 +29,34 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
   const [supplierContacts, setSupplierContacts] = useState([]);
   const [supplierAddresses, setSupplierAddresses] = useState([]);
 
+  const defaultRowValues = {
+    sales_order_detail: {
+      product_id: '',
+      product_name: '',
+      product_detail: '',
+      quantity: '',
+      unit_price: '',
+      tax_rate: 0.10,
+      is_tax_inclusive: false,
+      note: '',
+    },
+    purchase_order: {
+      customer_id: '',
+      customer_name: '',
+      customer_contact_id: '',
+      billing_address_id: '',
+      delivery_address_id: '',
+      purchase_in_charge_id: '',
+    },
+    purchase_order_detail: {
+      quantity: '',
+      unit_price: '',
+      tax_rate: 0.10,
+      is_tax_inclusive: false,
+      note: '',
+    }
+  }
+
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     customer_id: '',
     customer_name: '',
@@ -52,31 +80,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     delivery_memo: '',
     note: '',
     sales_in_charge_id: '',
-    sales_order_details: [{
-      product_id: '',
-      product_name: '',
-      product_detail: '',
-      quantity: '',
-      unit_price: '',
-      tax_rate: 0.10,
-      is_tax_inclusive: false,
-      note: '',
-      purchase_order: {
-        customer_id: '',
-        customer_name: '',
-        customer_contact_id: '',
-        billing_address_id: '',
-        delivery_address_id: '',
-        purchase_in_charge_id: '',
-        purchase_order_details: {
-          quantity: '',
-          unit_price: '',
-          tax_rate: 0.10,
-          is_tax_inclusive: false,
-          note: '',
-        },
-      },
-    }],
+    detail_rows: [defaultRowValues],
   });
 
   function submit(e) {
@@ -110,80 +114,69 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
   }
 
   function selectSupplier(supplier) {
-    const purchaseOrder = {
-      ...data.sales_order_details[targetIndex].purchase_order,
-      customer_id: supplier.id,
-      customer_name: supplier.name,
-      customer_contact_id: supplier.contact_id,
-      delivery_address_id: supplier.delivery_address_id,
-    };
+    const updatedDetails = [...data.detail_rows];
+    updatedDetails[targetIndex] = {
+      ...updatedDetails[targetIndex],
+      purchase_order: {
+        ...updatedDetails[targetIndex].purchase_order,
+        customer_id: supplier.id,
+        customer_name: supplier.name,
+        customer_contact_id: supplier.contact_id,
+        delivery_address_id: supplier.delivery_address_id,
+      }
+    }
+    setData('detail_rows', updatedDetails);
 
-    updateDetail(targetIndex, 'purchase_order', purchaseOrder);
-    setSupplierContacts(supplier.contacts || []);
-    setSupplierAddresses(supplier.delivery_addresses || []);
+    setSupplierContacts(supplier.contacts || []); // TODO: indexの指定が抜けてる
+    setSupplierAddresses(supplier.delivery_addresses || []); // TODO: indexの指定が抜けてる
     setIsSupplierModalOpen(false);
   }
 
-  function addDetail() {
-    setData('sales_order_details', [
-      ...data.sales_order_details,
-      {
-        product_id: '',
-        product_name: '',
-        product_detail: '',
-        quantity: '',
-        unit_price: '',
-        tax_rate: 0.10,
-        is_tax_inclusive: false,
-        note: '',
-        purchase_order: {
-          customer_id: '',
-          customer_name: '',
-          customer_contact_id: '',
-          billing_address_id: '',
-          delivery_address_id: '',
-          purchase_in_charge_id: '',
-          purchase_order_details: {
-            quantity: '',
-            unit_price: '',
-            tax_rate: 0.10,
-            is_tax_inclusive: false,
-            note: '',
-          },
-        },
-      }
-    ])
+  function addDetailRow() {
+    setData('detail_rows', [
+      ...data.detail_rows,
+      defaultRowValues,
+    ]);
   }
 
   function removeSalesOrderDetail(indexToRemove) {
-    setData('sales_order_details', data.sales_order_details.filter((_, index) => index !== indexToRemove));
+    setData('detail_rows', data.detail_rows.filter((_, index) => index !== indexToRemove));
   }
 
-  function updateDetail(index, key, value) {
-    const updatedDetails = [...data.sales_order_details];
+  function updateSalesOrderDetail(index, key, value) {
+    const updatedDetails = [...data.detail_rows];
     updatedDetails[index] = {
       ...updatedDetails[index],
-      [key]: value
+      sales_order_detail: {
+        ...updatedDetails[index].sales_order_detail,
+        [key]: value,
+      }
     }
-    setData('sales_order_details', updatedDetails);
+    setData('detail_rows', updatedDetails);
   }
 
-  function updateDetailPurchaseOrder(index, key, value) {
-    const updatedDetails = [...data.sales_order_details];
-    updatedDetails[index].purchase_order = {
-      ...updatedDetails[index].purchase_order,
-      [key]: value
+  function updatePurchaseOrderDetail(index, key, value) {
+    const updatedDetails = [...data.detail_rows];
+    updatedDetails[index] = {
+      ...updatedDetails[index],
+      purchase_order_detail: {
+        ...updatedDetails[index].purchase_order_detail,
+        [key]: value,
+      }
     }
-    setData('sales_order_details', updatedDetails);
+    setData('detail_rows', updatedDetails);
   }
 
-  function updateDetailPurchaseOrderDetail(index, key, value) {
-    const updatedDetails = [...data.sales_order_details];
-    updatedDetails[index].purchase_order.purchase_order_details = {
-      ...updatedDetails[index].purchase_order.purchase_order_details,
-      [key]: value
+  function updatePurchaseOrder(index, key, value) {
+    const updatedDetails = [...data.detail_rows];
+    updatedDetails[index] = {
+      ...updatedDetails[index],
+      purchase_order: {
+        ...updatedDetails[index].purchase_order,
+        [key]: value,
+      }
     }
-    setData('sales_order_details', updatedDetails);
+    setData('detail_rows', updatedDetails);
   }
 
   return (
@@ -512,7 +505,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
         <div className="content-section">
           <div className="content-section-header">
             <div className="content-section-title">受注明細</div>
-            <button type="button" className="btn btn-secondary u-mr-3" onClick={addDetail}>+ 行を追加</button>
+            <button type="button" className="btn btn-secondary u-mr-3" onClick={addDetailRow}>+ 行を追加</button>
           </div>
           <div className="table-wrapper is-scrollable">
             <table className="table">
@@ -554,7 +547,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                 </tr>
               </thead>
               <tbody className="tbody">
-                {data.sales_order_details.map((detail, index) => (
+                {data.detail_rows.map((detail, index) => (
                   <Fragment key={index}>
                     <tr className="table-row">
                       <td className="td-cell col-fixed u-w-80" rowSpan={2}>
@@ -569,63 +562,63 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                       <td className="td-cell">
                         <select
-                          value={detail.product_id}
-                          onChange={e => updateDetail(index, 'product_id', e.target.value)}
-                          className={`form-select ${errors[`sales_order_details.${index}.product_id`] ? 'is-invalid' : ''}`}
+                          value={detail.sales_order_detail.product_id}
+                          onChange={e => updateSalesOrderDetail(index, 'product_id', e.target.value)}
+                          className={`form-select ${errors[`detail_rows.${index}.sales_order_detail.product_id`] ? 'is-invalid' : ''}`}
                         >
                           <option value=""></option>
                           <OptionsList
                             options={productOptions.map(obj => ({ value: obj.id, label: obj.name }))}
                           />
                         </select>
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.product_id`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.product_id`} />
                       </td>
 
                       <td className="td-cell">
                         <Input
                           type="text"
-                          value={detail.product_name}
-                          onChange={e => updateDetail(index, 'product_name', e.target.value)}
-                          error={errors[`sales_order_details.${index}.product_name`]}
+                          value={detail.sales_order_detail.product_name}
+                          onChange={e => updateSalesOrderDetail(index, 'product_name', e.target.value)}
+                          error={errors[`detail_rows.${index}.sales_order_detail.product_name`]}
                         />
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.product_name`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.product_name`} />
                       </td>
 
                       <td className="td-cell">
                         <Input
                           type="text"
-                          value={detail.product_detail}
-                          onChange={e => updateDetail(index, 'product_detail', e.target.value)}
-                          error={errors[`sales_order_details.${index}.product_detail`]}
+                          value={detail.sales_order_detail.product_detail}
+                          onChange={e => updateSalesOrderDetail(index, 'product_detail', e.target.value)}
+                          error={errors[`detail_rows.${index}.sales_order_detail.product_detail`]}
                         />
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.product_detail`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.product_detail`} />
                       </td>
 
                       <td className="td-cell">
                         <Input
                           type="number"
-                          value={detail.quantity}
-                          onChange={e => updateDetail(index, 'quantity', e.target.value)}
-                          error={errors[`sales_order_details.${index}.quantity`]}
+                          value={detail.sales_order_detail.quantity}
+                          onChange={e => updateSalesOrderDetail(index, 'quantity', e.target.value)}
+                          error={errors[`detail_rows.${index}.sales_order_detail.quantity`]}
                         />
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.quantity`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.quantity`} />
                       </td>
 
                       <td className="td-cell">
                         <Input
                           type="number"
-                          value={detail.unit_price}
-                          onChange={e => updateDetail(index, 'unit_price', e.target.value)}
-                          error={errors[`sales_order_details.${index}.unit_price`]}
+                          value={detail.sales_order_detail.unit_price}
+                          onChange={e => updateSalesOrderDetail(index, 'unit_price', e.target.value)}
+                          error={errors[`detail_rows.${index}.sales_order_detail.unit_price`]}
                         />
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.unit_price`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.unit_price`} />
                       </td>
 
                       <td className="td-cell">
                         <select
-                          value={detail.tax_rate}
-                          onChange={e => updateDetail(index, 'tax_rate', e.target.value)}
-                          className={`form-select ${errors[`sales_order_details.${index}.tax_rate`] ? 'is-invalid' : ''}`}
+                          value={detail.sales_order_detail.tax_rate}
+                          onChange={e => updateSalesOrderDetail(index, 'tax_rate', e.target.value)}
+                          className={`form-select ${errors[`detail_rows.${index}.sales_order_detail.tax_rate`] ? 'is-invalid' : ''}`}
                         >
                           <OptionsList
                             options={[
@@ -634,14 +627,14 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                             ]}
                           />
                         </select>
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.tax_rate`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.tax_rate`} />
                       </td>
 
                       <td className="td-cell">
                         <select
-                          value={detail.is_tax_inclusive}
-                          onChange={e => updateDetail(index, 'is_tax_inclusive', e.target.value === 'true')}
-                          className={`form-select ${errors[`sales_order_details.${index}.is_tax_inclusive`] ? 'is-invalid' : ''}`}
+                          value={detail.sales_order_detail.is_tax_inclusive}
+                          onChange={e => updateSalesOrderDetail(index, 'is_tax_inclusive', e.target.value === 'true')}
+                          className={`form-select ${errors[`detail_rows.${index}.sales_order_detail.is_tax_inclusive`] ? 'is-invalid' : ''}`}
                         >
                           <OptionsList
                             options={[
@@ -650,17 +643,17 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                             ]}
                           />
                         </select>
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.is_tax_inclusive`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.is_tax_inclusive`} />
                       </td>
 
                       <td className="td-cell">
                         <Input
                           type="text"
-                          value={detail.note}
-                          onChange={e => updateDetail(index, 'note', e.target.value)}
-                          error={errors[`sales_order_details.${index}.note`]}
+                          value={detail.sales_order_detail.note}
+                          onChange={e => updateSalesOrderDetail(index, 'note', e.target.value)}
+                          error={errors[`detail_rows.${index}.sales_order_detail.note`]}
                         />
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.note`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.note`} />
                       </td>
                     </tr>
 
@@ -689,9 +682,9 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                             <ManageSearchIcon />
                           </button>
                         </div>
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.customer_id`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order.customer_id`} />
                         <CustomSelect
-                          onChange={value => updateDetailPurchaseOrder(index, 'customer_contact_id', value)}
+                          onChange={value => updatePurchaseOrder(index, 'customer_contact_id', value)}
                           options={supplierContacts}
                           value={detail.purchase_order.customer_contact_id}
                           valueKey="id"
@@ -699,11 +692,11 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           isClearable={true}
                           isSearchable={true}
                           placeholder="仕入先顧客..."
-                          error={errors[`sales_order_details.${index}.purchase_order.customer_contact_id`]}
+                          error={errors[`detail_rows.${index}.purchase_order.customer_contact_id`]}
                         />
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.customer_contact_id`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order.customer_contact_id`} />
                         <CustomSelect
-                          onChange={value => updateDetailPurchaseOrder(index, 'delivery_address_id', value)}
+                          onChange={value => updatePurchaseOrder(index, 'delivery_address_id', value)}
                           options={supplierAddresses}
                           value={detail.purchase_order.delivery_address_id}
                           valueKey="id"
@@ -711,13 +704,13 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           isClearable={true}
                           isSearchable={true}
                           placeholder="出荷元..."
-                          error={errors[`sales_order_details.${index}.purchase_order.delivery_address_id`]}
+                          error={errors[`detail_rows.${index}.purchase_order.delivery_address_id`]}
                         />
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.delivery_address_id`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order.delivery_address_id`} />
                       </td>
                       <td className="td-cell">
                         <CustomSelect
-                          onChange={value => updateDetailPurchaseOrder(index, 'purchase_in_charge_id', value)}
+                          onChange={value => updatePurchaseOrder(index, 'purchase_in_charge_id', value)}
                           options={userOptions}
                           value={detail.purchase_order.purchase_in_charge_id}
                           valueKey="id"
@@ -725,33 +718,33 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           isClearable={true}
                           isSearchable={true}
                           placeholder="..."
-                          error={errors[`sales_order_details.${index}.purchase_order.purchase_in_charge_id`]}
+                          error={errors[`detail_rows.${index}.purchase_order.purchase_in_charge_id`]}
                         />
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.purchase_in_charge_id`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order.purchase_in_charge_id`} />
                       </td>
                       <td className="td-cell">
                         <Input
                           type="number"
-                          value={detail.purchase_order.purchase_order_details.quantity}
-                          onChange={e => updateDetailPurchaseOrderDetail(index, 'quantity', e.target.value)}
-                          error={errors[`sales_order_details.${index}.purchase_order.purchase_order_details.quantity`]}
+                          value={detail.purchase_order_detail.quantity}
+                          onChange={e => updatePurchaseOrderDetail(index, 'quantity', e.target.value)}
+                          error={errors[`detail_rows.${index}.purchase_order_detail.quantity`]}
                         />
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.purchase_order_details.quantity`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.quantity`} />
                       </td>
                       <td className="td-cell">
                         <Input
                           type="number"
-                          value={detail.purchase_order.purchase_order_details.unit_price}
-                          onChange={e => updateDetailPurchaseOrderDetail(index, 'unit_price', e.target.value)}
-                          error={errors[`sales_order_details.${index}.purchase_order.purchase_order_details.unit_price`]}
+                          value={detail.purchase_order_detail.unit_price}
+                          onChange={e => updatePurchaseOrderDetail(index, 'unit_price', e.target.value)}
+                          error={errors[`detail_rows.${index}.purchase_order_detail.unit_price`]}
                         />
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.purchase_order_details.unit_price`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.unit_price`} />
                       </td>
                       <td className="td-cell">
                         <select
-                          value={detail.purchase_order.purchase_order_details.tax_rate}
-                          onChange={e => updateDetailPurchaseOrderDetail(index, 'tax_rate', e.target.value)}
-                          className={`form-select ${errors[`sales_order_details.${index}.purchase_order.purchase_order_details.tax_rate`] ? 'is-invalid' : ''}`}
+                          value={detail.purchase_order_detail.tax_rate}
+                          onChange={e => updatePurchaseOrderDetail(index, 'tax_rate', e.target.value)}
+                          className={`form-select ${errors[`detail_rows.${index}.purchase_order_detail.tax_rate`] ? 'is-invalid' : ''}`}
                         >
                           <OptionsList
                             options={[
@@ -760,13 +753,13 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                             ]}
                           />
                         </select>
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.purchase_order_details.tax_rate`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.tax_rate`} />
                       </td>
                       <td className="td-cell">
                         <select
-                          value={detail.purchase_order.purchase_order_details.is_tax_inclusive}
-                          onChange={e => updateDetailPurchaseOrderDetail(index, 'is_tax_inclusive', e.target.value)}
-                          className={`form-select ${errors[`sales_order_details.${index}.purchase_order.purchase_order_details.is_tax_inclusive`] ? 'is-invalid' : ''}`}
+                          value={detail.purchase_order_detail.is_tax_inclusive}
+                          onChange={e => updatePurchaseOrderDetail(index, 'is_tax_inclusive', e.target.value)}
+                          className={`form-select ${errors[`detail_rows.${index}.purchase_order_detail.is_tax_inclusive`] ? 'is-invalid' : ''}`}
                         >
                           <OptionsList
                             options={[
@@ -775,16 +768,16 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                             ]}
                           />
                         </select>
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.purchase_order_details.is_tax_inclusive`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.is_tax_inclusive`} />
                       </td>
                       <td className="td-cell">
                         <Input
                           type="text"
-                          value={detail.purchase_order.purchase_order_details.note}
-                          onChange={e => updateDetailPurchaseOrderDetail(index, 'note', e.target.value)}
-                          error={errors[`sales_order_details.${index}.purchase_order.purchase_order_details.note`]}
+                          value={detail.purchase_order_detail.note}
+                          onChange={e => updatePurchaseOrderDetail(index, 'note', e.target.value)}
+                          error={errors[`detail_rows.${index}.purchase_order_detail.note`]}
                         />
-                        <InvalidFeedback errors={errors} name={`sales_order_details.${index}.purchase_order.purchase_order_details.note`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.note`} />
                       </td>
                     </tr>
                   </Fragment>
