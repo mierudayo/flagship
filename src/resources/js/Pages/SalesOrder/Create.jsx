@@ -26,8 +26,10 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
   const [customerContacts, setCustomerContacts] = useState([]);
   const [deliveryAddresses, setDeliveryAddresses] = useState([]);
   const [targetIndex, setTargetIndex] = useState(null);
-  const [supplierContacts, setSupplierContacts] = useState([]);
-  const [supplierAddresses, setSupplierAddresses] = useState([]);
+  const [supplierOptions, setSupplierOptions] = useState([{
+    supplierContacts: [],
+    supplierAddresses: [],
+  }]);
 
   const defaultRowValues = {
     sales_order_detail: {
@@ -127,9 +129,32 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     }
     setData('detail_rows', updatedDetails);
 
-    setSupplierContacts(supplier.contacts || []); // TODO: indexの指定が抜けてる
-    setSupplierAddresses(supplier.delivery_addresses || []); // TODO: indexの指定が抜けてる
+    updateSupplierOptions(targetIndex, {
+      supplierContacts: supplier.contacts,
+      supplierAddresses: supplier.delivery_addresses,
+    });
+
     setIsSupplierModalOpen(false);
+  }
+
+  function updateSupplierOptions(targetIndex, updates) {
+    setSupplierOptions(supplierOptions.map((row, index) => {
+      if (index === targetIndex) {
+        return {
+          ...row,
+          ...updates,
+        };
+      }
+      return row;
+    }));
+  }
+
+  const addDefaultSupplierOptions = () => {
+    const newRow = {
+      supplierContacts: [],
+      supplierAddresses: [],
+    };
+    setSupplierOptions([...supplierOptions, newRow]);
   }
 
   function addDetailRow() {
@@ -137,6 +162,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
       ...data.detail_rows,
       defaultRowValues,
     ]);
+    addDefaultSupplierOptions();
   }
 
   function removeSalesOrderDetail(indexToRemove) {
@@ -685,7 +711,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order.customer_id`} />
                         <CustomSelect
                           onChange={value => updatePurchaseOrder(index, 'customer_contact_id', value)}
-                          options={supplierContacts}
+                          options={supplierOptions[index].supplierContacts}
                           value={detail.purchase_order.customer_contact_id}
                           valueKey="id"
                           labelKey="name"
@@ -697,7 +723,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order.customer_contact_id`} />
                         <CustomSelect
                           onChange={value => updatePurchaseOrder(index, 'delivery_address_id', value)}
-                          options={supplierAddresses}
+                          options={supplierOptions[index].supplierAddresses}
                           value={detail.purchase_order.delivery_address_id}
                           valueKey="id"
                           labelKey="address"
@@ -794,4 +820,3 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 Create.layout = page => <AppLayout title="受注 登録" children={page} />
 
 export default Create
-
