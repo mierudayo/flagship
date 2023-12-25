@@ -533,6 +533,9 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                   <th className="th-cell col-fixed" rowSpan={2}>
 
                   </th>
+                  <th className="th-cell u-w-64" rowSpan={2}>
+                    <FormLabel label="No." isRequired={false} />
+                  </th>
                   <th className="th-cell u-min-w-200">
                     <FormLabel label="商品" isRequired={false} />
                   </th>
@@ -578,6 +581,8 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           削除
                         </button>
                       </td>
+
+                      <td className="td-cell" rowSpan={2}>{index + 1}</td>
 
                       <td className="td-cell">
                         <select
