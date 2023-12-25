@@ -231,16 +231,9 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
         </Modal>}
 
       {isSupplierModalOpen &&
-        <Modal closeModal={() => setIsSupplierModalOpen(false)} title="販売先を選択">
+        <Modal closeModal={() => setIsSupplierModalOpen(false)} title="仕入先を選択">
           <CustomerLookup
             handleClickSelect={supplier => selectSupplier(supplier)}
-          />
-        </Modal>}
-
-      {isCustomerModalOpen &&
-        <Modal closeModal={() => setIsCustomerModalOpen(false)} title="販売先を選択">
-          <CustomerLookup
-            handleClickSelect={customer => selectCustomer(customer)}
           />
         </Modal>}
 
