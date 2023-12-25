@@ -536,7 +536,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                   <th className="th-cell u-w-64" rowSpan={2}>
                     <FormLabel label="No." isRequired={false} />
                   </th>
-                  <th className="th-cell u-min-w-200">
+                  <th className="th-cell u-min-w-320">
                     <FormLabel label="商品" isRequired={false} />
                   </th>
                   <th className="th-cell u-min-w-200">
@@ -585,16 +585,17 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       <td className="td-cell" rowSpan={2}>{index + 1}</td>
 
                       <td className="td-cell">
-                        <select
+                        <CustomSelect
+                          onChange={value => updateSalesOrderDetail(index, 'product_id', value)}
+                          options={productOptions}
                           value={detail.sales_order_detail.product_id}
-                          onChange={e => updateSalesOrderDetail(index, 'product_id', e.target.value)}
-                          className={`form-select ${errors[`detail_rows.${index}.sales_order_detail.product_id`] ? 'is-invalid' : ''}`}
-                        >
-                          <option value=""></option>
-                          <OptionsList
-                            options={productOptions.map(obj => ({ value: obj.id, label: obj.name }))}
-                          />
-                        </select>
+                          valueKey="id"
+                          labelKey="name"
+                          isClearable={true}
+                          isSearchable={true}
+                          placeholder="商品..."
+                          error={errors[`detail_rows.${index}.sales_order_detail.product_id`]}
+                        />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.product_id`} />
                       </td>
 
@@ -604,6 +605,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           value={detail.sales_order_detail.product_name}
                           onChange={e => updateSalesOrderDetail(index, 'product_name', e.target.value)}
                           error={errors[`detail_rows.${index}.sales_order_detail.product_name`]}
+                          placeholder="商品名"
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.product_name`} />
                       </td>
@@ -614,6 +616,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           value={detail.sales_order_detail.product_detail}
                           onChange={e => updateSalesOrderDetail(index, 'product_detail', e.target.value)}
                           error={errors[`detail_rows.${index}.sales_order_detail.product_detail`]}
+                          placeholder="商品詳細"
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.product_detail`} />
                       </td>
@@ -624,6 +627,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           value={detail.sales_order_detail.quantity}
                           onChange={e => updateSalesOrderDetail(index, 'quantity', e.target.value)}
                           error={errors[`detail_rows.${index}.sales_order_detail.quantity`]}
+                          placeholder="販売数量"
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.quantity`} />
                       </td>
@@ -634,6 +638,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           value={detail.sales_order_detail.unit_price}
                           onChange={e => updateSalesOrderDetail(index, 'unit_price', e.target.value)}
                           error={errors[`detail_rows.${index}.sales_order_detail.unit_price`]}
+                          placeholder="販売単価"
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.unit_price`} />
                       </td>
@@ -741,7 +746,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           labelKey="name"
                           isClearable={true}
                           isSearchable={true}
-                          placeholder="..."
+                          placeholder="発注担当..."
                           error={errors[`detail_rows.${index}.purchase_order.purchase_in_charge_id`]}
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order.purchase_in_charge_id`} />
@@ -752,6 +757,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           value={detail.purchase_order_detail.quantity}
                           onChange={e => updatePurchaseOrderDetail(index, 'quantity', e.target.value)}
                           error={errors[`detail_rows.${index}.purchase_order_detail.quantity`]}
+                          placeholder="仕入数量"
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.quantity`} />
                       </td>
@@ -761,6 +767,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           value={detail.purchase_order_detail.unit_price}
                           onChange={e => updatePurchaseOrderDetail(index, 'unit_price', e.target.value)}
                           error={errors[`detail_rows.${index}.purchase_order_detail.unit_price`]}
+                          placeholder="仕入単価"
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.unit_price`} />
                       </td>
