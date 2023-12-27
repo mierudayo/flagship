@@ -37,6 +37,7 @@ services:
 
   # --- Enable the following if using Test Database ---
   testdb:
+    platform: linux/x86_64 
     image: mysql:5.7 
     environment: 
       MYSQL_ROOT_PASSWORD: root
