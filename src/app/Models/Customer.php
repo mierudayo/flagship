@@ -155,6 +155,17 @@ class Customer extends Model
         });
     }
 
+    public function scopeSearchByDeliveryAddress(Builder $query, ?string $deliveryAddress): Builder
+    {
+        if (!$deliveryAddress) {
+            return $query;
+        }
+
+        return $query->whereHas('deliveryAddresses', function ($q) use ($deliveryAddress) {
+            $q->where('address', 'like', "%$deliveryAddress%");
+        });
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Business Logic

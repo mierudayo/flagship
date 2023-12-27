@@ -32,6 +32,7 @@ const Index = ({ customers, inChargeUserOptions }) => {
     address: urlParams.address || '',
     phone: urlParams.phone || '',
     in_charge_user_id: urlParams.in_charge_user_id || '',
+    delivery_address: urlParams.delivery_address || '',
   });
 
   function resetSearchInputs() {
@@ -42,6 +43,7 @@ const Index = ({ customers, inChargeUserOptions }) => {
       address: '',
       phone: '',
       in_charge_user_id: '',
+      delivery_address: '',
     })
   }
 
@@ -146,6 +148,17 @@ const Index = ({ customers, inChargeUserOptions }) => {
                 isSearchable={true}
                 placeholder="..."
                 error={errors.in_charge_user_id}
+              />
+            </div>
+            <div className="u-mr-2">
+              <FormLabel htmlFor="delivery_address" label="配送先住所" />
+              <Input
+                id="delivery_address"
+                type="text"
+                value={data.delivery_address}
+                onChange={e => setData('delivery_address', e.target.value)}
+                error={errors.delivery_address}
+                className="u-w-240"
               />
             </div>
           </div>

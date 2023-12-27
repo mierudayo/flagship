@@ -26,6 +26,7 @@ class CustomerController extends Controller
             ->searchByAddress($request->input('address'))
             ->searchByPhone($request->input('phone'))
             ->searchByInCharge($request->input('in_charge_user_id'))
+            ->searchByDeliveryAddress($request->input('delivery_address'))
             ->latest()
             ->paginate(50)
             ->withQueryString();
