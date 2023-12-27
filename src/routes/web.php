@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::get('contacts/{contact}/edit', [CustomerContactController::class, 'edit'])->name('contacts.edit');
     Route::patch('contacts/{contact}', [CustomerContactController::class, 'update'])->name('contacts.update');
     Route::delete('contacts/{contact}', [CustomerContactController::class, 'destroy'])->name('contacts.destroy');
-    Route::post('customers/{customer}/contacts', [CustomerContactController::class, 'addContactToCustomer'])->name('customers.contacts.add');
+    Route::post('customers/{customer}/contacts', [CustomerContactController::class, 'addToCustomer'])->name('customers.contacts.add');
 
     // LeadSource
     Route::get('lead-sources', [LeadSourceController::class, 'index'])->name('lead-sources.index');

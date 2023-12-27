@@ -126,9 +126,9 @@ class CustomerContactController extends Controller
         return to_route('contacts.index');
     }
 
-    public function addContactToCustomer(CustomerContactAddRequest $request, Customer $customer): RedirectResponse
+    public function addToCustomer(CustomerContactAddRequest $request, Customer $customer): RedirectResponse
     {
-        $contact = CustomerContact::create([
+        $contact = $customer->contacts()->create([
             'customer_id'       => $customer->id,
             'lead_source_id'    => $request->input('lead_source_id'),
             'name'              => $request->input('name'),
