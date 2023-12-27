@@ -4,15 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DeliveryAddressAddRequest;
 use App\Models\Customer;
-use App\Models\DeliveryAddress;
 use Illuminate\Http\RedirectResponse;
 
 class DeliveryAddressController extends Controller
 {
     public function addDeliveryAddressToCustomer(DeliveryAddressAddRequest $request, Customer $customer): RedirectResponse
     {
-        $deliveryAddress = DeliveryAddress::create([
-            'customer_id'   => $customer->id,
+        $deliveryAddress = $customer->deliveryAddresses()->create([
             'address_type'  => $request->input('address_type'),
             'postal_code'   => $request->input('postal_code'),
             'address'       => $request->input('address'),
