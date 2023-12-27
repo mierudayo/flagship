@@ -98,8 +98,8 @@ Route::middleware('auth')->group(function () {
     Route::get('sales-activities/{salesActivity}/edit', [SalesActivityController::class, 'edit'])->name('sales-activities.edit');
     Route::patch('sales-activities/{salesActivity}', [SalesActivityController::class, 'update'])->name('sales-activities.update');
     Route::delete('sales-activities/{salesActivity}', [SalesActivityController::class, 'destroy'])->name('sales-activities.destroy');
-    Route::post('customers/{customer}/sales-activities', [SalesActivityController::class, 'appendToCustomerContact'])
-        ->name('customers.contacts.sales-activities.append');
+    Route::post('customers/{customer}/sales-activities', [SalesActivityController::class, 'addToCustomerContact'])
+        ->name('customers.contacts.sales-activities.add');
 
     // SalesOrder
     Route::get('sales-orders', [SalesOrderController::class, 'index'])->name('sales-orders.index');

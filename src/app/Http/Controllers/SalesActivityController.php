@@ -94,7 +94,7 @@ class SalesActivityController extends Controller
         return to_route('sales-activities.index');
     }
 
-    public function appendToCustomerContact(SalesActivityStoreRequest $request, Customer $customer): RedirectResponse
+    public function addToCustomerContact(SalesActivityStoreRequest $request, Customer $customer): RedirectResponse
     {
         $salesActivity = SalesActivity::create([
             'contact_date'          => $request->input('contact_date'),

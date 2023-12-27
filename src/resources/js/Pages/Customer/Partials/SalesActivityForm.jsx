@@ -20,7 +20,7 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
 
   function submit(e) {
     e.preventDefault();
-    post(route('customers.contacts.sales-activities.append', customer), {
+    post(route('customers.contacts.sales-activities.add', customer), {
       onSuccess: () => {
         reset();
         closeModal();
