@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 
 class DeliveryAddressController extends Controller
 {
-    public function addDeliveryAddressToCustomer(DeliveryAddressAddRequest $request, Customer $customer): RedirectResponse
+    public function addToCustomer(DeliveryAddressAddRequest $request, Customer $customer): RedirectResponse
     {
         $deliveryAddress = $customer->deliveryAddresses()->create([
             'address_type'  => $request->input('address_type'),

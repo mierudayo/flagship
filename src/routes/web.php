@@ -65,7 +65,7 @@ Route::middleware('auth')->group(function () {
         ->name('billing-addresses.index');
 
     // DeliveryAddress
-    Route::post('customers/{customer}/delivery-addresses', [DeliveryAddressController::class, 'addDeliveryAddressToCustomer'])
+    Route::post('customers/{customer}/delivery-addresses', [DeliveryAddressController::class, 'addToCustomer'])
         ->name('customers.delivery-addresses.add');
 
     // ProductCategoryGroup
