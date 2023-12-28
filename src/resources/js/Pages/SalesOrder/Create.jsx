@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AppLayout from '@/Layouts/AppLayout';
@@ -18,6 +18,31 @@ import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import PaymentSelectGroup from './Partials/PaymentSelectGroup';
+
+// TODO: 後でカスタムフックにする
+const parseNumber = (value) => parseFloat(value) || 0;
+
+const calculateSubtotal = (unitPrice, quantity, taxRate, isTaxInclusive) => {
+  let subtotal = unitPrice * quantity;
+  if (isTaxInclusive) {
+    subtotal /= (1 + taxRate);
+  }
+  return subtotal;
+};
+
+const calculateTotal = (subtotal, taxRate) => {
+  return subtotal * (1 + taxRate);
+}
+
+const formatCurrency = (value) => {
+  const formatter = new Intl.NumberFormat('ja-JP', {
+    style: 'currency',
+    currency: 'JPY',
+  });
+  const number = parseNumber(value);
+  return formatter.format(number);
+};
+
 
 const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTermOptions }) => {
   const { today } = usePage().props.date;
@@ -84,6 +109,53 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     sales_in_charge_id: '',
     detail_rows: [defaultRowValues],
   });
+
+
+  const [salesSubtotals, setSalesSubtotals] = useState([]);
+  const [salesTotals, setSalesTotals] = useState([]);
+  const [purchaseSubtotals, setPurchaseSubtotals] = useState([]);
+  const [purchaseTotals, setPurchaseTotals] = useState([]);
+  const [grossProfits, setGrossProfits] = useState([]);
+
+  const calculateForRow = (index) => {
+    if (index >= 0 && index < data.detail_rows.length) {
+      const salesDetail    = data.detail_rows[index].sales_order_detail;
+      const purchaseDetail = data.detail_rows[index].purchase_order_detail;
+
+      // Sales Order Calculations
+      const salesUnitPrice = parseNumber(salesDetail.unit_price);
+      const salesQuantity  = parseNumber(salesDetail.quantity);
+      const salesTaxRate   = parseNumber(salesDetail.tax_rate);
+      const salesSubtotal  = calculateSubtotal(salesUnitPrice, salesQuantity, salesTaxRate, salesDetail.is_tax_inclusive);
+      const salesTotal     = calculateTotal(salesSubtotal, salesTaxRate);
+
+      // Purchase Order Calculations
+      const purchaseUnitPrice = parseNumber(purchaseDetail.unit_price);
+      const purchaseQuantity  = parseNumber(purchaseDetail.quantity);
+      const purchaseTaxRate   = parseNumber(purchaseDetail.tax_rate);
+      const purchaseSubtotal  = calculateSubtotal(purchaseUnitPrice, purchaseQuantity, purchaseTaxRate, purchaseDetail.is_tax_inclusive);
+      const purchaseTotal     = calculateTotal(purchaseSubtotal, purchaseTaxRate);
+
+      // Gross Profit Calculation
+      const grossProfit = salesSubtotal - purchaseSubtotal;
+
+      return { salesSubtotal, salesTotal, purchaseSubtotal, purchaseTotal, grossProfit };
+    }
+    return { salesSubtotal: null, salesTotal: null, purchaseSubtotal: null, purchaseTotal: null, grossProfit: null };
+  };
+
+  useEffect(() => {
+    if (data.detail_rows && data.detail_rows.length > 0) {
+      const calculatedValues = data.detail_rows.map((_, index) =>
+        calculateForRow(index)
+      );
+      setSalesSubtotals(calculatedValues.map(v => v.salesSubtotal));
+      setSalesTotals(calculatedValues.map(v => v.salesTotal));
+      setPurchaseSubtotals(calculatedValues.map(v => v.purchaseSubtotal));
+      setPurchaseTotals(calculatedValues.map(v => v.purchaseTotal));
+      setGrossProfits(calculatedValues.map(v => v.grossProfit));
+    }
+  }, [data.detail_rows]);
 
   function submit(e) {
     e.preventDefault();
@@ -557,6 +629,12 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                   <th className="th-cell u-min-w-104" rowSpan={2}>
                     <FormLabel label="税種別" isRequired={false} />
                   </th>
+                  <th className="th-cell u-min-w-104">
+                    <FormLabel label="受注額" isRequired={false} />
+                  </th>
+                  <th className="th-cell u-min-w-120" rowSpan={2}>
+                    <FormLabel label="利益" isRequired={false} />
+                  </th>
                   <th className="th-cell u-min-w-400" rowSpan={2}>
                     <FormLabel label="備考" isRequired={false} />
                   </th>
@@ -566,6 +644,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                   <th className="th-cell"><FormLabel label="発注担当" isRequired={false} /></th>
                   <th className="th-cell"><FormLabel label="仕入数量" isRequired={false} /></th>
                   <th className="th-cell"><FormLabel label="仕入単価" isRequired={false} /></th>
+                  <th className="th-cell"><FormLabel label="発注額" isRequired={false} /></th>
                 </tr>
               </thead>
               <tbody className="tbody">
@@ -673,6 +752,24 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           />
                         </select>
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.is_tax_inclusive`} />
+                      </td>
+
+                      <td className="td-cell">
+                        {salesSubtotals[index] !== undefined
+                          ? formatCurrency(salesSubtotals[index])
+                          : "..."}
+                          <br/>
+                          (
+                          {salesTotals[index] !== undefined
+                          ? formatCurrency(salesTotals[index])
+                          : "..."}
+                          )
+                      </td>
+
+                      <td className="td-cell" rowSpan={2}>
+                        {grossProfits[index] !== undefined
+                          ? formatCurrency(grossProfits[index])
+                          : "..."}
                       </td>
 
                       <td className="td-cell">
@@ -801,6 +898,19 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         </select>
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.is_tax_inclusive`} />
                       </td>
+
+                      <td className="td-cell">
+                        {purchaseSubtotals[index] !== undefined
+                          ? formatCurrency(purchaseSubtotals[index])
+                          : "..."}
+                          <br/>
+                          (
+                          {purchaseTotals[index] !== undefined
+                          ? formatCurrency(purchaseTotals[index])
+                          : "..."}
+                          )
+                      </td>
+
                       <td className="td-cell">
                         <Input
                           type="text"
