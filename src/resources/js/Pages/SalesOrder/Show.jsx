@@ -48,7 +48,7 @@ const Show = ({ salesOrder }) => {
 
               <tr className="table-row">
                 <th className="th-cell">販売先顧客</th>
-                <td className="td-cell">{salesOrder.customer_contact.name}</td>
+                <td className="td-cell">{salesOrder.customer_contact?.name}</td>
               </tr>
 
               <tr className="table-row">
