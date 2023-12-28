@@ -117,6 +117,12 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
   const [purchaseTotals, setPurchaseTotals] = useState([]);
   const [grossProfits, setGrossProfits] = useState([]);
 
+  const [totalSalesSubtotal, setTotalSalesSubtotal] = useState(0);
+  const [totalSalesAmount, setTotalSalesAmount] = useState(0);
+  const [totalPurchaseSubtotal, setTotalPurchaseSubtotal] = useState(0);
+  const [totalPurchaseAmount, setTotalPurchaseAmount] = useState(0);
+  const [totalGrossProfit, setTotalGrossProfit] = useState(0);
+
   const calculateForRow = (index) => {
     if (index >= 0 && index < data.detail_rows.length) {
       const salesDetail    = data.detail_rows[index].sales_order_detail;
@@ -154,6 +160,20 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
       setPurchaseSubtotals(calculatedValues.map(v => v.purchaseSubtotal));
       setPurchaseTotals(calculatedValues.map(v => v.purchaseTotal));
       setGrossProfits(calculatedValues.map(v => v.grossProfit));
+
+    // 各配列の合計を計算
+    const newTotalSalesSubtotal = calculatedValues.reduce((acc, cur) => acc + (cur.salesSubtotal || 0), 0);
+    const newTotalSalesAmount   = calculatedValues.reduce((acc, cur) => acc + (cur.salesTotal || 0), 0);
+    const newTotalPurchaseSubtotal = calculatedValues.reduce((acc, cur) => acc + (cur.purchaseSubtotal || 0), 0);
+    const newTotalPurchaseAmount   = calculatedValues.reduce((acc, cur) => acc + (cur.purchaseTotal || 0), 0);
+    const newTotalGrossProfit   = calculatedValues.reduce((acc, cur) => acc + (cur.grossProfit || 0), 0);
+
+    // 合計を設定
+    setTotalSalesSubtotal(newTotalSalesSubtotal);
+    setTotalSalesAmount(newTotalSalesAmount);
+    setTotalPurchaseSubtotal(newTotalPurchaseSubtotal);
+    setTotalPurchaseAmount(newTotalPurchaseAmount);
+    setTotalGrossProfit(newTotalGrossProfit);
     }
   }, [data.detail_rows]);
 
@@ -597,6 +617,42 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
           <div className="content-section-header">
             <div className="content-section-title">受注明細</div>
             <button type="button" className="btn btn-secondary u-mr-3" onClick={addDetailRow}>+ 行を追加</button>
+            <div className="u-flex u-ml-auto">
+              <div className='u-flex u-mr-4'>
+                <span>発注額</span>
+                <span>
+                  {totalPurchaseSubtotal !== undefined
+                    ? formatCurrency(totalPurchaseSubtotal)
+                    : "..."}
+                    (
+                    {totalPurchaseAmount !== undefined
+                    ? formatCurrency(totalPurchaseAmount)
+                    : "..."}
+                    )
+                </span>
+              </div>
+              <div className='u-flex u-mr-4'>
+                <span>受注額</span>
+                <span>
+                  {totalSalesSubtotal !== undefined
+                    ? formatCurrency(totalSalesSubtotal)
+                    : "..."}
+                    (
+                    {totalSalesAmount !== undefined
+                    ? formatCurrency(totalSalesAmount)
+                    : "..."}
+                    )
+                </span>
+              </div>
+              <div className='u-flex'>
+                <span>利益</span>
+                <span>
+                  {totalGrossProfit !== undefined
+                    ? formatCurrency(totalGrossProfit)
+                    : "..."}
+                </span>
+              </div>
+            </div>
           </div>
           <div className="table-wrapper is-scrollable">
             <table className="table">
