@@ -210,7 +210,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     }));
   }
 
-  const addDefaultSupplierOptions = () => {
+  function addDefaultSupplierOptions() {
     const newRow = {
       supplierContacts: [],
       supplierAddresses: [],
@@ -238,7 +238,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     if (shouldRecalculatePrice(fieldName, detailObject)) {
       updatedDetailObject = {
         ...updatedDetailObject,
-        price: recalculateAndUpdatePrice(detailObject, fieldName, value),
+        price: recalculatePrice(detailObject, fieldName, value),
       };
     }
 
@@ -255,7 +255,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     return ('price' in detailObject) && recalculatingFields.includes(fieldName);
   }
 
-  function recalculateAndUpdatePrice(detailObject, fieldName, value) {
+  function recalculatePrice(detailObject, fieldName, value) {
     const unitPrice      = fieldName === 'unit_price' ? parseNumber(value) : parseNumber(detailObject.unit_price);
     const quantity       = fieldName === 'quantity' ? parseNumber(value) : parseNumber(detailObject.quantity);
     const isTaxInclusive = fieldName === 'is_tax_inclusive' ? value : detailObject.is_tax_inclusive;
