@@ -258,14 +258,18 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
   function updateDetailRow(index, objectKey, fieldName, value) {
     const updatedDetails = [...data.detail_rows];
+    const detailObject   = updatedDetails[index][objectKey];
+
+    const updatedDetailObject = {
+      ...detailObject,
+      [fieldName]: value,
+    };
 
     updatedDetails[index] = {
       ...updatedDetails[index],
-      [objectKey]: {
-        ...updatedDetails[index][objectKey],
-        [fieldName]: value,
-      }
+      [objectKey]: updatedDetailObject,
     }
+
     setData('detail_rows', updatedDetails);
   }
 
