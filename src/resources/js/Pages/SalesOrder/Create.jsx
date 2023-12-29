@@ -251,7 +251,8 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
   }
 
   function shouldRecalculatePrice(fieldName, detailObject) {
-    return ('price' in detailObject) && (fieldName === 'unit_price' || fieldName === 'quantity' || fieldName === 'is_tax_inclusive');
+    const recalculatingFields = ['unit_price', 'quantity', 'is_tax_inclusive'];
+    return ('price' in detailObject) && recalculatingFields.includes(fieldName);
   }
 
   function recalculateAndUpdatePrice(detailObject, fieldName, value) {
