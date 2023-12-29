@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect } from 'react';
-import { useForm, usePage } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AppLayout from '@/Layouts/AppLayout';
 import IconButton from '@mui/material/IconButton';
@@ -44,9 +44,7 @@ const formatCurrency = (value) => {
 };
 
 
-const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTermOptions }) => {
-  const { today } = usePage().props.date;
-  const { taxRate } = usePage().props;
+const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTermOptions, date, taxRate }) => {
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
   const [isSupplierModalOpen, setIsSupplierModalOpen] = useState(false);
   const [customerContacts, setCustomerContacts] = useState([]);
@@ -100,7 +98,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     payment_date: '',
     payment_status: '',
     delivery_address: 'TEMP', // TODO: 後で修正
-    order_date: today,
+    order_date: date.today,
     shipping_date: '',
     shipping_status: '',
     delivery_date: '',
@@ -349,7 +347,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       value={data.order_date}
                       onChange={e => setData('order_date', e.target.value)}
                       error={errors.order_date}
-                      max={today}
+                      max={date.today}
                     />
                     <InvalidFeedback errors={errors} name="order_date" />
                   </td>
