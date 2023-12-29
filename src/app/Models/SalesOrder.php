@@ -13,8 +13,8 @@ class SalesOrder extends Model
     use HasFactory;
 
     protected $appends = [
-        'display_subtotal_amount',
-        'display_total_amount',
+        'display_total',
+        'display_total_with_tax',
     ];
 
     protected $fillable = [
@@ -38,8 +38,6 @@ class SalesOrder extends Model
         'delivery_date',
         'delivery_status',
         'delivery_memo',
-        'subtotal_amount',
-        'total_amount',
         'note',
         'sales_in_charge_id',
         'created_by_id',
@@ -108,25 +106,25 @@ class SalesOrder extends Model
     */
 
     /** 受注合計額(税抜き) */
-    public function getSubtotalAmountAttribute(): int
+    public function getTotalAttribute(): int
     {
-        return $this->salesOrderDetails->sum('subtotal');
+        return $this->salesOrderDetails->sum('price');
     }
 
-    public function getDisplaySubtotalAmountAttribute(): string
+    public function getDisplayTotalAttribute(): string
     {
-        return number_format($this->subtotal_amount);
+        return number_format($this->total);
     }
 
     /** 受注合計額(税込) */
-    public function getTotalAmountAttribute(): int
+    public function getTotalWithTaxAttribute(): int
     {
-        return $this->salesOrderDetails->sum('total');
+        return $this->salesOrderDetails->sum('price_with_tax');
     }
 
-    public function getDisplayTotalAmountAttribute(): string
+    public function getDisplayTotalWithTaxAttribute(): string
     {
-        return number_format($this->total_amount);
+        return number_format($this->total_with_tax);
     }
 
 

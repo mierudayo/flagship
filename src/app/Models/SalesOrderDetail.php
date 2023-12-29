@@ -12,8 +12,8 @@ class SalesOrderDetail extends Model
     use HasFactory;
 
     protected $appends = [
-        'display_subtotal',
-        'display_total',
+        'display_price',
+        'display_price_with_tax',
     ];
 
     protected $fillable = [
@@ -26,8 +26,6 @@ class SalesOrderDetail extends Model
         'unit_price',
         'tax_rate',
         'is_tax_inclusive',
-        'subtotal',
-        'total',
         'note',
     ];
 
@@ -52,27 +50,27 @@ class SalesOrderDetail extends Model
     |--------------------------------------------------------------------------
     */
 
-    /** 小計(税抜き) */
-    public function getSubtotalAttribute(): string
+    /** 価格(税抜き) */
+    public function getPriceAttribute(): string
     {
-        return number_format($this->calculateSubtotal(), 2, '.', '');
+        return number_format($this->calculatePrice(), 2, '.', '');
     }
 
-    public function getDisplaySubtotalAttribute(): string
+    public function getDisplayPriceAttribute(): string
     {
-        return number_format($this->subtotal);
+        return number_format($this->price);
     }
 
-    /** 合計(税込) */
-    public function getTotalAttribute(): string
+    /** 価格(税込) */
+    public function getPriceWithTaxAttribute(): string
     {
-        $total = $this->calculateSubtotal() * (1 + $this->tax_rate);
-        return number_format($total, 2, '.', '');
+        $priceWithTax = $this->calculatePrice() * (1 + $this->tax_rate);
+        return number_format($priceWithTax, 2, '.', '');
     }
 
-    public function getDisplayTotalAttribute(): string
+    public function getDisplayPriceWithTaxAttribute(): string
     {
-        return number_format($this->total);
+        return number_format($this->price);
     }
 
     /*
@@ -81,14 +79,14 @@ class SalesOrderDetail extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected function calculateSubtotal(): float
+    protected function calculatePrice(): float
     {
-        $subtotal = $this->quantity * $this->unit_price;
+        $price = $this->quantity * $this->unit_price;
 
         if ($this->is_tax_inclusive) {
-            $subtotal =  $subtotal / (1 + $this->tax_rate);
+            $price =  $price / (1 + $this->tax_rate);
         }
 
-        return $subtotal;
+        return $price;
     }
 }
