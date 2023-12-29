@@ -9,7 +9,7 @@ class TaxRate extends Model
 {
     use HasFactory;
 
-    public static function getCurrentTaxRate(): TaxRate
+    public static function getCurrentTaxRate(): ?TaxRate
     {
         return self::where('start_date', '<=', today())
             ->where(function ($query) {
