@@ -19,6 +19,7 @@
   - [inquiry\_types 問い合わせ区分](#inquiry_types-問い合わせ区分)
   - [inquiries 問い合わせ](#inquiries-問い合わせ)
   - [sales\_activities 営業履歴](#sales_activities-営業履歴)
+  - [tax\_rates 税率](#tax_rates-税率)
   - [sales\_orders 受注](#sales_orders-受注)
   - [sales\_order\_details 受注明細](#sales_order_details-受注明細)
   - [purchase\_orders 発注](#purchase_orders-発注)
@@ -290,6 +291,19 @@
 | updated_by_id       | 更新者ID           | unsignedBigInteger | FK                                                |
 | created_at          | 作成日時           | timestamp          |                                                   |
 | updated_at          | 更新日時           | timestamp          |                                                   |
+
+## tax_rates 税率
+
+| カラム        | 名称           | 型                 | 説明                                                  |
+|---------------|----------------|--------------------|-------------------------------------------------------|
+| id            | ID             | unsignedBigInteger | PK                                                    |
+| rate          | 税率           | decimal(5,3)       | 実際の税率 (例: 0.100 for 10%、0.080 for 8%)          |
+| display_rate  | 表示用税率     | string             | UI表示用テキスト (例: "10%"、"8%")|
+| start_date    | 開始日         | date               | この税率が有効になる日付                              |
+| end_date      | 終了日         | date               | この税率が失効する日付（任意）                        |
+| display_order | 表示順         | integer            |                     |
+| created_at    | 作成日時       | timestamp          |                                                       |
+| updated_at    | 更新日時       | timestamp          |                                                       |
 
 ## sales_orders 受注
 

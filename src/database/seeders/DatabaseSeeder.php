@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\TaxRate;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 
@@ -29,6 +31,7 @@ class DatabaseSeeder extends Seeder
                 ProductSeeder::class,
                 InquiryTypeSeeder::class,
                 InquirySeeder::class,
+                TaxRateSeeder::class,
                 SalesActivitySeeder::class,
                 SalesOrderSeeder::class,
                 SalesOrderDetailSeeder::class,

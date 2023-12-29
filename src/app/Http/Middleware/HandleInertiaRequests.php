@@ -11,6 +11,7 @@ use App\Enums\PaymentTerm\PaymentDay;
 use App\Enums\PaymentTerm\PaymentDayOffset;
 use App\Enums\PaymentTerm\PaymentMonthOffset;
 use App\Enums\ProductType;
+use App\Models\TaxRate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -57,6 +58,7 @@ class HandleInertiaRequests extends Middleware
             'date' => [
                 'today' => Carbon::today()->format('Y-m-d'),
             ],
+            'taxRate' => TaxRate::getCurrentTaxRate(),
             'paymentTermOptions' => [
                 'billingTypes' => BillingType::toArray(),
                 'cutoffDays'   => CutoffDay::toArray(),
