@@ -22,7 +22,12 @@ class CustomerSearchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'keyword' => ['nullable', 'max:255'],
+            'keyword'       => ['nullable', 'max:255'],
+            'customer_id'   => ['nullable', 'integer'],
+            'address'       => ['nullable', 'max:255'],
+            'phone'         => ['nullable', 'max:255'],
+            'in_charge_user_id' => ['nullable', 'integer'],
+            'delivery_address'  => ['nullable', 'max:255'],
         ];
     }
 }
