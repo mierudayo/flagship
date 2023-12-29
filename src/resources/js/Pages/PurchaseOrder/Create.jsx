@@ -16,6 +16,7 @@ import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 
 const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTermOptions }) => {
   const { today } = usePage().props.date;
+  const { taxRate } = usePage().props;
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
   const [customerContacts, setCustomerContacts] = useState([]);
   const [deliveryAddresses, setDeliveryAddresses] = useState([]);
@@ -38,7 +39,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     purchase_date: today,
     note: '',
     purchase_in_charge_id: '',
-    purchase_order_details: [{ tax_rate: 0.10, is_tax_inclusive: false,}],
+    purchase_order_details: [{ tax_rate: taxRate.rate, is_tax_inclusive: false,}],
   });
 
   function submit(e) {
@@ -393,9 +394,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                   <th className="th-cell u-min-w-160">
                     <FormLabel label="単価" isRequired={true} />
                   </th>
-                  <th className="th-cell u-min-w-112">
-                    <FormLabel label="税率" isRequired={false} />
-                  </th>
                   <th className="th-cell u-min-w-104">
                     <FormLabel label="税種別" isRequired={false} />
                   </th>
@@ -469,22 +467,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         error={errors[`purchase_order_details.${index}.unit_price`]}
                       />
                       <InvalidFeedback errors={errors} name={`purchase_order_details.${index}.unit_price`} />
-                    </td>
-
-                    <td className="td-cell">
-                      <select
-                        value={detail.tax_rate}
-                        onChange={e => updateDetail(index, 'tax_rate', e.target.value)}
-                        className={`form-select ${errors[`purchase_order_details.${index}.tax_rate`] ? 'is-invalid' : ''}`}
-                      >
-                        <OptionsList
-                          options={[
-                            { value: 0.1, label: '10%' },
-                            { value: 0.8, label: '8%' },
-                          ]}
-                        />
-                      </select>
-                      <InvalidFeedback errors={errors} name={`purchase_order_details.${index}.tax_rate`} />
                     </td>
 
                     <td className="td-cell">

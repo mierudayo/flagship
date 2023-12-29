@@ -46,6 +46,7 @@ const formatCurrency = (value) => {
 
 const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTermOptions }) => {
   const { today } = usePage().props.date;
+  const { taxRate } = usePage().props;
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
   const [isSupplierModalOpen, setIsSupplierModalOpen] = useState(false);
   const [customerContacts, setCustomerContacts] = useState([]);
@@ -63,7 +64,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
       product_detail: '',
       quantity: '',
       unit_price: '',
-      tax_rate: 0.10,
+      tax_rate: taxRate.rate,
       is_tax_inclusive: false,
       note: '',
     },
@@ -78,7 +79,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     purchase_order_detail: {
       quantity: '',
       unit_price: '',
-      tax_rate: 0.10,
+      tax_rate: taxRate.rate,
       is_tax_inclusive: false,
       note: '',
     }
@@ -679,9 +680,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                   <th className="th-cell u-min-w-160">
                     <FormLabel label="販売単価" isRequired={true} />
                   </th>
-                  <th className="th-cell u-min-w-112" rowSpan={2}>
-                    <FormLabel label="税率" isRequired={false} />
-                  </th>
                   <th className="th-cell u-min-w-104" rowSpan={2}>
                     <FormLabel label="税種別" isRequired={false} />
                   </th>
@@ -776,22 +774,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           placeholder="販売単価"
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.unit_price`} />
-                      </td>
-
-                      <td className="td-cell">
-                        <select
-                          value={detail.sales_order_detail.tax_rate}
-                          onChange={e => updateSalesOrderDetail(index, 'tax_rate', e.target.value)}
-                          className={`form-select ${errors[`detail_rows.${index}.sales_order_detail.tax_rate`] ? 'is-invalid' : ''}`}
-                        >
-                          <OptionsList
-                            options={[
-                              { value: 0.1, label: '10%' },
-                              { value: 0.8, label: '8%' },
-                            ]}
-                          />
-                        </select>
-                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.tax_rate`} />
                       </td>
 
                       <td className="td-cell">
@@ -924,21 +906,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.unit_price`} />
                       </td>
-                      <td className="td-cell">
-                        <select
-                          value={detail.purchase_order_detail.tax_rate}
-                          onChange={e => updatePurchaseOrderDetail(index, 'tax_rate', e.target.value)}
-                          className={`form-select ${errors[`detail_rows.${index}.purchase_order_detail.tax_rate`] ? 'is-invalid' : ''}`}
-                        >
-                          <OptionsList
-                            options={[
-                              { value: 0.1, label: '10%' },
-                              { value: 0.8, label: '8%' },
-                            ]}
-                          />
-                        </select>
-                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.tax_rate`} />
-                      </td>
+
                       <td className="td-cell">
                         <select
                           value={detail.purchase_order_detail.is_tax_inclusive}
