@@ -256,44 +256,21 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     addDefaultSupplierOptions();
   }
 
-  function removeSalesOrderDetail(indexToRemove) {
+  function updateDetailRow(index, objectKey, fieldName, value) {
+    const updatedDetails = [...data.detail_rows];
+
+    updatedDetails[index] = {
+      ...updatedDetails[index],
+      [objectKey]: {
+        ...updatedDetails[index][objectKey],
+        [fieldName]: value,
+      }
+    }
+    setData('detail_rows', updatedDetails);
+  }
+
+  function removeDetailRow(indexToRemove) {
     setData('detail_rows', data.detail_rows.filter((_, index) => index !== indexToRemove));
-  }
-
-  function updateSalesOrderDetail(index, key, value) {
-    const updatedDetails = [...data.detail_rows];
-    updatedDetails[index] = {
-      ...updatedDetails[index],
-      sales_order_detail: {
-        ...updatedDetails[index].sales_order_detail,
-        [key]: value,
-      }
-    }
-    setData('detail_rows', updatedDetails);
-  }
-
-  function updatePurchaseOrderDetail(index, key, value) {
-    const updatedDetails = [...data.detail_rows];
-    updatedDetails[index] = {
-      ...updatedDetails[index],
-      purchase_order_detail: {
-        ...updatedDetails[index].purchase_order_detail,
-        [key]: value,
-      }
-    }
-    setData('detail_rows', updatedDetails);
-  }
-
-  function updatePurchaseOrder(index, key, value) {
-    const updatedDetails = [...data.detail_rows];
-    updatedDetails[index] = {
-      ...updatedDetails[index],
-      purchase_order: {
-        ...updatedDetails[index].purchase_order,
-        [key]: value,
-      }
-    }
-    setData('detail_rows', updatedDetails);
   }
 
   return (
@@ -707,7 +684,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         <button
                           type="button"
                           className="btn btn-secondary"
-                          onClick={() => removeSalesOrderDetail(index)}
+                          onClick={() => removeDetailRow(index)}
                         >
                           削除
                         </button>
@@ -717,7 +694,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                       <td className="td-cell">
                         <CustomSelect
-                          onChange={value => updateSalesOrderDetail(index, 'product_id', value)}
+                          onChange={value => updateDetailRow(index, 'sales_order_detail', 'product_id', value)}
                           options={productOptions}
                           value={detail.sales_order_detail.product_id}
                           valueKey="id"
@@ -734,7 +711,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         <Input
                           type="text"
                           value={detail.sales_order_detail.product_name}
-                          onChange={e => updateSalesOrderDetail(index, 'product_name', e.target.value)}
+                          onChange={e => updateDetailRow(index, 'sales_order_detail', 'product_name', e.target.value)}
                           error={errors[`detail_rows.${index}.sales_order_detail.product_name`]}
                           placeholder="商品名"
                         />
@@ -745,7 +722,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         <Input
                           type="text"
                           value={detail.sales_order_detail.product_detail}
-                          onChange={e => updateSalesOrderDetail(index, 'product_detail', e.target.value)}
+                          onChange={e => updateDetailRow(index, 'sales_order_detail', 'product_detail', e.target.value)}
                           error={errors[`detail_rows.${index}.sales_order_detail.product_detail`]}
                           placeholder="商品詳細"
                         />
@@ -756,7 +733,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         <Input
                           type="number"
                           value={detail.sales_order_detail.quantity}
-                          onChange={e => updateSalesOrderDetail(index, 'quantity', e.target.value)}
+                          onChange={e => updateDetailRow(index, 'sales_order_detail', 'quantity', e.target.value)}
                           error={errors[`detail_rows.${index}.sales_order_detail.quantity`]}
                           placeholder="販売数量"
                         />
@@ -767,7 +744,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         <Input
                           type="number"
                           value={detail.sales_order_detail.unit_price}
-                          onChange={e => updateSalesOrderDetail(index, 'unit_price', e.target.value)}
+                          onChange={e => updateDetailRow(index, 'sales_order_detail', 'unit_price', e.target.value)}
                           error={errors[`detail_rows.${index}.sales_order_detail.unit_price`]}
                           placeholder="販売単価"
                         />
@@ -777,7 +754,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       <td className="td-cell">
                         <select
                           value={detail.sales_order_detail.is_tax_inclusive}
-                          onChange={e => updateSalesOrderDetail(index, 'is_tax_inclusive', e.target.value === 'true')}
+                          onChange={e => updateDetailRow(index, 'sales_order_detail', 'is_tax_inclusive', e.target.value === 'true')}
                           className={`form-select ${errors[`detail_rows.${index}.sales_order_detail.is_tax_inclusive`] ? 'is-invalid' : ''}`}
                         >
                           <OptionsList
@@ -812,7 +789,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         <Input
                           type="text"
                           value={detail.sales_order_detail.note}
-                          onChange={e => updateSalesOrderDetail(index, 'note', e.target.value)}
+                          onChange={e => updateDetailRow(index, 'sales_order_detail', 'note', e.target.value)}
                           error={errors[`detail_rows.${index}.sales_order_detail.note`]}
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.note`} />
@@ -846,7 +823,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         </div>
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order.customer_id`} />
                         <CustomSelect
-                          onChange={value => updatePurchaseOrder(index, 'customer_contact_id', value)}
+                          onChange={value => updateDetailRow(index, 'purchase_order', 'customer_contact_id', value)}
                           options={supplierOptions[index].supplierContacts}
                           value={detail.purchase_order.customer_contact_id}
                           valueKey="id"
@@ -858,7 +835,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order.customer_contact_id`} />
                         <CustomSelect
-                          onChange={value => updatePurchaseOrder(index, 'delivery_address_id', value)}
+                          onChange={value => updateDetailRow(index, 'purchase_order', 'delivery_address_id', value)}
                           options={supplierOptions[index].supplierAddresses}
                           value={detail.purchase_order.delivery_address_id}
                           valueKey="id"
@@ -872,7 +849,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       </td>
                       <td className="td-cell">
                         <CustomSelect
-                          onChange={value => updatePurchaseOrder(index, 'purchase_in_charge_id', value)}
+                          onChange={value => updateDetailRow(index, 'purchase_order', 'purchase_in_charge_id', value)}
                           options={userOptions}
                           value={detail.purchase_order.purchase_in_charge_id}
                           valueKey="id"
@@ -888,7 +865,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         <Input
                           type="number"
                           value={detail.purchase_order_detail.quantity}
-                          onChange={e => updatePurchaseOrderDetail(index, 'quantity', e.target.value)}
+                          onChange={e => updateDetailRow(index, 'purchase_order_detail', 'quantity', e.target.value)}
                           error={errors[`detail_rows.${index}.purchase_order_detail.quantity`]}
                           placeholder="仕入数量"
                         />
@@ -898,7 +875,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         <Input
                           type="number"
                           value={detail.purchase_order_detail.unit_price}
-                          onChange={e => updatePurchaseOrderDetail(index, 'unit_price', e.target.value)}
+                          onChange={e => updateDetailRow(index, 'purchase_order_detail', 'unit_price', e.target.value)}
                           error={errors[`detail_rows.${index}.purchase_order_detail.unit_price`]}
                           placeholder="仕入単価"
                         />
@@ -908,7 +885,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       <td className="td-cell">
                         <select
                           value={detail.purchase_order_detail.is_tax_inclusive}
-                          onChange={e => updatePurchaseOrderDetail(index, 'is_tax_inclusive', e.target.value)}
+                          onChange={e => updateDetailRow(index, 'purchase_order_detail', 'is_tax_inclusive', e.target.value)}
                           className={`form-select ${errors[`detail_rows.${index}.purchase_order_detail.is_tax_inclusive`] ? 'is-invalid' : ''}`}
                         >
                           <OptionsList
@@ -937,7 +914,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         <Input
                           type="text"
                           value={detail.purchase_order_detail.note}
-                          onChange={e => updatePurchaseOrderDetail(index, 'note', e.target.value)}
+                          onChange={e => updateDetailRow(index, 'purchase_order_detail', 'note', e.target.value)}
                           error={errors[`detail_rows.${index}.purchase_order_detail.note`]}
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.note`} />
