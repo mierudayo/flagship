@@ -4,7 +4,33 @@ import AppLayout from '@/Layouts/AppLayout';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import TermDetails from './Partials/TermDetails';
 
+// TODO: 後でカスタムフックにする
+const parseNumber = (value) => parseFloat(value) || 0;
+
+const formatCurrency = (value) => {
+  const formatter = new Intl.NumberFormat('ja-JP', {
+    style: 'currency',
+    currency: 'JPY',
+  });
+  const number = parseNumber(value);
+  return formatter.format(number);
+};
+
 const Show = ({ salesOrder }) => {
+
+  const soTotal = salesOrder.total;
+  const soTotalWithTax = salesOrder.total_with_tax;
+
+  const poTotal = salesOrder.sales_order_details.flatMap(soDetail =>
+    soDetail.purchase_order_details.map(poDetail => parseFloat(poDetail.price))
+  ).reduce((acc, crr) => acc + crr, 0);
+
+  const poTotalWithTax = salesOrder.sales_order_details.flatMap(soDetail =>
+    soDetail.purchase_order_details.map(poDetail => parseFloat(poDetail.price_with_tax))
+  ).reduce((acc, crr) => acc + crr, 0);
+
+  const totalProfit = soTotal - poTotal;
+
   return (
     <>
 
@@ -115,8 +141,43 @@ const Show = ({ salesOrder }) => {
 
 
       <div className="content-section">
-        <div className="content-section-title">
-          受注明細
+        <div className="content-section-header">
+              <div className="content-section-title">受注明細</div>
+              <div className="u-flex u-ml-auto">
+                <div className="u-flex u-mr-4 u-items-center">
+                  <span className="u-min-w-64">
+                    <span className="indicator-dot dot-pink"></span>
+                    発注額
+                  </span>
+                  <span>
+                    {formatCurrency(poTotal)}
+                  </span>
+                  <span className="u-text-sm">
+                    ({formatCurrency(poTotalWithTax)})
+                  </span>
+                </div>
+                <div className="u-flex u-mr-4 u-items-center">
+                  <span className="u-min-w-64">
+                    <span className="indicator-dot dot-blue"></span>
+                    受注額
+                  </span>
+                  <span>
+                    {formatCurrency(soTotal)}
+                  </span>
+                  <span className="u-text-sm">
+                    ({formatCurrency(soTotalWithTax)})
+                  </span>
+                </div>
+                <div className="u-flex u-items-center">
+                  <span className="u-min-w-48">
+                    <span className="indicator-dot dot-green"></span>
+                    利益
+                  </span>
+                  <span>
+                    {formatCurrency(totalProfit)}
+                  </span>
+                </div>
+              </div>
         </div>
         <div className="table-wrapper is-scrollable">
           <table className="table">

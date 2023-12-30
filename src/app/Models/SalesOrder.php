@@ -19,6 +19,8 @@ class SalesOrder extends Model
 
     protected $appends = [
         'sales_term_labels',
+        'total',
+        'total_with_tax',
         'display_total',
         'display_total_with_tax',
     ];
