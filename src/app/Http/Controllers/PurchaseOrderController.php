@@ -71,7 +71,7 @@ class PurchaseOrderController extends Controller
 
         // TODO: refactor 後でメソッド化,
         $purchaseOrderDetails = collect($request->input('purchase_order_details'))
-            ->map(function ($detail, $index) use (&$subtotalAmount, &$totalAmount, $purchaseOrder) {
+            ->map(function ($detail, $index) use ($purchaseOrder) {
                 return [
                     'purchase_order_id' => $purchaseOrder->id,
                     'row_number'        => $index + 1,

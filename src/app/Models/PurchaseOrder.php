@@ -13,8 +13,8 @@ class PurchaseOrder extends Model
     use HasFactory;
 
     protected $appends = [
-        'display_subtotal_amount',
-        'display_total_amount',
+        'display_total',
+        'display_total_with_tax',
     ];
 
     protected $fillable = [
@@ -96,23 +96,23 @@ class PurchaseOrder extends Model
     */
 
     /** 発注合計額(税抜き) */
-    public function getSubtotalAmountAttribute(): int
+    public function getTotalAttribute(): int
     {
         return $this->purchaseOrderDetails->sum('subtotal');
     }
 
-    public function getDisplaySubtotalAmountAttribute(): string
+    public function getDisplayTotalAttribute(): string
     {
         return number_format($this->subtotal_amount);
     }
 
     /** 発注合計額(税込) */
-    public function getTotalAmountAttribute(): int
+    public function getTotalWithTaxAttribute(): int
     {
         return $this->purchaseOrderDetails->sum('total');
     }
 
-    public function getDisplayTotalAmountAttribute(): string
+    public function getDisplayTotalWithTaxAttribute(): string
     {
         return number_format($this->total_amount);
     }
