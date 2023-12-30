@@ -591,22 +591,31 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
             <div className="u-mr-4">※同時受発注</div>
             <button type="button" className="btn btn-secondary u-mr-3" onClick={addDetailRow}>+ 行を追加</button>
             <div className="u-flex u-ml-auto">
-              <div className='u-flex u-mr-4'>
-                <span>発注額</span>
+              <div className="u-flex u-mr-4">
+                <span>
+                  <span className="indicator-dot dot-pink"></span>
+                  発注額
+                </span>
                 <span>
                   {formatCurrency(totals.purchase)}
                   ({formatCurrency(totals.purchase_with_tax)})
                 </span>
               </div>
-              <div className='u-flex u-mr-4'>
-                <span>受注額</span>
+              <div className="u-flex u-mr-4">
+                <span>
+                  <span className="indicator-dot dot-blue"></span>
+                  受注額
+                </span>
                 <span>
                   {formatCurrency(totals.sales)}
                   ({formatCurrency(totals.sales_with_tax)})
                 </span>
               </div>
-              <div className='u-flex'>
-                <span>利益</span>
+              <div className="u-flex">
+                <span>
+                  <span className="indicator-dot dot-green"></span>
+                  利益
+                </span>
                 <span>
                   {formatCurrency(totals.profit)}
                 </span>
