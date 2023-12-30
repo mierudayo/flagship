@@ -2,7 +2,7 @@
 import { Link } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import ContentInfoBar from '@/Components/ContentInfoBar';
-
+import TermDetails from './Partials/TermDetails';
 
 const Show = ({ salesOrder }) => {
   return (
@@ -87,7 +87,7 @@ const Show = ({ salesOrder }) => {
               <tr className="table-row">
                 <th className="th-cell">請求条件</th>
                 <td className="td-cell">
-                  {/* TODO: 請求条件追加 */}
+                  <TermDetails salesOrder={salesOrder} />
                 </td>
               </tr>
 
