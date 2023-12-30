@@ -1,0 +1,27 @@
+:root {
+  --indicator-blue: #8dd3c7;
+  --indicator-pink: #ffadad;
+  --indicator-green: #9fe591;
+}
+
+.indicator-dot {
+  background-color: #fff;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+
+  &.dot-blue {
+    background-color: var(--indicator-blue);
+  }
+
+  &.dot-pink {
+    background-color: var(--indicator-pink);
+  }
+
+  &.dot-green {
+    background-color: var(--indicator-green);
+  }
+}
+
