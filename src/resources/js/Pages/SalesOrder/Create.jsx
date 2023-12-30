@@ -588,11 +588,11 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
         <div className="content-section">
           <div className="content-section-header">
             <div className="content-section-title">受注明細</div>
-            <div className="u-mr-4">※同時受発注</div>
+            <div className="u-mr-4 u-min-w-96">※同時受発注</div>
             <button type="button" className="btn btn-secondary u-mr-3" onClick={addDetailRow}>+ 行を追加</button>
             <div className="u-flex u-ml-auto">
               <div className="u-flex u-mr-4 u-items-center">
-                <span>
+                <span className="u-min-w-64">
                   <span className="indicator-dot dot-pink"></span>
                   発注額
                 </span>
@@ -604,7 +604,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                 </span>
               </div>
               <div className="u-flex u-mr-4 u-items-center">
-                <span>
+                <span className="u-min-w-64">
                   <span className="indicator-dot dot-blue"></span>
                   受注額
                 </span>
@@ -616,7 +616,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                 </span>
               </div>
               <div className="u-flex u-items-center">
-                <span>
+                <span className="u-min-w-48">
                   <span className="indicator-dot dot-green"></span>
                   利益
                 </span>
