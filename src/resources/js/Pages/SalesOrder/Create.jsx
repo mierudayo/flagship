@@ -295,7 +295,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
         </Modal>}
 
       {isSupplierModalOpen &&
-        <Modal closeModal={() => setIsSupplierModalOpen(false)} title="仕入先を選択">
+        <Modal closeModal={() => setIsSupplierModalOpen(false)} title="発注先を選択">
           <CustomerLookup
             handleClickSelect={supplier => selectSupplier(supplier)}
           />
@@ -588,20 +588,21 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
         <div className="content-section">
           <div className="content-section-header">
             <div className="content-section-title">受注明細</div>
+            <div className="u-mr-4">※同時受発注</div>
             <button type="button" className="btn btn-secondary u-mr-3" onClick={addDetailRow}>+ 行を追加</button>
             <div className="u-flex u-ml-auto">
-              <div className='u-flex u-mr-4'>
-                  <span>受注額</span>
-                  <span>
-                    {formatCurrency(totals.sales)}
-                    ({formatCurrency(totals.sales_with_tax)})
-                  </span>
-              </div>
               <div className='u-flex u-mr-4'>
                 <span>発注額</span>
                 <span>
                   {formatCurrency(totals.purchase)}
                   ({formatCurrency(totals.purchase_with_tax)})
+                </span>
+              </div>
+              <div className='u-flex u-mr-4'>
+                <span>受注額</span>
+                <span>
+                  {formatCurrency(totals.sales)}
+                  ({formatCurrency(totals.sales_with_tax)})
                 </span>
               </div>
               <div className='u-flex'>
@@ -616,53 +617,55 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
             <table className="table">
               <thead className="table-header is-sticky">
                 <tr className="table-row">
-                  <th className="th-cell col-fixed" rowSpan={2}>
+                  <th className="th-cell col-fixed">
 
                   </th>
-                  <th className="th-cell u-w-64" rowSpan={2}>
+                  <th className="th-cell u-w-64">
                     <FormLabel label="No." isRequired={false} />
                   </th>
-                  <th className="th-cell u-min-w-320">
+                  <th className="th-cell u-min-w-240">
                     <FormLabel label="商品" isRequired={false} />
                   </th>
-                  <th className="th-cell u-min-w-200">
+                  <th className="th-cell u-min-w-320">
                     <FormLabel label="商品名" isRequired={true} />
                   </th>
+                  <th className="th-cell u-min-w-320">
+                    <FormLabel label="発注先" isRequired={true} />
+                  </th>
                   <th className="th-cell u-min-w-200">
-                    <FormLabel label="商品詳細" isRequired={false} />
+                    <FormLabel label="発注担当" isRequired={true} />
+                  </th>
+                  <th className="th-cell u-min-w-160">
+                    <FormLabel label="発注数量" isRequired={true} />
                   </th>
                   <th className="th-cell u-min-w-160">
                     <FormLabel label="販売数量" isRequired={true} />
                   </th>
                   <th className="th-cell u-min-w-160">
+                    <FormLabel label="発注単価" isRequired={true} />
+                  </th>
+                  <th className="th-cell u-min-w-160">
                     <FormLabel label="販売単価" isRequired={true} />
                   </th>
-                  <th className="th-cell u-min-w-104" rowSpan={2}>
-                    <FormLabel label="税種別" isRequired={false} />
+                  <th className="th-cell u-min-w-104">
+                    <FormLabel label="発注額" isRequired={false} />
                   </th>
                   <th className="th-cell u-min-w-104">
                     <FormLabel label="受注額" isRequired={false} />
                   </th>
-                  <th className="th-cell u-min-w-120" rowSpan={2}>
+                  <th className="th-cell u-min-w-120">
                     <FormLabel label="利益" isRequired={false} />
                   </th>
-                  <th className="th-cell u-min-w-400" rowSpan={2}>
+                  <th className="th-cell u-min-w-400">
                     <FormLabel label="備考" isRequired={false} />
                   </th>
-                </tr>
-                <tr className="table-row">
-                  <th className="th-cell" colSpan={2}><FormLabel label="仕入先" isRequired={false} /></th>
-                  <th className="th-cell"><FormLabel label="発注担当" isRequired={false} /></th>
-                  <th className="th-cell"><FormLabel label="仕入数量" isRequired={false} /></th>
-                  <th className="th-cell"><FormLabel label="仕入単価" isRequired={false} /></th>
-                  <th className="th-cell"><FormLabel label="発注額" isRequired={false} /></th>
                 </tr>
               </thead>
               <tbody className="tbody">
                 {data.detail_rows.map((detail, index) => (
                   <Fragment key={index}>
                     <tr className="table-row">
-                      <td className="td-cell col-fixed u-w-80" rowSpan={2}>
+                      <td className="td-cell col-fixed u-w-80">
                         <button
                           type="button"
                           className="btn btn-secondary"
@@ -672,7 +675,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         </button>
                       </td>
 
-                      <td className="td-cell" rowSpan={2}>{index + 1}</td>
+                      <td className="td-cell">{index + 1}</td>
 
                       <td className="td-cell">
                         <CustomSelect
@@ -696,84 +699,21 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           onChange={e => updateDetailRow(index, 'sales_order_detail', 'product_name', e.target.value)}
                           error={errors[`detail_rows.${index}.sales_order_detail.product_name`]}
                           placeholder="商品名"
+                          className="u-mb-1"
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.product_name`} />
-                      </td>
-
-                      <td className="td-cell">
                         <Input
                           type="text"
                           value={detail.sales_order_detail.product_detail}
                           onChange={e => updateDetailRow(index, 'sales_order_detail', 'product_detail', e.target.value)}
                           error={errors[`detail_rows.${index}.sales_order_detail.product_detail`]}
-                          placeholder="商品詳細"
+                          placeholder="仕様"
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.product_detail`} />
                       </td>
 
                       <td className="td-cell">
-                        <Input
-                          type="number"
-                          value={detail.sales_order_detail.quantity}
-                          onChange={e => updateDetailRow(index, 'sales_order_detail', 'quantity', e.target.value)}
-                          error={errors[`detail_rows.${index}.sales_order_detail.quantity`]}
-                          placeholder="販売数量"
-                        />
-                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.quantity`} />
-                      </td>
-
-                      <td className="td-cell">
-                        <Input
-                          type="number"
-                          value={detail.sales_order_detail.unit_price}
-                          onChange={e => updateDetailRow(index, 'sales_order_detail', 'unit_price', e.target.value)}
-                          error={errors[`detail_rows.${index}.sales_order_detail.unit_price`]}
-                          placeholder="販売単価"
-                        />
-                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.unit_price`} />
-                      </td>
-
-                      <td className="td-cell">
-                        <select
-                          value={detail.sales_order_detail.is_tax_inclusive}
-                          onChange={e => updateDetailRow(index, 'sales_order_detail', 'is_tax_inclusive', e.target.value === 'true')}
-                          className={`form-select ${errors[`detail_rows.${index}.sales_order_detail.is_tax_inclusive`] ? 'is-invalid' : ''}`}
-                        >
-                          <OptionsList
-                            options={[
-                              { value: false, label: '外税' },
-                              { value: true, label: '内税' },
-                            ]}
-                          />
-                        </select>
-                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.is_tax_inclusive`} />
-                      </td>
-
-                      <td className="td-cell">
-                        {formatCurrency(detail.sales_order_detail.price)}
-                        <br/>
-                        ({formatCurrency(calculatePriceWithTax(detail.sales_order_detail.price, detail.sales_order_detail.tax_rate))})
-                      </td>
-
-                      <td className="td-cell" rowSpan={2}>
-                        {formatCurrency((detail.sales_order_detail.price - detail.purchase_order_detail.price))}
-                      </td>
-
-                      <td className="td-cell">
-                        <Input
-                          type="text"
-                          value={detail.sales_order_detail.note}
-                          onChange={e => updateDetailRow(index, 'sales_order_detail', 'note', e.target.value)}
-                          error={errors[`detail_rows.${index}.sales_order_detail.note`]}
-                        />
-                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.note`} />
-                      </td>
-                    </tr>
-
-                    {/* 仕入 明細行 */}
-                    <tr className="table-row">
-                      <td className="td-cell" colSpan={2}>
-                        <div className="u-flex">
+                        <div className="u-flex u-mb-1">
                           <Input
                             type="text"
                             value={detail.purchase_order.customer_id}
@@ -785,7 +725,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                             type="text"
                             value={detail.purchase_order.customer_name}
                             className="u-max-w-240"
-                            placeholder="仕入先"
+                            placeholder="発注先"
                             readOnly={true}
                           />
                           <button type="button" className="btn btn-secondary" onClick={() => {
@@ -804,7 +744,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           labelKey="name"
                           isClearable={true}
                           isSearchable={true}
-                          placeholder="仕入先顧客..."
+                          placeholder="発注先顧客..."
                           error={errors[`detail_rows.${index}.purchase_order.customer_contact_id`]}
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order.customer_contact_id`} />
@@ -821,6 +761,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order.delivery_address_id`} />
                       </td>
+
                       <td className="td-cell">
                         <CustomSelect
                           onChange={value => updateDetailRow(index, 'purchase_order', 'purchase_in_charge_id', value)}
@@ -835,41 +776,81 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order.purchase_in_charge_id`} />
                       </td>
+
                       <td className="td-cell">
                         <Input
                           type="number"
                           value={detail.purchase_order_detail.quantity}
                           onChange={e => updateDetailRow(index, 'purchase_order_detail', 'quantity', e.target.value)}
                           error={errors[`detail_rows.${index}.purchase_order_detail.quantity`]}
-                          placeholder="仕入数量"
+                          placeholder=""
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.quantity`} />
                       </td>
+
                       <td className="td-cell">
                         <Input
                           type="number"
-                          value={detail.purchase_order_detail.unit_price}
-                          onChange={e => updateDetailRow(index, 'purchase_order_detail', 'unit_price', e.target.value)}
-                          error={errors[`detail_rows.${index}.purchase_order_detail.unit_price`]}
-                          placeholder="仕入単価"
+                          value={detail.sales_order_detail.quantity}
+                          onChange={e => updateDetailRow(index, 'sales_order_detail', 'quantity', e.target.value)}
+                          error={errors[`detail_rows.${index}.sales_order_detail.quantity`]}
+                          placeholder=""
                         />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.quantity`} />
+                      </td>
+
+                      <td className="td-cell">
+                        <div className="u-flex">
+                          <Input
+                            type="number"
+                            value={detail.purchase_order_detail.unit_price}
+                            onChange={e => updateDetailRow(index, 'purchase_order_detail', 'unit_price', e.target.value)}
+                            error={errors[`detail_rows.${index}.purchase_order_detail.unit_price`]}
+                            placeholder="¥"
+                            className="u-w-120 u-mr-1"
+                          />
+                          <select
+                            value={detail.purchase_order_detail.is_tax_inclusive}
+                            onChange={e => updateDetailRow(index, 'purchase_order_detail', 'is_tax_inclusive', e.target.value)}
+                            className={`form-select u-w-72 ${errors[`detail_rows.${index}.purchase_order_detail.is_tax_inclusive`] ? 'is-invalid' : ''}`}
+                          >
+                            <OptionsList
+                              options={[
+                                { value: false, label: '外税' },
+                                { value: true, label: '内税' },
+                              ]}
+                            />
+                          </select>
+                        </div>
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.is_tax_inclusive`} />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.unit_price`} />
                       </td>
 
                       <td className="td-cell">
-                        <select
-                          value={detail.purchase_order_detail.is_tax_inclusive}
-                          onChange={e => updateDetailRow(index, 'purchase_order_detail', 'is_tax_inclusive', e.target.value)}
-                          className={`form-select ${errors[`detail_rows.${index}.purchase_order_detail.is_tax_inclusive`] ? 'is-invalid' : ''}`}
-                        >
-                          <OptionsList
-                            options={[
-                              { value: false, label: '外税' },
-                              { value: true, label: '内税' },
-                            ]}
+                        <div className="u-flex">
+                          <Input
+                            type="number"
+                            value={detail.sales_order_detail.unit_price}
+                            onChange={e => updateDetailRow(index, 'sales_order_detail', 'unit_price', e.target.value)}
+                            error={errors[`detail_rows.${index}.sales_order_detail.unit_price`]}
+                            placeholder="¥"
+                            className="u-w-120 u-mr-1"
                           />
-                        </select>
-                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.is_tax_inclusive`} />
+                          <select
+                            value={detail.sales_order_detail.is_tax_inclusive}
+                            onChange={e => updateDetailRow(index, 'sales_order_detail', 'is_tax_inclusive', e.target.value === 'true')}
+                            className={`form-select u-w-72 ${errors[`detail_rows.${index}.sales_order_detail.is_tax_inclusive`] ? 'is-invalid' : ''}`}
+                          >
+                            <OptionsList
+                              options={[
+                                { value: false, label: '外税' },
+                                { value: true, label: '内税' },
+                              ]}
+                            />
+                          </select>
+                        </div>
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.unit_price`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.is_tax_inclusive`} />
                       </td>
 
                       <td className="td-cell">
@@ -879,13 +860,33 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       </td>
 
                       <td className="td-cell">
+                        {formatCurrency(detail.sales_order_detail.price)}
+                        <br/>
+                        ({formatCurrency(calculatePriceWithTax(detail.sales_order_detail.price, detail.sales_order_detail.tax_rate))})
+                      </td>
+
+                      <td className="td-cell">
+                        {formatCurrency((detail.sales_order_detail.price - detail.purchase_order_detail.price))}
+                      </td>
+
+                      <td className="td-cell">
+                        <Input
+                          type="text"
+                          value={detail.sales_order_detail.note}
+                          onChange={e => updateDetailRow(index, 'sales_order_detail', 'note', e.target.value)}
+                          error={errors[`detail_rows.${index}.sales_order_detail.note`]}
+                          placeholder="受注メモ"
+                          className="u-mb-2"
+                        />
                         <Input
                           type="text"
                           value={detail.purchase_order_detail.note}
                           onChange={e => updateDetailRow(index, 'purchase_order_detail', 'note', e.target.value)}
                           error={errors[`detail_rows.${index}.purchase_order_detail.note`]}
+                          placeholder="発注メモ"
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order_detail.note`} />
+                        <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.note`} />
                       </td>
                     </tr>
                   </Fragment>
