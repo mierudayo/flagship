@@ -18,30 +18,7 @@ import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import PaymentSelectGroup from './Partials/PaymentSelectGroup';
-
-// TODO: 後でカスタムフックにする
-const parseNumber = (value) => parseFloat(value) || 0;
-
-const calculatePrice = (unitPrice, quantity, taxRate, isTaxInclusive) => {
-  let price = unitPrice * quantity;
-  if (isTaxInclusive) {
-    price /= (1 + taxRate);
-  }
-  return price;
-};
-
-const calculatePriceWithTax = (price, taxRate) => {
-  return price * (1 + taxRate);
-}
-
-const formatCurrency = (value) => {
-  const formatter = new Intl.NumberFormat('ja-JP', {
-    style: 'currency',
-    currency: 'JPY',
-  });
-  const number = parseNumber(value);
-  return formatter.format(number);
-};
+import { parseNumber, calculatePrice, calculatePriceWithTax, formatCurrency } from '@/Utils/priceCalculator';
 
 const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTermOptions, date, taxRate }) => {
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);

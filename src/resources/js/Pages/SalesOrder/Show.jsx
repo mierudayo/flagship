@@ -3,18 +3,7 @@ import { Link } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import TermDetails from './Partials/TermDetails';
-
-// TODO: 後でカスタムフックにする
-const parseNumber = (value) => parseFloat(value) || 0;
-
-const formatCurrency = (value) => {
-  const formatter = new Intl.NumberFormat('ja-JP', {
-    style: 'currency',
-    currency: 'JPY',
-  });
-  const number = parseNumber(value);
-  return formatter.format(number);
-};
+import { formatCurrency } from '@/Utils/priceCalculator';
 
 const Show = ({ salesOrder }) => {
 
