@@ -258,7 +258,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
         >
           登録する
         </button>
-        <CancelButton isDirty={isDirty} route={route('customers.index')} />
+        <CancelButton isDirty={isDirty} route={route('sales-orders.index')} />
         {processing && <span>Now Loading...</span>}
       </div>
 

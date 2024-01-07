@@ -298,7 +298,7 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
         >
           更新する
         </button>
-        <CancelButton isDirty={isDirty} route={route('customers.index')} />
+        <CancelButton isDirty={isDirty} route={route('sales-orders.index')} />
         {processing && <span>Now Loading...</span>}
         <Link
           onBefore={() => confirm('紐付いている発注データも削除されます。本当に削除しますか？')}
