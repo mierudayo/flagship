@@ -60,6 +60,7 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
         purchase_in_charge_id: purchaseOrder.purchase_in_charge_id ?? '',
       },
       purchase_order_detail: {
+        id: poDetail.id,
         quantity: parseNumber(poDetail.quantity),
         unit_price: parseNumber(poDetail.unit_price),
         tax_rate: parseFloat(taxRate.rate),
