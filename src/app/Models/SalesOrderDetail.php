@@ -12,6 +12,7 @@ class SalesOrderDetail extends Model
     use HasFactory;
 
     protected $appends = [
+        'price',
         'display_price',
         'display_price_with_tax',
     ];

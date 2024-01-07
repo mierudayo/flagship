@@ -34,7 +34,7 @@ const Show = ({ salesOrder }) => {
 
       <div className="content-navbar">
         <Link
-          // href={route('sales-orders.edit', salesOrder)}
+          href={route('sales-orders.edit', salesOrder)}
           className="btn btn-secondary u-mr-3"
         >
           編集する
