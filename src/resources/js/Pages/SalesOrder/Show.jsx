@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import TermDetails from './Partials/TermDetails';
-import { formatCurrency } from '@/Utils/priceCalculator';
+import { parseNumber, formatCurrency } from '@/Utils/priceCalculator';
 
 const Show = ({ salesOrder }) => {
 
@@ -173,27 +173,49 @@ const Show = ({ salesOrder }) => {
             <thead className="table-header is-sticky">
               <tr className="table-row">
                 <th className="th-cell u-w-64 col-fixed">No.</th>
-                <th className="th-cell u-w-120">商品名</th>
-                <th className="th-cell u-w-120">仕様</th>
-                <th className="th-cell u-min-w-160">仕入先</th>
-                <th className="th-cell u-min-w-112">発注数量</th>
-                <th className="th-cell u-min-w-112">販売数量</th>
-                <th className="th-cell u-min-w-112">発注単価</th>
-                <th className="th-cell u-min-w-112">販売単価</th>
-                <th className="th-cell u-min-w-120">備考</th>
+                <th className="th-cell u-min-w-200">商品</th>
+                <th className="th-cell u-min-w-240">商品名</th>
+                <th className="th-cell u-min-w-320">発注先</th>
+                <th className="th-cell u-min-w-160">発注担当</th>
+                <th className="th-cell u-min-w-104">発注数量</th>
+                <th className="th-cell u-min-w-104">販売数量</th>
+                <th className="th-cell u-min-w-104">発注単価</th>
+                <th className="th-cell u-min-w-104">販売単価</th>
+                <th className="th-cell u-min-w-112">発注額</th>
+                <th className="th-cell u-min-w-112">受注額</th>
+                <th className="th-cell u-min-w-112">利益</th>
+                <th className="th-cell u-min-w-320">備考</th>
               </tr>
             </thead>
             <tbody className="table-body">
               {salesOrder.sales_order_details.map(detail => (
                 <tr key={detail.id} className="table-row is-hoverable">
                   <td className="td-cell col-fixed">{detail.row_number}</td>
-                  <td className="td-cell">{detail.product_name}</td>
-                  <td className="td-cell">{detail.product_detail}</td>
-                  <td className="td-cell">{detail.purchase_order_details[0]?.purchase_order.customer.name}</td>
-                  <td className="td-cell">{detail.purchase_order_details[0]?.quantity}</td>
-                  <td className="td-cell">{detail.quantity}</td>
-                  <td className="td-cell">{detail.purchase_order_details[0]?.unit_price}</td>
-                  <td className="td-cell">{detail.unit_price}</td>
+                  <td className="td-cell">{detail.product?.name}</td>
+                  <td className="td-cell">{detail.product_name} <br/>{detail.product_detail}</td>
+                  <td className="td-cell">
+                    {detail.purchase_order_details[0]?.purchase_order.customer.name} <br/>
+                    {detail.purchase_order_details[0]?.purchase_order.ship_from_address} <br/>
+                    {detail.purchase_order_details[0]?.purchase_order?.customer_contact.name} <br/>
+                  </td>
+                  <td className="td-cell">{detail.purchase_order_details[0]?.purchase_order.purchase_in_charge.name}</td>
+                  <td className="td-cell">{parseNumber(detail.purchase_order_details[0]?.quantity)}</td>
+                  <td className="td-cell">{parseNumber(detail.quantity)}</td>
+                  <td className="td-cell">{parseNumber(detail.purchase_order_details[0]?.unit_price)}</td>
+                  <td className="td-cell">{parseNumber(detail.unit_price)}</td>
+                  <td className="td-cell">
+                    {formatCurrency(detail.purchase_order_details[0]?.price)} <br/>
+                    <span className="u-text-sm">
+                      ({formatCurrency(detail.purchase_order_details[0]?.price_with_tax)})
+                    </span>
+                  </td>
+                  <td className="td-cell">
+                    {formatCurrency(detail.price)} <br/>
+                    <span className="u-text-sm">
+                      ({formatCurrency(detail.price_with_tax)})
+                    </span>
+                  </td>
+                  <td className="td-cell">{formatCurrency(detail.price - detail.purchase_order_details[0]?.price)}</td>
                   <td className="td-cell">{detail.note}</td>
                 </tr>
               ))}

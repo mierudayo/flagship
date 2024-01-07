@@ -78,6 +78,9 @@ class SalesOrderController extends Controller
             'createdBy',
             'updatedBy',
             'salesOrderDetails.purchaseOrderDetails.purchaseOrder.customer',
+            'salesOrderDetails.purchaseOrderDetails.purchaseOrder.purchaseInCharge',
+            'salesOrderDetails.purchaseOrderDetails.purchaseOrder.customerContact',
+            'salesOrderDetails.product',
         ]);
 
         return Inertia::render('SalesOrder/Show', [
