@@ -106,6 +106,7 @@ class SalesOrderController extends Controller
     {
         $salesOrder = DB::transaction(function () use ($request, $salesOrder) {
             $salesOrder = $this->updateSalesOrder($request, $salesOrder);
+            $this->deleteDetailRows($salesOrder, $request->input('detail_rows'));
             $this->upsertDetailRows($salesOrder, $request->input('detail_rows'));
             return $salesOrder;
         });
@@ -203,6 +204,37 @@ class SalesOrderController extends Controller
             $purchaseOrderDetail = $this->upsertPurchaseOrderDetail($detailRow['purchase_order_detail'], $purchaseOrder, $salesOrderDetail);
             $salesOrderDetail->purchaseOrderDetails()->sync($purchaseOrderDetail);
         });
+    }
+
+    private function deleteDetailRows(SalesOrder $salesOrder, array $detailRows): void
+    {
+        $currentSoDetailIds = $salesOrder->salesOrderDetails()->pluck('id');
+
+        $newSoDetailIds = collect($detailRows)->map(function($detailRow) {
+            return $detailRow['sales_order_detail']['id'] ?? null;
+        })->filter();
+
+        $deletedSoDetailIds = $currentSoDetailIds->diff($newSoDetailIds)->all();
+        $salesOrderDetails = SalesOrderDetail::whereIn('id', $deletedSoDetailIds)->get();
+
+        foreach ($salesOrderDetails as $soDetail) {
+            // Get the PurchaseOrderDetail related to the SalesOrderDetail (many to many)
+            $purchaseOrderDetails = $soDetail->purchaseOrderDetails()->get();
+
+            // Get the parent record of PurchaseOrderDetail, which is PurchaseOrder
+            $purchaseOrders = $purchaseOrderDetails->map(function($poDetail) {
+                return $poDetail->purchaseOrder;
+            });
+
+            // Delete SalesOrderDetail, PurchaseOrderDetail, PurchaseOrder
+            $soDetail->delete();
+            $purchaseOrderDetails->each(function($poDetail) {
+                $poDetail->delete();
+            });
+            $purchaseOrders->each(function($purchaseOrder) {
+                $purchaseOrder->delete();
+            });
+        }
     }
 
     /** 受注明細 */
