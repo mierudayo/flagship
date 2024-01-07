@@ -115,6 +115,22 @@ class SalesOrderController extends Controller
             ->with('message', "受注ID:{$salesOrder->id} 更新成功しました。");
     }
 
+    public function destroy(SalesOrder $salesOrder): RedirectResponse
+    {
+        DB::transaction(function () use ($salesOrder) {
+            $salesOrder->load('salesOrderDetails.purchaseOrderDetails.purchaseOrder');
+            foreach ($salesOrder->salesOrderDetails as $soDetail) {
+                foreach ($soDetail->purchaseOrderDetails as $poDetail) {
+                    $poDetail->purchaseOrder->delete();
+                }
+            }
+            $salesOrder->delete();
+        });
+
+        return to_route('sales-orders.index')
+            ->with('message', "受注ID:{$salesOrder->id} 削除しました。");
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Business Logic

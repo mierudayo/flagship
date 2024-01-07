@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect } from 'react';
-import { useForm } from '@inertiajs/react';
+import { Link, useForm } from '@inertiajs/react';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AppLayout from '@/Layouts/AppLayout';
 import IconButton from '@mui/material/IconButton';
@@ -300,6 +300,15 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
         </button>
         <CancelButton isDirty={isDirty} route={route('customers.index')} />
         {processing && <span>Now Loading...</span>}
+        <Link
+          onBefore={() => confirm('紐付いている発注データも削除されます。本当に削除しますか？')}
+          href={route('sales-orders.destroy', salesOrder)}
+          method="delete"
+          className="btn btn-danger u-ml-auto"
+          as="button"
+        >
+          削除
+        </Link>
       </div>
 
       <FormErrorAlert errors={errors} />
