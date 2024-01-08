@@ -123,6 +123,32 @@ class SalesOrderController extends Controller
         ]);
     }
 
+    public function duplicate(SalesOrder $salesOrder): Response
+    {
+        $salesOrder->load([
+            'customer.contacts',
+            'customer.deliveryAddresses',
+            'salesOrderDetails' => function ($query) {
+                $query->with([
+                    'purchaseOrderDetails.purchaseOrder' => function ($query) {
+                        $query->with([
+                            'customer.contacts',
+                            'customer.deliveryAddresses',
+                            'purchaseOrderDetails',
+                        ]);
+                    },
+                ]);
+            },
+        ]);
+
+        return Inertia::render('SalesOrder/Duplicate', [
+            'salesOrder'             => $salesOrder,
+            'userOptions'            => User::active()->get(),
+            'productOptions'         => Product::all(),
+            'productCategoryOptions' => ProductCategory::all(),
+        ]);
+    }
+
     public function update(SalesOrderUpdateRequest $request, SalesOrder $salesOrder): RedirectResponse
     {
         $salesOrder = DB::transaction(function () use ($request, $salesOrder) {

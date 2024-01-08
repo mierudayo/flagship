@@ -107,6 +107,7 @@ Route::middleware('auth')->group(function () {
     Route::post('sales-orders', [SalesOrderController::class, 'store'])->name('sales-orders.store');
     Route::get('sales-orders/{salesOrder}', [SalesOrderController::class, 'show'])->name('sales-orders.show');
     Route::get('sales-orders/{salesOrder}/edit', [SalesOrderController::class, 'edit'])->name('sales-orders.edit');
+    Route::get('sales-orders/{salesOrder}/duplicate', [SalesOrderController::class, 'duplicate'])->name('sales-orders.duplicate');
     Route::patch('sales-orders/{salesOrder}', [SalesOrderController::class, 'update'])->name('sales-orders.update');
     Route::delete('sales-orders/{salesOrder}', [SalesOrderController::class, 'destroy'])->name('sales-orders.destroy');
 

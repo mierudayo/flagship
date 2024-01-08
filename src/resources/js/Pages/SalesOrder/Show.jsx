@@ -39,6 +39,12 @@ const Show = ({ salesOrder }) => {
         >
           編集する
         </Link>
+        <Link
+          href={route('sales-orders.duplicate', salesOrder)}
+          className="btn btn-secondary u-mr-3"
+        >
+          複製する
+        </Link>
       </div>
 
       <div className="content-section">
