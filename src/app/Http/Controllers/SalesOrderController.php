@@ -77,11 +77,19 @@ class SalesOrderController extends Controller
             'salesInCharge',
             'createdBy',
             'updatedBy',
-            'salesOrderDetails.purchaseOrderDetails.purchaseOrder.customer',
-            'salesOrderDetails.purchaseOrderDetails.purchaseOrder.purchaseInCharge',
-            'salesOrderDetails.purchaseOrderDetails.purchaseOrder.customerContact',
-            'salesOrderDetails.product',
-            'salesOrderDetails.purchaseOrderDetails.purchaseOrder.purchaseOrderDetails',
+            'salesOrderDetails' => function ($query) {
+                $query->with([
+                    'product',
+                    'purchaseOrderDetails.purchaseOrder' => function ($query) {
+                        $query->with([
+                            'customer',
+                            'purchaseInCharge',
+                            'customerContact',
+                            'purchaseOrderDetails',
+                        ]);
+                    },
+                ]);
+            },
         ]);
 
         return Inertia::render('SalesOrder/Show', [
@@ -94,9 +102,17 @@ class SalesOrderController extends Controller
         $salesOrder->load([
             'customer.contacts',
             'customer.deliveryAddresses',
-            'salesOrderDetails.purchaseOrderDetails.purchaseOrder.customer.contacts',
-            'salesOrderDetails.purchaseOrderDetails.purchaseOrder.customer.deliveryAddresses',
-            'salesOrderDetails.purchaseOrderDetails.purchaseOrder.purchaseOrderDetails',
+            'salesOrderDetails' => function ($query) {
+                $query->with([
+                    'purchaseOrderDetails.purchaseOrder' => function ($query) {
+                        $query->with([
+                            'customer.contacts',
+                            'customer.deliveryAddresses',
+                            'purchaseOrderDetails',
+                        ]);
+                    },
+                ]);
+            },
         ]);
 
         return Inertia::render('SalesOrder/Edit', [
