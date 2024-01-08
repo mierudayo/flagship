@@ -81,6 +81,7 @@ class SalesOrderController extends Controller
             'salesOrderDetails.purchaseOrderDetails.purchaseOrder.purchaseInCharge',
             'salesOrderDetails.purchaseOrderDetails.purchaseOrder.customerContact',
             'salesOrderDetails.product',
+            'salesOrderDetails.purchaseOrderDetails.purchaseOrder.purchaseOrderDetails',
         ]);
 
         return Inertia::render('SalesOrder/Show', [
@@ -95,6 +96,7 @@ class SalesOrderController extends Controller
             'customer.deliveryAddresses',
             'salesOrderDetails.purchaseOrderDetails.purchaseOrder.customer.contacts',
             'salesOrderDetails.purchaseOrderDetails.purchaseOrder.customer.deliveryAddresses',
+            'salesOrderDetails.purchaseOrderDetails.purchaseOrder.purchaseOrderDetails',
         ]);
 
         return Inertia::render('SalesOrder/Edit', [
