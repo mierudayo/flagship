@@ -98,23 +98,23 @@ class PurchaseOrder extends Model
     /** 発注合計額(税抜き) */
     public function getTotalAttribute(): int
     {
-        return $this->purchaseOrderDetails->sum('subtotal');
+        return $this->purchaseOrderDetails->sum('price');
     }
 
     public function getDisplayTotalAttribute(): string
     {
-        return number_format($this->subtotal_amount);
+        return number_format($this->total);
     }
 
     /** 発注合計額(税込) */
     public function getTotalWithTaxAttribute(): int
     {
-        return $this->purchaseOrderDetails->sum('total');
+        return $this->purchaseOrderDetails->sum('price_with_tax');
     }
 
     public function getDisplayTotalWithTaxAttribute(): string
     {
-        return number_format($this->total_amount);
+        return number_format($this->total_with_tax);
     }
 
     /*
