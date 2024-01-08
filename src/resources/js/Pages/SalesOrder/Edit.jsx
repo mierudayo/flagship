@@ -287,6 +287,19 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
     setSupplierOptions(supplierOptions.filter((_, index) => index !== indexToRemove));
   }
 
+  function copyDetailRowToLast(indexToCopy) {
+    const rowToCopy = JSON.parse(JSON.stringify(data.detail_rows[indexToCopy]));
+
+    if (rowToCopy.sales_order_detail) delete rowToCopy.sales_order_detail.id;
+    if (rowToCopy.purchase_order) delete rowToCopy.purchase_order.id;
+    if (rowToCopy.purchase_order_detail) delete rowToCopy.purchase_order_detail.id;
+
+    setData('detail_rows', [...data.detail_rows, rowToCopy]);
+
+    const supplierOptionToCopy = supplierOptions[indexToCopy];
+    setSupplierOptions([...supplierOptions, supplierOptionToCopy]);
+  }
+
   return (
     <>
       <h1 className="content-title">受注 編集</h1>
@@ -712,6 +725,13 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
                           onClick={() => removeDetailRow(index)}
                         >
                           削除
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-secondary u-mt-3"
+                          onClick={() => copyDetailRowToLast(index)}
+                        >
+                          複製
                         </button>
                       </td>
 

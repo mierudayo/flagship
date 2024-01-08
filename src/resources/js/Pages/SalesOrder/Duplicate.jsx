@@ -284,6 +284,14 @@ const Duplicate = ({ salesOrder, userOptions, productOptions, productCategoryOpt
     setSupplierOptions(supplierOptions.filter((_, index) => index !== indexToRemove));
   }
 
+  function copyDetailRowToLast(indexToCopy) {
+    const rowToCopy = JSON.parse(JSON.stringify(data.detail_rows[indexToCopy]));
+    setData('detail_rows', [...data.detail_rows, rowToCopy]);
+
+    const supplierOptionToCopy = supplierOptions[indexToCopy];
+    setSupplierOptions([...supplierOptions, supplierOptionToCopy]);
+  }
+
   return (
     <>
       <h1 className="content-title">受注 複製登録</h1>
@@ -700,6 +708,13 @@ const Duplicate = ({ salesOrder, userOptions, productOptions, productCategoryOpt
                           onClick={() => removeDetailRow(index)}
                         >
                           削除
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-secondary u-mt-3"
+                          onClick={() => copyDetailRowToLast(index)}
+                        >
+                          複製
                         </button>
                       </td>
 
