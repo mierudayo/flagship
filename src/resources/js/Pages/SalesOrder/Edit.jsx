@@ -25,7 +25,7 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
   const [isSupplierModalOpen, setIsSupplierModalOpen] = useState(false);
   const [customerContacts, setCustomerContacts] = useState(salesOrder.customer.contacts || []);
   const [deliveryAddresses, setDeliveryAddresses] = useState(salesOrder.customer.delivery_addresses || []);
-  const [targetIndex, setTargetIndex] = useState(null);
+  const [clickedRowIndex, setClickedRowIndex] = useState(null);
   const [supplierOptions, setSupplierOptions] = useState(salesOrder.sales_order_details.map(soDetail => {
     return {
       supplierContacts: soDetail.purchase_order_details[0].purchase_order.customer.contacts || [],
@@ -195,10 +195,10 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
 
   function selectSupplier(supplier) {
     const updatedDetails = [...data.detail_rows];
-    updatedDetails[targetIndex] = {
-      ...updatedDetails[targetIndex],
+    updatedDetails[clickedRowIndex] = {
+      ...updatedDetails[clickedRowIndex],
       purchase_order: {
-        ...updatedDetails[targetIndex].purchase_order,
+        ...updatedDetails[clickedRowIndex].purchase_order,
         customer_id: supplier.id,
         customer_name: supplier.name,
         customer_contact_id: supplier.contact_id,
@@ -207,7 +207,7 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
     }
     setData('detail_rows', updatedDetails);
 
-    updateSupplierOptions(targetIndex, {
+    updateSupplierOptions(clickedRowIndex, {
       supplierContacts: supplier.contacts,
       supplierAddresses: supplier.delivery_addresses,
     });
@@ -215,9 +215,9 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
     setIsSupplierModalOpen(false);
   }
 
-  function updateSupplierOptions(targetIndex, updates) {
+  function updateSupplierOptions(clickedRowIndex, updates) {
     setSupplierOptions(supplierOptions.map((row, index) => {
-      if (index === targetIndex) {
+      if (index === clickedRowIndex) {
         return {
           ...row,
           ...updates,
@@ -770,7 +770,7 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
                           />
                           <button type="button" className="btn btn-secondary" onClick={() => {
                             setIsSupplierModalOpen(true);
-                            setTargetIndex(index);
+                            setClickedRowIndex(index);
                           }}>
                             <ManageSearchIcon />
                           </button>

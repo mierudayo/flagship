@@ -25,7 +25,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
   const [isSupplierModalOpen, setIsSupplierModalOpen] = useState(false);
   const [customerContacts, setCustomerContacts] = useState([]);
   const [deliveryAddresses, setDeliveryAddresses] = useState([]);
-  const [targetIndex, setTargetIndex] = useState(null);
+  const [clickedRowIndex, setClickedRowIndex] = useState(null);
   const [supplierOptions, setSupplierOptions] = useState([{
     supplierContacts: [],
     supplierAddresses: [],
@@ -155,10 +155,10 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
   function selectSupplier(supplier) {
     const updatedDetails = [...data.detail_rows];
-    updatedDetails[targetIndex] = {
-      ...updatedDetails[targetIndex],
+    updatedDetails[clickedRowIndex] = {
+      ...updatedDetails[clickedRowIndex],
       purchase_order: {
-        ...updatedDetails[targetIndex].purchase_order,
+        ...updatedDetails[clickedRowIndex].purchase_order,
         customer_id: supplier.id,
         customer_name: supplier.name,
         customer_contact_id: supplier.contact_id,
@@ -167,7 +167,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     }
     setData('detail_rows', updatedDetails);
 
-    updateSupplierOptions(targetIndex, {
+    updateSupplierOptions(clickedRowIndex, {
       supplierContacts: supplier.contacts,
       supplierAddresses: supplier.delivery_addresses,
     });
@@ -175,9 +175,9 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     setIsSupplierModalOpen(false);
   }
 
-  function updateSupplierOptions(targetIndex, updates) {
+  function updateSupplierOptions(clickedRowIndex, updates) {
     setSupplierOptions(supplierOptions.map((row, index) => {
-      if (index === targetIndex) {
+      if (index === clickedRowIndex) {
         return {
           ...row,
           ...updates,
@@ -721,7 +721,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           />
                           <button type="button" className="btn btn-secondary" onClick={() => {
                             setIsSupplierModalOpen(true);
-                            setTargetIndex(index);
+                            setClickedRowIndex(index);
                           }}>
                             <ManageSearchIcon />
                           </button>
