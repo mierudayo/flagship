@@ -20,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Model::shouldBeStrict(!app()->isProduction());
+        Model::preventLazyLoading(!app()->isProduction());
+        // ↓updateOrCreateメソッドではうまく機能しないためissue解消されるまで無効化
+        // Model::preventSilentlyDiscardingAttributes(!app()->isProduction());
+        Model::preventAccessingMissingAttributes(!app()->isProduction());
     }
 }
