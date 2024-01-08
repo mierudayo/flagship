@@ -244,6 +244,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
   function removeDetailRow(indexToRemove) {
     setData('detail_rows', data.detail_rows.filter((_, index) => index !== indexToRemove));
+    setSupplierOptions(supplierOptions.filter((_, index) => index !== indexToRemove));
   }
 
   return (
