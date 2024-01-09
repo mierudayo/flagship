@@ -216,7 +216,7 @@ export default function CustomerForm({
           <table className="table">
             <thead className="table-header is-sticky">
               <tr className="table-row">
-                <th className="th-cell col-fixed"></th>
+                <th className="th-cell col-fixed">No.</th>
                 <th className="th-cell u-min-w-200">
                   <FormLabel label="名前" isRequired={true} />
                 </th>
@@ -256,13 +256,17 @@ export default function CustomerForm({
               {data.contacts.map((contact, index) => (
                 <tr key={index} className="table-row">
                   <td className="td-cell col-fixed u-w-80">
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                      onClick={() => removeContact(index)}
-                    >
-                      削除
-                    </button>
+                    {contact.id ? (
+                      <span>{contact.id}</span>
+                    ) : (
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => removeContact(index)}
+                      >
+                        削除
+                      </button>
+                    )}
                   </td>
 
                   <td className="td-cell">
@@ -436,13 +440,17 @@ export default function CustomerForm({
               {data.delivery_addresses.map((deliveryAddress, index) => (
                 <tr key={index} className="table-row">
                   <td className="td-cell col-fixed u-w-80">
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                      onClick={() => removeDeliveryAddress(index)}
-                    >
-                      削除
-                    </button>
+                    {deliveryAddress.id ? (
+                      <span>{deliveryAddress.id}</span>
+                    ) : (
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => removeDeliveryAddress(index)}
+                      >
+                        削除
+                      </button>
+                    )}
                   </td>
 
                   <td className="td-cell">
