@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BillingAddressController as ApiBillingAddressController;
 use App\Http\Controllers\Api\CustomerContactController as ApiCustomerContactController;
 use App\Http\Controllers\Api\CustomerController as ApiCustomerController;
 use App\Http\Controllers\BillingAddressController;
@@ -29,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('api/customers', [ApiCustomerController::class, 'index']);
     Route::get('api/customers/{customer}', [ApiCustomerController::class, 'find']);
     Route::get('api/contacts', [ApiCustomerContactController::class, 'index']);
+    Route::get('api/billing-addresses', [ApiBillingAddressController::class, 'index']);
 
     // User
     Route::get('users', [UserController::class, 'index'])->name('users.index');
@@ -45,6 +47,10 @@ Route::middleware('auth')->group(function () {
     Route::get('customers/{customer}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
     Route::patch('customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
     Route::delete('customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+    Route::patch('customers/{customer}/billing-addresses/attach', [CustomerController::class, 'attachBillingAddress'])
+        ->name('customers.attach-billing-address');
+
+
 
     // CustomerContact
     Route::get('contacts', [CustomerContactController::class, 'index'])->name('contacts.index');

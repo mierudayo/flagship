@@ -11,6 +11,7 @@ use App\Models\DeliveryAddress;
 use App\Models\LeadSource;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -72,6 +73,7 @@ class CustomerController extends Controller
             'salesTerm',
             'contacts.salesActivities.inChargeUser',
             'contacts.leadSource',
+            'billingAddresses',
         ]);
 
         return Inertia::render('Customer/Show', [
@@ -123,6 +125,25 @@ class CustomerController extends Controller
 
         $customer->delete();
         return to_route('customers.index');
+    }
+
+    public function attachBillingAddress(Customer $customer, Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'billing_address_id' => 'required|integer|exists:billing_addresses,id'
+        ]);
+
+        $billingAddressId = $validatedData['billing_address_id'];
+
+        if($customer->hasBillingAddress($billingAddressId)) {
+            return to_route('customers.show', $customer)
+                ->with('message', "請求先No.{$billingAddressId} はすでに紐付けされています");
+        }
+
+        $customer->billingAddresses()->attach($billingAddressId);
+
+        return to_route('customers.show', $customer)
+            ->with('message', "請求先No.{$billingAddressId} を紐付けしました。");
     }
 
     /*

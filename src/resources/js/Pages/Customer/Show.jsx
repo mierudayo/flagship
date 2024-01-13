@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, usePage } from '@inertiajs/react';
+import { Link, usePage, router } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
@@ -8,12 +8,23 @@ import ContactForm from './Partials/ContactForm';
 import AddressForm from './Partials/AddressForm';
 import SalesActivityForm from './Partials/SalesActivityForm';
 import TermDetails from './Partials/TermDetails';
+import BillingAddressLookup from "../../Components/BillingAddressLookup";
 
 const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) => {
   const { flash } = usePage().props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
   const [isSalesActivityModalOpen, setIsSalesActivityModalOpen] = useState(false);
+  const [isBillingAddressModalOpen, setIsBillingAddressModalOpen] = useState(false);
+
+  function attachBillingAddress(billingAddress) {
+    const url = route('customers.attach-billing-address', customer);
+    router.visit(url, {
+      method: 'patch',
+      data: { billing_address_id: billingAddress.id },
+      onSuccess: () => setIsBillingAddressModalOpen(false),
+    });
+  }
 
   return (
     <>
@@ -48,6 +59,11 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
           className="btn btn-secondary u-mr-3">
           +営業履歴を追加
         </button>
+        <button
+          onClick={() => setIsBillingAddressModalOpen(true)}
+          className="btn btn-secondary u-mr-3">
+          既存の請求先を紐付け
+        </button>
       </div>
 
       {isModalOpen &&
@@ -69,6 +85,14 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
         <Modal closeModal={() => setIsSalesActivityModalOpen(false)} title="営業履歴 登録">
           <SalesActivityForm customer={customer} userOptions={userOptions} closeModal={() => setIsSalesActivityModalOpen(false)} />
         </Modal>}
+
+      {isBillingAddressModalOpen &&
+      <Modal closeModal={() => setIsBillingAddressModalOpen(false)} title="請求先 紐付け">
+        <BillingAddressLookup
+          customer={customer}
+          handleClickAttach={billingAddress => attachBillingAddress(billingAddress)}
+        />
+      </Modal>}
 
       <Alert type="success" message={flash.message} />
 
@@ -136,6 +160,45 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
                 <td className="td-cell">{customer.note}</td>
               </tr>
 
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div className="content-section">
+        <div className="content-section-title">
+          請求先
+        </div>
+        <div className="table-wrapper is-scrollable">
+          <table className="table">
+            <thead className="table-header is-sticky">
+              <tr className="table-row">
+                <th className="th-cell col-fixed">No.</th>
+                <th className="th-cell u-min-w-200">請求先</th>
+                <th className="th-cell u-min-w-136">請求先担当者</th>
+                <th className="th-cell u-min-w-320">住所</th>
+                <th className="th-cell u-min-w-160">TEL</th>
+                <th className="th-cell u-min-w-160">FAX</th>
+                <th className="th-cell u-min-w-160">E-mail</th>
+                <th className="th-cell u-w-120">備考</th>
+              </tr>
+            </thead>
+            <tbody className="table-body">
+              {customer.billing_addresses.map(billingAddress => (
+                <tr key={billingAddress.id} className="table-row is-hoverable">
+                  <td className="td-cell col-fixed">{billingAddress.id}</td>
+                  <td className="td-cell">
+                    {billingAddress.name} <br/>
+                    ({billingAddress.name_kana})
+                  </td>
+                  <td className="td-cell">{billingAddress.billing_contact_name}</td>
+                  <td className="td-cell">{billingAddress.address}</td>
+                  <td className="td-cell">{billingAddress.tel}</td>
+                  <td className="td-cell">{billingAddress.fax}</td>
+                  <td className="td-cell">{billingAddress.email}</td>
+                  <td className="td-cell u-ellipsis u-max-w-320">{billingAddress.note}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

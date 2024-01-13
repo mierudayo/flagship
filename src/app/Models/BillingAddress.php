@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class BillingAddress extends Model
 {
@@ -23,6 +24,11 @@ class BillingAddress extends Model
         'invoice_delivery_method',
         'note',
     ];
+
+    public function customers(): BelongsToMany
+    {
+        return $this->belongsToMany(Customer::class, 'billing_address_customer');
+    }
 
     public function scopeSearchByKeyword(Builder $query, ?string $keyword): Builder
     {
