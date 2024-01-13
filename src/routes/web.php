@@ -69,6 +69,8 @@ Route::middleware('auth')->group(function () {
     // BillingAddress
     Route::get('billing-addresses', [BillingAddressController::class, 'index'])
         ->name('billing-addresses.index');
+    Route::post('customers/{customer}/billing-addresses', [BillingAddressController::class, 'addToCustomer'])
+        ->name('customers.billing-addresses.add');
 
     // DeliveryAddress
     Route::post('customers/{customer}/delivery-addresses', [DeliveryAddressController::class, 'addToCustomer'])

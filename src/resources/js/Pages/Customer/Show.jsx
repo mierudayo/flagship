@@ -9,12 +9,14 @@ import AddressForm from './Partials/AddressForm';
 import SalesActivityForm from './Partials/SalesActivityForm';
 import TermDetails from './Partials/TermDetails';
 import BillingAddressLookup from "../../Components/BillingAddressLookup";
+import BillingAddressForm from "./Partials/BillingAddressForm";
 
 const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) => {
   const { flash } = usePage().props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
   const [isSalesActivityModalOpen, setIsSalesActivityModalOpen] = useState(false);
+  const [isBillingAddressCreateModalOpen, setIsBillingAddressCreateModalOpen] = useState(false);
   const [isBillingAddressModalOpen, setIsBillingAddressModalOpen] = useState(false);
 
   function attachBillingAddress(billingAddress) {
@@ -60,6 +62,11 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
           +営業履歴を追加
         </button>
         <button
+          onClick={() => setIsBillingAddressCreateModalOpen(true)}
+          className="btn btn-secondary u-mr-3">
+          +請求先を追加
+        </button>
+        <button
           onClick={() => setIsBillingAddressModalOpen(true)}
           className="btn btn-secondary u-mr-3">
           既存の請求先を紐付け
@@ -84,6 +91,11 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
       {isSalesActivityModalOpen &&
         <Modal closeModal={() => setIsSalesActivityModalOpen(false)} title="営業履歴 登録">
           <SalesActivityForm customer={customer} userOptions={userOptions} closeModal={() => setIsSalesActivityModalOpen(false)} />
+        </Modal>}
+
+      {isBillingAddressCreateModalOpen &&
+        <Modal closeModal={() => setIsBillingAddressCreateModalOpen(false)} title="請求先 登録">
+          <BillingAddressForm customer={customer} closeModal={() => setIsBillingAddressCreateModalOpen(false)} />
         </Modal>}
 
       {isBillingAddressModalOpen &&
