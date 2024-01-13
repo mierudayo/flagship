@@ -26,7 +26,7 @@ const Show = ({ contact }) => {
         </Link>
       </div>
 
-      <Alert type="success" message={flash.message} />
+      <Alert type={flash.type} message={flash.message} />
 
       <div className="content-section">
 

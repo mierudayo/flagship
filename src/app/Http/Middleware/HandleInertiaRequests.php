@@ -53,7 +53,8 @@ class HandleInertiaRequests extends Middleware
             ? $request->user()->only('id', 'name', 'email')
             : null,
             'flash' => [
-                'message' => fn () => $request->session()->get('message')
+                'type'    => fn () => $request->session()->get('type'),
+                'message' => fn () => $request->session()->get('message'),
             ],
             'date' => [
                 'today' => Carbon::today()->format('Y-m-d'),

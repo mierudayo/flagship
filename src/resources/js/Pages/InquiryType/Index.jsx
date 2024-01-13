@@ -11,7 +11,7 @@ const Index = ({ inquiryTypes }) => {
     <>
       <h1 className="content-title">問い合わせ区分 管理</h1>
 
-      <Alert type="success" message={flash.message} />
+      <Alert type={flash.type} message={flash.message} />
 
       <InquiryTypeCreateForm />
 

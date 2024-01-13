@@ -78,7 +78,7 @@ const Edit = ({ contact, userOptions, leadSourceOptions }) => {
         </Link>
       </div>
 
-      <Alert type="danger" message={flash.message} />
+      <Alert type={flash.type} message={flash.message} />
 
       <FormErrorAlert errors={errors} />
 

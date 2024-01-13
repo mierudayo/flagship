@@ -221,7 +221,7 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
         </div>
       </form>
 
-      <Alert type="success" message={flash.message} />
+      <Alert type={flash.type} message={flash.message} />
 
       <InquiryTable inquiries={inquiries.data} />
     </>

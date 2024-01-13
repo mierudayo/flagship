@@ -142,7 +142,7 @@ const Edit = ({ customer, userOptions, leadSourceOptions, paymentTermOptions, ad
         </Link>
       </div>
 
-      <Alert type="danger" message={flash.message} />
+      <Alert type={flash.type} message={flash.message} />
 
       <FormErrorAlert errors={errors} />
 

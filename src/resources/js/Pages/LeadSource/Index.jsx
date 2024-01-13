@@ -13,7 +13,7 @@ const Index = ({ leadSources }) => {
 
       <LeadSourceCreateForm />
 
-      <Alert type="success" message={flash.message} />
+      <Alert type={flash.type} message={flash.message} />
 
       <LeadSourceTable leadSources={leadSources} />
 

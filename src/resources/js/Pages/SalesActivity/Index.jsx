@@ -127,7 +127,7 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
         </div>
       </form>
 
-      <Alert type="success" message={flash.message} />
+      <Alert type={flash.type} message={flash.message} />
 
       <SalesActivityTable salesActivities={salesActivities.data} />
     </>

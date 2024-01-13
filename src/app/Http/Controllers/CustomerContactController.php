@@ -119,7 +119,7 @@ class CustomerContactController extends Controller
         if (!$contact->canDelete()) {
             return redirect()
                 ->route('contacts.edit', $contact)
-                ->with('message', 'この連絡先は問い合わせ・営業履歴データを持つため削除できません。');
+                ->with(['type' => 'danger', 'message' => 'この連絡先は関連データを持つため削除できません。']);
         }
 
         $contact->delete();

@@ -134,7 +134,7 @@ const Index = ({ users, canAdmin }) => {
         </div>
       </form>
 
-      <Alert type="success" message={flash.message} />
+      <Alert type={flash.type} message={flash.message} />
 
       <UserTable users={users.data} canAdmin={canAdmin} />
     </>

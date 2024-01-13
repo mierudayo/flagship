@@ -2,8 +2,10 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 export default function Alert({ type, message }) {
-  const getIcon = (type) => {
-    switch (type) {
+  const alertType = type || 'success';
+
+  const getIcon = () => {
+    switch (alertType) {
       case 'success':
         return <CheckCircleOutlineIcon />;
       case 'danger':
@@ -18,7 +20,7 @@ export default function Alert({ type, message }) {
   }
 
   return (
-    <div className={`alert alert-${type}`}>
+    <div className={`alert alert-${alertType}`}>
       {getIcon(type)}
       <span className="u-ml-2">{message}</span>
     </div>

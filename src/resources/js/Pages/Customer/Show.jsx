@@ -116,7 +116,7 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
         />
       </Modal>}
 
-      <Alert type="success" message={flash.message} />
+      <Alert type={flash.type} message={flash.message} />
 
       <div className="content-section">
 

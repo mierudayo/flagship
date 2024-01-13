@@ -120,7 +120,7 @@ class CustomerController extends Controller
         if (!$customer->canDelete()) {
             return redirect()
                 ->route('customers.edit', $customer)
-                ->with('message', 'この取引先は関連データを持つため削除できません。');
+                ->with(['type' => 'danger', 'message' => 'この取引先は関連データを持つため削除できません。']);
         }
 
         $customer->delete();
@@ -137,7 +137,7 @@ class CustomerController extends Controller
 
         if($customer->hasBillingAddress($billingAddressId)) {
             return to_route('customers.show', $customer)
-                ->with('message', "請求先No.{$billingAddressId} はすでに紐付けされています");
+                ->with(['type' => 'danger', 'message' => "請求先No.{$billingAddressId} はすでに紐付けされています"]);
         }
 
         $customer->billingAddresses()->attach($billingAddressId);
@@ -156,7 +156,7 @@ class CustomerController extends Controller
 
         if (!$customer->hasBillingAddress($billingAddressId)) {
             return to_route('customers.show', $customer)
-                ->with('message', "請求先No.{$billingAddressId} は紐付けられていません");
+                ->with(['type' => 'danger', 'message' => "請求先No.{$billingAddressId} は紐付けられていません"]);
         }
 
         $customer->billingAddresses()->detach($billingAddressId);

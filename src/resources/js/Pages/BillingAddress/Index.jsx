@@ -46,7 +46,7 @@ const Index = ({ billingAddresses }) => {
         <Pagination paginator={billingAddresses} />
       </div>
 
-      <Alert type="success" message={flash.message} />
+      <Alert type={flash.type} message={flash.message} />
 
       <BillingAddressTable billingAddresses={billingAddresses.data} />
     </>
