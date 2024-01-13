@@ -17,6 +17,7 @@ class CustomerController extends Controller
             ->with([
                 'salesTerm',
                 'contacts',
+                'billingAddresses',
                 'deliveryAddresses',
             ])
             ->searchByKeyword($keyword)
@@ -32,6 +33,7 @@ class CustomerController extends Controller
         $customer->load([
             'salesTerm',
             'contacts',
+            'billingAddresses',
             'deliveryAddresses',
         ]);
 

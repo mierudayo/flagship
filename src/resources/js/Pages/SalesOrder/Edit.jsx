@@ -24,6 +24,7 @@ import DropdownMenuInRow from "./Partials/DropdownMenuInRow";
 const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions, paymentTermOptions, date, taxRate }) => {
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
   const [isSupplierModalOpen, setIsSupplierModalOpen] = useState(false);
+  const [billingAddresses, setBillingAddresses] = useState(salesOrder.customer.billing_addresses || []);
   const [customerContacts, setCustomerContacts] = useState(salesOrder.customer.contacts || []);
   const [deliveryAddresses, setDeliveryAddresses] = useState(salesOrder.customer.delivery_addresses || []);
   const [clickedRowIndex, setClickedRowIndex] = useState(null);
@@ -106,7 +107,7 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
     customer_id: salesOrder.customer_id || '',
     customer_name: salesOrder.customer_name || '',
     customer_contact_id: salesOrder.customer_contact_id || '',
-    billing_address_id: salesOrder.billing_address_id || '', // TODO: 仕様再検討（必須になるかも)
+    billing_address_id: salesOrder.billing_address_id || '',
     delivery_address_id: salesOrder.delivery_address_id || '',
     product_category_id: salesOrder.product_category_id || '',
     billing_type: salesOrder.billing_type || '',
@@ -182,6 +183,7 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
       ...data,
       'customer_id': customer.id,
       'customer_name': customer.name,
+      'billing_address_id': customer.billing_addresses[0]?.id || '',
       'sales_in_charge_id': customer.in_charge_user_id || '',
       'billing_type': customer.sales_term?.billing_type ?? '',
       'cutoff_day': customer.sales_term?.cutoff_day ?? '',
@@ -189,6 +191,7 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
       'payment_day': customer.sales_term?.payment_day ?? '',
       'payment_day_offset': customer.sales_term?.payment_day_offset ?? '',
     });
+    setBillingAddresses(customer.billing_addresses || []);
     setCustomerContacts(customer.contacts || []);
     setDeliveryAddresses(customer.delivery_addresses || [])
     setIsCustomerModalOpen(false);
@@ -424,6 +427,26 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
                       errors={errors}
                       paymentTermOptions={paymentTermOptions}
                     />
+                  </td>
+                </tr>
+
+                <tr className="table-row is-flexible">
+                  <th className="th-cell">
+                    <FormLabel label="請求先" isRequired={true} />
+                  </th>
+                  <td className="td-cell">
+                    <CustomSelect
+                      onChange={value => setData('billing_address_id', value)}
+                      options={billingAddresses}
+                      value={data.billing_address_id}
+                      valueKey="id"
+                      labelKey="name"
+                      isClearable={true}
+                      isSearchable={true}
+                      placeholder="..."
+                      error={errors.billing_address_id}
+                    />
+                    <InvalidFeedback errors={errors} name="billing_address_id" />
                   </td>
                 </tr>
 

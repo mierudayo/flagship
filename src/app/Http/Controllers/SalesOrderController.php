@@ -100,6 +100,7 @@ class SalesOrderController extends Controller
     public function edit(SalesOrder $salesOrder): Response
     {
         $salesOrder->load([
+            'customer.billingAddresses',
             'customer.contacts',
             'customer.deliveryAddresses',
             'salesOrderDetails' => function ($query) {
@@ -126,6 +127,7 @@ class SalesOrderController extends Controller
     public function duplicate(SalesOrder $salesOrder): Response
     {
         $salesOrder->load([
+            'customer.billingAddresses',
             'customer.contacts',
             'customer.deliveryAddresses',
             'salesOrderDetails' => function ($query) {
