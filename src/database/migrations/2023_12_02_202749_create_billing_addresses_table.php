@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('billing_addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('name_kana')->nullable();
             $table->string('shortcut')->nullable();
             $table->string('billing_contact_name')->nullable();

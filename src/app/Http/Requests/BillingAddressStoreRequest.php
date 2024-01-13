@@ -22,7 +22,7 @@ class BillingAddressStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'                    => ['required', 'string', 'max:255'],
+            'name'                    => ['required', 'string', 'max:255', 'unique:billing_addresses,name'],
             'name_kana'               => ['nullable', 'string', 'max:255'],
             'shortcut'                => ['nullable', 'string', 'max:255'],
             'billing_contact_name'    => ['nullable', 'string', 'max:255'],
@@ -45,7 +45,7 @@ class BillingAddressStoreRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'name'                    => '名前',
+            'name'                    => '請求先名',
             'name_kana'               => '名前（カナ）',
             'shortcut'                => 'ショートカット',
             'billing_contact_name'    => '請求先担当者名',

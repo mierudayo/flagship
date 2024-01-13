@@ -17,7 +17,7 @@ class BillingAddressFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'                   => $this->faker->company,
+            'name'                   => $this->faker->unique()->company,
             'name_kana'              => $this->faker->name,
             'shortcut'               => $this->faker->word,
             'billing_contact_name'   => $this->faker->name,
@@ -26,7 +26,7 @@ class BillingAddressFactory extends Factory
             'email'                  => $this->faker->safeEmail,
             'tel'                    => $this->faker->phoneNumber,
             'fax'                    => $this->faker->phoneNumber,
-            'invoice_delivery_method'=> $this->faker->randomElement(['郵送', 'メール', 'オンライン']),  
+            'invoice_delivery_method'=> $this->faker->randomElement(['郵送', 'メール', 'オンライン']),
             'note'                   => $this->faker->sentence,
         ];
     }
