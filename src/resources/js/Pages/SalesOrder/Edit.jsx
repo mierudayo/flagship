@@ -28,13 +28,13 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
   const [clickedRowIndex, setClickedRowIndex] = useState(null);
   const [supplierOptions, setSupplierOptions] = useState(salesOrder.sales_order_details.map(soDetail => {
     return {
-      supplierContacts: soDetail.purchase_order_details[0].purchase_order.customer.contacts || [],
-      supplierAddresses: soDetail.purchase_order_details[0].purchase_order.customer.delivery_addresses || [],
+      supplierContacts: soDetail.purchase_order_details[0]?.purchase_order?.customer.contacts || [],
+      supplierAddresses: soDetail.purchase_order_details[0]?.purchase_order?.customer.delivery_addresses || [],
     }
   }));
 
   const defaultRows = salesOrder.sales_order_details.map(soDetail => {
-    const purchaseOrder = soDetail.purchase_order_details[0].purchase_order;
+    const purchaseOrder = soDetail.purchase_order_details[0]?.purchase_order;
     const poDetail = soDetail.purchase_order_details[0];
 
     return {
@@ -51,22 +51,22 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
         note: soDetail.note || '',
       },
       purchase_order: {
-        id: purchaseOrder.id,
-        customer_id: purchaseOrder.customer_id ?? '',
-        customer_name: purchaseOrder.customer_name ?? '',
-        customer_contact_id: purchaseOrder.customer_contact_id ?? '',
-        billing_address_id: purchaseOrder.billing_address_id ?? '',
-        delivery_address_id: purchaseOrder.delivery_address_id ?? '',
-        purchase_in_charge_id: purchaseOrder.purchase_in_charge_id ?? '',
+        id: purchaseOrder?.id,
+        customer_id: purchaseOrder?.customer_id ?? '',
+        customer_name: purchaseOrder?.customer_name ?? '',
+        customer_contact_id: purchaseOrder?.customer_contact_id ?? '',
+        billing_address_id: purchaseOrder?.billing_address_id ?? '',
+        delivery_address_id: purchaseOrder?.delivery_address_id ?? '',
+        purchase_in_charge_id: purchaseOrder?.purchase_in_charge_id ?? '',
       },
       purchase_order_detail: {
-        id: poDetail.id,
-        quantity: parseNumber(poDetail.quantity),
-        unit_price: parseNumber(poDetail.unit_price),
+        id: poDetail?.id,
+        quantity: parseNumber(poDetail?.quantity),
+        unit_price: parseNumber(poDetail?.unit_price),
         tax_rate: parseFloat(taxRate.rate),
-        is_tax_inclusive: poDetail.is_tax_inclusive,
-        price: parseNumber(poDetail.price),
-        note: poDetail.note ?? '',
+        is_tax_inclusive: poDetail?.is_tax_inclusive ?? false,
+        price: parseNumber(poDetail?.price),
+        note: poDetail?.note ?? '',
       }
     };
   });
