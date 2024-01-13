@@ -19,6 +19,7 @@ import Modal from '@/Components/Modal';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import PaymentSelectGroup from './Partials/PaymentSelectGroup';
 import { parseNumber, calculatePrice, calculatePriceWithTax, formatCurrency } from '@/Utils/priceCalculator';
+import DropdownMenuInRow from './Partials/DropdownMenuInRow';
 
 const Duplicate = ({ salesOrder, userOptions, productOptions, productCategoryOptions, paymentTermOptions, date, taxRate }) => {
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
@@ -702,20 +703,10 @@ const Duplicate = ({ salesOrder, userOptions, productOptions, productCategoryOpt
                   <Fragment key={index}>
                     <tr className="table-row">
                       <td className="td-cell col-fixed u-w-80">
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          onClick={() => removeDetailRow(index)}
-                        >
-                          削除
-                        </button>
-                        <button
-                          type="button"
-                          className="btn btn-secondary u-mt-3"
-                          onClick={() => copyDetailRowToLast(index)}
-                        >
-                          複製
-                        </button>
+                        <DropdownMenuInRow
+                          handleClickCopy={() => copyDetailRowToLast(index)}
+                          handleClickRemove={() => removeDetailRow(index)}
+                        />
                       </td>
 
                       <td className="td-cell">{index + 1}</td>
