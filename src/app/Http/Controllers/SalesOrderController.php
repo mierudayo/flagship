@@ -70,6 +70,7 @@ class SalesOrderController extends Controller
     public function show(SalesOrder $salesOrder): Response
     {
         $salesOrder->load([
+            'billingAddress',
             'customer',
             'customerContact',
             'deliveryAddress',

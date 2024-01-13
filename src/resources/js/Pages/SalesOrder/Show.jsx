@@ -68,6 +68,13 @@ const Show = ({ salesOrder }) => {
               </tr>
 
               <tr className="table-row">
+                <th className="th-cell">請求先</th>
+                <td className="td-cell">
+                  {salesOrder.billing_address.name}
+                </td>
+              </tr>
+
+              <tr className="table-row">
                 <th className="th-cell">販売先顧客</th>
                 <td className="td-cell">{salesOrder.customer_contact?.name}</td>
               </tr>
