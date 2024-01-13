@@ -3,7 +3,7 @@ import ClickableRow from '@/Components/ClickableRow';
 export default function SalesOrderTable({ salesOrders }) {
   return (
     <div className="table-wrapper is-scrollable">
-      <table className="table">
+      <table className="table has-inner-table">
         <thead className="table-header is-sticky">
           <tr className="table-row">
             <th className="th-cell col-fixed">No.</th>

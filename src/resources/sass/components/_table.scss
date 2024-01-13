@@ -208,45 +208,45 @@ Clickable row, cell
 Table in td-cell
 td要素内に擬似テーブルを作るためのスタイル
 ----------------------- */
-.table {
+.table.has-inner-table {
   height: 100%;
   .td-cell {
     height: 100%;
+    vertical-align: top; // inner-tbodyのheight100%でテキストが押し下げられるのを防ぐ為
+  }
+
+  .th-cell.contains-table,
+  .td-cell.contains-table {
+    padding: 0;
+  }
+
+  .inner-tbody,
+  .inner-thead {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .inner-tr {
+    align-items: stretch;
+    display: flex;
+    flex: 1;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--color-table-border);
+    }
+  }
+
+  .inner-th {
+    font-weight: bold;
+  }
+
+  .inner-td,
+  .inner-th {
+    padding: 8px 16px;
+
+    &:not(:last-child) {
+      border-right: 1px solid var(--color-table-border);
+    }
   }
 }
-
-.th-cell.contains-table,
-.td-cell.contains-table {
-  padding: 0;
-}
-
-.inner-tbody,
-.inner-thead {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.inner-tr {
-  align-items: stretch;
-  display: flex;
-  flex: 1;
-
-  &:not(:last-child) {
-    border-bottom: 1px solid var(--color-table-border);
-  }
-}
-
-.inner-th {
-  font-weight: bold;
-}
-
-.inner-td,
-.inner-th {
-  padding: 8px 16px;
-
-  &:not(:last-child) {
-    border-right: 1px solid var(--color-table-border);
-  }
-}
-
