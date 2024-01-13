@@ -49,6 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
     Route::patch('customers/{customer}/billing-addresses/attach', [CustomerController::class, 'attachBillingAddress'])
         ->name('customers.attach-billing-address');
+    Route::post('customers/{customer}/billing-addresses/detach', [CustomerController::class, 'detachBillingAddress'])
+        ->name('customers.detach-billing-address');
 
 
 

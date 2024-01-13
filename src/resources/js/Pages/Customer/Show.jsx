@@ -10,6 +10,8 @@ import SalesActivityForm from './Partials/SalesActivityForm';
 import TermDetails from './Partials/TermDetails';
 import BillingAddressLookup from "../../Components/BillingAddressLookup";
 import BillingAddressForm from "./Partials/BillingAddressForm";
+import DropdownMenu from "./Partials/DropdownMenu";
+
 
 const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) => {
   const { flash } = usePage().props;
@@ -25,6 +27,14 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
       method: 'patch',
       data: { billing_address_id: billingAddress.id },
       onSuccess: () => setIsBillingAddressModalOpen(false),
+    });
+  }
+
+  function detachBillingAddress(billingAddress) {
+    const url = route('customers.detach-billing-address', customer)
+    router.visit(url, {
+      method: 'post',
+      data: { billing_address_id: billingAddress.id },
     });
   }
 
@@ -185,7 +195,8 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
           <table className="table">
             <thead className="table-header is-sticky">
               <tr className="table-row">
-                <th className="th-cell col-fixed">No.</th>
+                <th className="th-cell col-fixed"></th>
+                <th className="th-cell">No.</th>
                 <th className="th-cell u-min-w-200">請求先</th>
                 <th className="th-cell u-min-w-136">請求先担当者</th>
                 <th className="th-cell u-min-w-320">住所</th>
@@ -198,9 +209,14 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
             <tbody className="table-body">
               {customer.billing_addresses.map(billingAddress => (
                 <tr key={billingAddress.id} className="table-row is-hoverable">
-                  <td className="td-cell col-fixed">{billingAddress.id}</td>
+                  <td className="td-cell col-fixed">
+                    <DropdownMenu
+                      handleClickDetach={() => detachBillingAddress(billingAddress)}
+                    />
+                  </td>
+                  <td className="td-cell">{billingAddress.id}</td>
                   <td className="td-cell">
-                    {billingAddress.name} <br/>
+                    {billingAddress.name} <br />
                     ({billingAddress.name_kana})
                   </td>
                   <td className="td-cell">{billingAddress.billing_contact_name}</td>

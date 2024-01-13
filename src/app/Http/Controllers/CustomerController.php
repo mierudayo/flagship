@@ -146,6 +146,25 @@ class CustomerController extends Controller
             ->with('message', "請求先No.{$billingAddressId} を紐付けしました。");
     }
 
+    public function detachBillingAddress(Customer $customer, Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'billing_address_id' => 'required|integer|exists:billing_addresses,id'
+        ]);
+
+        $billingAddressId = $validatedData['billing_address_id'];
+
+        if (!$customer->hasBillingAddress($billingAddressId)) {
+            return to_route('customers.show', $customer)
+                ->with('message', "請求先No.{$billingAddressId} は紐付けられていません");
+        }
+
+        $customer->billingAddresses()->detach($billingAddressId);
+
+        return to_route('customers.show', $customer)
+            ->with('message', "請求先No.{$billingAddressId} の紐付けを解除しました。");
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Business Logic
