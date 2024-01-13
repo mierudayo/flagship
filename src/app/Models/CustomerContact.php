@@ -79,6 +79,16 @@ class CustomerContact extends Model
         return $this->hasMany(SalesActivity::class);
     }
 
+    public function salesOrders(): HasMany
+    {
+        return $this->hasMany(SalesOrder::class);
+    }
+
+    public function purchaseOrders(): HasMany
+    {
+        return $this->hasMany(PurchaseOrder::class);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Accessors
@@ -122,6 +132,14 @@ class CustomerContact extends Model
         }
 
         if ($this->salesActivities()->exists()) {
+            return false;
+        }
+
+        if ($this->salesOrders()->exists()) {
+            return false;
+        }
+
+        if ($this->purchaseOrders()->exists()) {
             return false;
         }
 
