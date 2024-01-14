@@ -22,11 +22,17 @@ class SalesOrderFactory extends Factory
      */
     public function definition(): array
     {
+        $customer = Customer::inRandomOrder()->first() ?? Customer::factory()->create();
+        $customerContact = $customer->contacts()->inRandomOrder()->first() ?? CustomerContact::factory()->create(['customer_id' => $customer->id]);
+        $billingAddress = BillingAddress::inRandomOrder()->first() ?? BillingAddress::factory()->create();
+        $customer->billingAddresses()->attach($billingAddress);
+        $deliveryAddress = $customer->deliveryAddresses()->inRandomOrder()->first() ?? DeliveryAddress::factory()->create(['customer_id' => $customer->id]);
+
         return [
-            'customer_id'           => Customer::inRandomOrder()->first()->id,
-            'customer_contact_id'   => CustomerContact::inRandomOrder()->first()->id,
-            'billing_address_id'    => BillingAddress::inRandomOrder()->first()->id,
-            'delivery_address_id'   => DeliveryAddress::inRandomOrder()->first()->id,
+            'customer_id'           => $customer->id,
+            'customer_contact_id'   => $customerContact->id,
+            'billing_address_id'    => $billingAddress->id,
+            'delivery_address_id'   => $deliveryAddress->id,
             'product_category_id'   => ProductCategory::inRandomOrder()->first()->id,
             'billing_type'          => $this->faker->randomElement([1, 2]),
             'cutoff_day'            => $this->faker->randomElement([10, 15, 20, 25, 99]),
@@ -35,8 +41,8 @@ class SalesOrderFactory extends Factory
             'payment_day_offset'    => $this->faker->randomElement([0, 3, 7]),
             'payment_date'          => $this->faker->date(),
             'payment_status'        => $this->faker->word,
-            'customer_name'         => $this->faker->name,
-            'delivery_address'      => $this->faker->address,
+            'customer_name'         => $customer->name,
+            'delivery_address'      => $deliveryAddress->address,
             'order_date'            => $this->faker->date(),
             'shipping_date'         => $this->faker->date(),
             'shipping_status'       => $this->faker->word,
