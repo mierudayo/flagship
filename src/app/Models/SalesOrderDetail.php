@@ -14,8 +14,6 @@ class SalesOrderDetail extends Model
     protected $appends = [
         'price',
         'price_with_tax',
-        'display_price',
-        'display_price_with_tax',
     ];
 
     protected $fillable = [
@@ -58,21 +56,11 @@ class SalesOrderDetail extends Model
         return number_format($this->calculatePrice(), 2, '.', '');
     }
 
-    public function getDisplayPriceAttribute(): string
-    {
-        return number_format($this->price);
-    }
-
     /** 価格(税込) */
     public function getPriceWithTaxAttribute(): string
     {
         $priceWithTax = $this->calculatePrice() * (1 + $this->tax_rate);
         return number_format($priceWithTax, 2, '.', '');
-    }
-
-    public function getDisplayPriceWithTaxAttribute(): string
-    {
-        return number_format($this->price);
     }
 
     /*

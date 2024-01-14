@@ -21,8 +21,6 @@ class SalesOrder extends Model
         'sales_term_labels',
         'total',
         'total_with_tax',
-        'display_total',
-        'display_total_with_tax',
     ];
 
     protected $fillable = [
@@ -119,20 +117,10 @@ class SalesOrder extends Model
         return $this->salesOrderDetails->sum('price');
     }
 
-    public function getDisplayTotalAttribute(): string
-    {
-        return number_format($this->total);
-    }
-
     /** 受注合計額(税込) */
     public function getTotalWithTaxAttribute(): int
     {
         return $this->salesOrderDetails->sum('price_with_tax');
-    }
-
-    public function getDisplayTotalWithTaxAttribute(): string
-    {
-        return number_format($this->total_with_tax);
     }
 
     public function getSalesTermLabelsAttribute(): array
