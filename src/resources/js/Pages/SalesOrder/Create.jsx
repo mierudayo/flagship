@@ -636,6 +636,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
               </div>
             </div>
           </div>
+          <InvalidFeedback errors={errors} name="detail_rows" />
           <div className="table-wrapper is-scrollable">
             <table className="table">
               <thead className="table-header is-sticky">

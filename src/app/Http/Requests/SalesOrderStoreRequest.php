@@ -49,6 +49,8 @@ class SalesOrderStoreRequest extends FormRequest
             'note'                  => ['nullable', 'string'],
             'sales_in_charge_id'    => ['required', 'integer', 'exists:users,id'],
 
+            'detail_rows' => ['required', 'array', 'min:1'],
+
             // SalesOrderDetail
             'detail_rows.*.sales_order_detail.product_id'       => ['nullable', 'integer', 'exists:products,id'],
             'detail_rows.*.sales_order_detail.product_name'     => ['required', 'string', 'max:255'],
@@ -82,6 +84,8 @@ class SalesOrderStoreRequest extends FormRequest
     public function attributes(): array
     {
         return [
+            'detail_rows'           => '明細データ',
+            'customer_id'           => '販売先',
             'customer_contact_id'   => '連絡先',
             'billing_address_id'    => '請求先',
             'delivery_address_id'   => '納品先',
