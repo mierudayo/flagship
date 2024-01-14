@@ -47,7 +47,7 @@ const Duplicate = ({ salesOrder, userOptions, productOptions, productCategoryOpt
         quantity: parseNumber(soDetail.quantity),
         unit_price: parseNumber(soDetail.unit_price),
         tax_rate: parseFloat(taxRate.rate),
-        is_tax_inclusive: soDetail.is_tax_inclusive || false,
+        is_tax_inclusive: soDetail.is_tax_inclusive === 1,
         price: parseNumber(soDetail.price),
         note: soDetail.note || '',
       },
@@ -63,7 +63,7 @@ const Duplicate = ({ salesOrder, userOptions, productOptions, productCategoryOpt
         quantity: parseNumber(poDetail?.quantity),
         unit_price: parseNumber(poDetail?.unit_price),
         tax_rate: parseFloat(taxRate.rate),
-        is_tax_inclusive: poDetail?.is_tax_inclusive ?? false,
+        is_tax_inclusive: poDetail?.is_tax_inclusive === 1,
         price: parseNumber(poDetail?.price),
         note: poDetail?.note ?? '',
       }
