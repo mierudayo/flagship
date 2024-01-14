@@ -16,15 +16,14 @@ export default function SalesOrderTable({ salesOrders }) {
             <th className="th-cell contains-table">
               <div className="inner-thead">
                 <div className="inner-tr">
-                  <div className="inner-th u-w-64">No</div>
                   <div className="inner-th u-w-160">商品</div>
-                  <div className="inner-th u-w-96">数量</div>
-                  <div className="inner-th u-w-112">販売単価</div>
-                  <div className="inner-th u-w-120">販売価格</div>
+                  <div className="inner-th u-w-104 u-text-right">販売数量</div>
+                  <div className="inner-th u-w-112 u-text-right">販売単価</div>
+                  <div className="inner-th u-w-120 u-text-right">販売価格</div>
                 </div>
               </div>
             </th>
-            <th className="th-cell u-min-w-120">受注金額</th>
+            <th className="th-cell u-min-w-120 u-text-right">受注金額</th>
           </tr>
         </thead>
         <tbody className="table-body">
@@ -44,18 +43,24 @@ export default function SalesOrderTable({ salesOrders }) {
                 <div className="inner-tbody">
                   {salesOrder.sales_order_details.map(detail => (
                     <div key={detail.id} className="inner-tr">
-                      <div className="inner-td u-w-64">{detail.row_number}</div>
                       <div className="inner-td u-w-160">{detail.product_name}</div>
-                      <div className="inner-td u-w-96">{parseNumber(detail.quantity)}</div>
-                      <div className="inner-td u-w-112">{formatCurrency(detail.unit_price)}</div>
-                      <div className="inner-td u-w-120">{formatCurrency(detail.price)}</div>
+                      <div className="inner-td u-w-104 u-text-right">{parseNumber(detail.quantity)}</div>
+                      <div className="inner-td u-w-112 u-text-right">
+                        {formatCurrency(detail.unit_price)} <br />
+                        <span className="u-text-sm">
+                          {detail.is_tax_inclusive === 1 ? '[内税]' : ''}
+                        </span>
+                      </div>
+                      <div className="inner-td u-w-120 u-text-right">{formatCurrency(detail.price)}</div>
                     </div>
                   ))}
                 </div>
               </td>
-              <td className="td-cell">
+              <td className="td-cell u-text-right">
                 {formatCurrency(salesOrder.total)} <br />
-                ({formatCurrency(salesOrder.total_with_tax)})
+                <span className="u-text-sm">
+                  ({formatCurrency(salesOrder.total_with_tax)})
+                </span>
               </td>
             </ClickableRow>
           ))}
