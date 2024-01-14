@@ -12,6 +12,7 @@ use App\Models\PurchaseOrderDetail;
 use App\Models\SalesOrder;
 use App\Models\SalesOrderDetail;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -22,23 +23,8 @@ class SalesOrderController extends Controller
 {
     public function index(SalesOrderSearchRequest $request): Response
     {
-        $salesOrders = SalesOrder::query()
-            ->with([
-                'customer',
-                'salesInCharge',
-                'productCategory',
-                'salesOrderDetails',
-            ])
-            ->searchByKeyword($request->input('keyword'))
-            ->searchByDeliveryPeriod(
-                $request->input('start_date'),
-                $request->input('end_date')
-            )
-            ->searchByCustomerName($request->input('customer_name'))
-            ->searchBySalesInCharge($request->input('sales_in_charge_id'))
-            ->latest()
-            ->paginate(100)
-            ->withQueryString();
+        $query       = $this->getSalesOrdersQuery($request);
+        $salesOrders = $query->paginate(100)->withQueryString();
 
         return Inertia::render('SalesOrder/Index', [
             'salesOrders' => $salesOrders,
@@ -186,6 +172,25 @@ class SalesOrderController extends Controller
     | Business Logic
     |--------------------------------------------------------------------------
     */
+
+    private function getSalesOrdersQuery(SalesOrderSearchRequest $request): Builder
+    {
+        return SalesOrder::query()
+            ->with([
+                'customer',
+                'salesInCharge',
+                'productCategory',
+                'salesOrderDetails',
+            ])
+            ->searchByKeyword($request->input('keyword'))
+            ->searchByDeliveryPeriod(
+                $request->input('start_date'),
+                $request->input('end_date')
+            )
+            ->searchByCustomerName($request->input('customer_name'))
+            ->searchBySalesInCharge($request->input('sales_in_charge_id'))
+            ->latest();
+    }
 
     /** 受注登録 */
     private static function createSalesOrder(SalesOrderStoreRequest $request): SalesOrder
