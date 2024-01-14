@@ -193,7 +193,7 @@ class SalesOrderController extends Controller
     }
 
     /** 受注登録 */
-    private static function createSalesOrder(SalesOrderStoreRequest $request): SalesOrder
+    private function createSalesOrder(SalesOrderStoreRequest $request): SalesOrder
     {
         return SalesOrder::create([
             'customer_id'           => $request->input('customer_id'),
@@ -223,7 +223,7 @@ class SalesOrderController extends Controller
     }
 
     /** 受注更新 */
-    private static function updateSalesOrder(SalesOrderUpdateRequest $request, SalesOrder $salesOrder): SalesOrder
+    private function updateSalesOrder(SalesOrderUpdateRequest $request, SalesOrder $salesOrder): SalesOrder
     {
         $salesOrder->update([
             'customer_id'           => $request->input('customer_id'),
@@ -281,7 +281,7 @@ class SalesOrderController extends Controller
     {
         $currentSoDetailIds = $salesOrder->salesOrderDetails()->pluck('id');
 
-        $newSoDetailIds = collect($detailRows)->map(function($detailRow) {
+        $newSoDetailIds = collect($detailRows)->map(function ($detailRow) {
             return $detailRow['sales_order_detail']['id'] ?? null;
         })->filter();
 
@@ -289,20 +289,19 @@ class SalesOrderController extends Controller
         $salesOrderDetails = SalesOrderDetail::whereIn('id', $deletedSoDetailIds)->get();
 
         foreach ($salesOrderDetails as $soDetail) {
-            // Get the PurchaseOrderDetail related to the SalesOrderDetail (many to many)
             $purchaseOrderDetails = $soDetail->purchaseOrderDetails()->get();
 
-            // Get the parent record of PurchaseOrderDetail, which is PurchaseOrder
-            $purchaseOrders = $purchaseOrderDetails->map(function($poDetail) {
+            $purchaseOrders = $purchaseOrderDetails->map(function ($poDetail) {
                 return $poDetail->purchaseOrder;
             });
 
-            // Delete SalesOrderDetail, PurchaseOrderDetail, PurchaseOrder
             $soDetail->delete();
-            $purchaseOrderDetails->each(function($poDetail) {
+
+            $purchaseOrderDetails->each(function ($poDetail) {
                 $poDetail->delete();
             });
-            $purchaseOrders->each(function($purchaseOrder) {
+
+            $purchaseOrders->each(function ($purchaseOrder) {
                 $purchaseOrder->delete();
             });
         }
