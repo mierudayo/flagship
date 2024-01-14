@@ -24,11 +24,13 @@ class SalesOrderController extends Controller
     public function index(SalesOrderSearchRequest $request): Response
     {
         $query       = $this->getSalesOrdersQuery($request);
+        $totals      = $this->calculateTotals($query);
         $salesOrders = $query->paginate(100)->withQueryString();
 
         return Inertia::render('SalesOrder/Index', [
             'salesOrders' => $salesOrders,
             'userOptions' => User::hasSalesOrders()->get(),
+            'totals'      => $totals,
         ]);
     }
 
@@ -434,5 +436,32 @@ class SalesOrderController extends Controller
             ['id' => $purchaseOrderDetail['id'] ?? null],
             $purchaseOrderData
         );
+    }
+
+    private function calculateTotals(Builder $query): array
+    {
+        $soTotal        = 0;
+        $soTotalWithTax = 0;
+        $poTotal        = 0;
+        $poTotalWithTax = 0;
+
+        $query->with(['salesOrderDetails.purchaseOrderDetails'])
+              ->chunk(100, function ($salesOrders) use (&$soTotal, &$soTotalWithTax, &$poTotal, &$poTotalWithTax) {
+            foreach ($salesOrders as $salesOrder) {
+                $soTotal        += $salesOrder->total;
+                $soTotalWithTax += $salesOrder->total_with_tax;
+
+                foreach ($salesOrder->salesOrderDetails as $soDetail) {
+                    foreach ($soDetail->purchaseOrderDetails as $poDetail) {
+                        $poTotal        += $poDetail->price;
+                        $poTotalWithTax += $poDetail->price_with_tax;
+                    }
+                }
+            }
+        });
+
+        $profit = $soTotal - $poTotal;
+
+        return compact('soTotal', 'soTotalWithTax', 'poTotal', 'poTotalWithTax', 'profit');
     }
 }

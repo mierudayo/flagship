@@ -12,8 +12,9 @@ import DateInput from '@/Components/Form/DateInput';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
+import { formatCurrency } from '@/Utils/priceCalculator';
 
-const Index = ({ salesOrders, userOptions }) => {
+const Index = ({ salesOrders, userOptions, totals }) => {
   const urlParams = route().params;
   const { flash } = usePage().props;
 
@@ -53,7 +54,45 @@ const Index = ({ salesOrders, userOptions }) => {
 
   return (
     <>
-      <h1 className="content-title">受注 一覧</h1>
+      <div className="u-flex">
+        <h1 className="content-title">受注 一覧</h1>
+
+        <div className="u-flex u-ml-4">
+          <div className="u-flex u-mr-4 u-items-center">
+            <span className="u-min-w-64">
+              <span className="indicator-dot dot-pink"></span>
+              発注額
+            </span>
+            <span>
+              {formatCurrency(totals.poTotal)}
+            </span>
+            <span className="u-text-sm">
+              ({formatCurrency(totals.poTotalWithTax)})
+            </span>
+          </div>
+          <div className="u-flex u-mr-4 u-items-center">
+            <span className="u-min-w-64">
+              <span className="indicator-dot dot-blue"></span>
+              受注額
+            </span>
+            <span>
+              {formatCurrency(totals.soTotal)}
+            </span>
+            <span className="u-text-sm">
+              ({formatCurrency(totals.soTotalWithTax)})
+            </span>
+          </div>
+          <div className="u-flex u-items-center">
+            <span className="u-min-w-48">
+              <span className="indicator-dot dot-green"></span>
+              利益
+            </span>
+            <span>
+              {formatCurrency(totals.profit)}
+            </span>
+          </div>
+        </div>
+      </div>
 
       <div className="content-navbar">
         <Link
