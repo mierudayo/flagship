@@ -11,6 +11,7 @@ import TermDetails from './Partials/TermDetails';
 import BillingAddressLookup from "../../Components/BillingAddressLookup";
 import BillingAddressForm from "./Partials/BillingAddressForm";
 import DropdownMenu from "./Partials/DropdownMenu";
+import EditLinkButton from '@/Components/EditLinkButton';
 
 
 const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) => {
@@ -50,12 +51,7 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
       />
 
       <div className="content-navbar">
-        <Link
-          href={route('customers.edit', customer)}
-          className="btn btn-secondary u-mr-3"
-        >
-          編集する
-        </Link>
+        <EditLinkButton href={route('customers.edit', customer)} style={{ marginRight: '16px' }} />
         <button
           onClick={() => setIsModalOpen(true)}
           className="btn btn-secondary u-mr-3">

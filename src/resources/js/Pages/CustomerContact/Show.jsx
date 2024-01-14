@@ -2,6 +2,7 @@ import { Link, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
+import EditLinkButton from '@/Components/EditLinkButton';
 
 const Show = ({ contact }) => {
   const { flash } = usePage().props;
@@ -18,12 +19,7 @@ const Show = ({ contact }) => {
       />
 
       <div className="content-navbar">
-        <Link
-          href={route('contacts.edit', contact)}
-          className="btn btn-secondary u-mr-3"
-        >
-          編集する
-        </Link>
+        <EditLinkButton href={route('contacts.edit', contact)} style={{ marginRight: '16px' }} />
       </div>
 
       <Alert type={flash.type} message={flash.message} />
