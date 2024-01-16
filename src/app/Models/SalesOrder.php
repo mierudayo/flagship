@@ -187,4 +187,35 @@ class SalesOrder extends Model
 
         return $query->where('sales_in_charge_id', $salesInChargeId);
     }
+
+    public function scopeSearchByProductCategory(Builder $query, ?string $productCategoryId): Builder
+    {
+        if (!$productCategoryId) {
+            return $query;
+        }
+
+        return $query->where('product_category_id', $productCategoryId);
+    }
+
+    public function scopeSearchByProductName(Builder $query, ?string $productName): Builder
+    {
+        if (!$productName) {
+            return $query;
+        }
+
+        return $query->whereHas('salesOrderDetails', function ($q) use ($productName) {
+            $q->where('product_name', 'like', "%$productName%");
+        });
+    }
+
+    public function scopeSearchByProductDetail(Builder $query, ?string $productDetail): Builder
+    {
+        if (!$productDetail) {
+            return $query;
+        }
+
+        return $query->whereHas('salesOrderDetails', function ($q) use ($productDetail) {
+            $q->where('product_detail', 'like', "%$productDetail%");
+        });
+    }
 }

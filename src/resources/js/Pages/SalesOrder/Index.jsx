@@ -14,7 +14,7 @@ import Input from '@/Components/Form/Input';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
 import { formatCurrency } from '@/Utils/priceCalculator';
 
-const Index = ({ salesOrders, userOptions, totals }) => {
+const Index = ({ salesOrders, userOptions, productCategoryOptions, totals }) => {
   const urlParams = route().params;
   const { flash } = usePage().props;
 
@@ -28,6 +28,9 @@ const Index = ({ salesOrders, userOptions, totals }) => {
 
   const { data, setData, get, errors } = useForm({
     keyword: urlParams.keyword || '',
+    product_category_id: urlParams.product_category_id || '',
+    product_name: urlParams.product_name || '',
+    product_detail: urlParams.product_detail || '',
     customer_name: urlParams.customer_name || '',
     sales_in_charge_id: urlParams.sales_in_charge_id || '',
     start_date: urlParams.start_date || '',
@@ -38,6 +41,9 @@ const Index = ({ salesOrders, userOptions, totals }) => {
     setData({
       ...data,
       keyword: '',
+      product_category_id: '',
+      product_name: '',
+      product_detail: '',
       customer_name: '',
       sales_in_charge_id: '',
       start_date: '',
@@ -103,7 +109,7 @@ const Index = ({ salesOrders, userOptions, totals }) => {
         </Link>
 
         <KeywordSearchForm
-          placeholder="受注ID, 取引先名で検索"
+          placeholder="受注No, 販売先名で検索"
           data={data}
           setData={setData}
           errors={errors}
@@ -142,6 +148,43 @@ const Index = ({ salesOrders, userOptions, totals }) => {
                   error={errors.end_date}
                 />
               </div>
+            </div>
+
+            <div className="u-mr-2 u-w-240">
+            <FormLabel label="商品カテゴリ" />
+              <CustomSelect
+                onChange={value => setData('product_category_id', value)}
+                options={productCategoryOptions}
+                value={data.product_category_id}
+                valueKey="id"
+                labelKey="name"
+                isClearable={true}
+                isSearchable={true}
+                placeholder="..."
+                error={errors.product_category_id}
+              />
+            </div>
+
+            <div className="u-mr-2 u-w-200">
+              <FormLabel htmlFor="product_name" label="商品名" />
+              <Input
+                id="product_name"
+                type="text"
+                value={data.product_name}
+                onChange={e => setData('product_name', e.target.value)}
+                error={errors.product_name}
+              />
+            </div>
+
+            <div className="u-mr-2 u-w-200">
+              <FormLabel htmlFor="product_detail" label="仕様" />
+              <Input
+                id="product_detail"
+                type="text"
+                value={data.product_detail}
+                onChange={e => setData('product_detail', e.target.value)}
+                error={errors.product_detail}
+              />
             </div>
 
             <div className="u-mr-2 u-w-200">

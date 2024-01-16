@@ -30,6 +30,7 @@ class SalesOrderController extends Controller
         return Inertia::render('SalesOrder/Index', [
             'salesOrders' => $salesOrders,
             'userOptions' => User::hasSalesOrders()->get(),
+            'productCategoryOptions' => ProductCategory::all(),
             'totals'      => $totals,
         ]);
     }
@@ -189,6 +190,9 @@ class SalesOrderController extends Controller
                 $request->input('start_date'),
                 $request->input('end_date')
             )
+            ->searchByProductCategory($request->input('product_category_id'))
+            ->searchByProductName($request->input('product_name'))
+            ->searchByProductDetail($request->input('product_detail'))
             ->searchByCustomerName($request->input('customer_name'))
             ->searchBySalesInCharge($request->input('sales_in_charge_id'))
             ->latest();
