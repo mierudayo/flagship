@@ -1,8 +1,7 @@
-
-import { Link } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import EditLinkButton from '@/Components/EditLinkButton';
+import DuplicateLinkButton from '@/Components/DuplicateLinkButton';
 import TermDetails from './Partials/TermDetails';
 import { parseNumber, formatCurrency } from '@/Utils/priceCalculator';
 
@@ -35,12 +34,7 @@ const Show = ({ salesOrder }) => {
 
       <div className="content-navbar">
         <EditLinkButton href={route('sales-orders.edit', salesOrder)} style={{ marginRight: '16px' }} />
-        <Link
-          href={route('sales-orders.duplicate', salesOrder)}
-          className="btn btn-secondary u-mr-3"
-        >
-          複製する
-        </Link>
+        <DuplicateLinkButton href={route('sales-orders.duplicate', salesOrder)} />
       </div>
 
       <div className="content-section">
