@@ -154,7 +154,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                       type="text"
                       value={data.customer_contact_id}
                       className="u-max-w-64 u-mr-1"
-                      placeholder="ID"
+                      placeholder="No"
                       readOnly={true}
                     />
                     <Input

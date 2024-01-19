@@ -56,7 +56,7 @@ class SalesActivityController extends Controller
         ]);
 
         return to_route('sales-activities.index')
-            ->with('message', "ID:{$salesActivity->id} 営業履歴を追加しました。");
+            ->with('message', "No:{$salesActivity->id} 営業履歴を追加しました。");
     }
 
     public function edit(SalesActivity $salesActivity): Response
@@ -85,7 +85,7 @@ class SalesActivityController extends Controller
         ]);
 
         return to_route('sales-activities.index')
-            ->with('message', "ID:{$salesActivity->id} 営業履歴を更新しました。");
+            ->with('message', "No:{$salesActivity->id} 営業履歴を更新しました。");
     }
 
     public function destroy(SalesActivity $salesActivity): RedirectResponse
@@ -107,6 +107,6 @@ class SalesActivityController extends Controller
         ]);
 
         return to_route('customers.show', $customer)
-            ->with('message', "ID:{$salesActivity->id} 営業履歴を追加しました。");
+            ->with('message', "No:{$salesActivity->id} 営業履歴を追加しました。");
     }
 }

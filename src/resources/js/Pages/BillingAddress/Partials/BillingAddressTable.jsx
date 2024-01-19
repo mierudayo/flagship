@@ -6,7 +6,7 @@ export default function BillingAddressTable({ billingAddresses }) {
       <table className="table">
         <thead className="table-header is-sticky">
           <tr className="table-row">
-            <th className="th-cell col-fixed">ID</th>
+            <th className="th-cell col-fixed">No</th>
             <th className="th-cell u-min-w-120">請求方法</th>
             <th className="th-cell u-min-w-160">請求先名</th>
             <th className="th-cell u-min-w-136">請求先担当者</th>

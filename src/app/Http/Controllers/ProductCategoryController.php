@@ -16,6 +16,6 @@ class ProductCategoryController extends Controller
             'display_order' => $request->input('display_order'),
         ]);
 
-        return back()->with('message', "ID:{$category->id} カテゴリを追加しました。");
+        return back()->with('message', "No:{$category->id} カテゴリを追加しました。");
     }
 }

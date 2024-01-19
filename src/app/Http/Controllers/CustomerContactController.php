@@ -74,7 +74,7 @@ class CustomerContactController extends Controller
         ]);
 
         return to_route('contacts.index')
-            ->with('message', "ID:{$contact->id} 連絡先を追加しました。");
+            ->with('message', "No:{$contact->id} 連絡先を追加しました。");
     }
 
     public function edit(CustomerContact $contact): Response
@@ -111,7 +111,7 @@ class CustomerContactController extends Controller
         ]);
 
         return to_route('contacts.index')
-            ->with('message', "ID:{$contact->id} 連絡先を更新しました。");
+            ->with('message', "No:{$contact->id} 連絡先を更新しました。");
     }
 
     public function destroy(CustomerContact $contact): RedirectResponse
@@ -145,6 +145,6 @@ class CustomerContactController extends Controller
         ]);
 
         return to_route('customers.show', $customer)
-            ->with('message', "ID:{$contact->id} 連絡先を追加しました。");
+            ->with('message', "No:{$contact->id} 連絡先を追加しました。");
     }
 }

@@ -52,7 +52,7 @@ export default function ContactLookup({ handleClickSelect }) {
           <thead className="table-header is-sticky">
             <tr className="table-row">
               <th className="th-cell u-w-80"></th>
-              <th className="th-cell u-w-64">ID</th>
+              <th className="th-cell u-w-64">No</th>
               <th className="th-cell">連絡先名</th>
               <th className="th-cell">取引先名</th>
             </tr>

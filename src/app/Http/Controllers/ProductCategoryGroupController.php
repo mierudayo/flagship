@@ -15,6 +15,6 @@ class ProductCategoryGroupController extends Controller
             'display_order' => $request->input('display_order'),
         ]);
 
-        return back()->with('message', "ID:{$categoryGroup->id} カテゴリグループを追加しました。");
+        return back()->with('message', "No:{$categoryGroup->id} カテゴリグループを追加しました。");
     }
 }

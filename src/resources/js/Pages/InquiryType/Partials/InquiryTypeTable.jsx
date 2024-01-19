@@ -4,7 +4,7 @@ export default function InquiryTypeTable({ inquiryTypes }) {
       <table className="table">
         <thead className="table-header is-sticky">
           <tr className="table-row">
-            <th className="th-cell col-fixed">ID</th>
+            <th className="th-cell col-fixed">No</th>
             <th className="th-cell">表示順</th>
             <th className="th-cell">区分名</th>
           </tr>

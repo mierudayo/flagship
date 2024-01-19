@@ -4,7 +4,7 @@ export default function PurchaseOrderTable({ purchaseOrders }) {
       <table className="table">
         <thead className="table-header is-sticky">
           <tr className="table-row">
-            <th className="th-cell col-fixed">ID</th>
+            <th className="th-cell col-fixed">No</th>
             <th className="th-cell u-min-w-160">商品カテゴリ</th>
             <th className="th-cell u-min-w-240">仕入先</th>
             <th className="th-cell u-min-w-120">仕入担当</th>

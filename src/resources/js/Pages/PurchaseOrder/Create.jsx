@@ -134,7 +134,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                         type="text"
                         value={data.customer_id}
                         className="u-max-w-64"
-                        placeholder="ID"
+                        placeholder="No"
                         readOnly={true}
                       />
                       <Input

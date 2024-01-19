@@ -29,6 +29,6 @@ class LeadSourceController extends Controller
             'display_order' => $request->input('display_order'),
         ]);
 
-        return back()->with('message', "ID:{$leadSource->id} 獲得元を追加しました。");
+        return back()->with('message', "No:{$leadSource->id} 獲得元を追加しました。");
     }
 }

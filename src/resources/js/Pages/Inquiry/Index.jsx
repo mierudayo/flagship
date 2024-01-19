@@ -111,7 +111,7 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
         <div className={`filter-section ${isFilterOpen ? 'show' : ''}`}>
           <div className="filter-form-body">
             <div className="u-mr-2">
-              <FormLabel htmlFor="inquiry_id" label="ID" />
+              <FormLabel htmlFor="inquiry_id" label="No" />
               <Input
                 id="inquiry_id"
                 type="number"

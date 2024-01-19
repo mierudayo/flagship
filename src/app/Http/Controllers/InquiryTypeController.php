@@ -27,6 +27,6 @@ class InquiryTypeController extends Controller
             'display_order' => $request->input('display_order'),
         ]);
 
-        return back()->with('message', "ID:{$inquiryType->id} 問い合わせ区分を追加しました。");
+        return back()->with('message', "No:{$inquiryType->id} 問い合わせ区分を追加しました。");
     }
 }

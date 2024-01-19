@@ -4,7 +4,7 @@ export default function LeadSourceTable({ leadSources }) {
       <table className="table">
         <thead className="table-header is-sticky">
           <tr className="table-row">
-            <th className="th-cell col-fixed">ID</th>
+            <th className="th-cell col-fixed">No</th>
             <th className="th-cell">表示順</th>
             <th className="th-cell">獲得元名</th>
             <th className="th-cell">獲得顧客数</th>

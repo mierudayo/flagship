@@ -23,7 +23,7 @@ export default function ContactsForm({ userOptions, leadSourceOptions, setIsModa
                     type="text"
                     value={data.customer_id}
                     className="u-max-w-64"
-                    placeholder="ID"
+                    placeholder="No"
                     readOnly={true}
                   />
                   <Input

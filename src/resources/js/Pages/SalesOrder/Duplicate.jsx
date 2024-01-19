@@ -363,7 +363,7 @@ const Duplicate = ({ salesOrder, userOptions, productOptions, productCategoryOpt
                         type="text"
                         value={data.customer_id}
                         className="u-max-w-64"
-                        placeholder="ID"
+                        placeholder="No"
                         readOnly={true}
                       />
                       <Input
@@ -777,7 +777,7 @@ const Duplicate = ({ salesOrder, userOptions, productOptions, productCategoryOpt
                             type="text"
                             value={detail.purchase_order.customer_id}
                             className="u-max-w-64"
-                            placeholder="ID"
+                            placeholder="No"
                             readOnly={true}
                           />
                           <Input

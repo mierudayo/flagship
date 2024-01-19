@@ -21,6 +21,6 @@ class DeliveryAddressController extends Controller
         ]);
 
         return to_route('customers.show', $customer)
-            ->with('message', "ID:{$deliveryAddress->id} 出荷元/納品先を追加しました。");
+            ->with('message', "No:{$deliveryAddress->id} 出荷元/納品先を追加しました。");
     }
 }

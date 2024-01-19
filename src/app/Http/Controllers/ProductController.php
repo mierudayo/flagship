@@ -54,6 +54,6 @@ class ProductController extends Controller
             'display_order'     => $request->input('display_order'),
         ]);
 
-        return back()->with('message', "ID:{$product->id} 商品を追加しました。");
+        return back()->with('message', "No:{$product->id} 商品を追加しました。");
     }
 }
