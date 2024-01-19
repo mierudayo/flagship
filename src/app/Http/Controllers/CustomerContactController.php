@@ -18,17 +18,21 @@ class CustomerContactController extends Controller
 {
     public function index(CustomerContactSearchRequest $request): Response
     {
-        $keyword = $request->input('keyword');
-
         $customerContacts = CustomerContact::query()
             ->with(['inChargeUser', 'customer'])
-            ->searchByKeyword($keyword)
+            ->searchByKeyword($request->input('keyword'))
+            ->searchById($request->input('contact_id'))
+            ->searchByCustomerName($request->input('customer_name'))
+            ->searchByPhone($request->input('phone'))
+            ->searchByEmail($request->input('email'))
+            ->searchByLeadSource($request->input('lead_source_id'))
             ->latest()
             ->paginate(50)
             ->withQueryString();
 
         return Inertia::render('CustomerContact/Index', [
             'customerContacts' => $customerContacts,
+            'leadSourceOptions' => LeadSource::all(),
         ]);
     }
 

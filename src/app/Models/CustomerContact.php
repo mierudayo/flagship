@@ -120,6 +120,56 @@ class CustomerContact extends Model
         });
     }
 
+    public function scopeSearchById(Builder $query, ?string $id): Builder
+    {
+        if (!$id) {
+            return $query;
+        }
+
+        return $query->where('id', $id);
+    }
+
+    public function scopeSearchByCustomerName(Builder $query, ?string $customerName): Builder
+    {
+        if (!$customerName) {
+            return $query;
+        }
+
+        return $query->whereHas('customer', function ($q) use ($customerName) {
+            $q->where('name', 'like', "%$customerName%");
+        });
+    }
+
+    public function scopeSearchByPhone(Builder $query, ?string $phone): Builder
+    {
+        if (!$phone) {
+            return $query;
+        }
+
+        return $query->where(function ($q) use ($phone) {
+            $q->where('tel', 'like', "%$phone%")
+                ->orWhere('mobile_number', 'like', "%$phone%");
+        });
+    }
+
+    public function scopeSearchByEmail(Builder $query, ?string $email): Builder
+    {
+        if (!$email) {
+            return $query;
+        }
+
+        return $query->where('email', 'like', "%$email%");
+    }
+
+    public function scopeSearchByLeadSource(Builder $query, ?string $lead_source_id): Builder
+    {
+        if (!$lead_source_id) {
+            return $query;
+        }
+
+        return $query->where('lead_source_id', $lead_source_id);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Custom Methods
