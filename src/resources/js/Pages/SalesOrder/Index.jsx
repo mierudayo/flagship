@@ -60,10 +60,10 @@ const Index = ({ salesOrders, userOptions, productCategoryOptions, totals }) => 
 
   return (
     <>
-      <div className="u-flex">
-        <h1 className="content-title">受注 一覧</h1>
+      <div className="u-flex-wrap">
+        <h1 className="content-title u-mr-4">受注 一覧</h1>
 
-        <div className="u-flex u-ml-4">
+        <div className="u-flex-wrap">
           <div className="u-flex u-mr-4 u-items-center">
             <span className="u-min-w-64">
               <span className="indicator-dot dot-pink"></span>

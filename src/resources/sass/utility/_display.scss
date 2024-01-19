@@ -5,6 +5,11 @@ Display
   display: flex;
 }
 
+.u-flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .u-items-center {
   align-items: center;
 }
