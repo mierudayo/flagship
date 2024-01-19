@@ -8,7 +8,7 @@ import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import SalesOrderTable from "./Partials/SalesOrderTable";
 
 import CustomSelect from '@/Components/Form/CustomSelect';
-import DateInput from '@/Components/Form/DateInput';
+import DateRangePicker from '@/Components/DateRangePicker';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
@@ -116,6 +116,13 @@ const Index = ({ salesOrders, userOptions, productCategoryOptions, totals }) => 
           submit={submit}
         />
 
+        <DateRangePicker
+          dateColumnLabel="納品日"
+          data={data}
+          setData={setData}
+          errors={errors}
+          submit={submit}
+        />
 
         <ToggleFilterButton
           isFilterOpen={isFilterOpen}
@@ -131,27 +138,8 @@ const Index = ({ salesOrders, userOptions, productCategoryOptions, totals }) => 
       <form onSubmit={submit}>
         <div className={`filter-section ${isFilterOpen ? 'show' : ''}`}>
           <div className="filter-form-body">
-            <div className="u-mr-2">
-              <FormLabel htmlFor="start_date" label="納品日" />
-              <div className="u-flex">
-                <DateInput
-                  id="start_date"
-                  value={data.start_date}
-                  onChange={e => setData('start_date', e.target.value)}
-                  error={errors.start_date}
-                />
-                <span className="u-mx-1">~</span>
-                <DateInput
-                  id="end_date"
-                  value={data.end_date}
-                  onChange={e => setData('end_date', e.target.value)}
-                  error={errors.end_date}
-                />
-              </div>
-            </div>
-
             <div className="u-mr-2 u-w-240">
-            <FormLabel label="商品カテゴリ" />
+              <FormLabel label="商品カテゴリ" />
               <CustomSelect
                 onChange={value => setData('product_category_id', value)}
                 options={productCategoryOptions}
