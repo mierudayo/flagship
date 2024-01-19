@@ -7,12 +7,12 @@ import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import DropdownMenu from '@/Components/DropdownMenu';
+import DateRangePicker from '@/Components/DateRangePicker';
 import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import InquiryTable from './Partials/InquiryTable';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
-import DateInput from '@/Components/Form/DateInput';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
 
 const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOptions, inquiryStatusOptions }) => {
@@ -91,6 +91,14 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
           submit={submit}
         />
 
+        <DateRangePicker
+          dateColumnLabel="問い合わせ日"
+          data={data}
+          setData={setData}
+          errors={errors}
+          submit={submit}
+        />
+
         <ToggleFilterButton isFilterOpen={isFilterOpen} setIsFilterOpen={setIsFilterOpen} />
 
         <div className="record-count">
@@ -112,25 +120,6 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
                 error={errors.inquiry_id}
                 className="u-max-w-80"
               />
-            </div>
-
-            <div className="u-mr-2">
-              <FormLabel htmlFor="start_date" label="問い合わせ日" />
-              <div className="u-flex">
-                <DateInput
-                  id="start_date"
-                  value={data.start_date}
-                  onChange={e => setData('start_date', e.target.value)}
-                  error={errors.start_date}
-                />
-                <span className="u-mx-1">~</span>
-                <DateInput
-                  id="end_date"
-                  value={data.end_date}
-                  onChange={e => setData('end_date', e.target.value)}
-                  error={errors.end_date}
-                />
-              </div>
             </div>
 
             <div className="u-mr-2">

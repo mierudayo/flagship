@@ -4,11 +4,11 @@ import { Link, useForm, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
 import CustomSelect from '@/Components/Form/CustomSelect';
+import DateRangePicker from '@/Components/DateRangePicker';
 import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import SalesActivityTable from './Partials/SalesActivityTable';
 import FormLabel from '@/Components/Form/FormLabel';
-import DateInput from '@/Components/Form/DateInput';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
 
 const Index = ({ salesActivities, inChargeUserOptions }) => {
@@ -65,6 +65,14 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
           submit={submit}
         />
 
+        <DateRangePicker
+          dateColumnLabel="連絡日"
+          data={data}
+          setData={setData}
+          errors={errors}
+          submit={submit}
+        />
+
         <ToggleFilterButton isFilterOpen={isFilterOpen} setIsFilterOpen={setIsFilterOpen} />
 
         <div className="record-count">
@@ -76,24 +84,6 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
       <form onSubmit={submit}>
         <div className={`filter-section ${isFilterOpen ? 'show' : ''}`}>
           <div className="filter-form-body">
-          <div className="u-mr-2">
-              <FormLabel htmlFor="start_date" label="期間" />
-              <div className="u-flex">
-                <DateInput
-                  id="start_date"
-                  value={data.start_date}
-                  onChange={e => setData('start_date', e.target.value)}
-                  error={errors.start_date}
-                />
-                <span className="u-mx-1">~</span>
-                <DateInput
-                  id="end_date"
-                  value={data.end_date}
-                  onChange={e => setData('end_date', e.target.value)}
-                  error={errors.end_date}
-                />
-              </div>
-            </div>
 
             <div className="u-mr-2 u-min-w-200">
               <FormLabel label="担当者" />
