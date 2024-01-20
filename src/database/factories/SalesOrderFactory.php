@@ -41,7 +41,6 @@ class SalesOrderFactory extends Factory
             'payment_day_offset'    => $this->faker->randomElement([0, 3, 7]),
             'payment_date'          => $this->faker->date(),
             'payment_status'        => $this->faker->word,
-            'customer_name'         => $customer->name,
             'delivery_address'      => $deliveryAddress->address,
             'consignee_company'     => $deliveryAddress->company_name,
             'consignee_contact'     => $deliveryAddress->contact_name,

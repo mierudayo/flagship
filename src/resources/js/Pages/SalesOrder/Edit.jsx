@@ -104,8 +104,8 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
   }
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
-    customer_id: salesOrder.customer_id || '',
-    customer_name: salesOrder.customer_name || '',
+    customer_id: salesOrder.customer_id,
+    customer_name: salesOrder.customer.name,
     customer_contact_id: salesOrder.customer_contact_id || '',
     billing_address_id: salesOrder.billing_address_id || '',
     delivery_address_id: salesOrder.delivery_address_id || '',

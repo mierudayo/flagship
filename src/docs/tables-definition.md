@@ -322,7 +322,6 @@
 | payment_day_offset    | 支払期限日数  | integer             | 都度請求時 0:前払い, 3:3営業日, 7:7営業日...等 |
 | payment_date          | 入金日        | date                |              |
 | payment_status        | 入金状況      | string              |              |
-| customer_name         | 販売先名      | string              |              |
 | delivery_address      | 納品先住所    | string              |              |
 | consignee_company     | 納品先会社名    | string              |              |
 | consignee_contact 　　 | 納品先担当者    | string              |              |

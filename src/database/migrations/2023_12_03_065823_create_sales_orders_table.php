@@ -27,7 +27,6 @@ return new class extends Migration
             // 入金状況
             $table->date('payment_date')->nullable();
             $table->string('payment_status')->nullable();
-            $table->string('customer_name');
 
             // 納品先情報
             $table->string('delivery_address')->nullable();
