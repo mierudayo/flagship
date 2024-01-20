@@ -8,22 +8,22 @@ export default function SalesOrderTable({ salesOrders }) {
       <table className="table has-inner-table">
         <thead className="table-header is-sticky">
           <tr className="table-row">
-            <th className="th-cell col-fixed">No.</th>
-            <th className="th-cell u-min-w-136">納期</th>
-            <th className="th-cell u-min-w-160">商品カテゴリ</th>
+            <th className="th-cell col-fixed u-w-64">No.</th>
+            <th className="th-cell u-w-136 u-min-w-136">納期</th>
+            <th className="th-cell u-w-200 u-min-w-200">商品カテゴリ</th>
             <th className="th-cell u-min-w-240">販売先</th>
-            <th className="th-cell u-min-w-104"> 受注担当</th>
-            <th className="th-cell contains-table">
+            <th className="th-cell u-w-104 u-min-w-104"> 受注担当</th>
+            <th className="th-cell contains-table u-w-400">
               <div className="inner-thead">
                 <div className="inner-tr">
-                  <div className="inner-th u-w-160">商品</div>
+                  <div className="inner-th u-w-200">商品</div>
                   <div className="inner-th u-w-104 u-text-right">販売数量</div>
                   <div className="inner-th u-w-112 u-text-right">販売単価</div>
                   <div className="inner-th u-w-120 u-text-right">販売価格</div>
                 </div>
               </div>
             </th>
-            <th className="th-cell u-min-w-120 u-text-right">受注金額</th>
+            <th className="th-cell u-w-120 u-text-right">受注金額</th>
           </tr>
         </thead>
         <tbody className="table-body">
@@ -43,7 +43,7 @@ export default function SalesOrderTable({ salesOrders }) {
                 <div className="inner-tbody">
                   {salesOrder.sales_order_details.map(detail => (
                     <div key={detail.id} className="inner-tr">
-                      <div className="inner-td u-w-160">{detail.product_name}</div>
+                      <div className="inner-td u-w-200">{detail.product_name}</div>
                       <div className="inner-td u-w-104 u-text-right">{parseNumber(detail.quantity)}</div>
                       <div className="inner-td u-w-112 u-text-right">
                         {formatCurrency(detail.unit_price)} <br />
