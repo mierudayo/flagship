@@ -25,7 +25,7 @@ class SalesOrderStoreRequest extends FormRequest
             'customer_id'           => ['required', 'integer', 'exists:customers,id'],
             'customer_contact_id'   => ['nullable', 'integer', 'exists:customer_contacts,id'],
             'billing_address_id'    => ['required', 'integer', 'exists:billing_addresses,id'],
-            'delivery_address_id'   => ['required', 'integer', 'exists:delivery_addresses,id'],
+            'delivery_address_id'   => ['nullable', 'integer', 'exists:delivery_addresses,id'],
             'product_category_id'   => ['required', 'integer', 'exists:product_categories,id'],
 
             // SalesTerm
@@ -39,7 +39,6 @@ class SalesOrderStoreRequest extends FormRequest
             'payment_status'        => ['nullable', 'string', 'max:255'],
 
             'customer_name'         => ['required', 'string', 'max:255'],
-            'delivery_address'      => ['required', 'string', 'max:255'],
             'order_date'            => ['required', 'date'],
             'shipping_date'         => ['nullable', 'date'],
             'shipping_status'       => ['nullable', 'string', 'max:255'],

@@ -43,6 +43,8 @@ class SalesOrderFactory extends Factory
             'payment_status'        => $this->faker->word,
             'customer_name'         => $customer->name,
             'delivery_address'      => $deliveryAddress->address,
+            'consignee_company'     => $deliveryAddress->company_name,
+            'consignee_contact'     => $deliveryAddress->contact_name,
             'order_date'            => $this->faker->date(),
             'shipping_date'         => $this->faker->date(),
             'shipping_status'       => $this->faker->word,

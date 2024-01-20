@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('customer_contact_id')->nullable();
             $table->unsignedBigInteger('billing_address_id');
-            $table->unsignedBigInteger('delivery_address_id');
+            $table->unsignedBigInteger('delivery_address_id')->nullable();
             $table->unsignedBigInteger('product_category_id');
             // 請求条件
             $table->tinyInteger('billing_type')->nullable()->default(2);
@@ -28,7 +28,12 @@ return new class extends Migration
             $table->date('payment_date')->nullable();
             $table->string('payment_status')->nullable();
             $table->string('customer_name');
-            $table->string('delivery_address');
+
+            // 納品先情報
+            $table->string('delivery_address')->nullable();
+            $table->string('consignee_company')->nullable();
+            $table->string('consignee_contact')->nullable();
+
             $table->date('order_date');
             $table->date('shipping_date')->nullable();
             $table->string('shipping_status')->nullable();

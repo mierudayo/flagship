@@ -38,6 +38,8 @@ class SalesOrder extends Model
         'payment_status',
         'customer_name',
         'delivery_address',
+        'consignee_company',
+        'consignee_contact',
         'order_date',
         'shipping_date',
         'shipping_status',

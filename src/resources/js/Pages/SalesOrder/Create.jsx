@@ -77,7 +77,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     payment_day_offset: '',
     payment_date: '',
     payment_status: '',
-    delivery_address: 'TEMP', // TODO: 後で修正
     order_date: date.today,
     shipping_date: '',
     shipping_status: '',
@@ -418,7 +417,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel label="納品先" isRequired={true} />
+                    <FormLabel label="納品先" isRequired={false} />
                   </th>
                   <td className="td-cell">
                     <CustomSelect

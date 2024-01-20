@@ -324,6 +324,8 @@
 | payment_status        | 入金状況      | string              |              |
 | customer_name         | 販売先名      | string              |              |
 | delivery_address      | 納品先住所    | string              |              |
+| consignee_company     | 納品先会社名    | string              |              |
+| consignee_contact 　　 | 納品先担当者    | string              |              |
 | order_date            | 受注日        | date                |              |
 | shipping_date         | 出荷日        | date                |              |
 | shipping_status       | 出荷状況      | string              |              |

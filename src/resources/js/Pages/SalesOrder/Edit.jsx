@@ -117,7 +117,6 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
     payment_day_offset: salesOrder.payment_day_offset || '',
     payment_date: salesOrder.payment_date || '',
     payment_status: salesOrder.payment_status || '',
-    delivery_address: salesOrder.delivery_address || 'TEMP', // TODO: 後で修正
     order_date: salesOrder.order_date || date.today,
     shipping_date: salesOrder.shipping_date || '',
     shipping_status: salesOrder.shipping_status || '',
@@ -472,7 +471,7 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel label="納品先" isRequired={true} />
+                    <FormLabel label="納品先" isRequired={false} />
                   </th>
                   <td className="td-cell">
                     <CustomSelect

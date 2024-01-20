@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SalesOrderSearchRequest;
 use App\Http\Requests\SalesOrderStoreRequest;
 use App\Http\Requests\SalesOrderUpdateRequest;
+use App\Models\DeliveryAddress;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\PurchaseOrder;
@@ -62,7 +63,6 @@ class SalesOrderController extends Controller
             'billingAddress',
             'customer',
             'customerContact',
-            'deliveryAddress',
             'productCategory',
             'salesInCharge',
             'createdBy',
@@ -201,11 +201,13 @@ class SalesOrderController extends Controller
     /** 受注登録 */
     private function createSalesOrder(SalesOrderStoreRequest $request): SalesOrder
     {
+        $deliveryAddress = DeliveryAddress::find($request->input('delivery_address_id'));
+
         return SalesOrder::create([
             'customer_id'           => $request->input('customer_id'),
             'customer_contact_id'   => $request->input('customer_contact_id'),
             'billing_address_id'    => $request->input('billing_address_id'),
-            'delivery_address_id'   => $request->input('delivery_address_id'),
+            'delivery_address_id'   => $deliveryAddress->id ?? null,
             'product_category_id'   => $request->input('product_category_id'),
             'billing_type'          => $request->input('billing_type'),
             'cutoff_day'            => $request->input('cutoff_day'),
@@ -215,7 +217,9 @@ class SalesOrderController extends Controller
             'payment_date'          => $request->input('payment_date'),
             'payment_status'        => $request->input('payment_status'),
             'customer_name'         => $request->input('customer_name'),
-            'delivery_address'      => $request->input('delivery_address'),
+            'delivery_address'      => $deliveryAddress->address ?? null,
+            'consignee_company'     => $deliveryAddress->company_name ?? null,
+            'consignee_contact'     => $deliveryAddress->contact_name ?? null,
             'order_date'            => $request->input('order_date'),
             'shipping_date'         => $request->input('shipping_date'),
             'shipping_status'       => $request->input('shipping_status'),
@@ -231,11 +235,13 @@ class SalesOrderController extends Controller
     /** 受注更新 */
     private function updateSalesOrder(SalesOrderUpdateRequest $request, SalesOrder $salesOrder): SalesOrder
     {
+        $deliveryAddress = DeliveryAddress::find($request->input('delivery_address_id'));
+
         $salesOrder->update([
             'customer_id'           => $request->input('customer_id'),
             'customer_contact_id'   => $request->input('customer_contact_id'),
             'billing_address_id'    => $request->input('billing_address_id'),
-            'delivery_address_id'   => $request->input('delivery_address_id'),
+            'delivery_address_id'   => $deliveryAddress->id ?? null,
             'product_category_id'   => $request->input('product_category_id'),
             'billing_type'          => $request->input('billing_type'),
             'cutoff_day'            => $request->input('cutoff_day'),
@@ -245,7 +251,9 @@ class SalesOrderController extends Controller
             'payment_date'          => $request->input('payment_date'),
             'payment_status'        => $request->input('payment_status'),
             'customer_name'         => $request->input('customer_name'),
-            'delivery_address'      => $request->input('delivery_address'),
+            'delivery_address'      => $deliveryAddress->address ?? null,
+            'consignee_company'     => $deliveryAddress->company_name ?? null,
+            'consignee_contact'     => $deliveryAddress->contact_name ?? null,
             'order_date'            => $request->input('order_date'),
             'shipping_date'         => $request->input('shipping_date'),
             'shipping_status'       => $request->input('shipping_status'),
