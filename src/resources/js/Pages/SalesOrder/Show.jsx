@@ -198,8 +198,7 @@ const Show = ({ salesOrder }) => {
                   <td className="td-cell">{detail.product_name} <br/>{detail.product_detail}</td>
                   <td className="td-cell">
                     {detail.purchase_order_details[0]?.purchase_order.customer.name} <br/>
-                    {detail.purchase_order_details[0]?.purchase_order.ship_from_address} <br/>
-                    {detail.purchase_order_details[0]?.purchase_order?.customer_contact.name} <br/>
+                    {detail.purchase_order_details[0]?.purchase_order?.customer_contact?.name} <br/>
                   </td>
                   <td className="td-cell">{detail.purchase_order_details[0]?.purchase_order.purchase_in_charge.name}</td>
                   <td className="td-cell">{parseNumber(detail.purchase_order_details[0]?.quantity)}</td>

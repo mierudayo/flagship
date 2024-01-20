@@ -363,7 +363,6 @@
 | id                    | ID            | unsignedBigInteger  | PK           |
 | customer_id           | 取引先ID      | unsignedBigInteger  | FK           |
 | customer_contact_id   | 連絡先ID      | unsignedBigInteger  | FK           |
-| billing_address_id    | 請求先ID      | unsignedBigInteger  | FK           |
 | delivery_address_id   | 出荷元ID      | unsignedBigInteger  | FK           |
 | product_category_id   | 集計品目ID    | unsignedBigInteger  | FK           |
 | billing_type          | 請求タイプ    | tinyInteger         | 1:締め請求 2:都度請求 |
@@ -373,8 +372,9 @@
 | payment_day_offset    | 支払期限日数   | integer             | 都度請求時 0:前払い, 3:3営業日, 7:7営業日...等 |
 | payment_date          | 支払日        | date                |              |
 | payment_status        | 支払状況      | string              |              |
-| customer_name         | 仕入先名      | string              |              |
 | ship_from_address     | 出荷元住所    | string              |              |
+| ship_from_company     | 出荷元会社名  　| string              |              |
+| ship_from_contact     | 出荷元担当者   | string              |              |
 | purchase_date         | 発注日       | date                |              |
 | note                  | 備考         | text                |              |
 | purchase_in_charge_id | 発注担当者ID  | unsignedBigInteger  | FK           |

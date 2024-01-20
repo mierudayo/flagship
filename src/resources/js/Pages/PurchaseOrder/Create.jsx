@@ -25,7 +25,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     customer_id: '',
     customer_name: '',
     customer_contact_id: '',
-    billing_address_id: '', // TODO: 仕様再検討（必須になるかも)
     delivery_address_id: '',
     product_category_id: '',
     billing_type: '',
@@ -35,7 +34,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     payment_day_offset: '',
     payment_date: '',
     payment_status: '',
-    ship_from_address: 'TEMP', // TODO: 後で修正
     purchase_date: today,
     note: '',
     purchase_in_charge_id: '',

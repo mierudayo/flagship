@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PurchaseOrderSearchRequest;
 use App\Http\Requests\PurchaseOrderStoreRequest;
+use App\Models\DeliveryAddress;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\PurchaseOrder;
@@ -47,12 +48,13 @@ class PurchaseOrderController extends Controller
 
     public function store(PurchaseOrderStoreRequest $request): RedirectResponse
     {
+        $deliveryAddress = DeliveryAddress::find($request->input('delivery_address_id'));
+
         // TODO: トランザクションにまとめて登録処理
         $purchaseOrder = PurchaseOrder::create([
             'customer_id'           => $request->input('customer_id'),
             'customer_contact_id'   => $request->input('customer_contact_id'),
-            'billing_address_id'    => $request->input('billing_address_id'),
-            'delivery_address_id'   => $request->input('delivery_address_id'),
+            'delivery_address_id'   => $deliveryAddress->id ?? null,
             'product_category_id'   => $request->input('product_category_id'),
             'billing_type'          => $request->input('billing_type'),
             'cutoff_day'            => $request->input('cutoff_day'),
@@ -61,8 +63,9 @@ class PurchaseOrderController extends Controller
             'payment_day_offset'    => $request->input('payment_day_offset'),
             'payment_date'          => $request->input('payment_date'),
             'payment_status'        => $request->input('payment_status'),
-            'customer_name'         => $request->input('customer_name'),
-            'ship_from_address'     => $request->input('ship_from_address'),
+            'ship_from_address'     => $deliveryAddress->address ?? null,
+            'ship_from_company'     => $deliveryAddress->company_name ?? null,
+            'ship_from_contact'     => $deliveryAddress->contact_name ?? null,
             'purchase_date'         => $request->input('purchase_date'),
             'note'                  => $request->input('note'),
             'purchase_in_charge_id' => $request->input('purchase_in_charge_id'),

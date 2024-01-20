@@ -55,7 +55,7 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
       purchase_order: {
         id: purchaseOrder?.id,
         customer_id: purchaseOrder?.customer_id ?? '',
-        customer_name: purchaseOrder?.customer_name ?? '',
+        customer_name: purchaseOrder?.customer.name ?? '',
         customer_contact_id: purchaseOrder?.customer_contact_id ?? '',
         billing_address_id: purchaseOrder?.billing_address_id ?? '',
         delivery_address_id: purchaseOrder?.delivery_address_id ?? '',

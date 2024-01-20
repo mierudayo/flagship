@@ -360,11 +360,12 @@ class SalesOrderController extends Controller
     /** 発注 */
     private function createPurchaseOrder(array $purchaseOrder, SalesOrder $salesOrder): PurchaseOrder
     {
+        $deliveryAddress = DeliveryAddress::find($purchaseOrder['delivery_address_id'] ?? null);
+
         return PurchaseOrder::create([
             'customer_id'           => $purchaseOrder['customer_id'] ?? null,
             'customer_contact_id'   => $purchaseOrder['customer_contact_id'] ?? null,
-            'billing_address_id'    => $purchaseOrder['billing_address_id'] ?? null,
-            'delivery_address_id'   => $purchaseOrder['delivery_address_id'] ?? null,
+            'delivery_address_id'   => $deliveryAddress->id ?? null,
             'product_category_id'   => $salesOrder->product_category_id,
             'billing_type'          => $purchaseOrder['billing_type'] ?? null,
             'cutoff_day'            => $purchaseOrder['cutoff_day'] ?? null,
@@ -373,8 +374,9 @@ class SalesOrderController extends Controller
             'payment_day_offset'    => $purchaseOrder['payment_day_offset'] ?? null,
             'payment_date'          => $purchaseOrder['payment_date'] ?? null,
             'payment_status'        => $purchaseOrder['payment_status'] ?? null,
-            'customer_name'         => $purchaseOrder['customer_name'] ?? null,
-            'ship_from_address'     => $purchaseOrder['ship_from_address'] ?? 'TEMP',
+            'ship_from_address'     => $deliveryAddress->address ?? null,
+            'ship_from_company'     => $deliveryAddress->company_name ?? null,
+            'ship_from_contact'     => $deliveryAddress->contact_name ?? null,
             'purchase_date'         => $salesOrder->order_date,
             'note'                  => $purchaseOrder['note'] ?? null,
             'purchase_in_charge_id' => $purchaseOrder['purchase_in_charge_id'] ?? null,
@@ -385,11 +387,12 @@ class SalesOrderController extends Controller
     /** 発注 */
     private function upsertPurchaseOrder(array $purchaseOrder, SalesOrder $salesOrder): PurchaseOrder
     {
+        $deliveryAddress = DeliveryAddress::find($purchaseOrder['delivery_address_id'] ?? null);
+
         $purchaseOrderData = [
             'customer_id'           => $purchaseOrder['customer_id'] ?? null,
             'customer_contact_id'   => $purchaseOrder['customer_contact_id'] ?? null,
-            'billing_address_id'    => $purchaseOrder['billing_address_id'] ?? null,
-            'delivery_address_id'   => $purchaseOrder['delivery_address_id'] ?? null,
+            'delivery_address_id'   => $deliveryAddress->id ?? null,
             'product_category_id'   => $salesOrder->product_category_id,
             'billing_type'          => $purchaseOrder['billing_type'] ?? null,
             'cutoff_day'            => $purchaseOrder['cutoff_day'] ?? null,
@@ -398,8 +401,9 @@ class SalesOrderController extends Controller
             'payment_day_offset'    => $purchaseOrder['payment_day_offset'] ?? null,
             'payment_date'          => $purchaseOrder['payment_date'] ?? null,
             'payment_status'        => $purchaseOrder['payment_status'] ?? null,
-            'customer_name'         => $purchaseOrder['customer_name'] ?? null,
-            'ship_from_address'     => $purchaseOrder['ship_from_address'] ?? 'TEMP',
+            'ship_from_address'     => $deliveryAddress->address ?? null,
+            'ship_from_company'     => $deliveryAddress->company_name ?? null,
+            'ship_from_contact'     => $deliveryAddress->contact_name ?? null,
             'purchase_date'         => $salesOrder->order_date,
             'note'                  => $purchaseOrder['note'] ?? null,
             'purchase_in_charge_id' => $purchaseOrder['purchase_in_charge_id'] ?? null,

@@ -18,7 +18,7 @@ export default function PurchaseOrderTable({ purchaseOrders }) {
             <tr key={purchaseOrder.id} className="table-row is-hoverable">
               <td className="td-cell col-fixed">{purchaseOrder.id}</td>
               <td className="td-cell">{purchaseOrder.product_category.name}</td>
-              <td className="td-cell">{purchaseOrder.customer_name}</td>
+              <td className="td-cell">{purchaseOrder.customer.name}</td>
               <td className="td-cell">{purchaseOrder.purchase_in_charge.name}</td>
               <td className="td-cell">
                 {purchaseOrder.display_total} <br />

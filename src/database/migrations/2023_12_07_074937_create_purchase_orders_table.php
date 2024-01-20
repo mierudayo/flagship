@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('customer_contact_id')->nullable();
-            $table->unsignedBigInteger('billing_address_id')->nullable();
-            $table->unsignedBigInteger('delivery_address_id');
+            $table->unsignedBigInteger('delivery_address_id')->nullable();
             $table->unsignedBigInteger('product_category_id');
             // 請求条件
             $table->tinyInteger('billing_type')->nullable()->default(2);
@@ -27,8 +26,12 @@ return new class extends Migration
             // 支払状況
             $table->date('payment_date')->nullable();
             $table->string('payment_status')->nullable();
-            $table->string('customer_name');
-            $table->string('ship_from_address');
+
+            // 出荷元情報
+            $table->string('ship_from_address')->nullable();
+            $table->string('ship_from_company')->nullable();
+            $table->string('ship_from_contact')->nullable();
+
             $table->date('purchase_date');
             $table->text('note')->nullable();
             $table->unsignedBigInteger('purchase_in_charge_id');
@@ -45,11 +48,6 @@ return new class extends Migration
             $table->foreign('customer_contact_id')
                 ->references('id')
                 ->on('customer_contacts')
-                ->onDelete('restrict');
-
-            $table->foreign('billing_address_id')
-                ->references('id')
-                ->on('billing_addresses')
                 ->onDelete('restrict');
 
             $table->foreign('delivery_address_id')
@@ -87,7 +85,6 @@ return new class extends Migration
         Schema::table('purchase_orders', function (Blueprint $table) {
             $table->dropForeign(['customer_id']);
             $table->dropForeign(['customer_contact_id']);
-            $table->dropForeign(['billing_address_id']);
             $table->dropForeign(['delivery_address_id']);
             $table->dropForeign(['product_category_id']);
             $table->dropForeign(['purchase_in_charge_id']);

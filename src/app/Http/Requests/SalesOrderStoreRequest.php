@@ -61,8 +61,8 @@ class SalesOrderStoreRequest extends FormRequest
 
             // PurchaseOrder
             'detail_rows.*.purchase_order.customer_id'           => ['required', 'integer', 'exists:customers,id'],
-            'detail_rows.*.purchase_order.customer_contact_id'   => ['required', 'integer', 'exists:customer_contacts,id'],
-            'detail_rows.*.purchase_order.delivery_address_id'   => ['required', 'integer', 'exists:delivery_addresses,id'],
+            'detail_rows.*.purchase_order.customer_contact_id'   => ['nullable', 'integer', 'exists:customer_contacts,id'],
+            'detail_rows.*.purchase_order.delivery_address_id'   => ['nullable', 'integer', 'exists:delivery_addresses,id'],
             'detail_rows.*.purchase_order.purchase_in_charge_id' => ['required', 'integer', 'exists:users,id'],
 
             // PurchaseOrderDetail

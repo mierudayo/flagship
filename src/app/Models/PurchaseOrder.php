@@ -20,7 +20,6 @@ class PurchaseOrder extends Model
     protected $fillable = [
         'customer_id',
         'customer_contact_id',
-        'billing_address_id',
         'delivery_address_id',
         'product_category_id',
         'billing_type',
@@ -30,8 +29,9 @@ class PurchaseOrder extends Model
         'payment_day_offset',
         'payment_date',
         'payment_status',
-        'customer_name',
         'ship_from_address',
+        'ship_from_company',
+        'ship_from_contact',
         'purchase_date',
         'note',
         'purchase_in_charge_id',
@@ -52,11 +52,6 @@ class PurchaseOrder extends Model
     public function customerContact(): BelongsTo
     {
         return $this->belongsTo(CustomerContact::class);
-    }
-
-    public function billingAddress(): BelongsTo
-    {
-        return $this->belongsTo(BillingAddress::class);
     }
 
     public function deliveryAddress(): BelongsTo
@@ -130,7 +125,9 @@ class PurchaseOrder extends Model
 
         return $query->where(function ($query) use ($keyword) {
             $query->where('id', $keyword)
-                ->orWhere('customer_name', 'like', "%$keyword%");
+                ->orWhereHas('customer', function ($q) use ($keyword) {
+                    $q->where('name', 'like', "%$keyword%");
+                });
         });
     }
 }
