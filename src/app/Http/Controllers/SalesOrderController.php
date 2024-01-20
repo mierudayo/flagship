@@ -195,6 +195,7 @@ class SalesOrderController extends Controller
             ->searchByProductDetail($request->input('product_detail'))
             ->searchByCustomerName($request->input('customer_name'))
             ->searchBySalesInCharge($request->input('sales_in_charge_id'))
+            ->searchByConsignee($request->input('consignee'))
             ->latest();
     }
 

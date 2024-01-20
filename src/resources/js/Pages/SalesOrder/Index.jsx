@@ -33,6 +33,7 @@ const Index = ({ salesOrders, userOptions, productCategoryOptions, totals }) => 
     product_detail: urlParams.product_detail || '',
     customer_name: urlParams.customer_name || '',
     sales_in_charge_id: urlParams.sales_in_charge_id || '',
+    consignee: urlParams.consignee || '',
     start_date: urlParams.start_date || '',
     end_date: urlParams.end_date || '',
   });
@@ -46,6 +47,7 @@ const Index = ({ salesOrders, userOptions, productCategoryOptions, totals }) => 
       product_detail: '',
       customer_name: '',
       sales_in_charge_id: '',
+      consignee: '',
       start_date: '',
       end_date: '',
     })
@@ -200,6 +202,19 @@ const Index = ({ salesOrders, userOptions, productCategoryOptions, totals }) => 
                 error={errors.sales_in_charge_id}
               />
             </div>
+
+            <div className="u-mr-2 u-w-200">
+              <FormLabel htmlFor="consignee" label="納品先" />
+              <Input
+                id="consignee"
+                type="text"
+                value={data.consignee}
+                onChange={e => setData('consignee', e.target.value)}
+                error={errors.consignee}
+                placeholder="住所/会社名"
+              />
+            </div>
+
           </div>
           <div className="filter-form-footer">
             <button className="btn btn-primary u-mr-3">

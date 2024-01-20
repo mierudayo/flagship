@@ -210,6 +210,18 @@ class SalesOrder extends Model
         });
     }
 
+    public function scopeSearchByConsignee(Builder $query, ?string $consignee): Builder
+    {
+        if (!$consignee) {
+            return $query;
+        }
+
+        return $query->where(function ($q) use ($consignee) {
+            $q->where('delivery_address', 'like', "%$consignee%")
+                ->orWhere('consignee_company', 'like', "%$consignee%");
+        });
+    }
+
     public function scopeSearchByProductDetail(Builder $query, ?string $productDetail): Builder
     {
         if (!$productDetail) {
