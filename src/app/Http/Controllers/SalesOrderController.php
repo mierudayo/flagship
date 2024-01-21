@@ -150,7 +150,7 @@ class SalesOrderController extends Controller
             return $salesOrder;
         });
 
-        return to_route('sales-orders.show', $salesOrder)
+        return to_route('sales-orders.index')
             ->with('message', "受注No:{$salesOrder->id} 更新成功しました。");
     }
 
