@@ -18,6 +18,7 @@ class PurchaseOrder extends Model
     use HasFactory;
 
     protected $appends = [
+        'purchase_term_labels',
         'total',
         'total_with_tax',
     ];
