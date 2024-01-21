@@ -10,6 +10,7 @@ use App\Models\ProductCategory;
 use App\Models\PurchaseOrder;
 use App\Models\PurchaseOrderDetail;
 use App\Models\User;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -18,27 +19,8 @@ class PurchaseOrderController extends Controller
 {
     public function index(PurchaseOrderSearchRequest $request): Response
     {
-        $purchaseOrders = PurchaseOrder::query()
-            ->with([
-                'customer',
-                'purchaseInCharge',
-                'productCategory',
-                'purchaseOrderDetails',
-            ])
-            ->searchByKeyword($request->input('keyword'))
-            ->searchByPurchasePeriod(
-                $request->input('start_date'),
-                $request->input('end_date')
-            )
-            ->searchByProductCategory($request->input('product_category_id'))
-            ->searchByProductName($request->input('product_name'))
-            ->searchByProductDetail($request->input('product_detail'))
-            ->searchByCustomerName($request->input('customer_name'))
-            ->searchByPurchaseInCharge($request->input('purchase_in_charge_id'))
-            ->searchByShipFrom($request->input('ship_from'))
-            ->latest()
-            ->paginate(100)
-            ->withQueryString();
+        $query          = $this->getPurchaseOrdersQuery($request);
+        $purchaseOrders = $query->paginate(100)->withQueryString();
 
         return Inertia::render('PurchaseOrder/Index', [
             'purchaseOrders'         => $purchaseOrders,
@@ -119,5 +101,34 @@ class PurchaseOrderController extends Controller
         return Inertia::render('PurchaseOrder/Show', [
             'purchaseOrder' => $purchaseOrder,
         ]);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Business Logic
+    |--------------------------------------------------------------------------
+    */
+
+    private function getPurchaseOrdersQuery(PurchaseOrderSearchRequest $request): Builder
+    {
+        return PurchaseOrder::query()
+            ->with([
+                'customer',
+                'purchaseInCharge',
+                'productCategory',
+                'purchaseOrderDetails',
+            ])
+            ->searchByKeyword($request->input('keyword'))
+            ->searchByPurchasePeriod(
+                $request->input('start_date'),
+                $request->input('end_date')
+            )
+            ->searchByProductCategory($request->input('product_category_id'))
+            ->searchByProductName($request->input('product_name'))
+            ->searchByProductDetail($request->input('product_detail'))
+            ->searchByCustomerName($request->input('customer_name'))
+            ->searchByPurchaseInCharge($request->input('purchase_in_charge_id'))
+            ->searchByShipFrom($request->input('ship_from'))
+            ->latest();
     }
 }
