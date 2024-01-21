@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SalesOrderSearchRequest;
 use App\Http\Requests\SalesOrderStoreRequest;
 use App\Http\Requests\SalesOrderUpdateRequest;
+use App\Models\Customer;
 use App\Models\DeliveryAddress;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -361,17 +362,19 @@ class SalesOrderController extends Controller
     private function createPurchaseOrder(array $purchaseOrder, SalesOrder $salesOrder): PurchaseOrder
     {
         $deliveryAddress = DeliveryAddress::find($purchaseOrder['delivery_address_id'] ?? null);
+        $customer        = Customer::find($purchaseOrder['customer_id']);
+        $purchaseTerm    = $customer?->purchaseTerm;
 
         return PurchaseOrder::create([
-            'customer_id'           => $purchaseOrder['customer_id'] ?? null,
+            'customer_id'           => $customer->id,
             'customer_contact_id'   => $purchaseOrder['customer_contact_id'] ?? null,
             'delivery_address_id'   => $deliveryAddress->id ?? null,
             'product_category_id'   => $salesOrder->product_category_id,
-            'billing_type'          => $purchaseOrder['billing_type'] ?? null,
-            'cutoff_day'            => $purchaseOrder['cutoff_day'] ?? null,
-            'payment_month_offset'  => $purchaseOrder['payment_month_offset'] ?? null,
-            'payment_day'           => $purchaseOrder['payment_day'] ?? null,
-            'payment_day_offset'    => $purchaseOrder['payment_day_offset'] ?? null,
+            'billing_type'          => $purchaseTerm?->billing_type,
+            'cutoff_day'            => $purchaseTerm?->cutoff_day,
+            'payment_month_offset'  => $purchaseTerm?->payment_month_offset,
+            'payment_day'           => $purchaseTerm?->payment_day,
+            'payment_day_offset'    => $purchaseTerm?->payment_day_offset,
             'payment_date'          => $purchaseOrder['payment_date'] ?? null,
             'payment_status'        => $purchaseOrder['payment_status'] ?? null,
             'ship_from_address'     => $deliveryAddress->address ?? null,
@@ -388,17 +391,19 @@ class SalesOrderController extends Controller
     private function upsertPurchaseOrder(array $purchaseOrder, SalesOrder $salesOrder): PurchaseOrder
     {
         $deliveryAddress = DeliveryAddress::find($purchaseOrder['delivery_address_id'] ?? null);
+        $customer        = Customer::find($purchaseOrder['customer_id']);
+        $purchaseTerm    = $customer?->purchaseTerm;
 
         $purchaseOrderData = [
-            'customer_id'           => $purchaseOrder['customer_id'] ?? null,
+            'customer_id'           => $customer->id,
             'customer_contact_id'   => $purchaseOrder['customer_contact_id'] ?? null,
             'delivery_address_id'   => $deliveryAddress->id ?? null,
             'product_category_id'   => $salesOrder->product_category_id,
-            'billing_type'          => $purchaseOrder['billing_type'] ?? null,
-            'cutoff_day'            => $purchaseOrder['cutoff_day'] ?? null,
-            'payment_month_offset'  => $purchaseOrder['payment_month_offset'] ?? null,
-            'payment_day'           => $purchaseOrder['payment_day'] ?? null,
-            'payment_day_offset'    => $purchaseOrder['payment_day_offset'] ?? null,
+            'billing_type'          => $purchaseTerm?->billing_type,
+            'cutoff_day'            => $purchaseTerm?->cutoff_day,
+            'payment_month_offset'  => $purchaseTerm?->payment_month_offset,
+            'payment_day'           => $purchaseTerm?->payment_day,
+            'payment_day_offset'    => $purchaseTerm?->payment_day_offset,
             'payment_date'          => $purchaseOrder['payment_date'] ?? null,
             'payment_status'        => $purchaseOrder['payment_status'] ?? null,
             'ship_from_address'     => $deliveryAddress->address ?? null,
