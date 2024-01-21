@@ -13,6 +13,7 @@ import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
 import { formatCurrency } from '@/Utils/priceCalculator';
+import FilterApplyButton from '@/Components/FilterApplyButton';
 
 const Index = ({ salesOrders, userOptions, productCategoryOptions, totals }) => {
   const urlParams = route().params;
@@ -217,9 +218,7 @@ const Index = ({ salesOrders, userOptions, productCategoryOptions, totals }) => 
 
           </div>
           <div className="filter-form-footer">
-            <button className="btn btn-primary u-mr-3">
-              検索
-            </button>
+            <FilterApplyButton handleClick={submit} style={{ marginRight: '16px' }} />
             <Link
               href={route('sales-orders.index')}
               className="btn btn-secondary"

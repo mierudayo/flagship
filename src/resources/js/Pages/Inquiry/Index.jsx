@@ -14,6 +14,7 @@ import InquiryTable from './Partials/InquiryTable';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
+import FilterApplyButton from '@/Components/FilterApplyButton';
 
 const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOptions, inquiryStatusOptions }) => {
   const urlParams = route().params;
@@ -195,9 +196,7 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
             </div>
           </div>
           <div className="filter-form-footer">
-            <button className="btn btn-primary u-mr-3">
-              検索
-            </button>
+            <FilterApplyButton handleClick={submit} style={{ marginRight: '16px' }} />
             <Link
               href={route('inquiries.index')}
               className="btn btn-secondary"

@@ -10,6 +10,7 @@ import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import SalesActivityTable from './Partials/SalesActivityTable';
 import FormLabel from '@/Components/Form/FormLabel';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
+import FilterApplyButton from '@/Components/FilterApplyButton';
 
 const Index = ({ salesActivities, inChargeUserOptions }) => {
   const urlParams = route().params;
@@ -102,9 +103,7 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
 
           </div>
           <div className="filter-form-footer">
-            <button className="btn btn-primary u-mr-3">
-              検索
-            </button>
+            <FilterApplyButton handleClick={submit} style={{ marginRight: '16px' }} />
             <Link
               href={route('sales-activities.index')}
               className="btn btn-secondary"
