@@ -21,12 +21,14 @@ class PurchaseOrderController extends Controller
     public function index(PurchaseOrderSearchRequest $request): Response
     {
         $query          = $this->getPurchaseOrdersQuery($request);
+        $totals         = $this->calculateTotals($query);
         $purchaseOrders = $query->paginate(100)->withQueryString();
 
         return Inertia::render('PurchaseOrder/Index', [
             'purchaseOrders'         => $purchaseOrders,
             'userOptions'            => User::all(),
             'productCategoryOptions' => ProductCategory::all(),
+            'totals'                 => $totals,
         ]);
     }
 
@@ -141,5 +143,20 @@ class PurchaseOrderController extends Controller
             })->toArray();
 
         PurchaseOrderDetail::insert($purchaseOrderDetails);
+    }
+
+    private function calculateTotals(Builder $query): array
+    {
+        $poTotal        = 0;
+        $poTotalWithTax = 0;
+
+        $query->chunk(100, function ($purchaseOrders) use (&$poTotal, &$poTotalWithTax) {
+            foreach ($purchaseOrders as $purchaseOrder) {
+                $poTotal        += $purchaseOrder->total;
+                $poTotalWithTax += $purchaseOrder->total_with_tax;
+            }
+        });
+
+        return compact('poTotal', 'poTotalWithTax');
     }
 }

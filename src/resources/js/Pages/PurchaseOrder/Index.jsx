@@ -7,11 +7,11 @@ import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import PurchaseOrderTable from './Partials/PurchaseOrderTable';
 import DateRangePicker from '@/Components/DateRangePicker';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
-
+import { formatCurrency } from '@/Utils/priceCalculator';
 import FilterForm from '@/Components/FilterForm';
 import PurchaseOrderFilter from './Partials/PurchaseOrderFilter';
 
-const Index = ({ purchaseOrders, userOptions, productCategoryOptions }) => {
+const Index = ({ purchaseOrders, userOptions, productCategoryOptions, totals }) => {
   const urlParams = route().params;
   const { flash } = usePage().props;
 
@@ -44,7 +44,25 @@ const Index = ({ purchaseOrders, userOptions, productCategoryOptions }) => {
 
   return (
     <>
-      <h1 className="content-title">発注 一覧</h1>
+      <div className="u-flex-wrap">
+        <h1 className="content-title u-mr-4">発注 一覧</h1>
+
+        <div className="u-flex-wrap">
+          <div className="u-flex u-mr-4 u-items-center">
+            <span className="u-min-w-64">
+              <span className="indicator-dot dot-pink"></span>
+              発注額
+            </span>
+            <span>
+              {formatCurrency(totals.poTotal)}
+            </span>
+            <span className="u-text-sm">
+              ({formatCurrency(totals.poTotalWithTax)})
+            </span>
+          </div>
+        </div>
+      </div>
+
 
       <div className="content-navbar">
         <Link
