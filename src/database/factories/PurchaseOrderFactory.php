@@ -40,6 +40,7 @@ class PurchaseOrderFactory extends Factory
             'ship_from_company'     => $deliveryAddress->company_name,
             'ship_from_contact'     => $deliveryAddress->contact_name,
             'purchase_date'         => $this->faker->date(),
+            'shipping_date'         => $this->faker->date(),
             'note'                  => $this->faker->paragraph,
             'purchase_in_charge_id' => User::inRandomOrder()->first()->id,
             'created_by_id'         => User::inRandomOrder()->first()->id,

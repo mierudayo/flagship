@@ -81,7 +81,7 @@ const Index = ({ purchaseOrders, userOptions, productCategoryOptions, totals }) 
         />
 
         <DateRangePicker
-          dateColumnLabel="発注日"
+          dateColumnLabel="出荷日"
           data={data}
           setData={setData}
           errors={errors}

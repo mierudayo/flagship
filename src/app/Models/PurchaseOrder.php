@@ -39,6 +39,7 @@ class PurchaseOrder extends Model
         'ship_from_company',
         'ship_from_contact',
         'purchase_date',
+        'shipping_date',
         'note',
         'purchase_in_charge_id',
         'created_by_id',
@@ -139,18 +140,18 @@ class PurchaseOrder extends Model
         });
     }
 
-    public function scopeSearchByPurchasePeriod(Builder $query, ?string $startDate, ?string $endDate): Builder
+    public function scopeSearchByShippingPeriod(Builder $query, ?string $startDate, ?string $endDate): Builder
     {
         if ($startDate && $endDate) {
-            return $query->whereBetween('purchase_date', [$startDate, $endDate]);
+            return $query->whereBetween('shipping_date', [$startDate, $endDate]);
         }
 
         if ($startDate) {
-            return $query->where('purchase_date', '>=', $startDate);
+            return $query->where('shipping_date', '>=', $startDate);
         }
 
         if ($endDate) {
-            return $query->where('purchase_date', '<=', $endDate);
+            return $query->where('shipping_date', '<=', $endDate);
         }
 
         return $query;

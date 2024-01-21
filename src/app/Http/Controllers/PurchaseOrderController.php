@@ -86,7 +86,7 @@ class PurchaseOrderController extends Controller
                 'purchaseOrderDetails',
             ])
             ->searchByKeyword($request->input('keyword'))
-            ->searchByPurchasePeriod(
+            ->searchByShippingPeriod(
                 $request->input('start_date'),
                 $request->input('end_date')
             )

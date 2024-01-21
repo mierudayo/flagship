@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('ship_from_contact')->nullable();
 
             $table->date('purchase_date');
+            $table->date('shipping_date')->nullable();
             $table->text('note')->nullable();
             $table->unsignedBigInteger('purchase_in_charge_id');
             $table->unsignedBigInteger('created_by_id');

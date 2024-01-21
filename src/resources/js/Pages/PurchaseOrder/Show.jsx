@@ -32,7 +32,7 @@ const Show = ({ purchaseOrder }) => {
             <tbody className="tbody">
 
               <tr className="table-row">
-                <th className="th-cell u-w-144">発注</th>
+                <th className="th-cell u-w-144">発注日</th>
                 <td className="td-cell">{purchaseOrder.purchase_date}</td>
               </tr>
 
@@ -64,6 +64,13 @@ const Show = ({ purchaseOrder }) => {
                 <th className="th-cell">請求条件</th>
                 <td className="td-cell">
                   <TermDetails purchaseOrder={purchaseOrder} />
+                </td>
+              </tr>
+
+              <tr className="table-row">
+                <th className="th-cell">出荷日</th>
+                <td className="td-cell">
+                  {purchaseOrder.shipping_date}
                 </td>
               </tr>
 
