@@ -2,6 +2,11 @@
 
 namespace App\Models;
 
+use App\Enums\PaymentTerm\BillingType;
+use App\Enums\PaymentTerm\CutoffDay;
+use App\Enums\PaymentTerm\PaymentDay;
+use App\Enums\PaymentTerm\PaymentDayOffset;
+use App\Enums\PaymentTerm\PaymentMonthOffset;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,8 +18,8 @@ class PurchaseOrder extends Model
     use HasFactory;
 
     protected $appends = [
-        'display_total',
-        'display_total_with_tax',
+        'total',
+        'total_with_tax',
     ];
 
     protected $fillable = [
@@ -96,20 +101,22 @@ class PurchaseOrder extends Model
         return $this->purchaseOrderDetails->sum('price');
     }
 
-    public function getDisplayTotalAttribute(): string
-    {
-        return number_format($this->total);
-    }
-
     /** 発注合計額(税込) */
     public function getTotalWithTaxAttribute(): int
     {
         return $this->purchaseOrderDetails->sum('price_with_tax');
     }
 
-    public function getDisplayTotalWithTaxAttribute(): string
+    /** 支払条件の表示用ラベル */
+    public function getPurchaseTermLabelsAttribute(): array
     {
-        return number_format($this->total_with_tax);
+        return [
+            'billing_type'  => BillingType::getLabelFromValue($this->billing_type),
+            'cutoff_day'    => CutoffDay::getLabelFromValue($this->cutoff_day),
+            'payment_month_offset'  => PaymentMonthOffset::getLabelFromValue($this->payment_month_offset),
+            'payment_day'           => PaymentDay::getLabelFromValue($this->payment_day),
+            'payment_day_offset'    => PaymentDayOffset::getLabelFromValue($this->payment_day_offset),
+        ];
     }
 
     /*
@@ -128,6 +135,86 @@ class PurchaseOrder extends Model
                 ->orWhereHas('customer', function ($q) use ($keyword) {
                     $q->where('name', 'like', "%$keyword%");
                 });
+        });
+    }
+
+    public function scopeSearchByPurchasePeriod(Builder $query, ?string $startDate, ?string $endDate): Builder
+    {
+        if ($startDate && $endDate) {
+            return $query->whereBetween('purchase_date', [$startDate, $endDate]);
+        }
+
+        if ($startDate) {
+            return $query->where('purchase_date', '>=', $startDate);
+        }
+
+        if ($endDate) {
+            return $query->where('purchase_date', '<=', $endDate);
+        }
+
+        return $query;
+    }
+
+    public function scopeSearchByCustomerName(Builder $query, ?string $customerName): Builder
+    {
+        if (!$customerName) {
+            return $query;
+        }
+
+        return $query->whereHas('customer', function ($q) use ($customerName) {
+            $q->where('name', 'like', "%$customerName%");
+        });
+    }
+
+    public function scopeSearchByPurchaseInCharge(Builder $query, ?string $purchaseInChargeId): Builder
+    {
+        if (!$purchaseInChargeId) {
+            return $query;
+        }
+
+        return $query->where('purchase_in_charge_id', $purchaseInChargeId);
+    }
+
+    public function scopeSearchByProductCategory(Builder $query, ?string $productCategoryId): Builder
+    {
+        if (!$productCategoryId) {
+            return $query;
+        }
+
+        return $query->where('product_category_id', $productCategoryId);
+    }
+
+    public function scopeSearchByProductName(Builder $query, ?string $productName): Builder
+    {
+        if (!$productName) {
+            return $query;
+        }
+
+        return $query->whereHas('purchaseOrderDetails', function ($q) use ($productName) {
+            $q->where('product_name', 'like', "%$productName%");
+        });
+    }
+
+    public function scopeSearchByShipFrom(Builder $query, ?string $shipFrom): Builder
+    {
+        if (!$shipFrom) {
+            return $query;
+        }
+
+        return $query->where(function ($q) use ($shipFrom) {
+            $q->where('ship_from_address', 'like', "%$shipFrom%")
+                ->orWhere('ship_from_company', 'like', "%$shipFrom%");
+        });
+    }
+
+    public function scopeSearchByProductDetail(Builder $query, ?string $productDetail): Builder
+    {
+        if (!$productDetail) {
+            return $query;
+        }
+
+        return $query->whereHas('purchaseOrderDetails', function ($q) use ($productDetail) {
+            $q->where('product_detail', 'like', "%$productDetail%");
         });
     }
 }
