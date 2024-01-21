@@ -5,16 +5,14 @@ import MenuItem from '@mui/material/MenuItem';
 
 import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
-import CustomSelect from '@/Components/Form/CustomSelect';
 import DropdownMenu from '@/Components/DropdownMenu';
 import DateRangePicker from '@/Components/DateRangePicker';
 import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import InquiryTable from './Partials/InquiryTable';
-import FormLabel from '@/Components/Form/FormLabel';
-import Input from '@/Components/Form/Input';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
-import FilterApplyButton from '@/Components/FilterApplyButton';
+import FilterForm from '@/Components/FilterForm';
+import InquiryFilter from "./Partials/InquiryFilter";
 
 const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOptions, inquiryStatusOptions }) => {
   const urlParams = route().params;
@@ -38,21 +36,6 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
     inquiry_type_id: urlParams.inquiry_type_id || '',
     product_id: urlParams.product_id || '',
   });
-
-  function resetSearchInputs() {
-    setData({
-      ...data,
-      keyword: '',
-      inquiry_id: '',
-      customer_info: '',
-      start_date: '',
-      end_date: '',
-      in_charge_user_id: '',
-      status: '',
-      inquiry_type_id: '',
-      product_id: '',
-    })
-  }
 
   function submit(e) {
     e.preventDefault();
@@ -108,106 +91,18 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
         <Pagination paginator={inquiries} />
       </div>
 
-      <form onSubmit={submit}>
-        <div className={`filter-section ${isFilterOpen ? 'show' : ''}`}>
-          <div className="filter-form-body">
-            <div className="u-mr-2">
-              <FormLabel htmlFor="inquiry_id" label="No" />
-              <Input
-                id="inquiry_id"
-                type="number"
-                value={data.inquiry_id}
-                onChange={e => setData('inquiry_id', e.target.value)}
-                error={errors.inquiry_id}
-                className="u-max-w-80"
-              />
-            </div>
-
-            <div className="u-mr-2">
-              <FormLabel htmlFor="customer_info" label="顧客情報" />
-              <Input
-                id="customer_info"
-                type="text"
-                value={data.customer_info}
-                onChange={e => setData('customer_info', e.target.value)}
-                error={errors.customer_info}
-                className="u-max-w-200"
-              />
-            </div>
-
-            <div className="u-mr-2 u-min-w-200">
-              <FormLabel label="対象商品" />
-              <CustomSelect
-                onChange={value => setData('product_id', value)}
-                options={productOptions}
-                value={data.product_id}
-                valueKey="id"
-                labelKey="name"
-                isClearable={true}
-                isSearchable={true}
-                placeholder="..."
-                error={errors.product_id}
-              />
-            </div>
-
-            <div className="u-mr-2 u-min-w-200">
-              <FormLabel label="担当者" />
-              <CustomSelect
-                onChange={value => setData('in_charge_user_id', value)}
-                options={inChargeUserOptions}
-                value={data.in_charge_user_id}
-                valueKey="id"
-                labelKey="name"
-                isClearable={true}
-                isSearchable={true}
-                placeholder="..."
-                error={errors.in_charge_user_id}
-              />
-            </div>
-
-            <div className="u-mr-2 u-min-w-160">
-              <FormLabel label="ステータス" />
-              <CustomSelect
-                onChange={value => setData('status', value)}
-                options={inquiryStatusOptions}
-                value={data.status}
-                valueKey="value"
-                labelKey="label"
-                isClearable={true}
-                isSearchable={true}
-                placeholder="..."
-                error={errors.status}
-              />
-            </div>
-
-            <div className="u-mr-2 u-min-w-160">
-              <FormLabel label="区分" />
-              <CustomSelect
-                onChange={value => setData('inquiry_type_id', value)}
-                options={inquiryTypeOptions}
-                value={data.inquiry_type_id}
-                valueKey="id"
-                labelKey="name"
-                isClearable={true}
-                isSearchable={true}
-                placeholder="..."
-                error={errors.inquiry_type_id}
-              />
-            </div>
-          </div>
-          <div className="filter-form-footer">
-            <FilterApplyButton handleClick={submit} style={{ marginRight: '16px' }} />
-            <Link
-              href={route('inquiries.index')}
-              className="btn btn-secondary"
-              preserveState={true}
-              onSuccess={resetSearchInputs}
-            >
-              クリア
-            </Link>
-          </div>
-        </div>
-      </form>
+      <FilterForm submit={submit} isFilterOpen={isFilterOpen}>
+        <InquiryFilter
+          submit={submit}
+          data={data}
+          setData={setData}
+          errors={errors}
+          productOptions={productOptions}
+          inChargeUserOptions={inChargeUserOptions}
+          inquiryStatusOptions={inquiryStatusOptions}
+          inquiryTypeOptions={inquiryTypeOptions}
+        />
+      </FilterForm>
 
       <Alert type={flash.type} message={flash.message} />
 

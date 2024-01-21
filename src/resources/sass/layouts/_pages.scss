@@ -42,33 +42,3 @@
   border-radius: 4px;
   padding: 16px;
 }
-
-// 詳細条件検索エリア
-.filter-section {
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  height: 0;
-  overflow: hidden;
-  transition: height 0.3s ease, padding 0.3s ease;
-  width: 100%;
-  padding: 0 8px;
-
-  &.show {
-    padding: 8px;
-    margin-bottom: 16px;
-    height: auto;
-  }
-}
-
-.filter-form-body {
-  display: flex;
-  flex-wrap: wrap;
-  overflow-x: auto;
-  padding: 8px;
-}
-
-.filter-form-footer {
-  display: flex;
-  padding: 8px;
-}

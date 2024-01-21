@@ -3,14 +3,13 @@ import { Link, useForm, usePage } from '@inertiajs/react';
 
 import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
-import CustomSelect from '@/Components/Form/CustomSelect';
 import DateRangePicker from '@/Components/DateRangePicker';
 import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import SalesActivityTable from './Partials/SalesActivityTable';
-import FormLabel from '@/Components/Form/FormLabel';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
-import FilterApplyButton from '@/Components/FilterApplyButton';
+import FilterForm from '@/Components/FilterForm';
+import SalesActivityFilter from './Partials/SalesActivityFilter';
 
 const Index = ({ salesActivities, inChargeUserOptions }) => {
   const urlParams = route().params;
@@ -29,16 +28,6 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
     end_date: urlParams.end_date || '',
     in_charge_user_id: urlParams.in_charge_user_id || '',
   });
-
-  function resetSearchInputs() {
-    setData({
-      ...data,
-      keyword: '',
-      start_date: '',
-      end_date: '',
-      in_charge_user_id: '',
-    })
-  }
 
   function submit(e) {
     e.preventDefault();
@@ -82,39 +71,15 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
         <Pagination paginator={salesActivities} />
       </div>
 
-      <form onSubmit={submit}>
-        <div className={`filter-section ${isFilterOpen ? 'show' : ''}`}>
-          <div className="filter-form-body">
-
-            <div className="u-mr-2 u-min-w-200">
-              <FormLabel label="担当者" />
-              <CustomSelect
-                onChange={value => setData('in_charge_user_id', value)}
-                options={inChargeUserOptions}
-                value={data.in_charge_user_id}
-                valueKey="id"
-                labelKey="name"
-                isClearable={true}
-                isSearchable={true}
-                placeholder="..."
-                error={errors.in_charge_user_id}
-              />
-            </div>
-
-          </div>
-          <div className="filter-form-footer">
-            <FilterApplyButton handleClick={submit} style={{ marginRight: '16px' }} />
-            <Link
-              href={route('sales-activities.index')}
-              className="btn btn-secondary"
-              preserveState={true}
-              onSuccess={resetSearchInputs}
-            >
-              クリア
-            </Link>
-          </div>
-        </div>
-      </form>
+      <FilterForm submit={submit} isFilterOpen={isFilterOpen}>
+        <SalesActivityFilter
+          submit={submit}
+          data={data}
+          setData={setData}
+          errors={errors}
+          inChargeUserOptions={inChargeUserOptions}
+        />
+      </FilterForm>
 
       <Alert type={flash.type} message={flash.message} />
 

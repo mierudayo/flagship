@@ -4,11 +4,10 @@ import AppLayout from '@/Layouts/AppLayout';
 import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import ProductTable from './Partials/ProductTable';
-import CustomSelect from '@/Components/Form/CustomSelect';
-import FormLabel from '@/Components/Form/FormLabel';
-import Input from '@/Components/Form/Input';
+
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
-import FilterApplyButton from '@/Components/FilterApplyButton';
+import FilterForm from '@/Components/FilterForm';
+import ProductFilter from './Partials/ProductFilter';
 
 const Index = ({ products, categoryOptions }) => {
   const urlParams = route().params;
@@ -26,16 +25,6 @@ const Index = ({ products, categoryOptions }) => {
     product_number: urlParams.product_number || '',
     category_id: urlParams.category_id || '',
   });
-
-
-  function resetSearchInputs() {
-    setData({
-      ...data,
-      keyword: '',
-      product_number: '',
-      category_id: '',
-    })
-  }
 
   function submit(e) {
     e.preventDefault();
@@ -74,50 +63,15 @@ const Index = ({ products, categoryOptions }) => {
         <Pagination paginator={products} />
       </div>
 
-      <form onSubmit={submit}>
-        <div className={`filter-section ${isFilterOpen ? 'show' : ''}`}>
-          <div className="filter-form-body">
-
-            <div className="u-mr-2 u-min-w-96">
-              <FormLabel htmlFor="product_number" label="商品番号" />
-              <Input
-                id="product_number"
-                type="text"
-                value={data.product_number}
-                onChange={e => setData('product_number', e.target.value)}
-                error={errors.product_number}
-              />
-            </div>
-
-            <div className="u-mr-2 u-min-w-200">
-              <FormLabel htmlFor="category_id" label="カテゴリ" />
-              <CustomSelect
-                onChange={value => setData('category_id', value)}
-                options={categoryOptions}
-                value={data.category_id}
-                valueKey="id"
-                labelKey="name"
-                isClearable={true}
-                isSearchable={true}
-                placeholder="..."
-                error={errors.category_id}
-              />
-            </div>
-
-          </div>
-          <div className="filter-form-footer">
-            <FilterApplyButton handleClick={submit} style={{ marginRight: '16px' }} />
-            <Link
-              href={route('products.index')}
-              className="btn btn-secondary"
-              preserveState={true}
-              onSuccess={resetSearchInputs}
-            >
-              クリア
-            </Link>
-          </div>
-        </div>
-      </form>
+      <FilterForm submit={submit} isFilterOpen={isFilterOpen}>
+        <ProductFilter
+          submit={submit}
+          data={data}
+          setData={setData}
+          errors={errors}
+          categoryOptions={categoryOptions}
+        />
+      </FilterForm>
 
       <ProductTable products={products.data} />
     </>

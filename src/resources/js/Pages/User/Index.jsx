@@ -6,10 +6,9 @@ import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import UserTable from './Partials/UserTable';
 
-import FormLabel from '@/Components/Form/FormLabel';
-import Input from '@/Components/Form/Input';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
-import FilterApplyButton from '@/Components/FilterApplyButton';
+import UserFilter from './Partials/UserFilter';
+import FilterForm from '@/Components/FilterForm';
 
 const Index = ({ users, canAdmin }) => {
   const urlParams = route().params;
@@ -29,16 +28,6 @@ const Index = ({ users, canAdmin }) => {
     employee_code: urlParams.employee_code || '',
     email: urlParams.email || '',
   });
-
-  function resetSearchInputs() {
-    setData({
-      ...data,
-      keyword: '',
-      user_id: '',
-      employee_code: '',
-      email: '',
-    })
-  }
 
   function submit(e) {
     e.preventDefault();
@@ -80,58 +69,14 @@ const Index = ({ users, canAdmin }) => {
         <Pagination paginator={users} />
       </div>
 
-      <form onSubmit={submit}>
-        <div className={`filter-section ${isFilterOpen ? 'show' : ''}`}>
-          <div className="filter-form-body">
-            <div className="u-mr-2">
-              <FormLabel htmlFor="user_id" label="No." />
-              <Input
-                id="user_id"
-                type="number"
-                value={data.user_id}
-                onChange={e => setData('user_id', e.target.value)}
-                error={errors.user_id}
-                className="u-w-88"
-              />
-            </div>
-
-            <div className="u-mr-2">
-              <FormLabel htmlFor="employee_code" label="社員番号" />
-              <Input
-                id="employee_code"
-                type="text"
-                value={data.employee_code}
-                onChange={e => setData('employee_code', e.target.value)}
-                error={errors.employee_code}
-                className="u-w-112"
-              />
-            </div>
-
-            <div className="u-mr-2">
-              <FormLabel htmlFor="email" label="Email" />
-              <Input
-                id="email"
-                type="text"
-                value={data.email}
-                onChange={e => setData('email', e.target.value)}
-                error={errors.email}
-                className="u-w-240"
-              />
-            </div>
-          </div>
-          <div className="filter-form-footer">
-            <FilterApplyButton handleClick={submit} style={{ marginRight: '16px' }} />
-            <Link
-              href={route('users.index')}
-              className="btn btn-secondary"
-              preserveState={true}
-              onSuccess={resetSearchInputs}
-            >
-              クリア
-            </Link>
-          </div>
-        </div>
-      </form>
+      <FilterForm submit={submit} isFilterOpen={isFilterOpen}>
+        <UserFilter
+          submit={submit}
+          data={data}
+          setData={setData}
+          errors={errors}
+        />
+      </FilterForm>
 
       <Alert type={flash.type} message={flash.message} />
 
