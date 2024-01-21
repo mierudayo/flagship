@@ -58,7 +58,7 @@ class CustomerController extends Controller
         });
 
         return to_route('customers.show', $customer)
-            ->with('message', "取引先ID:{$customer->id} 登録成功しました。");
+            ->with('message', "取引先No:{$customer->id} 登録成功しました。");
     }
 
     public function show(Customer $customer): Response

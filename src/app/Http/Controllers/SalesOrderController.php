@@ -54,7 +54,7 @@ class SalesOrderController extends Controller
         });
 
         return to_route('sales-orders.index')
-            ->with('message', "受注ID:{$salesOrder->id} 登録成功しました。");
+            ->with('message', "受注No:{$salesOrder->id} 登録成功しました。");
     }
 
     public function show(SalesOrder $salesOrder): Response
@@ -151,7 +151,7 @@ class SalesOrderController extends Controller
         });
 
         return to_route('sales-orders.show', $salesOrder)
-            ->with('message', "受注ID:{$salesOrder->id} 更新成功しました。");
+            ->with('message', "受注No:{$salesOrder->id} 更新成功しました。");
     }
 
     public function destroy(SalesOrder $salesOrder): RedirectResponse
@@ -167,7 +167,7 @@ class SalesOrderController extends Controller
         });
 
         return to_route('sales-orders.index')
-            ->with('message', "受注ID:{$salesOrder->id} 削除しました。");
+            ->with('message', "受注No:{$salesOrder->id} 削除しました。");
     }
 
     /*

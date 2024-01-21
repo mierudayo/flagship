@@ -53,7 +53,7 @@ class UserController extends Controller
         ]);
 
         return to_route('users.index')
-            ->with('message', "ユーザーID:{$user->id} 登録成功しました。");
+            ->with('message', "ユーザーNo:{$user->id} 登録成功しました。");
     }
 
     public function edit(User $user): Response
@@ -78,6 +78,6 @@ class UserController extends Controller
         ]);
 
         return to_route('users.index')
-            ->with('message', "ユーザーID:{$user->id} 更新しました。");
+            ->with('message', "ユーザーNo:{$user->id} 更新しました。");
     }
 }

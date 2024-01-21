@@ -77,7 +77,7 @@ class InquiryController extends Controller
         ]);
 
         return to_route('inquiries.index')
-            ->with('message', "問い合わせID:{$inquiry->id} 登録成功しました。");
+            ->with('message', "問い合わせNo:{$inquiry->id} 登録成功しました。");
     }
 
     public function edit(Inquiry $inquiry): Response
@@ -117,7 +117,7 @@ class InquiryController extends Controller
         ]);
 
         return to_route('inquiries.index')
-            ->with('message', "問い合わせID:{$inquiry->id} 更新しました。");
+            ->with('message', "問い合わせNo:{$inquiry->id} 更新しました。");
     }
 
     public function destroy(Inquiry $inquiry): RedirectResponse

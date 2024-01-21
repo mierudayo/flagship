@@ -61,10 +61,10 @@ class PurchaseOrderStoreRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'customer_id'           => '取引先ID',
-            'customer_contact_id'   => '連絡先ID',
-            'delivery_address_id'   => '出荷元ID',
-            'product_category_id'   => '集計品目ID',
+            'customer_id'           => '取引先No',
+            'customer_contact_id'   => '連絡先No',
+            'delivery_address_id'   => '出荷元No',
+            'product_category_id'   => '集計品目No',
             'billing_type'          => '請求タイプ',
             'cutoff_day'            => '締め日',
             'payment_month_offset'  => '支払月',
@@ -74,7 +74,7 @@ class PurchaseOrderStoreRequest extends FormRequest
             'payment_status'        => '入金状況',
             'purchase_date'         => '発注日',
             'note'                  => '備考',
-            'purchase_in_charge_id' => '発注担当者ID',
+            'purchase_in_charge_id' => '発注担当者No',
         ];
     }
 }

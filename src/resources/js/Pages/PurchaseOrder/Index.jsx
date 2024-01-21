@@ -70,7 +70,7 @@ const Index = ({ purchaseOrders, userOptions, productCategoryOptions }) => {
         </Link>
 
         <KeywordSearchForm
-          placeholder="発注ID, 仕入先名で検索"
+          placeholder="発注No, 仕入先名で検索"
           data={data}
           setData={setData}
           errors={errors}

@@ -101,7 +101,7 @@ class PurchaseOrderController extends Controller
         PurchaseOrderDetail::insert($purchaseOrderDetails);
 
         return to_route('purchase-orders.index')
-            ->with('message', "発注ID:{$purchaseOrder->id} 登録成功しました。");
+            ->with('message', "発注No:{$purchaseOrder->id} 登録成功しました。");
     }
 
     public function show(PurchaseOrder $purchaseOrder): Response
