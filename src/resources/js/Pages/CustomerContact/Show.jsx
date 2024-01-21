@@ -1,8 +1,9 @@
-import { Link, usePage } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import EditLinkButton from '@/Components/EditLinkButton';
+import NewTabLink from '@/Components/NewTabLink';
 
 const Show = ({ contact }) => {
   const { flash } = usePage().props;
@@ -36,7 +37,12 @@ const Show = ({ contact }) => {
 
               <tr className="table-row">
                 <th className="th-cell u-w-200">所属取引先</th>
-                <td className="td-cell">{contact.customer.name}</td>
+                <td className="td-cell">
+                  <NewTabLink
+                    url={route('customers.show', contact.customer)}
+                    displayText={contact.customer.name}
+                  />
+                </td>
               </tr>
 
               <tr className="table-row">

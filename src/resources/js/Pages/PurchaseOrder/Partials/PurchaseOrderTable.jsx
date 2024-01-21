@@ -26,7 +26,7 @@ export default function PurchaseOrderTable({ purchaseOrders }) {
                 </div>
               </div>
             </th>
-            <th className="th-cell u-w-120 u-text-right">発注金額</th>
+            <th className="th-cell u-min-w-120 u-text-right">発注金額</th>
           </tr>
         </thead>
         <tbody className="table-body">

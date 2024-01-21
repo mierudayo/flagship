@@ -1,3 +1,5 @@
+import { parseNumber } from '@/Utils/priceCalculator';
+
 export default function ProductTable({ products }) {
   return (
     <div className="table-wrapper is-scrollable">
@@ -5,7 +7,7 @@ export default function ProductTable({ products }) {
         <thead className="table-header is-sticky">
           <tr className="table-row">
             <th className="th-cell u-w-64 col-fixed u-text-center">No.</th>
-            <th className="th-cell u-min-w-64 u-text-center">表示順</th>
+            <th className="th-cell u-min-w-88 u-text-center">表示順</th>
             <th className="th-cell u-min-w-120">商品番号</th>
             <th className="th-cell u-min-w-200">商品名</th>
             <th className="th-cell u-min-w-120 u-text-right">仕入単価</th>
@@ -22,9 +24,9 @@ export default function ProductTable({ products }) {
               <td className="td-cell col-fixed u-text-center">{product.id}</td>
               <td className="td-cell u-text-center">{product.display_order}</td>
               <td className="td-cell">{product.product_number}</td>
-              <td className="td-cell u-bold">{product.name}</td>
-              <td className="td-cell u-text-right">{product.sales_price}</td>
-              <td className="td-cell u-text-right">{product.purchase_price}</td>
+              <td className="td-cell">{product.name}</td>
+              <td className="td-cell u-text-right">¥ {parseNumber(product.sales_price)}</td>
+              <td className="td-cell u-text-right">¥ {parseNumber(product.purchase_price)}</td>
               <td className="td-cell">{product.description}</td>
               <td className="td-cell">{product.product_type_label}</td>
               <td className="td-cell">{product.category.name}</td>

@@ -1,4 +1,5 @@
 import ClickableRow from '@/Components/ClickableRow';
+import NewTabLink from '@/Components/NewTabLink';
 
 export default function SalesActivityTable({ salesActivities }) {
   return (
@@ -23,7 +24,10 @@ export default function SalesActivityTable({ salesActivities }) {
               <td className="td-cell">{salesActivity.in_charge_user.name}</td>
               <td className="td-cell">
                 {salesActivity.customer_contact.name} <br />
-                {salesActivity.customer_contact.customer.name}
+                <NewTabLink
+                  url={route('customers.show', salesActivity.customer_contact.customer)}
+                  displayText={salesActivity.customer_contact.customer.name}
+                />
               </td>
               <td className="td-cell">{salesActivity.proposal}</td>
               <td className="td-cell">{salesActivity.feedback}</td>

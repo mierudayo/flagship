@@ -1,10 +1,9 @@
-import { Link, useForm, usePage } from '@inertiajs/react';
+import { useForm, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
 import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import BillingAddressTable from './Partials/BillingAddressTable';
-
 
 const Index = ({ billingAddresses }) => {
   const urlParams = route().params;
@@ -25,12 +24,6 @@ const Index = ({ billingAddresses }) => {
     <>
       <h1 className="content-title">請求先 一覧</h1>
       <div className="content-navbar">
-        <Link
-          // href={route('')}
-          className="btn btn-primary u-mr-3"
-        >
-          新規登録
-        </Link>
 
         <KeywordSearchForm
           placeholder="請求先名, ヨミガナで検索"
