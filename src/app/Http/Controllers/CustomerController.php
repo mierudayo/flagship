@@ -22,6 +22,7 @@ class CustomerController extends Controller
     {
         $customers = Customer::query()
             ->with(['inChargeUser'])
+            ->withCount(['salesOrders', 'purchaseOrders'])
             ->searchByKeyword($request->input('keyword'))
             ->searchById($request->input('customer_id'))
             ->searchByAddress($request->input('address'))

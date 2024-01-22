@@ -20,6 +20,7 @@ class CustomerContactController extends Controller
     {
         $customerContacts = CustomerContact::query()
             ->with(['inChargeUser', 'customer'])
+            ->withCount('inquiries')
             ->searchByKeyword($request->input('keyword'))
             ->searchById($request->input('contact_id'))
             ->searchByCustomerName($request->input('customer_name'))
