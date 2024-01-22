@@ -19,7 +19,7 @@ class CustomerContactController extends Controller
     public function index(CustomerContactSearchRequest $request): Response
     {
         $customerContacts = CustomerContact::query()
-            ->with(['inChargeUser', 'customer'])
+            ->with(['inChargeUser', 'customer', 'leadSource'])
             ->withCount('inquiries')
             ->searchByKeyword($request->input('keyword'))
             ->searchById($request->input('contact_id'))

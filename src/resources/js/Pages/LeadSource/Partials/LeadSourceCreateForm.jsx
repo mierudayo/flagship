@@ -21,7 +21,7 @@ export default function LeadSourceCreateForm() {
     <form onSubmit={submit}>
       <div className="form-inner u-my-2">
         <div className="input-group">
-          <FormLabel htmlFor="name" label="獲得元名" isRequired={true} />
+          <FormLabel htmlFor="name" label="リード名" isRequired={true} />
           <Input
             id="name"
             type="text"

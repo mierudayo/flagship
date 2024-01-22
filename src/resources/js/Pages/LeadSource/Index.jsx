@@ -9,7 +9,7 @@ const Index = ({ leadSources }) => {
 
   return (
     <>
-      <h1 className="content-title">顧客獲得元 管理</h1>
+      <h1 className="content-title">リード獲得元 管理</h1>
 
       <LeadSourceCreateForm />
 

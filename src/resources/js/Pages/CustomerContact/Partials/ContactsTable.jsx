@@ -12,6 +12,7 @@ export default function ContactsTable({ contacts }) {
             <th className="th-cell u-min-w-160">TEL</th>
             <th className="th-cell u-min-w-160">携帯</th>
             <th className="th-cell u-min-w-160">E-mail</th>
+            <th className="th-cell u-min-w-160">リード獲得元</th>
             <th className="th-cell u-min-w-160">担当ユーザー</th>
             <th className="th-cell u-min-w-104 u-text-center">問い合せ件数</th>
           </tr>
@@ -25,6 +26,7 @@ export default function ContactsTable({ contacts }) {
               <td className="td-cell">{contact.tel}</td>
               <td className="td-cell">{contact.mobile_number}</td>
               <td className="td-cell">{contact.email}</td>
+              <td className="td-cell">{contact.lead_source?.name}</td>
               <td className="td-cell">{contact.in_charge_user?.name}</td>
               <td className="td-cell u-text-center">{contact.inquiries_count}</td>
             </ClickableRow>
