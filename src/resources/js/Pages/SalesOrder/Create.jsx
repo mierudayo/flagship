@@ -358,6 +358,20 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       )}
                     </div>
                     <InvalidFeedback errors={errors} name="customer_id" />
+                    <div className="u-max-w-360 u-mt-2">
+                    <CustomSelect
+                      onChange={value => setData('customer_contact_id', value)}
+                      options={customerContacts}
+                      value={data.customer_contact_id}
+                      valueKey="id"
+                      labelKey="name"
+                      isClearable={true}
+                      isSearchable={true}
+                      placeholder="..."
+                      error={errors.customer_contact_id}
+                    />
+                    <InvalidFeedback errors={errors} name="customer_contact_id" />
+                    </div>
                   </td>
                 </tr>
 
@@ -392,26 +406,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       error={errors.billing_address_id}
                     />
                     <InvalidFeedback errors={errors} name="billing_address_id" />
-                  </td>
-                </tr>
-
-                <tr className="table-row is-flexible">
-                  <th className="th-cell">
-                    <FormLabel label="販売先顧客" isRequired={false} />
-                  </th>
-                  <td className="td-cell">
-                    <CustomSelect
-                      onChange={value => setData('customer_contact_id', value)}
-                      options={customerContacts}
-                      value={data.customer_contact_id}
-                      valueKey="id"
-                      labelKey="name"
-                      isClearable={true}
-                      isSearchable={true}
-                      placeholder="..."
-                      error={errors.customer_contact_id}
-                    />
-                    <InvalidFeedback errors={errors} name="customer_contact_id" />
                   </td>
                 </tr>
 

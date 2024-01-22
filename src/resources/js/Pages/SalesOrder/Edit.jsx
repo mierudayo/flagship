@@ -248,7 +248,7 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
 
   function updateDetailRow(index, objectKey, fieldName, value) {
     const updatedDetails = [...data.detail_rows];
-    const detailObject   = updatedDetails[index][objectKey];
+    const detailObject = updatedDetails[index][objectKey];
 
     let updatedDetailObject = {
       ...detailObject,
@@ -276,10 +276,10 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
   }
 
   function recalculatePrice(detailObject, fieldName, value) {
-    const unitPrice      = fieldName === 'unit_price' ? parseNumber(value) : parseNumber(detailObject.unit_price);
-    const quantity       = fieldName === 'quantity' ? parseNumber(value) : parseNumber(detailObject.quantity);
+    const unitPrice = fieldName === 'unit_price' ? parseNumber(value) : parseNumber(detailObject.unit_price);
+    const quantity = fieldName === 'quantity' ? parseNumber(value) : parseNumber(detailObject.quantity);
     const isTaxInclusive = fieldName === 'is_tax_inclusive' ? value : detailObject.is_tax_inclusive;
-    const taxRate        = parseNumber(detailObject.tax_rate);
+    const taxRate = parseNumber(detailObject.tax_rate);
 
     return calculatePrice(unitPrice, quantity, taxRate, isTaxInclusive);
   }
@@ -412,6 +412,20 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
                       )}
                     </div>
                     <InvalidFeedback errors={errors} name="customer_id" />
+                    <div className="u-max-w-360 u-mt-2">
+                      <CustomSelect
+                        onChange={value => setData('customer_contact_id', value)}
+                        options={customerContacts}
+                        value={data.customer_contact_id}
+                        valueKey="id"
+                        labelKey="name"
+                        isClearable={true}
+                        isSearchable={true}
+                        placeholder="..."
+                        error={errors.customer_contact_id}
+                      />
+                      <InvalidFeedback errors={errors} name="customer_contact_id" />
+                    </div>
                   </td>
                 </tr>
 
@@ -446,26 +460,6 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
                       error={errors.billing_address_id}
                     />
                     <InvalidFeedback errors={errors} name="billing_address_id" />
-                  </td>
-                </tr>
-
-                <tr className="table-row is-flexible">
-                  <th className="th-cell">
-                    <FormLabel label="販売先顧客" isRequired={false} />
-                  </th>
-                  <td className="td-cell">
-                    <CustomSelect
-                      onChange={value => setData('customer_contact_id', value)}
-                      options={customerContacts}
-                      value={data.customer_contact_id}
-                      valueKey="id"
-                      labelKey="name"
-                      isClearable={true}
-                      isSearchable={true}
-                      placeholder="..."
-                      error={errors.customer_contact_id}
-                    />
-                    <InvalidFeedback errors={errors} name="customer_contact_id" />
                   </td>
                 </tr>
 
@@ -929,7 +923,7 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
 
                       <td className="td-cell">
                         {formatCurrency(detail.purchase_order_detail.price)}
-                          <br/>
+                        <br />
                         <span className="u-text-sm">
                           ({formatCurrency(calculatePriceWithTax(detail.purchase_order_detail.price, detail.purchase_order_detail.tax_rate))})
                         </span>
@@ -937,7 +931,7 @@ const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions,
 
                       <td className="td-cell">
                         {formatCurrency(detail.sales_order_detail.price)}
-                        <br/>
+                        <br />
                         <span className="u-text-sm">
                           ({formatCurrency(calculatePriceWithTax(detail.sales_order_detail.price, detail.sales_order_detail.tax_rate))})
                         </span>
