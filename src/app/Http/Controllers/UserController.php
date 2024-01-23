@@ -23,7 +23,7 @@ class UserController extends Controller
             ->searchById($request->input('user_id'))
             ->searchByEmployeeCode($request->input('employee_code'))
             ->searchByEmail($request->input('email'))
-            ->paginate(50)
+            ->paginate($request->input('page_size') ?? 100)
             ->withQueryString();
 
         return Inertia::render('User/Index', [

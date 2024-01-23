@@ -36,7 +36,7 @@ class InquiryController extends Controller
             ->searchByInquiryType($request->input('inquiry_type_id'))
             ->searchByProduct($request->input('product_id'))
             ->latest('inquiry_date')
-            ->paginate(50)
+            ->paginate($request->input('page_size') ?? 100)
             ->withQueryString();
 
         return Inertia::render('Inquiry/Index', [

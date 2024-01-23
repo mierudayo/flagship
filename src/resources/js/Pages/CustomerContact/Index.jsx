@@ -10,6 +10,7 @@ import ToggleFilterButton from '@/Components/ToggleFilterButton';
 
 import FilterForm from '@/Components/FilterForm';
 import ContactFilter from './Partials/ContactFilter';
+import PageSizeSelector from '@/Components/PageSizeSelector';
 
 const Index = ({ customerContacts, leadSourceOptions }) => {
   const urlParams = route().params;
@@ -24,6 +25,7 @@ const Index = ({ customerContacts, leadSourceOptions }) => {
   }, []);
 
   const { data, setData, get, errors } = useForm({
+    page_size: urlParams.page_size || 100,
     keyword: urlParams.keyword || '',
     contact_id: urlParams.contact_id || '',
     customer_name: urlParams.customer_name || '',
@@ -38,6 +40,30 @@ const Index = ({ customerContacts, leadSourceOptions }) => {
       preserveState: true,
     });
   };
+
+  const [prevPageSize, setPrevPageSize] = useState(data.page_size);
+
+  if (data.page_size !== prevPageSize) {
+    get(route('contacts.index'), {
+      preserveState: true,
+    });
+    setPrevPageSize(data.page_size);
+  }
+
+  function resetSearchInputs() {
+    setData({
+      ...data,
+      page_size: 100,
+      keyword: '',
+      contact_id: '',
+      customer_name: '',
+      phone: '',
+      email: '',
+      lead_source_id: '',
+    })
+
+    setPrevPageSize(100);
+  }
 
   return (
     <>
@@ -63,6 +89,12 @@ const Index = ({ customerContacts, leadSourceOptions }) => {
         <div className="record-count">
           {customerContacts.total}件
         </div>
+
+        <PageSizeSelector
+          pageSize={data.page_size}
+          onChange={e => setData('page_size', e.target.value)}
+        />
+
         <Pagination paginator={customerContacts} />
       </div>
 
@@ -73,6 +105,7 @@ const Index = ({ customerContacts, leadSourceOptions }) => {
           setData={setData}
           errors={errors}
           leadSourceOptions={leadSourceOptions}
+          resetSearchInputs={resetSearchInputs}
         />
       </FilterForm>
 

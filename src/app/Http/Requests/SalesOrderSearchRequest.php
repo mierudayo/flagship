@@ -22,6 +22,7 @@ class SalesOrderSearchRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'page_size'          => ['nullable', 'in:100,200,500'],
             'keyword'            => ['nullable', 'max:255'],
             'customer_name'      => ['nullable', 'max:255'],
             'sales_in_charge_id' => ['nullable', 'integer'],

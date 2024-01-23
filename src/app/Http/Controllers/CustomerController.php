@@ -30,7 +30,7 @@ class CustomerController extends Controller
             ->searchByInCharge($request->input('in_charge_user_id'))
             ->searchByDeliveryAddress($request->input('delivery_address'))
             ->latest()
-            ->paginate(50)
+            ->paginate($request->input('page_size') ?? 100)
             ->withQueryString();
 
         return Inertia::render('Customer/Index', [

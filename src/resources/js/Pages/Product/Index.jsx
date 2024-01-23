@@ -8,6 +8,7 @@ import ProductTable from './Partials/ProductTable';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
 import FilterForm from '@/Components/FilterForm';
 import ProductFilter from './Partials/ProductFilter';
+import PageSizeSelector from '@/Components/PageSizeSelector';
 
 const Index = ({ products, categoryOptions }) => {
   const urlParams = route().params;
@@ -21,6 +22,7 @@ const Index = ({ products, categoryOptions }) => {
   }, []);
 
   const { data, setData, get, errors } = useForm({
+    page_size: urlParams.page_size || 100,
     keyword: urlParams.keyword || '',
     product_number: urlParams.product_number || '',
     category_id: urlParams.category_id || '',
@@ -32,6 +34,27 @@ const Index = ({ products, categoryOptions }) => {
       preserveState: true,
     });
   };
+
+  const [prevPageSize, setPrevPageSize] = useState(data.page_size);
+
+  if (data.page_size !== prevPageSize) {
+    get(route('products.index'), {
+      preserveState: true,
+    });
+    setPrevPageSize(data.page_size);
+  }
+
+  function resetSearchInputs() {
+    setData({
+      ...data,
+      page_size: 100,
+      keyword: '',
+      product_number: '',
+      category_id: '',
+    })
+
+    setPrevPageSize(100);
+  }
 
   return (
     <>
@@ -60,6 +83,12 @@ const Index = ({ products, categoryOptions }) => {
         <div className="record-count">
           {products.total}件
         </div>
+
+        <PageSizeSelector
+          pageSize={data.page_size}
+          onChange={e => setData('page_size', e.target.value)}
+        />
+
         <Pagination paginator={products} />
       </div>
 
@@ -70,6 +99,7 @@ const Index = ({ products, categoryOptions }) => {
           setData={setData}
           errors={errors}
           categoryOptions={categoryOptions}
+          resetSearchInputs={resetSearchInputs}
         />
       </FilterForm>
 

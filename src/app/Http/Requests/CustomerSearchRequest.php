@@ -22,6 +22,7 @@ class CustomerSearchRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'page_size'     => ['nullable', 'in:100,200,500'],
             'keyword'       => ['nullable', 'max:255'],
             'customer_id'   => ['nullable', 'integer'],
             'address'       => ['nullable', 'max:255'],

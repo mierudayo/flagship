@@ -5,23 +5,7 @@ import FilterApplyButton from '@/Components/FilterApplyButton';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 
-export default function SalesOrderFilter({ submit, data, setData, errors, userOptions, productCategoryOptions, }) {
-
-  function resetSearchInputs() {
-    setData({
-      ...data,
-      keyword: '',
-      product_category_id: '',
-      product_name: '',
-      product_detail: '',
-      customer_name: '',
-      sales_in_charge_id: '',
-      consignee: '',
-      start_date: '',
-      end_date: '',
-    })
-  }
-
+export default function SalesOrderFilter({ submit, data, setData, errors, userOptions, productCategoryOptions, resetSearchInputs }) {
   return (
     <>
       <div className="filter-form-body">

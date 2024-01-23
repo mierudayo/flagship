@@ -5,17 +5,7 @@ import FilterApplyButton from '@/Components/FilterApplyButton';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 
-export default function ProductFilter({ submit, data, setData, errors, categoryOptions }) {
-
-  function resetSearchInputs() {
-    setData({
-      ...data,
-      keyword: '',
-      product_number: '',
-      category_id: '',
-    })
-  }
-
+export default function ProductFilter({ submit, data, setData, errors, categoryOptions, resetSearchInputs }) {
   return (
     <>
       <div className="filter-form-body">

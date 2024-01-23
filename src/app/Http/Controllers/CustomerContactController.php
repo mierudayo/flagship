@@ -28,7 +28,7 @@ class CustomerContactController extends Controller
             ->searchByEmail($request->input('email'))
             ->searchByLeadSource($request->input('lead_source_id'))
             ->latest()
-            ->paginate(50)
+            ->paginate($request->input('page_size') ?? 100)
             ->withQueryString();
 
         return Inertia::render('CustomerContact/Index', [

@@ -5,18 +5,7 @@ import Input from '@/Components/Form/Input';
 import FilterApplyButton from '@/Components/FilterApplyButton';
 
 
-export default function UserFilter({ submit, data, setData, errors }) {
-
-  function resetSearchInputs() {
-    setData({
-      ...data,
-      keyword: '',
-      user_id: '',
-      employee_code: '',
-      email: '',
-    })
-  }
-
+export default function UserFilter({ submit, data, setData, errors, resetSearchInputs }) {
   return (
     <>
       <div className="filter-form-body">

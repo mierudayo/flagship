@@ -21,7 +21,7 @@ class ProductController extends Controller
             ->searchByProductNumber($request->input('product_number'))
             ->searchByCategory($request->input('category_id'))
             ->orderByDisplayOrder()
-            ->paginate(100)
+            ->paginate($request->input('page_size') ?? 100)
             ->withQueryString();
 
         return Inertia::render('Product/Index', [

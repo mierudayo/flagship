@@ -12,7 +12,8 @@ import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import InquiryTable from './Partials/InquiryTable';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
 import FilterForm from '@/Components/FilterForm';
-import InquiryFilter from "./Partials/InquiryFilter";
+import InquiryFilter from './Partials/InquiryFilter';
+import PageSizeSelector from '@/Components/PageSizeSelector';
 
 const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOptions, inquiryStatusOptions }) => {
   const urlParams = route().params;
@@ -26,6 +27,7 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
   }, []);
 
   const { data, setData, get, errors } = useForm({
+    page_size: urlParams.page_size || 100,
     keyword: urlParams.keyword || '',
     inquiry_id: urlParams.inquiry_id || '',
     customer_info: urlParams.customer_info || '',
@@ -43,6 +45,33 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
       preserveState: true,
     });
   };
+
+  const [prevPageSize, setPrevPageSize] = useState(data.page_size);
+
+  if (data.page_size !== prevPageSize) {
+    get(route('inquiries.index'), {
+      preserveState: true,
+    });
+    setPrevPageSize(data.page_size);
+  }
+
+  function resetSearchInputs() {
+    setData({
+      ...data,
+      page_size: 100,
+      keyword: '',
+      inquiry_id: '',
+      customer_info: '',
+      start_date: '',
+      end_date: '',
+      in_charge_user_id: '',
+      status: '',
+      inquiry_type_id: '',
+      product_id: '',
+    })
+
+    setPrevPageSize(100);
+  }
 
   return (
     <>
@@ -88,6 +117,12 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
         <div className="record-count">
           {inquiries.total}件
         </div>
+
+        <PageSizeSelector
+          pageSize={data.page_size}
+          onChange={e => setData('page_size', e.target.value)}
+        />
+
         <Pagination paginator={inquiries} />
       </div>
 
@@ -101,6 +136,7 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
           inChargeUserOptions={inChargeUserOptions}
           inquiryStatusOptions={inquiryStatusOptions}
           inquiryTypeOptions={inquiryTypeOptions}
+          resetSearchInputs={resetSearchInputs}
         />
       </FilterForm>
 

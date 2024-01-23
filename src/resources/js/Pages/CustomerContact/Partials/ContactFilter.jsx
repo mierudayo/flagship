@@ -5,20 +5,7 @@ import FilterApplyButton from '@/Components/FilterApplyButton';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 
-export default function ContactFilter({ submit, data, setData, errors, leadSourceOptions }) {
-
-  function resetSearchInputs() {
-    setData({
-      ...data,
-      keyword: '',
-      contact_id: '',
-      customer_name: '',
-      phone: '',
-      email: '',
-      lead_source_id: '',
-    })
-  }
-
+export default function ContactFilter({ submit, data, setData, errors, leadSourceOptions, resetSearchInputs }) {
   return (
     <>
       <div className="filter-form-body">

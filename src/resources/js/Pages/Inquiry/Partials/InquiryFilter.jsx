@@ -5,22 +5,7 @@ import FilterApplyButton from '@/Components/FilterApplyButton';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 
-export default function InquiryFilter({ submit, data, setData, errors, productOptions, inChargeUserOptions, inquiryTypeOptions, inquiryStatusOptions }) {
-
-  function resetSearchInputs() {
-    setData({
-      ...data,
-      keyword: '',
-      inquiry_id: '',
-      customer_info: '',
-      start_date: '',
-      end_date: '',
-      in_charge_user_id: '',
-      status: '',
-      inquiry_type_id: '',
-      product_id: '',
-    })
-  }
+export default function InquiryFilter({ submit, data, setData, errors, productOptions, inChargeUserOptions, inquiryTypeOptions, inquiryStatusOptions, resetSearchInputs }) {
 
   return (
     <>

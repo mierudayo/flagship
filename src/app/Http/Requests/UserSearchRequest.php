@@ -22,6 +22,7 @@ class UserSearchRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'page_size'     => ['nullable', 'in:100,200,500'],
             'keyword'       => ['nullable', 'max:255'],
             'user_id'       => ['nullable', 'integer'],
             'employee_code' => ['nullable', 'max:255'],

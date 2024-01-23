@@ -10,6 +10,7 @@ import SalesActivityTable from './Partials/SalesActivityTable';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
 import FilterForm from '@/Components/FilterForm';
 import SalesActivityFilter from './Partials/SalesActivityFilter';
+import PageSizeSelector from '@/Components/PageSizeSelector';
 
 const Index = ({ salesActivities, inChargeUserOptions }) => {
   const urlParams = route().params;
@@ -23,6 +24,7 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
   }, []);
 
   const { data, setData, get, errors } = useForm({
+    page_size: urlParams.page_size || 100,
     keyword: urlParams.keyword || '',
     start_date: urlParams.start_date || '',
     end_date: urlParams.end_date || '',
@@ -35,6 +37,15 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
       preserveState: true,
     });
   };
+
+  const [prevPageSize, setPrevPageSize] = useState(data.page_size);
+
+  if (data.page_size !== prevPageSize) {
+    get(route('sales-activities.index'), {
+      preserveState: true,
+    });
+    setPrevPageSize(data.page_size);
+  }
 
   return (
     <>
@@ -68,6 +79,12 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
         <div className="record-count">
           {salesActivities.total}件
         </div>
+
+        <PageSizeSelector
+          pageSize={data.page_size}
+          onChange={e => setData('page_size', e.target.value)}
+        />
+
         <Pagination paginator={salesActivities} />
       </div>
 

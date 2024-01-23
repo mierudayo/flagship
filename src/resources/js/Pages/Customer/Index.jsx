@@ -13,6 +13,7 @@ import ToggleFilterButton from '@/Components/ToggleFilterButton';
 
 import FilterForm from '@/Components/FilterForm';
 import CustomerFilter from './Partials/CustomerFilter';
+import PageSizeSelector from '@/Components/PageSizeSelector';
 
 const Index = ({ customers, inChargeUserOptions }) => {
   const urlParams = route().params;
@@ -27,6 +28,7 @@ const Index = ({ customers, inChargeUserOptions }) => {
   }, []);
 
   const { data, setData, get, errors } = useForm({
+    page_size: urlParams.page_size || 100,
     keyword: urlParams.keyword || '',
     customer_id: urlParams.customer_id || '',
     address: urlParams.address || '',
@@ -42,6 +44,30 @@ const Index = ({ customers, inChargeUserOptions }) => {
       preserveState: true,
     });
   };
+
+  const [prevPageSize, setPrevPageSize] = useState(data.page_size);
+
+  if (data.page_size !== prevPageSize) {
+    get(route('customers.index'), {
+      preserveState: true,
+    });
+    setPrevPageSize(data.page_size);
+  }
+
+  function resetSearchInputs() {
+    setData({
+      ...data,
+      page_size: 100,
+      keyword: '',
+      customer_id: '',
+      address: '',
+      phone: '',
+      in_charge_user_id: '',
+      delivery_address: '',
+    })
+
+    setPrevPageSize(100);
+  }
 
   return (
     <>
@@ -86,6 +112,12 @@ const Index = ({ customers, inChargeUserOptions }) => {
         <div className="record-count">
           {customers.total}件
         </div>
+
+        <PageSizeSelector
+          pageSize={data.page_size}
+          onChange={e => setData('page_size', e.target.value)}
+        />
+
         <Pagination paginator={customers} />
       </div>
 
@@ -96,6 +128,7 @@ const Index = ({ customers, inChargeUserOptions }) => {
           setData={setData}
           errors={errors}
           inChargeUserOptions={inChargeUserOptions}
+          resetSearchInputs={resetSearchInputs}
         />
       </FilterForm>
 

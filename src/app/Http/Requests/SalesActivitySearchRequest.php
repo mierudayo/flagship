@@ -22,6 +22,7 @@ class SalesActivitySearchRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'page_size'         => ['nullable', 'in:100,200,500'],
             'keyword'           => ['nullable', 'string', 'max:255'],
             'start_date'        => ['nullable', 'date'],
             'end_date'          => ['nullable', 'date', 'after_or_equal:start_date'],

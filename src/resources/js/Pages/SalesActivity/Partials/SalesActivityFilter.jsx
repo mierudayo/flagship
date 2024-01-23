@@ -10,6 +10,7 @@ export default function UserFilter({ submit, data, setData, errors, inChargeUser
   function resetSearchInputs() {
     setData({
       ...data,
+      page_size: 100,
       keyword: '',
       start_date: '',
       end_date: '',

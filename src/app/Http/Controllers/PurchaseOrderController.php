@@ -21,7 +21,7 @@ class PurchaseOrderController extends Controller
     public function index(PurchaseOrderSearchRequest $request): Response
     {
         $query          = $this->getPurchaseOrdersQuery($request);
-        $purchaseOrders = $query->paginate(100)->withQueryString();
+        $purchaseOrders = $query->paginate($request->input('page_size') ?? 100)->withQueryString();
         $totals         = $this->calculateTotals($purchaseOrders->items());
 
         return Inertia::render('PurchaseOrder/Index', [

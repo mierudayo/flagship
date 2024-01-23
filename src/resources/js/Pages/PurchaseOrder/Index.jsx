@@ -10,6 +10,7 @@ import ToggleFilterButton from '@/Components/ToggleFilterButton';
 import { formatCurrency } from '@/Utils/priceCalculator';
 import FilterForm from '@/Components/FilterForm';
 import PurchaseOrderFilter from './Partials/PurchaseOrderFilter';
+import PageSizeSelector from '@/Components/PageSizeSelector';
 
 const Index = ({ purchaseOrders, userOptions, productCategoryOptions, totals }) => {
   const urlParams = route().params;
@@ -24,6 +25,7 @@ const Index = ({ purchaseOrders, userOptions, productCategoryOptions, totals }) 
   }, []);
 
   const { data, setData, get, errors } = useForm({
+    page_size: urlParams.page_size || 100,
     keyword: urlParams.keyword || '',
     start_date: urlParams.start_date || '',
     end_date: urlParams.end_date || '',
@@ -41,6 +43,33 @@ const Index = ({ purchaseOrders, userOptions, productCategoryOptions, totals }) 
       preserveState: true,
     });
   };
+
+  const [prevPageSize, setPrevPageSize] = useState(data.page_size);
+
+  if (data.page_size !== prevPageSize) {
+    get(route('purchase-orders.index'), {
+      preserveState: true,
+    });
+    setPrevPageSize(data.page_size);
+  }
+
+  function resetSearchInputs() {
+    setData({
+      ...data,
+      page_size: 100,
+      keyword: '',
+      product_category_id: '',
+      product_name: '',
+      product_detail: '',
+      customer_name: '',
+      purchase_in_charge_id: '',
+      ship_from: '',
+      start_date: '',
+      end_date: '',
+    })
+
+    setPrevPageSize(100);
+  }
 
   return (
     <>
@@ -96,6 +125,12 @@ const Index = ({ purchaseOrders, userOptions, productCategoryOptions, totals }) 
         <div className="record-count">
           {purchaseOrders.total}件
         </div>
+
+        <PageSizeSelector
+          value={data.page_size}
+          onChange={e => setData('page_size', e.target.value)}
+        />
+
         <Pagination paginator={purchaseOrders} />
       </div>
 
@@ -107,6 +142,7 @@ const Index = ({ purchaseOrders, userOptions, productCategoryOptions, totals }) 
           errors={errors}
           userOptions={userOptions}
           productCategoryOptions={productCategoryOptions}
+          resetSearchInputs={resetSearchInputs}
         />
       </FilterForm>
 

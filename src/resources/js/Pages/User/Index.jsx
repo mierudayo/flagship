@@ -9,6 +9,7 @@ import UserTable from './Partials/UserTable';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
 import UserFilter from './Partials/UserFilter';
 import FilterForm from '@/Components/FilterForm';
+import PageSizeSelector from '@/Components/PageSizeSelector';
 
 const Index = ({ users, canAdmin }) => {
   const urlParams = route().params;
@@ -23,6 +24,7 @@ const Index = ({ users, canAdmin }) => {
   }, []);
 
   const { data, setData, get, errors } = useForm({
+    page_size: urlParams.page_size || 100,
     keyword: urlParams.keyword || '',
     user_id: urlParams.user_id || '',
     employee_code: urlParams.employee_code || '',
@@ -35,6 +37,28 @@ const Index = ({ users, canAdmin }) => {
       preserveState: true,
     });
   };
+
+  const [prevPageSize, setPrevPageSize] = useState(data.page_size);
+
+  if (data.page_size !== prevPageSize) {
+    get(route('users.index'), {
+      preserveState: true,
+    });
+    setPrevPageSize(data.page_size);
+  }
+
+  function resetSearchInputs() {
+    setData({
+      ...data,
+      page_size: 100,
+      keyword: '',
+      user_id: '',
+      employee_code: '',
+      email: '',
+    })
+
+    setPrevPageSize(100);
+  }
 
   return (
     <>
@@ -66,6 +90,12 @@ const Index = ({ users, canAdmin }) => {
         <div className="record-count">
           {users.total}件
         </div>
+
+        <PageSizeSelector
+          pageSize={data.page_size}
+          onChange={e => setData('page_size', e.target.value)}
+        />
+
         <Pagination paginator={users} />
       </div>
 
@@ -75,6 +105,7 @@ const Index = ({ users, canAdmin }) => {
           data={data}
           setData={setData}
           errors={errors}
+          resetSearchInputs={resetSearchInputs}
         />
       </FilterForm>
 
