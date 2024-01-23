@@ -26,8 +26,8 @@ class SalesOrderController extends Controller
     public function index(SalesOrderSearchRequest $request): Response
     {
         $query       = $this->getSalesOrdersQuery($request);
-        $totals      = $this->calculateTotals($query);
         $salesOrders = $query->paginate(100)->withQueryString();
+        $totals      = $this->calculateTotals($salesOrders->items());
 
         return Inertia::render('SalesOrder/Index', [
             'salesOrders' => $salesOrders,
@@ -184,7 +184,7 @@ class SalesOrderController extends Controller
                 'customer',
                 'salesInCharge',
                 'productCategory',
-                'salesOrderDetails',
+                'salesOrderDetails.purchaseOrderDetails',
             ])
             ->searchByKeyword($request->input('keyword'))
             ->searchByDeliveryPeriod(
@@ -460,27 +460,24 @@ class SalesOrderController extends Controller
         );
     }
 
-    private function calculateTotals(Builder $query): array
+    private function calculateTotals(array $salesOrders): array
     {
         $soTotal        = 0;
         $soTotalWithTax = 0;
         $poTotal        = 0;
         $poTotalWithTax = 0;
 
-        $query->with(['salesOrderDetails.purchaseOrderDetails'])
-              ->chunk(100, function ($salesOrders) use (&$soTotal, &$soTotalWithTax, &$poTotal, &$poTotalWithTax) {
-            foreach ($salesOrders as $salesOrder) {
-                $soTotal        += $salesOrder->total;
-                $soTotalWithTax += $salesOrder->total_with_tax;
+        foreach ($salesOrders as $salesOrder) {
+            $soTotal += $salesOrder['total'];
+            $soTotalWithTax += $salesOrder['total_with_tax'];
 
-                foreach ($salesOrder->salesOrderDetails as $soDetail) {
-                    foreach ($soDetail->purchaseOrderDetails as $poDetail) {
-                        $poTotal        += $poDetail->price;
-                        $poTotalWithTax += $poDetail->price_with_tax;
-                    }
+            foreach ($salesOrder['salesOrderDetails'] as $soDetail) {
+                foreach ($soDetail['purchaseOrderDetails'] as $poDetail) {
+                    $poTotal        += $poDetail['price'];
+                    $poTotalWithTax += $poDetail['price_with_tax'];
                 }
             }
-        });
+        }
 
         $profit = $soTotal - $poTotal;
 
