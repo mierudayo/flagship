@@ -181,6 +181,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                       value={data.delivery_address_id}
                       valueKey="id"
                       labelKey="address"
+                      subTextKey="company_name"
                       isClearable={true}
                       isSearchable={true}
                       placeholder="..."

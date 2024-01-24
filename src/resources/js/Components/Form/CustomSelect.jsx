@@ -13,6 +13,8 @@ export default function CustomSelect(props) {
     isSearchable = true,
     valueKey = 'id',
     labelKey = 'name',
+    subTextKey,
+    searchKey,
     error,
   } = props;
 
@@ -44,8 +46,27 @@ export default function CustomSelect(props) {
   const formattedOptions = options.map(option => ({
     ...option,
     value: option[valueKey],
-    label: option[labelKey]
+    label: option[labelKey],
+    subText: option[subTextKey],
+    searchKey: option[searchKey],
   }));
+
+  /** 表示ラベル カスタマイズ */
+  const formatOptionLabel = ({ label, subText }) => (
+    <div style={{ minWidth: "88px", overflow: "hidden", textOverflow: "ellipsis"}}>
+      <span>
+        {label}
+      </span>
+      <span style={{ marginLeft: "16px", color: "#999" }}>
+        {subText}
+      </span>
+    </div>
+  );
+
+  /** 検索キーワード カスタマイズ */
+  const getOptionLabel = (option) => (
+    option[valueKey] + option[labelKey] + option[subTextKey] + option[searchKey]
+  );
 
   /**
    * route().paramsでURLパラメータから取得した値は文字列のため、等価比較演算子でint型のid系にも対応する
@@ -58,6 +79,8 @@ export default function CustomSelect(props) {
       value={selectedValue}
       onChange={handleChange}
       options={formattedOptions}
+      formatOptionLabel={formatOptionLabel}
+      getOptionLabel={getOptionLabel}
       isClearable={isClearable}
       isSearchable={isSearchable}
       placeholder={placeholder}
