@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, usePage, router } from '@inertiajs/react';
+import { usePage, router } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
@@ -7,13 +7,17 @@ import Modal from '@/Components/Modal';
 import ContactForm from './Partials/ContactForm';
 import AddressForm from './Partials/AddressForm';
 import SalesActivityForm from './Partials/SalesActivityForm';
-import TermDetails from './Partials/TermDetails';
-import BillingAddressLookup from "../../Components/BillingAddressLookup";
-import BillingAddressForm from "./Partials/BillingAddressForm";
-import DropdownMenu from "./Partials/DropdownMenu";
+import BillingAddressLookup from '@/Components/BillingAddressLookup';
+import BillingAddressForm from './Partials/BillingAddressForm';
 import EditLinkButton from '@/Components/EditLinkButton';
-import { parseNumber, formatCurrency } from '@/Utils/priceCalculator';
-
+import ContactSection from './Partials/Show/ContactSection';
+import CustomerSection from './Partials/Show/CustomerSection';
+import BillingAddressSection from './Partials/Show/BillingAddressSection';
+import DeliveryAddressSection from './Partials/Show/DeliveryAddressSection';
+import SalesActivitySection from './Partials/Show/SalesActivitySection';
+import InquirySection from './Partials/Show/InquirySection';
+import SalesOrderSection from './Partials/Show/SalesOrderSection';
+import PurchaseOrderSection from './Partials/Show/PurchaseOrderSection';
 
 const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) => {
   const { flash } = usePage().props;
@@ -115,408 +119,24 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
 
       <Alert type={flash.type} message={flash.message} />
 
-      <div className="content-section">
+      <CustomerSection customer={customer} />
 
-        <div className="content-section-title">
-          基本情報
-        </div>
+      <BillingAddressSection
+        billingAddresses={customer.billing_addresses}
+        detachBillingAddress={detachBillingAddress}
+      />
 
-        <div className="table-wrapper">
-          <table className="table">
-            <tbody className="tbody">
+      <ContactSection contacts={customer.contacts} />
 
-              <tr className="table-row">
-                <th className="th-cell u-w-200">取引先名</th>
-                <td className="td-cell">{customer.name}</td>
-              </tr>
+      <DeliveryAddressSection deliveryAddresses={customer.delivery_addresses} />
 
-              <tr className="table-row">
-                <th className="th-cell">よみがな</th>
-                <td className="td-cell">{customer.name_kana}</td>
-              </tr>
+      <SalesActivitySection contacts={customer.contacts} />
 
-              <tr className="table-row">
-                <th className="th-cell">ショートカット名</th>
-                <td className="td-cell">{customer.shortcut}</td>
-              </tr>
+      <InquirySection contacts={customer.contacts} />
 
-              <tr className="table-row">
-                <th className="th-cell">住所</th>
-                <td className="td-cell">{customer.postal_code} {customer.address}</td>
-              </tr>
+      <SalesOrderSection salesOrders={customer.sales_orders} />
 
-              <tr className="table-row">
-                <th className="th-cell">TEL</th>
-                <td className="td-cell">{customer.tel}</td>
-              </tr>
-
-              <tr className="table-row">
-                <th className="th-cell">FAX</th>
-                <td className="td-cell">{customer.fax}</td>
-              </tr>
-
-              <tr className="table-row">
-                <th className="th-cell">支払条件</th>
-                <td className="td-cell">
-                  <TermDetails term={customer.purchase_term} />
-                </td>
-              </tr>
-
-              <tr className="table-row">
-                <th className="th-cell">請求条件</th>
-                <td className="td-cell">
-                  <TermDetails term={customer.sales_term} />
-                </td>
-              </tr>
-
-              <tr className="table-row">
-                <th className="th-cell">担当ユーザー</th>
-                <td className="td-cell">{customer.in_charge_user?.name}</td>
-              </tr>
-
-              <tr className="table-row">
-                <th className="th-cell">備考</th>
-                <td className="td-cell">{customer.note}</td>
-              </tr>
-
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div className="content-section">
-        <div className="content-section-title">
-          請求先
-        </div>
-        <div className="table-wrapper is-scrollable">
-          <table className="table">
-            <thead className="table-header is-sticky">
-              <tr className="table-row">
-                <th className="th-cell col-fixed"></th>
-                <th className="th-cell">No.</th>
-                <th className="th-cell u-min-w-200">請求先</th>
-                <th className="th-cell u-min-w-136">請求先担当者</th>
-                <th className="th-cell u-min-w-320">住所</th>
-                <th className="th-cell u-min-w-160">TEL</th>
-                <th className="th-cell u-min-w-160">FAX</th>
-                <th className="th-cell u-min-w-160">E-mail</th>
-                <th className="th-cell u-w-120">備考</th>
-              </tr>
-            </thead>
-            <tbody className="table-body">
-              {customer.billing_addresses.map(billingAddress => (
-                <tr key={billingAddress.id} className="table-row is-hoverable">
-                  <td className="td-cell col-fixed">
-                    <DropdownMenu
-                      handleClickDetach={() => detachBillingAddress(billingAddress)}
-                    />
-                  </td>
-                  <td className="td-cell">{billingAddress.id}</td>
-                  <td className="td-cell">
-                    {billingAddress.name} <br />
-                    ({billingAddress.name_kana})
-                  </td>
-                  <td className="td-cell">{billingAddress.billing_contact_name}</td>
-                  <td className="td-cell">{billingAddress.address}</td>
-                  <td className="td-cell">{billingAddress.tel}</td>
-                  <td className="td-cell">{billingAddress.fax}</td>
-                  <td className="td-cell">{billingAddress.email}</td>
-                  <td className="td-cell u-ellipsis u-max-w-320">{billingAddress.note}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div className="content-section">
-        <div className="content-section-title">
-          連絡先
-        </div>
-        <div className="table-wrapper is-scrollable">
-          <table className="table">
-            <thead className="table-header is-sticky">
-              <tr className="table-row">
-                <th className="th-cell col-fixed">No</th>
-                <th className="th-cell">役割</th>
-                <th className="th-cell">名前</th>
-                <th className="th-cell">よみがな</th>
-                <th className="th-cell">TEL</th>
-                <th className="th-cell">携帯</th>
-                <th className="th-cell">E-mail</th>
-                <th className="th-cell">役職</th>
-                <th className="th-cell u-min-w-120">担当ユーザー</th>
-                <th className="th-cell u-min-w-120">獲得元</th>
-                <th className="th-cell u-text-center u-min-w-80">使用状況</th>
-                <th className="th-cell u-w-120">備考</th>
-              </tr>
-            </thead>
-            <tbody className="table-body">
-              {customer.contacts.map(contact => (
-                <tr key={contact.id} className="table-row is-hoverable">
-                  <td className="td-cell col-fixed">{contact.id}</td>
-                  <td className="td-cell">{contact.role}</td>
-                  <td className="td-cell u-min-w-160">{contact.name}</td>
-                  <td className="td-cell">{contact.name_kana}</td>
-                  <td className="td-cell u-min-w-160">{contact.tel}</td>
-                  <td className="td-cell u-min-w-160">{contact.mobile_number}</td>
-                  <td className="td-cell u-min-w-160">{contact.email}</td>
-                  <td className="td-cell">{contact.position}</td>
-                  <td className="td-cell">{contact.in_charge_user?.name}</td>
-                  <td className="td-cell">{contact.lead_source?.name}</td>
-                  <td className="td-cell u-text-center">{contact.is_active_label}</td>
-                  <td className="td-cell u-ellipsis u-max-w-320">{contact.note}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div className="content-section">
-        <div className="content-section-title">
-          配送情報
-        </div>
-        <div className="table-wrapper is-scrollable">
-          <table className="table">
-            <thead className="table-header is-sticky">
-              <tr className="table-row">
-                <th className="th-cell u-min-w-120 col-fixed">区分</th>
-                <th className="th-cell u-min-w-240">住所</th>
-                <th className="th-cell u-min-w-200">会社名</th>
-                <th className="th-cell u-min-w-160">担当者名</th>
-                <th className="th-cell u-min-w-160">TEL</th>
-                <th className="th-cell">備考</th>
-              </tr>
-            </thead>
-            <tbody className="table-body">
-              {customer.delivery_addresses.map(delivery => (
-                <tr key={delivery.id} className="table-row is-hoverable">
-                  <td className="td-cell col-fixed">
-                    {delivery.address_type_label}
-                  </td>
-                  <td className="td-cell">{delivery.postal_code} {delivery.address}</td>
-                  <td className="td-cell">{delivery.company_name}</td>
-                  <td className="td-cell">{delivery.contact_name}</td>
-                  <td className="td-cell">{delivery.tel}</td>
-                  <td className="td-cell u-ellipsis u-max-w-320">{delivery.note}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div className="content-section">
-        <div className="content-section-title">
-          営業履歴
-        </div>
-        <div className="table-wrapper is-scrollable">
-          <table className="table">
-            <thead className="table-header is-sticky">
-              <tr className="table-row">
-                <th className="th-cell u-w-136">連絡日</th>
-                <th className="th-cell u-min-w-120">営業担当</th>
-                <th className="th-cell u-min-w-120">連絡先</th>
-                <th className="th-cell">提案内容</th>
-                <th className="th-cell">反応</th>
-                <th className="th-cell">備考</th>
-              </tr>
-            </thead>
-            <tbody className="table-body">
-              {customer.contacts.map(contact => (
-                contact.sales_activities.map(activity => (
-                  <tr key={activity.id} className="table-row is-hoverable">
-                    <td className="td-cell">{activity.contact_date}</td>
-                    <td className="td-cell">{activity.in_charge_user.name}</td>
-                    <td className="td-cell">{contact.name}</td>
-                    <td className="td-cell">{activity.proposal}</td>
-                    <td className="td-cell">{activity.feedback}</td>
-                    <td className="td-cell">{activity.note}</td>
-                  </tr>
-                ))
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div className="content-section">
-        <div className="content-section-title">
-          問い合わせ
-        </div>
-        <div className="table-wrapper is-scrollable">
-          <table className="table">
-            <thead className="table-header is-sticky">
-              <tr className="table-row">
-                <th className="th-cell u-min-w-64 u-text-center col-fixed">No.</th>
-                <th className="th-cell u-min-w-136">問い合わせ日</th>
-                <th className="th-cell u-min-w-160">対応者</th>
-                <th className="th-cell u-min-w-120">ステータス</th>
-                <th className="th-cell u-min-w-240">顧客情報</th>
-                <th className="th-cell u-min-w-240" colSpan={2}>商品情報</th>
-                <th className="th-cell u-min-w-120">区分</th>
-                <th className="th-cell">件名</th>
-              </tr>
-            </thead>
-            <tbody className="table-body">
-              {customer.contacts.map(contact => (
-                contact.inquiries.map(inquiry => (
-                  <tr key={inquiry.id} className="table-row is-hoverable">
-                    <td className="td-cell u-text-center col-fixed">{inquiry.id}</td>
-                    <td className="td-cell">{inquiry.inquiry_date}</td>
-                    <td className="td-cell">{inquiry.in_charge_user.name}</td>
-                    <td className="td-cell">
-                      <span className={`inquiry-status status-${inquiry.status}`}>
-                        {inquiry.status_label}
-                      </span>
-                    </td>
-                    <td className="td-cell">{contact.name}</td>
-                    <td className="td-cell">{inquiry.product?.name}</td>
-                    <td className="td-cell">{inquiry.product?.category.name}</td>
-                    <td className="td-cell">
-                      <span className={`custom-label ${inquiry.inquiry_type.custom_label}`}>
-                        {inquiry.inquiry_type.name}
-                      </span>
-                    </td>
-                    <td className="td-cell u-ellipsis u-max-w-200">{inquiry.subject}</td>
-                  </tr>
-                ))
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div className="content-section">
-        <div className="content-section-title">
-          受注
-        </div>
-        <div className="table-wrapper is-scrollable">
-          <table className="table has-inner-table">
-            <thead className="table-header is-sticky">
-              <tr className="table-row">
-                <th className="th-cell col-fixed u-w-64">No.</th>
-                <th className="th-cell u-w-136 u-min-w-136">納期</th>
-                <th className="th-cell u-w-200 u-min-w-200">商品カテゴリ</th>
-                <th className="th-cell u-w-104 u-min-w-104"> 受注担当</th>
-                <th className="th-cell contains-table u-w-400">
-                  <div className="inner-thead">
-                    <div className="inner-tr">
-                      <div className="inner-th u-w-200">商品</div>
-                      <div className="inner-th u-w-104 u-text-right">販売数量</div>
-                      <div className="inner-th u-w-112 u-text-right">販売単価</div>
-                      <div className="inner-th u-w-120 u-text-right">販売価格</div>
-                    </div>
-                  </div>
-                </th>
-                <th className="th-cell u-w-120 u-text-right">受注金額</th>
-              </tr>
-            </thead>
-            <tbody className="table-body">
-              {customer.sales_orders.map(salesOrder => (
-                <tr key={salesOrder.id} url={route('sales-orders.show', salesOrder)} className="table-row emphasized-row">
-                  <td className="td-cell col-fixed">{salesOrder.id}</td>
-                  <td className="td-cell">{salesOrder.delivery_date}</td>
-                  <td className="td-cell">{salesOrder.product_category.name}</td>
-                  <td className="td-cell">{salesOrder.sales_in_charge.name}</td>
-                  <td className="td-cell contains-table">
-                    <div className="inner-tbody">
-                      {salesOrder.sales_order_details.map(detail => (
-                        <div key={detail.id} className="inner-tr">
-                          <div className="inner-td u-w-200">{detail.product_name}</div>
-                          <div className="inner-td u-w-104 u-text-right">{parseNumber(detail.quantity)}</div>
-                          <div className="inner-td u-w-112 u-text-right">
-                            {formatCurrency(detail.unit_price)} <br />
-                            <span className="u-text-sm">
-                              {detail.is_tax_inclusive === 1 ? '[内税]' : ''}
-                            </span>
-                          </div>
-                          <div className="inner-td u-w-120 u-text-right">{formatCurrency(detail.price)}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </td>
-                  <td className="td-cell u-text-right">
-                    {formatCurrency(salesOrder.total)} <br />
-                    <span className="u-text-sm">
-                      ({formatCurrency(salesOrder.total_with_tax)})
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div className="content-section">
-        <div className="content-section-title">
-          発注
-        </div>
-        <div className="table-wrapper is-scrollable">
-          <table className="table has-inner-table">
-            <thead className="table-header is-sticky">
-              <tr className="table-row">
-                <th className="th-cell col-fixed u-w-64">No.</th>
-                <th className="th-cell u-w-136 u-min-w-136">出荷日</th>
-                <th className="th-cell u-w-136 u-min-w-160">支払状況</th>
-                <th className="th-cell u-w-136 u-min-w-160">支払条件</th>
-                <th className="th-cell u-w-200 u-min-w-200">商品カテゴリ</th>
-                <th className="th-cell u-w-104 u-min-w-104">発注担当</th>
-                <th className="th-cell contains-table u-w-400">
-                  <div className="inner-thead">
-                    <div className="inner-tr">
-                      <div className="inner-th u-w-200">商品</div>
-                      <div className="inner-th u-w-104 u-text-right">発注数量</div>
-                      <div className="inner-th u-w-112 u-text-right">発注単価</div>
-                      <div className="inner-th u-w-120 u-text-right">発注価格</div>
-                    </div>
-                  </div>
-                </th>
-                <th className="th-cell u-min-w-120 u-text-right">発注金額</th>
-              </tr>
-            </thead>
-            <tbody className="table-body">
-              {customer.purchase_orders.map(purchaseOrder => (
-                <tr key={purchaseOrder.id} url={route('purchase-orders.show', purchaseOrder)} className="table-row emphasized-row">
-                  <td className="td-cell col-fixed">{purchaseOrder.id}</td>
-                  <td className="td-cell">{purchaseOrder.shipping_date}</td>
-                  <td className="td-cell">{purchaseOrder.payment_date} {purchaseOrder.payment_status}</td>
-                  <td className="td-cell">
-                    {/* <TermDetails purchaseOrder={purchaseOrder} /> */}
-                  </td>
-                  <td className="td-cell">{purchaseOrder.product_category.name}</td>
-                  <td className="td-cell">{purchaseOrder.purchase_in_charge.name}</td>
-                  <td className="td-cell contains-table">
-                    <div className="inner-tbody">
-                      {purchaseOrder.purchase_order_details.map(detail => (
-                        <div key={detail.id} className="inner-tr">
-                          <div className="inner-td u-w-200">{detail.product_name}</div>
-                          <div className="inner-td u-w-104 u-text-right">{parseNumber(detail.quantity)}</div>
-                          <div className="inner-td u-w-112 u-text-right">
-                            {formatCurrency(detail.unit_price)} <br />
-                            <span className="u-text-sm">
-                              {detail.is_tax_inclusive === 1 ? '[内税]' : ''}
-                            </span>
-                          </div>
-                          <div className="inner-td u-w-120 u-text-right">{formatCurrency(detail.price)}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </td>
-                  <td className="td-cell u-text-right">
-                    {formatCurrency(purchaseOrder.total)} <br />
-                    <span className="u-text-sm">
-                      ({formatCurrency(purchaseOrder.total_with_tax)})
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <PurchaseOrderSection purchaseOrders={customer.purchase_orders} />
 
     </>
   );
