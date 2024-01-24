@@ -825,7 +825,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           />
                           <select
                             value={detail.purchase_order_detail.is_tax_inclusive}
-                            onChange={e => updateDetailRow(index, 'purchase_order_detail', 'is_tax_inclusive', e.target.value)}
+                            onChange={e => updateDetailRow(index, 'purchase_order_detail', 'is_tax_inclusive', e.target.value === 'true')}
                             className={`form-select u-w-72 ${errors[`detail_rows.${index}.purchase_order_detail.is_tax_inclusive`] ? 'is-invalid' : ''}`}
                           >
                             <OptionsList
