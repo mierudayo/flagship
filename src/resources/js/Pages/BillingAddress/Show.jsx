@@ -17,7 +17,7 @@ const Show = ({ billingAddress }) => {
       />
 
       <div className="content-navbar">
-        {/* <EditLinkButton href={route('billing-addresses.edit', billingAddress)} style={{ marginRight: '16px' }} /> */}
+        <EditLinkButton href={route('billing-addresses.edit', billingAddress)} style={{ marginRight: '16px' }} />
       </div>
 
       <Alert type={flash.type} message={flash.message} />

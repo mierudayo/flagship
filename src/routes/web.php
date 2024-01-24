@@ -74,7 +74,11 @@ Route::middleware('auth')->group(function () {
     Route::post('customers/{customer}/billing-addresses', [BillingAddressController::class, 'addToCustomer'])
         ->name('customers.billing-addresses.add');
     Route::get('billing-addresses/{billingAddress}', [BillingAddressController::class, 'show'])
-    ->name('billing-addresses.show');
+        ->name('billing-addresses.show');
+    Route::get('billing-addresses/{billingAddress}/edit', [BillingAddressController::class, 'edit'])
+        ->name('billing-addresses.edit');
+    Route::patch('billing-addresses/{billingAddress}', [BillingAddressController::class, 'update'])
+        ->name('billing-addresses.update');
 
     // DeliveryAddress
     Route::post('customers/{customer}/delivery-addresses', [DeliveryAddressController::class, 'addToCustomer'])
