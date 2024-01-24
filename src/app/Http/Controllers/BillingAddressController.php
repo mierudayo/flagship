@@ -80,7 +80,7 @@ class BillingAddressController extends Controller
         $customer->billingAddresses()->attach($billingAddress);
 
         return to_route('customers.show', $customer)
-            ->with('message', "請求書No.{$billingAddress->id} を登録、紐付けました");
+            ->with('message', "請求先No.{$billingAddress->id} を登録、紐付けました");
     }
 
 }
