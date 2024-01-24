@@ -73,6 +73,8 @@ Route::middleware('auth')->group(function () {
         ->name('billing-addresses.index');
     Route::post('customers/{customer}/billing-addresses', [BillingAddressController::class, 'addToCustomer'])
         ->name('customers.billing-addresses.add');
+    Route::get('billing-addresses/{billingAddress}', [BillingAddressController::class, 'show'])
+    ->name('billing-addresses.show');
 
     // DeliveryAddress
     Route::post('customers/{customer}/delivery-addresses', [DeliveryAddressController::class, 'addToCustomer'])

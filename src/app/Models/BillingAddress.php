@@ -25,6 +25,11 @@ class BillingAddress extends Model
         'note',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i',
+        'updated_at' => 'datetime:Y-m-d H:i',
+    ];
+
     public function customers(): BelongsToMany
     {
         return $this->belongsToMany(Customer::class, 'billing_address_customer');

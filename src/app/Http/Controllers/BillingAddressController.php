@@ -25,6 +25,13 @@ class BillingAddressController extends Controller
         ]);
     }
 
+    public function show(BillingAddress $billingAddress): Response
+    {
+        return Inertia::render('BillingAddress/Show', [
+            'billingAddress' => $billingAddress,
+        ]);
+    }
+
     public function addToCustomer(BillingAddressStoreRequest $request, Customer $customer): RedirectResponse
     {
         $billingAddress = BillingAddress::create([

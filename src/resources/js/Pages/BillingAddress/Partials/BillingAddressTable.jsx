@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import ClickableRow from '@/Components/ClickableRow';
 
 export default function BillingAddressTable({ billingAddresses }) {
   return (
@@ -18,7 +18,7 @@ export default function BillingAddressTable({ billingAddresses }) {
         </thead>
         <tbody className="table-body">
           {billingAddresses.map(billingAddress => (
-            <tr key={billingAddress.id} className="table-row is-hoverable">
+            <ClickableRow key={billingAddress.id} url={route('billing-addresses.show', billingAddress)} >
               <td className="td-cell col-fixed">{billingAddress.id}</td>
               <td className="td-cell">{billingAddress.invoice_delivery_method}</td>
               <td className="td-cell">{billingAddress.name}</td>
@@ -27,7 +27,7 @@ export default function BillingAddressTable({ billingAddresses }) {
               <td className="td-cell">{billingAddress.tel}</td>
               <td className="td-cell">{billingAddress.email}</td>
               <td className="td-cell">{billingAddress.note}</td>
-            </tr>
+            </ClickableRow>
           ))}
         </tbody>
       </table>
