@@ -9,6 +9,7 @@
   border-radius: 4px;
   border: 1px solid #ddd;
   color: #333;
+  font-size: 0.9rem;
   padding: 4px 8px;
   transition: background-color 0.2s ease;
 
@@ -28,7 +29,8 @@
 }
 
 .current-page {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   margin: 0 4px;
-  min-width: 40px;
+  min-width: 56px;
+  text-align: center;
 }
