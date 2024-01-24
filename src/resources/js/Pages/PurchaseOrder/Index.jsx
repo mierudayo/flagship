@@ -127,7 +127,7 @@ const Index = ({ purchaseOrders, userOptions, productCategoryOptions, totals }) 
         </div>
 
         <PageSizeSelector
-          value={data.page_size}
+          pageSize={data.page_size}
           onChange={e => setData('page_size', e.target.value)}
         />
 
