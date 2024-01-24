@@ -1,15 +1,18 @@
+import { useState } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import Alert from '@/Components/Alert';
 import Pagination from '@/Components/Pagination';
 import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import BillingAddressTable from './Partials/BillingAddressTable';
+import PageSizeSelector from '@/Components/PageSizeSelector';
 
 const Index = ({ billingAddresses }) => {
   const urlParams = route().params;
   const { flash } = usePage().props;
 
   const { data, setData, get, errors } = useForm({
+    page_size: urlParams.page_size || 100,
     keyword: urlParams.keyword || '',
   });
 
@@ -19,6 +22,15 @@ const Index = ({ billingAddresses }) => {
       preserveState: true,
     });
   };
+
+  const [prevPageSize, setPrevPageSize] = useState(data.page_size);
+
+  if (data.page_size !== prevPageSize) {
+    get(route('billing-addresses.index'), {
+      preserveState: true,
+    });
+    setPrevPageSize(data.page_size);
+  }
 
   return (
     <>
@@ -36,6 +48,12 @@ const Index = ({ billingAddresses }) => {
         <div className="record-count">
           {billingAddresses.total}件
         </div>
+
+        <PageSizeSelector
+          pageSize={data.page_size}
+          onChange={e => setData('page_size', e.target.value)}
+        />
+
         <Pagination paginator={billingAddresses} />
       </div>
 

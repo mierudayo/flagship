@@ -19,7 +19,7 @@ class BillingAddressController extends Controller
         $billingAddresses = BillingAddress::query()
             ->searchByKeyword($keyword)
             ->latest()
-            ->paginate(50)
+            ->paginate($request->input('page_size') ?? 100)
             ->withQueryString();
 
         return Inertia::render('BillingAddress/Index', [
