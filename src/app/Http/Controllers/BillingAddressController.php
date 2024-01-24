@@ -14,10 +14,8 @@ class BillingAddressController extends Controller
 {
     public function index(BillingAddressSearchRequest $request): Response
     {
-        $keyword = $request->input('keyword');
-
         $billingAddresses = BillingAddress::query()
-            ->searchByKeyword($keyword)
+            ->searchByKeyword($request->input('keyword'))
             ->latest()
             ->paginate($request->input('page_size') ?? 100)
             ->withQueryString();
