@@ -136,6 +136,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     isSearchable={true}
                     placeholder="..."
                     error={errors.in_charge_user_id}
+                    width="368px"
                   />
                   <InvalidFeedback errors={errors} name="in_charge_user_id" />
                 </td>
@@ -156,6 +157,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     isSearchable={true}
                     placeholder="..."
                     error={errors.status}
+                    width="368px"
                   />
                   <InvalidFeedback errors={errors} name="status" />
                 </td>
@@ -238,6 +240,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     isSearchable={true}
                     placeholder="..."
                     error={errors.inquiry_type_id}
+                    width="368px"
                   />
                   <InvalidFeedback errors={errors} name="inquiry_type_id" />
                 </td>
@@ -259,6 +262,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     isSearchable={true}
                     placeholder="..."
                     error={errors.contact_method}
+                    width="368px"
                   />
                   <InvalidFeedback errors={errors} name="contact_method" />
                 </td>
@@ -276,6 +280,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
                     onChange={e => setData('project_scale', e.target.value)}
                     error={errors.project_scale}
                     placeholder="1 ~ 10,000までの数値を入力"
+                    className="u-w-368"
                   />
                   <InvalidFeedback errors={errors} name="project_scale" />
                 </td>

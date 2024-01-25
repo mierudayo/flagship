@@ -16,6 +16,7 @@ export default function CustomSelect(props) {
     subTextKey,
     searchKey,
     error,
+    width,
   } = props;
 
   /** react-selectのスタイル適用方法 */
@@ -30,6 +31,7 @@ export default function CustomSelect(props) {
         borderColor: state.isFocused && !error ? 'var(--color-focus)' : error ? 'var(--color-invalid-focus)' : provided.borderColor,
         boxShadow: state.isFocused && !error ? 'var(--color-focus-shadow)' : error ? 'var(--color-invalid-focus-shadow)' : provided.boxShadow,
       },
+      width: width,
     }),
     option: (provided, state) => ({
       ...provided,
