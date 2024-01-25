@@ -53,8 +53,8 @@ class SalesOrderUpdateRequest extends FormRequest
             'detail_rows.*.sales_order_detail.product_id'       => ['nullable', 'integer', 'exists:products,id'],
             'detail_rows.*.sales_order_detail.product_name'     => ['required', 'string', 'max:255'],
             'detail_rows.*.sales_order_detail.product_detail'   => ['nullable', 'string', 'max:255'],
-            'detail_rows.*.sales_order_detail.quantity'         => ['required', 'numeric', 'min:0.01', 'max:99999999'],
-            'detail_rows.*.sales_order_detail.unit_price'       => ['required', 'numeric', 'min:0.01', 'max:99999999'],
+            'detail_rows.*.sales_order_detail.quantity'         => ['required', 'numeric', 'min:-99999999', 'max:99999999'],
+            'detail_rows.*.sales_order_detail.unit_price'       => ['required', 'numeric', 'min:-99999999', 'max:99999999'],
             'detail_rows.*.sales_order_detail.tax_rate'         => ['numeric', 'max:1'],
             'detail_rows.*.sales_order_detail.is_tax_inclusive' => ['boolean'],
             'detail_rows.*.sales_order_detail.note'             => ['nullable', 'string', 'max:255'],
@@ -66,8 +66,8 @@ class SalesOrderUpdateRequest extends FormRequest
             'detail_rows.*.purchase_order.purchase_in_charge_id' => ['required', 'integer', 'exists:users,id'],
 
             // PurchaseOrderDetail
-            'detail_rows.*.purchase_order_detail.quantity'         => ['required', 'numeric', 'min:0', 'max:99999999'],
-            'detail_rows.*.purchase_order_detail.unit_price'       => ['required', 'numeric', 'min:0', 'max:99999999'],
+            'detail_rows.*.purchase_order_detail.quantity'         => ['required', 'numeric', 'min:-99999999', 'max:99999999'],
+            'detail_rows.*.purchase_order_detail.unit_price'       => ['required', 'numeric', 'min:-99999999', 'max:99999999'],
             'detail_rows.*.purchase_order_detail.tax_rate'         => ['numeric', 'max:1'],
             'detail_rows.*.purchase_order_detail.is_tax_inclusive' => ['boolean'],
             'detail_rows.*.purchase_order_detail.note'             => ['nullable', 'string', 'max:255'],
