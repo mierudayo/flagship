@@ -1,5 +1,4 @@
 :root {
-  --gray: #ccc;
   --color-required: #ff0000;
   --color-focus: #89c4f4;
   --color-focus-shadow: 0 0 0 2px rgba(137, 196, 244, 0.5);
@@ -125,14 +124,14 @@
 -------------------------*/
 .invalid-feedback {
   color: var(--color-invalid-focus);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
 }
 
 /* Label
 -------------------------*/
 .form-label {
   align-items: center;
-  color: var(--black);
+  color: var(--light-black);
   display: flex;
   font-size: 0.9rem;
   font-weight: bold;
@@ -142,5 +141,11 @@
     font-size: 1.1rem;
     font-weight: bold;
     margin-left: 8px;
+  }
+}
+
+.th-cell {
+  .form-label {
+    font-size: 1rem;
   }
 }
