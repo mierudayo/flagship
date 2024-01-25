@@ -3,7 +3,7 @@ import ContentInfoBar from '@/Components/ContentInfoBar';
 import EditLinkButton from '@/Components/EditLinkButton';
 import DuplicateLinkButton from '@/Components/DuplicateLinkButton';
 import TermDetails from './Partials/TermDetails';
-import { parseNumber, formatCurrency } from '@/Utils/priceCalculator';
+import { parseNumber, formatNumber, formatCurrency } from '@/Utils/priceCalculator';
 
 const Show = ({ salesOrder }) => {
 
@@ -201,10 +201,10 @@ const Show = ({ salesOrder }) => {
                     {detail.purchase_order_details[0]?.purchase_order?.customer_contact?.name} <br/>
                   </td>
                   <td className="td-cell">{detail.purchase_order_details[0]?.purchase_order.purchase_in_charge.name}</td>
-                  <td className="td-cell">{parseNumber(detail.purchase_order_details[0]?.quantity)}</td>
-                  <td className="td-cell">{parseNumber(detail.quantity)}</td>
-                  <td className="td-cell">{parseNumber(detail.purchase_order_details[0]?.unit_price)}</td>
-                  <td className="td-cell">{parseNumber(detail.unit_price)}</td>
+                  <td className="td-cell">{formatNumber(detail.purchase_order_details[0]?.quantity)}</td>
+                  <td className="td-cell">{formatNumber(detail.quantity)}</td>
+                  <td className="td-cell">{formatNumber(detail.purchase_order_details[0]?.unit_price)}</td>
+                  <td className="td-cell">{formatNumber(detail.unit_price)}</td>
                   <td className="td-cell">
                     {formatCurrency(detail.purchase_order_details[0]?.price)} <br/>
                     <span className="u-text-sm">

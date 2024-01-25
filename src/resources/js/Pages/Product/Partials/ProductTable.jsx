@@ -1,4 +1,4 @@
-import { parseNumber } from '@/Utils/priceCalculator';
+import { formatCurrency } from '@/Utils/priceCalculator';
 
 export default function ProductTable({ products }) {
   return (
@@ -25,8 +25,8 @@ export default function ProductTable({ products }) {
               <td className="td-cell u-text-center">{product.display_order}</td>
               <td className="td-cell">{product.product_number}</td>
               <td className="td-cell">{product.name}</td>
-              <td className="td-cell u-text-right">¥ {parseNumber(product.sales_price)}</td>
-              <td className="td-cell u-text-right">¥ {parseNumber(product.purchase_price)}</td>
+              <td className="td-cell u-text-right">{formatCurrency(product.sales_price)}</td>
+              <td className="td-cell u-text-right">{formatCurrency(product.purchase_price)}</td>
               <td className="td-cell">{product.description}</td>
               <td className="td-cell">{product.product_type_label}</td>
               <td className="td-cell">{product.category.name}</td>

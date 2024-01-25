@@ -1,6 +1,6 @@
 import ClickableRow from '@/Components/ClickableRow';
 import NewTabLink from '@/Components/NewTabLink';
-import { parseNumber, formatCurrency } from '@/Utils/priceCalculator';
+import { formatNumber, formatCurrency } from '@/Utils/priceCalculator';
 
 export default function SalesOrderTable({ salesOrders }) {
   return (
@@ -44,7 +44,7 @@ export default function SalesOrderTable({ salesOrders }) {
                   {salesOrder.sales_order_details.map(detail => (
                     <div key={detail.id} className="inner-tr">
                       <div className="inner-td u-w-200">{detail.product_name}</div>
-                      <div className="inner-td u-w-104 u-text-right">{parseNumber(detail.quantity)}</div>
+                      <div className="inner-td u-w-104 u-text-right">{formatNumber(detail.quantity)}</div>
                       <div className="inner-td u-w-112 u-text-right">
                         {formatCurrency(detail.unit_price)} <br />
                         <span className="u-text-sm">

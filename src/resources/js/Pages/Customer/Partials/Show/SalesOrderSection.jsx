@@ -1,5 +1,5 @@
 import NewTabLink from '@/Components/NewTabLink';
-import { parseNumber, formatCurrency } from '@/Utils/priceCalculator';
+import { formatNumber, formatCurrency } from '@/Utils/priceCalculator';
 
 export default function SalesOrderSection({ salesOrders }) {
   return (
@@ -52,7 +52,7 @@ export default function SalesOrderSection({ salesOrders }) {
                           {detail.product_name}
                         </div>
                         <div className="inner-td u-w-104 u-text-right">
-                          {parseNumber(detail.quantity)}
+                          {formatNumber(detail.quantity)}
                         </div>
                         <div className="inner-td u-w-112 u-text-right">
                           {formatCurrency(detail.unit_price)} <br />
