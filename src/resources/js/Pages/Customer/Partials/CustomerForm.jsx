@@ -179,6 +179,7 @@ export default function CustomerForm({
                     value={data.in_charge_user_id}
                     valueKey="id"
                     labelKey="name"
+                    searchKey="name_kana"
                     isClearable={true}
                     isSearchable={true}
                     placeholder="..."

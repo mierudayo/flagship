@@ -132,6 +132,7 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
                     value={data.in_charge_user_id}
                     valueKey="id"
                     labelKey="name"
+                    searchKey="name_kana"
                     isClearable={true}
                     isSearchable={true}
                     placeholder="担当ユーザーを選択..."

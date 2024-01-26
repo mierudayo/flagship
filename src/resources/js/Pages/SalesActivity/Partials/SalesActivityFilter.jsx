@@ -16,6 +16,7 @@ export default function SalesActivityFilter({ submit, data, setData, errors, inC
             value={data.in_charge_user_id}
             valueKey="id"
             labelKey="name"
+            searchKey="name_kana"
             isClearable={true}
             isSearchable={true}
             placeholder="..."

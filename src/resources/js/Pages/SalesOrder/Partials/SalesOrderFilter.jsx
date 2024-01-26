@@ -65,6 +65,7 @@ export default function SalesOrderFilter({ submit, data, setData, errors, userOp
             value={data.sales_in_charge_id}
             valueKey="id"
             labelKey="name"
+            searchKey="name_kana"
             isClearable={true}
             isSearchable={true}
             placeholder="..."
