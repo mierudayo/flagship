@@ -14,7 +14,7 @@ import ContactLookup from '@/Components/ContactLookup';
 import Modal from '@/Components/Modal';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
-const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatusOptions, contactMethodOptions }) => {
+const Edit = ({ returnToUrl, inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatusOptions, contactMethodOptions }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [contactInfo, setContactInfo] = useState({
     contactName: inquiry.customer_contact.name,
@@ -25,6 +25,7 @@ const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions
   });
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
+    return_to_url: returnToUrl,
     inquiry_date: inquiry.inquiry_date,
     customer_contact_id: inquiry.customer_contact_id,
     product_id: inquiry.product_id || '',

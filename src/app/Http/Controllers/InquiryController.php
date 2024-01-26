@@ -10,6 +10,7 @@ use App\Models\InquiryType;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -80,8 +81,10 @@ class InquiryController extends Controller
             ->with('message', "問い合わせNo:{$inquiry->id} 登録成功しました。");
     }
 
-    public function edit(Inquiry $inquiry): Response
+    public function edit(Inquiry $inquiry, Request $request): Response
     {
+        $returnToUrl = $request->headers->get('referer');
+
         $inquiry->load([
             'customerContact.customer',
             'createdBy',
@@ -89,6 +92,7 @@ class InquiryController extends Controller
         ]);
 
         return Inertia::render('Inquiry/Edit', [
+            'returnToUrl'            => $returnToUrl,
             'inquiry'                => $inquiry,
             'productOptions'         => Product::all(),
             'inquiryTypeOptions'     => InquiryType::all(),
@@ -98,6 +102,8 @@ class InquiryController extends Controller
 
     public function update(InquiryUpdateRequest $request, Inquiry $inquiry): RedirectResponse
     {
+        $returnToUrl = $request->input('return_to_url', route('inquiries.index'));
+
         $inquiry->update([
             'inquiry_date'          => $request->input('inquiry_date'),
             'customer_contact_id'   => $request->input('customer_contact_id'),
@@ -116,7 +122,7 @@ class InquiryController extends Controller
             'updated_by_id'         => auth()->user()->id,
         ]);
 
-        return to_route('inquiries.index')
+        return redirect($returnToUrl)
             ->with('message', "問い合わせNo:{$inquiry->id} 更新しました。");
     }
 

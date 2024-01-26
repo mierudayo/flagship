@@ -22,6 +22,7 @@ class InquiryUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'return_to_url'         => ['nullable', 'string', 'max:2048'],
             'inquiry_date'          => ['required', 'date'],
             'customer_contact_id'   => ['required', 'integer', 'exists:customer_contacts,id'],
             'product_id'            => ['nullable', 'integer', 'exists:products,id'],
