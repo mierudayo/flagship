@@ -11,6 +11,7 @@ import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import Textarea from '@/Components/Form/Textarea';
 import ContactLookup from '@/Components/ContactLookup';
 import Modal from '@/Components/Modal';
+import ProgressIndicator from '@/Components/ProgressIndicator';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatusOptions, contactMethodOptions }) => {
@@ -73,7 +74,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
           登録する
         </button>
         <CancelButton isDirty={isDirty} route={route('inquiries.index')} />
-        {processing && <span>Now Loading...</span>}
+        {processing && <ProgressIndicator />}
       </div>
 
       <FormErrorAlert errors={errors} />

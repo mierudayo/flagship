@@ -4,6 +4,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import CancelButton from '@/Components/CancelButton';
 import ContactLookup from '@/Components/ContactLookup';
 import Modal from '@/Components/Modal';
+import ProgressIndicator from '@/Components/ProgressIndicator';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import SalesActivityForm from './Partials/SalesActivityForm';
 
@@ -61,7 +62,7 @@ const Create = ({ inChargeUserOptions }) => {
           登録する
         </button>
         <CancelButton isDirty={isDirty} route={route('sales-activities.index')} />
-        {processing && <span>Now Loading...</span>}
+        {processing && <ProgressIndicator />}
       </div>
 
       <FormErrorAlert errors={errors} />

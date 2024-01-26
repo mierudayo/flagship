@@ -6,6 +6,7 @@ import ContentInfoBar from '@/Components/ContentInfoBar';
 import CancelButton from '@/Components/CancelButton';
 import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
+import ProgressIndicator from '@/Components/ProgressIndicator';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 import ContactsForm from './Partials/ContactsForm';
@@ -66,7 +67,7 @@ const Edit = ({ contact, userOptions, leadSourceOptions }) => {
           更新する
         </button>
         <CancelButton isDirty={isDirty} route={route('contacts.index')} />
-        {processing && <span>Now Loading...</span>}
+        {processing && <ProgressIndicator />}
         <Link
           onBefore={() => confirm('本当に削除しますか？')}
           href={route('contacts.destroy', contact)}

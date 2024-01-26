@@ -4,6 +4,7 @@ import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import CancelButton from '@/Components/CancelButton';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
+import ProgressIndicator from '@/Components/ProgressIndicator';
 import BillingAddressForm from './Partials/BillingAddressForm';
 
 
@@ -52,7 +53,7 @@ const Edit = ({ billingAddress }) => {
           更新する
         </button>
         <CancelButton isDirty={isDirty} route={route('billing-addresses.index')} />
-        {processing && <span>Now Loading...</span>}
+        {processing && <ProgressIndicator />}
       </div>
 
       <Alert type={flash.type} message={flash.message} />

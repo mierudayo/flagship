@@ -12,6 +12,7 @@ import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import Textarea from '@/Components/Form/Textarea';
 import ContactLookup from '@/Components/ContactLookup';
 import Modal from '@/Components/Modal';
+import ProgressIndicator from '@/Components/ProgressIndicator';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 const Edit = ({ returnToUrl, inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatusOptions, contactMethodOptions }) => {
@@ -82,7 +83,7 @@ const Edit = ({ returnToUrl, inquiry, productOptions, inquiryTypeOptions, inChar
           更新する
         </button>
         <CancelButton isDirty={isDirty} route={route('inquiries.index')} />
-        {processing && <span>Now Loading...</span>}
+        {processing && <ProgressIndicator />}
         <Link
           onBefore={() => confirm('本当に削除しますか？')}
           href={route('inquiries.destroy', inquiry)}

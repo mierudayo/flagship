@@ -8,6 +8,7 @@ import DateInput from '@/Components/Form/DateInput';
 import Input from '@/Components/Form/Input';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
+import ProgressIndicator from '@/Components/ProgressIndicator';
 
 const Edit = ({ user, permissionOptions }) => {
   const { data, setData, patch, processing, errors, isDirty } = useForm({
@@ -45,7 +46,7 @@ const Edit = ({ user, permissionOptions }) => {
           更新する
         </button>
         <CancelButton isDirty={isDirty} route={route('users.index')} />
-        {processing && <span>Now Loading...</span>}
+        {processing && <ProgressIndicator />}
       </div>
 
       <FormErrorAlert errors={errors} />

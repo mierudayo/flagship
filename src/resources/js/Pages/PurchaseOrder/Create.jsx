@@ -12,6 +12,7 @@ import Textarea from '@/Components/Form/Textarea';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
+import ProgressIndicator from '@/Components/ProgressIndicator';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 
 const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTermOptions }) => {
@@ -101,7 +102,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
           登録する
         </button>
         <CancelButton isDirty={isDirty} route={route('customers.index')} />
-        {processing && <span>Now Loading...</span>}
+        {processing && <ProgressIndicator />}
       </div>
 
       <FormErrorAlert errors={errors} />

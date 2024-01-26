@@ -5,6 +5,7 @@ import CancelButton from '@/Components/CancelButton';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
+import ProgressIndicator from '@/Components/ProgressIndicator';
 import SalesOrderForm from '@/Pages/SalesOrder/Partials/SalesOrderForm';
 import { parseNumber, calculatePrice, calculatePriceWithTax } from '@/Utils/priceCalculator';
 
@@ -304,7 +305,7 @@ const Edit = ({ returnToUrl, salesOrder, userOptions, productOptions, productCat
           更新する
         </button>
         <CancelButton isDirty={isDirty} route={route('sales-orders.index')} />
-        {processing && <span>Now Loading...</span>}
+        {processing && <ProgressIndicator />}
         <Link
           onBefore={() => confirm('紐付いている発注データも削除されます。本当に削除しますか？')}
           href={route('sales-orders.destroy', salesOrder)}

@@ -2,6 +2,7 @@ import { useForm } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import CancelButton from '@/Components/CancelButton';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
+import ProgressIndicator from '@/Components/ProgressIndicator';
 import CustomerForm from './Partials/CustomerForm';
 
 const Create = ({ userOptions, leadSourceOptions, paymentTermOptions, addressTypeOptions }) => {
@@ -114,7 +115,7 @@ const Create = ({ userOptions, leadSourceOptions, paymentTermOptions, addressTyp
           登録する
         </button>
         <CancelButton isDirty={isDirty} route={route('customers.index')} />
-        {processing && <span>Now Loading...</span>}
+        {processing && <ProgressIndicator />}
       </div>
 
       <FormErrorAlert errors={errors} />

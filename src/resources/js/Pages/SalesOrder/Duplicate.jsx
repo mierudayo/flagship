@@ -5,6 +5,7 @@ import CancelButton from '@/Components/CancelButton';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import CustomerLookup from '@/Components/CustomerLookup';
 import Modal from '@/Components/Modal';
+import ProgressIndicator from '@/Components/ProgressIndicator';
 import SalesOrderForm from '@/Pages/SalesOrder/Partials/SalesOrderForm';
 import { parseNumber, calculatePrice, calculatePriceWithTax } from '@/Utils/priceCalculator';
 
@@ -295,7 +296,7 @@ const Duplicate = ({ salesOrder, userOptions, productOptions, productCategoryOpt
           登録する
         </button>
         <CancelButton isDirty={isDirty} route={route('sales-orders.index')} />
-        {processing && <span>Now Loading...</span>}
+        {processing && <ProgressIndicator />}
       </div>
 
       <FormErrorAlert errors={errors} />

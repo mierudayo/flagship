@@ -4,6 +4,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import CancelButton from '@/Components/CancelButton';
 import ContactLookup from '@/Components/ContactLookup';
 import Modal from '@/Components/Modal';
+import ProgressIndicator from '@/Components/ProgressIndicator';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import SalesActivityForm from './Partials/SalesActivityForm';
 
@@ -60,7 +61,7 @@ const Edit = ({ salesActivity, inChargeUserOptions }) => {
           更新する
         </button>
         <CancelButton isDirty={isDirty} route={route('sales-activities.index')} />
-        {processing && <span>Now Loading...</span>}
+        {processing && <ProgressIndicator />}
         <Link
           onBefore={() => confirm('本当に削除しますか？')}
           href={route('sales-activities.destroy', salesActivity)}

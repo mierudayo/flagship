@@ -4,6 +4,7 @@ import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import CancelButton from '@/Components/CancelButton';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
+import ProgressIndicator from '@/Components/ProgressIndicator';
 import { convertNullToEmptyString } from '@/Utils/arrayHelpers';
 import CustomerForm from './Partials/CustomerForm';
 
@@ -130,7 +131,7 @@ const Edit = ({ customer, userOptions, leadSourceOptions, paymentTermOptions, ad
           更新する
         </button>
         <CancelButton isDirty={isDirty} route={route('customers.index')} />
-        {processing && <span>Now Loading...</span>}
+        {processing && <ProgressIndicator />}
         <Link
           onBefore={() => confirm('本当に削除しますか？')}
           href={route('customers.destroy', customer)}

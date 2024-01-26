@@ -8,6 +8,7 @@ import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
+import ProgressIndicator from '@/Components/ProgressIndicator';
 
 const Create = ({ permissionOptions }) => {
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
@@ -46,7 +47,7 @@ const Create = ({ permissionOptions }) => {
           登録する
         </button>
         <CancelButton isDirty={isDirty} route={route('users.index')} />
-        {processing && <span>Now Loading...</span>}
+        {processing && <ProgressIndicator />}
       </div>
 
       <FormErrorAlert errors={errors} />
