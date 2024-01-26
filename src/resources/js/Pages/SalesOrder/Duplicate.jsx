@@ -905,7 +905,7 @@ const Duplicate = ({ salesOrder, userOptions, productOptions, productCategoryOpt
 
                       <td className="td-cell">
                         {formatCurrency(detail.purchase_order_detail.price)}
-                          <br/>
+                        <br />
                         <span className="u-text-sm">
                           ({formatCurrency(calculatePriceWithTax(detail.purchase_order_detail.price, detail.purchase_order_detail.tax_rate))})
                         </span>
@@ -913,7 +913,7 @@ const Duplicate = ({ salesOrder, userOptions, productOptions, productCategoryOpt
 
                       <td className="td-cell">
                         {formatCurrency(detail.sales_order_detail.price)}
-                        <br/>
+                        <br />
                         <span className="u-text-sm">
                           ({formatCurrency(calculatePriceWithTax(detail.sales_order_detail.price, detail.sales_order_detail.tax_rate))})
                         </span>

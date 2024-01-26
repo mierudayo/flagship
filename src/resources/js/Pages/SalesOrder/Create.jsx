@@ -208,7 +208,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
   function updateDetailRow(index, objectKey, fieldName, value) {
     const updatedDetails = [...data.detail_rows];
-    const detailObject   = updatedDetails[index][objectKey];
+    const detailObject = updatedDetails[index][objectKey];
 
     let updatedDetailObject = {
       ...detailObject,
@@ -359,18 +359,18 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                     </div>
                     <InvalidFeedback errors={errors} name="customer_id" />
                     <div className="u-max-w-360 u-mt-2">
-                    <CustomSelect
-                      onChange={value => setData('customer_contact_id', value)}
-                      options={customerContacts}
-                      value={data.customer_contact_id}
-                      valueKey="id"
-                      labelKey="name"
-                      isClearable={true}
-                      isSearchable={true}
-                      placeholder="..."
-                      error={errors.customer_contact_id}
-                    />
-                    <InvalidFeedback errors={errors} name="customer_contact_id" />
+                      <CustomSelect
+                        onChange={value => setData('customer_contact_id', value)}
+                        options={customerContacts}
+                        value={data.customer_contact_id}
+                        valueKey="id"
+                        labelKey="name"
+                        isClearable={true}
+                        isSearchable={true}
+                        placeholder="..."
+                        error={errors.customer_contact_id}
+                      />
+                      <InvalidFeedback errors={errors} name="customer_contact_id" />
                     </div>
                   </td>
                 </tr>
@@ -867,7 +867,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                       <td className="td-cell">
                         {formatCurrency(detail.purchase_order_detail.price)}
-                          <br/>
+                        <br />
                         <span className="u-text-sm">
                           ({formatCurrency(calculatePriceWithTax(detail.purchase_order_detail.price, detail.purchase_order_detail.tax_rate))})
                         </span>
@@ -875,7 +875,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                       <td className="td-cell">
                         {formatCurrency(detail.sales_order_detail.price)}
-                        <br/>
+                        <br />
                         <span className="u-text-sm">
                           ({formatCurrency(calculatePriceWithTax(detail.sales_order_detail.price, detail.sales_order_detail.tax_rate))})
                         </span>
