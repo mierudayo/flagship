@@ -189,8 +189,9 @@ class SalesOrderController extends Controller
             ->with([
                 'customer',
                 'salesInCharge',
-                'productCategory',
-                'salesOrderDetails.purchaseOrderDetails',
+                'salesOrderDetails.purchaseOrderDetails.purchaseOrder.customer',
+                'salesOrderDetails.purchaseOrderDetails.purchaseOrder.purchaseInCharge',
+                'salesOrderDetails.purchaseOrderDetails.purchaseOrder.purchaseOrderDetails',
             ])
             ->searchByKeyword($request->input('keyword'))
             ->searchByDeliveryPeriod(
