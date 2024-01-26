@@ -1,4 +1,7 @@
+import { usePage } from '@inertiajs/react';
+
 import AppLayout from '@/Layouts/AppLayout';
+import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import EditLinkButton from '@/Components/EditLinkButton';
 import DuplicateLinkButton from '@/Components/DuplicateLinkButton';
@@ -6,7 +9,7 @@ import TermDetails from './Partials/TermDetails';
 import { parseNumber, formatNumber, formatCurrency } from '@/Utils/priceCalculator';
 
 const Show = ({ salesOrder }) => {
-
+  const { flash } = usePage().props;
   const soTotal = salesOrder.total;
   const soTotalWithTax = salesOrder.total_with_tax;
 
@@ -36,6 +39,8 @@ const Show = ({ salesOrder }) => {
         <EditLinkButton href={route('sales-orders.edit', salesOrder)} style={{ marginRight: '16px' }} />
         <DuplicateLinkButton href={route('sales-orders.duplicate', salesOrder)} />
       </div>
+
+      <Alert type={flash.type} message={flash.message} />
 
       <div className="content-section">
 
