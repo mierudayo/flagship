@@ -1,5 +1,6 @@
 import ClickableRow from '@/Components/ClickableRow';
 import NewTabLink from '@/Components/NewTabLink';
+import EditIconButton from '@/Components/EditIconButton';
 import { formatNumber, formatCurrency } from '@/Utils/priceCalculator';
 
 export default function SalesOrderTable({ salesOrders }) {
@@ -8,7 +9,8 @@ export default function SalesOrderTable({ salesOrders }) {
       <table className="table has-inner-table">
         <thead className="table-header is-sticky">
           <tr className="table-row">
-            <th className="th-cell col-fixed u-w-64">No.</th>
+            <th className="th-cell col-fixed u-w-64"></th>
+            <th className="th-cell u-w-64">No.</th>
             <th className="th-cell u-w-136 u-min-w-136">納期</th>
             <th className="th-cell u-w-200 u-min-w-200">商品カテゴリ</th>
             <th className="th-cell u-min-w-240">販売先</th>
@@ -29,7 +31,10 @@ export default function SalesOrderTable({ salesOrders }) {
         <tbody className="table-body">
           {salesOrders.map(salesOrder => (
             <ClickableRow key={salesOrder.id} url={route('sales-orders.show', salesOrder)} className="emphasized-row">
-              <td className="td-cell col-fixed">{salesOrder.id}</td>
+              <td className="td-cell col-fixed">
+                <EditIconButton href={route('sales-orders.edit', salesOrder)} />
+              </td>
+              <td className="td-cell">{salesOrder.id}</td>
               <td className="td-cell">{salesOrder.delivery_date}</td>
               <td className="td-cell">{salesOrder.product_category.name}</td>
               <td className="td-cell">
