@@ -185,13 +185,13 @@ const Show = ({ salesOrder }) => {
                 <th className="th-cell u-min-w-240">商品名</th>
                 <th className="th-cell u-min-w-320">発注先</th>
                 <th className="th-cell u-min-w-160">発注担当</th>
-                <th className="th-cell u-min-w-104">発注数量</th>
-                <th className="th-cell u-min-w-104">販売数量</th>
-                <th className="th-cell u-min-w-104">発注単価</th>
-                <th className="th-cell u-min-w-104">販売単価</th>
-                <th className="th-cell u-min-w-112">発注額</th>
-                <th className="th-cell u-min-w-112">受注額</th>
-                <th className="th-cell u-min-w-112">利益</th>
+                <th className="th-cell u-min-w-104 u-text-right">発注数量</th>
+                <th className="th-cell u-min-w-104 u-text-right">販売数量</th>
+                <th className="th-cell u-min-w-104 u-text-right">発注単価</th>
+                <th className="th-cell u-min-w-104 u-text-right">販売単価</th>
+                <th className="th-cell u-min-w-112 u-text-right">発注額</th>
+                <th className="th-cell u-min-w-112 u-text-right">受注額</th>
+                <th className="th-cell u-min-w-112 u-text-right">利益</th>
                 <th className="th-cell u-min-w-320">備考</th>
               </tr>
             </thead>
@@ -206,23 +206,23 @@ const Show = ({ salesOrder }) => {
                     {detail.purchase_order_details[0]?.purchase_order?.customer_contact?.name} <br/>
                   </td>
                   <td className="td-cell">{detail.purchase_order_details[0]?.purchase_order.purchase_in_charge.name}</td>
-                  <td className="td-cell">{formatNumber(detail.purchase_order_details[0]?.quantity)}</td>
-                  <td className="td-cell">{formatNumber(detail.quantity)}</td>
-                  <td className="td-cell">{formatNumber(detail.purchase_order_details[0]?.unit_price)}</td>
-                  <td className="td-cell">{formatNumber(detail.unit_price)}</td>
-                  <td className="td-cell">
+                  <td className="td-cell u-text-right">{formatNumber(detail.purchase_order_details[0]?.quantity)}</td>
+                  <td className="td-cell u-text-right">{formatNumber(detail.quantity)}</td>
+                  <td className="td-cell u-text-right">{formatCurrency(detail.purchase_order_details[0]?.unit_price)}</td>
+                  <td className="td-cell u-text-right">{formatCurrency(detail.unit_price)}</td>
+                  <td className="td-cell u-text-right u-bg-lightgray">
                     {formatCurrency(detail.purchase_order_details[0]?.price)} <br/>
                     <span className="u-text-sm">
                       ({formatCurrency(detail.purchase_order_details[0]?.price_with_tax)})
                     </span>
                   </td>
-                  <td className="td-cell">
+                  <td className="td-cell u-text-right u-bg-lightgray">
                     {formatCurrency(detail.price)} <br/>
                     <span className="u-text-sm">
                       ({formatCurrency(detail.price_with_tax)})
                     </span>
                   </td>
-                  <td className="td-cell">{formatCurrency(detail.price - detail.purchase_order_details[0]?.price)}</td>
+                  <td className="td-cell u-text-right u-bg-lightgray">{formatCurrency(detail.price - detail.purchase_order_details[0]?.price)}</td>
                   <td className="td-cell">{detail.note}</td>
                 </tr>
               ))}

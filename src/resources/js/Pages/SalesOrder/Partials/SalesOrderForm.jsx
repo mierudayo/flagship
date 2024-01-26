@@ -402,14 +402,14 @@ export default function SalesOrderForm({
                 <th className="th-cell u-min-w-160">
                   <FormLabel label="販売単価" isRequired={true} />
                 </th>
-                <th className="th-cell u-min-w-104">
-                  <FormLabel label="発注額" isRequired={false} />
+                <th className="th-cell u-text-right u-min-w-104">
+                  <FormLabel label="発注額" isRequired={false} justifyContent="flex-end" />
                 </th>
-                <th className="th-cell u-min-w-104">
-                  <FormLabel label="受注額" isRequired={false} />
+                <th className="th-cell u-text-right u-min-w-104">
+                  <FormLabel label="受注額" isRequired={false} justifyContent="flex-end" />
                 </th>
-                <th className="th-cell u-min-w-120">
-                  <FormLabel label="利益" isRequired={false} />
+                <th className="th-cell u-text-right u-min-w-120">
+                  <FormLabel label="利益" isRequired={false} justifyContent="flex-end" />
                 </th>
                 <th className="th-cell u-min-w-400">
                   <FormLabel label="備考" isRequired={false} />
@@ -603,7 +603,7 @@ export default function SalesOrderForm({
                     <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.is_tax_inclusive`} />
                   </td>
 
-                  <td className="td-cell">
+                  <td className="td-cell u-text-right u-bg-lightgray">
                     {formatCurrency(detail.purchase_order_detail.price)}
                     <br />
                     <span className="u-text-sm">
@@ -611,7 +611,7 @@ export default function SalesOrderForm({
                     </span>
                   </td>
 
-                  <td className="td-cell">
+                  <td className="td-cell u-text-right u-bg-lightgray">
                     {formatCurrency(detail.sales_order_detail.price)}
                     <br />
                     <span className="u-text-sm">
@@ -619,7 +619,7 @@ export default function SalesOrderForm({
                     </span>
                   </td>
 
-                  <td className="td-cell">
+                  <td className="td-cell u-text-right u-bg-lightgray">
                     {formatCurrency((detail.sales_order_detail.price - detail.purchase_order_detail.price))}
                   </td>
 
