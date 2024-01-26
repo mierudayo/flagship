@@ -642,9 +642,6 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                   <th className="th-cell u-w-64">
                     <FormLabel label="No." isRequired={false} />
                   </th>
-                  <th className="th-cell u-min-w-240">
-                    <FormLabel label="商品" isRequired={false} />
-                  </th>
                   <th className="th-cell u-min-w-320">
                     <FormLabel label="商品名" isRequired={true} />
                   </th>
@@ -706,16 +703,13 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
                           error={errors[`detail_rows.${index}.sales_order_detail.product_id`]}
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.product_id`} />
-                      </td>
-
-                      <td className="td-cell">
                         <Input
                           type="text"
                           value={detail.sales_order_detail.product_name}
                           onChange={e => updateDetailRow(index, 'sales_order_detail', 'product_name', e.target.value)}
                           error={errors[`detail_rows.${index}.sales_order_detail.product_name`]}
                           placeholder="商品名"
-                          className="u-mb-1"
+                          className="u-my-1"
                         />
                         <InvalidFeedback errors={errors} name={`detail_rows.${index}.sales_order_detail.product_name`} />
                         <Input
