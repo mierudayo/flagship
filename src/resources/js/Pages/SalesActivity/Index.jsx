@@ -47,6 +47,18 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
     setPrevPageSize(data.page_size);
   }
 
+  function resetSearchInputs() {
+    setData({
+      ...data,
+      page_size: 100,
+      keyword: '',
+      start_date: '',
+      end_date: '',
+      in_charge_user_id: '',
+    })
+    setPrevPageSize(100);
+  }
+
   return (
     <>
       <h1 className="content-title">営業履歴 一覧</h1>
@@ -95,6 +107,7 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
           setData={setData}
           errors={errors}
           inChargeUserOptions={inChargeUserOptions}
+          resetSearchInputs={resetSearchInputs}
         />
       </FilterForm>
 

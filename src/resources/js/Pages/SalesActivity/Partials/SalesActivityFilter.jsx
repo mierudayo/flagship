@@ -3,21 +3,8 @@ import { Link } from '@inertiajs/react';;
 import CustomSelect from '@/Components/Form/CustomSelect';
 import FilterApplyButton from '@/Components/FilterApplyButton';
 import FormLabel from '@/Components/Form/FormLabel';
-import Input from '@/Components/Form/Input';
 
-export default function UserFilter({ submit, data, setData, errors, inChargeUserOptions }) {
-
-  function resetSearchInputs() {
-    setData({
-      ...data,
-      page_size: 100,
-      keyword: '',
-      start_date: '',
-      end_date: '',
-      in_charge_user_id: '',
-    })
-  }
-
+export default function SalesActivityFilter({ submit, data, setData, errors, inChargeUserOptions, resetSearchInputs }) {
   return (
     <>
       <div className="filter-form-body">
