@@ -5,8 +5,9 @@ import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import EditLinkButton from '@/Components/EditLinkButton';
 import DuplicateLinkButton from '@/Components/DuplicateLinkButton';
+import NewTabLink from '@/Components/NewTabLink';
 import TermDetails from './Partials/TermDetails';
-import { parseNumber, formatNumber, formatCurrency } from '@/Utils/priceCalculator';
+import { formatNumber, formatCurrency } from '@/Utils/priceCalculator';
 
 const Show = ({ salesOrder }) => {
   const { flash } = usePage().props;
@@ -25,7 +26,6 @@ const Show = ({ salesOrder }) => {
 
   return (
     <>
-
       <h1 className="content-title">受注 詳細</h1>
 
       <ContentInfoBar
@@ -59,7 +59,12 @@ const Show = ({ salesOrder }) => {
 
               <tr className="table-row">
                 <th className="th-cell">販売先</th>
-                <td className="td-cell">{salesOrder.customer.name}</td>
+                <td className="td-cell">
+                  <NewTabLink
+                    url={route('customers.show', salesOrder.customer)}
+                    displayText={salesOrder.customer.name}
+                  />
+                </td>
               </tr>
 
               <tr className="table-row">
@@ -181,17 +186,16 @@ const Show = ({ salesOrder }) => {
             <thead className="table-header is-sticky">
               <tr className="table-row">
                 <th className="th-cell u-w-64 col-fixed">No.</th>
-                <th className="th-cell u-min-w-200">商品</th>
-                <th className="th-cell u-min-w-240">商品名</th>
+                <th className="th-cell u-min-w-280">商品</th>
                 <th className="th-cell u-min-w-320">発注先</th>
-                <th className="th-cell u-min-w-160">発注担当</th>
+                <th className="th-cell u-min-w-120">発注担当</th>
                 <th className="th-cell u-min-w-104 u-text-right">発注数量</th>
                 <th className="th-cell u-min-w-104 u-text-right">販売数量</th>
                 <th className="th-cell u-min-w-104 u-text-right">発注単価</th>
                 <th className="th-cell u-min-w-104 u-text-right">販売単価</th>
-                <th className="th-cell u-min-w-112 u-text-right">発注額</th>
-                <th className="th-cell u-min-w-112 u-text-right">受注額</th>
-                <th className="th-cell u-min-w-112 u-text-right">利益</th>
+                <th className="th-cell u-min-w-120 u-text-right">発注額</th>
+                <th className="th-cell u-min-w-120 u-text-right">受注額</th>
+                <th className="th-cell u-min-w-120 u-text-right">利益</th>
                 <th className="th-cell u-min-w-320">備考</th>
               </tr>
             </thead>
@@ -199,11 +203,24 @@ const Show = ({ salesOrder }) => {
               {salesOrder.sales_order_details.map(detail => (
                 <tr key={detail.id} className="table-row is-hoverable">
                   <td className="td-cell col-fixed">{detail.row_number}</td>
-                  <td className="td-cell">{detail.product?.name}</td>
-                  <td className="td-cell">{detail.product_name} <br/>{detail.product_detail}</td>
                   <td className="td-cell">
-                    {detail.purchase_order_details[0]?.purchase_order.customer.name} <br/>
-                    {detail.purchase_order_details[0]?.purchase_order?.customer_contact?.name} <br/>
+                    <div>{detail.product?.name}</div>
+                    <div>{detail.product_name}</div>
+                    <div className="u-text-gray">{detail.product_detail}</div>
+                  </td>
+                  <td className="td-cell">
+                    <div>{detail.purchase_order_details[0]?.purchase_order.customer.name}</div>
+                    <div>{detail.purchase_order_details[0]?.purchase_order?.customer_contact?.name}</div>
+
+                    {detail.purchase_order_details[0]?.purchase_order?.delivery_address_id && (
+                      <details className="u-text-gray u-mt-1">
+                        <summary>出荷元情報</summary>
+                        <div>
+                          <div>{detail.purchase_order_details[0]?.purchase_order?.ship_from_company}</div>
+                          <div>{detail.purchase_order_details[0]?.purchase_order?.ship_from_address}</div>
+                        </div>
+                      </details>
+                    )}
                   </td>
                   <td className="td-cell">{detail.purchase_order_details[0]?.purchase_order.purchase_in_charge.name}</td>
                   <td className="td-cell u-text-right">{formatNumber(detail.purchase_order_details[0]?.quantity)}</td>
@@ -211,18 +228,16 @@ const Show = ({ salesOrder }) => {
                   <td className="td-cell u-text-right">{formatCurrency(detail.purchase_order_details[0]?.unit_price)}</td>
                   <td className="td-cell u-text-right">{formatCurrency(detail.unit_price)}</td>
                   <td className="td-cell u-text-right u-bg-lightgray">
-                    {formatCurrency(detail.purchase_order_details[0]?.price)} <br/>
-                    <span className="u-text-sm">
-                      ({formatCurrency(detail.purchase_order_details[0]?.price_with_tax)})
-                    </span>
+                    <div>{formatCurrency(detail.purchase_order_details[0]?.price)}</div>
+                    <div className="u-text-sm">({formatCurrency(detail.purchase_order_details[0]?.price_with_tax)})</div>
                   </td>
                   <td className="td-cell u-text-right u-bg-lightgray">
-                    {formatCurrency(detail.price)} <br/>
-                    <span className="u-text-sm">
-                      ({formatCurrency(detail.price_with_tax)})
-                    </span>
+                    <div>{formatCurrency(detail.price)}</div>
+                    <div className="u-text-sm">({formatCurrency(detail.price_with_tax)})</div>
                   </td>
-                  <td className="td-cell u-text-right u-bg-lightgray">{formatCurrency(detail.price - detail.purchase_order_details[0]?.price)}</td>
+                  <td className="td-cell u-text-right u-bg-lightgray">
+                    {formatCurrency(detail.price - detail.purchase_order_details[0]?.price)}
+                  </td>
                   <td className="td-cell">{detail.note}</td>
                 </tr>
               ))}

@@ -41,7 +41,7 @@ const SalesOrderRows = ({ salesOrders }) => {
                     {detail.product_name}
                   </div>
                   {detail.product_detail === null ? '' : (
-                    <span className="u-text-sm" style={{ color: '#999' }}>{detail.product_detail}</span>
+                    <span className="u-text-sm u-text-gray">{detail.product_detail}</span>
                   )}
                 </div>
                 <div className="inner-td u-w-200">
