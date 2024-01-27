@@ -233,4 +233,36 @@ class SalesOrder extends Model
             $q->where('product_detail', 'like', "%$productDetail%");
         });
     }
+
+    public function scopeSearchBySupplierName(Builder $query, ?string $supplierName): Builder
+    {
+        if (!$supplierName) {
+            return $query;
+        }
+
+        return $query->whereHas('salesOrderDetails', function ($q) use ($supplierName) {
+            $q->whereHas('purchaseOrderDetails', function ($q) use ($supplierName) {
+                $q->whereHas('purchaseOrder', function ($q) use ($supplierName) {
+                    $q->whereHas('customer', function ($q) use ($supplierName) {
+                        $q->where('name', 'like', "%$supplierName%");
+                    });
+                });
+            });
+        });
+    }
+
+    public function scopeSearchByPurchaseInCharge(Builder $query, ?string $purchaseInChargeId): Builder
+    {
+        if (!$purchaseInChargeId) {
+            return $query;
+        }
+
+        return $query->whereHas('salesOrderDetails', function ($q) use ($purchaseInChargeId) {
+            $q->whereHas('purchaseOrderDetails', function ($q) use ($purchaseInChargeId) {
+                $q->whereHas('purchaseOrder', function ($q) use ($purchaseInChargeId) {
+                    $q->where('purchase_in_charge_id', $purchaseInChargeId);
+                });
+            });
+        });
+    }
 }

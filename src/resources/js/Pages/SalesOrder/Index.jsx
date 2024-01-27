@@ -13,7 +13,7 @@ import FilterForm from '@/Components/FilterForm';
 import SalesOrderFilter from './Partials/SalesOrderFilter';
 import PageSizeSelector from '@/Components/PageSizeSelector';
 
-const Index = ({ salesOrders, userOptions, productCategoryOptions, totals }) => {
+const Index = ({ salesOrders, userOptions, purchaseInChargeOptions, productCategoryOptions, totals }) => {
   const urlParams = route().params;
   const { flash } = usePage().props;
 
@@ -34,6 +34,7 @@ const Index = ({ salesOrders, userOptions, productCategoryOptions, totals }) => 
     customer_name: urlParams.customer_name || '',
     sales_in_charge_id: urlParams.sales_in_charge_id || '',
     consignee: urlParams.consignee || '',
+    supplier_name: urlParams.supplier_name || '',
     start_date: urlParams.start_date || '',
     end_date: urlParams.end_date || '',
   });
@@ -65,6 +66,8 @@ const Index = ({ salesOrders, userOptions, productCategoryOptions, totals }) => 
       customer_name: '',
       sales_in_charge_id: '',
       consignee: '',
+      supplier_name: '',
+      purchase_in_charge_id: '',
       start_date: '',
       end_date: '',
     })
@@ -162,6 +165,7 @@ const Index = ({ salesOrders, userOptions, productCategoryOptions, totals }) => 
           setData={setData}
           errors={errors}
           userOptions={userOptions}
+          purchaseInChargeOptions={purchaseInChargeOptions}
           productCategoryOptions={productCategoryOptions}
           resetSearchInputs={resetSearchInputs}
         />

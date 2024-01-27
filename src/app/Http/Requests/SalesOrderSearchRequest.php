@@ -27,6 +27,8 @@ class SalesOrderSearchRequest extends FormRequest
             'customer_name'      => ['nullable', 'max:255'],
             'sales_in_charge_id' => ['nullable', 'integer'],
             'consignee'          => ['nullable', 'max:255'],
+            'supplier_name'      => ['nullable', 'max:255'],
+            'purchase_in_charge_id' => ['nullable', 'integer'],
             'start_date'         => ['nullable', 'date'],
             'end_date'           => ['nullable', 'date'],
         ];

@@ -5,7 +5,7 @@ import FilterApplyButton from '@/Components/FilterApplyButton';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 
-export default function SalesOrderFilter({ submit, data, setData, errors, userOptions, productCategoryOptions, resetSearchInputs }) {
+export default function SalesOrderFilter({ submit, data, setData, errors, userOptions, purchaseInChargeOptions, productCategoryOptions, resetSearchInputs }) {
   return (
     <>
       <div className="filter-form-body">
@@ -82,6 +82,33 @@ export default function SalesOrderFilter({ submit, data, setData, errors, userOp
             onChange={e => setData('consignee', e.target.value)}
             error={errors.consignee}
             placeholder="住所/会社名"
+          />
+        </div>
+
+        <div className="u-mr-2 u-w-200">
+          <FormLabel htmlFor="supplier_name" label="仕入先名" />
+          <Input
+            id="supplier_name"
+            type="text"
+            value={data.supplier_name}
+            onChange={e => setData('supplier_name', e.target.value)}
+            error={errors.supplier_name}
+          />
+        </div>
+
+        <div className="u-mr-2 u-w-168">
+          <FormLabel label="仕入担当" />
+          <CustomSelect
+            onChange={value => setData('purchase_in_charge_id', value)}
+            options={purchaseInChargeOptions}
+            value={data.purchase_in_charge_id}
+            valueKey="id"
+            labelKey="name"
+            searchKey="name_kana"
+            isClearable={true}
+            isSearchable={true}
+            placeholder="..."
+            error={errors.purchase_in_charge_id}
           />
         </div>
 
