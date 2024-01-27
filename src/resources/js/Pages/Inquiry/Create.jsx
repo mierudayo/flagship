@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
-import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AppLayout from '@/Layouts/AppLayout';
 import CancelButton from '@/Components/CancelButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import DateInput from '@/Components/Form/DateInput';
+import LookupButton from '@/Components/LookupButton';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
@@ -121,7 +121,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                     isSearchable={true}
                     placeholder="..."
                     error={errors.in_charge_user_id}
-                    width="368px"
+                    width="360px"
                   />
                   <InvalidFeedback errors={errors} name="in_charge_user_id" />
                 </td>
@@ -142,7 +142,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                     isSearchable={true}
                     placeholder="..."
                     error={errors.status}
-                    width="368px"
+                    width="360px"
                   />
                   <InvalidFeedback errors={errors} name="status" />
                 </td>
@@ -168,15 +168,13 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                       placeholder="顧客名"
                       readOnly={true}
                     />
-                    <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(true)}>
-                      <ManageSearchIcon />
-                    </button>
+                    <LookupButton onClick={() => setIsModalOpen(true)} />
                   </div>
                   <div className="u-mt-2">
                     <Input
                       type="text"
                       value={contactInfo.customerName}
-                      className="u-max-w-368"
+                      className="u-max-w-360"
                       placeholder="取引先名"
                       readOnly={true}
                     />
@@ -185,7 +183,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                     <Input
                       type="text"
                       value={contactInfo.contactEmail}
-                      className="u-max-w-368"
+                      className="u-max-w-360"
                       placeholder="E-mail"
                       readOnly={true}
                     />
@@ -194,7 +192,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                     <Input
                       type="text"
                       value={contactInfo.contactTel}
-                      className="u-max-w-176 u-mr-3"
+                      className="u-max-w-176 u-mr-2"
                       placeholder="TEL"
                       readOnly={true}
                     />
@@ -225,7 +223,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                     isSearchable={true}
                     placeholder="..."
                     error={errors.inquiry_type_id}
-                    width="368px"
+                    width="360px"
                   />
                   <InvalidFeedback errors={errors} name="inquiry_type_id" />
                 </td>
@@ -247,7 +245,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                     isSearchable={true}
                     placeholder="..."
                     error={errors.contact_method}
-                    width="368px"
+                    width="360px"
                   />
                   <InvalidFeedback errors={errors} name="contact_method" />
                 </td>
@@ -265,7 +263,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
                     onChange={e => setData('project_scale', e.target.value)}
                     error={errors.project_scale}
                     placeholder="1 ~ 10,000までの数値を入力"
-                    className="u-w-368"
+                    className="u-w-360"
                   />
                   <InvalidFeedback errors={errors} name="project_scale" />
                 </td>

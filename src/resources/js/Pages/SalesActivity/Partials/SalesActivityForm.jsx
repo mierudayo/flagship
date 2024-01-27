@@ -1,6 +1,5 @@
-
-import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import CustomSelect from '@/Components/Form/CustomSelect';
+import LookupButton from '@/Components/LookupButton';
 import DateInput from '@/Components/Form/DateInput';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
@@ -70,15 +69,13 @@ export default function SalesActivityForm({ setIsModalOpen, data, setData, error
                     placeholder="顧客名"
                     readOnly={true}
                   />
-                  <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(true)}>
-                    <ManageSearchIcon />
-                  </button>
+                  <LookupButton onClick={() => setIsModalOpen(true)} />
                 </div>
                 <div className="u-mt-2">
                   <Input
                     type="text"
                     value={contactInfo.customerName}
-                    className="u-max-w-368"
+                    className="u-max-w-360"
                     placeholder="取引先名"
                     readOnly={true}
                   />
@@ -87,7 +84,7 @@ export default function SalesActivityForm({ setIsModalOpen, data, setData, error
                   <Input
                     type="text"
                     value={contactInfo.contactEmail}
-                    className="u-max-w-368"
+                    className="u-max-w-360"
                     placeholder="E-mail"
                     readOnly={true}
                   />
@@ -96,7 +93,7 @@ export default function SalesActivityForm({ setIsModalOpen, data, setData, error
                   <Input
                     type="text"
                     value={contactInfo.contactTel}
-                    className="u-max-w-176 u-mr-3"
+                    className="u-max-w-176 u-mr-2"
                     placeholder="TEL"
                     readOnly={true}
                   />

@@ -1,6 +1,5 @@
 import { Fragment } from 'react';
 
-import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import IconButton from '@mui/material/IconButton';
 import SyncIcon from '@mui/icons-material/Sync';
 import EditIcon from '@mui/icons-material/Edit';
@@ -8,6 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import DateInput from '@/Components/Form/DateInput';
 import FormLabel from '@/Components/Form/FormLabel';
+import LookupButton from '@/Components/LookupButton';
 import Input from '@/Components/Form/Input';
 import OptionsList from '@/Components/OptionsList';
 import Textarea from '@/Components/Form/Textarea';
@@ -63,20 +63,20 @@ export default function SalesOrderForm({
                     <Input
                       type="text"
                       value={data.customer_id}
-                      className="u-max-w-64"
+                      className="u-max-w-64 u-mr-1"
                       placeholder="No"
                       readOnly={true}
+                      error={errors.customer_id}
                     />
                     <Input
                       type="text"
                       value={data.customer_name}
-                      className="u-max-w-240"
+                      className="u-max-w-240 u-mr-1"
                       placeholder="販売先"
                       readOnly={true}
+                      error={errors.customer_id}
                     />
-                    <button type="button" className="btn btn-secondary" onClick={() => setIsCustomerModalOpen(true)}>
-                      <ManageSearchIcon />
-                    </button>
+                    <LookupButton onClick={() => setIsCustomerModalOpen(true)} />
 
                     {data.customer_id && (
                       <Fragment>
@@ -465,23 +465,25 @@ export default function SalesOrderForm({
                       <Input
                         type="text"
                         value={detail.purchase_order.customer_id}
-                        className="u-max-w-64"
+                        className="u-max-w-64 u-mr-1"
                         placeholder="No"
                         readOnly={true}
+                        error={errors[`detail_rows.${index}.purchase_order.customer_id`]}
                       />
                       <Input
                         type="text"
                         value={detail.purchase_order.customer_name}
-                        className="u-max-w-240"
+                        className="u-max-w-240 u-mr-1"
                         placeholder="発注先"
                         readOnly={true}
+                        error={errors[`detail_rows.${index}.purchase_order.customer_id`]}
                       />
-                      <button type="button" className="btn btn-secondary" onClick={() => {
-                        setIsSupplierModalOpen(true);
-                        setClickedRowIndex(index);
-                      }}>
-                        <ManageSearchIcon />
-                      </button>
+                      <LookupButton
+                        onClick={() => {
+                          setIsSupplierModalOpen(true);
+                          setClickedRowIndex(index);
+                        }}
+                      />
                     </div>
                     <InvalidFeedback errors={errors} name={`detail_rows.${index}.purchase_order.customer_id`} />
                     <CustomSelect

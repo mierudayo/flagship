@@ -1,7 +1,7 @@
-import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import FormLabel from '@/Components/Form/FormLabel';
 import RadioGroup from '@/Components/Form/RadioGroup';
 import Input from '@/Components/Form/Input';
+import LookupButton from '@/Components/LookupButton';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import Textarea from '@/Components/Form/Textarea';
 import CustomSelect from '@/Components/Form/CustomSelect';
@@ -22,20 +22,19 @@ export default function ContactsForm({ userOptions, leadSourceOptions, setIsModa
                   <Input
                     type="text"
                     value={data.customer_id}
-                    className="u-max-w-64"
+                    className="u-max-w-64 u-mr-1"
                     placeholder="No"
                     readOnly={true}
                   />
                   <Input
                     type="text"
                     value={customerName}
-                    className="u-max-w-240"
+                    className="u-max-w-240 u-mr-1"
                     placeholder="取引先名"
                     readOnly={true}
                   />
-                  <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(true)}>
-                    <ManageSearchIcon />
-                  </button>
+                  <LookupButton onClick={() => setIsModalOpen(true)} />
+
                 </div>
                 <InvalidFeedback errors={errors} name="customer_id" />
               </td>
