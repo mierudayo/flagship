@@ -49,6 +49,15 @@ class LoginRequest extends FormRequest
             ]);
         }
 
+        if (Auth::user()->isResigned()) {
+            Auth::logout();
+            RateLimiter::hit($this->throttleKey());
+
+            throw ValidationException::withMessages([
+                'email' => trans('auth.resigned'),
+            ]);
+        }
+
         RateLimiter::clear($this->throttleKey());
     }
 

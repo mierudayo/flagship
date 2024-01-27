@@ -175,4 +175,14 @@ class User extends Authenticatable
         return $query->where('email', 'like', "%$email%");
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Logics
+    |--------------------------------------------------------------------------
+    */
+
+    public function isResigned(): bool
+    {
+        return $this->resignation_date !== null;
+    }
 }
