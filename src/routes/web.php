@@ -33,11 +33,13 @@ Route::middleware('auth')->group(function () {
     Route::get('api/billing-addresses', [ApiBillingAddressController::class, 'index']);
 
     // User
-    Route::get('users', [UserController::class, 'index'])->name('users.index');
-    Route::get('users/create', [UserController::class, 'create'])->name('users.create')->can('admin');
-    Route::post('users', [UserController::class, 'store'])->name('users.store')->can('admin');
-    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->can('admin');
-    Route::patch('users/{user}', [UserController::class, 'update'])->name('users.update')->can('admin');
+    Route::middleware(['can:admin'])->group(function () {
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
+        Route::get('users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('users', [UserController::class, 'store'])->name('users.store');
+        Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::patch('users/{user}', [UserController::class, 'update'])->name('users.update');
+    });
 
     // Customer
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');

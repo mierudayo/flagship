@@ -1,6 +1,6 @@
 import ClickableRow from '@/Components/ClickableRow';
 
-export default function UserTable({ users, canAdmin }) {
+export default function UserTable({ users }) {
   return (
     <div className="table-wrapper is-scrollable">
       <table className="table">

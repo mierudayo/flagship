@@ -12,6 +12,7 @@ import PaymentsIcon from '@mui/icons-material/Payments';
 
 export default function NavList() {
   const { url, component } = usePage();
+  const { auth } = usePage().props
 
   return (
     <ul className="side-nav-list">
@@ -26,17 +27,19 @@ export default function NavList() {
           </div>
         </Link>
       </li>
-      <li>
-        <Link
-          href={route('users.index')}
-          className={`side-nav-link ${component.startsWith('User/') ? 'is-active' : ''}`}
-        >
-          <div className="icon-wrapper">
-            <PeopleIcon className="sidenav-icon" />
-            <span>ユーザー</span>
-          </div>
-        </Link>
-      </li>
+      {auth.user.is_admin && (
+        <li>
+          <Link
+            href={route('users.index')}
+            className={`side-nav-link ${component.startsWith('User/') ? 'is-active' : ''}`}
+          >
+            <div className="icon-wrapper">
+              <PeopleIcon className="sidenav-icon" />
+              <span>ユーザー</span>
+            </div>
+          </Link>
+        </li>
+      )}
       <li>
         <Link
           href={route('customers.index')}

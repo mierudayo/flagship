@@ -11,7 +11,7 @@ import UserFilter from './Partials/UserFilter';
 import FilterForm from '@/Components/FilterForm';
 import PageSizeSelector from '@/Components/PageSizeSelector';
 
-const Index = ({ users, canAdmin }) => {
+const Index = ({ users }) => {
   const urlParams = route().params;
   const { flash } = usePage().props;
 
@@ -64,14 +64,12 @@ const Index = ({ users, canAdmin }) => {
     <>
       <h1 className="content-title">ユーザー 一覧</h1>
       <div className="content-navbar">
-        {canAdmin && (
-          <Link
-            href={route('users.create')}
-            className="btn btn-primary u-mr-3"
-          >
-            新規登録
-          </Link>
-        )}
+        <Link
+          href={route('users.create')}
+          className="btn btn-primary u-mr-3"
+        >
+          新規登録
+        </Link>
 
         <KeywordSearchForm
           placeholder="名前, ヨミガナで検索"
@@ -111,7 +109,7 @@ const Index = ({ users, canAdmin }) => {
 
       <Alert type={flash.type} message={flash.message} />
 
-      <UserTable users={users.data} canAdmin={canAdmin} />
+      <UserTable users={users.data} />
     </>
   );
 }

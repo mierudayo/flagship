@@ -16,6 +16,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $appends = ['is_admin'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -103,6 +105,17 @@ class User extends Authenticatable
     public function salesActivities(): HasMany
     {
         return $this->hasMany(SalesActivity::class, 'in_charge_user_id');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Accessors
+    |--------------------------------------------------------------------------
+    */
+
+    public function getIsAdminAttribute(): bool
+    {
+        return $this->can('admin');
     }
 
     /*
