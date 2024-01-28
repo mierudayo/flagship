@@ -21,7 +21,7 @@ class InquiryFactory extends Factory
     public function definition(): array
     {
         return [
-            'inquiry_date'          => $this->faker->date(),
+            'inquiry_date'          => $this->faker->dateTimeBetween('-3 years', 'now')->format('Y-m-d'),
             'customer_contact_id'   => CustomerContact::inRandomOrder()->first()->id,
             'product_id'            => Product::inRandomOrder()->first()->id,
             'product_detail'        => $this->faker->optional()->word,

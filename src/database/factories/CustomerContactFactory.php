@@ -34,6 +34,7 @@ class CustomerContactFactory extends Factory
             'in_charge_user_id' => $this->faker->optional()->randomElement(User::pluck('id')->toArray()),
             'created_by_id'     => User::inRandomOrder()->first()->id,
             'updated_by_id'     => $this->faker->optional()->randomElement(User::pluck('id')->toArray()),
+            'created_at'         => $this->faker->dateTimeBetween('-1 years', 'now'),
         ];
     }
 }

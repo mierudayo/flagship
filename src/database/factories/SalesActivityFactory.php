@@ -19,7 +19,7 @@ class SalesActivityFactory extends Factory
     public function definition(): array
     {
         return [
-            'contact_date'          => $this->faker->date(),
+            'contact_date'          => $this->faker->dateTimeBetween('-3 years', 'now')->format('Y-m-d'),
             'customer_contact_id'   => CustomerContact::inRandomOrder()->first()->id,
             'proposal'              => $this->faker->text(),
             'feedback'              => $this->faker->randomElement([null, $this->faker->sentence]),

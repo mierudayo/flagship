@@ -14,7 +14,7 @@ class SalesOrderSeeder extends Seeder
      */
     public function run(): void
     {
-        SalesOrder::factory(100)
+        SalesOrder::factory(200)
         ->has(
             SalesOrderDetail::factory(2)
                 ->afterCreating(function (SalesOrderDetail $salesOrderDetails) {

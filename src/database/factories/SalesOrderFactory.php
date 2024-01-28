@@ -47,7 +47,7 @@ class SalesOrderFactory extends Factory
             'order_date'            => $this->faker->date(),
             'shipping_date'         => $this->faker->date(),
             'shipping_status'       => $this->faker->word,
-            'delivery_date'         => $this->faker->date(),
+            'delivery_date'         => $this->faker->dateTimeBetween('-3 years', 'now')->format('Y-m-d'),
             'delivery_status'       => $this->faker->word,
             'delivery_memo'         => $this->faker->sentence,
             'note'                  => $this->faker->paragraph,
