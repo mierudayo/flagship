@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ProductType;
 use App\Http\Requests\ProductSearchRequest;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\Product;
@@ -38,6 +39,7 @@ class ProductController extends Controller
         return Inertia::render('Product/Create', [
             'groupOptions'    => $groupOptions,
             'categoryOptions' => $categoryOptions,
+            'productTypeOptions'    => ProductType::toArray(),
         ]);
     }
 

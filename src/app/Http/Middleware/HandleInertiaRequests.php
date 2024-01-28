@@ -2,16 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Enums\AddressType;
-use App\Enums\ContactMethod;
-use App\Enums\InquiryStatus;
 use App\Enums\PaymentTerm\BillingType;
 use App\Enums\PaymentTerm\CutoffDay;
 use App\Enums\PaymentTerm\PaymentDay;
 use App\Enums\PaymentTerm\PaymentDayOffset;
 use App\Enums\PaymentTerm\PaymentMonthOffset;
-use App\Enums\ProductType;
-use App\Enums\SalesActivityStatus;
 use App\Models\TaxRate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -68,11 +63,6 @@ class HandleInertiaRequests extends Middleware
                 'paymentDay'   => PaymentDay::toArray(),
                 'dayOffsets'   => PaymentDayOffset::toArray(),
             ],
-            'addressTypeOptions'    => AddressType::toArray(),
-            'inquiryStatusOptions'  => InquiryStatus::toArray(),
-            'salesActivityStatusOptions'  => SalesActivityStatus::toArray(),
-            'contactMethodOptions'  => ContactMethod::toArray(),
-            'productTypeOptions'    => ProductType::toArray(),
         ]);
     }
 }

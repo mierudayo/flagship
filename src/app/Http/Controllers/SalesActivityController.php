@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\SalesActivityStatus;
 use App\Http\Requests\SalesActivitySearchRequest;
 use App\Http\Requests\SalesActivityStoreRequest;
 use App\Http\Requests\SalesActivityUpdateRequest;
@@ -34,6 +35,7 @@ class SalesActivityController extends Controller
         return Inertia::render('SalesActivity/Index', [
             'salesActivities'      => $salesActivities,
             'inChargeUserOptions'  => User::active()->hasSalesActivities()->get(),
+            'salesActivityStatusOptions'  => SalesActivityStatus::toArray(),
         ]);
     }
 
@@ -41,6 +43,7 @@ class SalesActivityController extends Controller
     {
         return Inertia::render('SalesActivity/Create', [
             'inChargeUserOptions' => User::active()->get(),
+            'salesActivityStatusOptions'  => SalesActivityStatus::toArray(),
         ]);
     }
 
@@ -71,6 +74,7 @@ class SalesActivityController extends Controller
         return Inertia::render('SalesActivity/Edit', [
             'salesActivity' => $salesActivity,
             'inChargeUserOptions' => User::active()->get(),
+            'salesActivityStatusOptions'  => SalesActivityStatus::toArray(),
         ]);
     }
 
