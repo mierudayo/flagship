@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\InquiryTypeController;
 use App\Http\Controllers\DeliveryAddressController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LeadSourceController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductCategoryGroupController;
@@ -18,13 +19,10 @@ use App\Http\Controllers\SalesActivityController;
 use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return Inertia::render('Home');
-    })->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     // API
     Route::get('api/customers', [ApiCustomerController::class, 'index']);
