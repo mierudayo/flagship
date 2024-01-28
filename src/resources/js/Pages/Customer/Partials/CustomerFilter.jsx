@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';;
+import { Link } from '@inertiajs/react';
 
 import CustomSelect from '@/Components/Form/CustomSelect';
 import FormLabel from '@/Components/Form/FormLabel';

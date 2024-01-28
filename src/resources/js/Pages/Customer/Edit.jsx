@@ -35,7 +35,7 @@ const Edit = ({ customer, userOptions, leadSourceOptions, paymentTermOptions, ad
     patch(route('customers.update', customer), {
       onSuccess: () => reset(),
     });
-  };
+  }
 
   function addContact() {
     setData('contacts', [

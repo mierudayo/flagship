@@ -74,7 +74,7 @@ export default function PaymentSelectGroup({ data, setData, errors, paymentTermO
       <InvalidFeedback errors={errors} name={billingType} />
     </div>
   );
-};
+}
 
 const SelectInput = ({ name, label, value, onChange, error, options, className }) => {
   const selectClassName = `form-select ${error ? 'is-invalid' : ''} ${className || ''}`;

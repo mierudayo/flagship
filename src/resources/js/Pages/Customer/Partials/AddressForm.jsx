@@ -24,7 +24,7 @@ export default function AddressForm({ customer, addressTypeOptions, closeModal }
         closeModal();
       }
     });
-  };
+  }
 
   return (
     <>

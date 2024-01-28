@@ -38,7 +38,7 @@ const Edit = ({ contact, userOptions, leadSourceOptions }) => {
         reset();
       }
     });
-  };
+  }
 
   function selectCustomer(customer) {
     setData('customer_id', customer.id);

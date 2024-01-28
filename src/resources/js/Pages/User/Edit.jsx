@@ -25,7 +25,7 @@ const Edit = ({ user, permissionOptions }) => {
   function submit(e) {
     e.preventDefault();
     patch(route('users.update', user));
-  };
+  }
 
   return (
     <>

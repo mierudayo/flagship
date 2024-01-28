@@ -44,7 +44,7 @@ const Index = ({ salesOrders, userOptions, purchaseInChargeOptions, productCateg
     get(route('sales-orders.index'), {
       preserveState: true,
     });
-  };
+  }
 
   const [prevPageSize, setPrevPageSize] = useState(data.page_size);
 

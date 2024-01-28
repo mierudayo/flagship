@@ -15,7 +15,7 @@ export default function LeadSourceCreateForm() {
     post(route('lead-sources.store'), {
       onSuccess: () => reset(),
     });
-  };
+  }
 
   return (
     <form onSubmit={submit}>

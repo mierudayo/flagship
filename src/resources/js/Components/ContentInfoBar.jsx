@@ -5,4 +5,4 @@ export default function ContentInfoBar({ createdAt, createdBy, updatedAt, update
       {updatedBy && <div>更新: {updatedAt} ({updatedBy})</div>}
     </div>
   );
-};
+}

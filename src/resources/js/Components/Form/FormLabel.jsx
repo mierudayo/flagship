@@ -8,4 +8,4 @@ export default function FormLabel({ htmlFor, label, isRequired, justifyContent }
       {isRequired && <span className="required-mark">*</span>}
     </Tag>
   );
-};
+}

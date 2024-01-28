@@ -32,7 +32,7 @@ const Edit = ({ billingAddress }) => {
         reset();
       }
     });
-  };
+  }
 
   return (
     <>

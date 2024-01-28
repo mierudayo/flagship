@@ -42,7 +42,7 @@ const Index = ({ purchaseOrders, userOptions, productCategoryOptions, totals }) 
     get(route('purchase-orders.index'), {
       preserveState: true,
     });
-  };
+  }
 
   const [prevPageSize, setPrevPageSize] = useState(data.page_size);
 

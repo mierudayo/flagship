@@ -32,7 +32,7 @@ const Create = ({ permissionOptions }) => {
   function submit(e) {
     e.preventDefault();
     post(route('users.store'));
-  };
+  }
 
   return (
     <>

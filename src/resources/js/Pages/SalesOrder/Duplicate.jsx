@@ -154,7 +154,7 @@ const Duplicate = ({ salesOrder, userOptions, productOptions, productCategoryOpt
     post(route('sales-orders.store'), {
       onSuccess: () => reset(),
     });
-  };
+  }
 
   async function fetchCustomer() {
     const response = await fetch(`/api/customers/${data.customer_id}`);

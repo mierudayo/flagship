@@ -42,7 +42,7 @@ const Edit = ({ returnToUrl, inquiry, productOptions, inquiryTypeOptions, inChar
     patch(route('inquiries.update', inquiry), {
       onSuccess: () => reset(),
     });
-  };
+  }
 
   function selectContact(contact) {
     setData('customer_contact_id', contact.id);

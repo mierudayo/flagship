@@ -117,7 +117,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     post(route('sales-orders.store'), {
       onSuccess: () => reset(),
     });
-  };
+  }
 
   async function fetchCustomer() {
     const response = await fetch(`/api/customers/${data.customer_id}`);

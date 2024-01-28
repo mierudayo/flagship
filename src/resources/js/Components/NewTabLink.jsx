@@ -20,4 +20,4 @@ export default function NewTabLink({ url, displayText }) {
       <OpenInNewIcon style={iconStyle} />
     </a>
   );
-};
+}

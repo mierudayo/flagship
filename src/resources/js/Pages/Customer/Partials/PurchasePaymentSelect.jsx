@@ -106,7 +106,7 @@ export default function PurchasePaymentSelect({ data, setData, errors, paymentTe
       )}
     </div>
   );
-};
+}
 
 const SelectInput = ({ name = null, label, value, onChange, error, options, className }) => {
   const selectClassName = `form-select ${error ? 'is-invalid' : ''} ${className || ''}`;

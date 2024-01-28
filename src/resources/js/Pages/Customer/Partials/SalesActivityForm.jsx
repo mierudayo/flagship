@@ -26,7 +26,7 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
         closeModal();
       }
     });
-  };
+  }
 
   const contactOptions = customer.contacts.map(contact => {
     return { value: contact.id, label: contact.name };

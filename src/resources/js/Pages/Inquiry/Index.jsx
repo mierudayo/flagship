@@ -44,7 +44,7 @@ const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOpti
     get(route('inquiries.index'), {
       preserveState: true,
     });
-  };
+  }
 
   const [prevPageSize, setPrevPageSize] = useState(data.page_size);
 

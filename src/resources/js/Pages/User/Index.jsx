@@ -36,7 +36,7 @@ const Index = ({ users }) => {
     get(route('users.index'), {
       preserveState: true,
     });
-  };
+  }
 
   const [prevPageSize, setPrevPageSize] = useState(data.page_size);
 

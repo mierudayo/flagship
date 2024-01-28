@@ -39,7 +39,7 @@ const Index = ({ customerContacts, leadSourceOptions }) => {
     get(route('contacts.index'), {
       preserveState: true,
     });
-  };
+  }
 
   const [prevPageSize, setPrevPageSize] = useState(data.page_size);
 

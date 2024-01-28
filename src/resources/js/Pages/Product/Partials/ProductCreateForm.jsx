@@ -23,7 +23,7 @@ export default function ProductCreateForm({ categoryOptions }) {
         reset();
       }
     });
-  };
+  }
 
   return (
     <form onSubmit={submit}>

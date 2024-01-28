@@ -21,7 +21,7 @@ const Index = ({ billingAddresses }) => {
     get(route('billing-addresses.index'), {
       preserveState: true,
     });
-  };
+  }
 
   const [prevPageSize, setPrevPageSize] = useState(data.page_size);
 

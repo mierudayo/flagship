@@ -27,7 +27,7 @@ const Create = ({ userOptions, leadSourceOptions, paymentTermOptions, addressTyp
     post(route('customers.store'), {
       onSuccess: () => reset(),
     });
-  };
+  }
 
   function addContact() {
     setData('contacts', [

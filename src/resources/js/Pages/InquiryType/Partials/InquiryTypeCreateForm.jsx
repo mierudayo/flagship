@@ -17,7 +17,7 @@ export default function InquiryTypeCreateForm() {
     post(route('inquiry-types.store'), {
       onSuccess: () => reset(),
     });
-  };
+  }
 
   return (
     <form onSubmit={submit}>

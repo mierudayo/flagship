@@ -158,7 +158,7 @@ const Edit = ({ returnToUrl, salesOrder, userOptions, productOptions, productCat
     patch(route('sales-orders.update', salesOrder), {
       onSuccess: () => reset(),
     });
-  };
+  }
 
   async function fetchCustomer() {
     const response = await fetch(`/api/customers/${data.customer_id}`);

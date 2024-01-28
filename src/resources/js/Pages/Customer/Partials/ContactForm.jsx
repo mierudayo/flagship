@@ -29,7 +29,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
         closeModal();
       }
     });
-  };
+  }
 
   return (
     <>

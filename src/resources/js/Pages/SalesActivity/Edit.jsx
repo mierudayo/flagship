@@ -34,7 +34,7 @@ const Edit = ({ salesActivity, inChargeUserOptions }) => {
     patch(route('sales-activities.update', salesActivity), {
       onSuccess: () => reset(),
     });
-  };
+  }
 
   function selectContact(contact) {
     setData('customer_contact_id', contact.id);

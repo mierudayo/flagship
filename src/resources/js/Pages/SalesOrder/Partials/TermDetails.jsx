@@ -17,4 +17,4 @@ export default function TermDetails({ salesOrder }) {
     default:
       return null;
   }
-};
+}

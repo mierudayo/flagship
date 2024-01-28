@@ -15,7 +15,7 @@ export default function CategoryCreateForm({ groupOptions }) {
         reset();
       }
     });
-  };
+  }
 
   return (
     <form onSubmit={submit}>

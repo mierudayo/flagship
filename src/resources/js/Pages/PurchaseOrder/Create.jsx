@@ -46,7 +46,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
     post(route('purchase-orders.store'), {
       onSuccess: () => reset(),
     });
-  };
+  }
 
   function selectCustomer(customer) {
     setData({

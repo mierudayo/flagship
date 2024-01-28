@@ -7,7 +7,7 @@ export default function CancelButton({ isDirty, route }) {
       return confirm('入力内容が破棄されますがよろしいですか？');
     }
     return true;
-  };
+  }
 
   return (
     <Link

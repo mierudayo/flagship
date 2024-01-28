@@ -41,7 +41,7 @@ const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inqui
     post(route('inquiries.store'), {
       onSuccess: () => reset(),
     });
-  };
+  }
 
   function selectContact(contact) {
     setData('customer_contact_id', contact.id);

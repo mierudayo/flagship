@@ -43,7 +43,7 @@ const Index = ({ customers, inChargeUserOptions }) => {
     get(route('customers.index'), {
       preserveState: true,
     });
-  };
+  }
 
   const [prevPageSize, setPrevPageSize] = useState(data.page_size);
 

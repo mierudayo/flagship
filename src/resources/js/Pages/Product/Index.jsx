@@ -33,7 +33,7 @@ const Index = ({ products, categoryOptions }) => {
     get(route('products.index'), {
       preserveState: true,
     });
-  };
+  }
 
   const [prevPageSize, setPrevPageSize] = useState(data.page_size);
 

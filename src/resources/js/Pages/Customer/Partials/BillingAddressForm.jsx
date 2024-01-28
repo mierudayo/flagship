@@ -41,7 +41,7 @@ export default function BillingAddressForm({ customer, closeModal }) {
         closeModal();
       }
     });
-  };
+  }
 
   return (
     <>
