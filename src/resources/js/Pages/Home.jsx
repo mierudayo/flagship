@@ -70,7 +70,7 @@ const Home = ({ inquiriesByStatus, inquiriesCount, inquiriesByType, salesOrdersC
               {customerContactsByLeadSource.map(contact => (
                 <div key={contact.lead_source_id} className="list-item">
                   <div className="list-label">
-                    <span>
+                    <span className="chip">
                     {contact.lead_source?.name ?? '未分類'}
                     </span>
                   </div>

@@ -45,7 +45,13 @@ export default function ContactSection({ contacts }) {
               <td className="td-cell">{contact.email}</td>
               <td className="td-cell">{contact.position}</td>
               <td className="td-cell">{contact.in_charge_user?.name}</td>
-              <td className="td-cell">{contact.lead_source?.name}</td>
+              <td className="td-cell">
+                {contact.lead_source && (
+                  <span className="chip">
+                    {contact.lead_source?.name}
+                  </span>
+                )}
+              </td>
               <td className="td-cell u-text-center">{contact.is_active_label}</td>
               <td className="td-cell u-ellipsis u-max-w-320">{contact.note}</td>
             </tr>

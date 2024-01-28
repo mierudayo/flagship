@@ -83,7 +83,13 @@ const Show = ({ contact }) => {
 
               <tr className="table-row">
                 <th className="th-cell">リード獲得元</th>
-                <td className="td-cell">{contact.lead_source?.name}</td>
+                <td className="td-cell">
+                  {contact.lead_source && (
+                    <span className="chip">
+                      {contact.lead_source?.name}
+                    </span>
+                  )}
+                </td>
               </tr>
 
               <tr className="table-row">
