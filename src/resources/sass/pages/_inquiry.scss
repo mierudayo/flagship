@@ -2,41 +2,40 @@
 /* Custom Label
 -------------------------*/
 .custom-label {
-  border: 1px solid #bdc3c7;
   border-radius: 4px;
-  color: #333;
-  display: inline-block;
   font-size: 0.9rem;
-  padding: 1px 4px;
+  font-weight: bold;
+  padding: 4px 6px;
+  text-align: center;
 
   &.red {
-    background-color: #ff6b6b;
-    border-color: #ff4757;
-    color: #fff;
+    background-color: #ff9999;
+    border-color: #ff9999;
+    color: #8b0000;
   }
 
   &.green {
-    background-color: #53c978;
-    border-color: #53c978;
-    color: #fff;
+    background-color: #93d7af;
+    border-color: #93d7af;
+    color: #006400;
   }
 
   &.orange {
-    background-color: #ffa502;
-    border-color: #ff7f50;
-    color: #fff;
+    background-color: #ffc078;
+    border-color: #ffc078;
+    color: #8b4500;
   }
 
   &.gray {
-    background-color: #dfe6e9;
-    border-color: #b2bec3;
-    color: #2d3436;
+    background-color: #eaecef;
+    border-color: #d6d8db;
+    color: #494949;
   }
 
   &.blue {
-    background-color: #70a1ff;
-    border-color: #70a1ff;
-    color: #fff;
+    background-color: #a4c8f0;
+    border-color: #a4c8f0;
+    color: #0c5460;
   }
 }
 
@@ -82,7 +81,7 @@
   border-radius: 4px;
   font-size: 0.9rem;
   font-weight: bold;
-  padding: 4px;
+  padding: 4px 6px;
   text-align: center;
 
   /* Processing - 処理中 */
