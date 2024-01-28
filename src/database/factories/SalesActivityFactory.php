@@ -20,6 +20,7 @@ class SalesActivityFactory extends Factory
     {
         return [
             'contact_date'          => $this->faker->dateTimeBetween('-3 years', 'now')->format('Y-m-d'),
+            'status'                => $this->faker->randomElement([1, 2, 3, 4, 5, 6]),
             'customer_contact_id'   => CustomerContact::inRandomOrder()->first()->id,
             'proposal'              => $this->faker->text(),
             'feedback'              => $this->faker->randomElement([null, $this->faker->sentence]),

@@ -22,7 +22,7 @@ import EditLinkButton from '@/Components/EditLinkButton';
 import Modal from '@/Components/Modal';
 import AppLayout from '@/Layouts/AppLayout';
 
-const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) => {
+const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions, salesActivityStatusOptions }) => {
   const { flash } = usePage().props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
@@ -104,7 +104,7 @@ const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) 
 
       {isSalesActivityModalOpen &&
         <Modal closeModal={() => setIsSalesActivityModalOpen(false)} title="営業履歴 登録">
-          <SalesActivityForm customer={customer} userOptions={userOptions} closeModal={() => setIsSalesActivityModalOpen(false)} />
+          <SalesActivityForm customer={customer} userOptions={userOptions} salesActivityStatusOptions={salesActivityStatusOptions} closeModal={() => setIsSalesActivityModalOpen(false)} />
         </Modal>}
 
       {isBillingAddressCreateModalOpen &&

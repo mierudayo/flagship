@@ -4,7 +4,7 @@ import FilterApplyButton from '@/Components/FilterApplyButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import FormLabel from '@/Components/Form/FormLabel';
 
-export default function SalesActivityFilter({ submit, data, setData, errors, inChargeUserOptions, resetSearchInputs }) {
+export default function SalesActivityFilter({ submit, data, setData, errors, inChargeUserOptions, salesActivityStatusOptions, resetSearchInputs }) {
   return (
     <>
       <div className="filter-form-body">
@@ -21,6 +21,21 @@ export default function SalesActivityFilter({ submit, data, setData, errors, inC
             isSearchable={true}
             placeholder="..."
             error={errors.in_charge_user_id}
+          />
+        </div>
+
+        <div className="u-mr-2 u-min-w-200">
+          <FormLabel label="ステータス" />
+          <CustomSelect
+            onChange={value => setData('status', value)}
+            options={salesActivityStatusOptions}
+            value={data.status}
+            valueKey="value"
+            labelKey="label"
+            isClearable={true}
+            isSearchable={true}
+            placeholder="..."
+            error={errors.status}
           />
         </div>
 

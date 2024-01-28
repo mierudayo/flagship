@@ -11,6 +11,7 @@ use App\Enums\PaymentTerm\PaymentDay;
 use App\Enums\PaymentTerm\PaymentDayOffset;
 use App\Enums\PaymentTerm\PaymentMonthOffset;
 use App\Enums\ProductType;
+use App\Enums\SalesActivityStatus;
 use App\Models\TaxRate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -69,6 +70,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'addressTypeOptions'    => AddressType::toArray(),
             'inquiryStatusOptions'  => InquiryStatus::toArray(),
+            'salesActivityStatusOptions'  => SalesActivityStatus::toArray(),
             'contactMethodOptions'  => ContactMethod::toArray(),
             'productTypeOptions'    => ProductType::toArray(),
         ]);

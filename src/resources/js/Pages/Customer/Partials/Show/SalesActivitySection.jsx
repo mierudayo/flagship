@@ -8,8 +8,9 @@ export default function SalesActivitySection({ contacts }) {
         <table className="table">
           <thead className="table-header is-sticky">
             <tr className="table-row">
-            <th className="th-cell col-fixed u-w-104">No.</th>
+              <th className="th-cell col-fixed u-w-104">No.</th>
               <th className="th-cell u-min-w-136">連絡日</th>
+              <th className="th-cell u-min-w-120">ステータス</th>
               <th className="th-cell u-min-w-120">営業担当</th>
               <th className="th-cell u-min-w-120">連絡先</th>
               <th className="th-cell u-min-w-400">提案内容</th>
@@ -28,6 +29,11 @@ export default function SalesActivitySection({ contacts }) {
                     />
                   </td>
                   <td className="td-cell">{activity.contact_date}</td>
+                  <td className="td-cell">
+                    <span className={`sales-activity-status status-${activity.status}`}>
+                      {activity.status_label}
+                    </span>
+                  </td>
                   <td className="td-cell">{activity.in_charge_user.name}</td>
                   <td className="td-cell">{contact.name}</td>
                   <td className="td-cell">{activity.proposal}</td>

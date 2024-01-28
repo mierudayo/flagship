@@ -27,6 +27,7 @@ class SalesActivityController extends Controller
                 $request->input('end_date')
             )
             ->searchByInCharge($request->input('in_charge_user_id'))
+            ->searchByStatus($request->input('status'))
             ->latest('contact_date')
             ->paginate($request->input('page_size') ?? 100);
 
@@ -47,6 +48,7 @@ class SalesActivityController extends Controller
     {
         $salesActivity = SalesActivity::create([
             'contact_date'          => $request->input('contact_date'),
+            'status'                => $request->input('status'),
             'customer_contact_id'   => $request->input('customer_contact_id'),
             'proposal'              => $request->input('proposal'),
             'feedback'              => $request->input('feedback'),
@@ -76,6 +78,7 @@ class SalesActivityController extends Controller
     {
         $salesActivity->update([
             'contact_date'          => $request->input('contact_date'),
+            'status'                => $request->input('status'),
             'customer_contact_id'   => $request->input('customer_contact_id'),
             'proposal'              => $request->input('proposal'),
             'feedback'              => $request->input('feedback'),
@@ -98,6 +101,7 @@ class SalesActivityController extends Controller
     {
         $salesActivity = SalesActivity::create([
             'contact_date'          => $request->input('contact_date'),
+            'status'                => $request->input('status'),
             'customer_contact_id'   => $request->input('customer_contact_id'),
             'proposal'              => $request->input('proposal'),
             'feedback'              => $request->input('feedback'),

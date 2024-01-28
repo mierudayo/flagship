@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\SalesActivityStatus;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,8 +12,11 @@ class SalesActivity extends Model
 {
     use HasFactory;
 
+    protected $appends = ['status_label'];
+
     protected $fillable = [
         'contact_date',
+        'status',
         'customer_contact_id',
         'proposal',
         'feedback',
@@ -51,6 +55,22 @@ class SalesActivity extends Model
 
     /*
     |--------------------------------------------------------------------------
+    | Accessors
+    |--------------------------------------------------------------------------
+    */
+
+    /** Enumクラスに定義した表示用ラベル */
+    protected function getStatusLabelAttribute(): string
+    {
+        if (!isset($this->attributes['status'])) {
+            return '';
+        }
+
+        return SalesActivityStatus::getLabelFromValue($this->status);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
     | Scopes
     |--------------------------------------------------------------------------
     */
@@ -71,6 +91,14 @@ class SalesActivity extends Model
         });
     }
 
+    public function scopeSearchByStatus(Builder $query, ?string $status): Builder
+    {
+        if (!$status) {
+            return $query;
+        }
+
+        return $query->where('status', $status);
+    }
 
     public function scopeSearchByInquiryPeriod(Builder $query, ?string $startDate, ?string $endDate): Builder
     {

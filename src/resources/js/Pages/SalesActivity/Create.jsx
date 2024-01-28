@@ -12,7 +12,7 @@ import ProgressIndicator from '@/Components/ProgressIndicator';
 import AppLayout from '@/Layouts/AppLayout';
 
 
-const Create = ({ inChargeUserOptions }) => {
+const Create = ({ inChargeUserOptions, salesActivityStatusOptions }) => {
   const { today } = usePage().props.date;
   const { auth }  = usePage().props
 
@@ -27,6 +27,7 @@ const Create = ({ inChargeUserOptions }) => {
 
   const { data, setData, post, processing, errors, reset, isDirty } = useForm({
     contact_date: today,
+    status: 1,
     customer_contact_id: '',
     proposal: '',
     feedback: '',
@@ -84,6 +85,7 @@ const Create = ({ inChargeUserOptions }) => {
         errors={errors}
         submit={submit}
         inChargeUserOptions={inChargeUserOptions}
+        salesActivityStatusOptions={salesActivityStatusOptions}
         contactInfo={contactInfo}
         setIsModalOpen={setIsModalOpen}
       />

@@ -14,7 +14,7 @@ import Pagination from '@/Components/Pagination';
 import ToggleFilterButton from '@/Components/ToggleFilterButton';
 import AppLayout from '@/Layouts/AppLayout';
 
-const Index = ({ salesActivities, inChargeUserOptions }) => {
+const Index = ({ salesActivities, inChargeUserOptions, salesActivityStatusOptions }) => {
   const urlParams = route().params;
   const { flash } = usePage().props;
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -30,6 +30,7 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
     keyword: urlParams.keyword || '',
     start_date: urlParams.start_date || '',
     end_date: urlParams.end_date || '',
+    status: urlParams.status || '',
     in_charge_user_id: urlParams.in_charge_user_id || '',
   });
 
@@ -57,6 +58,7 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
       start_date: '',
       end_date: '',
       in_charge_user_id: '',
+      status: '',
     })
     setPrevPageSize(100);
   }
@@ -109,6 +111,7 @@ const Index = ({ salesActivities, inChargeUserOptions }) => {
           setData={setData}
           errors={errors}
           inChargeUserOptions={inChargeUserOptions}
+          salesActivityStatusOptions={salesActivityStatusOptions}
           resetSearchInputs={resetSearchInputs}
         />
       </FilterForm>

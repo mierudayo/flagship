@@ -9,6 +9,7 @@ export default function SalesActivityTable({ salesActivities }) {
           <tr className="table-row">
             <th className="th-cell u-min-w-64 u-text-center col-fixed">No.</th>
             <th className="th-cell u-min-w-160">連絡日</th>
+            <th className="th-cell u-min-w-120">ステータス</th>
             <th className="th-cell u-min-w-120">営業担当 (from)</th>
             <th className="th-cell u-min-w-200">連絡先 <br />(to)</th>
             <th className="th-cell u-min-w-240">提案</th>
@@ -21,6 +22,11 @@ export default function SalesActivityTable({ salesActivities }) {
             <ClickableRow key={salesActivity.id} url={route('sales-activities.edit', salesActivity)}>
               <td className="td-cell u-text-center col-fixed">{salesActivity.id}</td>
               <td className="td-cell">{salesActivity.contact_date}</td>
+              <td className="td-cell">
+                <span className={`sales-activity-status status-${salesActivity.status}`}>
+                  {salesActivity.status_label}
+                </span>
+              </td>
               <td className="td-cell">{salesActivity.in_charge_user.name}</td>
               <td className="td-cell">
                 {salesActivity.customer_contact.name} <br />

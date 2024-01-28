@@ -6,7 +6,7 @@ import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import Textarea from '@/Components/Form/Textarea';
 import LookupButton from '@/Components/LookupButton';
 
-export default function SalesActivityForm({ setIsModalOpen, data, setData, errors, submit, inChargeUserOptions, contactInfo}) {
+export default function SalesActivityForm({ setIsModalOpen, data, setData, errors, submit, inChargeUserOptions, contactInfo, salesActivityStatusOptions}) {
 
   return (
     <form id="salesActivityForm" onSubmit={submit}>
@@ -30,6 +30,27 @@ export default function SalesActivityForm({ setIsModalOpen, data, setData, error
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
+                <FormLabel label="ステータス" isRequired={false} />
+              </th>
+              <td className="td-cell">
+                <CustomSelect
+                  onChange={value => setData('status', value)}
+                  options={salesActivityStatusOptions}
+                  value={data.status}
+                  valueKey="value"
+                  labelKey="label"
+                  isClearable={false}
+                  isSearchable={true}
+                  placeholder="..."
+                  error={errors.status}
+                  width="360px"
+                />
+                <InvalidFeedback errors={errors} name="status" />
+              </td>
+            </tr>
+
+            <tr className="table-row is-flexible">
+              <th className="th-cell">
                 <FormLabel label="営業担当" isRequired={true} />
               </th>
               <td className="td-cell">
@@ -44,6 +65,7 @@ export default function SalesActivityForm({ setIsModalOpen, data, setData, error
                   isSearchable={true}
                   placeholder="..."
                   error={errors.in_charge_user_id}
+                  width="360px"
                 />
                 <InvalidFeedback errors={errors} name="in_charge_user_id" />
               </td>

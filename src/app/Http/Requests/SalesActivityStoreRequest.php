@@ -23,6 +23,7 @@ class SalesActivityStoreRequest extends FormRequest
     {
         return [
             'contact_date'          => ['required', 'date'],
+            'status'                => ['required', 'integer', 'in:1,2,3,4,5,6'],
             'customer_contact_id'   => ['required', 'integer', 'exists:customer_contacts,id'],
             'proposal'              => ['required', 'string', 'max:1000'],
             'feedback'              => ['nullable', 'string', 'max:1000'],
@@ -40,6 +41,7 @@ class SalesActivityStoreRequest extends FormRequest
     {
         return [
             'contact_date'          => '連絡日',
+            'status'                => 'ステータス',
             'customer_contact_id'   => '連絡先',
             'proposal'              => '提案内容',
             'feedback'              => '反応',

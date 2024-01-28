@@ -7,11 +7,12 @@ import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import Textarea from '@/Components/Form/Textarea';
 import OptionsList from '@/Components/OptionsList';
 
-export default function SalesActivityForm({ customer, userOptions, closeModal }) {
+export default function SalesActivityForm({ customer, userOptions, salesActivityStatusOptions, closeModal }) {
   const { auth, date } = usePage().props;
 
   const { data, setData, post, processing, errors, reset } = useForm({
     contact_date: date.today,
+    status: 1,
     customer_contact_id: '',
     proposal: '',
     feedback: '',
@@ -71,6 +72,26 @@ export default function SalesActivityForm({ customer, userOptions, closeModal })
                     <OptionsList options={contactOptions} />
                   </select>
                   <InvalidFeedback errors={errors} name="customer_contact_id" />
+                </td>
+              </tr>
+
+              <tr className="table-row is-flexible">
+                <th className="th-cell">
+                  <FormLabel label="ステータス" isRequired={true} />
+                </th>
+                <td className="td-cell">
+                  <CustomSelect
+                    onChange={value => setData('status', value)}
+                    options={salesActivityStatusOptions}
+                    value={data.status}
+                    valueKey="value"
+                    labelKey="label"
+                    isClearable={true}
+                    isSearchable={true}
+                    placeholder="..."
+                    error={errors.status}
+                  />
+                  <InvalidFeedback errors={errors} name="status" />
                 </td>
               </tr>
 

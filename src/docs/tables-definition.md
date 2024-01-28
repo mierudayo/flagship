@@ -282,6 +282,7 @@
 |---------------------|--------------------|--------------------|---------------------------------------------------|
 | id                  | ID                 | unsignedBigInteger | PK                                                |
 | contact_date        | 連絡日             | date               |                                                   |
+| status              | 対応状況           | tinyInteger        |  |
 | customer_contact_id | 顧客ID             | unsignedBigInteger | FK                                                |
 | proposal            | 提案内容           | text               |                                                   |
 | feedback            | フィードバック     | text               |                                                   |

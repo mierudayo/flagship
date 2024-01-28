@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('sales_activities', function (Blueprint $table) {
             $table->id();
             $table->date('contact_date');
+            $table->tinyInteger('status')->default(1);
             $table->unsignedBigInteger('customer_contact_id');
             $table->text('proposal');
             $table->text('feedback')->nullable();

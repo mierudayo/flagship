@@ -12,7 +12,7 @@ import ProgressIndicator from '@/Components/ProgressIndicator';
 import AppLayout from '@/Layouts/AppLayout';
 
 
-const Edit = ({ salesActivity, inChargeUserOptions }) => {
+const Edit = ({ salesActivity, inChargeUserOptions, salesActivityStatusOptions }) => {
   const { auth } = usePage().props
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,6 +26,7 @@ const Edit = ({ salesActivity, inChargeUserOptions }) => {
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
     contact_date: salesActivity.contact_date,
+    status: salesActivity.status,
     customer_contact_id: salesActivity.customer_contact_id,
     proposal: salesActivity.proposal,
     feedback: salesActivity.feedback || '',
@@ -92,6 +93,7 @@ const Edit = ({ salesActivity, inChargeUserOptions }) => {
         errors={errors}
         submit={submit}
         inChargeUserOptions={inChargeUserOptions}
+        salesActivityStatusOptions={salesActivityStatusOptions}
         contactInfo={contactInfo}
         setIsModalOpen={setIsModalOpen}
       />
