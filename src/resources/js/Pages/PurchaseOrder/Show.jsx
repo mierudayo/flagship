@@ -1,6 +1,7 @@
-import AppLayout from '@/Layouts/AppLayout';
-import ContentInfoBar from '@/Components/ContentInfoBar';
 import TermDetails from './Partials/TermDetails';
+
+import ContentInfoBar from '@/Components/ContentInfoBar';
+import AppLayout from '@/Layouts/AppLayout';
 import { parseNumber, formatCurrency } from '@/Utils/priceCalculator';
 
 const Show = ({ purchaseOrder }) => {

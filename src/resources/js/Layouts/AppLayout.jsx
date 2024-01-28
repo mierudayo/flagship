@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Head, router, usePage } from '@inertiajs/react'
 
-import MenuIcon from '@mui/icons-material/Menu';
+import { Head, router, usePage } from '@inertiajs/react'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@mui/icons-material/Menu';
 
 import NavList from './Partials/NavList';
 import Sidebar from './Partials/Sidebar';

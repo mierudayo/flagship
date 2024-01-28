@@ -1,10 +1,10 @@
 import CustomSelect from '@/Components/Form/CustomSelect';
 import DateInput from '@/Components/Form/DateInput';
-import LookupButton from '@/Components/LookupButton';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import Textarea from '@/Components/Form/Textarea';
+import LookupButton from '@/Components/LookupButton';
 
 export default function InquiryForm({
   data, setData, errors, submit,

@@ -1,12 +1,16 @@
 import { useState } from 'react';
+
 import { Link, useForm, usePage } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+
+import SalesActivityForm from './Partials/SalesActivityForm';
+
 import CancelButton from '@/Components/CancelButton';
 import ContactLookup from '@/Components/ContactLookup';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import Modal from '@/Components/Modal';
 import ProgressIndicator from '@/Components/ProgressIndicator';
-import FormErrorAlert from '@/Components/Form/FormErrorAlert';
-import SalesActivityForm from './Partials/SalesActivityForm';
+import AppLayout from '@/Layouts/AppLayout';
+
 
 const Edit = ({ salesActivity, inChargeUserOptions }) => {
   const { auth } = usePage().props

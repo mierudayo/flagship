@@ -1,7 +1,8 @@
+import TermDetails from './TermDetails';
+
 import ClickableRow from '@/Components/ClickableRow';
 import NewTabLink from '@/Components/NewTabLink';
 import { parseNumber, formatCurrency } from '@/Utils/priceCalculator';
-import TermDetails from './TermDetails';
 
 export default function PurchaseOrderTable({ purchaseOrders }) {
   return (

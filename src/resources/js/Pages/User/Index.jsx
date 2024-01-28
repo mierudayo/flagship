@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
+
 import { Link, useForm, usePage } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
-import Alert from '@/Components/Alert';
-import Pagination from '@/Components/Pagination';
-import KeywordSearchForm from '@/Components/KeywordSearchForm';
+
+import UserFilter from './Partials/UserFilter';
 import UserTable from './Partials/UserTable';
 
-import ToggleFilterButton from '@/Components/ToggleFilterButton';
-import UserFilter from './Partials/UserFilter';
+import Alert from '@/Components/Alert';
 import FilterForm from '@/Components/FilterForm';
+import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import PageSizeSelector from '@/Components/PageSizeSelector';
+import Pagination from '@/Components/Pagination';
+import ToggleFilterButton from '@/Components/ToggleFilterButton';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Index = ({ users }) => {
   const urlParams = route().params;

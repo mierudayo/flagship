@@ -1,11 +1,12 @@
+import PurchasePaymentSelect from './PurchasePaymentSelect';
+import SalesPaymentSelect from './SalesPaymentSelect';
+
 import CustomSelect from '@/Components/Form/CustomSelect';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
-import OptionsList from '@/Components/OptionsList';
 import Textarea from '@/Components/Form/Textarea';
-import PurchasePaymentSelect from './PurchasePaymentSelect';
-import SalesPaymentSelect from './SalesPaymentSelect';
+import OptionsList from '@/Components/OptionsList';
 
 export default function CustomerForm({
   userOptions, leadSourceOptions, paymentTermOptions, addressTypeOptions,

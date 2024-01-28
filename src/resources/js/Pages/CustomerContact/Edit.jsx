@@ -1,15 +1,18 @@
 import { useState } from 'react';
+
 import { Link, useForm, usePage } from "@inertiajs/react";
-import AppLayout from '@/Layouts/AppLayout';
-import Alert from '@/Components/Alert';
-import ContentInfoBar from '@/Components/ContentInfoBar';
-import CancelButton from '@/Components/CancelButton';
-import CustomerLookup from '@/Components/CustomerLookup';
-import Modal from '@/Components/Modal';
-import ProgressIndicator from '@/Components/ProgressIndicator';
-import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 
 import ContactsForm from './Partials/ContactsForm';
+
+import Alert from '@/Components/Alert';
+import CancelButton from '@/Components/CancelButton';
+import ContentInfoBar from '@/Components/ContentInfoBar';
+import CustomerLookup from '@/Components/CustomerLookup';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
+import Modal from '@/Components/Modal';
+import ProgressIndicator from '@/Components/ProgressIndicator';
+import AppLayout from '@/Layouts/AppLayout';
+
 
 const Edit = ({ contact, userOptions, leadSourceOptions }) => {
   const { flash } = usePage().props;

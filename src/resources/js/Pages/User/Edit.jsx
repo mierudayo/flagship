@@ -1,14 +1,15 @@
 import { useForm } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
-import ContentInfoBar from '@/Components/ContentInfoBar';
+
 import CancelButton from '@/Components/CancelButton';
+import ContentInfoBar from '@/Components/ContentInfoBar';
 import CustomSelect from '@/Components/Form/CustomSelect';
-import FormLabel from '@/Components/Form/FormLabel';
 import DateInput from '@/Components/Form/DateInput';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
+import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
-import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import ProgressIndicator from '@/Components/ProgressIndicator';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Edit = ({ user, permissionOptions }) => {
   const { data, setData, patch, processing, errors, isDirty } = useForm({

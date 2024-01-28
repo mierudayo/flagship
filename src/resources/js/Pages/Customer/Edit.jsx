@@ -1,12 +1,15 @@
 import { Link, useForm, usePage } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+
+import CustomerForm from './Partials/CustomerForm';
+
 import Alert from '@/Components/Alert';
-import ContentInfoBar from '@/Components/ContentInfoBar';
 import CancelButton from '@/Components/CancelButton';
+import ContentInfoBar from '@/Components/ContentInfoBar';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import ProgressIndicator from '@/Components/ProgressIndicator';
+import AppLayout from '@/Layouts/AppLayout';
 import { convertNullToEmptyString } from '@/Utils/arrayHelpers';
-import CustomerForm from './Partials/CustomerForm';
+
 
 const Edit = ({ customer, userOptions, leadSourceOptions, paymentTermOptions, addressTypeOptions }) => {
   const { flash } = usePage().props;

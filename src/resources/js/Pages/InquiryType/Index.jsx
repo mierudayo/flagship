@@ -1,8 +1,10 @@
 import { usePage } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
-import Alert from '@/Components/Alert';
+
 import InquiryTypeCreateForm from './Partials/InquiryTypeCreateForm';
 import InquiryTypeTable from './Partials/InquiryTypeTable';
+
+import Alert from '@/Components/Alert';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Index = ({ inquiryTypes }) => {
   const { flash } = usePage().props;

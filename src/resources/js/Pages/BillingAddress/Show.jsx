@@ -1,8 +1,9 @@
 import { usePage } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+
 import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import EditLinkButton from '@/Components/EditLinkButton';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Show = ({ billingAddress }) => {
   const { flash } = usePage().props;

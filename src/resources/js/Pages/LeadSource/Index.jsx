@@ -1,8 +1,10 @@
 import { usePage } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
-import Alert from '@/Components/Alert';
+
 import LeadSourceCreateForm from './Partials/LeadSourceCreateForm';
 import LeadSourceTable from './Partials/LeadSourceTable';
+
+import Alert from '@/Components/Alert';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Index = ({ leadSources }) => {
   const { flash } = usePage().props;

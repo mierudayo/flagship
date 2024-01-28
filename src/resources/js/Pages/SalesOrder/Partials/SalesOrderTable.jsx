@@ -1,6 +1,6 @@
 import ClickableRow from '@/Components/ClickableRow';
-import NewTabLink from '@/Components/NewTabLink';
 import EditIconButton from '@/Components/EditIconButton';
+import NewTabLink from '@/Components/NewTabLink';
 import { formatNumber, formatCurrency } from '@/Utils/priceCalculator';
 
 const SalesOrderRows = ({ salesOrders }) => {

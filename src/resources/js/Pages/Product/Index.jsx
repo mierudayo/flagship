@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
+
 import { Link, useForm } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
-import Pagination from '@/Components/Pagination';
-import KeywordSearchForm from '@/Components/KeywordSearchForm';
+
+import ProductFilter from './Partials/ProductFilter';
 import ProductTable from './Partials/ProductTable';
 
-import ToggleFilterButton from '@/Components/ToggleFilterButton';
 import FilterForm from '@/Components/FilterForm';
-import ProductFilter from './Partials/ProductFilter';
+import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import PageSizeSelector from '@/Components/PageSizeSelector';
+import Pagination from '@/Components/Pagination';
+import ToggleFilterButton from '@/Components/ToggleFilterButton';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Index = ({ products, categoryOptions }) => {
   const urlParams = route().params;

@@ -1,23 +1,26 @@
 import { useState } from 'react';
+
 import { usePage, router } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
-import Alert from '@/Components/Alert';
-import ContentInfoBar from '@/Components/ContentInfoBar';
-import Modal from '@/Components/Modal';
-import ContactForm from './Partials/ContactForm';
+
 import AddressForm from './Partials/AddressForm';
-import SalesActivityForm from './Partials/SalesActivityForm';
-import BillingAddressLookup from '@/Components/BillingAddressLookup';
 import BillingAddressForm from './Partials/BillingAddressForm';
-import EditLinkButton from '@/Components/EditLinkButton';
+import ContactForm from './Partials/ContactForm';
+import SalesActivityForm from './Partials/SalesActivityForm';
+import BillingAddressSection from './Partials/Show/BillingAddressSection';
 import ContactSection from './Partials/Show/ContactSection';
 import CustomerSection from './Partials/Show/CustomerSection';
-import BillingAddressSection from './Partials/Show/BillingAddressSection';
 import DeliveryAddressSection from './Partials/Show/DeliveryAddressSection';
-import SalesActivitySection from './Partials/Show/SalesActivitySection';
 import InquirySection from './Partials/Show/InquirySection';
-import SalesOrderSection from './Partials/Show/SalesOrderSection';
 import PurchaseOrderSection from './Partials/Show/PurchaseOrderSection';
+import SalesActivitySection from './Partials/Show/SalesActivitySection';
+import SalesOrderSection from './Partials/Show/SalesOrderSection';
+
+import Alert from '@/Components/Alert';
+import BillingAddressLookup from '@/Components/BillingAddressLookup';
+import ContentInfoBar from '@/Components/ContentInfoBar';
+import EditLinkButton from '@/Components/EditLinkButton';
+import Modal from '@/Components/Modal';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Show = ({ customer, userOptions, addressTypeOptions, leadSourceOptions }) => {
   const { flash } = usePage().props;

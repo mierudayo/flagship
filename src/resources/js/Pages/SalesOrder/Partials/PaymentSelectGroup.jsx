@@ -1,5 +1,5 @@
-import OptionsList from '@/Components/OptionsList';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
+import OptionsList from '@/Components/OptionsList';
 
 export default function PaymentSelectGroup({ data, setData, errors, paymentTermOptions }) {
 

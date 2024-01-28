@@ -1,10 +1,10 @@
 import CustomSelect from '@/Components/Form/CustomSelect';
-import LookupButton from '@/Components/LookupButton';
 import DateInput from '@/Components/Form/DateInput';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import Textarea from '@/Components/Form/Textarea';
+import LookupButton from '@/Components/LookupButton';
 
 export default function SalesActivityForm({ setIsModalOpen, data, setData, errors, submit, inChargeUserOptions, contactInfo}) {
 

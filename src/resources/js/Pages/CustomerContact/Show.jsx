@@ -1,9 +1,10 @@
 import { usePage } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+
 import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
 import EditLinkButton from '@/Components/EditLinkButton';
 import NewTabLink from '@/Components/NewTabLink';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Show = ({ contact }) => {
   const { flash } = usePage().props;

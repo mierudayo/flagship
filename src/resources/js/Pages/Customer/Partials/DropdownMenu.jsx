@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Divider from '@mui/material/Divider';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import IconButton from '@mui/material/IconButton';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { styled, alpha } from '@mui/material/styles';
 
 const StyledMenu = styled((props) => (
   <Menu

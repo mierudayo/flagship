@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+
 import SearchIcon from '@mui/icons-material/Search';
 
 const SearchInput = forwardRef(({ name, value, placeholder, onChange, hasError }, ref) => {

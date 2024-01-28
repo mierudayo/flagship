@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { usePage } from '@inertiajs/react';
 
+import { usePage } from '@inertiajs/react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';

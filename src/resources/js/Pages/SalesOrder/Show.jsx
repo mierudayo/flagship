@@ -1,12 +1,13 @@
 import { usePage } from '@inertiajs/react';
 
-import AppLayout from '@/Layouts/AppLayout';
+import TermDetails from './Partials/TermDetails';
+
 import Alert from '@/Components/Alert';
 import ContentInfoBar from '@/Components/ContentInfoBar';
-import EditLinkButton from '@/Components/EditLinkButton';
 import DuplicateLinkButton from '@/Components/DuplicateLinkButton';
+import EditLinkButton from '@/Components/EditLinkButton';
 import NewTabLink from '@/Components/NewTabLink';
-import TermDetails from './Partials/TermDetails';
+import AppLayout from '@/Layouts/AppLayout';
 import { formatNumber, formatCurrency } from '@/Utils/priceCalculator';
 
 const Show = ({ salesOrder }) => {

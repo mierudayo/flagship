@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react';
-import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
+import Button from '@mui/material/Button';
 
 export default function EditLinkButton({ href, style }) {
   const buttonStyle = {

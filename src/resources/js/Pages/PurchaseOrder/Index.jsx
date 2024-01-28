@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react';
+
 import { Link, useForm, usePage } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
-import Alert from '@/Components/Alert';
-import Pagination from '@/Components/Pagination';
-import KeywordSearchForm from '@/Components/KeywordSearchForm';
-import PurchaseOrderTable from './Partials/PurchaseOrderTable';
-import DateRangePicker from '@/Components/DateRangePicker';
-import ToggleFilterButton from '@/Components/ToggleFilterButton';
-import { formatCurrency } from '@/Utils/priceCalculator';
-import FilterForm from '@/Components/FilterForm';
+
 import PurchaseOrderFilter from './Partials/PurchaseOrderFilter';
+import PurchaseOrderTable from './Partials/PurchaseOrderTable';
+
+import Alert from '@/Components/Alert';
+import DateRangePicker from '@/Components/DateRangePicker';
+import FilterForm from '@/Components/FilterForm';
+import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import PageSizeSelector from '@/Components/PageSizeSelector';
+import Pagination from '@/Components/Pagination';
+import ToggleFilterButton from '@/Components/ToggleFilterButton';
+import AppLayout from '@/Layouts/AppLayout';
+import { formatCurrency } from '@/Utils/priceCalculator';
 
 const Index = ({ purchaseOrders, userOptions, productCategoryOptions, totals }) => {
   const urlParams = route().params;

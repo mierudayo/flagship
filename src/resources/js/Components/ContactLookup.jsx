@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
+
 import { useForm } from '@inertiajs/react';
+
 import SearchInput from './Form/SearchInput';
 
 export default function ContactLookup({ handleClickSelect }) {

@@ -1,9 +1,9 @@
 import { Link } from '@inertiajs/react';
 
+import FilterApplyButton from '@/Components/FilterApplyButton';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
-import FilterApplyButton from '@/Components/FilterApplyButton';
 
 
 export default function UserFilter({ submit, data, setData, errors, inChargeUserOptions, resetSearchInputs}) {

@@ -1,11 +1,13 @@
 import { useState } from 'react';
+
 import { useForm, usePage } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+
 import CancelButton from '@/Components/CancelButton';
 import ContactLookup from '@/Components/ContactLookup';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import Modal from '@/Components/Modal';
 import ProgressIndicator from '@/Components/ProgressIndicator';
-import FormErrorAlert from '@/Components/Form/FormErrorAlert';
+import AppLayout from '@/Layouts/AppLayout';
 import InquiryForm from '@/Pages/Inquiry/Partials/InquiryForm';
 
 const Create = ({ productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatusOptions, contactMethodOptions }) => {

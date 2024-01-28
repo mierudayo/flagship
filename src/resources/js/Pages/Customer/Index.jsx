@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
-import { Link, useForm, usePage } from '@inertiajs/react';
 
+import { Link, useForm, usePage } from '@inertiajs/react';
 import MenuItem from '@mui/material/MenuItem';
 
-import AppLayout from '@/Layouts/AppLayout';
+import CustomerFilter from './Partials/CustomerFilter';
+import CustomerTable from './Partials/CustomerTable';
+
 import Alert from '@/Components/Alert';
 import DropdownMenu from '@/Components/DropdownMenu';
-import Pagination from '@/Components/Pagination';
-import KeywordSearchForm from '@/Components/KeywordSearchForm';
-import CustomerTable from './Partials/CustomerTable';
-import ToggleFilterButton from '@/Components/ToggleFilterButton';
-
 import FilterForm from '@/Components/FilterForm';
-import CustomerFilter from './Partials/CustomerFilter';
+import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import PageSizeSelector from '@/Components/PageSizeSelector';
+import Pagination from '@/Components/Pagination';
+import ToggleFilterButton from '@/Components/ToggleFilterButton';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Index = ({ customers, inChargeUserOptions }) => {
   const urlParams = route().params;

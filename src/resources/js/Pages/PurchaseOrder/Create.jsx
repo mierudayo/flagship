@@ -1,19 +1,21 @@
 import { useState } from 'react';
+
 import { useForm, usePage } from '@inertiajs/react';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
-import AppLayout from '@/Layouts/AppLayout';
+
 import CancelButton from '@/Components/CancelButton';
+import CustomerLookup from '@/Components/CustomerLookup';
 import CustomSelect from '@/Components/Form/CustomSelect';
 import DateInput from '@/Components/Form/DateInput';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import FormLabel from '@/Components/Form/FormLabel';
 import Input from '@/Components/Form/Input';
-import OptionsList from '@/Components/OptionsList';
-import Textarea from '@/Components/Form/Textarea';
-import FormErrorAlert from '@/Components/Form/FormErrorAlert';
-import CustomerLookup from '@/Components/CustomerLookup';
-import Modal from '@/Components/Modal';
-import ProgressIndicator from '@/Components/ProgressIndicator';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
+import Textarea from '@/Components/Form/Textarea';
+import Modal from '@/Components/Modal';
+import OptionsList from '@/Components/OptionsList';
+import ProgressIndicator from '@/Components/ProgressIndicator';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTermOptions }) => {
   const { today } = usePage().props.date;

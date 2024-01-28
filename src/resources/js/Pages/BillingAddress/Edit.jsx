@@ -1,11 +1,14 @@
 import { useForm, usePage } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+
+import BillingAddressForm from './Partials/BillingAddressForm';
+
 import Alert from '@/Components/Alert';
-import ContentInfoBar from '@/Components/ContentInfoBar';
 import CancelButton from '@/Components/CancelButton';
+import ContentInfoBar from '@/Components/ContentInfoBar';
 import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import ProgressIndicator from '@/Components/ProgressIndicator';
-import BillingAddressForm from './Partials/BillingAddressForm';
+import AppLayout from '@/Layouts/AppLayout';
+
 
 
 const Edit = ({ billingAddress }) => {

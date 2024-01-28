@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
+
 import { Link, useForm, usePage } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
-import Alert from '@/Components/Alert';
-import Pagination from '@/Components/Pagination';
-import KeywordSearchForm from '@/Components/KeywordSearchForm';
+
+import ContactFilter from './Partials/ContactFilter';
 import ContactsTable from './Partials/ContactsTable';
 
-import ToggleFilterButton from '@/Components/ToggleFilterButton';
-
+import Alert from '@/Components/Alert';
 import FilterForm from '@/Components/FilterForm';
-import ContactFilter from './Partials/ContactFilter';
+import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import PageSizeSelector from '@/Components/PageSizeSelector';
+import Pagination from '@/Components/Pagination';
+import ToggleFilterButton from '@/Components/ToggleFilterButton';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Index = ({ customerContacts, leadSourceOptions }) => {
   const urlParams = route().params;

@@ -1,14 +1,13 @@
 import { Link, usePage } from '@inertiajs/react';
-
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
-import CorporateFareIcon from '@mui/icons-material/CorporateFare';
-import PeopleIcon from '@mui/icons-material/People';
-import ContactsIcon from '@mui/icons-material/Contacts';
 import CategoryIcon from '@mui/icons-material/Category';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import CorporateFareIcon from '@mui/icons-material/CorporateFare';
 import CurrencyYenIcon from '@mui/icons-material/CurrencyYen';
-import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import HomeIcon from '@mui/icons-material/Home';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import PaymentsIcon from '@mui/icons-material/Payments';
+import PeopleIcon from '@mui/icons-material/People';
 
 export default function NavList() {
   const { url, component } = usePage();

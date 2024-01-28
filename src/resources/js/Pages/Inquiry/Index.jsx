@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Link, useForm, usePage } from '@inertiajs/react';
 
+import { Link, useForm, usePage } from '@inertiajs/react';
 import MenuItem from '@mui/material/MenuItem';
 
-import AppLayout from '@/Layouts/AppLayout';
-import Alert from '@/Components/Alert';
-import DropdownMenu from '@/Components/DropdownMenu';
-import DateRangePicker from '@/Components/DateRangePicker';
-import Pagination from '@/Components/Pagination';
-import KeywordSearchForm from '@/Components/KeywordSearchForm';
-import InquiryTable from './Partials/InquiryTable';
-import ToggleFilterButton from '@/Components/ToggleFilterButton';
-import FilterForm from '@/Components/FilterForm';
 import InquiryFilter from './Partials/InquiryFilter';
+import InquiryTable from './Partials/InquiryTable';
+
+import Alert from '@/Components/Alert';
+import DateRangePicker from '@/Components/DateRangePicker';
+import DropdownMenu from '@/Components/DropdownMenu';
+import FilterForm from '@/Components/FilterForm';
+import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import PageSizeSelector from '@/Components/PageSizeSelector';
+import Pagination from '@/Components/Pagination';
+import ToggleFilterButton from '@/Components/ToggleFilterButton';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Index = ({ inquiries, productOptions, inChargeUserOptions, inquiryTypeOptions, inquiryStatusOptions }) => {
   const urlParams = route().params;

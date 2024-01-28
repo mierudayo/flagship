@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+
 import { Link } from '@inertiajs/react';
 import LogoutIcon from '@mui/icons-material/Logout';
 

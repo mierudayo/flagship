@@ -1,11 +1,14 @@
 import { useState } from 'react';
+
 import { useForm, usePage } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
-import Alert from '@/Components/Alert';
-import Pagination from '@/Components/Pagination';
-import KeywordSearchForm from '@/Components/KeywordSearchForm';
+
 import BillingAddressTable from './Partials/BillingAddressTable';
+
+import Alert from '@/Components/Alert';
+import KeywordSearchForm from '@/Components/KeywordSearchForm';
 import PageSizeSelector from '@/Components/PageSizeSelector';
+import Pagination from '@/Components/Pagination';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Index = ({ billingAddresses }) => {
   const urlParams = route().params;

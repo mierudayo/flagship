@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
+
 import { Link, useForm } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+
 import CancelButton from '@/Components/CancelButton';
-import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import CustomerLookup from '@/Components/CustomerLookup';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import Modal from '@/Components/Modal';
 import ProgressIndicator from '@/Components/ProgressIndicator';
+import AppLayout from '@/Layouts/AppLayout';
 import SalesOrderForm from '@/Pages/SalesOrder/Partials/SalesOrderForm';
 import { parseNumber, calculatePrice, calculatePriceWithTax } from '@/Utils/priceCalculator';
 

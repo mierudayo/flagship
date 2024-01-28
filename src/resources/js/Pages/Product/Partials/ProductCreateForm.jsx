@@ -1,7 +1,8 @@
 import { useForm, usePage } from '@inertiajs/react';
-import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 
 import CustomSelect from '@/Components/Form/CustomSelect';
+import InvalidFeedback from '@/Components/Form/InvalidFeedback'
+
 
 export default function ProductCreateForm({ categoryOptions }) {
   const { productTypeOptions } = usePage().props;

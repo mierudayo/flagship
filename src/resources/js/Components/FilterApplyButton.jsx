@@ -1,5 +1,5 @@
-import Button from '@mui/material/Button';
 import CheckIcon from '@mui/icons-material/Check';
+import Button from '@mui/material/Button';
 
 export default function FilterApplyButton({ handleClick, style }) {
   const buttonStyle = {

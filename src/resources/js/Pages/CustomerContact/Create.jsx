@@ -1,12 +1,16 @@
 import { useState } from 'react';
+
 import { useForm } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
+
+import ContactsForm from './Partials/ContactsForm';
+
 import CancelButton from '@/Components/CancelButton';
 import CustomerLookup from '@/Components/CustomerLookup';
+import FormErrorAlert from '@/Components/Form/FormErrorAlert';
 import Modal from '@/Components/Modal';
 import ProgressIndicator from '@/Components/ProgressIndicator';
-import FormErrorAlert from '@/Components/Form/FormErrorAlert';
-import ContactsForm from './Partials/ContactsForm';
+import AppLayout from '@/Layouts/AppLayout';
+
 
 const Create = ({ userOptions, leadSourceOptions }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

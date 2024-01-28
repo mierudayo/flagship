@@ -1,9 +1,11 @@
 import { Link, usePage } from '@inertiajs/react';
-import AppLayout from '@/Layouts/AppLayout';
-import Alert from '@/Components/Alert';
+
 import CategoryCreateForm from './Partials/CategoryCreateForm';
 import CategoryGroupCreateForm from './Partials/CategoryGroupCreateForm';
 import ProductCreateForm from './Partials/ProductCreateForm';
+
+import Alert from '@/Components/Alert';
+import AppLayout from '@/Layouts/AppLayout';
 
 const Create = ({ groupOptions, categoryOptions }) => {
   const { flash } = usePage().props;

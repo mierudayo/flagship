@@ -1,19 +1,19 @@
 import { Fragment } from 'react';
 
-import IconButton from '@mui/material/IconButton';
-import SyncIcon from '@mui/icons-material/Sync';
 import EditIcon from '@mui/icons-material/Edit';
+import SyncIcon from '@mui/icons-material/Sync';
+import IconButton from '@mui/material/IconButton';
 
 import CustomSelect from '@/Components/Form/CustomSelect';
 import DateInput from '@/Components/Form/DateInput';
 import FormLabel from '@/Components/Form/FormLabel';
-import LookupButton from '@/Components/LookupButton';
 import Input from '@/Components/Form/Input';
-import OptionsList from '@/Components/OptionsList';
-import Textarea from '@/Components/Form/Textarea';
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
-import PaymentSelectGroup from '@/Pages/SalesOrder/Partials/PaymentSelectGroup';
+import Textarea from '@/Components/Form/Textarea';
+import LookupButton from '@/Components/LookupButton';
+import OptionsList from '@/Components/OptionsList';
 import DropdownMenuInRow from '@/Pages/SalesOrder/Partials/DropdownMenuInRow';
+import PaymentSelectGroup from '@/Pages/SalesOrder/Partials/PaymentSelectGroup';
 import { calculatePriceWithTax, formatCurrency } from '@/Utils/priceCalculator';
 
 export default function SalesOrderForm({

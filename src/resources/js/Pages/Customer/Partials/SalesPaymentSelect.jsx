@@ -1,5 +1,6 @@
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import IconButton from '@mui/material/IconButton';
+
 import OptionsList from '@/Components/OptionsList';
 
 export default function SalesPaymentSelect({ data, setData, errors, paymentTermOptions }) {

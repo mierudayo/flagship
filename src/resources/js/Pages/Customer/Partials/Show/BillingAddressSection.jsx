@@ -1,5 +1,6 @@
-import NewTabLink from '@/Components/NewTabLink';
 import DropdownMenu from '../DropdownMenu';
+
+import NewTabLink from '@/Components/NewTabLink';
 
 export default function BillingAddressSection({ billingAddresses, detachBillingAddress }) {
   return (
