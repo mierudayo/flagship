@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
                 PrefectureSeeder::class,
                 CustomerSeeder::class,
                 LeadSourceSeeder::class,
-                CustomerContactSeeder::class,
                 BillingAddressSeeder::class,
                 DeliveryAddressSeeder::class,
                 PurchaseTermSeeder::class,
@@ -33,10 +32,8 @@ class DatabaseSeeder extends Seeder
                 InquirySeeder::class,
                 TaxRateSeeder::class,
                 SalesActivitySeeder::class,
-                SalesOrderSeeder::class,
-                SalesOrderDetailSeeder::class,
                 PurchaseOrderSeeder::class,
-                PurchaseOrderDetailSeeder::class,
+                SalesOrderSeeder::class,
             ]);
         }
     }

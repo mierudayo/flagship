@@ -13,6 +13,8 @@ class PurchaseOrderSeeder extends Seeder
      */
     public function run(): void
     {
-        PurchaseOrder::factory(100)->create();
+        PurchaseOrder::factory(100)
+            ->hasPurchaseOrderDetails(2)
+            ->create();
     }
 }
