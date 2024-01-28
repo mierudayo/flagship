@@ -15,7 +15,7 @@ export default function SalesActivityForm({ setIsModalOpen, data, setData, error
           <tbody className="tbody">
             <tr className="table-row is-flexible">
               <th className="th-cell u-w-160">
-                <FormLabel htmlFor="contact_date" label="連絡日" isRequired={true} />
+                <FormLabel htmlFor="contact_date" label="連絡日" isRequired />
               </th>
               <td className="td-cell">
                 <DateInput
@@ -30,7 +30,7 @@ export default function SalesActivityForm({ setIsModalOpen, data, setData, error
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel label="ステータス" isRequired={false} />
+                <FormLabel label="ステータス" />
               </th>
               <td className="td-cell">
                 <CustomSelect
@@ -51,7 +51,7 @@ export default function SalesActivityForm({ setIsModalOpen, data, setData, error
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel label="営業担当" isRequired={true} />
+                <FormLabel label="営業担当" isRequired />
               </th>
               <td className="td-cell">
                 <CustomSelect
@@ -73,7 +73,7 @@ export default function SalesActivityForm({ setIsModalOpen, data, setData, error
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel label="顧客情報" isRequired={true} />
+                <FormLabel label="顧客情報" isRequired />
               </th>
               <td className="td-cell">
                 <div className="u-flex">
@@ -133,7 +133,7 @@ export default function SalesActivityForm({ setIsModalOpen, data, setData, error
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="proposal" label="提案内容" isRequired={true} />
+                <FormLabel htmlFor="proposal" label="提案内容" isRequired />
               </th>
               <td className="td-cell">
                 <Textarea
@@ -149,7 +149,7 @@ export default function SalesActivityForm({ setIsModalOpen, data, setData, error
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="feedback" label="フィードバック" isRequired={false} />
+                <FormLabel htmlFor="feedback" label="フィードバック" />
               </th>
               <td className="td-cell">
                 <Textarea
@@ -165,7 +165,7 @@ export default function SalesActivityForm({ setIsModalOpen, data, setData, error
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                <FormLabel htmlFor="note" label="備考" />
               </th>
               <td className="td-cell">
                 <Textarea

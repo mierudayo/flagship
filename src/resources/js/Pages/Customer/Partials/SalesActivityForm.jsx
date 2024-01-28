@@ -43,7 +43,7 @@ export default function SalesActivityForm({ customer, userOptions, salesActivity
 
               <tr className="table-row is-flexible">
                 <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="contact_date" label="連絡日" isRequired={true} />
+                  <FormLabel htmlFor="contact_date" label="連絡日" isRequired />
                 </th>
                 <td className="td-cell">
                   <DateInput
@@ -59,7 +59,7 @@ export default function SalesActivityForm({ customer, userOptions, salesActivity
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="customer_contact_id" label="連絡先" isRequired={true} />
+                  <FormLabel htmlFor="customer_contact_id" label="連絡先" isRequired />
                 </th>
                 <td className="td-cell">
                   <select
@@ -77,7 +77,7 @@ export default function SalesActivityForm({ customer, userOptions, salesActivity
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="ステータス" isRequired={true} />
+                  <FormLabel label="ステータス" isRequired />
                 </th>
                 <td className="td-cell">
                   <CustomSelect
@@ -97,7 +97,7 @@ export default function SalesActivityForm({ customer, userOptions, salesActivity
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="proposal" label="提案内容" isRequired={true} />
+                  <FormLabel htmlFor="proposal" label="提案内容" isRequired />
                 </th>
                 <td className="td-cell">
                   <Textarea
@@ -113,7 +113,7 @@ export default function SalesActivityForm({ customer, userOptions, salesActivity
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="feedback" label="反応" isRequired={false} />
+                  <FormLabel htmlFor="feedback" label="反応" />
                 </th>
                 <td className="td-cell">
                   <Textarea
@@ -129,7 +129,7 @@ export default function SalesActivityForm({ customer, userOptions, salesActivity
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                  <FormLabel htmlFor="note" label="備考" />
                 </th>
                 <td className="td-cell">
                   <Textarea
@@ -145,7 +145,7 @@ export default function SalesActivityForm({ customer, userOptions, salesActivity
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="対応者" isRequired={true} />
+                  <FormLabel label="対応者" isRequired />
                 </th>
                 <td className="td-cell">
                   <CustomSelect

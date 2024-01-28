@@ -127,7 +127,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel label="発注先" isRequired={true} />
+                    <FormLabel label="発注先" isRequired />
                   </th>
                   <td className="td-cell">
                     <div className="u-flex">
@@ -155,7 +155,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel label="発注先担当者" isRequired={false} />
+                    <FormLabel label="発注先担当者" />
                   </th>
                   <td className="td-cell">
                     <CustomSelect
@@ -175,7 +175,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel label="出荷元情報" isRequired={true} />
+                    <FormLabel label="出荷元情報" isRequired />
                   </th>
                   <td className="td-cell">
                     <CustomSelect
@@ -196,7 +196,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell u-w-160">
-                    <FormLabel htmlFor="purchase_date" label="発注日" isRequired={true} />
+                    <FormLabel htmlFor="purchase_date" label="発注日" isRequired />
                   </th>
                   <td className="td-cell">
                     <DateInput
@@ -212,7 +212,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                    <FormLabel htmlFor="note" label="備考" />
                   </th>
                   <td className="td-cell">
                     <Textarea
@@ -227,7 +227,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel label="商品カテゴリ" isRequired={true} />
+                    <FormLabel label="商品カテゴリ" isRequired />
                   </th>
                   <td className="td-cell">
                     <CustomSelect
@@ -247,7 +247,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel label="発注担当" isRequired={true} />
+                    <FormLabel label="発注担当" isRequired />
                   </th>
                   <td className="td-cell">
                     <CustomSelect
@@ -267,7 +267,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell">
-                    <FormLabel htmlFor="billing_type" label="支払条件" isRequired={false} />
+                    <FormLabel htmlFor="billing_type" label="支払条件" />
                   </th>
                   <td className="td-cell">
                     <select
@@ -338,7 +338,7 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                 <tr className="table-row is-flexible">
                   <th className="th-cell u-w-160">
-                    <FormLabel htmlFor="payment_date" label="入金日" isRequired={false} />
+                    <FormLabel htmlFor="payment_date" label="入金日" />
                   </th>
                   <td className="td-cell">
                     <div className="u-flex">
@@ -382,25 +382,25 @@ const Create = ({ userOptions, productOptions, productCategoryOptions, paymentTe
 
                   </th>
                   <th className="th-cell u-min-w-200">
-                    <FormLabel label="商品" isRequired={false} />
+                    <FormLabel label="商品" />
                   </th>
                   <th className="th-cell u-min-w-200">
-                    <FormLabel label="商品名" isRequired={true} />
+                    <FormLabel label="商品名" isRequired />
                   </th>
                   <th className="th-cell u-min-w-200">
-                    <FormLabel label="商品詳細" isRequired={false} />
+                    <FormLabel label="商品詳細" />
                   </th>
                   <th className="th-cell u-min-w-160">
-                    <FormLabel label="数量" isRequired={true} />
+                    <FormLabel label="数量" isRequired />
                   </th>
                   <th className="th-cell u-min-w-160">
-                    <FormLabel label="単価" isRequired={true} />
+                    <FormLabel label="単価" isRequired />
                   </th>
                   <th className="th-cell u-min-w-104">
-                    <FormLabel label="税種別" isRequired={false} />
+                    <FormLabel label="税種別" />
                   </th>
                   <th className="th-cell u-min-w-400">
-                    <FormLabel label="備考" isRequired={false} />
+                    <FormLabel label="備考" />
                   </th>
                 </tr>
               </thead>

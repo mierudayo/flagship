@@ -35,7 +35,7 @@ export default function AddressForm({ customer, addressTypeOptions, closeModal }
             <tbody className="tbody">
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="address_type-1" label="区分" isRequired={true} />
+                  <FormLabel htmlFor="address_type-1" label="区分" isRequired />
                 </th>
                 <td className="td-cell">
                   <div className="u-flex">
@@ -53,7 +53,7 @@ export default function AddressForm({ customer, addressTypeOptions, closeModal }
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="postal_code" label="郵便番号" isRequired={false} />
+                  <FormLabel htmlFor="postal_code" label="郵便番号" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -69,7 +69,7 @@ export default function AddressForm({ customer, addressTypeOptions, closeModal }
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="address" label="住所" isRequired={true} />
+                  <FormLabel htmlFor="address" label="住所" isRequired />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -85,7 +85,7 @@ export default function AddressForm({ customer, addressTypeOptions, closeModal }
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="company_name" label="会社名" isRequired={false} />
+                  <FormLabel htmlFor="company_name" label="会社名" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -101,7 +101,7 @@ export default function AddressForm({ customer, addressTypeOptions, closeModal }
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="contact_name" label="担当者名" isRequired={false} />
+                  <FormLabel htmlFor="contact_name" label="担当者名" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -117,7 +117,7 @@ export default function AddressForm({ customer, addressTypeOptions, closeModal }
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="tel" label="TEL" isRequired={false} />
+                  <FormLabel htmlFor="tel" label="TEL" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -133,7 +133,7 @@ export default function AddressForm({ customer, addressTypeOptions, closeModal }
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                  <FormLabel htmlFor="note" label="備考" />
                 </th>
                 <td className="td-cell">
                   <Textarea

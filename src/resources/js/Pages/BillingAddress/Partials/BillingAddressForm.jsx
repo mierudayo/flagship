@@ -12,7 +12,7 @@ export default function BillingAddressForm({ data, setData, errors, submit }) {
 
             <tr className="table-row is-flexible">
               <th className="th-cell u-w-160">
-                <FormLabel htmlFor="name" label="請求先名" isRequired={true} />
+                <FormLabel htmlFor="name" label="請求先名" isRequired />
               </th>
               <td className="td-cell">
                 <Input
@@ -28,7 +28,7 @@ export default function BillingAddressForm({ data, setData, errors, submit }) {
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="name_kana" label="よみがな" isRequired={false} />
+                <FormLabel htmlFor="name_kana" label="よみがな" />
               </th>
               <td className="td-cell">
                 <Input
@@ -44,7 +44,7 @@ export default function BillingAddressForm({ data, setData, errors, submit }) {
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="shortcut" label="ショートカット名" isRequired={false} />
+                <FormLabel htmlFor="shortcut" label="ショートカット名" />
               </th>
               <td className="td-cell">
                 <Input
@@ -60,7 +60,7 @@ export default function BillingAddressForm({ data, setData, errors, submit }) {
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="billing_contact_name" label="担当者名" isRequired={false} />
+                <FormLabel htmlFor="billing_contact_name" label="担当者名" />
               </th>
               <td className="td-cell">
                 <Input
@@ -76,7 +76,7 @@ export default function BillingAddressForm({ data, setData, errors, submit }) {
 
             <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="postal_code" label="郵便番号" isRequired={false} />
+                  <FormLabel htmlFor="postal_code" label="郵便番号" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -93,7 +93,7 @@ export default function BillingAddressForm({ data, setData, errors, submit }) {
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="address" label="住所" isRequired={false} />
+                <FormLabel htmlFor="address" label="住所" />
               </th>
               <td className="td-cell">
                 <Input
@@ -109,7 +109,7 @@ export default function BillingAddressForm({ data, setData, errors, submit }) {
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="tel" label="TEL" isRequired={false} />
+                <FormLabel htmlFor="tel" label="TEL" />
               </th>
               <td className="td-cell">
                 <Input
@@ -126,7 +126,7 @@ export default function BillingAddressForm({ data, setData, errors, submit }) {
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="fax" label="FAX" isRequired={false} />
+                <FormLabel htmlFor="fax" label="FAX" />
               </th>
               <td className="td-cell">
                 <Input
@@ -143,7 +143,7 @@ export default function BillingAddressForm({ data, setData, errors, submit }) {
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="email" label="E-mail" isRequired={false} />
+                <FormLabel htmlFor="email" label="E-mail" />
               </th>
               <td className="td-cell">
                 <Input
@@ -159,7 +159,7 @@ export default function BillingAddressForm({ data, setData, errors, submit }) {
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="invoice_delivery_method" label="請求方法" isRequired={false} />
+                <FormLabel htmlFor="invoice_delivery_method" label="請求方法" />
               </th>
               <td className="td-cell">
                 <Input
@@ -175,7 +175,7 @@ export default function BillingAddressForm({ data, setData, errors, submit }) {
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                <FormLabel htmlFor="note" label="備考" />
               </th>
               <td className="td-cell">
                 <Textarea

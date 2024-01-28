@@ -22,7 +22,7 @@ export default function LeadSourceCreateForm() {
     <form onSubmit={submit}>
       <div className="form-inner u-my-2">
         <div className="input-group">
-          <FormLabel htmlFor="name" label="リード名" isRequired={true} />
+          <FormLabel htmlFor="name" label="リード名" isRequired />
           <Input
             id="name"
             type="text"
@@ -35,7 +35,7 @@ export default function LeadSourceCreateForm() {
         </div>
 
         <div className="input-group">
-          <FormLabel htmlFor="display_order" label="表示順" isRequired={false} />
+          <FormLabel htmlFor="display_order" label="表示順" />
           <Input
             id="display_order"
             type="number"

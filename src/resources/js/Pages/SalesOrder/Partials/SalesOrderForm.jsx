@@ -40,7 +40,7 @@ export default function SalesOrderForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell u-w-144">
-                  <FormLabel htmlFor="order_date" label="受注日" isRequired={true} />
+                  <FormLabel htmlFor="order_date" label="受注日" isRequired />
                 </th>
                 <td className="td-cell">
                   <DateInput
@@ -56,7 +56,7 @@ export default function SalesOrderForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="販売先" isRequired={true} />
+                  <FormLabel label="販売先" isRequired />
                 </th>
                 <td className="td-cell">
                   <div className="u-flex u-items-center">
@@ -116,7 +116,7 @@ export default function SalesOrderForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="billing_type" label="請求条件" isRequired={true} />
+                  <FormLabel htmlFor="billing_type" label="請求条件" isRequired />
                 </th>
                 <td className="td-cell">
                   <PaymentSelectGroup
@@ -130,7 +130,7 @@ export default function SalesOrderForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="請求先" isRequired={true} />
+                  <FormLabel label="請求先" isRequired />
                 </th>
                 <td className="td-cell">
                   <CustomSelect
@@ -150,7 +150,7 @@ export default function SalesOrderForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="納品先" isRequired={false} />
+                  <FormLabel label="納品先" />
                 </th>
                 <td className="td-cell">
                   <CustomSelect
@@ -171,7 +171,7 @@ export default function SalesOrderForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="shipping_date" label="出荷日" isRequired={false} />
+                  <FormLabel htmlFor="shipping_date" label="出荷日" />
                 </th>
                 <td className="td-cell">
                   <div className="u-flex">
@@ -199,7 +199,7 @@ export default function SalesOrderForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="delivery_date" label="納品日" isRequired={false} />
+                  <FormLabel htmlFor="delivery_date" label="納品日" />
                 </th>
                 <td className="td-cell">
                   <div className="u-flex">
@@ -227,7 +227,7 @@ export default function SalesOrderForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="delivery_memo" label="配送メモ" isRequired={false} />
+                  <FormLabel htmlFor="delivery_memo" label="配送メモ" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -242,7 +242,7 @@ export default function SalesOrderForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="商品カテゴリ" isRequired={true} />
+                  <FormLabel label="商品カテゴリ" isRequired />
                 </th>
                 <td className="td-cell">
                   <CustomSelect
@@ -262,7 +262,7 @@ export default function SalesOrderForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="payment_date" label="入金日" isRequired={false} />
+                  <FormLabel htmlFor="payment_date" label="入金日" />
                 </th>
                 <td className="td-cell">
                   <div className="u-flex">
@@ -290,7 +290,7 @@ export default function SalesOrderForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="受注担当" isRequired={true} />
+                  <FormLabel label="受注担当" isRequired />
                 </th>
                 <td className="td-cell">
                   <CustomSelect
@@ -311,7 +311,7 @@ export default function SalesOrderForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                  <FormLabel htmlFor="note" label="備考" />
                 </th>
                 <td className="td-cell">
                   <Textarea
@@ -379,40 +379,40 @@ export default function SalesOrderForm({
 
                 </th>
                 <th className="th-cell u-w-64">
-                  <FormLabel label="No." isRequired={false} />
+                  <FormLabel label="No." />
                 </th>
                 <th className="th-cell u-min-w-320">
-                  <FormLabel label="商品名" isRequired={true} />
+                  <FormLabel label="商品名" isRequired />
                 </th>
                 <th className="th-cell u-min-w-320">
-                  <FormLabel label="発注先" isRequired={true} />
+                  <FormLabel label="発注先" isRequired />
                 </th>
                 <th className="th-cell u-min-w-200">
-                  <FormLabel label="発注担当" isRequired={true} />
+                  <FormLabel label="発注担当" isRequired />
                 </th>
                 <th className="th-cell u-min-w-160">
-                  <FormLabel label="発注数量" isRequired={true} />
+                  <FormLabel label="発注数量" isRequired />
                 </th>
                 <th className="th-cell u-min-w-160">
-                  <FormLabel label="販売数量" isRequired={true} />
+                  <FormLabel label="販売数量" isRequired />
                 </th>
                 <th className="th-cell u-min-w-160">
-                  <FormLabel label="発注単価" isRequired={true} />
+                  <FormLabel label="発注単価" isRequired />
                 </th>
                 <th className="th-cell u-min-w-160">
-                  <FormLabel label="販売単価" isRequired={true} />
+                  <FormLabel label="販売単価" isRequired />
                 </th>
                 <th className="th-cell u-text-right u-min-w-104">
-                  <FormLabel label="発注額" isRequired={false} justifyContent="flex-end" />
+                  <FormLabel label="発注額" justifyContent="flex-end" />
                 </th>
                 <th className="th-cell u-text-right u-min-w-104">
-                  <FormLabel label="受注額" isRequired={false} justifyContent="flex-end" />
+                  <FormLabel label="受注額" justifyContent="flex-end" />
                 </th>
                 <th className="th-cell u-text-right u-min-w-120">
-                  <FormLabel label="利益" isRequired={false} justifyContent="flex-end" />
+                  <FormLabel label="利益" justifyContent="flex-end" />
                 </th>
                 <th className="th-cell u-min-w-400">
-                  <FormLabel label="備考" isRequired={false} />
+                  <FormLabel label="備考" />
                 </th>
               </tr>
             </thead>

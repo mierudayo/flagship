@@ -58,7 +58,7 @@ const Edit = ({ user, permissionOptions }) => {
             <tbody className="tbody">
               <tr className="table-row is-flexible">
                 <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="employee_code" label="社員番号" isRequired={true} />
+                  <FormLabel htmlFor="employee_code" label="社員番号" isRequired />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -75,7 +75,7 @@ const Edit = ({ user, permissionOptions }) => {
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="権限" isRequired={true} />
+                  <FormLabel label="権限" isRequired />
                 </th>
                 <td className="td-cell">
                   <CustomSelect
@@ -95,7 +95,7 @@ const Edit = ({ user, permissionOptions }) => {
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="name" label="名前" isRequired={true} />
+                  <FormLabel htmlFor="name" label="名前" isRequired />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -111,7 +111,7 @@ const Edit = ({ user, permissionOptions }) => {
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="name_kana" label="よみがな" isRequired={false} />
+                  <FormLabel htmlFor="name_kana" label="よみがな" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -127,7 +127,7 @@ const Edit = ({ user, permissionOptions }) => {
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="email" label="E-mail" isRequired={true} />
+                  <FormLabel htmlFor="email" label="E-mail" isRequired />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -143,7 +143,7 @@ const Edit = ({ user, permissionOptions }) => {
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="mobile_number" label="携帯番号" isRequired={false} />
+                  <FormLabel htmlFor="mobile_number" label="携帯番号" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -160,7 +160,7 @@ const Edit = ({ user, permissionOptions }) => {
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="employment_date" label="入社日" isRequired={false} />
+                  <FormLabel htmlFor="employment_date" label="入社日" />
                 </th>
                 <td className="td-cell">
                   <DateInput
@@ -175,7 +175,7 @@ const Edit = ({ user, permissionOptions }) => {
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="resignation_date" label="退職日" isRequired={false} />
+                  <FormLabel htmlFor="resignation_date" label="退職日" />
                 </th>
                 <td className="td-cell">
                   <DateInput

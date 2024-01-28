@@ -40,7 +40,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
             <tbody className="tbody">
               <tr className="table-row is-flexible">
                 <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="name" label="名前" isRequired={true} />
+                  <FormLabel htmlFor="name" label="名前" isRequired />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -56,7 +56,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="name_kana" label="よみがな" isRequired={false} />
+                  <FormLabel htmlFor="name_kana" label="よみがな" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -72,7 +72,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="tel" label="TEL" isRequired={false} />
+                  <FormLabel htmlFor="tel" label="TEL" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -88,7 +88,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="mobile_number" label="携帯番号" isRequired={false} />
+                  <FormLabel htmlFor="mobile_number" label="携帯番号" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -104,7 +104,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="email" label="E-mail" isRequired={false} />
+                  <FormLabel htmlFor="email" label="E-mail" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -120,7 +120,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="position" label="役職" isRequired={false} />
+                  <FormLabel htmlFor="position" label="役職" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -136,7 +136,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="role" label="役割" isRequired={false} />
+                  <FormLabel htmlFor="role" label="役割" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -152,7 +152,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="リード獲得元" isRequired={false} />
+                  <FormLabel label="リード獲得元" />
                 </th>
                 <td className="td-cell">
                   <CustomSelect
@@ -172,7 +172,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="is_active-true" label="使用状況" isRequired={false} />
+                  <FormLabel htmlFor="is_active-true" label="使用状況" />
                 </th>
                 <td className="td-cell">
                   <div className="u-flex">
@@ -193,7 +193,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="担当ユーザー" isRequired={false} />
+                  <FormLabel label="担当ユーザー" />
                 </th>
                 <td className="td-cell">
                   <CustomSelect
@@ -214,7 +214,7 @@ export default function ContactForm({ customer, closeModal, userOptions, leadSou
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                  <FormLabel htmlFor="note" label="備考" />
                 </th>
                 <td className="td-cell">
                   <Textarea

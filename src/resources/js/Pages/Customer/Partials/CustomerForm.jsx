@@ -28,7 +28,7 @@ export default function CustomerForm({
             <tbody className="tbody">
               <tr className="table-row is-flexible">
                 <th className="th-cell u-w-160">
-                  <FormLabel htmlFor="name" label="取引先名" isRequired={true} />
+                  <FormLabel htmlFor="name" label="取引先名" isRequired />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -44,7 +44,7 @@ export default function CustomerForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="name_kana" label="よみがな" isRequired={false} />
+                  <FormLabel htmlFor="name_kana" label="よみがな" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -60,7 +60,7 @@ export default function CustomerForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="shortcut" label="ショートカット名" isRequired={false} />
+                  <FormLabel htmlFor="shortcut" label="ショートカット名" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -76,7 +76,7 @@ export default function CustomerForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="postal_code" label="〒" isRequired={false} />
+                  <FormLabel htmlFor="postal_code" label="〒" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -93,7 +93,7 @@ export default function CustomerForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="address" label="住所" isRequired={false} />
+                  <FormLabel htmlFor="address" label="住所" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -109,7 +109,7 @@ export default function CustomerForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="tel" label="TEL" isRequired={false} />
+                  <FormLabel htmlFor="tel" label="TEL" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -126,7 +126,7 @@ export default function CustomerForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="fax" label="FAX" isRequired={false} />
+                  <FormLabel htmlFor="fax" label="FAX" />
                 </th>
                 <td className="td-cell">
                   <Input
@@ -143,7 +143,7 @@ export default function CustomerForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="支払条件" isRequired={false} />
+                  <FormLabel label="支払条件" />
                 </th>
                 <td className="td-cell">
                   <PurchasePaymentSelect
@@ -157,7 +157,7 @@ export default function CustomerForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="請求条件" isRequired={false} />
+                  <FormLabel label="請求条件" />
                 </th>
                 <td className="td-cell">
                   <SalesPaymentSelect
@@ -171,7 +171,7 @@ export default function CustomerForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel label="担当ユーザー" isRequired={false} />
+                  <FormLabel label="担当ユーザー" />
                 </th>
                 <td className="td-cell">
                   <CustomSelect
@@ -192,7 +192,7 @@ export default function CustomerForm({
 
               <tr className="table-row is-flexible">
                 <th className="th-cell">
-                  <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                  <FormLabel htmlFor="note" label="備考" />
                 </th>
                 <td className="td-cell">
                   <Textarea
@@ -220,37 +220,37 @@ export default function CustomerForm({
               <tr className="table-row">
                 <th className="th-cell col-fixed">No.</th>
                 <th className="th-cell u-min-w-200">
-                  <FormLabel label="名前" isRequired={true} />
+                  <FormLabel label="名前" isRequired />
                 </th>
                 <th className="th-cell u-min-w-200">
-                  <FormLabel label="よみがな" isRequired={false} />
+                  <FormLabel label="よみがな" />
                 </th>
                 <th className="th-cell u-min-w-200">
-                  <FormLabel label="TEL" isRequired={false} />
+                  <FormLabel label="TEL" />
                 </th>
                 <th className="th-cell u-min-w-200">
-                  <FormLabel label="携帯番号" isRequired={false} />
+                  <FormLabel label="携帯番号" />
                 </th>
                 <th className="th-cell u-min-w-200">
-                  <FormLabel label="Email" isRequired={false} />
+                  <FormLabel label="Email" />
                 </th>
                 <th className="th-cell u-min-w-200">
-                  <FormLabel label="役職" isRequired={false} />
+                  <FormLabel label="役職" />
                 </th>
                 <th className="th-cell u-min-w-200">
-                  <FormLabel label="役割" isRequired={false} />
+                  <FormLabel label="役割" />
                 </th>
                 <th className="th-cell u-min-w-128">
-                  <FormLabel label="使用状況" isRequired={false} />
+                  <FormLabel label="使用状況" />
                 </th>
                 <th className="th-cell u-min-w-240">
-                  <FormLabel label="担当ユーザー" isRequired={false} />
+                  <FormLabel label="担当ユーザー" />
                 </th>
                 <th className="th-cell u-min-w-240">
-                  <FormLabel label="リード獲得元" isRequired={false} />
+                  <FormLabel label="リード獲得元" />
                 </th>
                 <th className="th-cell u-min-w-400">
-                  <FormLabel label="備考" isRequired={false} />
+                  <FormLabel label="備考" />
                 </th>
               </tr>
             </thead>
@@ -416,25 +416,25 @@ export default function CustomerForm({
               <tr className="table-row">
                 <th className="th-cell col-fixed"></th>
                 <th className="th-cell u-min-w-160">
-                  <FormLabel label="区分" isRequired={true} />
+                  <FormLabel label="区分" isRequired />
                 </th>
                 <th className="th-cell u-min-w-160">
-                  <FormLabel label="郵便番号" isRequired={false} />
+                  <FormLabel label="郵便番号" />
                 </th>
                 <th className="th-cell u-min-w-320">
-                  <FormLabel label="住所" isRequired={true} />
+                  <FormLabel label="住所" isRequired />
                 </th>
                 <th className="th-cell u-min-w-320">
-                  <FormLabel label="会社名" isRequired={false} />
+                  <FormLabel label="会社名" />
                 </th>
                 <th className="th-cell u-min-w-200">
-                  <FormLabel label="担当者名" isRequired={false} />
+                  <FormLabel label="担当者名" />
                 </th>
                 <th className="th-cell u-min-w-200">
-                  <FormLabel label="TEL" isRequired={false} />
+                  <FormLabel label="TEL" />
                 </th>
                 <th className="th-cell u-min-w-200">
-                  <FormLabel label="備考" isRequired={false} />
+                  <FormLabel label="備考" />
                 </th>
               </tr>
             </thead>

@@ -20,7 +20,7 @@ export default function InquiryForm({
           <tbody className="tbody">
             <tr className="table-row is-flexible">
               <th className="th-cell u-w-160">
-                <FormLabel htmlFor="inquiry_date" label="問い合わせ日" isRequired={true} />
+                <FormLabel htmlFor="inquiry_date" label="問い合わせ日" isRequired />
               </th>
               <td className="td-cell">
                 <DateInput
@@ -35,7 +35,7 @@ export default function InquiryForm({
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel label="対応者" isRequired={true} />
+                <FormLabel label="対応者" isRequired />
               </th>
               <td className="td-cell">
                 <CustomSelect
@@ -57,7 +57,7 @@ export default function InquiryForm({
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel label="ステータス" isRequired={false} />
+                <FormLabel label="ステータス" />
               </th>
               <td className="td-cell">
                 <CustomSelect
@@ -78,7 +78,7 @@ export default function InquiryForm({
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel label="顧客情報" isRequired={true} />
+                <FormLabel label="顧客情報" isRequired />
               </th>
               <td className="td-cell">
                 <div className="u-flex">
@@ -138,7 +138,7 @@ export default function InquiryForm({
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel label="問い合わせ区分" isRequired={true} />
+                <FormLabel label="問い合わせ区分" isRequired />
               </th>
               <td className="td-cell">
                 <CustomSelect
@@ -160,7 +160,7 @@ export default function InquiryForm({
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel label="問い合わせ由来" isRequired={false} />
+                <FormLabel label="問い合わせ由来" />
               </th>
               <td className="td-cell">
                 <CustomSelect
@@ -181,7 +181,7 @@ export default function InquiryForm({
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="project_scale" label="案件規模" isRequired={false} />
+                <FormLabel htmlFor="project_scale" label="案件規模" />
               </th>
               <td className="td-cell">
                 <Input
@@ -199,7 +199,7 @@ export default function InquiryForm({
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel label="対象商品" isRequired={false} />
+                <FormLabel label="対象商品" />
               </th>
               <td className="td-cell">
                 <CustomSelect
@@ -219,7 +219,7 @@ export default function InquiryForm({
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="product_detail" label="商品詳細" isRequired={false} />
+                <FormLabel htmlFor="product_detail" label="商品詳細" />
               </th>
               <td className="td-cell">
                 <Input
@@ -236,7 +236,7 @@ export default function InquiryForm({
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="subject" label="件名" isRequired={false} />
+                <FormLabel htmlFor="subject" label="件名" />
               </th>
               <td className="td-cell">
                 <Input
@@ -252,7 +252,7 @@ export default function InquiryForm({
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="message" label="問い合わせ内容" isRequired={true} />
+                <FormLabel htmlFor="message" label="問い合わせ内容" isRequired />
               </th>
               <td className="td-cell">
                 <Textarea
@@ -268,7 +268,7 @@ export default function InquiryForm({
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="answer" label="回答内容" isRequired={false} />
+                <FormLabel htmlFor="answer" label="回答内容" />
               </th>
               <td className="td-cell">
                 <Textarea
@@ -284,7 +284,7 @@ export default function InquiryForm({
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="feedback" label="フィードバック" isRequired={false} />
+                <FormLabel htmlFor="feedback" label="フィードバック" />
               </th>
               <td className="td-cell">
                 <Textarea
@@ -300,7 +300,7 @@ export default function InquiryForm({
 
             <tr className="table-row is-flexible">
               <th className="th-cell">
-                <FormLabel htmlFor="note" label="備考" isRequired={false} />
+                <FormLabel htmlFor="note" label="備考" />
               </th>
               <td className="td-cell">
                 <Textarea
