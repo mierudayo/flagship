@@ -80,6 +80,10 @@ class Inquiry extends Model
     */
     protected function getStatusLabelAttribute(): string
     {
+        if (!isset($this->attributes['status'])) {
+            return '';
+        }
+
         return InquiryStatus::getLabelFromValue($this->status);
     }
 

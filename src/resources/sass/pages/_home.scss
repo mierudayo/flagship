@@ -1,0 +1,63 @@
+@use '../global/mixins' as *;
+
+.card-wrapper {
+  display: flex;
+  align-items: start;
+  overflow: hidden;
+  @include mobile-screen() {
+    display: block;
+  }
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  @include mobile-screen() {
+    margin-bottom: 32px;
+  }
+
+  .card-content {
+    padding: 16px;
+    min-width: 320px;
+    min-height: 320px;
+
+    @include mobile-screen() {
+      width: 100%;
+    }
+  }
+
+  .card-content-title {
+    color: var(--dark-gray);
+    text-align: right;
+  }
+
+  .card-footer {
+    padding: 8px 0;
+    text-align: right;
+  }
+
+  .count {
+    color: var(--dark-gray);
+    font-size: 2rem;
+    padding: 4px;
+    text-align: right;
+  }
+}
+
+.card-list {
+  .list-item {
+    display: flex;
+    justify-content: end;
+    padding: 4px;
+    flex: 1;
+
+    .list-label {
+      margin-right: 8px;
+    }
+    .list-value {
+      text-align: right;
+    }
+  }
+}
