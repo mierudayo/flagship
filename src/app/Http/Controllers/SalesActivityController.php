@@ -42,8 +42,8 @@ class SalesActivityController extends Controller
     public function create(): Response
     {
         return Inertia::render('SalesActivity/Create', [
-            'inChargeUserOptions' => User::active()->get(),
-            'salesActivityStatusOptions'  => SalesActivityStatus::toArray(),
+            'inChargeUserOptions'           => User::active()->get(),
+            'salesActivityStatusOptions'    => SalesActivityStatus::toArray(),
         ]);
     }
 
@@ -72,9 +72,9 @@ class SalesActivityController extends Controller
         ]);
 
         return Inertia::render('SalesActivity/Edit', [
-            'salesActivity' => $salesActivity,
-            'inChargeUserOptions' => User::active()->get(),
-            'salesActivityStatusOptions'  => SalesActivityStatus::toArray(),
+            'salesActivity'                 => $salesActivity,
+            'inChargeUserOptions'           => User::active()->get(),
+            'salesActivityStatusOptions'    => SalesActivityStatus::toArray(),
         ]);
     }
 

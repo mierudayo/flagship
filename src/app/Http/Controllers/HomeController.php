@@ -44,20 +44,20 @@ class HomeController extends Controller
     private function getInquiriesCountByStatus(array $dateTimeRange): Collection
     {
         return Inquiry::whereBetween('inquiry_date', $dateTimeRange)
-                ->selectRaw('status, COUNT(*) as count')
-                ->groupBy('status')
-                ->get();
+            ->selectRaw('status, COUNT(*) as count')
+            ->groupBy('status')
+            ->get();
     }
 
     /** 対象期間の問い合わせ件数(区分別) */
     private function getInquiriesCountByType(array $dateTimeRange): Collection
     {
         return Inquiry::whereBetween('inquiry_date', $dateTimeRange)
-                ->with('inquiryType')
-                ->selectRaw('inquiry_type_id, COUNT(*) as count')
-                ->groupBy('inquiry_type_id')
-                ->get()
-                ->makeHidden('status_label');
+            ->with('inquiryType')
+            ->selectRaw('inquiry_type_id, COUNT(*) as count')
+            ->groupBy('inquiry_type_id')
+            ->get()
+            ->makeHidden('status_label');
     }
 
     /** 対象期間の受注金額合計 */

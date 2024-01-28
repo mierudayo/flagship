@@ -32,7 +32,7 @@ class CustomerContactController extends Controller
             ->withQueryString();
 
         return Inertia::render('CustomerContact/Index', [
-            'customerContacts' => $customerContacts,
+            'customerContacts'  => $customerContacts,
             'leadSourceOptions' => LeadSource::all(),
         ]);
     }

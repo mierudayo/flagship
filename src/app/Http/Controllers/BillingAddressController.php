@@ -58,7 +58,7 @@ class BillingAddressController extends Controller
         ]);
 
         return to_route('billing-addresses.index')
-        ->with('message', "請求先No.{$billingAddress->id} を登録、紐付けました");
+            ->with('message', "請求先No.{$billingAddress->id} を登録、紐付けました");
     }
 
     public function addToCustomer(BillingAddressStoreRequest $request, Customer $customer): RedirectResponse
@@ -82,5 +82,4 @@ class BillingAddressController extends Controller
         return to_route('customers.show', $customer)
             ->with('message', "請求先No.{$billingAddress->id} を登録、紐付けました");
     }
-
 }

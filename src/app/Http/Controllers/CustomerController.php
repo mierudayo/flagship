@@ -90,10 +90,10 @@ class CustomerController extends Controller
         ]);
 
         return Inertia::render('Customer/Show', [
-            'customer'          => $customer,
-            'userOptions'       => User::active()->get(),
-            'leadSourceOptions' => LeadSource::all(),
-            'addressTypeOptions'    => AddressType::toArray(),
+            'customer'                    => $customer,
+            'userOptions'                 => User::active()->get(),
+            'leadSourceOptions'           => LeadSource::all(),
+            'addressTypeOptions'          => AddressType::toArray(),
             'salesActivityStatusOptions'  => SalesActivityStatus::toArray(),
         ]);
     }
@@ -110,9 +110,9 @@ class CustomerController extends Controller
         ]);
 
         return Inertia::render('Customer/Edit', [
-            'customer'          => $customer,
-            'userOptions'       => User::active()->get(),
-            'leadSourceOptions' => LeadSource::all(),
+            'customer'              => $customer,
+            'userOptions'           => User::active()->get(),
+            'leadSourceOptions'     => LeadSource::all(),
             'addressTypeOptions'    => AddressType::toArray(),
         ]);
     }
@@ -151,7 +151,7 @@ class CustomerController extends Controller
 
         $billingAddressId = $validatedData['billing_address_id'];
 
-        if($customer->hasBillingAddress($billingAddressId)) {
+        if ($customer->hasBillingAddress($billingAddressId)) {
             return to_route('customers.show', $customer)
                 ->with(['type' => 'danger', 'message' => "請求先No.{$billingAddressId} はすでに紐付けされています"]);
         }

@@ -31,11 +31,11 @@ class SalesOrderController extends Controller
         $totals      = $this->calculateTotals($salesOrders->items());
 
         return Inertia::render('SalesOrder/Index', [
-            'salesOrders' => $salesOrders,
-            'userOptions' => User::hasSalesOrders()->get(),
-            'purchaseInChargeOptions' => User::hasPurchaseOrders()->get(),
-            'productCategoryOptions' => ProductCategory::all(),
-            'totals'      => $totals,
+            'salesOrders'               => $salesOrders,
+            'userOptions'               => User::hasSalesOrders()->get(),
+            'purchaseInChargeOptions'   => User::hasPurchaseOrders()->get(),
+            'productCategoryOptions'    => ProductCategory::all(),
+            'totals'                    => $totals,
         ]);
     }
 

@@ -26,8 +26,8 @@ class ProductController extends Controller
             ->withQueryString();
 
         return Inertia::render('Product/Index', [
-            'products' => $products,
-            'categoryOptions' => ProductCategory::orderByDisplayOrder()->get(),
+            'products'          => $products,
+            'categoryOptions'   => ProductCategory::orderByDisplayOrder()->get(),
         ]);
     }
 
@@ -37,8 +37,8 @@ class ProductController extends Controller
         $categoryOptions = ProductCategory::orderByDisplayOrder()->get();
 
         return Inertia::render('Product/Create', [
-            'groupOptions'    => $groupOptions,
-            'categoryOptions' => $categoryOptions,
+            'groupOptions'          => $groupOptions,
+            'categoryOptions'       => $categoryOptions,
             'productTypeOptions'    => ProductType::toArray(),
         ]);
     }
