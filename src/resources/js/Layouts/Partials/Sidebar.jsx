@@ -57,7 +57,7 @@ export default function Sidebar({ isOpen, onToggle }) {
               >
                 <div className="icon-wrapper">
                   <AccountCircleIcon className="account-icon" />
-                  <span>{auth.user.name}</span>
+                  <span className="user-name">{auth.user.name}</span>
                 </div>
               </button>
             </div>

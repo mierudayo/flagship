@@ -1,7 +1,7 @@
 @use '../global/mixins' as *;
 
 :root {
-  --height-sidefooter: 48px;
+  --height-sidefooter: 64px;
 }
 
 .sidebar {
@@ -100,7 +100,7 @@
 .dropdown-toggle {
   border-radius: 4px;
   display: flex;
-  padding: 4px 8px;
+  padding: 8px;
   transition: background-color 0.2s ease;
   width: 100%;
 
@@ -176,3 +176,12 @@
     }
   }
 }
+
+.user-name {
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  width: 140px;
+}
+
