@@ -1,14 +1,45 @@
+import { useState } from 'react';
+import { useForm } from '@inertiajs/react';
+
+import OptionsList from '@/Components/OptionsList';
 import AppLayout from '@/Layouts/AppLayout'
 import { formatNumber, formatCurrency } from '@/Utils/priceCalculator';
 
 const Home = ({ inquiriesByStatus, inquiriesCount, inquiriesByType, salesOrdersCount, salesOrdersTotalSum, purchaseOrdersTotalSum, customerContactsCount, customerContactsByLeadSource }) => {
+  const { data, setData, get} = useForm({
+    month_offset: 0,
+  });
+
+  const [prevData, setPrevData] = useState(data.month_offset)
+
+  if (data.month_offset !== prevData) {
+    get(route('home'), {
+      preserveState: true,
+    });
+    setPrevData(data.month_offset);
+  }
+
   return (
     <>
-      <h1>HOME</h1>
-      <p>Welcome to Sales Manager+</p>
+      <h1 className="content-title">ダッシュボード</h1>
 
-      <div className="u-my-3">
-        対象期間: 今月
+      <div className="action-bar">
+        <div className="u-w-88">対象期間 : </div>
+        <select
+          value={data.month_offset}
+          onChange={e => setData('month_offset', e.target.value)}
+          className="form-select u-w-88"
+          style={{ height: '32px' }}
+        >
+          <OptionsList
+            options={[
+              { value: 0, label: '今月' },
+              { value: -1, label: '先月' },
+              { value: -2, label: '先々月' },
+              { value: -3, label: '3ヶ月前' },
+            ]}
+          />
+        </select>
       </div>
 
       {/* First */}
@@ -71,7 +102,7 @@ const Home = ({ inquiriesByStatus, inquiriesCount, inquiriesByType, salesOrdersC
                 <div key={contact.lead_source_id} className="list-item">
                   <div className="list-label">
                     <span className="chip">
-                    {contact.lead_source?.name ?? '未分類'}
+                      {contact.lead_source?.name ?? '未分類'}
                     </span>
                   </div>
                   <div className="list-value">
@@ -89,7 +120,7 @@ const Home = ({ inquiriesByStatus, inquiriesCount, inquiriesByType, salesOrdersC
             <div className="card-content-title">利益</div>
             <div className="card-footer">
               <span className="count">
-              {formatCurrency(salesOrdersTotalSum - purchaseOrdersTotalSum)}
+                {formatCurrency(salesOrdersTotalSum - purchaseOrdersTotalSum)}
               </span>
               <span>円</span>
             </div>

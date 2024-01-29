@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\HomeIndexRequest;
 use App\Models\CustomerContact;
 use App\Models\Inquiry;
 use App\Models\PurchaseOrder;
@@ -13,20 +14,22 @@ use Inertia\Response;
 
 class HomeController extends Controller
 {
-    public function index(): Response
+    public function index(HomeIndexRequest $request): Response
     {
-        $currentMonthRange = $this->getCurrentMonthRange();
+        $monthOffset = (int) $request->input('month_offset', 0);
 
-        $inquiriesByStatus = $this->getInquiriesCountByStatus($currentMonthRange);
-        $inquiriesByType   = $this->getInquiriesCountByType($currentMonthRange);
-        $inquiriesCount    = Inquiry::whereBetween('inquiry_date', $currentMonthRange)->count();
+        $targetMonthRange = $this->getMonthRangeByOffset($monthOffset);
 
-        $salesOrdersCount       = SalesOrder::searchByDeliveryPeriod(...$currentMonthRange)->count();
-        $salesOrdersTotalSum    = $this->getSalesOrdersTotalSum($currentMonthRange);
-        $purchaseOrdersTotalSum = $this->getPurchaseOrdersTotalSum($currentMonthRange);
+        $inquiriesByStatus = $this->getInquiriesCountByStatus($targetMonthRange);
+        $inquiriesByType   = $this->getInquiriesCountByType($targetMonthRange);
+        $inquiriesCount    = Inquiry::whereBetween('inquiry_date', $targetMonthRange)->count();
 
-        $customerContactsCount        = CustomerContact::whereBetween('created_at', $currentMonthRange)->count();
-        $customerContactsByLeadSource = $this->getCustomerContactsCountByLeadSource($currentMonthRange);
+        $salesOrdersCount       = SalesOrder::searchByDeliveryPeriod(...$targetMonthRange)->count();
+        $salesOrdersTotalSum    = $this->getSalesOrdersTotalSum($targetMonthRange);
+        $purchaseOrdersTotalSum = $this->getPurchaseOrdersTotalSum($targetMonthRange);
+
+        $customerContactsCount        = CustomerContact::whereBetween('created_at', $targetMonthRange)->count();
+        $customerContactsByLeadSource = $this->getCustomerContactsCountByLeadSource($targetMonthRange);
 
         return Inertia::render('Home', compact(
             'inquiriesByStatus',
@@ -92,12 +95,12 @@ class HomeController extends Controller
             ->get();
     }
 
-    private function getCurrentMonthRange(): array
+    private function getMonthRangeByOffset(int $monthOffset = 0): array
     {
-        $currentDate = Carbon::today();
-        $firstDayOfCurrentMonth = $currentDate->copy()->startOfMonth()->startOfDay();
-        $lastDayOfCurrentMonth  = $currentDate->copy()->endOfMonth()->endOfDay();
+        $targetDate = Carbon::today()->addMonths($monthOffset);
+        $firstDayOfTargetMonth = $targetDate->copy()->startOfMonth()->startOfDay();
+        $lastDayOfTargetMonth  = $targetDate->copy()->endOfMonth()->endOfDay();
 
-        return [$firstDayOfCurrentMonth, $lastDayOfCurrentMonth];
+        return [$firstDayOfTargetMonth, $lastDayOfTargetMonth];
     }
 }

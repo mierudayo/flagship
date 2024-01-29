@@ -1,9 +1,17 @@
 @use '../global/mixins' as *;
 
+.action-bar {
+  align-items: center;
+  display: flex;
+  padding: 8px 0;
+}
+
+
 .card-wrapper {
   display: flex;
   align-items: start;
-  overflow: hidden;
+  max-width: 1200px;
+
   @include mobile-screen() {
     display: block;
   }
@@ -13,6 +21,7 @@
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  flex: 1;
 
   @include mobile-screen() {
     margin-bottom: 32px;
@@ -20,12 +29,7 @@
 
   .card-content {
     padding: 16px;
-    min-width: 320px;
-    min-height: 320px;
-
-    @include mobile-screen() {
-      width: 100%;
-    }
+    width: 100%;
   }
 
   .card-content-title {
@@ -51,12 +55,12 @@
     display: flex;
     justify-content: end;
     padding: 4px;
-    flex: 1;
 
     .list-label {
       margin-right: 8px;
     }
     .list-value {
+      min-width: 32px;
       text-align: right;
     }
   }
