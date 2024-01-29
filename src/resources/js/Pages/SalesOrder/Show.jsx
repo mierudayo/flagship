@@ -123,7 +123,7 @@ const Show = ({ salesOrder }) => {
               <tr className="table-row">
                 <th className="th-cell">入金日</th>
                 <td className="td-cell">
-                  {salesOrder.payment_date} {salesOrder.status}
+                  {salesOrder.payment_date} {salesOrder.payment_status}
                 </td>
               </tr>
 
