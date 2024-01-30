@@ -92,8 +92,6 @@ class SalesOrderController extends Controller
 
     public function edit(SalesOrder $salesOrder, Request $request): Response
     {
-        $returnToUrl = $request->headers->get('referer');
-
         $salesOrder->load([
             'customer.billingAddresses',
             'customer.contacts',
@@ -112,7 +110,6 @@ class SalesOrderController extends Controller
         ]);
 
         return Inertia::render('SalesOrder/Edit', [
-            'returnToUrl'            => $returnToUrl,
             'salesOrder'             => $salesOrder,
             'userOptions'            => User::active()->get(),
             'productOptions'         => Product::all(),
@@ -149,8 +146,6 @@ class SalesOrderController extends Controller
 
     public function update(SalesOrderUpdateRequest $request, SalesOrder $salesOrder): RedirectResponse
     {
-        $returnToUrl = $request->input('return_to_url', route('sales-orders.index'));
-
         $salesOrder = DB::transaction(function () use ($request, $salesOrder) {
             $salesOrder = $this->updateSalesOrder($request, $salesOrder);
             $this->deleteDetailRows($salesOrder, $request->input('detail_rows'));
@@ -158,7 +153,7 @@ class SalesOrderController extends Controller
             return $salesOrder;
         });
 
-        return redirect($returnToUrl)
+        return to_route('sales-orders.index')
             ->with('message', "受注No:{$salesOrder->id} 更新成功しました。");
     }
 

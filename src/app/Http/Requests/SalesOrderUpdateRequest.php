@@ -22,7 +22,6 @@ class SalesOrderUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'return_to_url'         => ['nullable', 'string', 'max:2048'],
             'customer_id'           => ['required', 'integer', 'exists:customers,id'],
             'customer_contact_id'   => ['nullable', 'integer', 'exists:customer_contacts,id'],
             'billing_address_id'    => ['required', 'integer', 'exists:billing_addresses,id'],

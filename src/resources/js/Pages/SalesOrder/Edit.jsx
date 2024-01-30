@@ -11,7 +11,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import SalesOrderForm from '@/Pages/SalesOrder/Partials/SalesOrderForm';
 import { parseNumber, calculatePrice, calculatePriceWithTax } from '@/Utils/priceCalculator';
 
-const Edit = ({ returnToUrl, salesOrder, userOptions, productOptions, productCategoryOptions, paymentTermOptions, date, taxRate }) => {
+const Edit = ({ salesOrder, userOptions, productOptions, productCategoryOptions, paymentTermOptions, date, taxRate }) => {
   const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
   const [isSupplierModalOpen, setIsSupplierModalOpen] = useState(false);
   const [billingAddresses, setBillingAddresses] = useState(salesOrder.customer.billing_addresses || []);
@@ -94,7 +94,6 @@ const Edit = ({ returnToUrl, salesOrder, userOptions, productOptions, productCat
   }
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
-    return_to_url: returnToUrl,
     customer_id: salesOrder.customer_id,
     customer_name: salesOrder.customer.name,
     customer_contact_id: salesOrder.customer_contact_id || '',

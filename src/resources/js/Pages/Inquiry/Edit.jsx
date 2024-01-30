@@ -11,7 +11,7 @@ import ProgressIndicator from '@/Components/ProgressIndicator';
 import AppLayout from '@/Layouts/AppLayout';
 import InquiryForm from '@/Pages/Inquiry/Partials/InquiryForm';
 
-const Edit = ({ returnToUrl, inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatusOptions, contactMethodOptions }) => {
+const Edit = ({ inquiry, productOptions, inquiryTypeOptions, inChargeUserOptions, inquiryStatusOptions, contactMethodOptions }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [contactInfo, setContactInfo] = useState({
     contactName: inquiry.customer_contact.name,
@@ -22,7 +22,6 @@ const Edit = ({ returnToUrl, inquiry, productOptions, inquiryTypeOptions, inChar
   });
 
   const { data, setData, patch, processing, errors, reset, isDirty } = useForm({
-    return_to_url: returnToUrl,
     inquiry_date: inquiry.inquiry_date,
     customer_contact_id: inquiry.customer_contact_id,
     product_id: inquiry.product_id || '',
