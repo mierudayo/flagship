@@ -14,7 +14,6 @@ use App\Http\Controllers\LeadSourceController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductCategoryGroupController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\SalesActivityController;
 use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\UserController;
@@ -126,12 +125,6 @@ Route::middleware('auth')->group(function () {
     Route::get('sales-orders/{salesOrder}/duplicate', [SalesOrderController::class, 'duplicate'])->name('sales-orders.duplicate');
     Route::patch('sales-orders/{salesOrder}', [SalesOrderController::class, 'update'])->name('sales-orders.update');
     Route::delete('sales-orders/{salesOrder}', [SalesOrderController::class, 'destroy'])->name('sales-orders.destroy');
-
-    // PurchaseOrder
-    Route::get('purchase-orders', [PurchaseOrderController::class, 'index'])->name('purchase-orders.index');
-    Route::get('purchase-orders/create', [PurchaseOrderController::class, 'create'])->name('purchase-orders.create');
-    Route::post('purchase-orders', [PurchaseOrderController::class, 'store'])->name('purchase-orders.store');
-    Route::get('purchase-orders/{purchaseOrder}', [PurchaseOrderController::class, 'show'])->name('purchase-orders.show');
 });
 
 

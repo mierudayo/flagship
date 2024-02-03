@@ -6,7 +6,6 @@ import CorporateFareIcon from '@mui/icons-material/CorporateFare';
 import CurrencyYenIcon from '@mui/icons-material/CurrencyYen';
 import HomeIcon from '@mui/icons-material/Home';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
-import PaymentsIcon from '@mui/icons-material/Payments';
 import PeopleIcon from '@mui/icons-material/People';
 
 export default function NavList() {
@@ -101,18 +100,7 @@ export default function NavList() {
         >
           <div className="icon-wrapper">
             <CurrencyYenIcon className="sidenav-icon" />
-            <span>受注</span>
-          </div>
-        </Link>
-      </li>
-      <li>
-        <Link
-          href={route('purchase-orders.index')}
-          className={`side-nav-link ${component.startsWith('PurchaseOrder/')? 'is-active' : ''}`}
-        >
-          <div className="icon-wrapper">
-            <PaymentsIcon className="sidenav-icon" />
-            <span>発注</span>
+            <span>受発注</span>
           </div>
         </Link>
       </li>
