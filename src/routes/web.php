@@ -51,8 +51,6 @@ Route::middleware('auth')->group(function () {
     Route::post('customers/{customer}/billing-addresses/detach', [CustomerController::class, 'detachBillingAddress'])
         ->name('customers.detach-billing-address');
 
-
-
     // CustomerContact
     Route::get('contacts', [CustomerContactController::class, 'index'])->name('contacts.index');
     Route::get('contacts/create', [CustomerContactController::class, 'create'])->name('contacts.create');
