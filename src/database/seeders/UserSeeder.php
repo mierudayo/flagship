@@ -33,10 +33,11 @@ class UserSeeder extends Seeder
             'permission_id' => Permission::where('name', 'admin')->first()->id,
         ]);
         User::factory()->create([
-            'name'          => 'Staff User',
-            'email'         => 'staff@example.com',
+            'name'          => 'ゲスト',
+            'email'         => 'guest@example.com',
             'password'      => $password,
             'permission_id' => Permission::where('name', 'staff')->first()->id,
+            'resignation_date' => null,
         ]);
 
         User::factory(30)->create();
