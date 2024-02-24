@@ -1,8 +1,13 @@
 
-export default function Guest({ children }) {
+import { Head } from '@inertiajs/react'
+
+export default function Guest({ title, children }) {
   return (
-    <main className="guest-layout">
-      {children}
-    </main>
+    <>
+      <Head title={title} />
+      <main className="guest-layout">
+        {children}
+      </main>
+    </>
   );
 }
