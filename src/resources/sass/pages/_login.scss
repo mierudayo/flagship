@@ -1,5 +1,5 @@
 .guest-layout {
-  background-color: #ecf0f1; // --light-gray
+  background-color: var(--light-gray);
   min-height: 100vh;
 }
 
@@ -35,10 +35,11 @@
   background-color: var(--light-black);
   border-radius: 8px;
   color: var(--white);
-  padding: 4px 8px;
+  padding: 8px;
   width: 100%;
 
-  &:hover {
+  &:hover,
+  &:focus {
     cursor: pointer;
     opacity: 0.9;
   }

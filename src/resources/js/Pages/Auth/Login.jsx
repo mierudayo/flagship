@@ -2,10 +2,13 @@ import { useEffect } from 'react';
 
 import { useForm } from '@inertiajs/react';
 
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import GuestLayout from '@/Layouts/GuestLayout';
 
-export default function Login({ status }) {
+export default function Login({ appName, status }) {
   const { data, setData, post, processing, errors, reset } = useForm({
     email: '',
     password: '',
@@ -24,11 +27,13 @@ export default function Login({ status }) {
   };
 
   return (
-    <GuestLayout>
+    <GuestLayout title="login">
       <div className="login-container">
         <form onSubmit={submit}>
 
-          <h1 className="login-title">Login</h1>
+          <h1 className="login-title">
+            {appName} ログイン 🚩
+          </h1>
 
           {status &&
             <div className="alert alert-danger">{status}</div>
@@ -69,15 +74,9 @@ export default function Login({ status }) {
 
             {/* Remember Me */}
             <div className="login-input-row">
-              <label htmlFor="userRememberMeInput">
-                <span>ログイン情報を記憶</span>
-              </label>
-              <input
-                checked={data.remember}
-                id="userRememberMeInput"
-                name="remember"
-                onChange={e => setData('remember', e.target.checked)}
-                type="checkbox"
+              <FormControlLabel
+                control={<Checkbox onChange={e => setData('remember', e.target.checked)} />}
+                label="ログインを記憶"
               />
             </div>
 

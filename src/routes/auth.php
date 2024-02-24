@@ -16,3 +16,25 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
+
+/*
+|--------------------------------------------------------------------------
+| デモ環境 ゲストログイン
+|--------------------------------------------------------------------------
+*/
+Route::middleware('guest')->group(function () {
+    if (app()->environment(['local', 'staging'])) {
+        Route::get('/demo', function () {
+            $user = App\Models\User::where('name', 'ゲスト')->first();
+            if (!$user) {
+                $user = App\Models\User::factory()->create([
+                    'name'          => 'ゲスト',
+                    'permission_id' => App\Models\Permission::where('name', 'staff')->first()->id,
+                    'resignation_date' => null,
+                ]);
+            }
+            Auth::loginUsingId($user->id);
+            return redirect('/');
+        });
+    }
+});
