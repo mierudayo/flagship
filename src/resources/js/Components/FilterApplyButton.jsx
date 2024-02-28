@@ -9,7 +9,7 @@ export default function FilterApplyButton({ handleClick, style }) {
   };
 
   return (
-    <Button onClick={handleClick} variant="outlined" startIcon={<CheckIcon />} style={buttonStyle}>
+    <Button type="submit" onClick={handleClick} variant="outlined" startIcon={<CheckIcon />} style={buttonStyle}>
       決定
     </Button>
   );
