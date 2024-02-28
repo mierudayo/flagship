@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 
 import { useForm } from '@inertiajs/react';
-
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 import InvalidFeedback from '@/Components/Form/InvalidFeedback'
 import GuestLayout from '@/Layouts/GuestLayout';
