@@ -2,7 +2,7 @@
 
 顧客管理から受発注管理に至るまで、会社の主要な業務フローを一元管理するための基幹システムです。
 
-公開URL: [https://works.rz-log.com/demo](https://works.rz-log.com/demo)
+公開URL: [https://app.rz-log.com/demo](https://app.rz-log.com/demo)
 （ゲストユーザーとして自動ログインできます）
 
 ![alt text](src/docs/images/README/Dashboard.png)
